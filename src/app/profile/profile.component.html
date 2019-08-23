@@ -16,7 +16,7 @@
             <a routerLink="/profile"  class="nav-link active text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">MY PROFILE</a>
           </li>
           <li class="nav-item">
-            <a href="index.html" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">NEWS FEED</a>
+            <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">NEWS FEED</a>
           </li>
           <li class="nav-item">
             <a  href="#contact" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
@@ -32,11 +32,7 @@
           </li>
         </ul>
         
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-        </div>
+      
         </div>
         </div>
         <div class="row py-4">
@@ -53,37 +49,64 @@
                                 <h4 class="text-white font-weight-medium username" >Billy Bob</h4>
                                 <!-- <p class="small mb-4 username"> <i class="fa fa-map-marker mr-2"></i>San Farcisco</p> -->
                             </div>
-                             <div class="mr-3 profile-btn justify-content-end align-self-end">
-                                <a href="#" class="btn btn-dark btn-sm btn-block">Edit Cover Photo</a>
-                            </div>
+                            <div class="mr-3 profile-btn justify-content-end align-self-end">
+                              <a href="#" class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
+                          </div>
                         </div>
                     </div>
-        
-                    <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
-                    <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
-              <li class="nav-item align-self-center">
-               <h5 class="text-dark mb-0 Font-weight-bold mr-3"></h5>
-              </li>
-              <li class="nav-item bg-dark">
-                <a routerLink="/photos"  class="nav-link text-white font-weight-normal"   aria-controls="photos" aria-selected="false">Photos</a>
-              </li>
-              <li class="nav-item">
-                <a href="#following" class="nav-link text-white font-weight-normal" id="contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="contact" aria-selected="false">Following</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white font-weight-normal" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Neighbors</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white font-weight-normal" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">My Discusssions</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link text-white font-weight-normal" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Bookmarks</a>
-              </li>
-        </ul>
-         </div>
+         <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
+          <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
+    <li class="nav-item bg-dark ml-5">
+      <a routerLink="/photos" class="  nav-link text-white font-weight-normal"  role="tab" aria-controls="profile" aria-selected="false">Photos</a>
+    </li>
+    <li class="nav-item">
+      <a href="#following" class="nav-link text-white font-weight-normal"   href="#" role="tab" aria-controls="contact" aria-selected="false">Following</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white font-weight-normal" id="contact-tab"  href="#contact" role="tab" aria-controls="contact" aria-selected="false">Neighbors</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white font-weight-normal" id="contact-tab"  href="#contact" role="tab" aria-controls="contact" aria-selected="false">My Discusssions</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link text-white font-weight-normal" id="contact-tab"  href="#contact" role="tab" aria-controls="contact" aria-selected="false">Bookmarks</a>
+    </li>
+</ul>
+</div>
+
+
             </div>
         <!-- End profile widget -->
         </div>
         </div>
        
+        <div class="row py-4">
+          <div class="col-xl-12">
+          <div class="row justify-content-between no-gutters py-4">
+            <div class="col-xl-6">
+                <ul class="list-inline d-flex">
+                    <li class="list-inline-item h6 font-weight-semibold text-muted">Posts</li>
+                     <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
+                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Posts
+                          </a>
+                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Latest</a>
+                        <a class="dropdown-item" href="#">Yesterday</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li>
+                </ul>
+              </div>
+          </div>
+          <div class="col-xl-6 bg-danger">
+          fjnvcfnkj
+          </div>
+          
+          </div>
+
+
+
+
+
         </div>
