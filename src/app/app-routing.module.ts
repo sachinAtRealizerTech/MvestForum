@@ -1,12 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './profile/profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
+import { RequestsComponent } from './requests/requests.component';
 
 
 const routes: Routes = [
+
   { path: 'sign-in', 
   component: SignInComponent
 }, 
@@ -16,8 +18,10 @@ const routes: Routes = [
 },
 { path: 'photos', 
   component: PhotosComponent
+},
+{ path: 'requests', 
+  component: RequestsComponent
 }
-
 
 ];
 

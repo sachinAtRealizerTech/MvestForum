@@ -9,6 +9,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
+import { RequestsComponent } from './requests/requests.component';
 
 
 
@@ -21,6 +22,7 @@ import { PhotosComponent } from './photos/photos.component';
     ProfileComponent,
     SignInComponent,
     PhotosComponent,
+    RequestsComponent,
    
    
   ],
