@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './requests/requests.component';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 
 
 
@@ -23,6 +24,7 @@ import { RequestsComponent } from './requests/requests.component';
     SignInComponent,
     PhotosComponent,
     RequestsComponent,
+    NewsfeedComponent,
    
    
   ],

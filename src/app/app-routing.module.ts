@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './requests/requests.component';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,9 @@ const routes: Routes = [
 },
 { path: 'requests', 
   component: RequestsComponent
+},
+{ path: 'newsfeed', 
+  component: NewsfeedComponent
 }
 
 ];

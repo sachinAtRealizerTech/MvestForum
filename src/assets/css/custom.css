@@ -15,6 +15,15 @@ body {
 	.text-green{
 		color: #00cc99;
 	}
+/* font */
+.font-weight-semibold{
+  font-weight: 500;
+}
+
+.py-55 {
+  padding-bottom: .19rem!important;
+  padding-top: .19rem!important;
+}
 
 /* sizes */
 .user-pic {
@@ -23,6 +32,10 @@ body {
 .flex-1{
 	flex:1;
 }	
+
+.rounded-5 {
+  border-radius: 22.357rem;
+}
 .main-sidebar .nav .nav-item .nav-link {
     border-bottom: 1px solid #e1e5eb;
     font-weight: 400;
