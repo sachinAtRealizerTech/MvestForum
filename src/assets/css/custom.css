@@ -16,7 +16,10 @@ body {
 		color: #00cc99;
 	}
 
-
+/* sizes */
+.user-pic {
+  max-width: 2.5rem;
+}
 .flex-1{
 	flex:1;
 }	
