@@ -14,7 +14,12 @@ body {
 	}
 	.text-green{
 		color: #00cc99;
-	}
+  }
+  .bg-accent{
+    background:#00cc99;
+    color:white !important;
+
+  }
 /* font */
 .font-weight-semibold{
   font-weight: 500;
@@ -42,6 +47,14 @@ body {
 .rounded-5 {
   border-radius: 22.357rem;
 }
+
+.rounded-50{
+	border-radius:50%;
+  border:4px solid #fff;
+}
+
+
+/* sidbar start*/
 .main-sidebar .nav .nav-item .nav-link {
     border-bottom: 1px solid #e1e5eb;
     font-weight: 400;
@@ -71,6 +84,8 @@ body {
 .main-sidebar .nav .nav-item .nav-link.active i, .main-sidebar .nav .nav-item .nav-link:hover i, .main-sidebar .nav .nav-item.active i, .main-sidebar .nav .nav-item:hover i {
     color: #00cc99 !important;
 }
+/* sidbar end*/
+
 
 /* buttons start */
 .btn {
@@ -147,10 +162,7 @@ body {
    
 }
 
-.rounded-50{
-	border-radius:50%;
-  border:4px solid #fff;
-}
+
 
 /* profile position */
  .profile-header{ 
@@ -411,3 +423,53 @@ body {
   vertical-align: middle;
   text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* responsive */
+@media (min-width:480px) and (max-width:610px) {
+.username{ 
+  position: absolute;
+top:105px;
+  left:25%;
+  font-size: 20px !important;
+}
+}
+
+
+@media (min-width:610.99px) and (max-width:962px) {
+  .username{ 
+    position: absolute;
+  top:105px;
+    left:20%;
+    /* font-size: 20px !important; */
+  }
+  }
+
+  @media (min-width:962.99px) and (max-width:1130px) {
+    .username{ 
+      position: absolute;
+    top:105px;
+      left:16%;
+      /* font-size: 20px !important; */
+    }
+    }
+    @media (min-width:1130.99px) and (max-width:1240px) {
+      .username{ 
+        position: absolute;
+      top:105px;
+        left:13%;
+        /* font-size: 20px !important; */
+      }
+      }
+   

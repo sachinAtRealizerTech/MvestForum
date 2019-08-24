@@ -1,272 +1,383 @@
+
+
 <div class="main-content-container container-fluid px-4">		  
-        <div class="row pb-3 pt-4">		  
-        <div class="col-12">		  
-        <!-- <nav> -->
-          <!-- <div class="nav nav-tabs" id="nav-tab" role="tablist"> -->
-            <!-- <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a> -->
-            <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a> -->
-            <!-- <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a> -->
-          <!-- </div> -->
-        <!-- </nav> -->
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item align-self-center">
-           <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/profile"  class="nav-link text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">MY PROFILE</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/newsfeed" class=" active nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">NEWS FEED</a>
-          </li>
-          <li class="nav-item">
-            <a  routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
-          </li>
-          <li class="nav-item">
-            <a  routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">MESSAGES</a>
-          </li>
-           <li class="nav-item">
-            <a routerLink="/requests" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">REQUESTS</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/index" class="nav-link text-muted font-weight-bold"  role="tab" aria-controls="contact" aria-selected="false">SETTINGS</a>
-          </li>
-        </ul>
-        
-      
-        </div>
-        </div>
+    <div class="row pb-3 pt-4">		  
+    <div class="col-12">		  
+    <!-- <nav> -->
+      <!-- <div class="nav nav-tabs" id="nav-tab" role="tablist"> -->
+        <!-- <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a> -->
+        <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a> -->
+        <!-- <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a> -->
+      <!-- </div> -->
+    <!-- </nav> -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item align-self-center">
+       <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/profile"  class=" nav-link text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">MY PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/newsfeed" class="active nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">NEWS FEED</a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">MESSAGES</a>
+      </li>
+       <li class="nav-item">
+        <a routerLink="/requests" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">REQUESTS</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/index" class="nav-link text-muted font-weight-bold"  role="tab" aria-controls="contact" aria-selected="false">SETTINGS</a>
+      </li>
+    </ul>
+    
+  
+    </div>
+    </div>
 
-       
-       
-        <div class="row">
-          <div class="col-xl-12">
-          <div class="row justify-content-between no-gutters py-4">
-            <div class="col-xl-8">
-                <ul class="list-inline d-flex">
-                    <li class="list-inline-item h6 font-weight-semibold text-muted">Posts</li>
-                     <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
-                        <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All Posts
-                          </a>
-                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Latest</a>
-                        <a class="dropdown-item" href="#">Yesterday</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </li>
-                </ul>
-                <div class="row justify-content-between no-gutters pb-3">
-                    <div class="col-xl-12">
-                        <div class="card card-small blog-comments">
-                         
-                            <div class="card-body shadow p-0">
-                              <div class="media d-flex align-items-center p-3">
-                                  <img class="mr-3 user-pic align-self-center rounded-circle mr-2 bg-accent" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                  <div class="media-body mb-0">
-                                      <form class="">
-                                          <input class="form-control rounded-5 form-control-lg" type="text" placeholder="Whats Happening ??">
-                                          <!-- <div id="editor-container" class="add-new-post__editor mb-1"></div> -->
-                                        </form>
-                                   </div>
-                                   <img class="ml-3 user-pic align-self-center rounded-circle mr-2 bg-accent" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                    <img class=" user-pic align-self-center rounded-circle mr-2 bg-accent" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                </div>
-                              </div>
-
-                            </div>
-                 </div>
-            </div>
+   
+   
+    <div class="row pt-1 pb-3">
+      <div class="col-xl-12">
+      <div class="row justify-content-between no-gutters py-4">
+        <div class="col-xl-8">
+            <ul class="list-inline d-flex mb-1">
+                <li class="list-inline-item h6 text-secondary">What's New ??</li>
+                 <li class="list-inline-item ml-auto">
+                    <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <small class="font-weight-semibold">All Posts</small>
+                      </a>
+                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Latest</a>
+                    <a class="dropdown-item" href="#">Yesterday</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+            </ul>
             <div class="row justify-content-between no-gutters pb-3">
-                    <div class="col-xl-12">
-                        <div class="card card-small shadow blog-comments">
-                         
-                            <div class="card-header p-0">
-                                <div class="media d-flex align-items-center pt-3 px-3">
-                                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                    <div class="media-body mb-0">
-                                      <h5 class="text-dark h6 mb-0 font-weight-semibold">News Source</h5>
-                                      <h5 class="text-muted h6 mb-0 font-weight-semibold small">May 3 at 8:30pm</h5>
-                                     </div>
-                                  </div>
-                            </div> 
-                                <div class="card-body pb-1">
-                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Lorem Ispum is a Dummy text</h5>
-                                    <p class="text-secondary pt-2">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  laboris commodo consequat.   
-                                      </p>
-                                      <img class="img-fluid" src="assets/images/content-management/6.jpeg"  alt="Generic placeholder image">
-                                      <ul class="list-inline d-flex">
-                                          <li class="list-inline-item h6 font-weight-semibold text-muted pt-2 mb-0">2 Comments</li>
-                                           <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
-                                          /
-                                          </li>
-                                      </ul>
-                                    </div>
-                                <div class="card-footer pt-0">
-                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"></h5>
-                                    <div class="media d-flex align-items-center px-3">
-                                       
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"  alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                          <div class="bg-light border align-self-center rounded-5 py-55 px-3">
-                                              <p class="text-dark mb-0">
-                                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu..   
-                                                </p>   
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <form class="p-3">
-                                          <input class="form-control rounded-5 bg-light form-control-lg" type="text" placeholder="Write a Comment">
-                                          <!-- <div id="editor-container" class="add-new-post__editor mb-1"></div> -->
-                                        </form>
-                                </div>
-                            </div>
-                 </div>
-</div>
-                
-              </div>
-
-              <div class="col-xl-4">
-                
-                  <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                      <!-- <h6 class="list-inline-item h6 font-weight-semibold text-muted">My Discussions</h6> -->
-                       <ul class="list-inline d-flex">
-                    <li class="list-inline-item h6 font-weight-semibold text-muted">Discussions</li>
-                     <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
-                        <a class=" text-muted" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Edit
-                          </a>
-                    </li>
-                </ul>
-                      <div class="card card-small blog-comments">
-                         
+                <div class="col-xl-12">
+                    <div class="card card-small blog-comments">
+                     
                         <div class="card-body shadow p-0">
+                          <div class="media d-flex align-items-center p-3">
+                              <img class="mr-3 user-pic align-self-center rounded-circle mr-2 bg-accent" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
+                              <div class="media-body mb-0">
+                                  <form class="">
+                                      <input class="form-control rounded-5 form-control-lg" type="text" placeholder="Whats Happening ??">
+                                      <!-- <div id="editor-container" class="add-new-post__editor mb-1"></div> -->
+                                    </form>
+                               </div>
+                               <i class="material-icons p-2 md-36">
+                                add_photo_alternate
+                                </i>
+                                <i class="material-icons p-2 md-36">
+                                  add_photo_alternate
+                                  </i>
+                            </div>
+                          </div>
+
+                        </div>
+             </div>
+        </div>
+        <div class="row justify-content-between no-gutters pb-3">
+                <div class="col-xl-12">
+                    <div class="card card-small shadow blog-comments">
+                     
+                        <div class="card-header p-0">
+                            <div class="media d-flex align-items-center pt-3 px-3">
+                                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
+                                <div class="media-body mb-0">
+                                  <h5 class="text-dark h6 mb-0 font-weight-semibold">News Source</h5>
+                                  <h5 class="text-muted h6 mb-0 font-weight-semibold small">May 3 at 8:30pm</h5>
+                                 </div>
+                              </div>
+                        </div> 
+                            <div class="card-body pb-1">
+                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Lorem Ispum is a Dummy text</h5>
+                                <p class="text-secondary pt-2">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  laboris commodo consequat.   
+                                  </p>
+                                  <img class="img-fluid" src="assets/images/content-management/6.jpeg"  alt="Generic placeholder image">
+                                  <ul class="list-inline d-flex">
+                                     <li class="list-inline-item pt-2 mb-0"> <i class="material-icons">
+                                          mode_comment
+                                          </i>
+                                        </li>
+                                      <li class="list-inline-item  pt-2 mb-0">
+                                        <small class="text-secondary">2 Comments </small>
+                                      </li>
+                                       <li class="list-inline-item h6 pt-2 font-weight-semibold text-muted ml-auto">
+                                          <i class="material-icons">
+                                              keyboard_arrow_up
+                                              </i>
+                                      </li>
+                                  </ul>
+                                </div>
+                            <div class="card-footer pt-0">
+                                <h5 class="text-dark h6 mb-0 font-weight-semibold"></h5>
+                                <div class="media d-flex align-items-center px-3">
+                                   
+                                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"  alt="Generic placeholder image">
+                                    <div class="media-body mb-0">
+                                      <div class="bg-light align-self-center rounded-5 py-55 px-3">
+                                          <p class="text-dark mb-0">
+                                             <span class="font-weight-bold">John Doe : </span>Lorem ipsum dolor sit amet, consectetur  sed do eiu..   
+                                            </p>  
+                                           
+                                      </div>
+                                      <div class="align-self-center px-3">
+                                        <small class="text-secondary mb-0">
+                                          May 3 at 8:30pm
+                                        </small>  
+                                         
+                                    </div>
+                                     
+                                    </div>
+                                  </div>
+                                  <form class="p-3">
+                                      <input class="form-control border-0 rounded-5 bg-light form-control-lg" type="text" placeholder="Write a Comment">
+                                      <!-- <div id="editor-container" class="add-new-post__editor mb-1"></div> -->
+                                    </form>
+                            </div>
+                        </div>
+             </div>
+</div>
+            
+          </div>
+
+          <div class="col-xl-4">
+            
+              <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                  <!-- <h6 class="list-inline-item h6 font-weight-semibold text-muted">My Discussions</h6> -->
+                  <ul class="list-inline d-flex mb-1">
+                      <li class="list-inline-item h6 text-secondary mb-0">Stats</li>
+                  </ul>
+                  <div class="card justify-content-between shadow p-2 card-small blog-comments"> 
+                      <div class="card-body text-center pb-0">
+                          <ul class="list-inline d-flex">
+                              <li class="list-inline-item flex-1 h6 mb-0">
+                               <small class="font-weight-semibold text-secondary text-uppercase">
+                                 Comments</small>
+                               <br><span class="text-dark font-weight-semibold">986</span>  
+                              </li>
+                              <li class="list-inline-item flex-1 h6 mb-0">
+                                  <small class="font-weight-semibold text-secondary text-uppercase">
+                                    messages</small>
+                                  <br><span class="text-dark font-weight-semibold">86</span>  
+                                 </li>
+                                 <li class="list-inline-item flex-1 h6 mb-0">
+                                    <small class="font-weight-semibold text-secondary text-uppercase">
+                                      Posts</small>
+                                    <br><span class="text-dark font-weight-semibold">256</span>  
+                                   </li>
+                          </ul>
+                      </div>
+                  </div>         
+                 
+                  <ul class="list-inline d-flex pt-4 mb-1">
+                <li class="list-inline-item h6 text-secondary mb-1">Discussions</li>
+                 <li class="list-inline-item ml-auto mb-1">
+                    <a  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <small class="font-weight-semibold text-secondary mb-0">  Edit</small>
+                      </a>
+                </li>
+            </ul>
+                  <div class="card card-small blog-comments">
+                     
+                    <div class="card-body shadow p-0">
+                      <div class="media d-flex align-items-center p-3">
+                          <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
+                          <div class="media-body mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
+                           </div>
+                        </div>
+
+                        <div class="media d-flex align-items-center p-3">
+                            <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
+                            <div class="media-body mb-0">
+                              <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
+                             </div>
+                          </div>
+
                           <div class="media d-flex align-items-center p-3">
                               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
                               <div class="media-body mb-0">
                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
                                </div>
                             </div>
+                    </div>
 
-                            <div class="media d-flex align-items-center p-3">
-                                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                <div class="media-body mb-0">
-                                  <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
-                                 </div>
-                              </div>
-
-                              <div class="media d-flex align-items-center p-3">
-                                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                  <div class="media-body mb-0">
-                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
-                                   </div>
-                                </div>
-                        </div>
-
-                       
-                        <div class="card-footer border-top">
-                          <div class="row">
-                            <div class="col text-center view-report">
-                              <a href="" class="text-secondary font-weight-bold ">See All</a>
-                            </div>
-                          </div>
+                   
+                    <div class="card-footer border-top">
+                      <div class="row">
+                        <div class="col text-center view-report">
+                          <a href="" class="text-secondary font-weight-bold ">See All</a>
                         </div>
                       </div>
                     </div>
-                    <div class="col-xl-12">
-                    <ul class="list-inline d-flex">
-                        <li class="list-inline-item h6 font-weight-semibold text-muted">Photos</li>
-                         <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
-                            <a class=" text-muted" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Add Photo
-                              </a>
-                        </li>
-                    </ul>
-                    <div class="card card-small shadow" >
-                        <div class="card-body p-2">
-                        <div class="row text-center text-lg-left">
-                      
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
-                                </a>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-6">
-                            <a href="#" class="d-block mb-4 h-100">
-                                  <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
-                                </a>
-                          </div>
-                        </div>
-                        </div>
-                        <div class="card-footer border-top">
-                            <div class="row">
-                              <div class="col text-center view-report">
-                                <a href="" class="text-secondary font-weight-bold ">See All Photos</a>
-                              </div>
-                            </div>
-                          </div>
+                  </div>
+                </div>
+                <div class="col-xl-12">
+                <ul class="list-inline d-flex">
+                    <li class="list-inline-item h6 text-secondary">Photos</li>
+                     <li class="list-inline-item ml-auto">
+                        <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <small class="font-weight-semibold text-secondary ">Add Photo</small>
+                          </a>
+                    </li>
+                </ul>
+                <div class="card card-small shadow" >
+                    <div class="card-body p-2">
+                    <div class="row text-center text-lg-left">
+                  
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+                            </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+                            </a>
                       </div>
                     </div>
+                    </div>
+                    <div class="card-footer border-top">
+                        <div class="row">
+                          <div class="col text-center view-report">
+                            <a href="" class="text-secondary font-weight-bold ">See All Photos</a>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
 
-                  </div>    
-          </div>
-          
-          
-          </div>
+              </div>    
+      </div>
+      
+      
+      </div>
 
 
 
 
 
+    </div>
+  </div>
+
+  <div class="modal fade cover-modal-lg" tabindex="-1" role="dialog" aria-labelledby="cover-modal" aria-hidden="true">
+    <div class="modal-dialog modal-md bg-white shadow">
+     <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title">Add Cover Photo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+      <div class="form-group">
+      <label for="mb-4">Browse to add Cover Photo: </label>
+      <div class="js--image-preview--cover  shadow  ">
+      </div>
+      <div class="upload-options">
+        <label>
+          <input type="file" class="image-upload  rounded-5" accept="image/*" />
+        </label>
+      </div>
+  </div>
+        </div>
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-accent">Submit</button>
+          <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button>
         </div>
       </div>
+        </form>
+    </div>
+  </div>
+  <div class="modal fade profile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="profile-modal" aria-hidden="true">
+    <div class="modal-dialog modal-md bg-white shadow">
+     <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title">Add Profile Photo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+      <div class="form-group">
+      <label for="leasetype mb-4">Browse to add Profile Photo: </label>
+      <div class="js--image-preview--profile shadow mr-auto mt-2">
+        <div class="upload-options-profile  align-self-end">
+          <label>
+            <input type="file" class="image-upload rounded-5 text-dark" accept="image/*" />
+          </label>
+        </div>
+      </div>
+      
+  </div>
+        </div>
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-accent">Submit</button>
+          <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+        </form>
+    </div>
+  </div>
