@@ -6,6 +6,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './requests/requests.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,10 @@ const routes: Routes = [
 },
 { path: 'newsfeed', 
   component: NewsfeedComponent
-}
+},
+{ path: 'messages', 
+  component: MessagesComponent
+},
 
 ];
 
