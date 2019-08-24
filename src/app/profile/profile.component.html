@@ -1,3 +1,5 @@
+
+
 <div class="main-content-container container-fluid px-4">		  
         <div class="row pb-3 pt-4">		  
         <div class="col-12">		  
@@ -42,8 +44,8 @@
                 <div class="bg-warning shadow overflow-hidden">
                     <div class="px-4 pb-4 py-4 bg-green " style="height:180px">
                         <div class="media align-items-end profile-header ">
-                            <div class="justify-content-start mr-3">
-                            <img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..." width="100" class="rounded-50 mt-2 profile img-thumbnail">
+                          <div class="justify-content-start mr-3">
+                            <img href="#" data-toggle="modal" data-target=".profile-modal-lg" src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..." width="100" class="rounded-50 mt-2 profile img-thumbnail">
                             </div>
                             
                             <div class="media-body justify-content-center text-left text-white ">
@@ -51,7 +53,7 @@
                                 <!-- <p class="small mb-4 username"> <i class="fa fa-map-marker mr-2"></i>San Farcisco</p> -->
                             </div>
                             <div class="mr-3 profile-btn justify-content-end align-self-end">
-                              <a href="#" class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
+                              <a href="#" data-toggle="modal" data-target=".cover-modal-lg" class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
                           </div>
                         </div>
                     </div>
@@ -81,15 +83,15 @@
         </div>
         </div>
        
-        <div class="row py-4">
+        <div class="row py-3">
           <div class="col-xl-12">
           <div class="row justify-content-between no-gutters py-4">
             <div class="col-xl-8">
-                <ul class="list-inline d-flex">
-                    <li class="list-inline-item h6 font-weight-semibold text-muted">Posts</li>
-                     <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
+                <ul class="list-inline d-flex mb-1">
+                    <li class="list-inline-item h6 text-secondary">Posts</li>
+                     <li class="list-inline-item ml-auto">
                         <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All Posts
+                            <small class="font-weight-semibold">All Posts</small>
                           </a>
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="#">Latest</a>
@@ -111,8 +113,12 @@
                                           <!-- <div id="editor-container" class="add-new-post__editor mb-1"></div> -->
                                         </form>
                                    </div>
-                                   <img class="ml-3 user-pic align-self-center rounded-circle mr-2 bg-accent" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
-                                    <img class=" user-pic align-self-center rounded-circle mr-2 bg-accent" src="assets/images/avatars/0.jpg"  alt="Generic placeholder image">
+                                   <i class="material-icons p-2 md-36">
+                                    add_photo_alternate
+                                    </i>
+                                    <i class="material-icons p-2 md-36">
+                                      add_photo_alternate
+                                      </i>
                                 </div>
                               </div>
 
@@ -173,36 +179,36 @@
                 
                   <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
                       <!-- <h6 class="list-inline-item h6 font-weight-semibold text-muted">My Discussions</h6> -->
-                      <ul class="list-inline d-flex">
-                          <li class="list-inline-item h6 font-weight-semibold text-muted">Stats</li>
+                      <ul class="list-inline d-flex mb-1">
+                          <li class="list-inline-item h6 text-secondary mb-0">Stats</li>
                       </ul>
                       <div class="card justify-content-between shadow p-2 card-small blog-comments"> 
                           <div class="card-body text-center pb-0">
                               <ul class="list-inline d-flex">
-                                  <li class="list-inline-item h6 mb-0">
+                                  <li class="list-inline-item flex-1 h6 mb-0">
                                    <small class="font-weight-semibold text-secondary text-uppercase">
                                      Comments</small>
-                                   <br><span class="text-dark">986</span>  
+                                   <br><span class="text-dark font-weight-semibold">986</span>  
                                   </li>
-                                  <li class="list-inline-item h6 mb-0">
+                                  <li class="list-inline-item flex-1 h6 mb-0">
                                       <small class="font-weight-semibold text-secondary text-uppercase">
                                         messages</small>
-                                      <br><span class="text-dark">86</span>  
+                                      <br><span class="text-dark font-weight-semibold">86</span>  
                                      </li>
-                                     <li class="list-inline-item h6 mb-0">
+                                     <li class="list-inline-item flex-1 h6 mb-0">
                                         <small class="font-weight-semibold text-secondary text-uppercase">
                                           Posts</small>
-                                        <br><span class="text-dark">256</span>  
+                                        <br><span class="text-dark font-weight-semibold">256</span>  
                                        </li>
                               </ul>
                           </div>
                       </div>         
                      
-                      <ul class="list-inline d-flex pt-3">
-                    <li class="list-inline-item h6 font-weight-semibold text-muted">Discussions</li>
-                     <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
-                        <a class=" text-muted" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Edit
+                      <ul class="list-inline d-flex pt-4 mb-1">
+                    <li class="list-inline-item h6 text-secondary mb-1">Discussions</li>
+                     <li class="list-inline-item ml-auto mb-1">
+                        <a  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <small class="font-weight-semibold text-secondary mb-0">  Edit</small>
                           </a>
                     </li>
                 </ul>
@@ -243,10 +249,10 @@
                     </div>
                     <div class="col-xl-12">
                     <ul class="list-inline d-flex">
-                        <li class="list-inline-item h6 font-weight-semibold text-muted">Photos</li>
-                         <li class="list-inline-item h6 font-weight-semibold text-muted ml-auto">
-                            <a class=" text-muted" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Add Photo
+                        <li class="list-inline-item h6 text-secondary">Photos</li>
+                         <li class="list-inline-item ml-auto">
+                            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <small class="font-weight-semibold text-secondary ">Add Photo</small>
                               </a>
                         </li>
                     </ul>
@@ -336,5 +342,69 @@
 
 
 
+        </div>
+      </div>
+
+      <div class="modal fade cover-modal-lg" tabindex="-1" role="dialog" aria-labelledby="cover-modal" aria-hidden="true">
+        <div class="modal-dialog modal-md bg-white shadow">
+         <form action="/action_page.php" class="needs-validation" novalidate>
+          <div class="modal-content">
+           <div class="modal-header">
+              <h5 class="modal-title">Add Cover Photo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+          <div class="form-group">
+          <label for="mb-4">Browse to add Cover Photo: </label>
+          <div class="js--image-preview--cover  shadow  ">
+          </div>
+          <div class="upload-options">
+            <label>
+              <input type="file" class="image-upload  rounded-5" accept="image/*" />
+            </label>
+          </div>
+      </div>
+            </div>
+          
+            <div class="modal-footer">
+              <button type="button" class="btn btn-accent">Submit</button>
+              <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+            </form>
+        </div>
+      </div>
+      <div class="modal fade profile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="profile-modal" aria-hidden="true">
+        <div class="modal-dialog modal-md bg-white shadow">
+         <form action="/action_page.php" class="needs-validation" novalidate>
+          <div class="modal-content">
+           <div class="modal-header">
+              <h5 class="modal-title">Add Profile Photo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+          <div class="form-group">
+          <label for="leasetype mb-4">Browse to add Profile Photo: </label>
+          <div class="js--image-preview--profile shadow mr-auto mt-2">
+            <div class="upload-options-profile  align-self-end">
+              <label>
+                <input type="file" class="image-upload rounded-5 text-dark" accept="image/*" />
+              </label>
+            </div>
+          </div>
+          
+      </div>
+            </div>
+          
+            <div class="modal-footer">
+              <button type="button" class="btn btn-accent">Submit</button>
+              <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+            </form>
         </div>
       </div>

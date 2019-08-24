@@ -25,6 +25,12 @@ body {
   padding-top: .19rem!important;
 }
 
+/* material-icons */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 /* sizes */
 .user-pic {
   max-width: 2.5rem;
@@ -247,6 +253,7 @@ body {
   cursor: pointer;
   overflow: hidden;
 }
+
 .upload-options label::after {
   content: 'add';
   font-family: 'Material Icons';
@@ -272,7 +279,7 @@ body {
 }
 
 .js--image-preview {
-  height: 200px;
+  height: 275px;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -296,6 +303,31 @@ body {
   display: none;
 }
 
+.js--image-preview--cover{
+  height: 150px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-image: url("");
+  background-color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.js--image-preview--profile{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background-image: url("");
+  background-color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
 /* i.material-icons { */
   /* -webkit-transition: color 100ms ease-in-out; */
   /* transition: color 100ms ease-in-out; */
@@ -319,3 +351,63 @@ body {
           animation: ripple 0.4s linear;
 }
 /* browse img2 end*/
+
+
+/* browse img2 end*/
+.upload-options-profile {
+  position: relative;
+  top: 80px;
+  height: 55px;
+  background-color:transparent;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  -webkit-transition: background-color ease-in-out 150ms;
+  transition: background-color ease-in-out 150ms;
+}
+.upload-options-profile:hover {
+  background-color: #00cc99;
+}
+.upload-options-profile input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.upload-options-profile label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+}
+.upload-options-profile label::after {
+  content: 'add';
+  font-family: 'Material Icons';
+  position: absolute;
+  font-size: 2.5rem;
+  color: #d6e0dd;
+  /* top: calc(50% - 2.5rem); */
+  left: calc(50% - 1.25rem);
+  z-index: 0;
+}
+.upload-options-profile label span {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  text-align: center;
+}
