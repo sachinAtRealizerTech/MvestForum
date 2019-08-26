@@ -12,6 +12,7 @@ import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component'
 import { DiscussionsComponent } from './discussions/discussions.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { DiscussionslistComponent } from './discussionslist/discussionslist.component';
+import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 
 
 
@@ -52,6 +53,11 @@ const routes: Routes = [
 { 
   path: 'discussionslist', 
   component: DiscussionslistComponent
+
+},
+{ 
+  path: 'discussion-details', 
+  component: DiscussionDetailsComponent
 
 },
 

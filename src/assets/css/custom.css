@@ -6,8 +6,14 @@ body {
   letter-spacing: 0.6px }
   
   /*  Colors   */
-  .active{
-    color: #00cc99; 
+  a{
+    color: #868e96 !important;
+  }
+  a:hover{
+    color: #00cc99 !important;
+  }
+  .li a .active{
+    color: #00cc99 !important; 
   }
   .active:hover{
     color: #00cc99; 
@@ -19,7 +25,7 @@ body {
 		background: green;
 	}
 	.text-green{
-		color: #00cc99;
+		color: #00cc99 !important;
   }
   .bg-accent{
     background:#00cc99;
