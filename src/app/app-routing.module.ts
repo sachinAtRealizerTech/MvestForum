@@ -9,6 +9,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
+import { DiscussionsComponent } from './discussions/discussions.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,9 @@ const routes: Routes = [
 },
 { path: 'mydiscussions', 
   component: MydiscussionsComponent
+},
+{ path: 'discussions', 
+  component: DiscussionsComponent
 },
 
 ];

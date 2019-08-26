@@ -14,7 +14,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import{ MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
-
+import { DiscussionsComponent } from './discussions/discussions.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component'
     NewsfeedComponent,
     MessagesComponent,
     FollowingComponent,
-    MydiscussionsComponent
+    MydiscussionsComponent,
+    DiscussionsComponent
    
   ],
   imports: [
