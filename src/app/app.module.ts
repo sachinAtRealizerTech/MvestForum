@@ -16,6 +16,7 @@ import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { DiscussionsComponent } from './discussions/discussions.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
+import { DiscussionslistComponent } from './discussionslist/discussionslist.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
     FollowingComponent,
     MydiscussionsComponent,
     DiscussionsComponent,
-    SubcategoryComponent
+    SubcategoryComponent,
+    DiscussionslistComponent
    
   ],
   imports: [

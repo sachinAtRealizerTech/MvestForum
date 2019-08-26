@@ -1,0 +1,274 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="row pb-3 pt-4">
+        <div class="col-12">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item align-self-center">
+                    <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/profile" class="active nav-link text-muted font-weight-bold" aria-controls="profile"
+                        aria-selected="false">MY PROFILE</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">NEWS FEED</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">MESSAGES</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/requests" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">REQUESTS</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">SETTINGS</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center ">
+        <div class="col-xl-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb px-0">
+                    <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
+                            routerLink="/discussions">Categories</a></li>
+                    <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
+                            routerLink="/subcategory">Sub-Categories</a></li>
+                    <li class="breadcrumb-item"><a class="active font-weight-semibold"
+                            routerLink="/discussionslist">DiscussionsList</a></li>
+
+                    <li class="ml-auto">
+                            
+                         <form id="search-form" class="form-inline" role="form" method="post"
+                            action="//www.google.com/search" target="_blank">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-form" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="search-btn" data-target="#search-form" name="q">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+
+                            </div>
+                        </form>
+                    </li>
+                </ol>
+            </nav>
+            <div class="row justify-content-between no-gutters  ">
+                <div class="col-md-12 col-xl-12">
+                    <div class="row justify-content-between no-gutters">
+                        <div class="col-md-12 col-xl-8 pb-3">
+
+
+                            <div class="card card-small blog-comments">
+
+                                <div class="card-body p-0">
+                                    <div class=" border-bottom p-1">
+                                        <div class="media p-3">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+
+
+
+                                                <ul class="list-inline d-flex mb-0">
+
+                                                    <li class="list-inline-item mb-1 h6  text-muted">
+                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Discussion
+                                                            Name 1</h5>
+                                                    </li>
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                        <small class="font-weight-semibold"> 35 Posts</small>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+                                                <ul class="list-inline d-flex mb-0">
+
+                                                    <li class="list-inline-item mb-1 h6  text-muted">
+                                                        Lorem ipsum... by john Doe
+                                                    </li>
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                        <small class="font-weight-semibold"> 21 minutes ago</small>
+                                                    </li>
+
+
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class=" border-bottom p-1">
+                                        <div class="media p-3">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+
+
+
+                                                <ul class="list-inline d-flex mb-0">
+
+                                                    <li class="list-inline-item mb-1 h6  text-muted">
+                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Discussion
+                                                            Name 2</h5>
+                                                    </li>
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                        <small class="font-weight-semibold"> 21 Posts</small>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+                                                <ul class="list-inline d-flex mb-0">
+
+                                                    <li class="list-inline-item mb-1 h6  text-muted">
+                                                        Lorem ipsum... by Sierra Brooks
+                                                    </li>
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto semi-bold">
+                                                        <small class="font-weight-semibold"> 2 days ago</small>
+                                                    </li>
+
+
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class=" border-bottom p-1">
+                                        <div class="media p-3">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+
+
+
+                                                <ul class="list-inline d-flex mb-0">
+
+                                                    <li class="list-inline-item mb-1 h6  text-muted">
+                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Discussion
+                                                            Name 3</h5>
+                                                    </li>
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                        <small class="font-weight-semibold"> 211 Posts</small>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+                                                <ul class="list-inline d-flex mb-0">
+
+                                                    <li class="list-inline-item mb-1 h6  text-muted">
+                                                        Lorem ipsum... by Sierra Brooks
+                                                    </li>
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto semi-bold">
+                                                        <small class="font-weight-semibold"> 2 days ago</small>
+                                                    </li>
+
+
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-4 pb-3">
+
+                            <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
+
+
+                                <div class="card card-small blog-comments shadow">
+                                    <div class="card-header ">
+                                        <h6 class="mb-0 text-muted px-3">
+                                            Top contributors </h6>
+                                    </div>
+                                    <div class="card-body pt-0">
+
+
+                                        <div class="media d-flex align-items-center px-3 pb-4">
+
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+                                               
+                                                <div class="">
+
+                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">John Doe</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="media d-flex align-items-center px-3 pb-4 ">
+
+                                                <img class="mr-3 user-pic rounded-circle mr-2"
+                                                    src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+                                                <div class="media-body mb-0">
+                                                   
+                                                    <div class="">
+    
+                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           <div class="media d-flex align-items-center px-3 ">
+
+                                                <img class="mr-3 user-pic rounded-circle mr-2"
+                                                    src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+                                                <div class="media-body mb-0">
+                                                   
+                                                    <div class="">
+    
+                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -11,6 +11,9 @@ import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { DiscussionsComponent } from './discussions/discussions.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
+import { DiscussionslistComponent } from './discussionslist/discussionslist.component';
+
+
 
 
 const routes: Routes = [
@@ -46,12 +49,19 @@ const routes: Routes = [
 { path: 'subcategory', 
   component: SubcategoryComponent
 },
+{ 
+  path: 'discussionslist', 
+  component: DiscussionslistComponent
+
+},
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+         
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
