@@ -13,7 +13,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import{ MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
-
+import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 
 
 @NgModule({
@@ -28,7 +28,8 @@ import { FollowingComponent } from './following/following.component';
     RequestsComponent,
     NewsfeedComponent,
     MessagesComponent,
-    FollowingComponent
+    FollowingComponent,
+    MydiscussionsComponent
    
   ],
   imports: [
