@@ -10,6 +10,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { DiscussionsComponent } from './discussions/discussions.component';
+import { SubcategoryComponent } from './subcategory/subcategory.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
 { path: 'discussions', 
   component: DiscussionsComponent
 },
+{ path: 'subcategory', 
+  component: SubcategoryComponent
+},
+
 
 ];
 

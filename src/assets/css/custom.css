@@ -6,6 +6,12 @@ body {
   letter-spacing: 0.6px }
   
   /*  Colors   */
+  .active{
+    color: #00cc99; 
+  }
+  .active:hover{
+    color: #00cc99; 
+  }
 	.bg-black{
 		background: #000000;
 	}
@@ -33,6 +39,7 @@ body {
 /* material-icons */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
+.material-icons.md-30 { font-size: 30px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
@@ -457,8 +464,19 @@ body {
   text-align: center;
 }
 
+.category-main{
+  position: relative;
+  text-align: center;
+  color: white;
+  font-weight:500;
+}
 
+.category-text{
+  position: absolute;
+ top: 220%;
+  left: 10%;
 
+}
 
 
 
@@ -470,12 +488,20 @@ body {
 
 
 /* responsive */
+
+
 @media (min-width:480px) and (max-width:610px) {
 .username{ 
   position: absolute;
 top:105px;
   left:25%;
   font-size: 20px !important;
+}
+.category-text{
+  position: absolute;
+ top: 200%;
+  left: 10%;
+
 }
 }
 
@@ -496,6 +522,13 @@ top:105px;
       left:16%;
       /* font-size: 20px !important; */
     }
+
+    .category-text{
+      position: absolute;
+     top: 300%;
+      left: 10%;
+    
+    }
     }
     @media (min-width:1130.99px) and (max-width:1240px) {
       .username{ 
@@ -503,6 +536,13 @@ top:105px;
       top:105px;
         left:13%;
         /* font-size: 20px !important; */
+      }
+
+      .category-text{
+        position: absolute;
+       top: 240%;
+        left: 10%;
+      
       }
       }
    
