@@ -12,6 +12,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './requests/requests.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import{ MessagesComponent } from './messages/messages.component';
+import { FollowingComponent } from './following/following.component';
 
 
 
@@ -26,7 +27,8 @@ import{ MessagesComponent } from './messages/messages.component';
     PhotosComponent,
     RequestsComponent,
     NewsfeedComponent,
-    MessagesComponent
+    MessagesComponent,
+    FollowingComponent
    
   ],
   imports: [

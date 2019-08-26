@@ -7,6 +7,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './requests/requests.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { MessagesComponent } from './messages/messages.component';
+import { FollowingComponent } from './following/following.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,9 @@ const routes: Routes = [
 },
 { path: 'messages', 
   component: MessagesComponent
+},
+{ path: 'following', 
+  component: FollowingComponent
 },
 
 ];
