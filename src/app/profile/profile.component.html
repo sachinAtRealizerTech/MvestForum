@@ -32,6 +32,11 @@
           <li class="nav-item">
             <a routerLink="/index" class="nav-link text-muted font-weight-bold"  role="tab" aria-controls="contact" aria-selected="false">SETTINGS</a>
           </li>
+          <li class="nav-item pull-right ml-auto align-self-center">
+            <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".photo-modal-lg" data-toggle="modal" href="#">
+            Ask a Question
+          </a>
+        </li>
         </ul>
         
       
@@ -74,6 +79,7 @@
      <li class="nav-item">
       <a class="nav-link text-white font-weight-normal" id="contact-tab"  role="tab" aria-controls="contact" aria-selected="false">Bookmarks</a>
     </li>
+    
 </ul>
 </div>
 
@@ -99,6 +105,7 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                       </div>
                     </li>
+                    
                 </ul>
                 <div class="row justify-content-between no-gutters pb-3">
                     <div class="col-xl-12">
@@ -145,11 +152,13 @@
                                       </p>
                                       <img class="img-fluid" src="assets/images/content-management/6.jpeg"  alt="Generic placeholder image">
                                       <ul class="list-inline d-flex">
-                                         <li class="list-inline-item pt-2 mb-0"> <i class="material-icons">
+                                        <a routerLink="">
+                                          <li class="list-inline-item pt-2 mb-0"> <i class="material-icons icon-muted">
                                               mode_comment
-                                              </i>
+                                              </i> 
                                             </li>
-                                          <li class="list-inline-item  pt-2 mb-0">
+                                          </a>
+                                          <li class="list-inline-item ml-2 pt-2 mb-0">
                                             <small class="text-secondary">2 Comments </small>
                                           </li>
                                            <li class="list-inline-item h6 pt-2 font-weight-semibold text-muted ml-auto">
@@ -234,21 +243,21 @@
                           <div class="media d-flex align-items-center p-3">
                               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"  alt="Generic placeholder image">
                               <div class="media-body mb-0">
-                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
+                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Texas Royalty Deed Wording</h5>
                                </div>
                             </div>
 
                             <div class="media d-flex align-items-center p-3">
                                 <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"  alt="Generic placeholder image">
                                 <div class="media-body mb-0">
-                                  <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
+                                  <h5 class="text-dark h6 mb-0 font-weight-semibold">Horizontal Drilling Question</h5>
                                  </div>
                               </div>
 
                               <div class="media d-flex align-items-center p-3">
                                   <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"  alt="Generic placeholder image">
                                   <div class="media-body mb-0">
-                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Karens County/Texas</h5>
+                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Caddo county mineral leasing</h5>
                                    </div>
                                 </div>
                         </div>
