@@ -19,6 +19,9 @@ color:#868e96 !important
   a:hover{
     color: #00cc99 !important;
   }
+  a:active{
+    color: #00cc99 !important;
+  }
   .li a .active{
     color: #00cc99 !important; 
   }
