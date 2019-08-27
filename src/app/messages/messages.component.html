@@ -50,7 +50,8 @@
             </li> -->
             <li class="list-inline-item h6 ml-auto text-muted"></li>
             <li class="pull-right mr-3">
-              <a href="#" class="btn btn-accent btn-sm btn-block text-uppercase">
+              <a class="btn btn-accent btn-sm btn-block text-uppercase" data-toggle=
+              "modal" data-target=".newmessage-modal-lg">
                   New Message</a>
               </li>
           </ul>
@@ -135,20 +136,21 @@
               <ul class="list-inline d-flex mb-1">
                   <li class="list-inline-item h6  text-muted">Sierra Brooks</li>
                   <div class="ml-auto d-inline-flex">
-                  <li class="list-inline-item h6  text-muted "><small class="font-weight-semibold">Block User</small></li>
+                  <a routerLink="">
+                    <li class="list-inline-item h6 mr-3 text-muted ">
+                      <small class="font-weight-semibold">Block User</small>
+                    </li>
+                  </a>
+                  <a routerLink="">
                   <li class="list-inline-item h6  text-muted "><small class="font-weight-semibold">Delete Conversion</small></li>
+                </a>
                 </div>
                 </ul>
             
             <div class="card card-small blog-comments">
 
               <div class="card-body shadow">
-
-
-
-                 
-
-                  <div class="media d-flex  px-3 pb-5">
+                <div class="media d-flex  px-3 pb-5">
                                        
                       <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
                     alt="Generic placeholder image">
@@ -182,9 +184,8 @@
                               <h5  class="text-muted h6 mb-0  small">May 3 at 8:30pm</h5>  
                                   </div>
                             </div>
-
-
-                            <div  class="media d-flex align-items-center px-3 mt-4">
+                      
+                      <div  class="media d-flex align-items-center px-3 mt-4">
                 
                                 <div  class="media-body mb-0">
                                   <div  class="bg-light align-self-center rounded-5 py-2 px-3">
@@ -196,20 +197,6 @@
                               </div>
   
               </div>
-
-
-
-             
-
-
-
-
-
-
-
-
-
-
             </div>
           </div>
         </div>
@@ -217,8 +204,96 @@
     </div>
   </div>
 
-
-
-
-
 </div>
+
+
+<!-- modals -->
+
+<div class="modal fade newmessage-modal-lg" tabindex="-1" role="dialog" aria-labelledby="newmessage-modal" aria-hidden="true">
+    <div class="modal-dialog modal-md bg-white shadow">
+     <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title">New Message List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body px-1">
+            <div class="card shadow-none">
+                <form  class="form-inline" id="search-form">
+                  <div  class="input-group col-12">
+                    <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+          <form>
+                <div class="card-body pt-3 ">
+                  <div class="border-bottom p-1">
+                      <div class="media d-flex align-items-center py-3">
+                          <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg">
+                          <div class="media-body d-flex mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                              Shon Tei
+                            </h5>
+                            <div class="ml-auto">
+                            <button type="button" class="btn btn-accent btn-sm text-uppercase">Message</button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="border-bottom p-1">
+                      <div class="media d-flex align-items-center py-3">
+                          <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg">
+                          <div class="media-body d-flex mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                              Tony Stark
+                            </h5>
+                            <div class="ml-auto">
+                            <button type="button" class="btn btn-accent btn-sm text-uppercase">Message</button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+    
+                  <div class="border-bottom  px-0">
+                      <div class="media d-flex align-items-center py-3">
+                          <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg">
+                          <div class="media-body d-flex mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                              Mr. Taylor
+                            </h5>
+                            <div class="ml-auto">
+                            <button type="button" class="btn btn-accent btn-sm text-uppercase">Message</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-1">
+                        <div class="media d-flex align-items-center py-3">
+                            <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg">
+                            <div class="media-body d-flex mb-0">
+                              <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                                Simon Williams
+                              </h5>
+                              <div class="ml-auto">
+                              <button type="button" class="btn btn-accent btn-sm text-uppercase">Message</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </form>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-accent btn-sm text-uppercase">Message</button> -->
+          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+        </form>
+    </div>
+  </div>

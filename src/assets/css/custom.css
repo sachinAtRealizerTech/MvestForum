@@ -14,8 +14,8 @@ color:#868e96 !important
       }
   a{
     color: #00cc99 !important;
+    /* text-decoration: none !important */
   }  
-
   a:hover{
     color: #00cc99 !important;
   }
@@ -28,6 +28,11 @@ color:#868e96 !important
   .active:hover{
     color: #00cc99; 
   }
+ /* .text-muted a:hover{
+  color:#00cc99 !important;
+  text-decoration-color:none !important
+} */
+
 	.bg-black{
 		background: #000000;
 	}
