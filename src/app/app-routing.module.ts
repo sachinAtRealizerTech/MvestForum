@@ -13,6 +13,7 @@ import { DiscussionsComponent } from './discussions/discussions.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { DiscussionslistComponent } from './discussionslist/discussionslist.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
+import { NeighborsComponent } from './neighbors/neighbors.component';
 
 
 
@@ -58,6 +59,11 @@ const routes: Routes = [
 { 
   path: 'discussion-details', 
   component: DiscussionDetailsComponent
+
+},
+{ 
+  path: 'neighbors', 
+  component: NeighborsComponent
 
 },
 

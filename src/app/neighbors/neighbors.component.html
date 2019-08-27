@@ -1,0 +1,390 @@
+<div class="main-content-container container-fluid px-4">
+
+    <div class="row pb-3 pt-4">
+        <div class="col-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item align-self-center">
+                    <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/profile" class="active nav-link text-muted font-weight-bold" aria-controls="profile"
+                        aria-selected="false">MY PROFILE</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">NEWS FEED</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">MESSAGES</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/requests" class=" nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">REQUESTS</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab"
+                        aria-controls="contact" aria-selected="false">SETTINGS</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+    <div class="row py-4">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+            <!-- Profile widget -->
+            <div class="bg-warning shadow overflow-hidden">
+                <div class="px-4 pb-4 py-4 bg-green " style="height:180px">
+                    <div class="media align-items-end profile-header ">
+                        <div class="justify-content-start mr-3">
+                            <img href="#" data-toggle="modal" data-target=".profile-modal-lg"
+                                src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..."
+                                width="100" class="rounded-50 mt-2 profile img-thumbnail">
+                        </div>
+
+                        <div class="media-body justify-content-center text-left text-white ">
+                            <h4 class="text-white font-weight-medium username">Billy Bob</h4>
+                            <!-- <p class="small mb-4 username"> <i class="fa fa-map-marker mr-2"></i>San Farcisco</p> -->
+                        </div>
+                        <div class="mr-3 profile-btn justify-content-end align-self-end">
+                            <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                                class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
+                    <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
+                        <li class="nav-item bg-dark ml-5">
+                            <a routerLink="/photos" class="  nav-link text-white font-weight-normal" role="tab"
+                                aria-controls="profile" aria-selected="false">Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/following" class="active nav-link text-white font-weight-normal" role="tab"
+                                aria-controls="contact" aria-selected="false">Following</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" id="contact-tab" role="tab"
+                                aria-controls="contact" aria-selected="false">Neighbors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/mydiscussions" class="nav-link text-white font-weight-normal" id="contact-tab" role="tab"
+                                aria-controls="contact" aria-selected="false">My Discusssions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white font-weight-normal" id="contact-tab" role="tab"
+                                aria-controls="contact" aria-selected="false">Bookmarks</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <!-- End profile widget -->
+        </div>
+    </div>
+    <div class="row pt-4">
+        <div class="col-xl-12 pb-4">
+            <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
+                <li class="nav-item align-self-center">
+                    <h5 class="text-dark mb-0 font-weight-bold mr-3 align-self-center">Neighbors</h5>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <small class="font-weight-bold">Within 50 miles</small>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">1</a>
+                        <a class="dropdown-item" href="#">2</a>
+                        <a class="dropdown-item" href="#">2</a>
+                    </div>
+                </li>
+               
+                <li class="nav-item align-self-center">
+                    <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <small class="font-weight-bold">My Lists</small>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">1</a>
+                        <a class="dropdown-item" href="#">2</a>
+                        <a class="dropdown-item" href="#">2</a>
+                    </div>
+                </li>
+                <div class="ml-auto d-inline-flex">
+                    <li class="nav-item pull-right mr-3 align-self-center">
+                        <a href="#" class="btn btn-outline-accent btn-sm btn-block text-uppercase " data-toggle="modal"
+                            data-target=".photo-modal-lg">New List</a>
+                    </li>
+
+                    <li class="nav-item pull-right mr-3 align-self-center">
+                        <form id="search-form" class="form-inline" role="form" method="post"
+                            action="//www.google.com/search" target="_blank">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-form" placeholder="Search">
+                                <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
+                                <span class="input-group-btn">
+                                    <button type="submit" class="search-btn" data-target="#search-form" name="q">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+
+                            </div>
+                        </form>
+                    </li>
+
+                </div>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="tab-content" id="myTabContent">
+        <!-- <div class="tab-pane fade show active" id="following" role="tabpanel" aria-labelledby="home-tab"> -->
+            <div class="row justify-content-between no-gutters">
+                <div class="col-md-12 col-xl-6">
+
+                    <div class="row justify-content-between no-gutters pb-3 ">
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card card-small blog-comments">
+                                <div class="card-body p-0">
+                                    <div class="pt-3 px-3 pb-0">
+                                        <div class="media">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/1.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">John Doe</h5>
+                                                <ul class="list-inline d-flex mb-0">
+                                                    <li class="list-inline-item mb-1 h6 text-muted">
+                                                        4.5 miles away
+                                                    </li>
+                                                    <div class="ml-auto d-inline-flex">
+                                                        <li class="pull-right text-muted h6 text-uppercase">
+                                                            <h6> <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                                </i><small
+                                                                    class="text-muted font-weight-semibold text-uppercase">connected
+                                                                </small> </h6>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-small blog-comments mt-3">
+                                <div class="card-body p-0">
+                                    <div class="pt-3 px-3 pb-0">
+                                        <div class="media">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                                <ul class="list-inline d-flex mb-0">
+                                                    <li class="list-inline-item mb-1 h6 text-muted">
+                                                        9.2 miles away
+                                                    </li>
+                                                    <div class="ml-auto d-inline-flex">
+                                                        <li class="pull-right text-muted h6 text-uppercase">
+                                                            <h6> 
+                                                                <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                                </i> -->
+                                                                <button type="button" class="btn btn-accent">Connect</button>
+                                                                 </h6>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-small blog-comments mt-3">
+                                <div class="card-body p-0">
+                                    <div class="pt-3 px-3 pb-0">
+                                        <div class="media">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                                <ul class="list-inline d-flex mb-0">
+                                                    <li class="list-inline-item mb-1 h6 text-muted">
+                                                        9.2 miles away
+                                                    </li>
+                                                    <div class="ml-auto d-inline-flex">
+                                                        <li class="pull-right text-muted h6 text-uppercase">
+                                                            <h6> 
+                                                                <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                                </i> -->
+                                                                <button type="button" class="btn btn-accent">Connect</button>
+                                                             </h6>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card card-small blog-comments mt-3">
+                                <div class="card-body p-0">
+                                    <div class="pt-3 px-3 pb-0">
+                                        <div class="media">
+                                            <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/1.jpg" alt="Generic placeholder image">
+                                            <div class="media-body mb-0">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                                <ul class="list-inline d-flex mb-0">
+                                                    <li class="list-inline-item mb-1 h6 text-muted">
+                                                        4.5 miles away
+                                                    </li>
+                                                    <div class="ml-auto d-inline-flex">
+                                                        <li class="pull-right text-muted h6 text-uppercase">
+                                                            <h6> 
+                                                                <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                                </i> -->
+                                                                <button type="button" class="btn btn-accent">Connect</button>
+                                                             </h6>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xl-6">
+
+
+                    <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                        <div class="card card-small blog-comments">
+                            <div class="card-body p-0">
+                                <div class="pt-3 px-3 pb-0">
+                                    <div class="media">
+                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="media-body mb-0">
+                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                            <ul class="list-inline d-flex mb-0">
+                                                <li class="list-inline-item mb-1 h6 text-muted">
+                                                   9.2 miles away
+                                                </li>
+                                                <div class="ml-auto d-inline-flex">
+                                                    <li class="pull-right text-muted h6 text-uppercase">
+                                                        <h6>
+                                                             <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                            </i> -->
+                                                            <button type="button" class="btn btn-accent">Connect</button>
+                                                         </h6>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-small blog-comments mt-3">
+                            <div class="card-body p-0">
+                                <div class="pt-3 px-3 pb-0">
+                                    <div class="media">
+                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="media-body mb-0">
+                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                            <ul class="list-inline d-flex mb-0">
+                                                <li class="list-inline-item mb-1 h6 text-muted">
+                                                    9.2 miles away
+                                                </li>
+                                                <div class="ml-auto d-inline-flex">
+                                                    <li class="pull-right text-muted h6 text-uppercase">
+                                                        <h6>
+                                                             <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                            </i> -->
+                                                            <button type="button" class="btn btn-accent">Connect</button> 
+                                                        </h6>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-small blog-comments mt-3">
+                            <div class="card-body p-0">
+                                <div class="pt-3 px-3 pb-0">
+                                    <div class="media">
+                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="media-body mb-0">
+                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                            <ul class="list-inline d-flex mb-0">
+                                                <li class="list-inline-item mb-1 h6 text-muted">
+                                                   9.2 miles away
+                                                </li>
+                                                <div class="ml-auto d-inline-flex">
+                                                    <li class="pull-right text-muted h6 text-uppercase">
+                                                        <h6>
+                                                             <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                            </i> -->
+                                                            <button type="button" class="btn btn-accent">Connect</button>
+                                                         </h6>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-small blog-comments mt-3">
+                            <div class="card-body p-0">
+                                <div class="pt-3 px-3 pb-0">
+                                    <div class="media">
+                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="media-body mb-0">
+                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                            <ul class="list-inline d-flex mb-0">
+                                                <li class="list-inline-item mb-1 h6 text-muted">
+                                                   9.2 miles away
+                                                </li>
+                                                <div class="ml-auto d-inline-flex">
+                                                    <li class="pull-right text-muted h6 text-uppercase">
+                                                        <h6> 
+                                                            <!-- <i class="material-icons mr-1 text-muted">check_circle_outline
+                                                            </i> -->
+                                                            <button type="button" class="btn btn-accent">Connect</button> 
+                                                        </h6>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+
+        
+    </div>
+
+</div>
