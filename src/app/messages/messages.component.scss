@@ -1,0 +1,104 @@
+$checkbox-diameter: 30px;
+$checkbox-bg: #00cc99;
+$checkbox-border: #868e96;
+$checkbox-bg-selected: #00cc99;
+$checkbox-tick: #fff;
+
+// codepen config
+html, 
+body {
+  height: 100%;
+  margin: 0;
+}
+
+// body {
+//   display: flex;
+// 	align-items: center;
+//   background-color: #0b275a;
+// 	background-image: radial-gradient(ellipse at center, #0b275a 0%, darken(#0b275a, 10%) 100%);
+// }
+
+.wrapper {
+  margin: 0 auto;
+	height: $checkbox-diameter;
+	text-align: center;
+}
+
+.checkbox:not(last-of-type) {
+	display: inline-block;
+	margin-right: $checkbox-diameter;
+}
+// codepen config end
+
+
+.checkbox {
+  position: relative;
+	
+	// circle
+	label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $checkbox-diameter;
+		height: $checkbox-diameter;
+		// background-color: $checkbox-bg;
+		border: 2px solid $checkbox-bg;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: 
+			background-color 300ms ease, 
+			colour 300ms ease,
+			box-shadow 300ms ease;
+		
+		// tick
+		&:after {
+			content: '';
+			position: absolute;
+			top: 38%;
+    	left: 33%;
+    	width: 29%;
+    	height: 14%;
+			opacity: 0;
+			border-left: 2px solid $checkbox-tick;
+			border-bottom: 2px solid $checkbox-tick;
+			transform: rotate(-45deg);
+			transition: opacity 300ms ease;
+		}
+	}
+	
+	input {
+  	visibility: hidden;
+		
+		// selected state bg
+		&:checked + label {
+			background-color: $checkbox-bg-selected;
+			border-color: $checkbox-bg-selected;
+			box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.4);
+			
+			// selected state tick
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+	
+	// demo colours
+	$colours: (
+		1:	(bg: #356cd2),
+		2:	(bg: #edaa2c),
+		3:	(bg: #00cc99),
+		4:	(bg: #ed482c),
+		5:	(bg: #ed2c83)
+	);
+	
+	@each $i, $j in $colours {
+		&:nth-child(#{$i}) {
+			input {
+				&:checked + label {
+					background-color: (map-get($j, 'bg'));
+					border-color: (map-get($j, 'bg'));
+				}
+			}
+		}
+	}
+}
