@@ -610,6 +610,9 @@ top:105px;
       left: 10%;
     
     }
+    .w-100-xl{
+      width: 100% !important;
+    }
     }
     @media (min-width:1130.99px) and (max-width:1240px) {
       .username{ 
@@ -625,5 +628,17 @@ top:105px;
         left: 10%;
       
       }
+      .w-100-xl{
+        width: 100% !important;
       }
-   
+      
+      }
+     
+     
+      @media (min-width:1240.99px) and (max-width:1920px) {
+        .w-100-xl{
+          width: 100% !important;
+        }
+        
+        }
+      
