@@ -96,7 +96,7 @@
                                       </div> 
                                       <ul class="list-inline d-flex  border-bottom">
                                              <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                    <a routerLink="#">  <i class="material-icons icon-muted md-30">
+                                                    <a routerLink="#"  data-target=".reply-modal-lg" data-toggle="modal">  <i class="material-icons icon-muted md-30">
                                                             reply
                                                             </i></a>
                                             </li>  
@@ -171,7 +171,7 @@
                                       </div> 
                                       <ul class="list-inline d-flex  border-bottom">
                                              <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                    <a routerLink="#">  <i class="material-icons icon-muted md-30">
+                                                    <a routerLink="#"  data-target=".reply-modal-lg" data-toggle="modal">  <i class="material-icons icon-muted md-30">
                                                             reply
                                                             </i></a>
                                             </li>  
@@ -181,7 +181,7 @@
                                                     </i> </a><span class="ml-1 align-self-center">1,234</span>                                               
                                             </li>                                       
                                        <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-                                                <a routerLink="#"> <i class="material-icons icon-muted md-24 ml-3">
+                                                <a routerLink="#" > <i class="material-icons icon-muted md-24 ml-3">
                                                              mode_comment
                                                              </i>
                                                             </a>
@@ -225,4 +225,40 @@
 
       </div>
 
-
+      <div class="modal fade reply-modal-lg" tabindex="-1" role="dialog" aria-labelledby="reply-modal" aria-hidden="true">
+          <div class="modal-dialog modal-md bg-white shadow">
+           <form action="/action_page.php" class="needs-validation" novalidate>
+            <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title">Reply</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
+              <div class="modal-body">
+                  <div class="card shadow-none">
+                      <!-- <form  class="form-inline" id="search-form">
+                        <div  class="input-group col-12">
+                          <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </form> -->
+                <form>
+                    
+                        <label for="exampleFormControlTextarea1">Your Reply</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            
+                    </form>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-accent btn-sm text-uppercase"data-dismiss="modal">Send</button>
+                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+              </form>
+          </div>
+        </div>

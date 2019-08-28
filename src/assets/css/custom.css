@@ -13,6 +13,12 @@ color:#868e96 !important
   .icon-muted:hover{
     color: #00cc99 !important
       }
+      .icon-muted-svg{
+       fill:#868e96 !important
+          }
+          .icon-muted-svg:hover{
+            fill: #00cc99 !important
+              }
   a{
     color: #00cc99 !important;
     /* text-decoration: none !important */
@@ -58,6 +64,9 @@ color:#868e96 !important
   padding-top: .19rem!important;
 }
 
+.border-bottom-white{
+  border-bottom: 2px solid #fff;
+}
 /* material-icons */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
@@ -269,7 +278,6 @@ color:#868e96 !important
 	padding-right: 15px !important;
 	padding-left: 15px !important;
 }	
-
 
 .nav-tabs  a{
    
