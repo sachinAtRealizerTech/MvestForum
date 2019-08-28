@@ -33,7 +33,7 @@
             <a routerLink="/index" class="nav-link text-muted font-weight-bold"  role="tab" aria-controls="contact" aria-selected="false">SETTINGS</a>
           </li> -->
           <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
-            <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-lg" data-toggle="modal" href="#">
+            <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl" data-toggle="modal" href="#">
             Ask a Question
           </a>
         </li>
@@ -441,8 +441,8 @@
             </form>
         </div>
       </div>
-      <div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal" aria-hidden="true">
-          <div class="modal-dialog modal-md bg-white shadow">
+      <div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal" aria-hidden="true">
+          <div class="modal-dialog modal-lg bg-white shadow">
            <form action="/action_page.php" class="needs-validation" novalidate>
             <div class="modal-content">
              <div class="modal-header">
@@ -454,6 +454,8 @@
               
               <div class="modal-body">
                   <div class="card shadow-none">
+                    <div class="row">
+                        <div class="col-6">
                       <!-- <form  class="form-inline" id="search-form">
                         <div  class="input-group col-12">
                           <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
@@ -467,49 +469,54 @@
                     <label for="title">Discussion Title :</label>
                     <input type="text" class="form-control" id="title" placeholder="">
                   </div>
-                  <div class="form-group">
-                      <div class="card border  bg-light shadow-none rounded-0">
-                          <div class="card-header border-bottom-white py-2 rounded-0">
-                              <h5 class="h6 font-weight-normal mb-0">Similar Questions</h5>
-                          </div>
-                          <div class="card-body pt-1 px-0">
-                              <div class="media d-flex border-bottom-white border-bottom-white py-2">
-                                       
-                                  <!-- <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                                alt="Generic placeholder image"> -->
-                                  <div class="media-body mb-0 px-4">
-                                      <div class=" align-self-center">
-                                          <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
-                                          <small class="text-dark mb-0">
-                                              Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
-                                          </small> 
-                                          <!-- <h5  class="text-muted h6 mb-0 ml-auto small text-right">May 3 at 8:30pm</h5>   -->
-                                        </div> 
-                                  </div>
-                                </div>
-                                <div class="media d-flex border-bottom-white py-3">
-                                    <div class="media-body mb-0 px-4">
-                                        <div class=" align-self-center">
-                                            <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
-                                            <small class="text-dark mb-0">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
-                                            </small> 
-                                            
-                                          </div> 
-                                    </div>
-                                  </div>
-                           </div>
-                        </div>
-                    </div>
+                  
                     
                         <label for="exampleFormControlTextarea1">Your Message :</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             
                     </form>
                     </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="card border  bg-light shadow-none rounded-0">
+                                <div class="card-header border-bottom-white py-2 rounded-0">
+                                    <h5 class="h6 font-weight-normal mb-0">Similar Questions</h5>
+                                </div>
+                                <div class="card-body pt-1 px-0">
+                                    <div class="media d-flex border-bottom-white border-bottom-white py-2">
+                                             
+                                        <!-- <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                      alt="Generic placeholder image"> -->
+                                        <div class="media-body mb-0 px-4">
+                                            <div class=" align-self-center">
+                                                <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
+                                                <small class="text-dark mb-0">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
+                                                </small> 
+                                                <!-- <h5  class="text-muted h6 mb-0 ml-auto small text-right">May 3 at 8:30pm</h5>   -->
+                                              </div> 
+                                        </div>
+                                      </div>
+                                      <div class="media d-flex border-bottom-white py-3">
+                                          <div class="media-body mb-0 px-4">
+                                              <div class=" align-self-center">
+                                                  <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
+                                                  <small class="text-dark mb-0">
+                                                      Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
+                                                  </small> 
+                                                  
+                                                </div> 
+                                          </div>
+                                        </div>
+                                 </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-accent btn-sm text-uppercase"data-dismiss="modal">Send</button>
+                <button type="button" class="btn btn-accent btn-sm text-uppercase"data-dismiss="modal">Post</button>
                 <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" data-dismiss="modal">Cancel</button>
               </div>
             </div>
