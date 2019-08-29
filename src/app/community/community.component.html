@@ -1,0 +1,229 @@
+<!-- <div class="main-content-container container-fluid px-4"> -->
+        <div class="row pb-3 pt-4">		  
+                <div class="col-12">		  
+                
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item align-self-center">
+                   <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
+                  </li>
+                  <li class="nav-item ">
+                    <a routerLink="/profile"  class="active nav-link text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">MY PROFILE</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">NEWS FEED</a>
+                  </li>
+                  <li class="nav-item">
+                    <a  routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
+                  </li>
+                  <li class="nav-item">
+                    <a  routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">MESSAGES</a>
+                  </li>
+                   <li class="nav-item">
+                    <a routerLink="/requests" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">REQUESTS</a>
+                  </li>
+                  
+                  <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
+                    <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl" data-toggle="modal" href="#">
+                    Ask a Question
+                  </a>
+                </li>
+               
+                </ul>
+                
+              
+                </div>
+                </div>	
+
+
+                <div class="row py-4">
+                        <div class="col-xl-12 col-md-12 col-sm-12">
+                            <!-- Profile widget -->
+                            <div class="bg-warning shadow overflow-hidden">
+                                <div class="px-4 pb-4 py-4 bg-green " style="height:180px">
+                                    <div class="media align-items-end profile-header ">
+                                      <div class="justify-content-start mr-3">
+                                        <img href="#" data-toggle="modal" data-target=".profile-modal-lg" src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..." width="100" class="rounded-50 mt-2 profile img-thumbnail">
+                                        </div>
+                                        
+                                        <div class="media-body justify-content-center text-left text-white ">
+                                            <h4 class="text-white font-weight-medium username" >Billy Bob</h4>
+                                           
+                                        </div>
+                                        <div class="mr-3 profile-btn justify-content-end align-self-end">
+                                          <a href="#" data-toggle="modal" data-target=".cover-modal-lg" class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
+                                      </div>
+                                    </div>
+                                </div>
+                     <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
+                      <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
+                <li class="nav-item bg-dark ml-5">
+                  <a routerLink="/photos" class="nav-link text-white font-weight-normal"  role="tab" aria-controls="" aria-selected="false" routerLinkActive='active'>Photos</a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="/following" class="nav-link text-white font-weight-normal"  role="tab" aria-controls="contact" aria-selected="false"  routerLinkActive='active'>Following</a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" id="contact-tab"  role="tab" aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="/mydiscussions" class="nav-link text-white font-weight-normal" id="contact-tab"  role="tab" aria-controls="contact" aria-selected="false" routerLinkActive='active'>My Discusssions</a>
+                </li>
+                 <li class="nav-item">
+                  <a routerLink="/bookmarks" class="nav-link text-white font-weight-normal" id="contact-tab"  role="tab" aria-controls="contact" aria-selected="false" routerLinkActive='active'>Bookmarks</a>
+                </li>
+                
+            </ul>
+            </div>
+             </div>
+                    <!-- End profile widget -->
+                    </div>
+                    </div>
+
+                   
+    <!-- </div> -->
+
+    <div class="modal fade cover-modal-lg" tabindex="-1" role="dialog" aria-labelledby="cover-modal" aria-hidden="true">
+            <div class="modal-dialog modal-md bg-white shadow">
+             <form action="/action_page.php" class="needs-validation" novalidate>
+              <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Add Cover Photo</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+              <div class="form-group">
+              <label for="mb-4">Browse to add Cover Photo: </label>
+              <div class="js--image-preview--cover  shadow  ">
+              </div>
+              <div class="upload-options">
+                <label>
+                  <input type="file" class="image-upload  rounded-5" accept="image/*" />
+                </label>
+              </div>
+          </div>
+                </div>
+              
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-accent text-uppercase">Submit</button>
+                  <button type="button" class="btn btn-outline-accent text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+                </form>
+            </div>
+          </div>
+          <div class="modal fade profile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="profile-modal" aria-hidden="true">
+                <div class="modal-dialog modal-md bg-white shadow">
+                 <form action="/action_page.php" class="needs-validation" novalidate>
+                  <div class="modal-content">
+                   <div class="modal-header">
+                      <h5 class="modal-title">Add Profile Photo</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                  <div class="form-group">
+                  <label for="leasetype mb-4">Browse to add Profile Photo: </label>
+                  <div class="js--image-preview--profile shadow mr-auto mt-2">
+                    <div class="upload-options-profile  align-self-end">
+                      <label>
+                        <input type="file" class="image-upload rounded-5 text-dark" accept="image/*" />
+                      </label>
+                    </div>
+                  </div>
+                  
+              </div>
+                    </div>
+                  
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-accent text-uppercase">Submit</button>
+                      <button type="button" class="btn btn-outline-accent text-uppercase" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </div>
+                    </form>
+                </div>
+              </div>
+    <div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal" aria-hidden="true">
+            <div class="modal-dialog modal-lg bg-white shadow">
+             <form action="/action_page.php" class="needs-validation" novalidate>
+              <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Ask a Question</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="card shadow-none">
+                      <div class="row">
+                          <div class="col-6">
+                        <!-- <form  class="form-inline" id="search-form">
+                          <div  class="input-group col-12">
+                            <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </form> -->
+                  <form>
+                     <div class="form-group">
+                      <label for="title">Discussion Title :</label>
+                      <input type="text" class="form-control" id="title" placeholder="">
+                    </div>
+                    
+                      
+                          <label for="exampleFormControlTextarea1">Your Message :</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              
+                      </form>
+                      </div>
+                      <div class="col-6">
+                          <div class="form-group">
+                              <div class="card border  bg-light shadow-none rounded-0">
+                                  <div class="card-header border-bottom-white py-2 rounded-0">
+                                      <h5 class="h6 font-weight-normal mb-0">Similar Questions</h5>
+                                  </div>
+                                  <div class="card-body pt-1 px-0">
+                                      <div class="media d-flex border-bottom-white border-bottom-white py-2">
+                                               
+                                          <!-- <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                        alt="Generic placeholder image"> -->
+                                          <div class="media-body mb-0 px-4">
+                                              <div class=" align-self-center">
+                                                  <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
+                                                  <small class="text-dark mb-0">
+                                                      Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
+                                                  </small> 
+                                                  <!-- <h5  class="text-muted h6 mb-0 ml-auto small text-right">May 3 at 8:30pm</h5>   -->
+                                                </div> 
+                                          </div>
+                                        </div>
+                                        <div class="media d-flex border-bottom-white py-3">
+                                            <div class="media-body mb-0 px-4">
+                                                <div class=" align-self-center">
+                                                    <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
+                                                    <small class="text-dark mb-0">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
+                                                    </small> 
+                                                    
+                                                  </div> 
+                                            </div>
+                                          </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal">Post</button>
+                  <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+                </form>
+            </div>
+          </div>

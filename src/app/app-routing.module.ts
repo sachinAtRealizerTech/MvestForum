@@ -14,6 +14,7 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { DiscussionslistComponent } from './discussionslist/discussionslist.component';
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
+import { CommunityComponent } from './community/community.component';
 
 
 
@@ -64,6 +65,11 @@ const routes: Routes = [
 { 
   path: 'neighbors', 
   component: NeighborsComponent
+
+},
+{ 
+  path: 'community', 
+  component: CommunityComponent
 
 },
 
