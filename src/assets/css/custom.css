@@ -211,6 +211,7 @@ color:#868e96 !important
     padding:0.6rem 1.5rem !important;
     font-size: .70rem;
     line-height: 1.125;
+    letter-spacing: 0.6px ;
     border-radius: 2rem !important;
     transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
 }
