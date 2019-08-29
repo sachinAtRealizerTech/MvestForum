@@ -203,7 +203,7 @@ color:#868e96 !important
 /* sidbar end*/
 
 
-/* buttons start */
+/* buttons & focus start */
 .btn {
     font-weight: 500;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -248,7 +248,22 @@ color:#868e96 !important
     color: #fff !important;
 }
 
+input:focus { 
+  outline: none !important;
+  border-color:#00cc99 !important;
+  box-shadow: 0 0 5px #00cc99 !important;
+}
+textarea:focus { 
+  outline: none !important;
+  border-color:#00cc99 !important;
+  box-shadow: 0 0 5px #00cc99 !important;
+}
 
+.btn:focus { 
+  outline: none !important;
+  border-color:#00cc99 !important;
+  box-shadow: 0 0 5px #00cc99 !important;
+}
 /* buttons end */
 
 
@@ -317,8 +332,20 @@ color:#868e96 !important
     width: 1.125rem;
     height: 1.125rem;
     background-color: #fff;
-    border: 3px solid #e1e5eb ;
+    border: 3px solid #e1e5eb !important;
     transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
+    box-shadow: none;
+}
+ .custom-control-input:checked ~ .custom-control-label::before  {
+   FONT-WEIGHT: 200 !important;
+  top: .1875rem !important;
+  left: 0;
+  width: 1.125rem !important;
+  height: 1.125rem !important; 
+  color: #fff;
+  border-color:#00cc99 !important;
+  background-color: #00cc99 !important;
+  transition: all 250ms cubic-bezier(.27,.01,.38,1.06);
     box-shadow: none;
 }
 
