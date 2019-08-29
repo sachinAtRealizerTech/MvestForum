@@ -216,15 +216,18 @@ color:#868e96 !important
 }
 .btn-accent {
     color: #fff !important;
+    border:2px solid #00cc99 !important;
     border-color: #00cc99 !important;
     background-color: #00cc99 !important;
     box-shadow: none;
 }
 .btn-accent:hover{
   color: #fff !important;
+  border:2px solid #00cc99 !important;
     background-color: #00cc99;
     border-color: #00cc99;
-    box-shadow: 0 5px 15px rgba(0,0,0,.05), 0 4px 10px rgba(0,123,255,.25);
+    box-shadow: 0 0 5px #00cc99 !important;
+    /* box-shadow: 0 5px 15px rgba(0,0,0,.05), 0 4px 10px rgba(0,123,255,.25); */
 }
 
 .btn-outline-accent {
@@ -238,7 +241,8 @@ color:#868e96 !important
     color: #fff !important;
     border:2px solid #00cc99 !important;
     background-color: #00cc99 !important;
-    box-shadow: none;
+    box-shadow: 0 0 5px #00cc99 !important;
+    /* box-shadow: 0 5px 15px rgba(0,0,0,.05), 0 4px 10px rgba(0,123,255,.25); */
 }
 .btn-outline-white {
     background-color: transparent;
@@ -246,6 +250,8 @@ color:#868e96 !important
     border-color: none !important;
     border: 2px solid #fff !important;
     color: #fff !important;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.05), 0 4px 10px rgba(0,123,255,.25);
 }
 
 input:focus { 
