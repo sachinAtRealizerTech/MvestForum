@@ -81,37 +81,36 @@
                                         <a routerLink="/discussion-details">
                                     <div class=" border-bottom p-1">
                                         <div class="media p-3">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
+                                          
                                             <div class="media-body mb-0">
 
-
-
-                                                <ul class="list-inline d-flex mb-0">
-
+                                                <ul class="list-inline d-flex mb-0" *ngFor="let d of discussionList;let i of index">
+                                                    <img class="mr-3 user-pic rounded-circle mr-2"
+                                                    src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
                                                     <li class="list-inline-item mb-1 h6  text-muted">
-                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Texas Royalty Deed Wording</h5>
-                                                    </li>
-                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                        <small class="font-weight-semibold"> 35 Posts</small>
-                                                    </li>
+                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold">  {{d.title}}</h5>
 
+                                                        <ul class="list-inline d-flex mb-0" *ngFor="let p1 of post;let i of index">
+
+                                                            <li class="list-inline-item mb-1 h6  text-muted" >
+                                                             {{p1.name}}
+                                                            </li>
+                                                            <li class="list-inline-item mb-1 h6  text-muted ml-auto" >
+                                                                <small class="font-weight-semibold"> {{p1.logtime | timeAgo}}</small>
+                                                            </li>
+        
+        
+                                                        </ul>
+                                                    </li>
+                                                 
+                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                        <small class="font-weight-semibold"> {{post.length}} Posts</small>
+                                                    </li>
 
                                                 </ul>
 
 
 
-                                                <ul class="list-inline d-flex mb-0">
-
-                                                    <li class="list-inline-item mb-1 h6  text-muted">
-                                                        Lorem ipsum... by john Doe
-                                                    </li>
-                                                    <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                        <small class="font-weight-semibold"> 21 minutes ago</small>
-                                                    </li>
-
-
-                                                </ul>
 
                                             </div>
 
@@ -119,7 +118,7 @@
                                     </div>
                                     </a>
 
-                                    <div class=" border-bottom p-1">
+                                    <!-- <div class=" border-bottom p-1">
                                         <div class="media p-3">
                                             <img class="mr-3 user-pic rounded-circle mr-2"
                                                 src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
@@ -156,10 +155,10 @@
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
-                                    <div class=" border-bottom p-1">
+                                    <!-- <div class=" border-bottom p-1">
                                         <div class="media p-3">
                                             <img class="mr-3 user-pic rounded-circle mr-2"
                                                 src="assets/images/avatars/1.jpg" alt="Generic placeholder image">
@@ -196,7 +195,7 @@
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                 </div>

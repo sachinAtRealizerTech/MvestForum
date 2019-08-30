@@ -20,6 +20,9 @@ import { DiscussionslistComponent } from './discussionslist/discussionslist.comp
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
+import { DiscussionsService } from './discussions/discussions.service';
+import { HttpClientModule } from '@angular/common/http';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -40,14 +43,16 @@ import { CommunityComponent } from './community/community.component';
     DiscussionslistComponent,
     DiscussionDetailsComponent,
     NeighborsComponent,
-    CommunityComponent
+    CommunityComponent,
+    TimeAgoPipe
    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DiscussionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
