@@ -7,6 +7,9 @@ body {
   
   
   /*  Colors   */
+::selection { background: #00cc99; 
+        color:#fff;
+}
   .icon-muted{
 color:#868e96 !important
   }
