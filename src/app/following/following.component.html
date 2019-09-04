@@ -16,16 +16,40 @@
                         aria-controls="contact" aria-selected="false">Followers</a>
                 </li>
 
-                <li class="nav-item align-self-center">
+                <li class="nav-item align-self-center ml-auto">
+                      
+                           
                     <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="dropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   My Lists
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">80</a>
-                        <a class="dropdown-item" href="#">95</a>
-                        <a class="dropdown-item" href="#">122</a>
-                    </div>
+                        <a class="dropdown-item" href="#">All Lists</a>
+                        <a class="dropdown-item" href="#">My Lists</a>
+                        <a class="dropdown-item" href="#">Bookmarked Lists</a>
+                        <a class="dropdown-item" href="#">Shared Lists</a>
+                    </div>  
+                            <!-- <select>
+                              <option value="0">All Posts</option>
+                              <option value="10">Latest</option>
+                              <option value="11">Yesterday</option> 
+                            </select> -->
+                        
+                    <!-- <select>
+                        <option> <a class="dropdown-item">All Posts</a></option>
+                        <option> <a class="dropdown-item" >Latest</a></option>
+                        <option> <a class="dropdown-item" >Yesterday</a></option>
+                    </select> -->
+                   
+                      <!-- <span class="custom-dropdown">
+                        <select clas="">
+                            <option>All Posts</option>
+                            <option>My Posts</option>  
+                            <option>Bookmarked Posts</option>
+                            <option>Shared Posts</option>
+                          
+                        </select>
+                    </span>   -->
                 </li>
                 <div class="ml-auto d-inline-flex">
                     <li class="nav-item pull-right mr-3 align-self-center">
@@ -34,11 +58,10 @@
                     </li>
 
                     <li class="nav-item pull-right mr-3 align-self-center">
-                        <form id="search-form" class="form-inline" role="form" method="post"
-                            action="//www.google.com/search" target="_blank">
-                            <div class="input-group">
+                        <!-- <form   class="form-inline" role="form" 
+                              > -->
+                            <div class="input-group serach">
                                 <input type="text" class="form-control search-form" placeholder="Search">
-                                <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
                                 <span class="input-group-btn">
                                     <button type="submit" class="search-btn" data-target="#search-form" name="q">
                                         <i class="fa fa-search"></i>
@@ -46,7 +69,15 @@
                                 </span>
 
                             </div>
-                        </form>
+                        <!-- </form> -->
+                        <!-- <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search</label>
+                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                    <span> <i class="fa fa-search"></i></span>
+                                </div>
+                            </form> -->
                     </li>
 
                 </div>
@@ -399,3 +430,4 @@
     </div>
 
 </div>
+
