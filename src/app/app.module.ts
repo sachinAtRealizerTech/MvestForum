@@ -20,10 +20,14 @@ import { DiscussionslistComponent } from './discussionslist/discussionslist.comp
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeLayoutComponent,
+    SigninLayoutComponent,
     
     SideNavComponent,
     TopNavComponent,

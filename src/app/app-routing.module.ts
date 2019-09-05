@@ -15,20 +15,37 @@ import { DiscussionslistComponent } from './discussionslist/discussionslist.comp
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
+import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 
 
 
 const routes: Routes = [
 
-  { path: 'sign-in', 
-  component: SignInComponent
-}, 
-  
-{ path: 'profile', 
-  component: ProfileComponent 
-},
-{ path: 'photos', 
+  {
+    path:'',
+    component: SigninLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: SignInComponent
+      }
+    ]
+    
+  },
+
+  {
+    path: '',
+    component: HomeLayoutComponent,
+    children: [
+      {
+        path: 'profile', 
+       component: ProfileComponent 
+      },
+
+  { 
+   path: 'photos', 
   component: PhotosComponent
 },
 { path: 'requests', 
@@ -72,6 +89,8 @@ const routes: Routes = [
   component: CommunityComponent
 
 },
+    ]
+  }
 
 
 ];
