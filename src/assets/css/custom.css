@@ -263,7 +263,7 @@ input:focus {
   border-color:#00cc99 !important;
   box-shadow: 0 0 5px #00cc99 !important;
 }
-.serach input:focus { 
+.search input:focus { 
   outline: none !important;
   border-color:none !important;
   box-shadow:none !important;
