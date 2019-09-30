@@ -19,8 +19,8 @@ export class DiscussionsComponent implements OnInit {
 
   getAllCategories(){
     this.discussionsService.getAllCategories().subscribe(data=>{
-      this.categoryList=data;
-      console.log(data)
+      this.categoryList=data[0].Categories;
+      console.log(data[0].Categories)
     })
   }
   
