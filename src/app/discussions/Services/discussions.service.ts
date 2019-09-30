@@ -12,4 +12,6 @@ export class DiscussionsService {
   getAllCategories(){
     return this.httpClient.get(environment.APIBASEURL+ '/getallcategories')
   }
+
+  
 }
