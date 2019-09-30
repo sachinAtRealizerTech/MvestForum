@@ -5,17 +5,17 @@ import { environment } from 'src/environments/environment';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
- 
+
 @Injectable({
   providedIn: 'root'
 })
-export class DiscussionsService {
+export class DiscussionslistService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getAllCategories(){
-    return this.httpClient.get(environment.APIBASEURL+ '/getallcategories')
+  getAllDiscussionsList(){
+    return this.httpClient.get(environment.APIBASEURL,httpOptions)
   }
 
-  
+
 }
