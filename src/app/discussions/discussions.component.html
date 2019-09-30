@@ -89,14 +89,14 @@
 
 
       <div>
-          <div class="row" *ngFor="let c of categoryList">
-              <div class="card" *ngFor="let e of c.Categories">
-                  <a routerLink="/subcategory">
+          <div class="row gutter-10">
+              <div class="card m-2" *ngFor="let c of categoryList">
+                  <a routerLink="/subcategory" [queryParams]="{categoryId: c.id}">
                     <div class="card d-inline category-main" style="width:50rem">
                       <img class="img-fluid img-thumbnail rounded-left"
                         src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="" width="250px">
                       <div class="category-text">
-                          {{e.name}}
+                          {{c.name}}
                       </div>
                     </div>
                   </a>
