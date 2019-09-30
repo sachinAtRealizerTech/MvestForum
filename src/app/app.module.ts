@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -49,7 +48,8 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

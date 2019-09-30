@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DiscussionsService } from './Services/discussions.service';
+import {categoryList} from '../Models/forums'
 
 @Component({
   selector: 'app-discussions',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiscussionsComponent implements OnInit {
 
-  constructor() { }
+  categoryList:any;
+
+  constructor(private discussionsService:DiscussionsService) { }
 
   ngOnInit() {
+    this.getAllCategories()
   }
 
+  getAllCategories(){
+    this.discussionsService.getAllCategories().subscribe(data=>{
+      this.categoryList=data;
+      console.log(data)
+    })
+  }
+  
 }
