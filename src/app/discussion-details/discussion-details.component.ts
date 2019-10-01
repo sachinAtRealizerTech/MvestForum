@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DiscussiondetailsService } from './Services/discussiondetails.service';
+import {ActivatedRoute} from '@angular/router'
 
 @Component({
   selector: 'app-discussion-details',
@@ -6,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discussion-details.component.scss']
 })
 export class DiscussionDetailsComponent implements OnInit {
+  discussionId:string;
+  discussionDetails:any;
+  public current_date=new Date();
 
-  constructor() { }
+  constructor(private discussiondetailsService:DiscussiondetailsService,private route:ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      //this.discussionId = params['discussionId'];
+       this.discussionId = '5d6dfaa980deae617b3f3925';
+    });
+    this.getDiscussionDeatils(this.discussionId);
+  }
+
+  getDiscussionDeatils(id:string){
+    this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data=>{
+      this.discussionDetails=data['data'];
+      console.log(this.discussionDetails)
+    })
   }
 
 }

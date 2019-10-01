@@ -21,6 +21,7 @@ import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
+import {TimeAgoPipe} from 'time-ago-pipe'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
     DiscussionslistComponent,
     DiscussionDetailsComponent,
     NeighborsComponent,
-    CommunityComponent
+    CommunityComponent,
+    TimeAgoPipe
    
   ],
   imports: [
