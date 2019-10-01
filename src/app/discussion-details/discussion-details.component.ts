@@ -10,16 +10,21 @@ import {ActivatedRoute} from '@angular/router'
 export class DiscussionDetailsComponent implements OnInit {
   discussionId:string;
   discussionDetails:any;
+  discussionDetailsId:any;
+  subCategoryId:any;
   public current_date=new Date();
 
   constructor(private discussiondetailsService:DiscussiondetailsService,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      //this.discussionId = params['discussionId'];
-       this.discussionId = '5d6dfaa980deae617b3f3925';
+      this.subCategoryId=params['subCategoryId']
+       this.discussionId = params['discussionId'];
+       this.discussionDetailsId=params['discussionDetailsId']
+
+       //this.discussionId = '5d6dfaa980deae617b3f3925';
     });
-    this.getDiscussionDeatils(this.discussionId);
+    this.getDiscussionDeatils(this.discussionDetailsId);
   }
 
   getDiscussionDeatils(id:string){

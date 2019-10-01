@@ -54,11 +54,10 @@
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
               routerLink="/discussions">Categories</a></li>
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/subcategory">Sub-Categories</a></li>
+              routerLink="/subcategory" [queryParams]="{subCategoryId:subCategoryId}">Sub-Categories</a></li>
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/discussionslist">Discussion List</a></li>
-          <li class="breadcrumb-item"><a class="active text-green font-weight-semibold"
-              routerLink="/discussion-details">Discussion details</a></li>
+              routerLink="/discussionslist" [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}">Discussion List</a></li>
+          <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussion details</a></li>
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form">
               <div class="input-group search">
