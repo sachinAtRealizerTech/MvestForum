@@ -13,8 +13,8 @@ export class DiscussionslistService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getAllDiscussionsList(){
-    return this.httpClient.get(environment.APIBASEURL,httpOptions)
+  getAllDiscussionsList(subcategory_id:number){
+    return this.httpClient.get(environment.APIBASEURL+'getalldiscussions/'+subcategory_id,httpOptions)
   }
 
 
