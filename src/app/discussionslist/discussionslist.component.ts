@@ -14,16 +14,17 @@ export class DiscussionslistComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.subcategoryid = params['subcategoryid'];
+      this.subcategoryid = params['subcategoryId'];
     });
     this.getDiscussionList(this.subcategoryid)
+    console.log(this.subcategoryid)
   }
 
   getDiscussionList(id){
     debugger;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data=>{
       this.discussionList=data['data'];
-      console.log(data['data'])
+      console.log(this.discussionList)
     })
 }
 
