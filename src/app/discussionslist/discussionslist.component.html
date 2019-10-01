@@ -50,9 +50,9 @@
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
                             routerLink="/discussions">Categories</a></li>
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-                            routerLink="/subcategory">Sub-Categories</a></li>
+                            routerLink="/subcategory" [queryParams]="{subCategoryId:subCategoryId}">Sub-Categories</a></li>
                     <li class="breadcrumb-item"><a class="active text-green font-weight-semibold"
-                            routerLink="/discussionslist">DiscussionsList</a></li>
+                            routerLink="/discussionslist">Discussions List</a></li>
 
                     <li class="ml-auto">
                             
@@ -79,7 +79,7 @@
 
                             <div class="card card-small blog-comments" *ngFor="let dl of discussionList">
                                 <div class="card-body p-0">
-                                        <a routerLink="/discussion-details" [queryParams]="{discussionId:dl.id}">
+                                        <a routerLink="/discussion-details" [queryParams]="{discussionDetailsId:dl.id,discussionId:discussionId,subCategoryId:subCategoryId}">
                                     <div class=" border-bottom p-1">
                                         <div class="media p-3">
                                             <img class="mr-3 user-pic rounded-circle mr-2"

@@ -9,14 +9,14 @@ import {ActivatedRoute} from '@angular/router'
 })
 export class SubcategoryComponent implements OnInit {
   subCategoryList:any;
-  categoryId:number
+  subCategoryId:number
   constructor(private subcategoryService:SubcategoryService,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.categoryId = params['categoryId'];
+      this.subCategoryId = params['subCategoryId'];
     });
-    this.getSubcategory(this.categoryId)
+    this.getSubcategory(this.subCategoryId)
   }
 
   getSubcategory(id){
