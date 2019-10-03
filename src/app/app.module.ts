@@ -21,7 +21,8 @@ import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
-import {TimeAgoPipe} from 'time-ago-pipe'
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import {TimeAgoPipe} from 'time-ago-pipe'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
