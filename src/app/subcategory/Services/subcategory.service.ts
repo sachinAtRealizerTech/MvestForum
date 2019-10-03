@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 const httpOptions = {
@@ -11,9 +11,9 @@ const httpOptions = {
 })
 export class SubcategoryService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getSubcategory(id:number){
-    return this.httpClient.get(environment.APIBASEURL+'getsubcategoryById/'+id,httpOptions)
+  getSubcategory(id: number) {
+    return this.httpClient.get(environment.APIBASEURL + 'getsubcategoryById/' + id, httpOptions)
   }
 }
