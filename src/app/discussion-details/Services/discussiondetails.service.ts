@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 
 const httpOptions = {
@@ -12,10 +12,10 @@ const httpOptions = {
 })
 export class DiscussiondetailsService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getAllDiscussionsDetails(discussion_id:string){
-    return this.httpClient.get(environment.APIBASEURL+'getDiscussion/'+discussion_id, httpOptions)
+  getAllDiscussionsDetails(discussion_id: string) {
+    return this.httpClient.get(environment.APIBASEURL + 'getDiscussion/' + discussion_id, httpOptions)
   }
 
 }

@@ -53,10 +53,10 @@
         <ol class="breadcrumb px-0">
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
               routerLink="/discussions">Categories</a></li>
-          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/subcategory" [queryParams]="{subCategoryId:subCategoryId}">Sub-Categories</a></li>
-          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/discussionslist" [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}">Discussion List</a></li>
+          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/subcategory"
+              [queryParams]="{subCategoryId:subCategoryId}">Sub-Categories</a></li>
+          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussionslist"
+              [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}">Discussion List</a></li>
           <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussion details</a></li>
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form">
@@ -78,7 +78,7 @@
   <div class="row justify-content-center">
     <div class="col-xl-12 pb-3">
       <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.discussion_title}} </h5>
-      <div class="card card-small blog-comments mt-3" >
+      <div class="card card-small blog-comments mt-3">
         <div class="card-header p-0">
           <div class="media p-3">
             <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
@@ -144,9 +144,10 @@
                       </i>
                     </a>
                   </li>
-                  <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true" (mouseout)="showDate=false">
-                   <span *ngIf="!showDate">{{p.post_time | timeAgo}}</span>
-                    <span *ngIf="showDate">{{p.post_time | date:'medium'}}</span> 
+                  <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true"
+                    (mouseout)="showDate=false">
+                    <span *ngIf="!showDate">{{p.post_time | timeAgo}}</span>
+                    <span *ngIf="showDate">{{p.post_time | date:'medium'}}</span>
                   </li>
                 </ul>
               </div>
@@ -162,18 +163,18 @@
 
 <div class="modal fade reply-modal-lg" tabindex="-1" role="dialog" aria-labelledby="reply-modal" aria-hidden="true">
   <div class="modal-dialog modal-md bg-white shadow">
-   <form action="/action_page.php" class="needs-validation" novalidate>
-    <div class="modal-content">
-     <div class="modal-header">
-        <h5 class="modal-title">Reply</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
+    <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reply</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
           <div class="card shadow-none">
-              <!-- <form  class="form-inline" id="search-form">
+            <!-- <form  class="form-inline" id="search-form">
                 <div  class="input-group col-12">
                   <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
                 <i class="fa fa-search"></i>
@@ -181,57 +182,59 @@
             </span>
           </div>
         </form> -->
-        <form>
-            
-                <label for="exampleFormControlTextarea1">Your Reply</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    
+            <form>
+
+              <label for="exampleFormControlTextarea1">Your Reply</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
             </form>
-            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal">Send</button>
+          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+            data-dismiss="modal">Cancel</button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-accent btn-sm text-uppercase"data-dismiss="modal">Send</button>
-        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-      </form>
+    </form>
   </div>
 </div>
 
-<div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal" aria-hidden="true">
+<div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg bg-white shadow">
-   <form action="/action_page.php" class="needs-validation" novalidate>
-    <div class="modal-content">
-     <div class="modal-header">
-        <h5 class="modal-title">Ask a Question</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <div class="modal-body">
+    <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ask a Question</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
           <div class="card shadow-none">
             <div class="row">
-                <div class="col-8">
-              
-        <form>
-           <div class="form-group">
-            <label for="title">Discussion Title :</label>
-            <input type="text" class="form-control" id="title" placeholder="">
-          </div>
-         
-         
-                <form >
-                  <textarea cols="70" placeholder="Describe yourself here">
-                    
-                    </textarea>
-                  
-                </form>
-              
+              <div class="col-8">
 
-          </form>
-            </div>
-            <!-- <div class="col-4">
+                <form>
+                  <div class="form-group">
+                    <label for="title">Discussion Title :</label>
+                    <input type="text" class="form-control" id="title" placeholder="">
+                  </div>
+
+
+                  <form>
+                    <textarea cols="70" placeholder="Describe yourself here">
+
+                    </textarea>
+
+                  </form>
+
+
+                </form>
+              </div>
+              <!-- <div class="col-4">
                 <div class="form-group">
                     <div class="card border  bg-light shadow-none rounded-0">
                         <div class="card-header border-bottom-white py-2 rounded-0">
@@ -264,14 +267,15 @@
                       </div>
                   </div>
               </div> -->
+            </div>
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal">Post</button>
+          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+            data-dismiss="modal">Cancel</button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal">Post</button>
-        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-      </form>
+    </form>
   </div>
 </div>
