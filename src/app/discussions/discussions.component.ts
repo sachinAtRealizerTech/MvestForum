@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscussionsService } from './Services/discussions.service';
-import {categoryList} from '../Models/forums'
 
 @Component({
   selector: 'app-discussions',
@@ -9,19 +8,19 @@ import {categoryList} from '../Models/forums'
 })
 export class DiscussionsComponent implements OnInit {
 
-  categoryList:any;
-
-  constructor(private discussionsService:DiscussionsService) { }
+  categoryList: any;
+  
+  constructor(private discussionsService: DiscussionsService) { }
 
   ngOnInit() {
     this.getAllCategories()
   }
 
-  getAllCategories(){
-    this.discussionsService.getAllCategories().subscribe(data=>{
-      this.categoryList=data['data'];
+  getAllCategories() {
+    this.discussionsService.getAllCategories().subscribe(data => {
+      this.categoryList = data['data'];
       console.log(data)
     })
   }
-  
+
 }
