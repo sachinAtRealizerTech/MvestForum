@@ -21,7 +21,6 @@ export class DiscussionDetailsComponent implements OnInit {
       this.subCategoryId=params['subCategoryId']
        this.discussionId = params['discussionId'];
        this.discussionDetailsId=params['discussionDetailsId']
-
        //this.discussionId = '5d6dfaa980deae617b3f3925';
     });
     this.getDiscussionDeatils(this.discussionDetailsId);

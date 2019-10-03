@@ -12,19 +12,16 @@ export class DiscussionslistComponent implements OnInit {
   discussionId:number;
   discussionList:any;
   subCategoryId:any;
-  discussionListQuestionForm:FormGroup
+  discussionListQuestionForm:FormGroup;
 
   constructor(private discussionlistService:DiscussionslistService,private route:ActivatedRoute,
     private formBuilder: FormBuilder) { }
-
-  
+ 
   ngOnInit() {
-
     this.discussionListQuestionForm=this.formBuilder.group({
       discussionTitle:[],
       problemDescription:[]
     })
-
 
     this.route.queryParams.subscribe(params => {
       this.discussionId = params['discussionId'];
