@@ -13,6 +13,7 @@ export class DiscussionslistComponent implements OnInit {
   discussionList:any;
   subCategoryId:any;
   discussionListQuestionForm:FormGroup;
+  showDate:any;
 
   constructor(private discussionlistService:DiscussionslistService,private route:ActivatedRoute,
     private formBuilder: FormBuilder) { }

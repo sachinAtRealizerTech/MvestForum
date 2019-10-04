@@ -23,6 +23,8 @@ import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import { PathLocationStrategy, LocationStrategy } from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -54,9 +56,10 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

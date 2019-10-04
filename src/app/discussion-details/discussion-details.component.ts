@@ -12,6 +12,7 @@ export class DiscussionDetailsComponent implements OnInit {
   discussionDetails: any;
   discussionDetailsId: any;
   subCategoryId: any;
+  showDate:any;
   public current_date = new Date();
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute) { }

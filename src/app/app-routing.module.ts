@@ -15,89 +15,160 @@ import { DiscussionslistComponent } from './discussionslist/discussionslist.comp
 import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
-import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
+//import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 
-
-
 const routes: Routes = [
-
-  {
-    path:'',
-    component: SigninLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: SignInComponent
-      }
-    ]
     
-  },
-
   {
-    path: '',
-    component: HomeLayoutComponent,
-    children: [
-      {
-        path: 'profile', 
-       component: ProfileComponent 
-      },
+      path: '',
+      component: HomeLayoutComponent,
+      children:[
+        {
+          path: 'profile',
+          component: ProfileComponent
+        },
+  
+        {
+          path: 'photos',
+          component: PhotosComponent
+        },
+        {
+          path: 'requests',
+          component: RequestsComponent
+        },
+        {
+          path: 'newsfeed',
+          component: NewsfeedComponent
+        },
+        {
+          path: 'messages',
+          component: MessagesComponent
+        },
+        {
+          path: 'following',
+          component: FollowingComponent
+        },
+        {
+          path: 'mydiscussions',
+          component: MydiscussionsComponent
+        },
+        {
+          path: 'discussions',
+          component: DiscussionsComponent
+        },
+        {
+          path: 'subcategory',
+          component: SubcategoryComponent
+        },
+        {
+          path: 'discussionslist',
+          component: DiscussionslistComponent
+  
+        },
+        {
+          path: 'discussion-details',
+          component: DiscussionDetailsComponent
+  
+        },
+        {
+          path: 'neighbors',
+          component: NeighborsComponent
+  
+        },
+        {
+          path: 'community',
+          component: CommunityComponent
+  
+        },
 
-  { 
-   path: 'photos', 
-  component: PhotosComponent
-},
-{ path: 'requests', 
-  component: RequestsComponent
-},
-{ path: 'newsfeed', 
-  component: NewsfeedComponent
-},
-{ path: 'messages', 
-  component: MessagesComponent
-},
-{ path: 'following', 
-  component: FollowingComponent
-},
-{ path: 'mydiscussions', 
-  component: MydiscussionsComponent
-},
-{ path: 'discussions', 
-  component: DiscussionsComponent
-},
-{ path: 'subcategory', 
-  component: SubcategoryComponent
-},
-{ 
-  path: 'discussionslist', 
-  component: DiscussionslistComponent
+      ]
+    }
 
-},
-{ 
-  path: 'discussion-details', 
-  component: DiscussionDetailsComponent
 
-},
-{ 
-  path: 'neighbors', 
-  component: NeighborsComponent
+  // {
+  //   path:'',
+  //   component: SigninLayoutComponent,
+  //   pathMatch: 'full',
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: SignInComponent
+  //     }
+  //   ]   
+  // },
 
-},
-{ 
-  path: 'community', 
-  component: CommunityComponent
+  // {
+  //   path: '',
+  //   component: HomeLayoutComponent,
+  //   children: [
+  //     {
+  //       path: 'profile',
+  //       component: ProfileComponent
+  //     },
 
-},
-    ]
-  }
+  //     {
+  //       path: 'photos',
+  //       component: PhotosComponent
+  //     },
+  //     {
+  //       path: 'requests',
+  //       component: RequestsComponent
+  //     },
+  //     {
+  //       path: 'newsfeed',
+  //       component: NewsfeedComponent
+  //     },
+  //     {
+  //       path: 'messages',
+  //       component: MessagesComponent
+  //     },
+  //     {
+  //       path: 'following',
+  //       component: FollowingComponent
+  //     },
+  //     {
+  //       path: 'mydiscussions',
+  //       component: MydiscussionsComponent
+  //     },
+  //     {
+  //       path: 'discussions',
+  //       component: DiscussionsComponent
+  //     },
+  //     {
+  //       path: 'subcategory',
+  //       component: SubcategoryComponent
+  //     },
+  //     {
+  //       path: 'discussionslist',
+  //       component: DiscussionslistComponent
+
+  //     },
+  //     {
+  //       path: 'discussion-details',
+  //       component: DiscussionDetailsComponent
+
+  //     },
+  //     {
+  //       path: 'neighbors',
+  //       component: NeighborsComponent
+
+  //     },
+  //     {
+  //       path: 'community',
+  //       component: CommunityComponent
+
+  //     },
+  //   ]
+  // }
 
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),
-         
+
   ],
   exports: [RouterModule]
 })

@@ -47,7 +47,7 @@
           <li class="breadcrumb-item ml-auto">
             <form id="search-form" class="form-inline">
               <div class="input-group search">
-                <input type="text" class="form-control search-form" placeholder="Search">
+                <input type="text" class="form-control search-form" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" placeholder="Search">
                 <span class="input-group-btn">
                   <button type="submit" class="search-btn">
                     <i class="fa fa-search"></i>
@@ -60,13 +60,13 @@
       </nav>
       <div>
         <div class="row gutter-10">
-          <div class="card m-2" *ngFor="let c of categoryList">
+          <div class="card m-2" *ngFor="let c of categoryList | filter:searchText">
             <a routerLink="/subcategory" [queryParams]="{subCategoryId: c.id}">
               <div class="card d-inline category-main" style="width:50rem">
                 <img class="img-fluid img-thumbnail rounded-left" src="https://source.unsplash.com/AvhMzHwiE_0/400x300"
                   alt="" width="250px">
                 <div class="category-text">
-                  {{c.name}}
+                  {{c.name | titlecase}}
                 </div>
               </div>
             </a>

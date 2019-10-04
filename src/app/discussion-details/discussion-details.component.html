@@ -36,12 +36,14 @@
           <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
             aria-selected="false">SETTINGS</a>
         </li>
-        <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
+
+        <!-- <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
           <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl"
             data-toggle="modal" href="#">
             Ask a Question
           </a>
-        </li>
+        </li> -->
+
       </ul>
     </div>
   </div>
@@ -61,7 +63,7 @@
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form">
               <div class="input-group search">
-                <input type="text" class="form-control search-form" placeholder="Search">
+                <input type="text" class="form-control search-form" placeholder="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
                 <span class="input-group-btn">
                   <button type="submit" class="search-btn" data-target="#search-form" name="">
                     <i class="fa fa-search"></i>
@@ -113,8 +115,12 @@
                 </i>
               </a>
             </li>
-            <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
-              2 minutes ago
+            <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true" (mouseout)="showDate=false">
+                <span *ngIf="!showDate"><small
+                  class="font-weight-semibold">{{discussionDetails?.discussion_time | timeAgo}}</small></span>
+                  <span *ngIf="showDate"><small
+                    class="font-weight-semibold">{{discussionDetails?.discussion_time | date:'medium'}}</small></span>
+              <!-- {{discussionDetails.discussion_time | timeAgo}} -->
             </li>
           </ul>
           <div id="comment-box" class="">
@@ -125,18 +131,18 @@
             </form>
 
           </div>
-          <div class="border-bottom" *ngFor="let p of discussionDetails?.Posts">
+          <div class="border-bottom" *ngFor="let p of discussionDetails?.Posts | filter:searchText">
             <div class="media p-3">
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                 alt="Generic placeholder image">
               <div class="media-body mb-0 align-self-center">
-                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}} </h5>
-                <h6 class="text-secondary mb-0"> {{p.post_msg}} </h6>
+                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
+                <h6 class="text-secondary mb-0"> {{p.post_msg}}</h6>
                 <ul class="list-inline d-flex  border-bottom">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
                     <a routerLink="#"> <i class="material-icons icon-muted md-24 ml-3">
                         thumb_up
-                      </i> </a><span class="ml-1 align-self-center">1,234</span>
+                      </i> </a><span class="ml-1 align-self-center">{{p.likes}}</span>
                   </li>
                   <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                     <a routerLink="#"> <i class="material-icons icon-muted md-24 ml-3">
