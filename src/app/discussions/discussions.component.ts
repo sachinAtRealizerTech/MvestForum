@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscussionsService } from './Services/discussions.service';
+import {categoryList} from '../models/discussions'
 
 @Component({
   selector: 'app-discussions',
@@ -8,7 +9,7 @@ import { DiscussionsService } from './Services/discussions.service';
 })
 export class DiscussionsComponent implements OnInit {
 
-  categoryList: any;
+  categoryList: categoryList[]=[];
   
   constructor(private discussionsService: DiscussionsService) { }
 

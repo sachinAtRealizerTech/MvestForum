@@ -14,17 +14,18 @@ import{ MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { DiscussionsComponent } from './discussions/discussions.component';
-import { SubcategoryComponent } from './subcategory/subcategory.component';
-import { DiscussionslistComponent } from './discussionslist/discussionslist.component';
-import { DiscussionDetailsComponent } from './discussion-details/discussion-details.component';
+// import { SubcategoryComponent } from './discussions/subcategory.component';
+// import { DiscussionslistComponent } from './discussions/discussionslist.component';
+// import { DiscussionDetailsComponent } from './discussions/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
-import {TimeAgoPipe} from 'time-ago-pipe';
+//import {TimeAgoPipe} from 'time-ago-pipe';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+//import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DiscussionsModule } from './discussions/discussions.module';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FollowingComponent,
     MydiscussionsComponent,
     DiscussionsComponent,
-    SubcategoryComponent,
-    DiscussionslistComponent,
-    DiscussionDetailsComponent,
+    // SubcategoryComponent,
+    // DiscussionslistComponent,
+    // DiscussionDetailsComponent,
     NeighborsComponent,
     CommunityComponent,
-    TimeAgoPipe
+    //TimeAgoPipe
    
   ],
   imports: [
@@ -57,7 +58,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    //Ng2SearchPipeModule,
+    DiscussionsModule
   ],
   providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]
