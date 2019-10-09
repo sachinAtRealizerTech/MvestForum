@@ -10,22 +10,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './requests/requests.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
-import{ MessagesComponent } from './messages/messages.component';
+import { MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
-//import { DiscussionsComponent } from './community/discussions/discussions.component';
-// import { SubcategoryComponent } from './discussions/subcategory.component';
-// import { DiscussionslistComponent } from './discussions/discussionslist.component';
-// import { DiscussionDetailsComponent } from './discussions/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
-//import {TimeAgoPipe} from 'time-ago-pipe';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
-//import { Ng2SearchPipeModule } from 'ng2-search-filter';
-//import { DiscussionsModule } from './community/discussions/discussions.module';
 import { CommunityModule } from './community/community.module';
 
 
@@ -34,7 +27,6 @@ import { CommunityModule } from './community/community.module';
     AppComponent,
     HomeLayoutComponent,
     SigninLayoutComponent,
-    
     SideNavComponent,
     TopNavComponent,
     ProfileComponent,
@@ -45,14 +37,8 @@ import { CommunityModule } from './community/community.module';
     MessagesComponent,
     FollowingComponent,
     MydiscussionsComponent,
-    //DiscussionsComponent,
-    // SubcategoryComponent,
-    // DiscussionslistComponent,
-    // DiscussionDetailsComponent,
     NeighborsComponent,
     CommunityComponent,
-    //TimeAgoPipe
-   
   ],
   imports: [
     BrowserModule,
@@ -60,11 +46,9 @@ import { CommunityModule } from './community/community.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    //Ng2SearchPipeModule,
-    //DiscussionsModule,
     CommunityModule
   ],
-  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}],
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
