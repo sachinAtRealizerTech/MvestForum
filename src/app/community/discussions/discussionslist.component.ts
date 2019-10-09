@@ -38,7 +38,7 @@ export class DiscussionslistComponent implements OnInit {
   getDiscussionList(id) {
     debugger;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
-      this.discussionList = data['data'];
+      this.discussionList = data;
       console.log('Discussion List: ', this.discussionList)
     })
   }

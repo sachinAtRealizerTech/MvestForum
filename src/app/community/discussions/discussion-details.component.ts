@@ -30,7 +30,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
   getDiscussionDeatils(id: string) {
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
-      this.discussionDetails = data['data'];
+      this.discussionDetails = data;
       console.log(this.discussionDetails)
     })
   }
