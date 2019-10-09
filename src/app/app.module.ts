@@ -13,7 +13,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import{ MessagesComponent } from './messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
-import { DiscussionsComponent } from './discussions/discussions.component';
+//import { DiscussionsComponent } from './community/discussions/discussions.component';
 // import { SubcategoryComponent } from './discussions/subcategory.component';
 // import { DiscussionslistComponent } from './discussions/discussionslist.component';
 // import { DiscussionDetailsComponent } from './discussions/discussion-details.component';
@@ -25,7 +25,9 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 //import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { DiscussionsModule } from './discussions/discussions.module';
+//import { DiscussionsModule } from './community/discussions/discussions.module';
+import { CommunityModule } from './community/community.module';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { DiscussionsModule } from './discussions/discussions.module';
     MessagesComponent,
     FollowingComponent,
     MydiscussionsComponent,
-    DiscussionsComponent,
+    //DiscussionsComponent,
     // SubcategoryComponent,
     // DiscussionslistComponent,
     // DiscussionDetailsComponent,
@@ -59,7 +61,8 @@ import { DiscussionsModule } from './discussions/discussions.module';
     FormsModule,
     ReactiveFormsModule,
     //Ng2SearchPipeModule,
-    DiscussionsModule
+    //DiscussionsModule,
+    CommunityModule
   ],
   providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]

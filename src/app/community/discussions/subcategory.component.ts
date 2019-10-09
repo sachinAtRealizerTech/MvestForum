@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubcategoryService } from './Services/subcategory.service';
 import { ActivatedRoute } from '@angular/router'
-import {subCategoryList} from '../models/discussions'
+import {subCategoryList} from '../../models/discussions'
 
 @Component({
   selector: 'app-subcategory',

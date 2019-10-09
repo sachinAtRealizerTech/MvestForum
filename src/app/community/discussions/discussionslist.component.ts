@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from './Services/discussionslist.service';
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { discussions,Discussions } from '../models/discussions'
+import { discussions,Discussions } from '../../models/discussions'
 
 @Component({
   selector: 'app-discussionslist',

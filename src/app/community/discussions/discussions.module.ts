@@ -25,7 +25,10 @@ import { RouterModule } from "@angular/router";
     RouterModule
   ],
   exports:[
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    FormsModule,
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class DiscussionsModule { }

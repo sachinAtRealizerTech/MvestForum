@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscussiondetailsService } from './Services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
-import { discussionDetails } from '../models/discussions'
+import { discussionDetails } from '../../models/discussions'
 
 @Component({
   selector: 'app-discussion-details',

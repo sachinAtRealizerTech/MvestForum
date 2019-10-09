@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { DiscussionsComponent } from '../community/discussions/discussions.component';
+import { DiscussionsModule } from '../community/discussions/discussions.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DiscussionsComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    DiscussionsModule
+  ],
+  exports: [
+    DiscussionsModule
   ]
 })
 export class CommunityModule { }
