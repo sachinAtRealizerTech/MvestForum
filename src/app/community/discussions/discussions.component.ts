@@ -20,7 +20,7 @@ export class DiscussionsComponent implements OnInit {
 
   getAllCategories() {
     this.discussionsService.getAllCategories().subscribe(data => {
-      this.categoryList = data['data'];
+      this.categoryList= data;
       console.log(this.categoryList);
     })
   }
