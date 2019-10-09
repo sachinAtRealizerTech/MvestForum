@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from './Services/discussionslist.service';
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { discussions,Discussions } from '../../models/discussions'
+import { DiscussionsList,Discussions } from '../../models/discussions'
 
 @Component({
   selector: 'app-discussionslist',
@@ -11,7 +11,7 @@ import { discussions,Discussions } from '../../models/discussions'
 })
 export class DiscussionslistComponent implements OnInit {
   discussionId: number;
-  discussionList: discussions[] = [];
+  discussionList: DiscussionsList[] = [];
   //Discussions:Discussions[]=[];
   subCategoryId: any;
   discussionListQuestionForm: FormGroup;

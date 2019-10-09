@@ -1,15 +1,15 @@
-export interface categoryList{
+export interface CategoryList{
     id:string,
     categoryName:string
 }
 
-export interface subCategoryList{
+export interface SubCategoryList{
     id:number,
     name:string,
     noOfDiscussions:number
 }
 
-export interface discussions{
+export interface DiscussionsList{
     category:string;
     subcategory:string;
     subcategory_id:number;
@@ -26,17 +26,17 @@ export interface Discussions{
     title:string;
 }
 
-export interface discussionDetails{
+export interface DiscussionDetails{
     category:string;
     discussion_time:Date;
     discussion_title:string;
     discussion_title_description:string;
     subcategory:string;
     subcategory_id:number;
-    posts:[posts]
+    posts:[Posts]
 }
 
-export interface posts{
+export interface Posts{
     comments:[];
     likes:number;
     no_of_posts:number;

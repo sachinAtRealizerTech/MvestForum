@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscussiondetailsService } from './Services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
-import { discussionDetails } from '../../models/discussions'
+import { DiscussionDetails } from '../../models/discussions'
 
 @Component({
   selector: 'app-discussion-details',
@@ -10,7 +10,7 @@ import { discussionDetails } from '../../models/discussions'
 })
 export class DiscussionDetailsComponent implements OnInit {
   discussionId: string;
-  discussionDetails: discussionDetails[] = [];
+  discussionDetails: DiscussionDetails[] = [];
   discussionDetailsId: any;
   subCategoryId: any;
   showDate: any;
