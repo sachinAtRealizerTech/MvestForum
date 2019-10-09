@@ -23,8 +23,8 @@ export class SubcategoryComponent implements OnInit {
 
   getSubcategory(id) {
     this.subcategoryService.getSubcategory(id).subscribe(data => {
-      this.subCategoryList = data['data'];
-      console.log(data['data'])
+      this.subCategoryList = data;
+      console.log(data)
     })
   }
 
