@@ -1,5 +1,5 @@
 export interface categoryList{
-    id:number,
+    id:string,
     categoryName:string
 }
 
@@ -13,10 +13,11 @@ export interface discussions{
     category:string;
     subcategory:string;
     subcategory_id:number;
-    discussionList:[discussionList];
+    _id:string;
+    Discussions:Discussions[];
 }
 
-export interface discussionList{
+export interface Discussions{
     id:string;
     no_of_posts:number;
     post_by:string;

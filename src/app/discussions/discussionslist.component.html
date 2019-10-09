@@ -72,12 +72,12 @@
                 <div class="col-md-12 col-xl-12">
                     <div class="row justify-content-between no-gutters">
                         <div class="col-md-12 col-xl-8 pb-3">
-                                <div *ngIf="!discussionList?.Discussions">
+                                <div *ngIf="!discussionList[0]?.Discussions">
                                     <h1>No Records Found</h1>
                                 </div>
 
-                            <div class="card card-small blog-comments" *ngFor="let dl of discussionList?.Discussions | filter : searchText">
-                                <div class="card-body p-0">
+                            <div class="card card-small blog-comments" *ngFor="let ds of discussionList | filter : searchText">
+                                <div class="card-body p-0" *ngFor="let dl of ds.Discussions | filter : searchText">
                                     <a routerLink="/discussion-details"
                                         [queryParams]="{discussionDetailsId:dl.id,discussionId:discussionId,subCategoryId:subCategoryId}">
 

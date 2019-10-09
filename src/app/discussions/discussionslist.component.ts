@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from './Services/discussionslist.service';
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { discussions } from '../models/discussions'
+import { discussions,Discussions } from '../models/discussions'
 
 @Component({
   selector: 'app-discussionslist',
@@ -12,9 +12,11 @@ import { discussions } from '../models/discussions'
 export class DiscussionslistComponent implements OnInit {
   discussionId: number;
   discussionList: discussions[] = [];
+  //Discussions:Discussions[]=[];
   subCategoryId: any;
   discussionListQuestionForm: FormGroup;
   showDate: any;
+  searchText:any
 
   constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
@@ -36,7 +38,7 @@ export class DiscussionslistComponent implements OnInit {
   getDiscussionList(id) {
     debugger;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
-      this.discussionList = data['data'][0];
+      this.discussionList = data['data'];
       console.log('Discussion List: ', this.discussionList)
     })
   }

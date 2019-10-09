@@ -10,7 +10,8 @@ import {subCategoryList} from '../models/discussions'
 })
 export class SubcategoryComponent implements OnInit {
   subCategoryList: subCategoryList[]=[];
-  subCategoryId: number
+  subCategoryId: number;
+  searchText:any
   constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute) { }
 
   ngOnInit() {

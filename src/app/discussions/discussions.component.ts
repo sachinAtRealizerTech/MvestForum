@@ -10,6 +10,7 @@ import { categoryList } from '../models/discussions'
 export class DiscussionsComponent implements OnInit {
 
   categoryList: categoryList[] = [];
+  searchText:any;
 
   constructor(private discussionsService: DiscussionsService) { }
 
@@ -20,7 +21,7 @@ export class DiscussionsComponent implements OnInit {
   getAllCategories() {
     this.discussionsService.getAllCategories().subscribe(data => {
       this.categoryList = data['data'];
-      console.log(data);
+      console.log(this.categoryList);
     })
   }
 
