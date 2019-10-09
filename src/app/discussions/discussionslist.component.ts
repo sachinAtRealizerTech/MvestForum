@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {DiscussionslistService} from './Services/discussionslist.service';
 import {FormBuilder,FormGroup} from '@angular/forms'
+import {discussions} from '../models/discussions'
 
 @Component({
   selector: 'app-discussionslist',
@@ -10,7 +11,7 @@ import {FormBuilder,FormGroup} from '@angular/forms'
 })
 export class DiscussionslistComponent implements OnInit {
   discussionId:number;
-  discussionList:any;
+  discussionList:discussions[]=[];
   subCategoryId:any;
   discussionListQuestionForm:FormGroup;
   showDate:any;
@@ -36,7 +37,7 @@ export class DiscussionslistComponent implements OnInit {
     debugger;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data=>{
       this.discussionList=data['data'][0];
-      console.log(this.discussionList)
+      console.log('Discussion List: ', this.discussionList)
     })
 }
 

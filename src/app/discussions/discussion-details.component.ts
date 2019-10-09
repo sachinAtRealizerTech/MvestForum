@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscussiondetailsService } from './Services/discussiondetails.service';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
+import {discussionDetails} from '../models/discussions'
 
 @Component({
   selector: 'app-discussion-details',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class DiscussionDetailsComponent implements OnInit {
   discussionId: string;
-  discussionDetails: any;
+  discussionDetails: discussionDetails[]=[];
   discussionDetailsId: any;
   subCategoryId: any;
   showDate:any;
@@ -29,7 +30,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
   getDiscussionDeatils(id: string) {
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
-      this.discussionDetails = data['data'][0];
+      this.discussionDetails = data['data'];
       console.log(this.discussionDetails)
     })
   }

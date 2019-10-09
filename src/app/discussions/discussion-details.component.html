@@ -77,16 +77,16 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" *ngFor="let dd of discussionDetails">
     <div class="col-xl-12 pb-3">
-      <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.discussion_title}} </h5>
+      <h5 class="text-dark mb-0 font-weight-semibold">{{dd?.discussion_title}} </h5>
       <div class="card card-small blog-comments mt-3">
         <div class="card-header p-0">
           <div class="media p-3">
             <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
               alt="Generic placeholder image">
             <div class="media-body mb-0 align-self-center">
-              <h5 class="text-dark h6 mb-0 font-weight-semibold">{{discussionDetails?.discussion_title}}</h5>
+              <h5 class="text-dark h6 mb-0 font-weight-semibold">{{dd?.discussion_title}}</h5>
               <!-- <small class="text-secondary mb-0 font-weight-semibold">8:30pm</small> -->
             </div>
           </div>
@@ -94,7 +94,7 @@
         <div class="card-body px-5 pt-0 mx-3">
           <div class="bg-light px-3 pb-3  ">
             <p class="h6 text-secondary">
-              {{discussionDetails?.discussion_title_description}}
+              {{dd?.discussion_title_description}}
             </p>
           </div>
           <ul class="list-inline d-flex  border-bottom">
@@ -117,9 +117,9 @@
             </li>
             <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true" (mouseout)="showDate=false">
                 <span *ngIf="!showDate"><small
-                  class="font-weight-semibold">{{discussionDetails?.discussion_time | timeAgo}}</small></span>
+                  class="font-weight-semibold">{{dd?.discussion_time | timeAgo}}</small></span>
                   <span *ngIf="showDate"><small
-                    class="font-weight-semibold">{{discussionDetails?.discussion_time | date:'medium'}}</small></span>
+                    class="font-weight-semibold">{{dd?.discussion_time | date:'medium'}}</small></span>
               <!-- {{discussionDetails.discussion_time | timeAgo}} -->
             </li>
           </ul>
@@ -131,7 +131,7 @@
             </form>
 
           </div>
-          <div class="border-bottom" *ngFor="let p of discussionDetails?.Posts | filter:searchText">
+          <div class="border-bottom" *ngFor="let p of dd?.Posts | filter:searchText">
             <div class="media p-3">
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                 alt="Generic placeholder image">
@@ -165,6 +165,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <div class="modal fade reply-modal-lg" tabindex="-1" role="dialog" aria-labelledby="reply-modal" aria-hidden="true">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubcategoryService } from './Services/subcategory.service';
 import { ActivatedRoute } from '@angular/router'
+import {subCategoryList} from '../models/discussions'
 
 @Component({
   selector: 'app-subcategory',
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./subcategory.component.scss']
 })
 export class SubcategoryComponent implements OnInit {
-  subCategoryList: any;
+  subCategoryList: subCategoryList[]=[];
   subCategoryId: number
   constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute) { }
 
