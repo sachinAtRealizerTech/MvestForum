@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscussiondetailsService } from './Services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
-import {discussionDetails} from '../models/discussions'
+import { discussionDetails } from '../models/discussions'
 
 @Component({
   selector: 'app-discussion-details',
@@ -10,10 +10,10 @@ import {discussionDetails} from '../models/discussions'
 })
 export class DiscussionDetailsComponent implements OnInit {
   discussionId: string;
-  discussionDetails: discussionDetails[]=[];
+  discussionDetails: discussionDetails[] = [];
   discussionDetailsId: any;
   subCategoryId: any;
-  showDate:any;
+  showDate: any;
   public current_date = new Date();
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute) { }
@@ -23,7 +23,6 @@ export class DiscussionDetailsComponent implements OnInit {
       this.subCategoryId = params['subCategoryId']
       this.discussionId = params['discussionId'];
       this.discussionDetailsId = params['discussionDetailsId']
-      //this.discussionId = '5d6dfaa980deae617b3f3925';
     });
     this.getDiscussionDeatils(this.discussionDetailsId);
   }
