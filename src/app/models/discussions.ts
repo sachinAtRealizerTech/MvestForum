@@ -1,12 +1,21 @@
 export interface CategoryList{
-    id:string,
-    categoryName:string
+    cat_id:number;
+    doc_id:string;
+    name:string
 }
 
 export interface SubCategoryList{
-    id:number,
-    name:string,
-    noOfDiscussions:number
+    category_id:number;
+    category_name:string;
+    no_of_subcategories:number;
+    sub_categories:[SubCategories];
+    noOfDiscussions:number;
+}
+
+export interface SubCategories{
+    subcat_id:number;
+    name:string;
+    no_of_discussions:number;
 }
 
 export interface DiscussionsList{

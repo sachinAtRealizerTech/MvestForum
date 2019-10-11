@@ -72,14 +72,14 @@
                 <div class="col-md-12 col-xl-12">
                     <div class="row justify-content-between no-gutters">
                         <div class="col-md-12 col-xl-8 pb-3">
-                                <div *ngIf="!discussionList[0]?.Discussions">
+                                <div *ngIf="!discussionList?.discussions">
                                     <h1>No Records Found</h1>
                                 </div>
 
-                            <div class="card card-small blog-comments" *ngFor="let ds of discussionList | filter : searchText">
-                                <div class="card-body p-0" *ngFor="let dl of ds.Discussions | filter : searchText">
+                            <div class="card card-small blog-comments">
+                                <div class="card-body p-0" *ngFor="let dl of discussionList.discussions | filter : searchText">
                                     <a routerLink="/discussion-details"
-                                        [queryParams]="{discussionDetailsId:dl.id,discussionId:discussionId,subCategoryId:subCategoryId}">
+                                        [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:discussionId,subCategoryId:subCategoryId}">
 
                                         <div class=" border-bottom p-1">
                                             <div class="media p-3">
@@ -105,9 +105,9 @@
                                                         <li class="list-inline-item mb-1 h6  text-muted ml-auto"
                                                             (mouseover)="showDate=true" (mouseout)="showDate=false">
                                                             <span *ngIf="!showDate"><small
-                                                                    class="font-weight-semibold">{{dl.post_time | timeAgo}}</small></span>
+                                                                    class="font-weight-semibold">{{dl.post_date | timeAgo}}</small></span>
                                                             <span *ngIf="showDate"><small
-                                                                    class="font-weight-semibold">{{dl.post_time | date:'medium'}}</small></span>
+                                                                    class="font-weight-semibold">{{dl.post_date | date:'medium'}}</small></span>
                                                         </li>
 
                                                         <!-- <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true" (mouseout)="showDate=false">

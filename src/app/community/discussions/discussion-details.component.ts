@@ -10,11 +10,14 @@ import { DiscussionDetails } from '../../models/discussions'
 })
 export class DiscussionDetailsComponent implements OnInit {
   discussionId: string;
-  discussionDetails: DiscussionDetails[] = [];
+  //discussionDetails: DiscussionDetails[] = [];
+  discussionDetails:any;
   discussionDetailsId: any;
   subCategoryId: any;
   showDate: any;
   searchText:any;
+  commentBox=false;
+  postCommentBox=false;
   public current_date = new Date();
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute) { }
@@ -34,5 +37,27 @@ export class DiscussionDetailsComponent implements OnInit {
       console.log(this.discussionDetails)
     })
   }
+
+  showCommentBox(){
+    this.commentBox=true
+  }
+
+  sendPost(){
+  }
+
+  postComment(){
+    this.commentBox=false;
+  }
+
+  showPostCommentBox(){
+    this.postCommentBox=true;
+  }
+
+  commentOnPost(){
+  
+    this.postCommentBox=false;
+  }
+
+  
 
 }

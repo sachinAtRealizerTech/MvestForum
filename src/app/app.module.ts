@@ -20,7 +20,8 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommunityModule } from './community/community.module';
-
+import { BsModalService } from 'ngx-bootstrap/modal';
+//import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -46,9 +47,12 @@ import { CommunityModule } from './community/community.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommunityModule
+    CommunityModule,
+    // ModalModule,
+    // BsDropdownModule,
+    // CollapseModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy },BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

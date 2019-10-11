@@ -10,8 +10,9 @@ import { DiscussionsList,Discussions } from '../../models/discussions'
   styleUrls: ['./discussionslist.component.scss']
 })
 export class DiscussionslistComponent implements OnInit {
-  discussionId: number;
-  discussionList: DiscussionsList[] = [];
+  discussionId: string;
+  discussionList:any;
+  //discussionList: DiscussionsList[] = [];
   //Discussions:Discussions[]=[];
   subCategoryId: any;
   discussionListQuestionForm: FormGroup;

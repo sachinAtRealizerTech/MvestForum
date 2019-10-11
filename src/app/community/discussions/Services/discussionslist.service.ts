@@ -14,9 +14,9 @@ export class DiscussionslistService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllDiscussionsList(subcategory_id: number) {
-    return this.httpClient.get(environment.APIBASEURL + 'getalldiscussions/' + subcategory_id, httpOptions).pipe(map(data=>{
-      return data['data']
+  getAllDiscussionsList(subcategory_id: string) {
+    return this.httpClient.get(environment.APIBASEURL + '/Discussion/' + subcategory_id, httpOptions).pipe(map(data=>{
+      return data
     }))
   }
 

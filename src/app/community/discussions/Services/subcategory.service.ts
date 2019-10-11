@@ -14,9 +14,15 @@ export class SubcategoryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSubcategory(id: number) {
-    return this.httpClient.get(environment.APIBASEURL + 'getsubcategoryById/' + id, httpOptions).pipe(map(data=>{
-      return data['data']
+  getSubcategory(id: string) {
+    return this.httpClient.get(environment.APIBASEURL + '/MasterData/subcategory/' + id).pipe(map(data=>{
+      return data
     }))
   }
+
+  postQuestion(body){
+    this.httpClient.post(environment.APIBASEURL+'',httpOptions)
+  }
+
+  
 }

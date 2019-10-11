@@ -15,8 +15,9 @@ export class DiscussionsService {
   constructor(private httpClient:HttpClient) { }
 
   getAllCategories(){
-    return this.httpClient.get(environment.APIBASEURL+ '/getallcategories').pipe(map(data=>{
-      return data['data']
+    return this.httpClient.get(environment.APIBASEURL+ '/MasterData')
+    .pipe(map(data=>{
+      return data['Categories']
     }))
   }
 }

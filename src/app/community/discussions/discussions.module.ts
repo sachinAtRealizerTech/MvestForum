@@ -9,6 +9,7 @@ import { DiscussionDetailsComponent } from '../discussions/discussion-details.co
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from "@angular/router";
 
+
 @NgModule({
   declarations: [
     SubcategoryComponent,
