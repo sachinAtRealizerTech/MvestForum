@@ -58,7 +58,8 @@
                         <form id="search-form" class="form-inline" role="form" method="post"
                             action="//www.google.com/search" target="_blank">
                             <div class="input-group search">
-                                <input type="text" class="form-control search-form" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" placeholder="Search">
+                                <input type="text" class="form-control search-form" [(ngModel)]="searchText"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search">
                                 <span class="input-group-btn">
                                     <button type="submit" class="search-btn" data-target="#search-form" name="q">
                                         <i class="fa fa-search"></i>
@@ -74,12 +75,13 @@
                 <div class="col-md-12 col-xl-12">
                     <div class="row justify-content-between no-gutters">
                         <div class="col-md-12 col-xl-8 pb-3">
-                                <div *ngIf="!discussionList?.discussions">
-                                    <h1>No Records Found</h1>
-                                </div>
+                            <div *ngIf="!discussionList?.discussions">
+                                <h1>No Records Found</h1>
+                            </div>
 
                             <div class="card card-small blog-comments">
-                                <div class="card-body p-0" *ngFor="let dl of discussionList?.discussions | filter : searchText">
+                                <div class="card-body p-0"
+                                    *ngFor="let dl of discussionList?.discussions | filter : searchText">
                                     <a routerLink="/discussion-details"
                                         [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:discussionId,subCategoryId:subCategoryId}">
 
@@ -87,7 +89,7 @@
                                             <div class="media p-3">
                                                 <img class="mr-3 user-pic rounded-circle mr-2"
                                                     src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
-                                                   
+
                                                 <div class="media-body mb-0">
 
                                                     <ul class="list-inline d-flex mb-0">
@@ -96,8 +98,11 @@
                                                                 {{dl?.title | titlecase}}</h5>
                                                         </li>
                                                         <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                            <small class="font-weight-semibold"> {{discussionList?.discussions.length}}
-                                                                posts</small>
+                                                                <span><small
+                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
+                                                            <!-- <small class="font-weight-semibold">
+                                                                {{discussionList?.discussions.length}}
+                                                                posts</small> -->
                                                         </li>
                                                     </ul>
 
@@ -105,12 +110,11 @@
                                                         <li class="list-inline-item mb-1 h6  text-muted">
                                                             {{dl?.post_msg}}
                                                         </li>
-                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto"
-                                                            (mouseover)="showDate=true" (mouseout)="showDate=false">
-                                                            <span *ngIf="!showDate"><small
-                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
-                                                            <span *ngIf="showDate"><small
-                                                                    class="font-weight-semibold">{{dl?.post_date | date:'medium'}}</small></span>
+                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                <span><small class="font-weight-semibold">Asked By:
+                                                                        {{dl?.post_by}}</small></span>
+                                                            <!-- <span *ngIf="showDate"><small
+                                                                    class="font-weight-semibold">{{dl?.post_date | date:'medium'}}</small></span> -->
                                                         </li>
 
                                                         <!-- <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true" (mouseout)="showDate=false">
@@ -119,30 +123,31 @@
                                                        </li> -->
                                                     </ul>
 
-                                                    <ul class="list-inline d-flex mb-0">
-                                                            <li class="list-inline-item mb-1 h6  text-muted">
-                                                               
-                                                            </li>
-                                                            <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                <span><small class="font-weight-semibold">Asked By: {{dl?.post_by}}</small></span>
-                                                                    <!-- <h5 class="text-dark h6 mb-0 font-weight-semibold">Atul</h5> -->
-                                                            </li>
-                                                        </ul>
+                                                    <!-- <ul class="list-inline d-flex mb-0">
+                                                        <li class="list-inline-item mb-1 h6  text-muted">
+
+                                                        </li>
+                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                            <span><small class="font-weight-semibold">Asked By:
+                                                                    {{dl?.post_by}}</small></span>
+                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Atul</h5>
+                                                        </li>
+                                                    </ul> -->
 
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                    
+
+
                                     </a>
                                 </div>
-                                
-                             
+
+
 
                             </div>
                         </div>
 
-                        <div class="col-xl-4 pb-3">
+                        <!-- <div class="col-xl-4 pb-3">
                             <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
                                 <div class="card card-small blog-comments shadow">
                                     <div class="card-header ">
@@ -192,7 +197,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
+
                     </div>
                 </div>
             </div>
