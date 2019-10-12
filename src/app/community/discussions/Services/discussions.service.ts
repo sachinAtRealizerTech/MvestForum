@@ -20,4 +20,9 @@ export class DiscussionsService {
       return data['Categories']
     }))
   }
+
+  postQuestion(body){
+    debugger;
+    return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
+  }
 }

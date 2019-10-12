@@ -21,4 +21,8 @@ export class DiscussiondetailsService {
     }))
   }
 
+  sendReply(body){
+    return this.httpClient.put(environment.APIBASEURL+'/Discussion/postreply',body,httpOptions)
+  }
+
 }

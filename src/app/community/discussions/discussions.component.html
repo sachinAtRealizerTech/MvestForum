@@ -30,7 +30,7 @@
             aria-selected="false">SETTINGS</a>
         </li>
         <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
-          <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl"
+          <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-lg"
             data-toggle="modal" href="#">
             Ask a Question
           </a>
@@ -47,7 +47,8 @@
           <li class="breadcrumb-item ml-auto">
             <form id="search-form" class="form-inline">
               <div class="input-group search">
-                <input type="text" class="form-control search-form" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" placeholder="Search">
+                <input type="text" class="form-control search-form" [(ngModel)]="searchText"
+                  [ngModelOptions]="{standalone: true}" placeholder="Search">
                 <span class="input-group-btn">
                   <button type="submit" class="search-btn">
                     <i class="fa fa-search"></i>
@@ -63,8 +64,7 @@
           <div class="card m-2" *ngFor="let c of categoryList | filter:searchText">
             <a routerLink="/subcategory" [queryParams]="{subCategoryId: c.doc_id}">
               <div class="card d-inline category-main" style="width:50rem">
-                <img class="img-fluid img-thumbnail rounded-left" src="https://source.unsplash.com/AvhMzHwiE_0/400x300"
-                  alt="" width="250px">
+                <img class="img-fluid img-thumbnail rounded-left" src="{{c.image}}" alt="" width="250px">
                 <div class="category-text">
                   {{c.name | titlecase}}
                 </div>
@@ -79,9 +79,9 @@
 </div>
 
 
-<div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
+<div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg bg-white shadow">
+  <div class="modal-dialog modal-md bg-white shadow">
     <form action="/action_page.php" class="needs-validation" novalidate>
       <div class="modal-content">
         <div class="modal-header">
@@ -94,66 +94,90 @@
         <div class="modal-body">
           <div class="card shadow-none">
             <div class="row">
-              <div class="col-8">
+              <div class="col-12">
 
                 <form [formGroup]="PostQuestionForm">
                   <div class="form">
                     <div class="form-group">
-                      <label for="title">Category :</label>
+                      <div class="form-row">
 
-
-                      <select class="form-control" formControlName="CategoryName" title="CategoryName"
-                        (change)="selectedCategory($event);getSubcategoriesList()" [ngClass]="{ 'is-invalid': submitQuestion && g.CategoryName.errors }">
-                        <option disabled hidden> Category Name</option>
-                        <option *ngFor="let c of categoriesList" [value]="c.id">
-                          {{c.name | titlecase}}</option>
-                      </select>
-                      <div *ngIf="submitQuestion && g.CategoryName.errors" class="invalid-feedback">
-                          <div *ngIf="g.CategoryName.errors.required">Category Name is required</div>
+                        <div class="col-4">
+                            <label for="title">Category :</label>
                         </div>
 
+                        <div class="col-8">
+                            <select class="form-control border" formControlName="CategoryName" title="CategoryName" [value]="null"
+                            (change)="selectedCategory($event);getSubcategoriesList()"
+                            [ngClass]="{ 'is-invalid': submitQuestion && g.CategoryName.errors }">
+                            <option [value]="null" disabled hidden> Select Category</option>
+                            <option *ngFor="let c of categoriesList" [value]="c.doc_id">
+                              {{c.name}}</option>
+                          </select>
+                          <div *ngIf="submitQuestion && g.CategoryName.errors" class="invalid-feedback">
+                            <div *ngIf="g.CategoryName.errors.required">Category Name is required</div>
+                          </div>
+
+                        </div>
+                      
+                       
+
+                      </div>
                     </div>
 
-
                     <div class="form-group">
-                      <label for="title">Sub-Category :</label>
-
-                      <select class="form-control" formControlName="subCategoryName" title="subCategoryName"
-                      [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
-                        <option disabled hidden> Sub-Category Name</option>
-                        <option *ngFor="let sc of subCategoryListDD" [value]="sc.id">
-                          {{sc.name | titlecase}}</option>
-                      </select>
-                      <div *ngIf="submitQuestion && g.subCategoryName.errors" class="invalid-feedback">
-                          <div *ngIf="g.subCategoryName.errors.required">Sub-Category Name is required</div>
+                      <div class="form-row">
+                        <div class="col-4">
+                            <label for="title">Sub-Category :</label>
                         </div>
+                        <div class="col-8">
+                            <select class="form-control border" formControlName="subCategoryName" title="subCategoryName"
+                            (change)="selectedSubCategory($event)"
+                            [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
+                            <option disabled hidden> Sub-Category Name</option>
+                            <option *ngFor="let sc of subCategoryListDD?.sub_categories" [value]="sc.subcat_id">
+                              {{sc.name}}</option>
+                          </select>
+                          <div *ngIf="submitQuestion && g.subCategoryName.errors" class="invalid-feedback">
+                            <div *ngIf="g.subCategoryName.errors.required">Sub-Category Name is required</div>
+                          </div>
+                        </div>
+                      </div>
+                                           
                     </div>
 
 
                     <div class="form-group">
                       <label for="title">Discussion Title :</label>
                       <input type="text" class="form-control" id="title" formControlName="discussionTitle"
-                        placeholder=""  [ngClass]="{ 'is-invalid': submitQuestion && g.discussionTitle.errors }">
-                        <div *ngIf="submitQuestion && g.discussionTitle.errors" class="invalid-feedback">
-                            <div *ngIf="g.discussionTitle.errors.required">Discussion title is required</div>
-                          </div>
+                        placeholder="" [ngClass]="{ 'is-invalid': submitQuestion && g.discussionTitle.errors }">
+                      <div *ngIf="submitQuestion && g.discussionTitle.errors" class="invalid-feedback">
+                        <div *ngIf="g.discussionTitle.errors.required">Discussion title is required</div>
+                      </div>
                     </div>
+
+
                     <div class="form-group">
-                      <label for="title">Problem Description</label>
-                      <textarea cols="70" formControlName="problemDescription" [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
+                      <label for="title">Description :</label>
+                      <div class="w-100">
+                      </div>
+                      <textarea cols="71" formControlName="problemDescription"
+                        [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
                       <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
-                          <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
-                        </div>
+                        <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
+                      </div>
                     </div>
                   </div>
+
                 </form>
+
+
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-accent btn-sm text-uppercase" 
-            (click)="postQuestion()">Post</button>
+          <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()"
+            data-dismiss="modal">Post</button>
           <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
             data-dismiss="modal">Cancel</button>
         </div>

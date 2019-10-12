@@ -21,6 +21,10 @@ export class DiscussionsComponent implements OnInit {
   categoryId:any;
   subCategoryListDD:any;
   submitQuestion:boolean;
+  subCategoryId:any;
+  categoryName:string;
+  subCategoryName:string;
+  categoryDocId:any;
   // modalOptions:ModalOptions;
   // modalRef:BsModalRef
 
@@ -52,18 +56,30 @@ export class DiscussionsComponent implements OnInit {
 
   getAllcategoriesList(){
     this.discussionsService.getAllCategories().subscribe(data=>{
-      this.categoriesList=data
+      this.categoriesList=data;
+
     })
   }
 
   selectedCategory(event){
     debugger;
-    this.categoryId=event.target.value
+    this.categoryDocId=event.target.value
+    this.categoryName=event.target[event.target.selectedIndex].innerText
+    console.log(this.categoryName)
+  }
+
+  selectedSubCategory(event){
+    debugger;
+    this.subCategoryId=event.target.value
+    this.subCategoryName=event.target[event.target.selectedIndex].innerText
+    console.log(this.subCategoryName)
   }
 
   getSubcategoriesList(){
-    this.subcategoryService.getSubcategory(this.categoryId).subscribe(data=>{
-      this.subCategoryListDD=data
+    this.subcategoryService.getSubcategory(this.categoryDocId).subscribe(data=>{
+      this.subCategoryListDD=data;
+      this.categoryId=data['category_id'];
+      console.log('cat',this.subCategoryListDD)
     })
   }
 
@@ -74,16 +90,22 @@ export class DiscussionsComponent implements OnInit {
       return
     }
     let body = {
-      subCategoryId: this.PostQuestionForm.controls.subCategoryName.value,
-      subcategory: this.PostQuestionForm.controls.CategoryName.value,
+      //category: this.PostQuestionForm.controls.CategoryName.value,
+      category:this.categoryName,
+      category_id: this.categoryId,
+
+      subcategory_id: this.subCategoryId,
+      subcategory: this.subCategoryName,
+
       post_title: this.PostQuestionForm.controls.discussionTitle.value,
-      post_msg: this.PostQuestionForm.controls.problemDescription.value,
-      post_type: "Q",
-      post_by: "Atul",
-      no_of_post: 0,
-      likes: 0
+      Desc: this.PostQuestionForm.controls.problemDescription.value,
+      userName: "Atul",
     }
-    this.subcategoryService.postQuestion(body)
+    this.discussionsService.postQuestion(body).subscribe(data=>{
+      console.log('data', data)
+    })
+
+    
   }
 
 }

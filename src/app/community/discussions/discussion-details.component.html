@@ -92,7 +92,7 @@
             </div>
           </div>
         </div>
-        <div class="card-body px-5 pt-0 mx-3">
+        <div class="card-body pt-0 mx-3">
 
           <!-- <div class="bg-light px-3 pb-3  ">
             <p class="h6 text-secondary">
@@ -100,7 +100,7 @@
             </p>
           </div> -->
 
-          <ul class="list-inline d-flex  border-bottom">
+          <ul class="list-inline d-flex  border-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a routerLink="#" data-target=".reply-modal-lg" data-toggle="modal"> <i
                   class="material-icons icon-muted md-30">
@@ -148,7 +148,7 @@
               <div class="media-body mb-0 align-self-center">
                 <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
                 <h6 class="text-secondary mb-0"> {{p.post_msg}}</h6>
-                <ul class="list-inline d-flex  border-bottom">
+                <ul class="list-inline d-flex  border-0">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
                     <a routerLink="#"> <i class="material-icons icon-muted md-24 ml-3">
                         thumb_up
@@ -162,8 +162,8 @@
                   </li>
                   <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true"
                     (mouseout)="showDate=false">
-                    <span *ngIf="!showDate">{{p.post_date | timeAgo}}</span>
-                    <span *ngIf="showDate">{{p.post_date | date:'medium'}}</span>
+                    <span *ngIf="!showDate"><small class="font-weight-semibold">{{p.post_date | timeAgo}}</small></span>
+                    <span *ngIf="showDate"><small class="font-weight-semibold">{{p.post_date | date:'medium'}}</small></span>
                   </li>
                 </ul>
 
@@ -191,9 +191,11 @@
   </div>
 </div>
 
+
+
 <div class="modal fade reply-modal-lg" tabindex="-1" role="dialog" aria-labelledby="reply-modal" aria-hidden="true">
   <div class="modal-dialog modal-md bg-white shadow">
-    <form action="/action_page.php" class="needs-validation" novalidate>
+    <form [formGroup]="replyForm" action="/action_page.php" class="needs-validation" novalidate>
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Reply</h5>
@@ -201,18 +203,20 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body">
           <div class="card shadow-none">
-            <form>
-              <label for="exampleFormControlTextarea1">Your Reply</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </form>
+            <div class="form-group">
+                <label for="Description">Your Reply</label>
+                <textarea class="form-control" formControlName="Description" rows="3" [ngClass]="{ 'is-invalid': submitReply && g.Description.errors }"></textarea>
+                <div *ngIf="submitReply && g.Description.errors" class="invalid-feedback">
+                    <div *ngIf="g.Description.errors.required">Description is required</div>
+                  </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal"
-            (click)=sendPost()>Send</button>
+            (click)=sendReply()>Send</button>
           <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
             data-dismiss="modal">Cancel</button>
         </div>
@@ -220,6 +224,9 @@
     </form>
   </div>
 </div>
+
+
+
 
 <div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
   aria-hidden="true">
