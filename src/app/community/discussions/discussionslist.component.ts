@@ -42,14 +42,16 @@ export class DiscussionslistComponent implements OnInit {
     console.log(this.discussionId)
   }
 
+  get g() { return this.discussionListQuestionForm.controls; }
+
   getDiscussionList(id) {
     debugger;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
       this.discussionList = data;
-      this.categoryName=data['category'];
-      this.categoryId=data['category_id'];
-      this.subCategoryIdDD=data['sub_category_id'];
-      this.subCategoryName=data['sub_category'];
+      // this.categoryName=data['category'];
+      // this.categoryId=data['category_id'];
+      // this.subCategoryIdDD=data['sub_category_id'];
+      // this.subCategoryName=data['sub_category'];
 
       console.log('Discussion List: ', this.discussionList)
     })
@@ -57,6 +59,11 @@ export class DiscussionslistComponent implements OnInit {
 
   postQuestion() {
     debugger;
+    this.categoryName=sessionStorage.getItem("category_name");
+    this.categoryId=sessionStorage.getItem("category_id");
+    this.subCategoryIdDD=sessionStorage.getItem("subcat_id");
+    this.subCategoryName=sessionStorage.getItem("subCatName");
+
     this.submitQuestion=true;
     if(this.discussionListQuestionForm.invalid){
       return

@@ -114,4 +114,14 @@ export class SubcategoryComponent implements OnInit {
     })
   }
 
+
+  sendData(subcat_id:any,subCatName:string,category_id:any,category_name:any){
+      //this.subcategoryService.sendData(subcat_id,subCatName,category_id,category_name)
+      sessionStorage.setItem("subcat_id",subcat_id);
+      sessionStorage.setItem("subCatName",subCatName);
+      sessionStorage.setItem("category_id",category_id);
+      sessionStorage.setItem("category_name",category_name);
+      
+  }
+
 }

@@ -12,6 +12,11 @@ const httpOptions = {
 })
 export class SubcategoryService {
 
+  subcat_id:any;
+  subCatName:string;
+  category_id:any;
+  category_name:any;
+
   constructor(private httpClient: HttpClient) { }
 
   getSubcategory(id: string) {
@@ -24,5 +29,12 @@ export class SubcategoryService {
     return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
   }
 
+  sendData(subcat_id:any,subCatName:string,category_id:any,category_name:any){
+    debugger;
+    this.subcat_id=subcat_id,
+    this.subCatName=subCatName,
+    this.category_id=category_id,
+    this.category_name=category_name
+  }
   
 }
