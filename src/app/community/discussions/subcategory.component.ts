@@ -24,12 +24,15 @@ export class SubcategoryComponent implements OnInit {
   subCategoryListDD:any;
   PostQuestionForm:FormGroup;
   submitQuestion:boolean;
+  categoryName:any;
+  subCategoryIdDD:any;
+  subCategoryName:any;
+
   constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute,
     private discussionsService:DiscussionsService,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.PostQuestionForm = this.formBuilder.group({
-      CategoryName:['',Validators.required],
       subCategoryName:['',Validators.required],
       discussionTitle: ['',Validators.required],
       problemDescription: ['',Validators.required]
@@ -39,7 +42,8 @@ export class SubcategoryComponent implements OnInit {
       this.subCategoryId = params['subCategoryId'];
     });
     this.getSubcategory(this.subCategoryId);
-    this.getAllcategoriesList();
+   
+    //this.getAllcategoriesList();
   }
 
   get g() { return this.PostQuestionForm.controls; }
@@ -47,25 +51,42 @@ export class SubcategoryComponent implements OnInit {
   getSubcategory(id) {
     this.subcategoryService.getSubcategory(id).subscribe(data => {
       this.subCategoryList = data;
+      this.categoryName=data['category_name'];
+      this.categoryId=data['category_id'];
       console.log(this.subCategoryList)
+      console.log(this.categoryId);
     })
   }
 
-  getAllcategoriesList(){
-    this.discussionsService.getAllCategories().subscribe(data=>{
-      this.categoriesList=data
-    })
-  }
+  // getAllcategoriesList(){
+  //   this.discussionsService.getAllCategories().subscribe(data=>{
+  //     this.categoriesList=data['']
+  //   })
+  // }
 
-  selectedCategory(event){
-    debugger;
-    this.categoryId=event.target.value
-  }
+  // getSubcategoryList(id){
+  //   this.subcategoryService.getSubcategory(id).subscribe(data => {
+  //     this.subCategoryList = data;
+  //     console.log(this.subCategoryList)
+  //   })
+  // }
+
+  // selectedCategory(event){
+  //   debugger;
+  //   this.categoryId=event.target.value
+  // }
 
   getSubcategoriesList(){
     this.subcategoryService.getSubcategory(this.categoryId).subscribe(data=>{
       this.subCategoryListDD=data
     })
+  }
+
+  selectedSubCategory(event){
+    debugger;
+    this.subCategoryIdDD=event.target.value
+    this.subCategoryName=event.target[event.target.selectedIndex].innerText
+    console.log(this.subCategoryName)
   }
 
   postQuestion(){
@@ -76,18 +97,21 @@ export class SubcategoryComponent implements OnInit {
     }
 
     //this.closeModalEvent.emit(false);
-
+    this.submitQuestion=false;
     let body = {
-      subCategoryId: this.PostQuestionForm.controls.subCategoryName.value,
-      subcategory: this.PostQuestionForm.controls.CategoryName.value,
+      category:this.categoryName,
+      category_id: this.categoryId,
+
+      subcategory_id: this.subCategoryIdDD,
+      subcategory: this.subCategoryName,
+
       post_title: this.PostQuestionForm.controls.discussionTitle.value,
-      post_msg: this.PostQuestionForm.controls.problemDescription.value,
-      post_type: "Q",
-      post_by: "Atul",
-      no_of_post: 0,
-      likes: 0
+      Desc: this.PostQuestionForm.controls.problemDescription.value,
+      userName: "Atul",
     }
-    this.subcategoryService.postQuestion(body)
+    this.subcategoryService.postQuestion(body).subscribe(data=>{
+      alert('Data inserted successfully')
+    })
   }
 
 }

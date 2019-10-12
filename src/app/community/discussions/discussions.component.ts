@@ -89,6 +89,7 @@ export class DiscussionsComponent implements OnInit {
     if(this.PostQuestionForm.invalid){
       return
     }
+    this.submitQuestion=false
     let body = {
       //category: this.PostQuestionForm.controls.CategoryName.value,
       category:this.categoryName,

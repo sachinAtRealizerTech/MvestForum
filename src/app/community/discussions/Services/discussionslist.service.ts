@@ -20,8 +20,8 @@ export class DiscussionslistService {
     }))
   }
 
-  postQuestion(body: any) {
-    return this.httpClient.post(environment.APIBASEURL + '', httpOptions);
+  postQuestion(body){
+    return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
   }
 
 }

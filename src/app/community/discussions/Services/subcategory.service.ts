@@ -21,7 +21,7 @@ export class SubcategoryService {
   }
 
   postQuestion(body){
-    this.httpClient.post(environment.APIBASEURL+'',httpOptions)
+    return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
   }
 
   
