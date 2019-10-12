@@ -142,8 +142,9 @@
             </div>
           </div>
 
-          <div class="border-bottom" *ngFor="let p of discussionDetails?.posts | filter:searchText; let i= index ">
-            <div class="media py-3 " *ngIf="i != 0">
+          
+          <div class="border-bottom" *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index " >
+            <div class="media py-3 ">
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                 alt="Generic placeholder image">
               <div class="media-body mb-0 align-self-center">
@@ -184,7 +185,8 @@
               </div>
             </div>
           </div>
-          
+       
+
         </div>
       </div>
     </div>

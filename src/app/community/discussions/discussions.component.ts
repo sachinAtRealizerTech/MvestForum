@@ -3,6 +3,7 @@ import { DiscussionsService } from './Services/discussions.service';
 import { CategoryList } from '../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubcategoryService } from './Services/subcategory.service';
+import {Router} from '@angular/router';
 //import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 
 
@@ -29,7 +30,7 @@ export class DiscussionsComponent implements OnInit {
   // modalRef:BsModalRef
 
   constructor(private discussionsService: DiscussionsService,private formBuilder: FormBuilder,
-    private subcategoryService:SubcategoryService, 
+    private subcategoryService:SubcategoryService, private router:Router
     //private modalService:BsModalService
     ) { }
 
@@ -104,7 +105,8 @@ export class DiscussionsComponent implements OnInit {
     }
     this.discussionsService.postQuestion(body).subscribe(data=>{
       console.log('data', data);
-      alert("Question Posted Successfully...")
+      alert("Question Posted Successfully...");
+      //this.router.navigate(['../discussionslist', { discussionId: crisis.id, subCategoryId: ,foo: 'foo' }], { relativeTo: this.route });
     })
 
     

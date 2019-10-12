@@ -170,11 +170,12 @@
                       <label for="title">Description :</label>
                       <div class="w-100">
                       </div>
-                      <textarea cols="71" formControlName="problemDescription"
+                      <textarea class="form-control" cols="71" formControlName="problemDescription"
                         [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
                       <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
                         <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
                       </div>
+
                     </div>
                   </div>
 
