@@ -102,7 +102,8 @@ export class DiscussionsComponent implements OnInit {
       userName: "Atul",
     }
     this.discussionsService.postQuestion(body).subscribe(data=>{
-      console.log('data', data)
+      console.log('data', data);
+      alert("Question Posted Successfully...")
     })
 
     
