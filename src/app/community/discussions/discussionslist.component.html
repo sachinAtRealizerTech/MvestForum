@@ -42,15 +42,17 @@
         </div>
     </div>
 
+
+
     <div class="row justify-content-center py-3">
         <div class="col-xl-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb px-0">
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-                            routerLink="/discussions">Categories</a></li>
+                            routerLink="/discussions" (click)="setTitle( 'Mvest-Categories' )">Categories</a></li>
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/subcategory"
-                            [queryParams]="{subCategoryId:subCategoryId}">Sub-Categories</a></li>
-                    <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussions List</a>
+                            [queryParams]="{subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-SubCategories' )">Sub-Categories</a></li>
+                    <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussions</a>
                     </li>
 
                     <li class="ml-auto">
@@ -71,71 +73,102 @@
                     </li>
                 </ol>
             </nav>
+
+            <div class="text-center" *ngIf="loading">
+                    <div class="spinner-border text-accent" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
             <div class="row justify-content-between no-gutters">
                 <div class="col-md-12 col-xl-12">
                     <div class="row justify-content-between no-gutters">
                         <div class="col-md-12 col-xl-8 pb-3">
-                            <!-- <div *ngIf="!discussionList?.discussions">
-                                <h1>No Records Found</h1>
-                            </div> -->
+                            <div class="text-left" *ngIf="pageNotFound">
+                                <h5>No Records Found...Be the first person to initiate a discussion.</h5>
+                            </div>
 
                             <div class="card card-small blog-comments">
                                 <div class="card-body p-0"
                                     *ngFor="let dl of discussionList?.discussions | filter : searchText">
                                     <a routerLink="/discussion-details"
-                                        [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:discussionId,subCategoryId:subCategoryId}">
+                                        [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:discussionId,subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-Discussion Details')">
 
                                         <div class=" border-bottom p-1">
-                                            <div class="media p-3">
-                                                <img class="mr-3 user-pic rounded-circle mr-2"
-                                                    src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
-
-                                                <div class="media-body mb-0">
-
-                                                    <ul class="list-inline d-flex mb-0">
-                                                        <li class="list-inline-item mb-1 h6  text-muted">
-                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                                {{dl?.title | titlecase}}</h5>
-                                                        </li>
-                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                <span><small
-                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
-                                                            <!-- <small class="font-weight-semibold">
-                                                                {{discussionList?.discussions.length}}
-                                                                posts</small> -->
-                                                        </li>
-                                                    </ul>
-
-                                                    <ul class="list-inline d-flex mb-0">
-                                                        <li class="list-inline-item mb-1 h6  text-muted">
-                                                            {{dl?.post_msg}}
-                                                        </li>
-                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                <span><small class="font-weight-semibold">Asked By:
-                                                                        {{dl?.post_by}}</small></span>
-                                                            <!-- <span *ngIf="showDate"><small
-                                                                    class="font-weight-semibold">{{dl?.post_date | date:'medium'}}</small></span> -->
-                                                        </li>
-
-                                                        <!-- <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center" (mouseover)="showDate=true" (mouseout)="showDate=false">
-                                                        <span *ngIf="!showDate">{{p.post_time | timeAgo}}</span>
-                                                         <span *ngIf="showDate">{{p.post_time | date:'medium'}}</span> 
-                                                       </li> -->
-                                                    </ul>
-
-                                                    <!-- <ul class="list-inline d-flex mb-0">
-                                                        <li class="list-inline-item mb-1 h6  text-muted">
-
-                                                        </li>
-                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                            <span><small class="font-weight-semibold">Asked By:
-                                                                    {{dl?.post_by}}</small></span>
-                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Atul</h5>
-                                                        </li>
-                                                    </ul> -->
-
+                                            <div class="row">
+                                                <div class="col-9">
+                                                        <div class="media p-3">
+                                                                <img class="mr-3 user-pic rounded-circle mr-2"
+                                                                    src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
+                
+                                                                <div class="media-body mb-0" style="text-align: justify;  word-wrap:break-all; display:inline-block;">
+                
+                                                                    <ul class="list-inline d-flex mb-0">
+                                                                        <li class="list-inline-item mb-1 h6  text-muted">
+                                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                                                {{dl?.title | titlecase}}</h5>
+                                                                        </li>
+                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                                <span><small
+                                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
+                                                                        </li> -->
+                                                                    </ul>
+                
+                                                                    <ul class="list-inline d-flex mb-0">
+                                                                        <li class="list-inline-item mb-1 h6  text-muted">
+                                                                            {{dl?.post_msg | summary}}
+                                                                        </li>
+                                                                        <!-- <a click="readMoreDescription()"><span>read more</span></a>
+                                                                        <li *ngIf="readMore" class="list-inline-item mb-1 h6  text-muted">
+                                                                                {{dl?.post_msg}}
+                                                                            </li> -->
+                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                                <span><small class="font-weight-semibold">Asked By:
+                                                                                        {{dl?.post_by}}</small></span>
+                                                                        </li> -->
+                
+                                                                    </ul>
+            
+                
+                                                                </div>
+                                                            </div>
                                                 </div>
-                                            </div>
+
+                                                <div class="col-3">
+                                                        <div class="media p-3">
+
+                
+                                                                <div class="media-body mb-0">
+                
+                                                                    <ul class="list-inline d-flex mb-0">
+                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted">
+                                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                                                {{dl?.title | titlecase}}</h5>
+                                                                        </li> -->
+                                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                                <span><small
+                                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
+
+                                                                        </li>
+                                                                    </ul>
+                
+                                                                    <ul class="list-inline d-flex mb-0">
+                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted">
+                                                                            {{dl?.post_msg}}
+                                                                        </li> -->
+                                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                                <span><small class="font-weight-semibold">Asked By:
+                                                                                        {{dl?.post_by}}</small></span>
+                                                                        </li>
+                
+                                                                    </ul>
+            
+                
+                                                                </div>
+                                                            </div>
+                                                </div>
+                                         
+                                        </div>
                                         </div>
 
 
@@ -203,6 +236,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
 </div>

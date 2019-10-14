@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubcategoryService } from './Services/subcategory.service';
 import {Router} from '@angular/router';
 //import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
-
+import { Title }     from '@angular/platform-browser';
 
 @Component({
   selector: 'app-discussions',
@@ -26,11 +26,13 @@ export class DiscussionsComponent implements OnInit {
   categoryName:string;
   subCategoryName:string;
   categoryDocId:any;
+  loading : boolean;
+  pageNotFound=false;
   // modalOptions:ModalOptions;
   // modalRef:BsModalRef
 
   constructor(private discussionsService: DiscussionsService,private formBuilder: FormBuilder,
-    private subcategoryService:SubcategoryService, private router:Router
+    private subcategoryService:SubcategoryService, private router:Router,private titleService: Title
     //private modalService:BsModalService
     ) { }
 
@@ -46,12 +48,29 @@ export class DiscussionsComponent implements OnInit {
     this.getAllcategoriesList();
   }
 
+  public setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
+  }
+
   get g() { return this.PostQuestionForm.controls; }
 
   getAllCategories() {
-    this.discussionsService.getAllCategories().subscribe(data => {
+    this.loading=true;
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 2000)
+
+    this.discussionsService.getAllCategories().subscribe(data => {    
       this.categoryList= data;
+      this.loading=false; 
+      this.pageNotFound = false; 
       console.log(this.categoryList);
+    },
+    err => {
+      if (err.status == 404) {
+        this.loading = false;
+        this.pageNotFound = true
+      }
     })
   }
 

@@ -25,4 +25,8 @@ export class DiscussiondetailsService {
     return this.httpClient.put(environment.APIBASEURL+'/Discussion/postreply',body,httpOptions)
   }
 
+  postQuestion(body){
+    return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
+  }
+
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from './Services/discussionslist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { DiscussionsList,Discussions } from '../../models/discussions'
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-discussionslist',
@@ -11,27 +11,27 @@ import { DiscussionsList,Discussions } from '../../models/discussions'
 })
 export class DiscussionslistComponent implements OnInit {
   discussionId: string;
-  discussionList:any;
-  //discussionList: DiscussionsList[] = [];
-  //Discussions:Discussions[]=[];
+  discussionList: any;
   subCategoryId: any;
   discussionListQuestionForm: FormGroup;
   showDate: any;
-  searchText:any;
-  categoryName:any;
-  categoryId:any;
-  subCategoryIdDD:any;
-  subCategoryName:any;
-  submitQuestion=false;
-
+  searchText: any;
+  categoryName: any;
+  categoryId: any;
+  subCategoryIdDD: any;
+  subCategoryName: any;
+  submitQuestion = false;
+  loading: boolean;
+  readMore: boolean = false;
+  pageNotFound = false;
 
   constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private titleService: Title) { }
 
   ngOnInit() {
     this.discussionListQuestionForm = this.formBuilder.group({
-      discussionTitle: ['',Validators.required],
-      problemDescription: ['',Validators.required]
+      discussionTitle: ['', Validators.required],
+      problemDescription: ['', Validators.required]
     })
 
     this.route.queryParams.subscribe(params => {
@@ -44,33 +44,45 @@ export class DiscussionslistComponent implements OnInit {
 
   get g() { return this.discussionListQuestionForm.controls; }
 
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
+
   getDiscussionList(id) {
     debugger;
+    this.loading = true;
+    //  setTimeout(() => {
+    //   this.loading = false;
+    // }, 2000)
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
       this.discussionList = data;
-      // this.categoryName=data['category'];
-      // this.categoryId=data['category_id'];
-      // this.subCategoryIdDD=data['sub_category_id'];
-      // this.subCategoryName=data['sub_category'];
-
+      this.loading = false;
+      this.pageNotFound = false;
       console.log('Discussion List: ', this.discussionList)
-    })
+    },
+      err => {
+        if (err.status == 404) {
+          this.loading = false;
+          this.pageNotFound = true
+        }
+      }
+    )
   }
 
   postQuestion() {
     debugger;
-    this.categoryName=sessionStorage.getItem("category_name");
-    this.categoryId=sessionStorage.getItem("category_id");
-    this.subCategoryIdDD=sessionStorage.getItem("subcat_id");
-    this.subCategoryName=sessionStorage.getItem("subCatName");
+    this.categoryName = sessionStorage.getItem("category_name");
+    this.categoryId = sessionStorage.getItem("category_id");
+    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+    this.subCategoryName = sessionStorage.getItem("subCatName");
 
-    this.submitQuestion=true;
-    if(this.discussionListQuestionForm.invalid){
+    this.submitQuestion = true;
+    if (this.discussionListQuestionForm.invalid) {
       return
     }
-    this.submitQuestion=false;
+    this.submitQuestion = false;
     let body = {
-      category:this.categoryName,
+      category: this.categoryName,
       category_id: this.categoryId,
 
       subcategory_id: this.subCategoryIdDD,
@@ -85,6 +97,10 @@ export class DiscussionslistComponent implements OnInit {
       this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.discussionId);
     })
+  }
+
+  readMoreDescription() {
+    this.readMore = true
   }
 
 }

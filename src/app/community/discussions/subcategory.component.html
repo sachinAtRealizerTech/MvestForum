@@ -48,7 +48,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0">
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/discussions">Categories</a></li>
+              routerLink="/discussions" (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
           <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Sub-Categories</a></li>
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form" method="post" action="//www.google.com/search"
@@ -67,14 +67,28 @@
         </ol>
       </nav>
 
+
+      <div class="text-center" *ngIf="loading">
+          <div class="spinner-border text-accent" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+
+        <div class="text-left" *ngIf="pageNotFound">
+            <h5>No Records Found...</h5>
+        </div>
+
       <div class="row justify-content-center">
         <div class="col-xl-12">
           <div class="card align-self-center bg-white">
             <div class="row justify-content-left text-center px-3">
               <div>
+
+               
+
                 <div class="row gutter-10">
                   <div class="card m-2" *ngFor="let sc of subCategoryList?.sub_categories | filter:searchText">
-                    <a routerLink="/discussionslist" [queryParams]="{discussionId:sc.subcat_id,subCategoryId:subCategoryId}"
+                    <a routerLink="/discussionslist" [queryParams]="{discussionId:sc.subcat_id,subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-Discussions')"
                     >
                       <div class="card d-inline category-main" (click)="sendData(sc.subcat_id,sc.name,subCategoryList?.category_id,subCategoryList?.category_name)" style="width:50rem">
                         <img class="img-fluid img-thumbnail rounded-left"

@@ -43,7 +43,7 @@
     <div class="col-xl-12">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0">
-          <li class=""><a class="active text-green font-weight-semibold" routerLink="/discussions">Categories</a></li>
+          <li class=""><a class="active text-green font-weight-semibold" routerLink="/discussions" (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
           <li class="breadcrumb-item ml-auto">
             <form id="search-form" class="form-inline">
               <div class="input-group search">
@@ -60,9 +60,20 @@
         </ol>
       </nav>
       <div>
+
+        <div class="text-center" *ngIf="loading">
+          <div class="spinner-border text-accent" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+
+        <div class="text-center" *ngIf="pageNotFound">
+            <h5>No Records Found</h5>
+        </div>
+
         <div class="row gutter-10">
           <div class="card m-2" *ngFor="let c of categoryList | filter:searchText">
-            <a routerLink="/subcategory" [queryParams]="{subCategoryId: c.doc_id}">
+            <a routerLink="/subcategory" [queryParams]="{subCategoryId: c.doc_id}" (click)="setTitle( 'Mvest-Subcategories')">
               <div class="card d-inline category-main" style="width:50rem">
                 <img class="img-fluid img-thumbnail rounded-left" src="{{c.image}}" alt="" width="250px">
                 <div class="category-text">
@@ -72,8 +83,15 @@
             </a>
           </div>
         </div>
-      </div>
 
+
+        <!-- 
+        <div >
+          <img class="spinner" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" width="100px"
+            height="100px" />
+        </div> -->
+
+      </div>
     </div>
   </div>
 </div>
@@ -102,12 +120,12 @@
                       <div class="form-row">
 
                         <div class="col-4">
-                            <label for="title">Category :</label>
+                          <label for="title">Category :</label>
                         </div>
 
                         <div class="col-8">
-                            <select class="form-control border" formControlName="CategoryName" title="CategoryName" [value]="null"
-                            (change)="selectedCategory($event);getSubcategoriesList()"
+                          <select class="form-control border" formControlName="CategoryName" title="CategoryName"
+                            [value]="null" (change)="selectedCategory($event);getSubcategoriesList()"
                             [ngClass]="{ 'is-invalid': submitQuestion && g.CategoryName.errors }">
                             <option [value]="null" disabled hidden> Select Category</option>
                             <option *ngFor="let c of categoriesList" [value]="c.doc_id">
@@ -118,8 +136,8 @@
                           </div>
 
                         </div>
-                      
-                       
+
+
 
                       </div>
                     </div>
@@ -127,10 +145,10 @@
                     <div class="form-group">
                       <div class="form-row">
                         <div class="col-4">
-                            <label for="title">Sub-Category :</label>
+                          <label for="title">Sub-Category :</label>
                         </div>
                         <div class="col-8">
-                            <select class="form-control border" formControlName="subCategoryName" title="subCategoryName"
+                          <select class="form-control border" formControlName="subCategoryName" title="subCategoryName"
                             (change)="selectedSubCategory($event)"
                             [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
                             <option disabled hidden> Sub-Category Name</option>
@@ -142,7 +160,7 @@
                           </div>
                         </div>
                       </div>
-                                           
+
                     </div>
 
 

@@ -8,6 +8,7 @@ import { DiscussionslistComponent } from '../discussions/discussionslist.compone
 import { DiscussionDetailsComponent } from '../discussions/discussion-details.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from "@angular/router";
+import { SummaryPipe } from 'src/app/summary.pipe';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { RouterModule } from "@angular/router";
     SubcategoryComponent,
     DiscussionslistComponent,
     DiscussionDetailsComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    SummaryPipe
   ],
   imports: [
     BrowserModule,

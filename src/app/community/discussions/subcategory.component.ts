@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SubcategoryService } from './Services/subcategory.service';
 import { ActivatedRoute } from '@angular/router'
-import {SubCategoryList} from '../../models/discussions'
 import { DiscussionsService } from './Services/discussions.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Title }     from '@angular/platform-browser';
 
 @Component({
   selector: 'app-subcategory',
@@ -12,10 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 })
 export class SubcategoryComponent implements OnInit {
 
-  //@ViewChild('fileInput',{static: false}) fileInput:ElementRef;
-  //@Output() closeModalEvent = new EventEmitter<boolean>();
-
-  //subCategoryList: SubCategoryList[]=[];
   subCategoryList:any
   subCategoryId: string;
   searchText:any;
@@ -27,9 +23,11 @@ export class SubcategoryComponent implements OnInit {
   categoryName:any;
   subCategoryIdDD:any;
   subCategoryName:any;
+  loading : boolean;
+  pageNotFound=false;
 
   constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute,
-    private discussionsService:DiscussionsService,private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,private titleService:Title) { }
 
   ngOnInit() {
     this.PostQuestionForm = this.formBuilder.group({
@@ -42,39 +40,32 @@ export class SubcategoryComponent implements OnInit {
       this.subCategoryId = params['subCategoryId'];
     });
     this.getSubcategory(this.subCategoryId);
-   
-    //this.getAllcategoriesList();
+  }
+
+  public setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
   }
 
   get g() { return this.PostQuestionForm.controls; }
 
   getSubcategory(id) {
+    this.loading=true;
     this.subcategoryService.getSubcategory(id).subscribe(data => {
       this.subCategoryList = data;
+      this.loading=false;
+      this.pageNotFound = false;
       this.categoryName=data['category_name'];
       this.categoryId=data['category_id'];
       console.log(this.subCategoryList)
       console.log(this.categoryId);
+    },
+    err => {
+      if (err.status == 404) {
+        this.loading = false;
+        this.pageNotFound = true
+      }
     })
   }
-
-  // getAllcategoriesList(){
-  //   this.discussionsService.getAllCategories().subscribe(data=>{
-  //     this.categoriesList=data['']
-  //   })
-  // }
-
-  // getSubcategoryList(id){
-  //   this.subcategoryService.getSubcategory(id).subscribe(data => {
-  //     this.subCategoryList = data;
-  //     console.log(this.subCategoryList)
-  //   })
-  // }
-
-  // selectedCategory(event){
-  //   debugger;
-  //   this.categoryId=event.target.value
-  // }
 
   getSubcategoriesList(){
     this.subcategoryService.getSubcategory(this.categoryId).subscribe(data=>{
@@ -96,15 +87,12 @@ export class SubcategoryComponent implements OnInit {
       return
     }
 
-    //this.closeModalEvent.emit(false);
     this.submitQuestion=false;
     let body = {
       category:this.categoryName,
       category_id: this.categoryId,
-
       subcategory_id: this.subCategoryIdDD,
       subcategory: this.subCategoryName,
-
       post_title: this.PostQuestionForm.controls.discussionTitle.value,
       Desc: this.PostQuestionForm.controls.problemDescription.value,
       userName: "Atul",
@@ -117,12 +105,10 @@ export class SubcategoryComponent implements OnInit {
 
 
   sendData(subcat_id:any,subCatName:string,category_id:any,category_name:any){
-      //this.subcategoryService.sendData(subcat_id,subCatName,category_id,category_name)
       sessionStorage.setItem("subcat_id",subcat_id);
       sessionStorage.setItem("subCatName",subCatName);
       sessionStorage.setItem("category_id",category_id);
-      sessionStorage.setItem("category_name",category_name);
-      
+      sessionStorage.setItem("category_name",category_name);      
   }
 
 }

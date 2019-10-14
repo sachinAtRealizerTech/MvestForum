@@ -37,12 +37,12 @@
             aria-selected="false">SETTINGS</a>
         </li>
 
-        <!-- <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
-          <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl"
+         <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
+          <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-lg"
             data-toggle="modal" href="#">
             Ask a Question
           </a>
-        </li> -->
+        </li> 
 
       </ul>
     </div>
@@ -52,13 +52,13 @@
   <div class="row justify-content-center py-3">
     <div class="col-xl-12">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb px-0">
+        <ol class="breadcrumb px-0 mb-1">
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/discussions">Categories</a></li>
+              routerLink="/discussions" (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/subcategory"
-              [queryParams]="{subCategoryId:subCategoryId}">Sub-Categories</a></li>
+              [queryParams]="{subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-Subcategories')">Sub-Categories</a></li>
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussionslist"
-              [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}">Discussion List</a></li>
+              [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}" (click)="setTitle( 'Mvest-Discussions')">Discussions</a></li>
           <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussion details</a></li>
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form">
@@ -78,21 +78,49 @@
     </div>
   </div>
 
+  <div class="text-center" *ngIf="loading">
+      <div class="spinner-border text-accent" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
   <div class="row justify-content-center">
-    <div class="col-xl-12 pb-3">
-      <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
+    <div class="col-xl-12 pb-3" style="text-align: justify;">
+      <div class="row">
+        <div class="col-10">
+            <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
+        </div>
+         <div class="col-2">
+            <a class="btn btn-accent btn-sm text-uppercase ml-auto"
+            href="#" data-target=".reply-modal-lg" data-toggle="modal">
+             Reply to Question
+           </a>
+         </div>
+      </div>
+
       <div class="card card-small blog-comments mt-3">
         <div class="card-header">
-          <div class="media p-3">
+          <div class="media  px-3 py-1">
             <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
               alt="Generic placeholder image">
             <div class="media-body mb-0 align-self-center">
-              <h5 class="text-dark h6 mb-0 font-weight-semibold">{{discussionDetails?.posts[0]?.post_msg}}</h5>
+              <h5 class="text-secondary h6 mb-0 font-weight-semibold">{{discussionDetails?.posts[0]?.post_msg}}</h5>
+
+              <!-- <div class="ml-auto">
+                  <a routerLink="#" data-target=".reply-modal-lg" data-toggle="modal"> 
+                      <i
+                        class="material-icons icon-muted md-30">
+                        reply
+                      </i>
+                    </a>
+              </div> -->
+            
               <!-- <small class="text-secondary mb-0 font-weight-semibold">8:30pm</small> -->
             </div>
           </div>
+          
         </div>
-        <div class="card-body pt-0 mx-3">
+        <div class="card-body pt-0 mx-3 border-bottom">
 
           <!-- <div class="bg-light px-3 pb-3  ">
             <p class="h6 text-secondary">
@@ -100,13 +128,13 @@
             </p>
           </div> -->
 
-          <ul class="list-inline d-flex  border-0">
-            <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+          <ul class="list-inline d-flex  border-0 mb-0">
+            <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a routerLink="#" data-target=".reply-modal-lg" data-toggle="modal"> <i
                   class="material-icons icon-muted md-30">
                   reply
                 </i></a>
-            </li>
+            </li> -->
             <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
                   thumb_up
@@ -143,7 +171,7 @@
           </div>
 
           
-          <div class="border-bottom" *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index " >
+          <!-- <div class="border-bottom" *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index " >
             <div class="media py-3 ">
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                 alt="Generic placeholder image">
@@ -164,7 +192,6 @@
                   </li>
                   <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
                     <span><small class="font-weight-semibold">{{p.post_date | timeAgo}}</small></span>
-                    <!-- <span *ngIf="showDate"><small class="font-weight-semibold">{{p.post_date | date:'medium'}}</small></span> -->
                   </li>
                 </ul>
 
@@ -184,10 +211,77 @@
 
               </div>
             </div>
-          </div>
+          </div> -->
        
 
         </div>
+
+
+        <div  *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index " >
+        <div class="card-header" >
+          <!-- <div class="media p-3">
+            <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
+              alt="Generic placeholder image">
+            <div class="media-body mb-0 align-self-center">
+              <h5 class="text-dark h6 mb-0 font-weight-semibold">{{discussionDetails?.posts[0]?.post_msg}}</h5>
+            </div>
+          </div> -->
+
+             <div class="media px-3 ">
+              <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
+                alt="Generic placeholder image">
+              <div class="media-body mb-0 align-self-center">
+                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
+                <h6 class="text-secondary font-weight-semibold mb-0"> {{p.post_msg}}</h6> 
+              </div>
+            </div>
+          
+        </div>
+        <div class="border-bottom card-body pt-0 mx-3">
+
+          <ul class="list-inline d-flex  border-0 mb-0">
+            <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+              <a routerLink="#" data-target=".reply-modal-lg" data-toggle="modal"> 
+                <i
+                  class="material-icons icon-muted md-30">
+                  reply
+                </i>
+              </a>
+            </li> -->
+            <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
+              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
+                  thumb_up
+                </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
+            </li>
+            <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
+              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
+                  mode_comment
+                </i>
+              </a>
+            </li>
+            <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
+              <span><small
+                  class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}}</small></span>
+            </li>
+          </ul>
+
+          <!-- <div *ngIf="commentBox" id="comment-box" class="">
+            <div class="form-row">
+              <div class="col-md-10">
+                <form class="p-3">
+                  <textarea class="form-control border-0 rounded-5 bg-light form-control"
+                    placeholder="Write a Comment"></textarea>
+                </form>
+              </div>
+              <div class="col-md-2">
+                <button class="button primary border-0 rounded-5 bg-light form-control mt-4" (click)="postComment()">Comment</button>
+              </div>
+            </div>
+          </div>       -->
+
+        </div>
+      </div>
+        
       </div>
     </div>
   </div>
@@ -210,7 +304,7 @@
           <div class="card shadow-none">
             <div class="form-group">
                 <label for="Description">Your Reply</label>
-                <textarea class="form-control" formControlName="Description" rows="3" [ngClass]="{ 'is-invalid': submitReply && g.Description.errors }"></textarea>
+                <textarea class="form-control" formControlName="Description" rows="3" [ngClass]="{ 'is-invalid': submitReply && g.Description.errors }" placeholder="Write a reply here..."></textarea>
                 <div *ngIf="submitReply && g.Description.errors" class="invalid-feedback">
                     <div *ngIf="g.Description.errors.required">Description is required</div>
                   </div>
@@ -230,10 +324,9 @@
 
 
 
-
-<div class="modal fade askquestion-modal-xl" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
+<div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg bg-white shadow">
+  <div class="modal-dialog modal-md bg-white shadow">
     <form action="/action_page.php" class="needs-validation" novalidate>
       <div class="modal-content">
         <div class="modal-header">
@@ -246,61 +339,42 @@
         <div class="modal-body">
           <div class="card shadow-none">
             <div class="row">
-              <div class="col-8">
+              <div class="col-12">
 
-                <form>
-                  <div class="form-group">
-                    <label for="title">Discussion Title :</label>
-                    <input type="text" class="form-control" id="title" placeholder="">
+                <form [formGroup]="discussionDetailsQuestionForm">
+                  <div class="form">
+
+                    <div class="form-group">
+                      <label for="title">Discussion Title :</label>
+                      <input type="text" class="form-control" id="title" formControlName="discussionTitle"
+                        placeholder="" [ngClass]="{ 'is-invalid': submitQuestion && f.discussionTitle.errors }">
+                      <div *ngIf="submitQuestion && f.discussionTitle.errors" class="invalid-feedback">
+                        <div *ngIf="f.discussionTitle.errors.required">Discussion title is required</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="title">Description :</label>
+                      <div class="w-100">
+                      </div>
+                      <textarea class="form-control" cols="71" formControlName="problemDescription"
+                        [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }"></textarea>
+                      <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
+                        <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
+                      </div>
+                    </div>
                   </div>
-
-
-                  <form>
-                    <textarea cols="70" placeholder="Describe yourself here">
-                    </textarea>
-                  </form>
-
 
                 </form>
+
+
               </div>
-              <!-- <div class="col-4">
-                <div class="form-group">
-                    <div class="card border  bg-light shadow-none rounded-0">
-                        <div class="card-header border-bottom-white py-2 rounded-0">
-                            <h5 class="h6 font-weight-normal mb-0">Similar Questions</h5>
-                        </div>
-                        <div class="card-body pt-1 px-0">
-                            <div class="media d-flex border-bottom-white border-bottom-white py-2">
-                             <div class="media-body mb-0 px-4">
-                                    <div class=" align-self-center">
-                                        <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
-                                        <small class="text-dark mb-0">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
-                                        </small> 
-                                       
-                                      </div> 
-                                </div>
-                              </div>
-                              <div class="media d-flex border-bottom-white py-3">
-                                  <div class="media-body mb-0 px-4">
-                                      <div class=" align-self-center">
-                                          <small class="mb-0 text-dark h6 font-weight-semibold">Q1. What is the Lease offer for mineral rights in eddy county</small>
-                                          <small class="text-dark mb-0">
-                                              Lorem ipsum dolor sit amet, consectetur adipiscing eiu..   
-                                          </small> 
-                                          
-                                        </div> 
-                                  </div>
-                                </div>
-                         </div>
-                      </div>
-                  </div>
-              </div> -->
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal">Post</button>
+          <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()"
+            data-dismiss="modal">Post</button>
           <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
             data-dismiss="modal">Cancel</button>
         </div>
@@ -308,3 +382,6 @@
     </form>
   </div>
 </div>
+
+
+
