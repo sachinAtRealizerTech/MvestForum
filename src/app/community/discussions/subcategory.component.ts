@@ -110,7 +110,8 @@ export class SubcategoryComponent implements OnInit {
       userName: "Atul",
     }
     this.subcategoryService.postQuestion(body).subscribe(data=>{
-      alert('Data inserted successfully')
+      alert('Question Posted successfully...');
+      this.PostQuestionForm.reset();
     })
   }
 

@@ -106,6 +106,7 @@ export class DiscussionsComponent implements OnInit {
     this.discussionsService.postQuestion(body).subscribe(data=>{
       console.log('data', data);
       alert("Question Posted Successfully...");
+      this.PostQuestionForm.reset();
       //this.router.navigate(['../discussionslist', { discussionId: crisis.id, subCategoryId: ,foo: 'foo' }], { relativeTo: this.route });
     })
 

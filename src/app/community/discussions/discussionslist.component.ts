@@ -82,6 +82,7 @@ export class DiscussionslistComponent implements OnInit {
     }
     this.discussionlistService.postQuestion(body).subscribe(data => {
       alert("Question Posted Successfully");
+      this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.discussionId);
     })
   }
