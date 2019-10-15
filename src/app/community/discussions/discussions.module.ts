@@ -8,7 +8,7 @@ import { DiscussionslistComponent } from '../discussions/discussionslist.compone
 import { DiscussionDetailsComponent } from '../discussions/discussion-details.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from "@angular/router";
-import { SummaryPipe } from 'src/app/summary.pipe';
+import { SummaryPipe } from 'src/app/shared/pipes/summary.pipe';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 

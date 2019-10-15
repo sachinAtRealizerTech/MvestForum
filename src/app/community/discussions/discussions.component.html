@@ -122,7 +122,7 @@
                             [value]="null" (change)="selectedCategory($event);getSubcategoriesList()"
                             [ngClass]="{ 'is-invalid': submitQuestion && g.CategoryName.errors }">
                             <option [value]="null" disabled hidden> Select Category</option>
-                            <option *ngFor="let c of categoriesList" [value]="c.doc_id">
+                            <option *ngFor="let c of categoryList" [value]="c.doc_id">
                               {{c.name}}</option>
                           </select>
                           <div *ngIf="submitQuestion && g.CategoryName.errors" class="invalid-feedback">
