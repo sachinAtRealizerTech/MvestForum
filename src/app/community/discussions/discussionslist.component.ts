@@ -39,7 +39,6 @@ export class DiscussionslistComponent implements OnInit {
       this.subCategoryId = params['subCategoryId']
     });
     this.getDiscussionList(this.discussionId)
-    console.log(this.discussionId)
   }
 
   get g() { return this.discussionListQuestionForm.controls; }
@@ -49,7 +48,6 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   getDiscussionList(id) {
-    debugger;
     this.loading = true;
     //  setTimeout(() => {
     //   this.loading = false;
@@ -58,7 +56,6 @@ export class DiscussionslistComponent implements OnInit {
       this.discussionList = data;
       this.loading = false;
       this.pageNotFound = false;
-      console.log('Discussion List: ', this.discussionList)
     },
       err => {
         if (err.status == 404) {
@@ -70,7 +67,6 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   postQuestion() {
-    debugger;
     this.categoryName = sessionStorage.getItem("category_name");
     this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");

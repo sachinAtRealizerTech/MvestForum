@@ -63,8 +63,7 @@ export class DiscussionsComponent implements OnInit {
     this.discussionsService.getAllCategories().subscribe(data => {    
       this.categoryList= data;
       this.loading=false; 
-      this.pageNotFound = false; 
-      console.log(this.categoryList);
+      this.pageNotFound = false;
     },
     err => {
       if (err.status == 404) {
@@ -82,29 +81,23 @@ export class DiscussionsComponent implements OnInit {
   }
 
   selectedCategory(event){
-    debugger;
     this.categoryDocId=event.target.value
     this.categoryName=event.target[event.target.selectedIndex].innerText
-    console.log(this.categoryName)
   }
 
   selectedSubCategory(event){
-    debugger;
     this.subCategoryId=event.target.value
     this.subCategoryName=event.target[event.target.selectedIndex].innerText
-    console.log(this.subCategoryName)
   }
 
   getSubcategoriesList(){
     this.subcategoryService.getSubcategory(this.categoryDocId).subscribe(data=>{
       this.subCategoryListDD=data;
       this.categoryId=data['category_id'];
-      console.log('cat',this.subCategoryListDD)
     })
   }
 
   postQuestion(){
-    debugger;
     this.submitQuestion=true
     if(this.PostQuestionForm.invalid){
       return
@@ -123,7 +116,6 @@ export class DiscussionsComponent implements OnInit {
       userName: "Atul",
     }
     this.discussionsService.postQuestion(body).subscribe(data=>{
-      console.log('data', data);
       alert("Question Posted Successfully...");
       this.PostQuestionForm.reset();
       //this.router.navigate(['../discussionslist', { discussionId: crisis.id, subCategoryId: ,foo: 'foo' }], { relativeTo: this.route });

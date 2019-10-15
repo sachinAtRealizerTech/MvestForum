@@ -67,7 +67,6 @@ export class DiscussionDetailsComponent implements OnInit {
       this.discussionDetails = data;
       this.loading=false;
       this.discussiondoc_Id= data['_id']
-      console.log(this.discussionDetails)
     })
   }
 
@@ -76,7 +75,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   sendReply(){
-    debugger;
     this.submitReply=true;
     if(this.replyForm.invalid){
       return;
@@ -97,7 +95,6 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   postQuestion() {
-    debugger;
     this.categoryName=sessionStorage.getItem("category_name");
     this.categoryId=sessionStorage.getItem("category_id");
     this.subCategoryIdDD=sessionStorage.getItem("subcat_id");

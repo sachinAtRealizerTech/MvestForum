@@ -22,7 +22,6 @@ export class DiscussionsService {
   }
 
   postQuestion(body){
-    debugger;
     return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
   }
 }

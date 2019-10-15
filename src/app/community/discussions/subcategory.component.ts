@@ -56,8 +56,6 @@ export class SubcategoryComponent implements OnInit {
       this.pageNotFound = false;
       this.categoryName=data['category_name'];
       this.categoryId=data['category_id'];
-      console.log(this.subCategoryList)
-      console.log(this.categoryId);
     },
     err => {
       if (err.status == 404) {
@@ -74,14 +72,11 @@ export class SubcategoryComponent implements OnInit {
   }
 
   selectedSubCategory(event){
-    debugger;
     this.subCategoryIdDD=event.target.value
     this.subCategoryName=event.target[event.target.selectedIndex].innerText
-    console.log(this.subCategoryName)
   }
 
   postQuestion(){
-    debugger;
     this.submitQuestion=true;
     if(this.PostQuestionForm.invalid){
       return
