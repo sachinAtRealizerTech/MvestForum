@@ -37,12 +37,12 @@
             aria-selected="false">SETTINGS</a>
         </li>
 
-         <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
+        <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
           <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-lg"
             data-toggle="modal" href="#">
             Ask a Question
           </a>
-        </li> 
+        </li>
 
       </ul>
     </div>
@@ -53,12 +53,14 @@
     <div class="col-xl-12">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0 mb-1">
-          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/discussions" (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
+          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussions"
+              (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/subcategory"
-              [queryParams]="{subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-Subcategories')">Sub-Categories</a></li>
+              [queryParams]="{subCategoryId:subCategoryId}"
+              (click)="setTitle( 'Mvest-Subcategories')">Sub-Categories</a></li>
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussionslist"
-              [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}" (click)="setTitle( 'Mvest-Discussions')">Discussions</a></li>
+              [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}"
+              (click)="setTitle( 'Mvest-Discussions')">Discussions</a></li>
           <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussion details</a></li>
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form">
@@ -79,23 +81,23 @@
   </div>
 
   <div class="text-center" *ngIf="loading">
-      <div class="spinner-border text-accent" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
+    <div class="spinner-border text-accent" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
+  </div>
 
   <div class="row justify-content-center">
     <div class="col-xl-12 pb-3" style="text-align: justify;">
       <div class="row">
         <div class="col-10">
-            <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
+          <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
         </div>
-         <div class="col-2">
-            <a class="btn btn-accent btn-sm text-uppercase ml-auto"
-            href="#" data-target=".reply-modal-lg" data-toggle="modal">
-             Reply to Question
-           </a>
-         </div>
+        <div class="col-2">
+          <a class="btn btn-accent btn-sm text-uppercase ml-auto" href="#" data-target=".reply-modal-lg"
+            data-toggle="modal">
+            Reply to Question
+          </a>
+        </div>
       </div>
 
       <div class="card card-small blog-comments mt-3">
@@ -114,11 +116,10 @@
                       </i>
                     </a>
               </div> -->
-            
-              <!-- <small class="text-secondary mb-0 font-weight-semibold">8:30pm</small> -->
+
             </div>
           </div>
-          
+
         </div>
         <div class="card-body pt-0 mx-3 border-bottom">
 
@@ -136,12 +137,14 @@
                 </i></a>
             </li> -->
             <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
-              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
+              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                  class="material-icons icon-muted md-24 ml-3">
                   thumb_up
                 </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
             </li>
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
+              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                  class="material-icons icon-muted md-24 ml-3">
                   mode_comment
                   <!-- data-target="#comment-box" -->
                   <!-- (click)="showCommentBox()" -->
@@ -165,12 +168,13 @@
                 </form>
               </div>
               <div class="col-md-2">
-                <button class="button primary border-0 rounded-5 bg-light form-control mt-4" (click)="postComment()">Comment</button>
+                <button class="button primary border-0 rounded-5 bg-light form-control mt-4"
+                  (click)="postComment()">Comment</button>
               </div>
             </div>
           </div>
 
-          
+
           <!-- <div class="border-bottom" *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index " >
             <div class="media py-3 ">
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
@@ -212,14 +216,14 @@
               </div>
             </div>
           </div> -->
-       
+
 
         </div>
 
 
-        <div  *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index " >
-        <div class="card-header" >
-          <!-- <div class="media p-3">
+        <div *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index ">
+          <div class="card-header">
+            <!-- <div class="media p-3">
             <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
               alt="Generic placeholder image">
             <div class="media-body mb-0 align-self-center">
@@ -227,20 +231,20 @@
             </div>
           </div> -->
 
-             <div class="media px-3 ">
+            <div class="media px-3 ">
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                 alt="Generic placeholder image">
               <div class="media-body mb-0 align-self-center">
                 <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
-                <h6 class="text-secondary font-weight-semibold mb-0"> {{p.post_msg}}</h6> 
+                <h6 class="text-secondary font-weight-semibold mb-0"> {{p.post_msg}}</h6>
               </div>
             </div>
-          
-        </div>
-        <div class="border-bottom card-body pt-0 mx-3">
 
-          <ul class="list-inline d-flex  border-0 mb-0">
-            <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+          </div>
+          <div class="border-bottom card-body pt-0 mx-3">
+
+            <ul class="list-inline d-flex  border-0 mb-0">
+              <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a routerLink="#" data-target=".reply-modal-lg" data-toggle="modal"> 
                 <i
                   class="material-icons icon-muted md-30">
@@ -248,24 +252,26 @@
                 </i>
               </a>
             </li> -->
-            <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
-              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
-                  thumb_up
-                </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
-            </li>
-            <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i class="material-icons icon-muted md-24 ml-3">
-                  mode_comment
-                </i>
-              </a>
-            </li>
-            <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
-              <span><small
-                  class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}}</small></span>
-            </li>
-          </ul>
+              <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
+                <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                    class="material-icons icon-muted md-24 ml-3">
+                    thumb_up
+                  </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
+              </li>
+              <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
+                <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                    class="material-icons icon-muted md-24 ml-3">
+                    mode_comment
+                  </i>
+                </a>
+              </li>
+              <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
+                <span><small
+                    class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}}</small></span>
+              </li>
+            </ul>
 
-          <!-- <div *ngIf="commentBox" id="comment-box" class="">
+            <!-- <div *ngIf="commentBox" id="comment-box" class="">
             <div class="form-row">
               <div class="col-md-10">
                 <form class="p-3">
@@ -279,9 +285,8 @@
             </div>
           </div>       -->
 
+          </div>
         </div>
-      </div>
-        
       </div>
     </div>
   </div>
@@ -303,11 +308,13 @@
         <div class="modal-body">
           <div class="card shadow-none">
             <div class="form-group">
-                <label for="Description">Your Reply</label>
-                <textarea class="form-control" formControlName="Description" rows="3" [ngClass]="{ 'is-invalid': submitReply && g.Description.errors }" placeholder="Write a reply here..."></textarea>
-                <div *ngIf="submitReply && g.Description.errors" class="invalid-feedback">
-                    <div *ngIf="g.Description.errors.required">Description is required</div>
-                  </div>
+              <label for="Description">Your Reply</label>
+              <textarea class="form-control" formControlName="Description" rows="3"
+                [ngClass]="{ 'is-invalid': submitReply && g.Description.errors }"
+                placeholder="Write a reply here..."></textarea>
+              <div *ngIf="submitReply && g.Description.errors" class="invalid-feedback">
+                <div *ngIf="g.Description.errors.required">Description is required</div>
+              </div>
             </div>
           </div>
         </div>
@@ -340,7 +347,6 @@
           <div class="card shadow-none">
             <div class="row">
               <div class="col-12">
-
                 <form [formGroup]="discussionDetailsQuestionForm">
                   <div class="form">
 
@@ -364,10 +370,7 @@
                       </div>
                     </div>
                   </div>
-
                 </form>
-
-
               </div>
             </div>
           </div>
@@ -382,6 +385,3 @@
     </form>
   </div>
 </div>
-
-
-

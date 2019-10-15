@@ -48,10 +48,11 @@
         <div class="col-xl-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb px-0">
-                    <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-                            routerLink="/discussions" (click)="setTitle( 'Mvest-Categories' )">Categories</a></li>
+                    <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussions"
+                            (click)="setTitle( 'Mvest-Categories' )">Categories</a></li>
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/subcategory"
-                            [queryParams]="{subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-SubCategories' )">Sub-Categories</a></li>
+                            [queryParams]="{subCategoryId:subCategoryId}"
+                            (click)="setTitle( 'Mvest-SubCategories' )">Sub-Categories</a></li>
                     <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Discussions</a>
                     </li>
 
@@ -67,7 +68,6 @@
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
-
                             </div>
                         </form>
                     </li>
@@ -75,10 +75,10 @@
             </nav>
 
             <div class="text-center" *ngIf="loading">
-                    <div class="spinner-border text-accent" role="status">
-                      <span class="sr-only">Loading...</span>
-                    </div>
-                  </div>
+                <div class="spinner-border text-accent" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
 
             <div class="row justify-content-between no-gutters">
                 <div class="col-md-12 col-xl-12">
@@ -92,93 +92,71 @@
                                 <div class="card-body p-0"
                                     *ngFor="let dl of discussionList?.discussions | filter : searchText">
                                     <a routerLink="/discussion-details"
-                                        [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:discussionId,subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-Discussion Details')">
+                                        [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:discussionId,subCategoryId:subCategoryId}"
+                                        (click)="setTitle( 'Mvest-Discussion Details')">
 
                                         <div class=" border-bottom p-1">
                                             <div class="row">
                                                 <div class="col-9">
-                                                        <div class="media p-3">
-                                                                <img class="mr-3 user-pic rounded-circle mr-2"
-                                                                    src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
-                
-                                                                <div class="media-body mb-0" style="text-align: justify;  word-wrap:break-all; display:inline-block;">
-                
-                                                                    <ul class="list-inline d-flex mb-0">
-                                                                        <li class="list-inline-item mb-1 h6  text-muted">
-                                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                                                {{dl?.title | titlecase}}</h5>
-                                                                        </li>
-                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                                <span><small
-                                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
-                                                                        </li> -->
-                                                                    </ul>
-                
-                                                                    <ul class="list-inline d-flex mb-0">
-                                                                        <li class="list-inline-item mb-1 h6  text-muted">
-                                                                            {{dl?.post_msg | summary}}
-                                                                        </li>
-                                                                        <!-- <a click="readMoreDescription()"><span>read more</span></a>
+                                                    <div class="media p-3">
+                                                        <img class="mr-3 user-pic rounded-circle mr-2"
+                                                            src="assets/images/avatars/2.jpg"
+                                                            alt="Generic placeholder image">
+
+                                                        <div class="media-body mb-0"
+                                                            style="text-align: justify;  word-wrap:break-all; display:inline-block;">
+
+                                                            <ul class="list-inline d-flex mb-0">
+                                                                <li class="list-inline-item mb-1 h6  text-muted">
+                                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                                        {{dl?.title | titlecase}}</h5>
+                                                                </li>
+                                                            </ul>
+
+                                                            <ul class="list-inline d-flex mb-0">
+                                                                <li class="list-inline-item mb-1 h6  text-muted">
+                                                                    {{dl?.post_msg | summary}}
+                                                                </li>
+                                                                <!-- <a click="readMoreDescription()"><span>read more</span></a>
                                                                         <li *ngIf="readMore" class="list-inline-item mb-1 h6  text-muted">
                                                                                 {{dl?.post_msg}}
                                                                             </li> -->
-                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                                <span><small class="font-weight-semibold">Asked By:
-                                                                                        {{dl?.post_by}}</small></span>
-                                                                        </li> -->
-                
-                                                                    </ul>
-            
-                
-                                                                </div>
-                                                            </div>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-3">
-                                                        <div class="media p-3">
+                                                    <div class="media p-3">
+                                                        <div class="media-body mb-0">
 
-                
-                                                                <div class="media-body mb-0">
-                
-                                                                    <ul class="list-inline d-flex mb-0">
-                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted">
-                                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                                                {{dl?.title | titlecase}}</h5>
-                                                                        </li> -->
-                                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                                <span><small
-                                                                                    class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
+                                                            <ul class="list-inline d-flex mb-0">
+                                                                <li
+                                                                    class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                    <span><small
+                                                                            class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small></span>
 
-                                                                        </li>
-                                                                    </ul>
-                
-                                                                    <ul class="list-inline d-flex mb-0">
-                                                                        <!-- <li class="list-inline-item mb-1 h6  text-muted">
-                                                                            {{dl?.post_msg}}
-                                                                        </li> -->
-                                                                        <li class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                                <span><small class="font-weight-semibold">Asked By:
-                                                                                        {{dl?.post_by}}</small></span>
-                                                                        </li>
-                
-                                                                    </ul>
-            
-                
-                                                                </div>
-                                                            </div>
+                                                                </li>
+                                                            </ul>
+
+                                                            <ul class="list-inline d-flex mb-0">
+                                                                <li
+                                                                    class="list-inline-item mb-1 h6  text-muted ml-auto">
+                                                                    <span><small class="font-weight-semibold">Asked By:
+                                                                            {{dl?.post_by}}</small></span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                         
+                                            </div>
                                         </div>
-                                        </div>
-
-
                                     </a>
                                 </div>
-
-
-
                             </div>
                         </div>
+
+                        <!---------------------------------------------------Top Contributors------------------------------------------------------------>
 
                         <!-- <div class="col-xl-4 pb-3">
                             <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
@@ -232,73 +210,73 @@
                             </div>
                         </div> -->
 
+                        <!---------------------------------------------------End Top Contributors------------------------------------------------------------>
+
 
                     </div>
                 </div>
             </div>
-
-            
         </div>
     </div>
 </div>
 
 
 <div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
-  aria-hidden="true">
-  <div class="modal-dialog modal-md bg-white shadow">
-    <form action="/action_page.php" class="needs-validation" novalidate>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Ask a Question</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+    aria-hidden="true">
+    <div class="modal-dialog modal-md bg-white shadow">
+        <form action="/action_page.php" class="needs-validation" novalidate>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ask a Question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-        <div class="modal-body">
-          <div class="card shadow-none">
-            <div class="row">
-              <div class="col-12">
+                <div class="modal-body">
+                    <div class="card shadow-none">
+                        <div class="row">
+                            <div class="col-12">
+                                <form [formGroup]="discussionListQuestionForm">
+                                    <div class="form">
+                                        <div class="form-group">
+                                            <label for="title">Discussion Title :</label>
+                                            <input type="text" class="form-control" id="title"
+                                                formControlName="discussionTitle" placeholder=""
+                                                [ngClass]="{ 'is-invalid': submitQuestion && g.discussionTitle.errors }">
+                                            <div *ngIf="submitQuestion && g.discussionTitle.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="g.discussionTitle.errors.required">Discussion title is
+                                                    required</div>
+                                            </div>
+                                        </div>
 
-                <form [formGroup]="discussionListQuestionForm">
-                  <div class="form">
-
-                    <div class="form-group">
-                      <label for="title">Discussion Title :</label>
-                      <input type="text" class="form-control" id="title" formControlName="discussionTitle"
-                        placeholder="" [ngClass]="{ 'is-invalid': submitQuestion && g.discussionTitle.errors }">
-                      <div *ngIf="submitQuestion && g.discussionTitle.errors" class="invalid-feedback">
-                        <div *ngIf="g.discussionTitle.errors.required">Discussion title is required</div>
-                      </div>
+                                        <div class="form-group">
+                                            <label for="title">Description :</label>
+                                            <div class="w-100">
+                                            </div>
+                                            <textarea class="form-control" cols="71"
+                                                formControlName="problemDescription"
+                                                [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
+                                            <div *ngIf="submitQuestion && g.problemDescription.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="g.problemDescription.errors.required">Problem description is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                      <label for="title">Description :</label>
-                      <div class="w-100">
-                      </div>
-                      <textarea class="form-control" cols="71" formControlName="problemDescription"
-                        [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
-                      <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
-                        <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
-                      </div>
-                    </div>
-                  </div>
-
-                </form>
-
-
-              </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()"
+                        data-dismiss="modal">Post</button>
+                    <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+                        data-dismiss="modal">Cancel</button>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()"
-            data-dismiss="modal">Post</button>
-          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-            data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
-
