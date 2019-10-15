@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { SubcategoryService } from './Services/subcategory.service';
 import { ActivatedRoute } from '@angular/router'
-import { DiscussionsService } from './Services/discussions.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Title }     from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -125,7 +124,6 @@ export class SubcategoryComponent implements OnInit {
     if(this.PostQuestionForm.invalid){
       return
     }
-
     this.submitQuestion=false;
     let body = {
       category:this.categoryName,
@@ -142,7 +140,7 @@ export class SubcategoryComponent implements OnInit {
     })
   }
 
-
+//-----------------------------------passing parameters to create a new discussion----------------------------------
   sendData(subcat_id:any,subCatName:string,category_id:any,category_name:any){
       sessionStorage.setItem("subcat_id",subcat_id);
       sessionStorage.setItem("subCatName",subCatName);
