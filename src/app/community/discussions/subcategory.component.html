@@ -29,15 +29,12 @@
           <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
             aria-selected="false">SETTINGS</a>
         </li>
-
         <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
           <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-lg"
             data-toggle="modal" href="#">
             Ask a Question
           </a>
         </li>
-
-
       </ul>
     </div>
   </div>
@@ -47,8 +44,8 @@
     <div class="col-xl-12">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0">
-          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold"
-              routerLink="/discussions" (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
+          <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussions"
+              (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
           <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Sub-Categories</a></li>
           <li class="ml-auto">
             <form id="search-form" class="form-inline" role="form" method="post" action="//www.google.com/search"
@@ -69,30 +66,29 @@
 
 
       <div class="text-center" *ngIf="loading">
-          <div class="spinner-border text-accent" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
+        <div class="spinner-border text-accent" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
+      </div>
 
-        <div class="text-left" *ngIf="pageNotFound">
-            <h5>No Records Found...</h5>
-        </div>
+      <div class="text-left" *ngIf="pageNotFound">
+        <h5>No Records Found...</h5>
+      </div>
 
       <div class="row justify-content-center">
         <div class="col-xl-12">
           <div class="card align-self-center bg-white">
             <div class="row justify-content-left text-center px-3">
               <div>
-
-               
-
                 <div class="row gutter-10">
                   <div class="card m-2" *ngFor="let sc of subCategoryList?.sub_categories | filter:searchText">
-                    <a routerLink="/discussionslist" [queryParams]="{discussionId:sc.subcat_id,subCategoryId:subCategoryId}" (click)="setTitle( 'Mvest-Discussions')"
-                    >
-                      <div class="card d-inline category-main" (click)="sendData(sc.subcat_id,sc.name,subCategoryList?.category_id,subCategoryList?.category_name)" style="width:50rem">
-                        <img class="img-fluid img-thumbnail rounded-left"
-                          src="{{sc.image}}" alt="" width="250px">
+                    <a routerLink="/discussionslist"
+                      [queryParams]="{discussionId:sc.subcat_id,subCategoryId:subCategoryId}"
+                      (click)="setTitle( 'Mvest-Discussions')">
+                      <div class="card d-inline category-main"
+                        (click)="sendData(sc.subcat_id,sc.name,subCategoryList?.category_id,subCategoryList?.category_name)"
+                        style="width:50rem">
+                        <img class="img-fluid img-thumbnail rounded-left" src="{{sc.image}}" alt="" width="250px">
                         <div class="category-text">
                           {{sc.name | titlecase}}
                         </div>
@@ -130,31 +126,13 @@
 
                 <form [formGroup]="PostQuestionForm">
                   <div class="form">
-
-                    <!-- <div class="form-group">
-                      <div class="form-row">
-
-                        <div class="col-4">
-                            <label for="title">Category :</label>
-                        </div>
-
-                        <div class="col-8">
-                            <select class="form-control border" formControlName="CategoryName" title="CategoryName">
-                
-                            <option [value]="categoryId" selected>{{categoryName}}</option>
-                          </select>
-                        </div>
-                      
-                      </div>
-                    </div> -->
-
                     <div class="form-group">
                       <div class="form-row">
                         <div class="col-4">
-                            <label for="title">Sub-Category :</label>
+                          <label for="title">Sub-Category :</label>
                         </div>
                         <div class="col-8">
-                            <select class="form-control border" formControlName="subCategoryName" title="subCategoryName"
+                          <select class="form-control border" formControlName="subCategoryName" title="subCategoryName"
                             (change)="selectedSubCategory($event)"
                             [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
                             <option disabled hidden> Sub-Category Name</option>
@@ -166,9 +144,7 @@
                           </div>
                         </div>
                       </div>
-                                           
                     </div>
-
 
                     <div class="form-group">
                       <label for="title">Discussion Title :</label>
@@ -179,7 +155,6 @@
                       </div>
                     </div>
 
-
                     <div class="form-group">
                       <label for="title">Description :</label>
                       <div class="w-100">
@@ -189,12 +164,9 @@
                       <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
                         <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
                       </div>
-
                     </div>
                   </div>
-
                 </form>
-
 
               </div>
             </div>
