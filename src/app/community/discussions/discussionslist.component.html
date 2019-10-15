@@ -43,6 +43,7 @@
     </div>
 
 
+<!-----------------------------------------Breadcrumb and search-------------------------------------------->  
 
     <div class="row justify-content-center py-3">
         <div class="col-xl-12">
@@ -73,6 +74,10 @@
                     </li>
                 </ol>
             </nav>
+
+<!-----------------------------------------End Breadcrumb and search-------------------------------------------->  
+
+<!----------------------------------------- Discussions--------------------------------------------------------->
 
             <div class="text-center" *ngIf="loading">
                 <div class="spinner-border text-accent" role="status">
@@ -157,7 +162,8 @@
                             </div>
                         </div>
 
-                        <!---------------------------------------------------Top Contributors------------------------------------------------------------>
+
+<!---------------------------------------------------Top Contributors------------------------------------------------------------>
 
                         <!-- <div class="col-xl-4 pb-3">
                             <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
@@ -221,6 +227,10 @@
     </div>
 </div>
 
+<!---------------------------------------------------End Discussions--------------------------------------------------------->
+
+
+<!---------------------------------------------------Ask a question------------------------------------------------------------>
 
 <div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
     aria-hidden="true">
@@ -262,15 +272,6 @@
                                                 <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
                                               </div>
                                             </angular-editor>
-
-                                            <!-- <textarea class="form-control" cols="71"
-                                                formControlName="problemDescription"
-                                                [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
-                                            <div *ngIf="submitQuestion && g.problemDescription.errors"
-                                                class="invalid-feedback">
-                                                <div *ngIf="g.problemDescription.errors.required">Problem description is
-                                                    required</div>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </form>
@@ -288,3 +289,5 @@
         </form>
     </div>
 </div>
+
+<!---------------------------------------------------End Ask a question------------------------------------------------------------>

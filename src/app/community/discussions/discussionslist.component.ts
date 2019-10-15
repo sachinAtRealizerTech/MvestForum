@@ -25,7 +25,7 @@ export class DiscussionslistComponent implements OnInit {
   loading: boolean;
   readMore: boolean = false;
   pageNotFound = false;
-  editorConfig:AngularEditorConfig;
+  editorConfig: AngularEditorConfig;
 
   constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private titleService: Title) { }
@@ -33,26 +33,26 @@ export class DiscussionslistComponent implements OnInit {
   ngOnInit() {
     this.editorConfig = {
       editable: true,
-        spellcheck: true,
-        height: 'auto',
-        minHeight: '0',
-        maxHeight: 'auto',
-        width: 'auto',
-        minWidth: '0',
-        translate: 'yes',
-        enableToolbar: true,
-        showToolbar: true,
-        placeholder: 'Enter text here...',
-        defaultParagraphSeparator: '',
-        defaultFontName: '',
-        defaultFontSize: '',
-        fonts: [
-          {class: 'arial', name: 'Arial'},
-          {class: 'times-new-roman', name: 'Times New Roman'},
-          {class: 'calibri', name: 'Calibri'},
-          {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-        ],
-        customClasses: [
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        { class: 'arial', name: 'Arial' },
+        { class: 'times-new-roman', name: 'Times New Roman' },
+        { class: 'calibri', name: 'Calibri' },
+        { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+      ],
+      customClasses: [
         {
           name: 'quote',
           class: 'quote',
@@ -67,10 +67,10 @@ export class DiscussionslistComponent implements OnInit {
           tag: 'h1',
         },
       ],
-     // uploadUrl: 'v1/image',
+      // uploadUrl: 'v1/image',
       sanitize: true,
       toolbarPosition: 'top',
-  };
+    };
 
     this.discussionListQuestionForm = this.formBuilder.group({
       discussionTitle: ['', Validators.required],
@@ -92,9 +92,6 @@ export class DiscussionslistComponent implements OnInit {
 
   getDiscussionList(id) {
     this.loading = true;
-    //  setTimeout(() => {
-    //   this.loading = false;
-    // }, 2000)
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
       this.discussionList = data;
       this.loading = false;
@@ -123,10 +120,8 @@ export class DiscussionslistComponent implements OnInit {
     let body = {
       category: this.categoryName,
       category_id: this.categoryId,
-
       subcategory_id: this.subCategoryIdDD,
       subcategory: this.subCategoryName,
-
       post_title: this.discussionListQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionListQuestionForm.controls.problemDescription.value,
       userName: "Atul",
