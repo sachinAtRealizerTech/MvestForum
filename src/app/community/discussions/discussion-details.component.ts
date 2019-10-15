@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DiscussionDetails } from '../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title }     from '@angular/platform-browser';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-discussion-details',
@@ -31,11 +32,53 @@ export class DiscussionDetailsComponent implements OnInit {
   subCategoryName:any;
   submitQuestion=false;
   loading:boolean;
+  editorConfig:AngularEditorConfig;
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
     private formBuilder: FormBuilder,private titleService: Title) { }
 
   ngOnInit() {
+    this.editorConfig = {
+      editable: true,
+        spellcheck: true,
+        height: 'auto',
+        minHeight: '0',
+        maxHeight: 'auto',
+        width: 'auto',
+        minWidth: '0',
+        translate: 'yes',
+        enableToolbar: true,
+        showToolbar: true,
+        placeholder: 'Enter text here...',
+        defaultParagraphSeparator: '',
+        defaultFontName: '',
+        defaultFontSize: '',
+        fonts: [
+          {class: 'arial', name: 'Arial'},
+          {class: 'times-new-roman', name: 'Times New Roman'},
+          {class: 'calibri', name: 'Calibri'},
+          {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+        ],
+        customClasses: [
+        {
+          name: 'quote',
+          class: 'quote',
+        },
+        {
+          name: 'redText',
+          class: 'redText'
+        },
+        {
+          name: 'titleText',
+          class: 'titleText',
+          tag: 'h1',
+        },
+      ],
+     // uploadUrl: 'v1/image',
+      sanitize: true,
+      toolbarPosition: 'top',
+  };
+
     this.replyForm= this.formBuilder.group({
       Description: ['',Validators.required]
     })

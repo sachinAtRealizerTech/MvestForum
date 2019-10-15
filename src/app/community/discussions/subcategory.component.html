@@ -159,11 +159,19 @@
                       <label for="title">Description :</label>
                       <div class="w-100">
                       </div>
-                      <textarea class="form-control" cols="71" formControlName="problemDescription"
+
+                       <angular-editor formControlName="problemDescription" [config]="editorConfig" 
+                      [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }">
+                      <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
+                          <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
+                        </div>
+                      </angular-editor> 
+
+                      <!-- <textarea class="form-control" cols="71" formControlName="problemDescription"
                         [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
                       <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
                         <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </form>

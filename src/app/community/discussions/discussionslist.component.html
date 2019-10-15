@@ -114,8 +114,8 @@
                                                             </ul>
 
                                                             <ul class="list-inline d-flex mb-0">
-                                                                <li class="list-inline-item mb-1 h6  text-muted">
-                                                                    {{dl?.post_msg | summary}}
+                                                                <li class="list-inline-item mb-1 h6  text-muted" innerHTML="{{dl?.post_msg | summary}}">
+                                                                    <!-- {{dl?.post_msg | summary}} -->
                                                                 </li>
                                                                 <!-- <a click="readMoreDescription()"><span>read more</span></a>
                                                                         <li *ngIf="readMore" class="list-inline-item mb-1 h6  text-muted">
@@ -255,14 +255,21 @@
                                             <label for="title">Description :</label>
                                             <div class="w-100">
                                             </div>
-                                            <textarea class="form-control" cols="71"
+                                            <angular-editor formControlName="problemDescription" [config]="editorConfig" 
+                                            [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }">
+                                            <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
+                                                <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
+                                              </div>
+                                            </angular-editor>
+
+                                            <!-- <textarea class="form-control" cols="71"
                                                 formControlName="problemDescription"
                                                 [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
                                             <div *ngIf="submitQuestion && g.problemDescription.errors"
                                                 class="invalid-feedback">
                                                 <div *ngIf="g.problemDescription.errors.required">Problem description is
                                                     required</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </form>

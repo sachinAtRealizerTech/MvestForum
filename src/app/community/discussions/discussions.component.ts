@@ -6,6 +6,8 @@ import { SubcategoryService } from './Services/subcategory.service';
 import {Router} from '@angular/router';
 //import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { Title }     from '@angular/platform-browser';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+
 
 @Component({
   selector: 'app-discussions',
@@ -18,6 +20,7 @@ export class DiscussionsComponent implements OnInit {
   //categoryList:any
   searchText:any;
   PostQuestionForm:FormGroup;
+  newCategoryForm:FormGroup;
   categoriesList:any;
   categoryId:any;
   subCategoryListDD:any;
@@ -28,6 +31,8 @@ export class DiscussionsComponent implements OnInit {
   categoryDocId:any;
   loading : boolean;
   pageNotFound=false;
+  newCategory:boolean;
+  editorConfig:AngularEditorConfig;
   // modalOptions:ModalOptions;
   // modalRef:BsModalRef
 
@@ -37,11 +42,57 @@ export class DiscussionsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+
+    this.editorConfig = {
+      editable: true,
+        spellcheck: true,
+        height: 'auto',
+        minHeight: '0',
+        maxHeight: 'auto',
+        width: 'auto',
+        minWidth: '0',
+        translate: 'yes',
+        enableToolbar: true,
+        showToolbar: true,
+        placeholder: 'Enter text here...',
+        defaultParagraphSeparator: '',
+        defaultFontName: '',
+        defaultFontSize: '',
+        fonts: [
+          {class: 'arial', name: 'Arial'},
+          {class: 'times-new-roman', name: 'Times New Roman'},
+          {class: 'calibri', name: 'Calibri'},
+          {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+        ],
+        customClasses: [
+        {
+          name: 'quote',
+          class: 'quote',
+        },
+        {
+          name: 'redText',
+          class: 'redText'
+        },
+        {
+          name: 'titleText',
+          class: 'titleText',
+          tag: 'h1',
+        },
+      ],
+     // uploadUrl: 'v1/image',
+      sanitize: true,
+      toolbarPosition: 'top',
+  };
+
     this.PostQuestionForm = this.formBuilder.group({
       CategoryName:['',Validators.required],
       subCategoryName:['',Validators.required],
       discussionTitle: ['',Validators.required],
       problemDescription: ['',Validators.required]
+    })
+
+    this.newCategoryForm=this.formBuilder.group({
+      CategoryName:['',Validators.required]
     })
 
     this.getAllCategories();
@@ -53,6 +104,8 @@ export class DiscussionsComponent implements OnInit {
   }
 
   get g() { return this.PostQuestionForm.controls; }
+
+  get f() { return this.newCategoryForm.controls; }
 
   getAllCategories() {
     this.loading=true;
@@ -98,6 +151,7 @@ export class DiscussionsComponent implements OnInit {
   }
 
   postQuestion(){
+    debugger;
     this.submitQuestion=true
     if(this.PostQuestionForm.invalid){
       return

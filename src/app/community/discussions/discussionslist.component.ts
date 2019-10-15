@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from './Services/discussionslist.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-discussionslist',
@@ -24,11 +25,53 @@ export class DiscussionslistComponent implements OnInit {
   loading: boolean;
   readMore: boolean = false;
   pageNotFound = false;
+  editorConfig:AngularEditorConfig;
 
   constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private titleService: Title) { }
 
   ngOnInit() {
+    this.editorConfig = {
+      editable: true,
+        spellcheck: true,
+        height: 'auto',
+        minHeight: '0',
+        maxHeight: 'auto',
+        width: 'auto',
+        minWidth: '0',
+        translate: 'yes',
+        enableToolbar: true,
+        showToolbar: true,
+        placeholder: 'Enter text here...',
+        defaultParagraphSeparator: '',
+        defaultFontName: '',
+        defaultFontSize: '',
+        fonts: [
+          {class: 'arial', name: 'Arial'},
+          {class: 'times-new-roman', name: 'Times New Roman'},
+          {class: 'calibri', name: 'Calibri'},
+          {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+        ],
+        customClasses: [
+        {
+          name: 'quote',
+          class: 'quote',
+        },
+        {
+          name: 'redText',
+          class: 'redText'
+        },
+        {
+          name: 'titleText',
+          class: 'titleText',
+          tag: 'h1',
+        },
+      ],
+     // uploadUrl: 'v1/image',
+      sanitize: true,
+      toolbarPosition: 'top',
+  };
+
     this.discussionListQuestionForm = this.formBuilder.group({
       discussionTitle: ['', Validators.required],
       problemDescription: ['', Validators.required]

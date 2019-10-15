@@ -165,11 +165,15 @@
                       <label for="title">Description :</label>
                       <div class="w-100">
                       </div>
-                      <textarea class="form-control" cols="71" formControlName="problemDescription"
-                        [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea>
+                      <angular-editor formControlName="problemDescription" [config]="editorConfig" 
+                      [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }">
                       <div *ngIf="submitQuestion && g.problemDescription.errors" class="invalid-feedback">
-                        <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
-                      </div>
+                          <div *ngIf="g.problemDescription.errors.required">Problem description is required</div>
+                        </div>
+                      </angular-editor>
+
+                      <!-- <textarea class="form-control" cols="71" formControlName="problemDescription"
+                        [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }"></textarea> -->                     
                     </div>
                   </div>
                 </form>
@@ -188,3 +192,57 @@
     </form>
   </div>
 </div>
+
+
+<!-------------------------------------------------------New Category------------------------------------------------------------>
+
+
+<div class="modal fade newCategory-modal-lg" tabindex="-1" role="dialog" aria-labelledby="newCategory-modal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md bg-white shadow">
+    <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="card shadow-none">
+            <div class="row">
+              <div class="col-12">
+
+                <form [formGroup]="newCategoryForm">
+                  <div class="form">
+
+                    <div class="form-group">
+                      <label for="CategoryName">Category Name:</label>
+                      <input type="text" class="form-control" id="title" formControlName="CategoryName"
+                        placeholder="" [ngClass]="{ 'is-invalid': newCategory && f.CategoryName.errors }">
+                      <div *ngIf="newCategory && f.CategoryName.errors" class="invalid-feedback">
+                        <div *ngIf="f.CategoryName.errors.required">Discussion title is required</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()"
+            data-dismiss="modal">Post</button>
+          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+            data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-------------------------------------------------------End New Category------------------------------------------------------------>

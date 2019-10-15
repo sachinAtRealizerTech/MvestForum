@@ -9,6 +9,7 @@ import { DiscussionDetailsComponent } from '../discussions/discussion-details.co
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { SummaryPipe } from 'src/app/summary.pipe';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -25,13 +26,15 @@ import { SummaryPipe } from 'src/app/summary.pipe';
     Ng2SearchPipeModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AngularEditorModule
   ],
   exports:[
     Ng2SearchPipeModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularEditorModule
   ]
 })
 export class DiscussionsModule { }

@@ -106,7 +106,7 @@
             <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
               alt="Generic placeholder image">
             <div class="media-body mb-0 align-self-center">
-              <h5 class="text-secondary h6 mb-0 font-weight-semibold">{{discussionDetails?.posts[0]?.post_msg}}</h5>
+              <h5 class="text-secondary h6 mb-0 font-weight-semibold" innerHTML="{{discussionDetails?.posts[0]?.post_msg}}"></h5>
 
               <!-- <div class="ml-auto">
                   <a routerLink="#" data-target=".reply-modal-lg" data-toggle="modal"> 
@@ -236,7 +236,7 @@
                 alt="Generic placeholder image">
               <div class="media-body mb-0 align-self-center">
                 <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
-                <h6 class="text-secondary font-weight-semibold mb-0"> {{p.post_msg}}</h6>
+                <h6 class="list-inline-item mb-1 h6  text-muted" innerHTML="{{p.post_msg}}"></h6>
               </div>
             </div>
 
@@ -309,12 +309,21 @@
           <div class="card shadow-none">
             <div class="form-group">
               <label for="Description">Your Reply</label>
-              <textarea class="form-control" formControlName="Description" rows="3"
+
+              <angular-editor formControlName="Description" [config]="editorConfig" 
+              [ngClass]="{ 'is-invalid': submitReply && f.Description.errors }">
+              <div *ngIf="submitReply && f.Description.errors" class="invalid-feedback">
+                  <div *ngIf="f.Description.errors.required">Description is required</div>
+                </div>
+              </angular-editor>
+
+              <!-- <textarea class="form-control" formControlName="Description" rows="3"
                 [ngClass]="{ 'is-invalid': submitReply && g.Description.errors }"
                 placeholder="Write a reply here..."></textarea>
               <div *ngIf="submitReply && g.Description.errors" class="invalid-feedback">
                 <div *ngIf="g.Description.errors.required">Description is required</div>
-              </div>
+              </div> -->
+
             </div>
           </div>
         </div>
@@ -363,11 +372,20 @@
                       <label for="title">Description :</label>
                       <div class="w-100">
                       </div>
-                      <textarea class="form-control" cols="71" formControlName="problemDescription"
+
+                      <angular-editor formControlName="problemDescription" [config]="editorConfig" 
+                      [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }">
+                      <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
+                          <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
+                        </div>
+                      </angular-editor>
+
+                      <!-- <textarea class="form-control" cols="71" formControlName="problemDescription"
                         [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }"></textarea>
                       <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
                         <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
-                      </div>
+                      </div> -->
+
                     </div>
                   </div>
                 </form>

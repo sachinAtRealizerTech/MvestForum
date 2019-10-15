@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
+    "@kolkov/angular-editor": "^1.0.0-beta.4",
+    "angular-html-editor": "^0.11.2",
     "bootstrap": "^4.3.1",
     "ng2-search-filter": "^0.5.1",
     "ngx-bootstrap": "^2.0.5",
