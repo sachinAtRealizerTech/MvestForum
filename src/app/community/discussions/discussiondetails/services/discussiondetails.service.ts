@@ -16,17 +16,17 @@ export class DiscussiondetailsService {
   constructor(private httpClient: HttpClient) { }
 
   getAllDiscussionsDetails(discussion_id: string) {
-    return this.httpClient.get(environment.APIBASEURL + '/Discussion/Details/' + discussion_id, httpOptions).pipe(map(data=>{
+    return this.httpClient.get(`${environment.APIBASEURL}/discussion/Details/${discussion_id}`, httpOptions).pipe(map(data => {
       return data
     }))
   }
 
-  sendReply(body){
-    return this.httpClient.put(environment.APIBASEURL+'/Discussion/postreply',body,httpOptions)
+  sendReply(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/discussion/postreply`, body, httpOptions)
   }
 
-  postQuestion(body){
-    return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
+  postQuestion(body) {
+    return this.httpClient.post(`${environment.APIBASEURL}/discussion`, body, httpOptions)
   }
 
 }

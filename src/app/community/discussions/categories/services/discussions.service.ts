@@ -10,18 +10,18 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class DiscussionslistService {
+export class DiscussionsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllDiscussionsList(subcategory_id: string) {
-    return this.httpClient.get(environment.APIBASEURL + '/Discussion/' + subcategory_id, httpOptions).pipe(map(data=>{
-      return data
-    }))
+  getAllCategories() {
+    return this.httpClient.get(`${environment.APIBASEURL}/masterData`)
+      .pipe(map(data => {
+        return data['Categories']
+      }))
   }
 
-  postQuestion(body){
-    return this.httpClient.post(environment.APIBASEURL+'/Discussion',body,httpOptions)
+  postQuestion(body) {
+    return this.httpClient.post(`${environment.APIBASEURL}/discussion`, body, httpOptions)
   }
-
 }

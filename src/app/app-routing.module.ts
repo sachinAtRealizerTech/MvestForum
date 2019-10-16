@@ -1,18 +1,18 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './community/profile/profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
-import { RequestsComponent } from './requests/requests.component';
-import { NewsfeedComponent } from './newsfeed/newsfeed.component';
-import { MessagesComponent } from './messages/messages.component';
+import { RequestsComponent } from './community/requests/requests.component';
+import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
+import { MessagesComponent } from './community/messages/messages.component';
 import { FollowingComponent } from './following/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
-import { DiscussionsComponent } from './community/discussions/components/discussions.component';
-import { SubcategoryComponent } from './community/discussions/components/subcategory.component';
-import { DiscussionslistComponent } from './community/discussions/components/discussionslist.component';
-import { DiscussionDetailsComponent } from './community/discussions/components/discussion-details.component';
+import { DiscussionsComponent } from './community/discussions/categories/components/discussions.component';
+import { SubcategoryComponent } from './community/discussions/subcategories/components/subcategory.component';
+import { DiscussionslistComponent } from './community/discussions/discussionlist/components/discussionslist.component';
+import { DiscussionDetailsComponent } from './community/discussions/discussiondetails/components/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 //import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
@@ -22,6 +22,10 @@ import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component
 const routes: Routes = [
     
   {
+
+    // path:'',
+    // component: SigninLayoutComponent,
+
       path: '',
       component: HomeLayoutComponent,
       children:[

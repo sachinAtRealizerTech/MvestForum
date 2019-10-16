@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscussiondetailsService } from '../Services/discussiondetails.service';
+import { DiscussiondetailsService } from '../services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
-import { DiscussionDetails } from '../../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -12,6 +11,12 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./discussion-details.component.scss']
 })
 export class DiscussionDetailsComponent implements OnInit {
+
+  constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
+    private formBuilder: FormBuilder, private titleService: Title) { }
+
+  discussionDetailsQuestionForm: FormGroup;
+  editorConfig: AngularEditorConfig;
   discussionId: string;
   discussionDetails: any;
   discussionDetailsId: any;
@@ -20,21 +25,15 @@ export class DiscussionDetailsComponent implements OnInit {
   searchText: any;
   commentBox = false;
   postCommentBox = false;
-  public current_date = new Date();
   replyForm: FormGroup;
-  discussiondoc_Id: any;
+  discussiondocId: any;
   submitReply = false;
-  discussionDetailsQuestionForm: FormGroup;
   categoryName: any;
   categoryId: any;
   subCategoryIdDD: any;
   subCategoryName: any;
   submitQuestion = false;
   loading: boolean;
-  editorConfig: AngularEditorConfig;
-
-  constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title) { }
 
   ngOnInit() {
     this.editorConfig = {
@@ -108,7 +107,7 @@ export class DiscussionDetailsComponent implements OnInit {
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
       this.discussionDetails = data;
       this.loading = false;
-      this.discussiondoc_Id = data['_id']
+      this.discussiondocId = data['_id']
     })
   }
 
@@ -125,7 +124,7 @@ export class DiscussionDetailsComponent implements OnInit {
     let body = {
       userName: "Atul",
       Desc: this.replyForm.controls.Description.value,
-      discussiondoc_Id: this.discussiondoc_Id
+      discussiondoc_Id: this.discussiondocId
     }
 
     this.discussiondetailsService.sendReply(body).subscribe(data => {

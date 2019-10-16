@@ -11,10 +11,15 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./discussionslist.component.scss']
 })
 export class DiscussionslistComponent implements OnInit {
+
+  constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
+    private formBuilder: FormBuilder, private titleService: Title) { }
+
+  discussionListQuestionForm: FormGroup;
+  editorConfig: AngularEditorConfig;
   discussionId: string;
   discussionList: any;
   subCategoryId: any;
-  discussionListQuestionForm: FormGroup;
   showDate: any;
   searchText: any;
   categoryName: any;
@@ -25,10 +30,6 @@ export class DiscussionslistComponent implements OnInit {
   loading: boolean;
   readMore: boolean = false;
   pageNotFound = false;
-  editorConfig: AngularEditorConfig;
-
-  constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title) { }
 
   ngOnInit() {
     this.editorConfig = {

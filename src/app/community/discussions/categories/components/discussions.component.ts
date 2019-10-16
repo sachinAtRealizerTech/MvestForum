@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscussionsService } from '../Services/discussions.service';
-import { CategoryList } from '../../../models/discussions';
+import { DiscussionsService } from '../services/discussions.service';
+import { CategoryList } from '../../../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SubcategoryService } from '../Services/subcategory.service';
+import { SubcategoryService } from '../../subcategories/Services/subcategory.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -15,10 +15,13 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class DiscussionsComponent implements OnInit {
 
+  constructor(private discussionsService: DiscussionsService, private formBuilder: FormBuilder,
+    private subcategoryService: SubcategoryService, private router: Router, private titleService: Title) { }
+
+  postQuestionForm: FormGroup;
+  editorConfig: AngularEditorConfig;
   categoryList: CategoryList[] = [];
   searchText: any;
-  PostQuestionForm: FormGroup;
-  newCategoryForm: FormGroup;
   categoriesList: any;
   categoryId: any;
   subCategoryListDD: any;
@@ -30,10 +33,6 @@ export class DiscussionsComponent implements OnInit {
   loading: boolean;
   pageNotFound = false;
   newCategory: boolean;
-  editorConfig: AngularEditorConfig;
-
-  constructor(private discussionsService: DiscussionsService, private formBuilder: FormBuilder,
-    private subcategoryService: SubcategoryService, private router: Router, private titleService: Title) { }
 
   ngOnInit() {
     this.editorConfig = {
@@ -77,14 +76,11 @@ export class DiscussionsComponent implements OnInit {
       toolbarPosition: 'top',
     };
 
-    this.PostQuestionForm = this.formBuilder.group({
+    this.postQuestionForm = this.formBuilder.group({
       CategoryName: ['', Validators.required],
       subCategoryName: ['', Validators.required],
       discussionTitle: ['', Validators.required],
       problemDescription: ['', Validators.required]
-    })
-    this.newCategoryForm = this.formBuilder.group({
-      CategoryName: ['', Validators.required]
     })
 
     this.getAllCategories();
@@ -97,9 +93,7 @@ export class DiscussionsComponent implements OnInit {
 
   //---------------------------------setting form attribute control function--------------------------------------------
 
-  get g() { return this.PostQuestionForm.controls; }
-
-  get f() { return this.newCategoryForm.controls; }
+  get g() { return this.postQuestionForm.controls; }
 
   getAllCategories() {
     this.loading = true;
@@ -135,7 +129,7 @@ export class DiscussionsComponent implements OnInit {
 
   postQuestion() {
     this.submitQuestion = true
-    if (this.PostQuestionForm.invalid) {
+    if (this.postQuestionForm.invalid) {
       return
     }
     this.submitQuestion = false
@@ -144,13 +138,13 @@ export class DiscussionsComponent implements OnInit {
       category_id: this.categoryId,
       subcategory_id: this.subCategoryId,
       subcategory: this.subCategoryName,
-      post_title: this.PostQuestionForm.controls.discussionTitle.value,
-      Desc: this.PostQuestionForm.controls.problemDescription.value,
+      post_title: this.postQuestionForm.controls.discussionTitle.value,
+      Desc: this.postQuestionForm.controls.problemDescription.value,
       userName: "Atul",
     }
     this.discussionsService.postQuestion(body).subscribe(data => {
       alert("Question Posted Successfully...");
-      this.PostQuestionForm.reset();
+      this.postQuestionForm.reset();
     })
   }
 
