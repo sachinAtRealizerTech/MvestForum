@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscussiondetailsService } from './Services/discussiondetails.service';
+import { DiscussiondetailsService } from '../Services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
-import { DiscussionDetails } from '../../models/discussions';
+import { DiscussionDetails } from '../../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';

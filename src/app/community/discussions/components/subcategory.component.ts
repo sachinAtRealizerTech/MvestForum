@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { SubcategoryService } from './Services/subcategory.service';
+import { SubcategoryService } from '../Services/subcategory.service';
 import { ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Title }     from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class SubcategoryComponent implements OnInit {
 
-  subCategoryList:any
+  subCategoryList:any;
   subCategoryId: string;
   searchText:any;
   categoriesList:any;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscussionsService } from './Services/discussions.service';
-import { CategoryList } from '../../models/discussions';
+import { DiscussionsService } from '../Services/discussions.service';
+import { CategoryList } from '../../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SubcategoryService } from './Services/subcategory.service';
+import { SubcategoryService } from '../Services/subcategory.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';

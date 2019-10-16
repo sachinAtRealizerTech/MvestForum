@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DiscussionsComponent } from '../community/discussions/discussions.component';
+import { DiscussionsComponent } from './discussions/components/discussions.component';
 import { DiscussionsModule } from '../community/discussions/discussions.module';
 
 
