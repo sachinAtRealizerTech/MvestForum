@@ -62,7 +62,7 @@
                 <div class="sidebar">
                     <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
                     <h3 class="text-white text-center "> Sign in now</h3>
-                    <button class="btn btn-accent text-white rounded-0 mt-3 px-5">SIGN IN
+                    <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
                     </button>
                 </div>
             </div>
@@ -1134,6 +1134,67 @@
 
 
     </div>
+
+    <!-------------------------------------------------------------Sign In form---------------------------------------------------->
+
+
+    <div class="row justify-content-center text-center bg-dark" *ngIf="signInPage">
+
+        <div class="col-3 align-self-center pb-4">
+            <div class="sidebar">
+                <h6 class="text-green mt-5 ">ALREADY HAVE AN ACCOUNT? </h6>
+                <h3 class="text-white text-center  "> Sign in now</h3>
+                <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
+                </button>
+            </div>
+        </div>
+
+
+        <div class="col-9 bg-white vh-100">
+            <div class="card rounded-0 shadow-none">
+                <div class="card-header justify-content-center text-center pt-5">
+                    <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
+                    <h3 for="professional" class="mb-1">Ready to Go</h3>
+                    <h5 for="accountdetails" class="text-muted">Login Details</h5>
+                </div>
+                <form [formGroup]="signInForm">
+                    <div class="card-body">
+                        <div class="row justify-content-center text-left">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="text-muted">eMail</label>
+                                    <input class="form-control rounded" id="email" formControlName="email" type="text"
+                                        placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center text-left">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="password" class="text-muted">Password</label>
+                                    <input class="form-control rounded" id="password" formControlName="password"
+                                        type="password" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center text-center mt-3">
+                            <div class="col-12">
+                                <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--------------------------------------------------------------End of Sign in---------------------------------------------->
+
+
 </div>
 <!---------------------------------------Sign up Pupup------------------------------------>
 
@@ -1250,3 +1311,6 @@
 </ng-template>
 
 <!-----------------------------------------------End Claim Lease popup----------------------------------->
+
+
+<!----------------------------------------------Sign In ----------------------------------------------->

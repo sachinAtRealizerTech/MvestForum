@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SignupService } from './signup.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SigninService } from './signin.service';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +21,7 @@ export class SignupComponent implements OnInit {
   alertInfoForm: FormGroup;
   planSelectionForm: FormGroup;
   userTypeForm: FormGroup;
+  signInForm: FormGroup;
   userTypeModal: ElementRef;
   claimLeaseModal: ElementRef;
   confirmAddress: string;
@@ -41,11 +44,18 @@ export class SignupComponent implements OnInit {
   subscrptionAmount: any;
   planExpiryDate: Date;
   todayDate: Date;
+  signInPage = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
-    private signupService: SignupService) { }
+    private signupService: SignupService, private router: Router, private route: ActivatedRoute,
+    private signinService: SigninService) { }
 
   ngOnInit() {
+    this.signInForm = this.formBuilder.group({
+      email: [],
+      password: []
+    })
+
     this.userTypeForm = this.formBuilder.group({
       Ownership: ['', Validators.required]
     });
@@ -134,6 +144,7 @@ export class SignupComponent implements OnInit {
     this.firstPage = true;
     this.secondPage = false;
     this.thirdPage = false;
+    this.signInPage = false;
     this.closePostQuestionModal();
   }
 
@@ -151,6 +162,7 @@ export class SignupComponent implements OnInit {
     this.firstPage = false;
     this.secondPage = true;
     this.thirdPage = false;
+    this.signInPage = false;
   }
 
   goToFisrtPage() {
@@ -158,6 +170,7 @@ export class SignupComponent implements OnInit {
     this.firstPage = true;
     this.secondPage = false;
     this.thirdPage = false;
+    this.signInPage = false;
   }
 
   goToThirdPage() {
@@ -169,6 +182,7 @@ export class SignupComponent implements OnInit {
     this.secondPage = false;
     this.thirdPage = true;
     this.userTypePage = false;
+    this.signInPage = false;
   }
 
   setConfirmationValues() {
@@ -343,8 +357,43 @@ export class SignupComponent implements OnInit {
     }
 
     this.signupService.completeUserRegistration(body).subscribe(data => {
-      alert('Your Plan and membership submitted successfully...')
+      alert('Your Plan and membership submitted successfully...');
+      this.modalService.dismissAll(this.claimLeaseModal);
+      this.userInfoForm.reset();
+      this.alertInfoForm.reset();
+      this.userTypeForm.reset();
+      this.userRegistrationForm.reset();
+      this.signInPage = true;
+      this.thirdPage = false;
+      //this.router.navigateByUrl('/signup');
     });
+  }
+
+
+  openSignIn() {
+    debugger;
+    this.signInPage = true;
+    this.userTypePage = false;
+  }
+
+  signIn() {
+    debugger;
+    let body = {
+      email_id: this.signInForm.controls.email.value,
+      password: this.signInForm.controls.password.value
+    }
+
+    this.signinService.signIn(body).subscribe(data => {
+      console.log("login", data);
+      if (data['data'] == 1) {
+        alert("You have been logged in successfully")
+        //this.router.navigateByUrl[]
+      }
+      if (data['data'] == 0) {
+        alert("Sorry...You have not been logged in")
+        //this.router.navigateByUrl[]
+      }
+    })
   }
 
 

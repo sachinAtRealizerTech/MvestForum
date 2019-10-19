@@ -15,23 +15,129 @@ import { DiscussionslistComponent } from './community/discussions/discussionlist
 import { DiscussionDetailsComponent } from './community/discussions/discussiondetails/components/discussion-details.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
-//import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
+import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
+
+
   {
     path: '',
     component: SignupComponent,
-    pathMatch: 'full',
     children: [
       {
-        path: '',
+        path: 'signup',
         component: SignupComponent
       }
     ]
   },
+
+
+  {
+    path: '',
+    component: HomeLayoutComponent,
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+
+      {
+        path: 'photos',
+        component: PhotosComponent
+      },
+      {
+        path: 'requests',
+        component: RequestsComponent
+      },
+      {
+        path: 'newsfeed',
+        component: NewsfeedComponent
+      },
+      {
+        path: 'messages',
+        component: MessagesComponent
+      },
+      {
+        path: 'following',
+        component: FollowingComponent
+      },
+      {
+        path: 'mydiscussions',
+        component: MydiscussionsComponent
+      },
+      {
+        path: 'discussions',
+        component: DiscussionsComponent
+      },
+      {
+        path: 'subcategory',
+        component: SubcategoryComponent
+      },
+      {
+        path: 'discussionslist',
+        component: DiscussionslistComponent
+
+      },
+      {
+        path: 'discussion-details',
+        component: DiscussionDetailsComponent
+
+      },
+      {
+        path: 'neighbors',
+        component: NeighborsComponent
+
+      },
+      {
+        path: 'community',
+        component: CommunityComponent
+
+      },
+      {
+        path: 'signup',
+        component: SignupComponent
+      }
+
+    ]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //////////////////////////////////////
+
+  // {
+  //   path: '',
+  //   component: SignupComponent,
+  //   pathMatch: 'full',
+  //   children: [
+  //     {
+  //       path: 'signup',
+  //       component: SignupComponent
+  //     }
+  //   ]
+  // },
+
+
+
 
   // {
   //   path: '',
