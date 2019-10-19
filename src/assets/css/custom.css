@@ -861,6 +861,8 @@ textarea {
 .vh-100 {
   /* height: 100vh!important; */
   height: 100vh !important;
+  top:0;
+  bottom:0;
 }
 
 
@@ -873,7 +875,6 @@ textarea {
   
 }  
 
- 
 aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li:after {
   position: absolute;
   top: -14px;
