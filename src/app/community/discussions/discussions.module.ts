@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SubcategoryComponent } from './subcategories/components/subcategory.component';
 import { DiscussionslistComponent } from './discussionlist/components/discussionslist.component';
 import { DiscussionDetailsComponent } from './discussiondetails/components/discussion-details.component';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { SummaryPipe } from 'src/app/shared/pipes/summary.pipe';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -29,7 +29,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     RouterModule,
     AngularEditorModule
   ],
-  exports:[
+  exports: [
     Ng2SearchPipeModule,
     FormsModule,
     RouterModule,

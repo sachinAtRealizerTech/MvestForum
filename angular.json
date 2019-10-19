@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-archwizard/archwizard.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,6 +125,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "Mvestforum"
 }

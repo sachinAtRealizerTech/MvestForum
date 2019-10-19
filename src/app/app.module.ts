@@ -20,6 +20,9 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommunityModule } from './community/community.module';
+import { SignupComponent } from './signup/signup.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { ArchwizardModule } from 'angular-archwizard';
 //import { BsModalService } from 'ngx-bootstrap/modal';
 //import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 
@@ -40,6 +43,7 @@ import { CommunityModule } from './community/community.module';
     MydiscussionsComponent,
     NeighborsComponent,
     CommunityComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { CommunityModule } from './community/community.module';
     FormsModule,
     ReactiveFormsModule,
     CommunityModule,
+    NgbModule,
+    ArchwizardModule
     // ModalModule,
     // BsDropdownModule,
     // CollapseModule

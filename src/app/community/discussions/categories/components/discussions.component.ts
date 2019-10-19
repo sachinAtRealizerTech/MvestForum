@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { DiscussionsService } from '../services/discussions.service';
 import { CategoryList } from '../../../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,6 +6,8 @@ import { SubcategoryService } from '../../subcategories/Services/subcategory.ser
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @Component({
@@ -16,10 +18,12 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class DiscussionsComponent implements OnInit {
 
   constructor(private discussionsService: DiscussionsService, private formBuilder: FormBuilder,
-    private subcategoryService: SubcategoryService, private router: Router, private titleService: Title) { }
+    private subcategoryService: SubcategoryService, private router: Router, private titleService: Title,
+    private modalService: NgbModal) { }
 
   postQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
+  postQuestionModal: ElementRef;
   categoryList: CategoryList[] = [];
   searchText: any;
   categoriesList: any;
@@ -44,7 +48,7 @@ export class DiscussionsComponent implements OnInit {
       width: 'auto',
       minWidth: '0',
       translate: 'yes',
-      enableToolbar: true,
+      //enableToolbar: true,
       showToolbar: true,
       placeholder: 'Enter description here...',
       defaultParagraphSeparator: '',
@@ -110,6 +114,18 @@ export class DiscussionsComponent implements OnInit {
       })
   }
 
+  openAskQuestionModal(content) {
+    this.postQuestionModal = content;
+    this.modalService.open(this.postQuestionModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closePostQuestionModal() {
+    this.modalService.dismissAll(this.postQuestionModal);
+  }
+
   selectedCategory(event) {
     this.categoryDocId = event.target.value
     this.categoryName = event.target[event.target.selectedIndex].innerText
@@ -145,6 +161,7 @@ export class DiscussionsComponent implements OnInit {
     this.discussionsService.postQuestion(body).subscribe(data => {
       alert("Question Posted Successfully...");
       this.postQuestionForm.reset();
+      this.closePostQuestionModal();
     })
   }
 

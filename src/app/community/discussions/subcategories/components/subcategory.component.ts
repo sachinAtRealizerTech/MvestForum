@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { SubcategoryService } from '../Services/subcategory.service';
 import { ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -14,10 +15,11 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class SubcategoryComponent implements OnInit {
 
   constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title) { }
+    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
 
   editorConfig: AngularEditorConfig;
   postQuestionForm: FormGroup;
+  postQuestionModal: ElementRef;
   subCategoryList: any;
   subCategoryId: string;
   searchText: any;
@@ -119,6 +121,19 @@ export class SubcategoryComponent implements OnInit {
     this.subCategoryName = event.target[event.target.selectedIndex].innerText
   }
 
+  openAskQuestionModal(content) {
+    this.postQuestionModal = content;
+    this.modalService.open(this.postQuestionModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closePostQuestionModal() {
+    this.modalService.dismissAll(this.postQuestionModal);
+    this.postQuestionForm.reset();
+  }
+
   postQuestion() {
     this.submitQuestion = true;
     if (this.postQuestionForm.invalid) {
@@ -137,6 +152,7 @@ export class SubcategoryComponent implements OnInit {
     this.subcategoryService.postQuestion(body).subscribe(data => {
       alert('Question Posted successfully...');
       this.postQuestionForm.reset();
+      this.closePostQuestionModal();
     })
   }
 

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { DiscussiondetailsService } from '../services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-discussion-details',
@@ -13,10 +14,11 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class DiscussionDetailsComponent implements OnInit {
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title) { }
+    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
 
   discussionDetailsQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
+  postQuestionModal: ElementRef;
   discussionId: string;
   discussionDetails: any;
   discussionDetailsId: any;
@@ -111,6 +113,19 @@ export class DiscussionDetailsComponent implements OnInit {
     })
   }
 
+  openAskQuestionModal(content) {
+    this.postQuestionModal = content;
+    this.modalService.open(this.postQuestionModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closePostQuestionModal() {
+    this.discussionDetailsQuestionForm.reset();
+    this.modalService.dismissAll(this.postQuestionModal);
+  }
+
   showCommentBox() {
     this.commentBox = true
   }
@@ -136,6 +151,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   postQuestion() {
+    debugger;
     this.categoryName = sessionStorage.getItem("category_name");
     this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
@@ -159,6 +175,7 @@ export class DiscussionDetailsComponent implements OnInit {
       alert("Question Posted Successfully");
       this.discussionDetailsQuestionForm.reset();
       this.getDiscussionDeatils(this.discussionDetailsId);
+      this.closePostQuestionModal();
     })
   }
 

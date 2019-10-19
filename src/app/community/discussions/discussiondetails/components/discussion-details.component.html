@@ -31,8 +31,7 @@
         </li>
 
         <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
-          <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-lg"
-            data-toggle="modal" href="#">
+          <a class="btn btn-accent btn-sm btn-block text-uppercase" (click)="openAskQuestionModal(postQuestionModal)">
             Ask a Question
           </a>
         </li>
@@ -40,7 +39,7 @@
     </div>
   </div>
 
-<!-----------------------------------------Breadcrumb and search-------------------------------------------->  
+  <!-----------------------------------------Breadcrumb and search-------------------------------------------->
 
   <div class="row justify-content-center py-3">
     <div class="col-xl-12">
@@ -73,9 +72,9 @@
     </div>
   </div>
 
-<!-----------------------------------------End Breadcrumb and search-------------------------------------------->  
+  <!-----------------------------------------End Breadcrumb and search-------------------------------------------->
 
-<!----------------------------------------- Discussion details--------------------------------------------------->
+  <!----------------------------------------- Discussion details--------------------------------------------------->
 
   <div class="text-center" *ngIf="loading">
     <div class="spinner-border text-accent" role="status">
@@ -223,60 +222,70 @@
 
 <!-----------------------------------------Ask a question------------------------------------------------------------>
 
-<div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
-  aria-hidden="true">
-  <div class="modal-dialog modal-md bg-white shadow">
-    <form action="/action_page.php" class="needs-validation" novalidate>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Ask a Question</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+<ng-template #postQuestionModal>
+  <form>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ask a Question</h5>
+      </div>
 
-        <div class="modal-body">
-          <div class="card shadow-none">
-            <div class="row">
-              <div class="col-12">
-                <form [formGroup]="discussionDetailsQuestionForm">
-                  <div class="form">
+      <div class="modal-body">
+        <div class="card shadow-none">
+          <div class="row">
+            <div class="col-12">
+              <form [formGroup]="discussionDetailsQuestionForm">
+                <div class="form">
 
-                    <div class="form-group">
-                      <label for="title">Discussion Title :</label>
-                      <input type="text" class="form-control" id="title" formControlName="discussionTitle"
-                        placeholder="" [ngClass]="{ 'is-invalid': submitQuestion && f.discussionTitle.errors }">
-                      <div *ngIf="submitQuestion && f.discussionTitle.errors" class="invalid-feedback">
-                        <div *ngIf="f.discussionTitle.errors.required">Discussion title is required</div>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="title">Description :</label>
-                      <div class="w-100">
-                      </div>
-
-                      <angular-editor formControlName="problemDescription" [config]="editorConfig"
-                        [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }">
-                        <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
-                          <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
-                        </div>
-                      </angular-editor>
+                  <div class="form-group">
+                    <label for="title">Discussion Title :</label>
+                    <input type="text" class="form-control" id="title" formControlName="discussionTitle" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitQuestion && f.discussionTitle.errors }">
+                    <div *ngIf="submitQuestion && f.discussionTitle.errors" class="invalid-feedback">
+                      <div *ngIf="f.discussionTitle.errors.required">Discussion title is required</div>
                     </div>
                   </div>
-                </form>
-              </div>
+
+                  <div class="form-group">
+                    <label for="title">Description :</label>
+                    <div class="w-100">
+                    </div>
+
+                    <angular-editor formControlName="problemDescription" [config]="editorConfig"
+                      [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }">
+                      <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
+                        <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
+                      </div>
+                    </angular-editor>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()"
-            data-dismiss="modal">Post</button>
-          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-            data-dismiss="modal">Cancel</button>
-        </div>
       </div>
-    </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()">Post</button>
+        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closePostQuestionModal()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md bg-white shadow">
+
   </div>
 </div>
 

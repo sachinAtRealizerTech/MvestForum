@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from '../Services/discussionslist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-discussionslist',
@@ -13,10 +14,11 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class DiscussionslistComponent implements OnInit {
 
   constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title) { }
+    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
+  postQuestionModal: ElementRef;
   discussionId: string;
   discussionList: any;
   subCategoryId: any;
@@ -107,6 +109,19 @@ export class DiscussionslistComponent implements OnInit {
     )
   }
 
+  openAskQuestionModal(content) {
+    this.postQuestionModal = content;
+    this.modalService.open(this.postQuestionModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closePostQuestionModal() {
+    this.modalService.dismissAll(this.postQuestionModal);
+    this.discussionListQuestionForm.reset()
+  }
+
   postQuestion() {
     this.categoryName = sessionStorage.getItem("category_name");
     this.categoryId = sessionStorage.getItem("category_id");
@@ -131,6 +146,7 @@ export class DiscussionslistComponent implements OnInit {
       alert("Question Posted Successfully");
       this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.discussionId);
+      this.closePostQuestionModal();
     })
   }
 
