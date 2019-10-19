@@ -35,8 +35,7 @@
                 class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
                 <ul class="navbar-nav">
                     <li class="nav-item align-self-center">
-                        <a class="nav-link font-weight-medium align-self-center" data-target=".signin-modal-xl"
-                            data-toggle="modal">SIGN IN</a>
+                        <a class="nav-link font-weight-medium align-self-center">SIGN IN</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <button class="btn btn-accent text-white rounded-0 pull-right"
@@ -56,58 +55,38 @@
 
 
     <!--------------------------------------------------------------User type page---------------------------->
-    <div *ngIf="userTypePage">
-        <div class="row justify-content-center text-center bg-dark">
-            <div class="col-3 align-self-center pb-4">
-                <div class="sidebar">
-                    <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
-                    <h3 class="text-white text-center "> Sign in now</h3>
-                    <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
-                    </button>
-                </div>
-            </div>
 
-            <div class="col-9 vh-100 bg-white">
-                <div class="card rounded-0 shadow-none">
-                    <div class="card-header justify-content-center text-center ">
-                        <h3 for="professional" class=" pt-5 font-weight-semibold">Welcome to MVest</h3>
-                        <h5 for="accountdetails" class="text-muted h6">This resource is designed to equip you with the
-                            most current information, value estimates, and news that is related specifically to your
-                            leases and mineral interests.</h5>
-                        <img src="assets/images/avatars/oilproduction1.jpg" class="pt-5" alt="" height="420px">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!--------------------------------------------------------------End User type page------------------------>
-
-
-    <!-----------------------------------------------------------------------First Page----------------------------------------------->
-
-
-
-    <div class="row justify-content-center text-center bg-dark">
-
-        <div class="sidenav col-3 align-self-center pb-4" *ngIf="firstPage">
+    <div class="row justify-content-center text-center bg-dark" *ngIf="!signInPage">
+        <div class="col-3 align-self-center pb-4">
             <div class="sidebar">
                 <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
                 <h3 class="text-white text-center "> Sign in now</h3>
-                <button class="btn btn-accent text-white rounded-0 mt-3 px-5">SIGN IN
+                <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
                 </button>
             </div>
         </div>
 
+        <div class="col-9 vh-100 bg-white" *ngIf="userTypePage">
+            <div class="card rounded-0 shadow-none">
+                <div class="card-header justify-content-center text-center ">
+                    <h3 for="professional" class=" pt-5 font-weight-semibold">Welcome to MVest</h3>
+                    <h5 for="accountdetails" class="text-muted h6">This resource is designed to equip you with the
+                        most current information, value estimates, and news that is related specifically to your
+                        leases and mineral interests.</h5>
+                    <img src="assets/images/avatars/oilproduction1.jpg" class="pt-5" alt="" height="420px">
+                </div>
+            </div>
+        </div>
+
+        <!---------------------------------User info page---------------->
 
         <div class="col-9 vh-100 bg-white" *ngIf="firstPage">
             <form [formGroup]="userInfoForm">
                 <div class="card rounded-0 shadow-none">
                     <div class="card-header justify-content-center text-center ">
                         <!-- <div class="row text-left text-muted mb-3 ml-3">
-                    <i class="fa fa-arrow-circle-left" aria-hidden="true"><span class="mx-sm-2">Back</span></i>
-                </div> -->
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"><span class="mx-sm-2">Back</span></i>
+                    </div> -->
 
 
                         <small for="signUp" class="text-green ">SIGN UP</small><br />
@@ -248,20 +227,9 @@
             </form>
         </div>
 
+        <!---------------------------------End User infor page------------>
 
-
-        <!-----------------------------------------------------------------------End First Page----------------------------------------------->
-
-        <!------------------------------------------------------------------------Second Page ---------------------------------------------------->
-
-        <div class="sidenav col-3 align-self-center pb-4" *ngIf="secondPage">
-            <div class="sidebar">
-                <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
-                <h3 class="text-white text-center "> Sign in now</h3>
-                <button class="btn btn-accent text-white rounded-0 mt-3 px-5">SIGN IN
-                </button>
-            </div>
-        </div>
+        <!---------------------------------second Page------------------->
 
         <div class="col-sm-9 vh-100 bg-white" *ngIf="secondPage">
             <form [formGroup]="alertInfoForm">
@@ -270,10 +238,10 @@
                     <div class="card-header justify-content-center text-center mt-3">
 
                         <!-- <div class="row text-left text-muted mb-3 ml-3">
-                            <a class="text-muted" (click)="goToFisrtPage()" routerLink=""><i
-                                    class="fa fa-arrow-circle-left" aria-hidden="true"><span
-                                        class="mx-sm-2">Back</span></i></a>
-                        </div> -->
+                                <a class="text-muted" (click)="goToFisrtPage()" routerLink=""><i
+                                        class="fa fa-arrow-circle-left" aria-hidden="true"><span
+                                            class="mx-sm-2">Back</span></i></a>
+                            </div> -->
 
                         <small for="signUp" class="text-green ">SIGN UP</small><br />
                         <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
@@ -331,33 +299,33 @@
 
 
                                     <!-- <div class="custom-control custom-radio  ">
-                                        <input type="radio" id="customRadioInline2" value="2" name="alerts"
-                                            class="custom-control-input" formControlName="alerts"
-                                            [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }">
-                                        <label class="custom-control-label" for="customRadioInline2">I prefer to be
-                                            alerted of news and activity via email</label>
-                                    </div>
-
-                                    <div class="w-100 py-2"></div>
-
-                                    <div class="custom-control custom-radio  ">
-                                        <input type="radio" id="customRadioInline3" value="3" name="alerts"
-                                            class="custom-control-input" formControlName="alerts"
-                                            [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }">
-                                        <label class="custom-control-label" for="customRadioInline3">I prefer to be
-                                            alerted of news and activity via both text alrets and email</label>
-                                    </div>
-
-                                    <div class="w-100 py-2"></div>
-
-                                    <div class="custom-control custom-radio  ">
-                                        <input type="radio" id="customRadioInline4" value="4" name="alerts"
-                                            class="custom-control-input" formControlName="alerts"
-                                            [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }">
-                                        <label class="custom-control-label" for="customRadioInline4">I prefer not to
-                                            be
-                                            notified</label>
-                                    </div> -->
+                                            <input type="radio" id="customRadioInline2" value="2" name="alerts"
+                                                class="custom-control-input" formControlName="alerts"
+                                                [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }">
+                                            <label class="custom-control-label" for="customRadioInline2">I prefer to be
+                                                alerted of news and activity via email</label>
+                                        </div>
+    
+                                        <div class="w-100 py-2"></div>
+    
+                                        <div class="custom-control custom-radio  ">
+                                            <input type="radio" id="customRadioInline3" value="3" name="alerts"
+                                                class="custom-control-input" formControlName="alerts"
+                                                [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }">
+                                            <label class="custom-control-label" for="customRadioInline3">I prefer to be
+                                                alerted of news and activity via both text alrets and email</label>
+                                        </div>
+    
+                                        <div class="w-100 py-2"></div>
+    
+                                        <div class="custom-control custom-radio  ">
+                                            <input type="radio" id="customRadioInline4" value="4" name="alerts"
+                                                class="custom-control-input" formControlName="alerts"
+                                                [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }">
+                                            <label class="custom-control-label" for="customRadioInline4">I prefer not to
+                                                be
+                                                notified</label>
+                                        </div> -->
 
                                     <div *ngIf="submitAlertInfoForm && m.alerts.errors" class="invalid-feedback">
                                         <div *ngIf="m.alerts.errors.required">Alert Info is required
@@ -379,19 +347,9 @@
             </form>
         </div>
 
+        <!----------------------------------End second page-------------->
 
-        <!-----------------------------------------------------Wizard pages----------------------------------------------------------->
-
-
-        <div class="sidenav col-3 align-self-center pb-4" *ngIf="thirdPage">
-            <div class="sidebar">
-                <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
-                <h3 class="text-white text-center "> Sign in now</h3>
-                <button class="btn btn-accent text-white rounded-0 mt-3 px-5">SIGN IN
-                </button>
-            </div>
-        </div>
-
+        <!----------------------------------Wizard pages------------------>
 
         <div class="col-9 bg-white vh-100" *ngIf="thirdPage">
             <form [formGroup]="userRegistrationForm">
@@ -435,8 +393,8 @@
                                                                             for="membershipType{{pl.mplan_id}}">{{pl.plan | titlecase}}
                                                                             Membership</label>
                                                                         <!-- <div class="ml-auto">
-                                                                           
-                                                                        </div> -->
+                                                                               
+                                                                            </div> -->
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-6">
@@ -448,8 +406,8 @@
                                                         </div>
                                                         <!-- <div class="w-100 "></div> -->
                                                         <!-- <div class="ml-auto">
-                                                               
-                                                            </div> -->
+                                                                   
+                                                                </div> -->
 
                                                     </div>
                                                 </div>
@@ -656,484 +614,485 @@
 
 
                 <!-- <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
-                    <aw-wizard-step stepTitle="Plan Selection">
-                        <div class="centered-content">
-                            <div>
-                                <div class="row justify-content-center text-center">
-                                    <div class="col-12">
-                                        <div class="card rounded-0 shadow-none">
-
-                                            <div class="card-body">
-
-                                                <div class="row justify-content-center text-left">
-                                                    <div class="col-md-8 bg-light border py-3 d-inline-flex d-flex">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-radio  ">
-                                                                <input type="radio" id="Membership1" value="1"
-                                                                    name="membershipType" class="custom-control-input"
-                                                                    formControlName="membershipType" [checked]="true">
-                                                                <label class="custom-control-label"
-                                                                    for="Membership1">Bronze
-                                                                    Membership</label>
-                                                            </div>
-                                                            <div class="w-100 py-2"></div>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="Membership2" value="2"
-                                                                    name="membershipType" class="custom-control-input"
-                                                                    formControlName="membershipType">
-                                                                <label class="custom-control-label"
-                                                                    for="Membership2">Silver
-                                                                    Membership</label>
-                                                            </div>
-                                                            <div class="w-100 py-2"></div>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="Membership3" value="3"
-                                                                    name="membershipType" class="custom-control-input"
-                                                                    formControlName="membershipType">
-                                                                <label class="custom-control-label"
-                                                                    for="Membership3">Gold
-                                                                    Membership</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ml-auto">
-                                                            <h6 class="text-dark">*Lifetime Free </h6>
-                                                            <h6 class="text-dark">*$9.99/month or $9.99/annually</h6>
-                                                            <h6 class="text-dark">*$19.99/month or $199.99/annually</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row justify-content-center text-center mt-3">
-                                                    <div class="col-12">
-                                                        <button type="button" class="btn btn-accent text-white px-5"
-                                                            awNextStep>NEXT
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </aw-wizard-step>
-                    <aw-wizard-step stepTitle="Payment Section">
-                        <div class="centered-content">
-                            <div>
-                                <div class="row justify-content-center text-center">
-                                    <div class="col-12 ">
-                                        <div class="card rounded-0 shadow-none">
-
-                                            <div class="card-body">
-
-                                                <div class="row justify-content-center text-left">
-                                                    <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-radio  ">
-                                                                <input type="radio" id="Payment1" value="1"
-                                                                    name="paymentSelection" class="custom-control-input"
-                                                                    formControlName="paymentSelection" [checked]="true">
-                                                                <label class="custom-control-label"
-                                                                    for="Payment1">Paypal</label>
-                                                            </div>
-                                                            <div class="w-100 py-2"></div>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="Payment2" value="2"
-                                                                    name="paymentSelection" class="custom-control-input"
-                                                                    formControlName="paymentSelection">
-                                                                <label class="custom-control-label" for="Payment2">Paper
-                                                                    Check</label>
-                                                            </div>
-                                                            <div class="pt-3 font-weight-semibold">
-                                                                <small class=" font-weight-semibold">*Pay instantly and
-                                                                    securely
-                                                                    through
-                                                                    PayPal</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row justify-content-center text-left">
-                                                    <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-radio  ">
-                                                                <input type="radio" id="Subscription1" value="1"
-                                                                    name="paymentSubscription"
-                                                                    class="custom-control-input"
-                                                                    formControlName="paymentSubscription"
-                                                                    [checked]="true">
-                                                                <label class="custom-control-label"
-                                                                    for="Subscription1">No
-                                                                    Payment
-                                                                    Necessary</label>
-                                                            </div>
-                                                            <div class="w-100 py-2"></div>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="Subscription2" value="2"
-                                                                    name="paymentSubscription"
-                                                                    class="custom-control-input"
-                                                                    formControlName="paymentSubscription">
-                                                                <label class="custom-control-label"
-                                                                    for="Subscription2">Monthly
-                                                                    Subscription
-                                                                    -$9.99/month</label>
-                                                            </div>
-                                                            <div class="w-100 py-2"></div>
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="Subscription3" value="3"
-                                                                    name="paymentSubscription"
-                                                                    class="custom-control-input"
-                                                                    formControlName="paymentSubscription">
-                                                                <label class="custom-control-label"
-                                                                    for="Subscription3">Yearly
-                                                                    Subscription
-                                                                    -$99.99/month</label>
-                                                            </div>
-                                                            <div class="pt-3 font-weight-semibold">
-                                                                <small class=" font-weight-semibold">*you will
-                                                                    automatically
-                                                                    be
-                                                                    enrolled
-                                                                    in
-                                                                    auto-renewal. To change paln and/or payment method,
-                                                                    you
-                                                                    can
-                                                                    do
-                                                                    so
-                                                                    through
-                                                                    your
-                                                                    Profile</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row justify-content-center text-center mt-3">
+                        <aw-wizard-step stepTitle="Plan Selection">
+                            <div class="centered-content">
+                                <div>
+                                    <div class="row justify-content-center text-center">
                                         <div class="col-12">
-                                            <button type="button" class="btn btn-accent text-white px-5"
-                                                awPreviousStep>Back
-                                            </button>
-                                            &nbsp;&nbsp;
-                                            <button type="button" class="btn btn-accent text-white px-5" awNextStep>NEXT
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </aw-wizard-step>
-                    <aw-wizard-step stepTitle="Review and Confirm">
-                        <div class="centered-content">
-                            <div>
-                                <div class="row justify-content-center text-center">
-
-                                    <div class="col-12 ">
-                                        <div class="card rounded-0 shadow-none">
-                                            <div class="card-body">
-
-                                                <div class="row justify-content-center text-left">
-                                                    <div class="col-md-8 bg-light border py-3">
-                                                        <div class=" d-inline-flex d-flex">
-                                                            <div class="mr-5">
-                                                                <h6 class="font-weight-bold text-dark">User Address</h6>
-                                                                <p class="text-muted font-weight-normal mb-1">
-                                                                    {{confirmAddress}}
-                                                                </p>
+                                            <div class="card rounded-0 shadow-none">
+    
+                                                <div class="card-body">
+    
+                                                    <div class="row justify-content-center text-left">
+                                                        <div class="col-md-8 bg-light border py-3 d-inline-flex d-flex">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-radio  ">
+                                                                    <input type="radio" id="Membership1" value="1"
+                                                                        name="membershipType" class="custom-control-input"
+                                                                        formControlName="membershipType" [checked]="true">
+                                                                    <label class="custom-control-label"
+                                                                        for="Membership1">Bronze
+                                                                        Membership</label>
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Membership2" value="2"
+                                                                        name="membershipType" class="custom-control-input"
+                                                                        formControlName="membershipType">
+                                                                    <label class="custom-control-label"
+                                                                        for="Membership2">Silver
+                                                                        Membership</label>
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Membership3" value="3"
+                                                                        name="membershipType" class="custom-control-input"
+                                                                        formControlName="membershipType">
+                                                                    <label class="custom-control-label"
+                                                                        for="Membership3">Gold
+                                                                        Membership</label>
+                                                                </div>
                                                             </div>
                                                             <div class="ml-auto">
-                                                                <h6 class="font-weight-bold text-dark">Preferences
-                                                                    Selected
-                                                                </h6>
-                                                                <p class="text-muted font-weight-normal mb-1">
-                                                                    {{preferenceName}}
-                                                                </p>
-                                                                <ul class="text-muted pt-1">
-                                                                    <li>{{confirmPhoneNumber}}</li>
-                                                                    <li>{{confirmEmail}}</li>
-                                                                </ul>
+                                                                <h6 class="text-dark">*Lifetime Free </h6>
+                                                                <h6 class="text-dark">*$9.99/month or $9.99/annually</h6>
+                                                                <h6 class="text-dark">*$19.99/month or $199.99/annually</h6>
                                                             </div>
                                                         </div>
-                                                        <div class="">
-                                                            <h6 class="font-weight-bold text-dark mb-1">Plan Details
-                                                            </h6>
-                                                            <div class="d-flex bg-white">
-                                                                <p class="text-dark font-weight-normal  mb-1">Bronze
-                                                                    Plan -
-                                                                    Mineral
-                                                                    Owner /
-                                                                    yearly
-                                                                    Subscription</p>
-                                                                <p class="text-dark font-weight-semibold  mb-1 ml-auto">
-                                                                    FREE
-                                                                </p>
-                                                            </div>
+                                                    </div>
+                                                    <div class="row justify-content-center text-center mt-3">
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn btn-accent text-white px-5"
+                                                                awNextStep>NEXT
+                                                            </button>
                                                         </div>
-
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row justify-content-center text-center mt-3">
-                                                    <div class="col-12">
-                                                        <button type="button" class="btn btn-accent text-white px-5"
-                                                            awPreviousStep>Back
-                                                        </button>
-                                                        &nbsp;&nbsp;
-                                                        <button type="submit" class="btn btn-accent text-white px-5"
-                                                            (click)="openClaimLeaseModal(claimLeaseModal)">Confirm
-                                                        </button>
                                                     </div>
                                                 </div>
-
+    
                                             </div>
-
                                         </div>
-
                                     </div>
-
+    
                                 </div>
+    
+    
                             </div>
-
-                        </div>
-                    </aw-wizard-step>
-                </aw-wizard> -->
+                        </aw-wizard-step>
+                        <aw-wizard-step stepTitle="Payment Section">
+                            <div class="centered-content">
+                                <div>
+                                    <div class="row justify-content-center text-center">
+                                        <div class="col-12 ">
+                                            <div class="card rounded-0 shadow-none">
+    
+                                                <div class="card-body">
+    
+                                                    <div class="row justify-content-center text-left">
+                                                        <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-radio  ">
+                                                                    <input type="radio" id="Payment1" value="1"
+                                                                        name="paymentSelection" class="custom-control-input"
+                                                                        formControlName="paymentSelection" [checked]="true">
+                                                                    <label class="custom-control-label"
+                                                                        for="Payment1">Paypal</label>
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Payment2" value="2"
+                                                                        name="paymentSelection" class="custom-control-input"
+                                                                        formControlName="paymentSelection">
+                                                                    <label class="custom-control-label" for="Payment2">Paper
+                                                                        Check</label>
+                                                                </div>
+                                                                <div class="pt-3 font-weight-semibold">
+                                                                    <small class=" font-weight-semibold">*Pay instantly and
+                                                                        securely
+                                                                        through
+                                                                        PayPal</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center text-left">
+                                                        <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-radio  ">
+                                                                    <input type="radio" id="Subscription1" value="1"
+                                                                        name="paymentSubscription"
+                                                                        class="custom-control-input"
+                                                                        formControlName="paymentSubscription"
+                                                                        [checked]="true">
+                                                                    <label class="custom-control-label"
+                                                                        for="Subscription1">No
+                                                                        Payment
+                                                                        Necessary</label>
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Subscription2" value="2"
+                                                                        name="paymentSubscription"
+                                                                        class="custom-control-input"
+                                                                        formControlName="paymentSubscription">
+                                                                    <label class="custom-control-label"
+                                                                        for="Subscription2">Monthly
+                                                                        Subscription
+                                                                        -$9.99/month</label>
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Subscription3" value="3"
+                                                                        name="paymentSubscription"
+                                                                        class="custom-control-input"
+                                                                        formControlName="paymentSubscription">
+                                                                    <label class="custom-control-label"
+                                                                        for="Subscription3">Yearly
+                                                                        Subscription
+                                                                        -$99.99/month</label>
+                                                                </div>
+                                                                <div class="pt-3 font-weight-semibold">
+                                                                    <small class=" font-weight-semibold">*you will
+                                                                        automatically
+                                                                        be
+                                                                        enrolled
+                                                                        in
+                                                                        auto-renewal. To change paln and/or payment method,
+                                                                        you
+                                                                        can
+                                                                        do
+                                                                        so
+                                                                        through
+                                                                        your
+                                                                        Profile</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+    
+                                        <div class="row justify-content-center text-center mt-3">
+                                            <div class="col-12">
+                                                <button type="button" class="btn btn-accent text-white px-5"
+                                                    awPreviousStep>Back
+                                                </button>
+                                                &nbsp;&nbsp;
+                                                <button type="button" class="btn btn-accent text-white px-5" awNextStep>NEXT
+                                                </button>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+    
+    
+                            </div>
+                        </aw-wizard-step>
+                        <aw-wizard-step stepTitle="Review and Confirm">
+                            <div class="centered-content">
+                                <div>
+                                    <div class="row justify-content-center text-center">
+    
+                                        <div class="col-12 ">
+                                            <div class="card rounded-0 shadow-none">
+                                                <div class="card-body">
+    
+                                                    <div class="row justify-content-center text-left">
+                                                        <div class="col-md-8 bg-light border py-3">
+                                                            <div class=" d-inline-flex d-flex">
+                                                                <div class="mr-5">
+                                                                    <h6 class="font-weight-bold text-dark">User Address</h6>
+                                                                    <p class="text-muted font-weight-normal mb-1">
+                                                                        {{confirmAddress}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="ml-auto">
+                                                                    <h6 class="font-weight-bold text-dark">Preferences
+                                                                        Selected
+                                                                    </h6>
+                                                                    <p class="text-muted font-weight-normal mb-1">
+                                                                        {{preferenceName}}
+                                                                    </p>
+                                                                    <ul class="text-muted pt-1">
+                                                                        <li>{{confirmPhoneNumber}}</li>
+                                                                        <li>{{confirmEmail}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="">
+                                                                <h6 class="font-weight-bold text-dark mb-1">Plan Details
+                                                                </h6>
+                                                                <div class="d-flex bg-white">
+                                                                    <p class="text-dark font-weight-normal  mb-1">Bronze
+                                                                        Plan -
+                                                                        Mineral
+                                                                        Owner /
+                                                                        yearly
+                                                                        Subscription</p>
+                                                                    <p class="text-dark font-weight-semibold  mb-1 ml-auto">
+                                                                        FREE
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+    
+    
+                                                        </div>
+    
+                                                    </div>
+    
+                                                    <div class="row justify-content-center text-center mt-3">
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn btn-accent text-white px-5"
+                                                                awPreviousStep>Back
+                                                            </button>
+                                                            &nbsp;&nbsp;
+                                                            <button type="submit" class="btn btn-accent text-white px-5"
+                                                                (click)="openClaimLeaseModal(claimLeaseModal)">Confirm
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+    
+                                            </div>
+    
+                                        </div>
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </aw-wizard-step>
+                    </aw-wizard> -->
 
 
                 <!-- <wizard>
-                    <wizard-step stepTitle="Plan Selection" navigationSymbol="1">
-                        <div class="row justify-content-center text-center">
-                            <div class="col-12">
-                                <div class="card rounded-0 shadow-none">
-
-                                    <div class="card-body">
-
-                                        <div class="row justify-content-center text-left">
-                                            <div class="col-md-8 bg-light border py-3 d-inline-flex d-flex">
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-radio  ">
-                                                        <input type="radio" id="Membership1" value="1"
-                                                            name="membershipType" class="custom-control-input"
-                                                            formControlName="membershipType" [checked]="true">
-                                                        <label class="custom-control-label" for="Membership1">Bronze
-                                                            Membership</label>
-                                                    </div>
-                                                    <div class="w-100 py-2"></div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="Membership2" value="2"
-                                                            name="membershipType" class="custom-control-input"
-                                                            formControlName="membershipType">
-                                                        <label class="custom-control-label" for="Membership2">Silver
-                                                            Membership</label>
-                                                    </div>
-                                                    <div class="w-100 py-2"></div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="Membership3" value="3"
-                                                            name="membershipType" class="custom-control-input"
-                                                            formControlName="membershipType">
-                                                        <label class="custom-control-label" for="Membership3">Gold
-                                                            Membership</label>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-auto">
-                                                    <h6 class="text-dark">*Lifetime Free </h6>
-                                                    <h6 class="text-dark">*$9.99/month or $9.99/annually</h6>
-                                                    <h6 class="text-dark">*$19.99/month or $199.99/annually</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-center text-center mt-3">
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-accent text-white px-5"
-                                                    goToStep="2">NEXT
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </wizard-step>
-                    <wizard-step stepTitle="Payment Section" navigationSymbol="2">
-                        <div class="row justify-content-center text-center">
-                            <div class="col-12 ">
-                                <div class="card rounded-0 shadow-none">
-
-                                    <div class="card-body">
-
-                                        <div class="row justify-content-center text-left">
-                                            <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-radio  ">
-                                                        <input type="radio" id="Payment1" value="1"
-                                                            name="paymentSelection" class="custom-control-input"
-                                                            formControlName="paymentSelection" [checked]="true">
-                                                        <label class="custom-control-label"
-                                                            for="Payment1">Paypal</label>
-                                                    </div>
-                                                    <div class="w-100 py-2"></div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="Payment2" value="2"
-                                                            name="paymentSelection" class="custom-control-input"
-                                                            formControlName="paymentSelection">
-                                                        <label class="custom-control-label" for="Payment2">Paper
-                                                            Check</label>
-                                                    </div>
-                                                    <div class="pt-3 font-weight-semibold">
-                                                        <small class=" font-weight-semibold">*Pay instantly and
-                                                            securely
-                                                            through
-                                                            PayPal</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-center text-left">
-                                            <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-radio  ">
-                                                        <input type="radio" id="Subscription1" value="1"
-                                                            name="paymentSubscription" class="custom-control-input"
-                                                            formControlName="paymentSubscription" [checked]="true">
-                                                        <label class="custom-control-label" for="Subscription1">No
-                                                            Payment
-                                                            Necessary</label>
-                                                    </div>
-                                                    <div class="w-100 py-2"></div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="Subscription2" value="2"
-                                                            name="paymentSubscription" class="custom-control-input"
-                                                            formControlName="paymentSubscription">
-                                                        <label class="custom-control-label" for="Subscription2">Monthly
-                                                            Subscription
-                                                            -$9.99/month</label>
-                                                    </div>
-                                                    <div class="w-100 py-2"></div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="Subscription3" value="3"
-                                                            name="paymentSubscription" class="custom-control-input"
-                                                            formControlName="paymentSubscription">
-                                                        <label class="custom-control-label" for="Subscription3">Yearly
-                                                            Subscription
-                                                            -$99.99/month</label>
-                                                    </div>
-                                                    <div class="pt-3 font-weight-semibold">
-                                                        <small class=" font-weight-semibold">*you will automatically
-                                                            be
-                                                            enrolled
-                                                            in
-                                                            auto-renewal. To change paln and/or payment method, you
-                                                            can
-                                                            do
-                                                            so
-                                                            through
-                                                            your
-                                                            Profile</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center text-center mt-3">
+                        <wizard-step stepTitle="Plan Selection" navigationSymbol="1">
+                            <div class="row justify-content-center text-center">
                                 <div class="col-12">
-                                    <button type="button" class="btn btn-accent text-white px-5" goToStep="1">Back
-                                    </button>
-                                    &nbsp;&nbsp;
-                                    <button type="button" class="btn btn-accent text-white px-5" goToStep="3">NEXT
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </wizard-step>
-                    <wizard-step stepTitle="Review and Confirm" navigationSymbol="3">
-                        <div class="row justify-content-center text-center">
-
-                            <div class="col-12 ">
-                                <div class="card rounded-0 shadow-none">
-                                    <div class="card-body">
-
-                                        <div class="row justify-content-center text-left">
-                                            <div class="col-md-8 bg-light border py-3">
-                                                <div class=" d-inline-flex d-flex">
-                                                    <div class="mr-5">
-                                                        <h6 class="font-weight-bold text-dark">User Address</h6>
-                                                        <p class="text-muted font-weight-normal mb-1">{{confirmAddress}}
-                                                        </p>
+                                    <div class="card rounded-0 shadow-none">
+    
+                                        <div class="card-body">
+    
+                                            <div class="row justify-content-center text-left">
+                                                <div class="col-md-8 bg-light border py-3 d-inline-flex d-flex">
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-radio  ">
+                                                            <input type="radio" id="Membership1" value="1"
+                                                                name="membershipType" class="custom-control-input"
+                                                                formControlName="membershipType" [checked]="true">
+                                                            <label class="custom-control-label" for="Membership1">Bronze
+                                                                Membership</label>
+                                                        </div>
+                                                        <div class="w-100 py-2"></div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="Membership2" value="2"
+                                                                name="membershipType" class="custom-control-input"
+                                                                formControlName="membershipType">
+                                                            <label class="custom-control-label" for="Membership2">Silver
+                                                                Membership</label>
+                                                        </div>
+                                                        <div class="w-100 py-2"></div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="Membership3" value="3"
+                                                                name="membershipType" class="custom-control-input"
+                                                                formControlName="membershipType">
+                                                            <label class="custom-control-label" for="Membership3">Gold
+                                                                Membership</label>
+                                                        </div>
                                                     </div>
                                                     <div class="ml-auto">
-                                                        <h6 class="font-weight-bold text-dark">Preferences Selected
-                                                        </h6>
-                                                        <p class="text-muted font-weight-normal mb-1">
-                                                            {{preferenceName}}
-                                                        </p>
-                                                        <ul class="text-muted pt-1">
-                                                            <li>{{confirmPhoneNumber}}</li>
-                                                            <li>{{confirmEmail}}</li>
-                                                        </ul>
+                                                        <h6 class="text-dark">*Lifetime Free </h6>
+                                                        <h6 class="text-dark">*$9.99/month or $9.99/annually</h6>
+                                                        <h6 class="text-dark">*$19.99/month or $199.99/annually</h6>
                                                     </div>
                                                 </div>
-                                                <div class="">
-                                                    <h6 class="font-weight-bold text-dark mb-1">Plan Details</h6>
-                                                    <div class="d-flex bg-white">
-                                                        <p class="text-dark font-weight-normal  mb-1">Bronze Plan -
-                                                            Mineral
-                                                            Owner /
-                                                            yearly
-                                                            Subscription</p>
-                                                        <p class="text-dark font-weight-semibold  mb-1 ml-auto">FREE
-                                                        </p>
-                                                    </div>
+                                            </div>
+                                            <div class="row justify-content-center text-center mt-3">
+                                                <div class="col-12">
+                                                    <button type="button" class="btn btn-accent text-white px-5"
+                                                        goToStep="2">NEXT
+                                                    </button>
                                                 </div>
-
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row justify-content-center text-center mt-3">
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-accent text-white px-5"
-                                                    goToStep="2">Back
-                                                </button>
-                                                &nbsp;&nbsp;
-                                                <button type="submit" class="btn btn-accent text-white px-5"
-                                                    (click)="openClaimLeaseModal(claimLeaseModal)">Confirm
-                                                </button>
                                             </div>
                                         </div>
-
+    
                                     </div>
-
                                 </div>
-
                             </div>
-
-                        </div>
-                    </wizard-step>
-                </wizard> -->
+                        </wizard-step>
+                        <wizard-step stepTitle="Payment Section" navigationSymbol="2">
+                            <div class="row justify-content-center text-center">
+                                <div class="col-12 ">
+                                    <div class="card rounded-0 shadow-none">
+    
+                                        <div class="card-body">
+    
+                                            <div class="row justify-content-center text-left">
+                                                <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-radio  ">
+                                                            <input type="radio" id="Payment1" value="1"
+                                                                name="paymentSelection" class="custom-control-input"
+                                                                formControlName="paymentSelection" [checked]="true">
+                                                            <label class="custom-control-label"
+                                                                for="Payment1">Paypal</label>
+                                                        </div>
+                                                        <div class="w-100 py-2"></div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="Payment2" value="2"
+                                                                name="paymentSelection" class="custom-control-input"
+                                                                formControlName="paymentSelection">
+                                                            <label class="custom-control-label" for="Payment2">Paper
+                                                                Check</label>
+                                                        </div>
+                                                        <div class="pt-3 font-weight-semibold">
+                                                            <small class=" font-weight-semibold">*Pay instantly and
+                                                                securely
+                                                                through
+                                                                PayPal</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center text-left">
+                                                <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-radio  ">
+                                                            <input type="radio" id="Subscription1" value="1"
+                                                                name="paymentSubscription" class="custom-control-input"
+                                                                formControlName="paymentSubscription" [checked]="true">
+                                                            <label class="custom-control-label" for="Subscription1">No
+                                                                Payment
+                                                                Necessary</label>
+                                                        </div>
+                                                        <div class="w-100 py-2"></div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="Subscription2" value="2"
+                                                                name="paymentSubscription" class="custom-control-input"
+                                                                formControlName="paymentSubscription">
+                                                            <label class="custom-control-label" for="Subscription2">Monthly
+                                                                Subscription
+                                                                -$9.99/month</label>
+                                                        </div>
+                                                        <div class="w-100 py-2"></div>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="Subscription3" value="3"
+                                                                name="paymentSubscription" class="custom-control-input"
+                                                                formControlName="paymentSubscription">
+                                                            <label class="custom-control-label" for="Subscription3">Yearly
+                                                                Subscription
+                                                                -$99.99/month</label>
+                                                        </div>
+                                                        <div class="pt-3 font-weight-semibold">
+                                                            <small class=" font-weight-semibold">*you will automatically
+                                                                be
+                                                                enrolled
+                                                                in
+                                                                auto-renewal. To change paln and/or payment method, you
+                                                                can
+                                                                do
+                                                                so
+                                                                through
+                                                                your
+                                                                Profile</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+    
+                                <div class="row justify-content-center text-center mt-3">
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-accent text-white px-5" goToStep="1">Back
+                                        </button>
+                                        &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-accent text-white px-5" goToStep="3">NEXT
+                                        </button>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </wizard-step>
+                        <wizard-step stepTitle="Review and Confirm" navigationSymbol="3">
+                            <div class="row justify-content-center text-center">
+    
+                                <div class="col-12 ">
+                                    <div class="card rounded-0 shadow-none">
+                                        <div class="card-body">
+    
+                                            <div class="row justify-content-center text-left">
+                                                <div class="col-md-8 bg-light border py-3">
+                                                    <div class=" d-inline-flex d-flex">
+                                                        <div class="mr-5">
+                                                            <h6 class="font-weight-bold text-dark">User Address</h6>
+                                                            <p class="text-muted font-weight-normal mb-1">{{confirmAddress}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="ml-auto">
+                                                            <h6 class="font-weight-bold text-dark">Preferences Selected
+                                                            </h6>
+                                                            <p class="text-muted font-weight-normal mb-1">
+                                                                {{preferenceName}}
+                                                            </p>
+                                                            <ul class="text-muted pt-1">
+                                                                <li>{{confirmPhoneNumber}}</li>
+                                                                <li>{{confirmEmail}}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        <h6 class="font-weight-bold text-dark mb-1">Plan Details</h6>
+                                                        <div class="d-flex bg-white">
+                                                            <p class="text-dark font-weight-normal  mb-1">Bronze Plan -
+                                                                Mineral
+                                                                Owner /
+                                                                yearly
+                                                                Subscription</p>
+                                                            <p class="text-dark font-weight-semibold  mb-1 ml-auto">FREE
+                                                            </p>
+                                                        </div>
+                                                    </div>
+    
+    
+                                                </div>
+    
+                                            </div>
+    
+                                            <div class="row justify-content-center text-center mt-3">
+                                                <div class="col-12">
+                                                    <button type="button" class="btn btn-accent text-white px-5"
+                                                        goToStep="2">Back
+                                                    </button>
+                                                    &nbsp;&nbsp;
+                                                    <button type="submit" class="btn btn-accent text-white px-5"
+                                                        (click)="openClaimLeaseModal(claimLeaseModal)">Confirm
+                                                    </button>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                        </wizard-step>
+                    </wizard> -->
 
             </form>
         </div>
-
+        <!------------------------------End wizard----------------------->
 
     </div>
+
 
     <!-------------------------------------------------------------Sign In form---------------------------------------------------->
 
@@ -1142,9 +1101,10 @@
 
         <div class="col-3 align-self-center pb-4">
             <div class="sidebar">
-                <h6 class="text-green mt-5 ">ALREADY HAVE AN ACCOUNT? </h6>
-                <h3 class="text-white text-center  "> Sign in now</h3>
-                <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
+                <h6 class="text-green mt-5 ">DON'T HAVE AN ACCOUNT? </h6>
+                <h3 class="text-white text-center  "> Sign Up now</h3>
+                <button class="btn btn-accent text-white rounded-0 mt-3 px-5"
+                    (click)="openuserTypeModal(userTypeModal)">SIGN UP
                 </button>
             </div>
         </div>

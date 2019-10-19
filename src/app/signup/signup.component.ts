@@ -374,6 +374,9 @@ export class SignupComponent implements OnInit {
     debugger;
     this.signInPage = true;
     this.userTypePage = false;
+    this.firstPage = false;
+    this.secondPage = false;
+    this.thirdPage = false;
   }
 
   signIn() {
