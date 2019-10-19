@@ -45,6 +45,7 @@ export class SignupComponent implements OnInit {
   planExpiryDate: Date;
   todayDate: Date;
   signInPage = false;
+  submitSignIn = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -52,8 +53,8 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signInForm = this.formBuilder.group({
-      email: [],
-      password: []
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     })
 
     this.userTypeForm = this.formBuilder.group({
@@ -61,9 +62,6 @@ export class SignupComponent implements OnInit {
     });
 
     this.userRegistrationForm = this.formBuilder.group({
-      // userInfoForm: this.userInfoForm,
-      // alertEmail: this.alertInfoForm,
-
       membershipType: ['', Validators.required],
       paymentSelection: ['', Validators.required],
       subscriptionAmount: ['', Validators.required],
@@ -71,28 +69,12 @@ export class SignupComponent implements OnInit {
     });
 
     this.alertInfoForm = this.formBuilder.group({
-
-      // alertPhone: [],
-      // alertEmail: [],
-      // alerts: []
-
       alertPhone: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
       alertEmail: ['', [Validators.required, Validators.email]],
       alerts: ['', Validators.required]
     })
 
     this.userInfoForm = this.formBuilder.group({
-      // firstName: [],
-      // lastName: [],
-      // eMail: [],
-      // address: [],
-      // city: [],
-      // state: [],
-      // zipCode: [],
-      // phoneNumber: [],
-      // password: [],
-      // confirmPassword: [],
-
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       eMail: ['', [Validators.required, Validators.email]],
@@ -118,6 +100,7 @@ export class SignupComponent implements OnInit {
   get f() { return this.userInfoForm.controls; }
   get m() { return this.alertInfoForm.controls; }
   get n() { return this.planSelectionForm.controls; }
+  get l() { return this.signInForm.controls }
 
   openuserTypeModal(content) {
     this.userTypeModal = content;
@@ -347,7 +330,7 @@ export class SignupComponent implements OnInit {
       member_id: this.userId,
       mplan_id: this.userRegistrationForm.controls.membershipType.value,
       // amount: this.subscrptionAmount,
-      amount: 4000,
+      amount: this.selMonthlyPrice,
       transaction_id: 1,
       planexpiry_date: this.planExpiryDate,
       subscriptionduration: this.planDuration,
@@ -381,6 +364,11 @@ export class SignupComponent implements OnInit {
 
   signIn() {
     debugger;
+    this.submitSignIn = true;
+    if (this.signInForm.invalid) {
+      return;
+    }
+    this.submitSignIn = false;
     let body = {
       email_id: this.signInForm.controls.email.value,
       password: this.signInForm.controls.password.value
@@ -393,7 +381,7 @@ export class SignupComponent implements OnInit {
         //this.router.navigateByUrl[]
       }
       if (data['data'] == 0) {
-        alert("Sorry...You have not been logged in")
+        alert("Sorry...You have not been logged in..Please verify your credentials")
         //this.router.navigateByUrl[]
       }
     })

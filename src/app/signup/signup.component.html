@@ -426,7 +426,7 @@
                         </div>
 
                     </aw-wizard-step>
-                    <aw-wizard-step stepTitle="Payment Selection" awOptionalStep>
+                    <aw-wizard-step stepTitle="Payment Selection">
                         <div class="centered-content">
                             <div>
                                 <div class="row justify-content-center text-center">
@@ -578,7 +578,7 @@
                                                                     {{planDuration}}
                                                                     Subscription</p>
                                                                 <p class="text-dark font-weight-semibold  mb-1 ml-auto">
-                                                                    FREE
+                                                                    {{selMonthlyPrice}}$
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -1124,7 +1124,10 @@
                                 <div class="form-group">
                                     <label for="email" class="text-muted">eMail</label>
                                     <input class="form-control rounded" id="email" formControlName="email" type="text"
-                                        placeholder="">
+                                        placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
+                                    <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
+                                        <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1133,7 +1136,11 @@
                                 <div class="form-group">
                                     <label for="password" class="text-muted">Password</label>
                                     <input class="form-control rounded" id="password" formControlName="password"
-                                        type="password" placeholder="">
+                                        type="password" placeholder=""
+                                        [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
+                                    <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
+                                        <div *ngIf="l.password.errors.required">Please enter your password.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1189,17 +1196,17 @@
 
                                 <div class="ml-auto">
                                     <a routerLink="">
-                                        <i class="material-icons icon-muted md-24 pl-3" data-container="body"
-                                            data-toggle="popover" data-placement="right"
-                                            data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+                                        <i class="material-icons icon-muted md-24 pl-3"
+                                            ngbPopover="This selection will let you sign up for Mineral owner."
+                                            placement="right">
                                             info
                                         </i>
                                     </a>
                                     <div class="w-100"></div>
                                     <a routerLink="">
-                                        <i class="material-icons icon-muted md-24 pl-3" data-container="body"
-                                            data-toggle="popover" data-placement="right"
-                                            data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+                                        <i class="material-icons icon-muted md-24 pl-3"
+                                            ngbPopover="This selection will let you sign up for Professional owner."
+                                            placement="right">
                                             info
                                         </i>
                                     </a>
