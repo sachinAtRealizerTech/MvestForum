@@ -324,9 +324,9 @@ export class SignupComponent implements OnInit {
       this.planName = planName
   }
 
-  sendPlanDuration(duration: string) {
+  sendPlanDuration(duration: string, amount: any) {
     debugger;
-    // this.subscrptionAmount = subscrptionAmount
+    this.subscrptionAmount = amount
     this.planDuration = duration
   }
 
