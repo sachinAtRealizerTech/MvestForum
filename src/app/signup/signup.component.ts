@@ -125,7 +125,8 @@ export class SignupComponent implements OnInit {
     this.userTypeModal = content;
     this.modalService.open(this.userTypeModal, {
       backdrop: 'static',
-      backdropClass: 'customBackdrop'
+      backdropClass: 'customBackdrop',
+      size: 'sm'
     })
   }
 
