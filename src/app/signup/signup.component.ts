@@ -213,16 +213,16 @@ export class SignupComponent implements OnInit {
     }
     this.signupService.userRegistration(body).subscribe(data => {
       this.submitUserInfoForm = false;
-      if (data['status_code'] == 400) {
+      console.log('status code', data['status_code'])
+      if (data['error'] == "duplicate key value violates unique constraint \"unique_emailid\"") {
         alert("Email is already registered...Please enter another mail id.");
         return;
       };
-      this.userId = data['data']
+      this.userId = data['data'];
       this.goToSecondPage();
       this.setConfirmationValues();
     },
       error => {
-        alert("Email is already registered...Please enter another mail id.");
         console.log(error);
       }
     )
