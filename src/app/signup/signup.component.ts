@@ -118,6 +118,7 @@ export class SignupComponent implements OnInit {
     if (this.userTypeForm.invalid) {
       return
     }
+    this.professionalUserType = false;
     this.userTypeName = "Mineral"
     if (this.userTypeForm.controls.Ownership.value == "2") {
       this.professionalUserType = true;
@@ -132,14 +133,14 @@ export class SignupComponent implements OnInit {
   }
 
   goToSecondPage() {
-    this.submitUserInfoForm = true;
-    if (this.userInfoForm.invalid) {
-      return;
-    }
-    if (this.userInfoForm.controls.password.value != this.userInfoForm.controls.confirmPassword.value) {
-      alert("Passwords did not match...Please verify password.")
-      return
-    }
+    // this.submitUserInfoForm = true;
+    // if (this.userInfoForm.invalid) {
+    //   return;
+    // }
+    // if (this.userInfoForm.controls.password.value != this.userInfoForm.controls.confirmPassword.value) {
+    //   alert("Passwords did not match...Please verify password.")
+    //   return
+    // }
     this.alertInfoForm.controls.alertPhone.setValue(this.userInfoForm.controls.phoneNumber.value)
     this.alertInfoForm.controls.alertEmail.setValue(this.userInfoForm.controls.eMail.value)
     this.firstPage = false;
@@ -182,23 +183,12 @@ export class SignupComponent implements OnInit {
     if (this.userInfoForm.invalid) {
       return;
     }
+    if (this.userInfoForm.controls.password.value != this.userInfoForm.controls.confirmPassword.value) {
+      alert("Passwords did not match...Please verify password.")
+      return
+    }
     this.submitUserInfoForm = false;
     let body = {
-      // firstName: this.userInfoForm.controls.firstName.value,
-      // lastName: this.userInfoForm.controls.lastName.value,
-      // eMail: this.userInfoForm.controls.eMail.value,
-      // address: this.userInfoForm.controls.address.value,
-      // city: this.userInfoForm.controls.city.value,
-      // state: this.userInfoForm.controls.state.value,
-      // zipCode: this.userInfoForm.controls.zipCode.value,
-      // phoneNumber: this.userInfoForm.controls.phoneNumber.value,
-      // password: this.userInfoForm.controls.password.value,
-      // confirmPassword: this.userInfoForm.controls.confirmPassword.value,
-      // alertPhone: this.alertInfoForm.controls.alertPhone.value,
-      // alertEmail: this.alertInfoForm.controls.alertEmail.value,
-      // alerts: this.alertInfoForm.controls.alerts.value,
-
-
       member_type: this.userTypeForm.controls.Ownership.value,
       f_name: this.userInfoForm.controls.firstName.value,
       l_name: this.userInfoForm.controls.lastName.value,
@@ -209,9 +199,6 @@ export class SignupComponent implements OnInit {
       zip_code: this.userInfoForm.controls.zipCode.value,
       phone_number: this.userInfoForm.controls.phoneNumber.value,
       password: this.userInfoForm.controls.password.value
-      // membershipType: this.userRegistrationForm.controls.membershipType.value,
-      // paymentSelection: this.userRegistrationForm.controls.paymentSelection.value,
-      // paymentSubscription: this.userRegistrationForm.controls.paymentSubscription.value,
     }
     this.signupService.userRegistration(body).subscribe(data => {
       this.submitUserInfoForm = false;
@@ -321,7 +308,6 @@ export class SignupComponent implements OnInit {
 
     if (this.planDuration == "Monthly") {
       this.todayDate = new Date();
-      //this.planExpiryDate=(new Date().setMonth(this.todayDate.getMonth()+1))
       this.planExpiryDate = new Date(new Date().setMonth(new Date().getMonth() + 1))
     }
     else {
@@ -331,7 +317,6 @@ export class SignupComponent implements OnInit {
     let body = {
       member_id: this.userId,
       mplan_id: this.userRegistrationForm.controls.membershipType.value,
-      // amount: this.subscrptionAmount,
       amount: this.selMonthlyPrice,
       transaction_id: 1,
       planexpiry_date: this.planExpiryDate,
@@ -378,11 +363,11 @@ export class SignupComponent implements OnInit {
 
     this.signinService.signIn(body).subscribe(data => {
       console.log("login", data);
-      if (data['data'] == 1) {
+      if (data['data']) {
         alert("You have been logged in successfully")
         //this.router.navigateByUrl[]
       }
-      if (data['data'] == 0) {
+      if (data['error'] == "email and password not valid") {
         alert("Sorry...You have not been logged in..Please verify your credentials")
         //this.router.navigateByUrl[]
       }
