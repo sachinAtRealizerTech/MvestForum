@@ -103,6 +103,7 @@ export class SignupComponent implements OnInit {
   get l() { return this.signInForm.controls }
 
   openuserTypeModal(content) {
+    this.submitSignIn = false;
     this.userTypeModal = content;
     this.modalService.open(this.userTypeModal, {
       backdrop: 'static',
