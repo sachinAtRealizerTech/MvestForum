@@ -1,8 +1,8 @@
 <!-----------------------------------------------------------Top Nav---------------------------------------------------------->
 
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark shadow">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow">
     <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="images/logopng.png" width="auto" height="56px">,lkmlnj</a>
+        <a class="navbar-brand" href="index.html"><img src="images/logopng.png" width="auto" height="56px">MVest Logo</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -18,16 +18,16 @@
             <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a href="product.html" class="nav-link font-weight-medium active ">FEATURES</a>
+                        <a href="product.html" class="nav-link font-weight-semibold active text-muted ">FEATURES</a>
                     </li>
                     <li class="nav-item">
-                        <a href="services.html" class="nav-link font-weight-medium ">PLANS</a>
+                        <a href="services.html" class="nav-link font-weight-semibold text-muted ">PLANS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="carrer.html" class="nav-link font-weight-medium ">OUR STORY</a>
+                        <a href="carrer.html" class="nav-link font-weight-semibold text-muted ">OUR STORY</a>
                     </li>
                     <li class="nav-item">
-                        <a href="about.html" class="nav-link font-weight-medium">NEWS</a>
+                        <a href="about.html" class="nav-link font-weight-semibold text-muted">NEWS</a>
                     </li>
                 </ul>
             </div>
@@ -35,10 +35,10 @@
                 class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
                 <ul class="navbar-nav">
                     <li class="nav-item align-self-center">
-                        <a class="nav-link font-weight-medium align-self-center">SIGN IN</a>
+                        <a class="nav-link font-weight-semibold text-muted align-self-center">SIGN IN</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <button class="btn btn-accent text-white rounded-0 pull-right"
+                        <button class="btn btn-outline-accent text-white rounded-0 pull-right"
                             (click)="openuserTypeModal(userTypeModal)">SIGN UP FREE
                         </button>
                     </li>
@@ -56,7 +56,7 @@
 
     <!--------------------------------------------------------------User type page---------------------------->
 
-    <div class="row justify-content-center text-center bg-dark " *ngIf="!signInPage">
+    <div class="row justify-content-center text-center bg-black " *ngIf="!signInPage">
         <div class="col-3 align-self-center pb-4  vh-100">
             <div class="sidebar">
                 <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
@@ -508,12 +508,13 @@
                                                             <div class="row" *ngFor="let pl of planInformation">
                                                                 <div class="col-6">
                                                                     <div class="custom-control custom-radio">
-                                                                        <input type="radio"
+                                                                        <input type="radio"   
                                                                             id="membershipType{{pl.mplan_id}}"
                                                                             value="{{pl.mplan_id}}"
                                                                             name="membershipType"
                                                                             class="custom-control-input"
                                                                             formControlName="membershipType"
+                                                                            
                                                                             (change)="sendPlanInfo(pl.monthly_price,pl.annual_price,pl.plan)">
                                                                         <label class="custom-control-label"
                                                                             for="membershipType{{pl.mplan_id}}">{{pl.plan | titlecase}}
@@ -540,7 +541,7 @@
 
                                 <div class="row justify-content-center text-center mt-3">
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-accent text-white px-5" awNextStep>NEXT
+                                        <button type="button"  class="btn btn-accent text-white px-5" awNextStep>NEXT
                                         </button>
                                     </div>
                                 </div>
@@ -744,7 +745,7 @@
     <!-------------------------------------------------------------Sign In form---------------------------------------------------->
 
 
-    <div class="row justify-content-center text-center bg-dark" *ngIf="signInPage">
+    <div class="row justify-content-center text-center bg-black" *ngIf="signInPage">
 
         <div class="col-3 align-self-center pb-4">
             <div class="sidebar">
