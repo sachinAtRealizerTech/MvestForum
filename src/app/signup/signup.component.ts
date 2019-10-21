@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
   planSelectionForm: FormGroup;
   userTypeForm: FormGroup;
   signInForm: FormGroup;
+  interestPageForm: FormGroup;
   userTypeModal: ElementRef;
   claimLeaseModal: ElementRef;
   confirmAddress: string;
@@ -46,6 +47,7 @@ export class SignupComponent implements OnInit {
   todayDate: Date;
   signInPage = false;
   submitSignIn = false;
+  interestPage = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -74,17 +76,32 @@ export class SignupComponent implements OnInit {
       alerts: ['', Validators.required]
     })
 
+    this.interestPageForm = this.formBuilder.group({
+      interstType: []
+    })
+
     this.userInfoForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       eMail: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
+      address: [''],
+      city: [''],
+      state: [''],
+      zipCode: [''],
+      phoneNumber: [''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
+
+      // firstName: ['', Validators.required],
+      // lastName: ['', Validators.required],
+      // eMail: ['', [Validators.required, Validators.email]],
+      // address: ['', Validators.required],
+      // city: ['', Validators.required],
+      // state: ['', Validators.required],
+      // zipCode: ['', Validators.required],
+      // phoneNumber: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
+      // password: ['', Validators.required],
+      // confirmPassword: ['', Validators.required],
     })
 
     this.planSelectionForm = this.formBuilder.group({
@@ -99,6 +116,7 @@ export class SignupComponent implements OnInit {
   get g() { return this.userRegistrationForm.controls; }
   get f() { return this.userInfoForm.controls; }
   get m() { return this.alertInfoForm.controls; }
+  get p() { return this.interestPageForm.controls }
   get n() { return this.planSelectionForm.controls; }
   get l() { return this.signInForm.controls }
 
@@ -149,6 +167,7 @@ export class SignupComponent implements OnInit {
     this.thirdPage = false;
     this.signInPage = false;
     this.submitUserInfoForm = false;
+    this.interestPage = false;
   }
 
   goToFisrtPage() {
@@ -157,6 +176,16 @@ export class SignupComponent implements OnInit {
     this.secondPage = false;
     this.thirdPage = false;
     this.signInPage = false;
+    this.interestPage = false;
+  }
+
+  goToInterestPage() {
+    this.userTypePage = false;
+    this.firstPage = false;
+    this.secondPage = false;
+    this.thirdPage = false;
+    this.signInPage = false;
+    this.interestPage = true;
   }
 
   goToThirdPage() {
@@ -170,6 +199,7 @@ export class SignupComponent implements OnInit {
     this.userTypePage = false;
     this.signInPage = false;
     this.submitAlertInfoForm = false;
+    this.interestPage = false;
   }
 
   setConfirmationValues() {
@@ -252,11 +282,25 @@ export class SignupComponent implements OnInit {
     }
 
     this.signupService.postNotificationPrefernece(body).subscribe(data => {
-      this.goToThirdPage();
+
+      if (this.professionalUserType) {
+        this.goToInterestPage();
+      }
+      else {
+        this.goToThirdPage();
+      }
       this.getPlanSelectionData();
     })
   }
 
+
+  postInterestPrefernce() {
+    //this.goToInterestPage();
+    // if (this.interestPageForm.invalid) {
+    //   return;
+    // }
+    this.goToThirdPage();
+  }
 
   getPlanSelectionData() {
     if (this.userTypeForm.controls.Ownership.value == "1") {
@@ -336,6 +380,7 @@ export class SignupComponent implements OnInit {
       this.userRegistrationForm.reset();
       this.signInPage = true;
       this.thirdPage = false;
+      this.professionalUserType = false;
       //this.router.navigateByUrl('/signup');
     });
   }

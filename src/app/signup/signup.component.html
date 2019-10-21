@@ -80,7 +80,7 @@
 
         <!---------------------------------User info page---------------->
 
-        <div class="col-9 vh-100 bg-white" *ngIf="firstPage">
+        <div class="col-9 bg-white" *ngIf="firstPage">
             <form [formGroup]="userInfoForm">
                 <div class="card rounded-0 shadow-none">
                     <div class="card-header justify-content-center text-center ">
@@ -231,7 +231,7 @@
 
         <!---------------------------------second Page------------------->
 
-        <div class="col-sm-9 vh-100 bg-white" *ngIf="secondPage">
+        <div class="col-sm-9 bg-white" *ngIf="secondPage">
             <form [formGroup]="alertInfoForm">
                 <div class="card rounded-0 shadow-none">
 
@@ -316,6 +316,157 @@
             </form>
         </div>
 
+
+        <!-----------------------------------Interest Page---------------------------------->
+
+        <div class="col-9 bg-white" *ngIf="professionalUserType && interestPage">
+            <form [formGroup]="interestPageForm">
+                <div class="card rounded-0 shadow-none">
+
+                    <div class="card-header justify-content-center text-center pt-5">
+
+                        <div class="row text-left text-muted mb-3 ml-3">
+                            <a class="text-muted" (click)="goToSecondPage()" routerLink=""><i
+                                    class="fa fa-arrow-circle-left" aria-hidden="true"><span
+                                        class="mx-sm-2">BACK</span></i></a>
+                        </div>
+
+                        <small for="signUp" class="text-green text-uppercase">SIGN UP</small><br />
+                        <h3 for="professional" class="mb-1">Professional Details</h3>
+                        <h5 for="accountdetails" class="text-muted">Account Details</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row justify-content-center text-left">
+                            <div class="col-8">
+                                <h6 class="font-weight-semibold text-dark">How best would describe your interest ?
+                                </h6>
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="interest1" name="interest" class="custom-control-input">
+                                        <label class="custom-control-label" for="interest1">I am a professional
+                                            Provider specifically for Mineral Owners</label>
+                                    </div>
+                                    <div class="w-100 py-1"></div>
+                                    <div class="px-5 ">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="provider1" name="provider"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="provider1">Oil & Gas
+                                                    Lawyer</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="provider2" name="provider"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="provider2">Oil & Gas
+                                                    Accountant</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="provider3" name="provider"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="provider3">Oil & Gas
+                                                    Landman</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="provider4" name="provider"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="provider4">Oil & Gas
+                                                    Banking Loans</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="provider5" name="provider"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="provider5">Oil & Gas
+                                                    Mineral Management & Auditing</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-100 py-2"></div>
+
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="interest2" name="interest" class="custom-control-input">
+                                        <label class="custom-control-label" for="interest2">I am an investor for Oil
+                                            & Gas properties</label>
+                                    </div>
+                                    <div class="w-100 py-1"></div>
+                                    <div class="px-5 ">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="investor1" name="investor"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="investor1">Mineral Owner of
+                                                    Oil & Gas royalties</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio  ">
+                                                <input type="radio" id="investor2" name="investor"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="investor2">An Investor of
+                                                    Publicly traded Oil & Gas Companies</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio  ">
+                                                <input type="radio" id="investor3" name="investor"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="investor3">An Oil & Gas
+                                                    Mineral Aquisition Company</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio  ">
+                                                <input type="radio" id="investor4" name="investor"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="investor4">Oil & Gas
+                                                    Explorationist</label>
+                                            </div>
+                                            <div class="w-100 py-1"></div>
+                                            <div class="custom-control custom-radio  ">
+                                                <input type="radio" id="investor5" name="investor"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="investor5">Oil & Gas
+                                                    Companies (smaller than what Drilling Info is targeting)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-100 py-2"></div>
+
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="interest3" name="interest" class="custom-control-input">
+                                        <label class="custom-control-label" for="interest3">Other</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center text-center py-3 ">
+                        <div class="col-12">
+                            <!-- <button class="btn btn-accent text-white px-5 text-uppercase">BACK
+                            </button>
+                            &nbsp;&nbsp; -->
+                            <button class="btn btn-accent text-white px-5 text-uppercase"
+                                (click)=postInterestPrefernce()>NEXT
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+
+
+        <!------------------------------------End Interest Page------------------------------>
+
         <!----------------------------------End second page-------------->
 
         <!----------------------------------Wizard pages------------------>
@@ -323,10 +474,16 @@
         <div class="col-9 bg-white" *ngIf="thirdPage">
             <form [formGroup]="userRegistrationForm">
                 <div class="card-header justify-content-center text-center ">
-                    <div class="row text-left text-muted mb-3 ml-3">
+
+                    <div class="row text-left text-muted mb-3 ml-3" *ngIf="!professionalUserType">
                         <i class="fa fa-arrow-circle-left" (click)="goToSecondPage()" aria-hidden="true"><span
-                                class="mx-sm-2">Back</span></i>
+                                class="mx-sm-2">BACK</span></i>
                     </div>
+                    <div class="row text-left text-muted mb-3 ml-3" *ngIf="professionalUserType">
+                        <i class="fa fa-arrow-circle-left" (click)="goToInterestPage()" aria-hidden="true"><span
+                                class="mx-sm-2">BACK</span></i>
+                    </div>
+
                     <small for="signUp" class="text-green ">SIGN UP</small><br />
                     <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
                     <h3 *ngIf="professionalUserType" for="professional" class="mb-1">Professional Owner</h3>
@@ -430,7 +587,8 @@
                                                 <div class="row justify-content-center text-left">
                                                     <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
                                                         <div class="form-group">
-                                                            <div class="custom-control custom-radio  ">
+
+                                                            <!-- <div class="custom-control custom-radio  ">
                                                                 <input type="radio" id="Subscription1" value="1"
                                                                     name="subscriptionAmount"
                                                                     class="custom-control-input"
@@ -439,7 +597,8 @@
                                                                     for="Subscription1">No
                                                                     Payment
                                                                     Necessary</label>
-                                                            </div>
+                                                            </div> -->
+
                                                             <div class="w-100 py-2"></div>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="Subscription2" value="2"
@@ -489,7 +648,7 @@
                                     <div class="row justify-content-center text-center mt-3">
                                         <div class="col-12">
                                             <button type="button" class="btn btn-accent text-white px-5"
-                                                awPreviousStep>Back
+                                                awPreviousStep>BACK
                                             </button>
                                             &nbsp;&nbsp;
                                             <button type="button" class="btn btn-accent text-white px-5" awNextStep>NEXT
@@ -555,11 +714,11 @@
                                                 <div class="row justify-content-center text-center mt-3">
                                                     <div class="col-12">
                                                         <button type="button" class="btn btn-accent text-white px-5"
-                                                            awPreviousStep>Back
+                                                            awPreviousStep>BACK
                                                         </button>
                                                         &nbsp;&nbsp;
                                                         <button type="submit" class="btn btn-accent text-white px-5"
-                                                            (click)="openClaimLeaseModal(claimLeaseModal)">Confirm
+                                                            (click)="openClaimLeaseModal(claimLeaseModal)">CONFIRM
                                                         </button>
                                                     </div>
                                                 </div>
@@ -707,9 +866,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-accent btn-sm text-uppercase"
-                    (click)="postUserType()">Confirm</button>
+                    (click)="postUserType()">CONFIRM</button>
                 <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-                    (click)="closePostQuestionModal()">Cancel</button>
+                    (click)="closePostQuestionModal()">CANCEL</button>
             </div>
         </div>
     </form>
