@@ -359,7 +359,8 @@
                                 class="mx-sm-2">Back</span></i>
                     </div>
                     <small for="signUp" class="text-green ">SIGN UP</small><br />
-                    <h3 for="professional" class="mb-1">Mineral Owner</h3>
+                    <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
+                    <h3 *ngIf="professionalUserType" for="professional" class="mb-1">Professional Owner</h3>
                     <h5 for="accountdetails" class="text-muted">Account Details</h5>
                 </div>
 
@@ -427,7 +428,7 @@
                     </aw-wizard-step>
                     <aw-wizard-step stepTitle="Payment Selection">
                         <div class="centered-content">
-                            <div >
+                            <div>
                                 <div class="row justify-content-center text-center">
                                     <div class="col-12 ">
                                         <div class="card rounded-0 shadow-none">

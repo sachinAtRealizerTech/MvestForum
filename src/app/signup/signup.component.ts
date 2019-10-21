@@ -146,6 +146,7 @@ export class SignupComponent implements OnInit {
     this.secondPage = true;
     this.thirdPage = false;
     this.signInPage = false;
+    this.submitUserInfoForm = false;
   }
 
   goToFisrtPage() {
@@ -166,6 +167,7 @@ export class SignupComponent implements OnInit {
     this.thirdPage = true;
     this.userTypePage = false;
     this.signInPage = false;
+    this.submitAlertInfoForm = false;
   }
 
   setConfirmationValues() {
