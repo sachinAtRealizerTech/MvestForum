@@ -291,15 +291,15 @@
                                         *ngFor="let p of notificationPrefList">
                                         <input type="radio" id="customRadioInline{{p.name}}" value="{{p.masterdata_id}}"
                                             name="alerts" class="custom-control-input" formControlName="alerts"
-                                            [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }"
                                             (click)="sendPrefernceName(p.name)">
                                         <label class="custom-control-label"
                                             for="customRadioInline{{p.name}}">{{p.name}}</label>
 
                                     </div>
-
-                                    <div *ngIf="submitAlertInfoForm && m.alerts.errors" class="invalid-feedback">
-                                        <div *ngIf="m.alerts.errors.required">Alert Info is required
+                                    <!-- [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }" -->
+                                    <div *ngIf="submitAlertInfoForm && m.alerts.errors">
+                                        <div *ngIf="m.alerts.errors.required" class="text-danger small">Please select
+                                            option from above list.
                                         </div>
                                     </div>
 
@@ -341,109 +341,48 @@
                     <div class="card-body">
                         <div class="row justify-content-center text-left">
                             <div class="col-8">
-                                <h6 class="font-weight-semibold text-dark">How best would describe your interest ?
+                                <h6 class="font-weight-semibold text-dark">How best would you describe your interest ?
                                 </h6>
 
                                 <div class="form-group">
-                                    <div class="custom-control custom-radio ">
-                                        <input type="radio" id="interest1" name="interest" class="custom-control-input">
-                                        <label class="custom-control-label" for="interest1">I am a professional
-                                            Provider specifically for Mineral Owners</label>
-                                    </div>
-                                    <div class="w-100 py-1"></div>
-                                    <div class="px-5 ">
-                                        <div class="form-group">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="provider1" name="provider"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="provider1">Oil & Gas
-                                                    Lawyer</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio ">
-                                                <input type="radio" id="provider2" name="provider"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="provider2">Oil & Gas
-                                                    Accountant</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio ">
-                                                <input type="radio" id="provider3" name="provider"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="provider3">Oil & Gas
-                                                    Landman</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio ">
-                                                <input type="radio" id="provider4" name="provider"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="provider4">Oil & Gas
-                                                    Banking Loans</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio ">
-                                                <input type="radio" id="provider5" name="provider"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="provider5">Oil & Gas
-                                                    Mineral Management & Auditing</label>
+                                    <div *ngFor="let questions of interestQstnAnsList">
+                                        <div class="custom-control custom-radio ">
+                                            <input type="radio" id="interest{{questions.id}}" value="{{questions.id}}"
+                                                name="interest" class="custom-control-input" formControlName="interest">
+                                            <label class="custom-control-label" for="interest{{questions.id}}">
+                                                {{questions.q_text}}
+                                            </label>
+                                        </div>
+                                        <div *ngIf="submitInterestPrefForm && p.interest.errors">
+                                            <div *ngIf="p.interest.errors.required" class="text-danger small">Please
+                                                select
+                                                option from above.
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="w-100 py-2"></div>
-
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="interest2" name="interest" class="custom-control-input">
-                                        <label class="custom-control-label" for="interest2">I am an investor for Oil
-                                            & Gas properties</label>
-                                    </div>
-                                    <div class="w-100 py-1"></div>
-                                    <div class="px-5 ">
-                                        <div class="form-group">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="investor1" name="investor"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="investor1">Mineral Owner of
-                                                    Oil & Gas royalties</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio  ">
-                                                <input type="radio" id="investor2" name="investor"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="investor2">An Investor of
-                                                    Publicly traded Oil & Gas Companies</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio  ">
-                                                <input type="radio" id="investor3" name="investor"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="investor3">An Oil & Gas
-                                                    Mineral Aquisition Company</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio  ">
-                                                <input type="radio" id="investor4" name="investor"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="investor4">Oil & Gas
-                                                    Explorationist</label>
-                                            </div>
-                                            <div class="w-100 py-1"></div>
-                                            <div class="custom-control custom-radio  ">
-                                                <input type="radio" id="investor5" name="investor"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="investor5">Oil & Gas
-                                                    Companies (smaller than what Drilling Info is targeting)</label>
+                                        <div class="w-100 py-1"></div>
+                                        <div class="px-5">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-radio"
+                                                    *ngFor="let answers of questions.paregquestionanswers">
+                                                    <input type="radio" id="provider{{answers.id}}"
+                                                        value="{{answers.option_code}}" name="provider"
+                                                        class="custom-control-input" formControlName="provider"
+                                                        (change)=sendAnswerText(answers.option_text)>
+                                                    <label class="custom-control-label" for="provider{{answers.id}}">
+                                                        {{answers.option_text}}
+                                                    </label>
+                                                </div>
+                                                <div *ngIf="submitInterestPrefForm && p.provider.errors">
+                                                    <div *ngIf="p.provider.errors.required" class="text-danger small">
+                                                        Please select
+                                                        option from above.
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+                                        <div class="w-100 py-2"></div>
                                     </div>
-
-                                    <div class="w-100 py-2"></div>
-
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="interest3" name="interest" class="custom-control-input">
-                                        <label class="custom-control-label" for="interest3">Other</label>
-                                    </div>
-
                                 </div>
                             </div>
 
@@ -452,9 +391,6 @@
 
                     <div class="row justify-content-center text-center py-3 ">
                         <div class="col-12">
-                            <!-- <button class="btn btn-accent text-white px-5 text-uppercase">BACK
-                            </button>
-                            &nbsp;&nbsp; -->
                             <button class="btn btn-accent text-white px-5 text-uppercase"
                                 (click)=postInterestPrefernce()>NEXT
                             </button>

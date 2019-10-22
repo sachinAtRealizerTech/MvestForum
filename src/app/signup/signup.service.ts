@@ -22,6 +22,14 @@ export class SignupService {
     return this.httpClient.get(`${environment.APIBASEURL}/getmasterentities/NotificationPreference`, httpOptions)
   }
 
+  getInterestQuestionAns() {
+    return this.httpClient.get(`${environment.APIBASEURL}/PA_QuestionAns`, httpOptions)
+  }
+
+  postInterestPrefernce(body) {
+    return this.httpClient.post(`${environment.APIBASEURL}/Save_QuestionAnswers`, body, httpOptions)
+  }
+
   postNotificationPrefernece(body) {
     return this.httpClient.put(`${environment.APIBASEURL}/UpdatePreferenceOption`, body, httpOptions)
   }

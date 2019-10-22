@@ -48,6 +48,9 @@ export class SignupComponent implements OnInit {
   signInPage = false;
   submitSignIn = false;
   interestPage = false;
+  interestQstnAnsList: any;
+  submitInterestPrefForm = false;
+  answerText: string;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -77,7 +80,8 @@ export class SignupComponent implements OnInit {
     })
 
     this.interestPageForm = this.formBuilder.group({
-      interstType: []
+      interest: ['', Validators.required],
+      provider: ['', Validators.required]
     })
 
     this.userInfoForm = this.formBuilder.group({
@@ -285,6 +289,7 @@ export class SignupComponent implements OnInit {
     this.signupService.postNotificationPrefernece(body).subscribe(data => {
 
       if (this.professionalUserType) {
+        this.getInterestQuestionAns();
         this.goToInterestPage();
       }
       else {
@@ -295,12 +300,37 @@ export class SignupComponent implements OnInit {
   }
 
 
+  getInterestQuestionAns() {
+    this.signupService.getInterestQuestionAns().subscribe(data => {
+      console.log('interest', data);
+      this.interestQstnAnsList = data['data'];
+    })
+  }
+
+  sendAnswerText(answerText: string) {
+    this.answerText = answerText
+  }
+
+
   postInterestPrefernce() {
+    debugger;
     //this.goToInterestPage();
-    // if (this.interestPageForm.invalid) {
-    //   return;
-    // }
+    this.submitInterestPrefForm = true;
+    if (this.interestPageForm.invalid) {
+      return;
+    }
     this.goToThirdPage();
+    this.submitInterestPrefForm = false;
+    let body = {
+      member_id: this.userId,
+      pa_reg_question_id: this.interestPageForm.controls.interest.value,
+      answers_text: this.answerText,
+      answer_code: this.interestPageForm.controls.provider.value
+    }
+    this.signupService.postInterestPrefernce(body).subscribe(data => {
+
+    })
+
   }
 
   getPlanSelectionData() {
