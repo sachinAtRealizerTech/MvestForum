@@ -407,6 +407,7 @@ export class SignupComponent implements OnInit {
       this.modalService.dismissAll(this.claimLeaseModal);
       this.userInfoForm.reset();
       this.alertInfoForm.reset();
+      this.interestPageForm.reset();
       this.userTypeForm.reset();
       this.userRegistrationForm.reset();
       this.signInPage = true;
