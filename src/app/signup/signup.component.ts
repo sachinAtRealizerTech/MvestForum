@@ -168,14 +168,6 @@ export class SignupComponent implements OnInit {
   }
 
   goToSecondPage() {
-    // this.submitUserInfoForm = true;
-    // if (this.userInfoForm.invalid) {
-    //   return;
-    // }
-    // if (this.userInfoForm.controls.password.value != this.userInfoForm.controls.confirmPassword.value) {
-    //   alert("Passwords did not match...Please verify password.")
-    //   return
-    // }
     this.alertInfoForm.controls.alertPhone.setValue(this.userInfoForm.controls.phoneNumber.value)
     this.alertInfoForm.controls.alertEmail.setValue(this.userInfoForm.controls.eMail.value)
     this.firstPage = false;
@@ -262,9 +254,7 @@ export class SignupComponent implements OnInit {
         console.log(error);
       }
     )
-
   }
-
 
   getStateList() {
     this.signupService.getStates().subscribe(data => {
@@ -372,11 +362,6 @@ export class SignupComponent implements OnInit {
   }
 
   openClaimLeaseModal(content) {
-    // debugger
-    // this.submitUserRegForm = true;
-    // if (this.userRegistrationForm.invalid) {
-    //   return;
-    // }
     this.claimLeaseModal = content;
     this.modalService.open(this.claimLeaseModal, {
       backdrop: 'static',
