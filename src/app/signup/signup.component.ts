@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
   userTypeForm: FormGroup;
   signInForm: FormGroup;
   interestPageForm: FormGroup;
+  firstStepWizardForm: FormGroup;
   userTypeModal: ElementRef;
   claimLeaseModal: ElementRef;
   confirmAddress: string;
@@ -51,6 +52,7 @@ export class SignupComponent implements OnInit {
   interestQstnAnsList: any;
   submitInterestPrefForm = false;
   answerText: string;
+  secondStepWizardForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -82,6 +84,15 @@ export class SignupComponent implements OnInit {
     this.interestPageForm = this.formBuilder.group({
       interest: ['', Validators.required],
       provider: ['', Validators.required]
+    })
+
+    this.firstStepWizardForm = this.formBuilder.group({
+      membershipType: ['', Validators.required]
+    })
+
+    this.secondStepWizardForm = this.formBuilder.group({
+      paymentSelection: ['', Validators.required],
+      subscriptionAmount: ['', Validators.required]
     })
 
     this.userInfoForm = this.formBuilder.group({
@@ -311,7 +322,6 @@ export class SignupComponent implements OnInit {
     this.answerText = answerText
   }
 
-
   postInterestPrefernce() {
     debugger;
     //this.goToInterestPage();
@@ -362,7 +372,7 @@ export class SignupComponent implements OnInit {
   }
 
   openClaimLeaseModal(content) {
-    debugger
+    // debugger
     // this.submitUserRegForm = true;
     // if (this.userRegistrationForm.invalid) {
     //   return;
@@ -392,14 +402,14 @@ export class SignupComponent implements OnInit {
 
     let body = {
       member_id: this.userId,
-      mplan_id: this.userRegistrationForm.controls.membershipType.value,
+      mplan_id: this.firstStepWizardForm.controls.membershipType.value,
       amount: this.selMonthlyPrice,
       transaction_id: 1,
       planexpiry_date: this.planExpiryDate,
       subscriptionduration: this.planDuration,
-      istransactionsuccess: "No",
+      istransactionsuccess: "Yes",
       transaction_date: new Date(),
-      transaction_type: "Register membership Plan"
+      transaction_type: this.secondStepWizardForm.controls.paymentSelection.value
     }
 
     this.signupService.completeUserRegistration(body).subscribe(data => {
