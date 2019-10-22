@@ -1,427 +1,202 @@
-<!-----------------------------------------------------------Top Nav---------------------------------------------------------->
-
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img src="assets/images/avatars/logo1.jpg" width="auto"
-                height="56px">MVest
-        </a>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
-            </svg>
-
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-between h6 mb-0" id="navbarNav">
-            <div class=" justify-content-start align-text-left text-left h6 d-inline-flex ">
-
-            </div>
-            <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
-                <ul class="navbar-nav">
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link font-weight-semibold active text-muted ">FEATURES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link font-weight-semibold text-muted ">PLANS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link font-weight-semibold text-muted ">OUR STORY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link font-weight-semibold text-muted">NEWS</a>
-                    </li>
-                </ul>
-            </div>
-            <div
-                class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
-                <ul class="navbar-nav">
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link font-weight-semibold text-muted align-self-center">SIGN IN</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <button class="btn btn-outline-accent text-white rounded-0 pull-right"
-                            (click)="openuserTypeModal(userTypeModal)">SIGN UP FREE
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<aside class="main-sidebar col-3 px-0 shadow-none" *ngIf="!signInPage">
+    <div class="main-navbar">
+        <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
+            <a class="navbar-brand w-100 mr-0" href="#">
+                <div class="d-table m-auto">
+                    <img id="main-logo" class="d-inline-block align-top mr-1" src="assets/images/avatars/logo1.jpg"
+                        width="auto" height="50" alt="MVest Logo">
+                </div>
+            </a>
+            <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+            </a>
+        </nav>
     </div>
-</nav>
+    <div class="nav-wrapper text-white text-center">
 
-<!-----------------------------------------------------------------------End Top Nav------------------------------------------------------------------>
+        <div class="sidebar">
+            <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
+            <h3 class="text-white text-center "> Sign in now</h3>
+            <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
+            </button>
+        </div>
 
 
-<div class="container-fluid">
-
-
-    <!--------------------------------------------------------------User type page---------------------------->
-
-    <div class="row justify-content-center text-center bg-black " *ngIf="!signInPage">
-        <div class="col-3 align-self-center pb-4  vh-100">
-            <div class="sidebar">
+        <!-- <div class="row  justify-content-center text-center">
+            <div class="col-12 sidebar px-auto">
                 <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
                 <h3 class="text-white text-center "> Sign in now</h3>
                 <button class="btn btn-accent text-white rounded-0 mt-3 px-5" (click)="openSignIn()">SIGN IN
                 </button>
             </div>
+        </div> -->
+    </div>
+</aside>
+
+
+<aside class="main-sidebar col-3 px-0 shadow-none" *ngIf="signInPage">
+    <div class="main-navbar ">
+        <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
+            <a class="navbar-brand w-100 mr-0" href="#">
+                <div class="d-table m-auto">
+                    <img id="main-logo" class="d-inline-block align-top mr-1" src="assets/images/avatars/logo1.jpg"
+                        width="auto" height="50" alt="MVest Logo">
+                </div>
+            </a>
+            <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+            </a>
+        </nav>
+    </div>
+    <div class="nav-wrapper text-white text-center">
+
+        <div class="sidebar">
+            <h6 class="text-green mt-5">DON'T HAVE AN ACCOUNT? </h6>
+            <h3 class="text-white text-center "> Sign up now</h3>
+            <button class="btn btn-accent text-white rounded-0 mt-3 px-5"
+                (click)="openuserTypeModal(userTypeModal)">SIGN UP
+            </button>
         </div>
 
-        <div class="col-9 bg-white" *ngIf="userTypePage">
-            <div class="card rounded-0 shadow-none">
-                <div class="card-header justify-content-center text-center ">
-                    <h3 for="professional" class=" pt-5 font-weight-semibold">Welcome to MVest</h3>
-                    <h5 for="accountdetails" class="text-muted h6">This resource is designed to equip you with the
-                        most current information, value estimates, and news that is related specifically to your
-                        leases and mineral interests.</h5>
-                    <img src="assets/images/avatars/oilproduction1.jpg" class="pt-5" alt="" height="420px">
+    </div>
+</aside>
+
+
+<main class="main-content col-9 offset-lg-3 offset-md-3  px-0">
+
+    <!-----------------------------------------------------------Top Nav---------------------------------------------------------->
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow p-2">
+        <div class="container-fluid">
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+                </svg>
+
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between h6 mb-0" id="navbarNav">
+                <div class=" justify-content-start align-text-left text-left h6 d-inline-flex ">
+
+                </div>
+                <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link font-weight-semibold active text-muted ">FEATURES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-semibold text-muted ">PLANS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-semibold text-muted ">OUR STORY</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-semibold text-muted">NEWS</a>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
+                    <ul class="navbar-nav">
+                        <li class="nav-item align-self-center">
+                            <a routerLink="#" class="nav-link font-weight-semibold text-muted align-self-center"
+                                (click)="openSignIn()">SIGN IN</a>
+                            <!-- <button class="btn btn-outline-accent text-white rounded-0 pull-right"
+                                (click)="openSignIn()">SIGN IN
+                            </button> -->
+                        </li>
+                        <li class="nav-item align-self-center">
+                            <button class="btn btn-outline-accent text-white rounded-0 pull-right"
+                                (click)="openuserTypeModal(userTypeModal)">SIGN UP FREE
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <!---------------------------------User info page---------------->
+    <!-----------------------------------------------------------------------End Top Nav------------------------------------------------------------------>
 
-        <div class="col-9 bg-white" *ngIf="firstPage">
-            <form [formGroup]="userInfoForm">
-                <div class="card rounded-0 shadow-none">
-                    <div class="card-header justify-content-center text-center pb-0">
-                        <!-- <div class="row text-left text-muted mb-3 ml-3">
-                        <i class="fa fa-arrow-circle-left" aria-hidden="true"><span class="mx-sm-2">Back</span></i>
-                    </div> -->
+    <!-------------------------------------------------------Sign In------------------>
 
-
-                        <small for="signUp" class="text-green ">SIGN UP</small><br />
-                        <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
-                        <h3 *ngIf="professionalUserType" for="professional" class="mb-1">Professional Owner</h3>
-                        <h5 for="accountdetails" class="text-muted">Account Details</h5>
-                    </div>
-
-
-                    <div class="card-body pt-1">
-                        <div class="row justify-content-center text-left">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="firstname" class="text-muted">First Name</label>
-                                    <input class="form-control rounded" formControlName="firstName" id="firstname"
-                                        type="text" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.firstName.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.firstName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="lastname" class="text-muted">Last Name</label>
-                                    <input class="form-control rounded" formControlName="lastName" id="lastname"
-                                        type="text" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.lastName.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.lastName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="email" class="text-muted">eMail</label>
-                                    <input class="form-control rounded" formControlName="eMail" id="eMail" type="text"
-                                        placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.eMail.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.eMail.errors" class="invalid-feedback">
-                                        <div *ngIf="f.eMail.errors.required">Email ID is required</div>
-                                        <div *ngIf="f.eMail.errors.email">Email must be a valid email address</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="address" class="text-muted">Mailing Street Address</label>
-                                    <input class="form-control rounded" formControlName="address" id="address"
-                                        type="text" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.address.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.address.errors" class="invalid-feedback">
-                                        <div *ngIf="f.address.errors.required">Address is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="city" class="text-muted">City</label>
-                                    <input class="form-control rounded" formControlName="city" id="city" type="text"
-                                        placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.city.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.city.errors" class="invalid-feedback">
-                                        <div *ngIf="f.city.errors.required">City is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="state" class="text-muted">State</label>
-                                <select class="form-control border" formControlName="state" id="state"
-                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.state.errors }">
-                                    <!-- <option value="null">Select One</option> -->
-                                    <option *ngFor="let s of statesList" value={{s.masterdata_id}}>{{s.name}}</option>
-                                    <!-- <option value=2>North Carolina</option> -->
-                                </select>
-                                <div *ngIf="submitUserInfoForm && f.state.errors" class="invalid-feedback">
-                                    <div *ngIf="f.state.errors.required">State is required</div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="zipcode" class="text-muted">Zip Code</label>
-                                    <input class="form-control rounded" formControlName="zipCode" id="zipcode"
-                                        type="text" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.zipCode.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.zipCode.errors" class="invalid-feedback">
-                                        <div *ngIf="f.zipCode.errors.required">Zip Code is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="phonenumber" class="text-muted">Phone Number</label>
-                                    <input class="form-control rounded" minLength="10" maxLength="12"
-                                        formControlName="phoneNumber" id="phonenumber" type="text"
-                                        pattern="^[7-9][0-9]{9}$"
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.phoneNumber.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.phoneNumber.errors" class="invalid-feedback">
-                                        <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
-                                        <div *ngIf="f.phoneNumber.errors.pattern">Phone number is not valid</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="password" class="text-muted">Password</label>
-                                    <input class="form-control rounded" formControlName="password" id="password"
-                                        type="password" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.password.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.password.errors" class="invalid-feedback">
-                                        <div *ngIf="f.password.errors.required">Password is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="confirmpassword" class="text-muted">Confirm password</label>
-                                    <input class="form-control rounded" formControlName="confirmPassword"
-                                        id="confirmpassword" type="password" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitUserInfoForm && f.confirmPassword.errors }">
-                                    <div *ngIf="submitUserInfoForm && f.confirmPassword.errors"
-                                        class="invalid-feedback">
-                                        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required
-                                        </div>
-                                    </div>
+    <div class="bg-white" *ngIf="signInPage">
+        <div class="card rounded-0 shadow-none">
+            <div class="card-header justify-content-center text-center pt-5">
+                <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
+                <h3 for="professional" class="mb-1">Ready to Go</h3>
+                <h5 for="accountdetails" class="text-muted">Login Details</h5>
+            </div>
+            <form [formGroup]="signInForm">
+                <div class="card-body">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="text-muted">eMail</label>
+                                <input class="form-control rounded" id="email" formControlName="email" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
+                                <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
+                                    <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-center text-center mt-3">
-                            <div class="col-12">
-                                <button class="btn btn-accent text-white px-5"
-                                    (click)=submitUserInformation(passwordVerifyModal)>NEXT
-                                </button>
-                            </div>
-                        </div>
                     </div>
-
-                </div>
-            </form>
-        </div>
-
-        <!---------------------------------End User infor page------------>
-
-        <!---------------------------------second Page------------------->
-
-        <div class="col-sm-9 bg-white" *ngIf="secondPage">
-            <form [formGroup]="alertInfoForm">
-                <div class="card rounded-0 shadow-none">
-
-                    <div class="card-header justify-content-center text-center mt-3">
-
-                        <!-- <div class="row text-left text-muted mb-3 ml-3">
-                                <a class="text-muted" (click)="goToFisrtPage()" routerLink=""><i
-                                        class="fa fa-arrow-circle-left" aria-hidden="true"><span
-                                            class="mx-sm-2">Back</span></i></a>
-                            </div> -->
-
-                        <small for="signUp" class="text-green ">SIGN UP</small><br />
-                        <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
-                        <h3 *ngIf="professionalUserType" for="professional" class="mb-1">Professional Owner</h3>
-                        <h5 for="accountdetails" class="text-muted font-weight-normal">Account Details</h5>
-                        <h6 class="text-dark text-left   pt-3 font-weight-bold">MVest provides our users with active
-                            alerts
-                            of
-                            news and activity. Take this easy step to always stay connected via email and/or text
-                            alerts...
-                        </h6>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row justify-content-start text-left">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label for="phonenumber" class="text-muted">Phone Number</label>
-                                    <input class="form-control rounded" minLength="10" maxLength="10" id="phonenumber"
-                                        type="text" formControlName="alertPhone" pattern="^[7-9][0-9]{9}$"
-                                        [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alertPhone.errors }">
-                                    <div *ngIf="submitAlertInfoForm && m.alertPhone.errors" class="invalid-feedback">
-                                        <div *ngIf="m.alertPhone.errors.required">Phone Number is required
-                                        </div>
-                                        <div *ngIf="m.alertPhone.errors.pattern">Phone Number is not valid</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="text-muted">eMail</label>
-                                    <input class="form-control bg-white rounded" id="email" type="text"
-                                        formControlName="alertEmail" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alertEmail.errors }">
-                                    <div *ngIf="submitAlertInfoForm && m.alertEmail.errors" class="invalid-feedback">
-                                        <div *ngIf="m.alertEmail.errors.required">Email is required
-                                        </div>
-                                        <div *ngIf="m.alertEmail.errors.email">Email must be a valid email address</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-7">
-                                <div class="form-group">
-
-                                    <div class="custom-control custom-radio pb-3"
-                                        *ngFor="let p of notificationPrefList">
-                                        <input type="radio" id="customRadioInline{{p.name}}" value="{{p.masterdata_id}}"
-                                            name="alerts" class="custom-control-input" formControlName="alerts"
-                                            (click)="sendPrefernceName(p.name)">
-                                        <label class="custom-control-label"
-                                            for="customRadioInline{{p.name}}">{{p.name}}</label>
-
-                                    </div>
-                                    <!-- [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }" -->
-                                    <div *ngIf="submitAlertInfoForm && m.alerts.errors">
-                                        <div *ngIf="m.alerts.errors.required" class="text-danger small">Please select
-                                            option from above list.
-                                        </div>
-                                    </div>
-
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password" class="text-muted">Password</label>
+                                <input class="form-control rounded" id="password" formControlName="password"
+                                    type="password" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
+                                <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
+                                    <div *ngIf="l.password.errors.required">Please enter your password.</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-center text-center mt-3">
-                            <div class="col-12">
-                                <button class="btn btn-accent text-white px-5" (click)=postNotificationPrefernece()>NEXT
-                                </button>
-                            </div>
-                        </div>
                     </div>
-
-                </div>
-            </form>
-        </div>
-
-
-        <!-----------------------------------Interest Page---------------------------------->
-
-        <div class="col-9 bg-white" *ngIf="professionalUserType && interestPage">
-            <form [formGroup]="interestPageForm">
-                <div class="card rounded-0 shadow-none">
-
-                    <div class="card-header justify-content-center text-center pt-5">
-
-                        <div class="row text-left text-muted mb-3 ml-3">
-                            <a class="text-muted" (click)="goToSecondPage()" routerLink=""><i
-                                    class="fa fa-arrow-circle-left" aria-hidden="true"><span
-                                        class="mx-sm-2">BACK</span></i></a>
-                        </div>
-
-                        <small for="signUp" class="text-green text-uppercase">SIGN UP</small><br />
-                        <h3 for="professional" class="mb-1">Professional Details</h3>
-                        <h5 for="accountdetails" class="text-muted">Account Details</h5>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row justify-content-center text-left">
-                            <div class="col-8">
-                                <h6 class="font-weight-semibold text-dark">How best would you describe your interest ?
-                                </h6>
-
-                                <div class="form-group">
-                                    <div *ngFor="let questions of interestQstnAnsList">
-                                        <div class="custom-control custom-radio ">
-                                            <input type="radio" id="interest{{questions.id}}" value="{{questions.id}}"
-                                                name="interest" class="custom-control-input" formControlName="interest">
-                                            <label class="custom-control-label" for="interest{{questions.id}}">
-                                                {{questions.q_text}}
-                                            </label>
-                                        </div>
-                                        <div *ngIf="submitInterestPrefForm && p.interest.errors">
-                                            <div *ngIf="p.interest.errors.required" class="text-danger small">Please
-                                                select
-                                                option from above.
-                                            </div>
-                                        </div>
-                                        <div class="w-100 py-1"></div>
-                                        <div class="px-5">
-                                            <div class="form-group">
-                                                <div class="custom-control custom-radio"
-                                                    *ngFor="let answers of questions.paregquestionanswers">
-                                                    <input type="radio" id="provider{{answers.id}}"
-                                                        value="{{answers.option_code}}" name="provider"
-                                                        class="custom-control-input" formControlName="provider"
-                                                        (change)=sendAnswerText(answers.option_text)>
-                                                    <label class="custom-control-label" for="provider{{answers.id}}">
-                                                        {{answers.option_text}}
-                                                    </label>
-                                                </div>
-                                                <div *ngIf="submitInterestPrefForm && p.provider.errors">
-                                                    <div *ngIf="p.provider.errors.required" class="text-danger small">
-                                                        Please select
-                                                        option from above.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="w-100 py-2"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-center text-center py-3 ">
+                    <div class="row justify-content-center text-center mt-3">
                         <div class="col-12">
-                            <button class="btn btn-accent text-white px-5 text-uppercase"
-                                (click)=postInterestPrefernce()>NEXT
+                            <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </form>
         </div>
 
+    </div>
 
-        <!------------------------------------End Interest Page------------------------------>
+    <!------------------------------------------------------End Sign In----------->
 
-        <!----------------------------------End second page-------------->
 
-        <!----------------------------------Wizard pages------------------>
+    <!---------------------User Type------>
 
-        <div class="col-9 bg-white" *ngIf="thirdPage">
-            <form>
-                <div class="card-header justify-content-center text-center ">
+    <div class="bg-white" *ngIf="userTypePage">
+        <div class="card rounded-0 shadow-none">
+            <div class="card-header justify-content-center text-center ">
+                <h3 for="professional" class=" pt-5 font-weight-semibold">Welcome to MVest</h3>
+                <h5 for="accountdetails" class="text-muted h6">This resource is designed to equip you with the
+                    most current information, value estimates, and news that is related specifically to your
+                    leases and mineral interests.</h5>
+                <img src="assets/images/avatars/oilproduction1.jpg" class="pt-5" alt="" height="420px">
+            </div>
+        </div>
+    </div>
 
-                    <div class="row text-left text-muted mb-3 ml-3" *ngIf="!professionalUserType">
-                        <i class="fa fa-arrow-circle-left" (click)="goToSecondPage()" aria-hidden="true"><span
-                                class="mx-sm-2">BACK</span></i>
-                    </div>
-                    <div class="row text-left text-muted mb-3 ml-3" *ngIf="professionalUserType">
-                        <i class="fa fa-arrow-circle-left" (click)="goToInterestPage()" aria-hidden="true"><span
-                                class="mx-sm-2">BACK</span></i>
-                    </div>
+    <!---------------------End User Type-->
+
+
+    <!---------------------------------User info page---------------->
+
+    <div class="bg-white" *ngIf="firstPage">
+        <form [formGroup]="userInfoForm">
+            <div class="card rounded-0 shadow-none">
+                <div class="card-header justify-content-center text-center pb-0">
+                    <!-- <div class="row text-left text-muted mb-3 ml-3">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"><span class="mx-sm-2">Back</span></i>
+                    </div> -->
+
 
                     <small for="signUp" class="text-green ">SIGN UP</small><br />
                     <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
@@ -430,271 +205,601 @@
                 </div>
 
 
-                <aw-wizard>
-                    <aw-wizard-step stepTitle="Plan Selection" [canExit]="firstStepWizardForm.valid">
-                        <div class="centered-content">
-                            <div>
-                                <div class="row justify-content-center text-center">
-                                    <div class="col-12">
+                <div class="card-body pt-1">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstname" class="text-muted">First Name</label>
+                                <input class="form-control rounded" formControlName="firstName" id="firstname"
+                                    type="text" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.firstName.errors }">
+                                <div *ngIf="submitUserInfoForm && f.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastname" class="text-muted">Last Name</label>
+                                <input class="form-control rounded" formControlName="lastName" id="lastname" type="text"
+                                    placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.lastName.errors }">
+                                <div *ngIf="submitUserInfoForm && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="email" class="text-muted">eMail</label>
+                                <input class="form-control rounded" formControlName="eMail" id="eMail" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitUserInfoForm && f.eMail.errors }">
+                                <div *ngIf="submitUserInfoForm && f.eMail.errors" class="invalid-feedback">
+                                    <div *ngIf="f.eMail.errors.required">Email ID is required</div>
+                                    <div *ngIf="f.eMail.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address" class="text-muted">Mailing Street Address</label>
+                                <input class="form-control rounded" formControlName="address" id="address" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitUserInfoForm && f.address.errors }">
+                                <div *ngIf="submitUserInfoForm && f.address.errors" class="invalid-feedback">
+                                    <div *ngIf="f.address.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="city" class="text-muted">City</label>
+                                <input class="form-control rounded" formControlName="city" id="city" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitUserInfoForm && f.city.errors }">
+                                <div *ngIf="submitUserInfoForm && f.city.errors" class="invalid-feedback">
+                                    <div *ngIf="f.city.errors.required">City is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="state" class="text-muted">State</label>
+                            <select class="form-control border" formControlName="state" id="state"
+                                [ngClass]="{ 'is-invalid': submitUserInfoForm && f.state.errors }">
+                                <!-- <option value="null">Select One</option> -->
+                                <option *ngFor="let s of statesList" value={{s.masterdata_id}}>{{s.name}}</option>
+                                <!-- <option value=2>North Carolina</option> -->
+                            </select>
+                            <div *ngIf="submitUserInfoForm && f.state.errors" class="invalid-feedback">
+                                <div *ngIf="f.state.errors.required">State is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="zipcode" class="text-muted">Zip Code</label>
+                                <input class="form-control rounded" formControlName="zipCode" id="zipcode" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitUserInfoForm && f.zipCode.errors }">
+                                <div *ngIf="submitUserInfoForm && f.zipCode.errors" class="invalid-feedback">
+                                    <div *ngIf="f.zipCode.errors.required">Zip Code is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phonenumber" class="text-muted">Phone Number</label>
+                                <input class="form-control rounded" minLength="10" maxLength="12"
+                                    formControlName="phoneNumber" id="phonenumber" type="text" pattern="^[7-9][0-9]{9}$"
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.phoneNumber.errors }">
+                                <div *ngIf="submitUserInfoForm && f.phoneNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+                                    <div *ngIf="f.phoneNumber.errors.pattern">Phone number is not valid</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password" class="text-muted">Password</label>
+                                <input class="form-control rounded" formControlName="password" id="password"
+                                    type="password" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.password.errors }">
+                                <div *ngIf="submitUserInfoForm && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="confirmpassword" class="text-muted">Confirm password</label>
+                                <input class="form-control rounded" formControlName="confirmPassword"
+                                    id="confirmpassword" type="password" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.confirmPassword.errors }">
+                                <div *ngIf="submitUserInfoForm && f.confirmPassword.errors" class="invalid-feedback">
+                                    <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-center mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-accent text-white px-5"
+                                (click)=submitUserInformation(passwordVerifyModal)>NEXT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!---------------------------------End User infor page------------>
+
+
+    <!---------------------------------second Page------------------->
+
+    <div class="bg-white" *ngIf="secondPage">
+        <form [formGroup]="alertInfoForm">
+            <div class="card rounded-0 shadow-none">
+
+                <div class="card-header justify-content-center text-center mt-3">
+
+                    <!-- <div class="row text-left text-muted mb-3 ml-3">
+                                <a class="text-muted" (click)="goToFisrtPage()" routerLink=""><i
+                                        class="fa fa-arrow-circle-left" aria-hidden="true"><span
+                                            class="mx-sm-2">Back</span></i></a>
+                            </div> -->
+
+                    <small for="signUp" class="text-green ">SIGN UP</small><br />
+                    <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
+                    <h3 *ngIf="professionalUserType" for="professional" class="mb-1">Professional Owner</h3>
+                    <h5 for="accountdetails" class="text-muted font-weight-normal">Account Details</h5>
+                    <h6 class="text-dark text-left   pt-3 font-weight-bold">MVest provides our users with active
+                        alerts
+                        of
+                        news and activity. Take this easy step to always stay connected via email and/or text
+                        alerts...
+                    </h6>
+                </div>
+
+                <div class="card-body">
+                    <div class="row justify-content-start text-left">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="phonenumber" class="text-muted">Phone Number</label>
+                                <input class="form-control rounded" minLength="10" maxLength="10" id="phonenumber"
+                                    type="text" formControlName="alertPhone" pattern="^[7-9][0-9]{9}$"
+                                    [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alertPhone.errors }">
+                                <div *ngIf="submitAlertInfoForm && m.alertPhone.errors" class="invalid-feedback">
+                                    <div *ngIf="m.alertPhone.errors.required">Phone Number is required
+                                    </div>
+                                    <div *ngIf="m.alertPhone.errors.pattern">Phone Number is not valid</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="text-muted">eMail</label>
+                                <input class="form-control bg-white rounded" id="email" type="text"
+                                    formControlName="alertEmail" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alertEmail.errors }">
+                                <div *ngIf="submitAlertInfoForm && m.alertEmail.errors" class="invalid-feedback">
+                                    <div *ngIf="m.alertEmail.errors.required">Email is required
+                                    </div>
+                                    <div *ngIf="m.alertEmail.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="form-group">
+
+                                <div class="custom-control custom-radio pb-3" *ngFor="let p of notificationPrefList">
+                                    <input type="radio" id="customRadioInline{{p.name}}" value="{{p.masterdata_id}}"
+                                        name="alerts" class="custom-control-input" formControlName="alerts"
+                                        (click)="sendPrefernceName(p.name)">
+                                    <label class="custom-control-label"
+                                        for="customRadioInline{{p.name}}">{{p.name}}</label>
+
+                                </div>
+                                <!-- [ngClass]="{ 'is-invalid': submitAlertInfoForm && m.alerts.errors }" -->
+                                <div *ngIf="submitAlertInfoForm && m.alerts.errors">
+                                    <div *ngIf="m.alerts.errors.required" class="text-danger small">Please select
+                                        option from above list.
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-center mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-accent text-white px-5" (click)=postNotificationPrefernece()>NEXT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    <!-------------------------------End Second Page--------------------------->
+
+
+</main>
+
+
+<main class="main-content col-9 offset-lg-3 offset-md-3">
+
+    <!-----------------------------------Interest Page---------------------------------->
+
+    <div class="bg-white" *ngIf="professionalUserType && interestPage">
+        <form [formGroup]="interestPageForm">
+            <div class="card rounded-0 shadow-none">
+
+                <div class="card-header justify-content-center text-center pt-5">
+
+                    <div class="row text-left text-muted mb-3 ml-3">
+                        <a class="text-muted" (click)="goToSecondPage()" routerLink=""><i
+                                class="fa fa-arrow-circle-left" aria-hidden="true"><span
+                                    class="mx-sm-2">BACK</span></i></a>
+                    </div>
+
+                    <small for="signUp" class="text-green text-uppercase">SIGN UP</small><br />
+                    <h3 for="professional" class="mb-1">Professional Details</h3>
+                    <h5 for="accountdetails" class="text-muted">Account Details</h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-8">
+                            <h6 class="font-weight-semibold text-dark">How best would you describe your interest ?
+                            </h6>
+
+                            <div class="form-group">
+                                <div *ngFor="let questions of interestQstnAnsList">
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="interest{{questions.id}}" value="{{questions.id}}"
+                                            name="interest" class="custom-control-input" formControlName="interest">
+                                        <label class="custom-control-label" for="interest{{questions.id}}">
+                                            {{questions.q_text}}
+                                        </label>
+                                    </div>
+                                    <div *ngIf="submitInterestPrefForm && p.interest.errors">
+                                        <div *ngIf="p.interest.errors.required" class="text-danger small">Please
+                                            select
+                                            option from above.
+                                        </div>
+                                    </div>
+                                    <div class="w-100 py-1"></div>
+                                    <div class="px-5">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio"
+                                                *ngFor="let answers of questions.paregquestionanswers">
+                                                <input type="radio" id="provider{{answers.id}}"
+                                                    value="{{answers.option_code}}" name="provider"
+                                                    class="custom-control-input" formControlName="provider"
+                                                    (change)=sendAnswerText(answers.option_text)>
+                                                <label class="custom-control-label" for="provider{{answers.id}}">
+                                                    {{answers.option_text}}
+                                                </label>
+                                            </div>
+                                            <div *ngIf="submitInterestPrefForm && p.provider.errors">
+                                                <div *ngIf="p.provider.errors.required" class="text-danger small">
+                                                    Please select
+                                                    option from above.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-100 py-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-center text-center py-3 ">
+                    <div class="col-12">
+                        <button class="btn btn-accent text-white px-5 text-uppercase"
+                            (click)=postInterestPrefernce()>NEXT
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+
+
+    <!------------------------------------End Interest Page------------------------------>
+
+</main>
+
+<main class="main-content col-9 offset-lg-3 offset-md-3">
+
+
+    <!----------------------------------Wizard pages------------------>
+
+    <div class="bg-white" *ngIf="thirdPage">
+        <form>
+            <div class="card-header justify-content-center text-center ">
+
+                <div class="row text-left text-muted mb-3 ml-3" *ngIf="!professionalUserType">
+                    <i class="fa fa-arrow-circle-left" (click)="goToSecondPage()" aria-hidden="true"><span
+                            class="mx-sm-2">BACK</span></i>
+                </div>
+                <div class="row text-left text-muted mb-3 ml-3" *ngIf="professionalUserType">
+                    <i class="fa fa-arrow-circle-left" (click)="goToInterestPage()" aria-hidden="true"><span
+                            class="mx-sm-2">BACK</span></i>
+                </div>
+
+                <small for="signUp" class="text-green ">SIGN UP</small><br />
+                <h3 *ngIf="!professionalUserType" for="professional" class="mb-1">Mineral Owner</h3>
+                <h3 *ngIf="professionalUserType" for="professional" class="mb-1">Professional Owner</h3>
+                <h5 for="accountdetails" class="text-muted">Account Details</h5>
+            </div>
+
+
+            <aw-wizard>
+                <aw-wizard-step stepTitle="Plan Selection" [canExit]="firstStepWizardForm.valid">
+                    <div class="centered-content">
+                        <div>
+                            <div class="row justify-content-center text-center">
+                                <div class="col-12">
+                                    <div class="card rounded-0 shadow-none">
+
+                                        <div class="card-body">
+
+                                            <div class="row justify-content-center text-left">
+                                                <div class="col-md-8 bg-light border py-3 ">
+                                                    <div [formGroup]="firstStepWizardForm">
+                                                        <div class="form-group">
+                                                            <div class="row" *ngFor="let pl of planInformation">
+                                                                <div class="col-6">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio"
+                                                                            id="membershipType{{pl.mplan_id}}"
+                                                                            value="{{pl.mplan_id}}"
+                                                                            name="membershipType"
+                                                                            class="custom-control-input"
+                                                                            formControlName="membershipType"
+                                                                            (change)="sendPlanInfo(pl.monthly_price,pl.annual_price,pl.plan)">
+                                                                        <label class="custom-control-label"
+                                                                            for="membershipType{{pl.mplan_id}}">{{pl.plan | titlecase}}
+                                                                            Membership</label>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <h6 class="text-dark">
+                                                                        *${{pl.monthly_price}}/month or
+                                                                        ${{pl.annual_price}}/annually</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div *ngIf="submitFirstStep && q.membershipType.errors">
+                                                            <div *ngIf="q.membershipType.errors.required"
+                                                                class="text-danger small">
+                                                                Please select
+                                                                option from above.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center text-center mt-3">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-accent text-white px-5"
+                                        (click)="validateFirstWizardStep()" awNextStep>NEXT
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </aw-wizard-step>
+                <aw-wizard-step stepTitle="Payment Selection" [canExit]="secondStepWizardForm.valid">
+                    <div class="centered-content">
+                        <div>
+                            <div class="row justify-content-center text-center">
+                                <div [formGroup]="secondStepWizardForm">
+                                    <div class="col-12 ">
                                         <div class="card rounded-0 shadow-none">
 
                                             <div class="card-body">
 
                                                 <div class="row justify-content-center text-left">
-                                                    <div class="col-md-8 bg-light border py-3 ">
-                                                        <div [formGroup]="firstStepWizardForm">
-                                                            <div class="form-group">
-                                                                <div class="row" *ngFor="let pl of planInformation">
-                                                                    <div class="col-6">
-                                                                        <div class="custom-control custom-radio">
-                                                                            <input type="radio"
-                                                                                id="membershipType{{pl.mplan_id}}"
-                                                                                value="{{pl.mplan_id}}"
-                                                                                name="membershipType"
-                                                                                class="custom-control-input"
-                                                                                formControlName="membershipType"
-                                                                                (change)="sendPlanInfo(pl.monthly_price,pl.annual_price,pl.plan)">
-                                                                            <label class="custom-control-label"
-                                                                                for="membershipType{{pl.mplan_id}}">{{pl.plan | titlecase}}
-                                                                                Membership</label>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <h6 class="text-dark">
-                                                                            *${{pl.monthly_price}}/month or
-                                                                            ${{pl.annual_price}}/annually</h6>
-                                                                    </div>
-                                                                </div>
+                                                    <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-radio  ">
+                                                                <input type="radio" id="Payment1" value="Paypal"
+                                                                    name="paymentSelection" class="custom-control-input"
+                                                                    formControlName="paymentSelection">
+                                                                <label class="custom-control-label"
+                                                                    for="Payment1">Paypal</label>
                                                             </div>
-
-                                                            <div *ngIf="submitFirstStep && q.membershipType.errors">
-                                                                <div *ngIf="q.membershipType.errors.required"
+                                                            <div class="w-100 py-2"></div>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="Payment2" value="Paper Check"
+                                                                    name="paymentSelection" class="custom-control-input"
+                                                                    formControlName="paymentSelection">
+                                                                <label class="custom-control-label" for="Payment2">Paper
+                                                                    Check</label>
+                                                            </div>
+                                                            <div *ngIf="submitSecondStep && r.paymentSelection.errors">
+                                                                <div *ngIf="r.paymentSelection.errors.required"
                                                                     class="text-danger small">
                                                                     Please select
                                                                     option from above.
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-center text-center mt-3">
-                                    <div class="col-12">
-                                        <button type="button" class="btn btn-accent text-white px-5"
-                                            (click)="validateFirstWizardStep()" awNextStep>NEXT
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </aw-wizard-step>
-                    <aw-wizard-step stepTitle="Payment Selection" [canExit]="secondStepWizardForm.valid">
-                        <div class="centered-content">
-                            <div>
-                                <div class="row justify-content-center text-center">
-                                    <div [formGroup]="secondStepWizardForm">
-                                        <div class="col-12 ">
-                                            <div class="card rounded-0 shadow-none">
-
-                                                <div class="card-body">
-
-                                                    <div class="row justify-content-center text-left">
-                                                        <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
-                                                            <div class="form-group">
-                                                                <div class="custom-control custom-radio  ">
-                                                                    <input type="radio" id="Payment1" value="Paypal"
-                                                                        name="paymentSelection"
-                                                                        class="custom-control-input"
-                                                                        formControlName="paymentSelection">
-                                                                    <label class="custom-control-label"
-                                                                        for="Payment1">Paypal</label>
-                                                                </div>
-                                                                <div class="w-100 py-2"></div>
-                                                                <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="Payment2"
-                                                                        value="Paper Check" name="paymentSelection"
-                                                                        class="custom-control-input"
-                                                                        formControlName="paymentSelection">
-                                                                    <label class="custom-control-label"
-                                                                        for="Payment2">Paper
-                                                                        Check</label>
-                                                                </div>
-                                                                <div
-                                                                    *ngIf="submitSecondStep && r.paymentSelection.errors">
-                                                                    <div *ngIf="r.paymentSelection.errors.required"
-                                                                        class="text-danger small">
-                                                                        Please select
-                                                                        option from above.
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pt-3 font-weight-semibold">
-                                                                    <small class=" font-weight-semibold">*Pay instantly
-                                                                        and
-                                                                        securely
-                                                                        through
-                                                                        PayPal</small>
-                                                                </div>
+                                                            <div class="pt-3 font-weight-semibold">
+                                                                <small class=" font-weight-semibold">*Pay instantly
+                                                                    and
+                                                                    securely
+                                                                    through
+                                                                    PayPal</small>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row justify-content-center text-left">
-                                                        <div
-                                                            class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
-                                                            <div class="form-group">
+                                                </div>
+                                                <div class="row justify-content-center text-left">
+                                                    <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
+                                                        <div class="form-group">
 
-                                                                <!-- <div class="custom-control custom-radio  ">
-                                                                <input type="radio" id="Subscription1" value="1"
+                                                            <!-- <div class="custom-control custom-radio  ">
+                                                                    <input type="radio" id="Subscription1" value="1"
+                                                                        name="subscriptionAmount"
+                                                                        class="custom-control-input"
+                                                                        formControlName="subscriptionAmount">
+                                                                    <label class="custom-control-label"
+                                                                        for="Subscription1">No
+                                                                        Payment
+                                                                        Necessary</label>
+                                                                </div> -->
+
+                                                            <div class="w-100 py-2"></div>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="Subscription2" value="2"
                                                                     name="subscriptionAmount"
                                                                     class="custom-control-input"
-                                                                    formControlName="subscriptionAmount">
+                                                                    formControlName="subscriptionAmount"
+                                                                    (change)="sendPlanDuration('Monthly',selMonthlyPrice)">
                                                                 <label class="custom-control-label"
-                                                                    for="Subscription1">No
-                                                                    Payment
-                                                                    Necessary</label>
-                                                            </div> -->
-
-                                                                <div class="w-100 py-2"></div>
-                                                                <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="Subscription2" value="2"
-                                                                        name="subscriptionAmount"
-                                                                        class="custom-control-input"
-                                                                        formControlName="subscriptionAmount"
-                                                                        (change)="sendPlanDuration('Monthly',selMonthlyPrice)">
-                                                                    <label class="custom-control-label"
-                                                                        for="Subscription2">Monthly
-                                                                        Subscription
-                                                                        -${{selMonthlyPrice}}/month</label>
+                                                                    for="Subscription2">Monthly
+                                                                    Subscription
+                                                                    -${{selMonthlyPrice}}/month</label>
+                                                            </div>
+                                                            <div class="w-100 py-2"></div>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="Subscription3" value="3"
+                                                                    name="subscriptionAmount"
+                                                                    class="custom-control-input"
+                                                                    formControlName="subscriptionAmount"
+                                                                    (change)="sendPlanDuration('Yearly',selAnnualPrice)">
+                                                                <label class=" custom-control-label"
+                                                                    for="Subscription3">Yearly
+                                                                    Subscription
+                                                                    -${{selAnnualPrice}}/year</label>
+                                                            </div>
+                                                            <div
+                                                                *ngIf="submitSecondStep && r.subscriptionAmount.errors">
+                                                                <div *ngIf="r.subscriptionAmount.errors.required"
+                                                                    class="text-danger small">
+                                                                    Please select
+                                                                    option from above.
                                                                 </div>
-                                                                <div class="w-100 py-2"></div>
-                                                                <div class="custom-control custom-radio">
-                                                                    <input type="radio" id="Subscription3" value="3"
-                                                                        name="subscriptionAmount"
-                                                                        class="custom-control-input"
-                                                                        formControlName="subscriptionAmount"
-                                                                        (change)="sendPlanDuration('Yearly',selAnnualPrice)">
-                                                                    <label class=" custom-control-label"
-                                                                        for="Subscription3">Yearly
-                                                                        Subscription
-                                                                        -${{selAnnualPrice}}/year</label>
-                                                                </div>
-                                                                <div
-                                                                    *ngIf="submitSecondStep && r.subscriptionAmount.errors">
-                                                                    <div *ngIf="r.subscriptionAmount.errors.required"
-                                                                        class="text-danger small">
-                                                                        Please select
-                                                                        option from above.
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pt-3 font-weight-semibold">
-                                                                    <small class=" font-weight-semibold">*you will
-                                                                        automatically
-                                                                        be
-                                                                        enrolled
-                                                                        in
-                                                                        auto-renewal. To change plan and/or payment
-                                                                        method,
-                                                                        you
-                                                                        can
-                                                                        do
-                                                                        so
-                                                                        through
-                                                                        your
-                                                                        Profile</small>
-                                                                </div>
+                                                            </div>
+                                                            <div class="pt-3 font-weight-semibold">
+                                                                <small class=" font-weight-semibold">*you will
+                                                                    automatically
+                                                                    be
+                                                                    enrolled
+                                                                    in
+                                                                    auto-renewal. To change plan and/or payment
+                                                                    method,
+                                                                    you
+                                                                    can
+                                                                    do
+                                                                    so
+                                                                    through
+                                                                    your
+                                                                    Profile</small>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="row justify-content-center text-center mt-3">
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-accent text-white px-5"
-                                                    awPreviousStep>BACK
-                                                </button>
-                                                &nbsp;&nbsp;
-                                                <button type="button" class="btn btn-accent text-white px-5"
-                                                    (click)="validateSecondWizardStep()" awNextStep>NEXT
-                                                </button>
-                                            </div>
+                                    <div class="row justify-content-center text-center mt-3">
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-accent text-white px-5"
+                                                awPreviousStep>BACK
+                                            </button>
+                                            &nbsp;&nbsp;
+                                            <button type="button" class="btn btn-accent text-white px-5"
+                                                (click)="validateSecondWizardStep()" awNextStep>NEXT
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </aw-wizard-step>
-                    <aw-wizard-step stepTitle="Review and Confirm">
-                        <div class="centered-content">
-                            <div>
-                                <div class="row justify-content-center text-center">
+                    </div>
+                </aw-wizard-step>
+                <aw-wizard-step stepTitle="Review and Confirm">
+                    <div class="centered-content">
+                        <div>
+                            <div class="row justify-content-center text-center">
 
-                                    <div class="col-12 ">
-                                        <div class="card rounded-0 shadow-none">
-                                            <div class="card-body">
+                                <div class="col-12 ">
+                                    <div class="card rounded-0 shadow-none">
+                                        <div class="card-body">
 
-                                                <div class="row justify-content-center text-left">
-                                                    <div class="col-md-8 bg-light border py-3">
-                                                        <div class=" d-inline-flex d-flex">
-                                                            <div class="mr-5">
-                                                                <h6 class="font-weight-bold text-dark">User Address</h6>
-                                                                <p class="text-muted font-weight-normal mb-1">
-                                                                    {{confirmAddress | titlecase}}
-                                                                </p>
-                                                            </div>
-                                                            <div class="ml-auto">
-                                                                <h6 class="font-weight-bold text-dark">Preferences
-                                                                    Selected
-                                                                </h6>
-                                                                <p class="text-muted font-weight-normal mb-1">
-                                                                    {{preferenceName}}
-                                                                </p>
-                                                                <ul class="text-muted pt-1">
-                                                                    <li>{{confirmPhoneNumber}}</li>
-                                                                    <li>{{confirmEmail}}</li>
-                                                                </ul>
-                                                            </div>
+                                            <div class="row justify-content-center text-left">
+                                                <div class="col-md-8 bg-light border py-3">
+                                                    <div class=" d-inline-flex d-flex">
+                                                        <div class="mr-5">
+                                                            <h6 class="font-weight-bold text-dark">User Address</h6>
+                                                            <p class="text-muted font-weight-normal mb-1">
+                                                                {{confirmAddress | titlecase}}
+                                                            </p>
                                                         </div>
-                                                        <div class="">
-                                                            <h6 class="font-weight-bold text-dark mb-1">Plan Details
+                                                        <div class="ml-auto">
+                                                            <h6 class="font-weight-bold text-dark">Preferences
+                                                                Selected
                                                             </h6>
-                                                            <div class="d-flex bg-white">
-                                                                <p class="text-dark font-weight-normal  mb-1">
-                                                                    {{planName | titlecase}}
-                                                                    Plan -
-                                                                    {{userTypeName}}
-                                                                    Owner /
-                                                                    {{planDuration}}
-                                                                    Subscription</p>
-                                                                <p class="text-dark font-weight-semibold  mb-1 ml-auto">
-                                                                    {{subscrptionAmount}}$
-                                                                </p>
-                                                            </div>
+                                                            <p class="text-muted font-weight-normal mb-1">
+                                                                {{preferenceName}}
+                                                            </p>
+                                                            <ul class="text-muted pt-1">
+                                                                <li>{{confirmPhoneNumber}}</li>
+                                                                <li>{{confirmEmail}}</li>
+                                                            </ul>
                                                         </div>
-
+                                                    </div>
+                                                    <div class="">
+                                                        <h6 class="font-weight-bold text-dark mb-1">Plan Details
+                                                        </h6>
+                                                        <div class="d-flex bg-white">
+                                                            <p class="text-dark font-weight-normal  mb-1">
+                                                                {{planName | titlecase}}
+                                                                Plan -
+                                                                {{userTypeName}}
+                                                                Owner /
+                                                                {{planDuration}}
+                                                                Subscription</p>
+                                                            <p class="text-dark font-weight-semibold  mb-1 ml-auto">
+                                                                {{subscrptionAmount}}$
+                                                            </p>
+                                                        </div>
                                                     </div>
 
                                                 </div>
 
-                                                <div class="row justify-content-center text-center mt-3">
-                                                    <div class="col-12">
-                                                        <button type="button" class="btn btn-accent text-white px-5"
-                                                            awPreviousStep>BACK
-                                                        </button>
-                                                        &nbsp;&nbsp;
-                                                        <button type="submit" class="btn btn-accent text-white px-5"
-                                                            (click)="openClaimLeaseModal(claimLeaseModal)">CONFIRM
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                            </div>
 
+                                            <div class="row justify-content-center text-center mt-3">
+                                                <div class="col-12">
+                                                    <button type="button" class="btn btn-accent text-white px-5"
+                                                        awPreviousStep>BACK
+                                                    </button>
+                                                    &nbsp;&nbsp;
+                                                    <button type="submit" class="btn btn-accent text-white px-5"
+                                                        (click)="openClaimLeaseModal(claimLeaseModal)">CONFIRM
+                                                    </button>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -702,117 +807,20 @@
                                     </div>
 
                                 </div>
-                            </div>
-                        </div>
-                    </aw-wizard-step>
-                </aw-wizard>
-            </form>
-        </div>
-        <!------------------------------End wizard----------------------->
 
-    </div>
-
-
-    <!-------------------------------------------------------------Sign In form---------------------------------------------------->
-
-
-    <div class="row justify-content-center text-center bg-black" *ngIf="signInPage">
-
-        <div class="col-3 align-self-center pb-4">
-            <div class="sidebar">
-                <h6 class="text-green mt-5 ">DON'T HAVE AN ACCOUNT? </h6>
-                <h3 class="text-white text-center  "> Sign Up now</h3>
-                <button class="btn btn-accent text-white rounded-0 mt-3 px-5"
-                    (click)="openuserTypeModal(userTypeModal)">SIGN UP
-                </button>
-            </div>
-        </div>
-
-
-        <div class="col-9 bg-white vh-100">
-            <div class="card rounded-0 shadow-none">
-                <div class="card-header justify-content-center text-center pt-5">
-                    <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
-                    <h3 for="professional" class="mb-1">Ready to Go</h3>
-                    <h5 for="accountdetails" class="text-muted">Login Details</h5>
-                </div>
-                <form [formGroup]="signInForm">
-                    <div class="card-body">
-                        <div class="row justify-content-center text-left">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email" class="text-muted">eMail</label>
-                                    <input class="form-control rounded" id="email" formControlName="email" type="text"
-                                        placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
-                                    <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
-                                        <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center text-left">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="password" class="text-muted">Password</label>
-                                    <input class="form-control rounded" id="password" formControlName="password"
-                                        type="password" placeholder=""
-                                        [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
-                                    <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
-                                        <div *ngIf="l.password.errors.required">Please enter your password.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center text-center mt-3">
-                            <div class="col-12">
-                                <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
-                                </button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-
-        </div>
+                </aw-wizard-step>
+            </aw-wizard>
+        </form>
     </div>
+    <!------------------------------End wizard----------------------->
+
+</main>
 
 
-
-    <!--------------------------------------------------------------End of Sign in---------------------------------------------->
-
-
-</div>
-
-<!------------------------------------------Password verification--------------------------------->
-
-<ng-template #passwordVerifyModal>
-    <form>
-        <div class="modal-content modal-md">
-            <div class="modal-body py-3 px-4">
-                <div class="card shadow-none">
-                    <div class="row">
-                        <div class="col-12">
-                            <h6 class="font-weight-semibold">Your passwords did not match. Please verify again.</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-                    (click)="closeVerifyPasswordModal()">OK</button>
-            </div>
-
-
-        </div>
-    </form>
-
-</ng-template>
-
-
-<!------------------------------------------End Password verification------------------------------>
-
-
-<!---------------------------------------Sign up Pupup------------------------------------>
+<!---------------------------------------User Type Pupup------------------------------------>
 
 
 <ng-template #userTypeModal>
@@ -876,8 +884,36 @@
     </form>
 
 </ng-template>
-<!---------------------------------------End signup popup-------------------------------->
+<!---------------------------------------End User Type popup-------------------------------->
 
+
+<!------------------------------------------Password verification--------------------------------->
+
+<ng-template #passwordVerifyModal>
+    <form>
+        <div class="modal-content modal-md">
+            <div class="modal-body py-3 px-4">
+                <div class="card shadow-none">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="font-weight-semibold">Your passwords did not match. Please verify again.</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+                    (click)="closeVerifyPasswordModal()">OK</button>
+            </div>
+
+
+        </div>
+    </form>
+
+</ng-template>
+
+
+<!------------------------------------------End Password verification------------------------------>
 
 
 <!---------------------------------------Cleaim Lease Popup------------------------------>
@@ -927,6 +963,3 @@
 </ng-template>
 
 <!-----------------------------------------------End Claim Lease popup----------------------------------->
-
-
-<!----------------------------------------------Sign In ----------------------------------------------->
