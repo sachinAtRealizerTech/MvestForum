@@ -456,13 +456,23 @@
                                                                             <label class="custom-control-label"
                                                                                 for="membershipType{{pl.mplan_id}}">{{pl.plan | titlecase}}
                                                                                 Membership</label>
+
                                                                         </div>
+
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <h6 class="text-dark">
                                                                             *${{pl.monthly_price}}/month or
                                                                             ${{pl.annual_price}}/annually</h6>
                                                                     </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div *ngIf="submitFirstStep && q.membershipType.errors">
+                                                                <div *ngIf="q.membershipType.errors.required"
+                                                                    class="text-danger small">
+                                                                    Please select
+                                                                    option from above.
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -475,7 +485,8 @@
 
                                 <div class="row justify-content-center text-center mt-3">
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-accent text-white px-5" awNextStep>NEXT
+                                        <button type="button" class="btn btn-accent text-white px-5"
+                                            (click)="validateFirstWizardStep()" awNextStep>NEXT
                                         </button>
                                     </div>
                                 </div>
@@ -513,6 +524,14 @@
                                                                     <label class="custom-control-label"
                                                                         for="Payment2">Paper
                                                                         Check</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="submitSecondStep && r.paymentSelection.errors">
+                                                                    <div *ngIf="r.paymentSelection.errors.required"
+                                                                        class="text-danger small">
+                                                                        Please select
+                                                                        option from above.
+                                                                    </div>
                                                                 </div>
                                                                 <div class="pt-3 font-weight-semibold">
                                                                     <small class=" font-weight-semibold">*Pay instantly
@@ -564,6 +583,14 @@
                                                                         Subscription
                                                                         -${{selAnnualPrice}}/year</label>
                                                                 </div>
+                                                                <div
+                                                                    *ngIf="submitSecondStep && r.subscriptionAmount.errors">
+                                                                    <div *ngIf="r.subscriptionAmount.errors.required"
+                                                                        class="text-danger small">
+                                                                        Please select
+                                                                        option from above.
+                                                                    </div>
+                                                                </div>
                                                                 <div class="pt-3 font-weight-semibold">
                                                                     <small class=" font-weight-semibold">*you will
                                                                         automatically
@@ -594,7 +621,7 @@
                                                 </button>
                                                 &nbsp;&nbsp;
                                                 <button type="button" class="btn btn-accent text-white px-5"
-                                                    awNextStep>NEXT
+                                                    (click)="validateSecondWizardStep()" awNextStep>NEXT
                                                 </button>
                                             </div>
                                         </div>

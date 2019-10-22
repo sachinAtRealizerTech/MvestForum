@@ -53,6 +53,8 @@ export class SignupComponent implements OnInit {
   submitInterestPrefForm = false;
   answerText: string;
   secondStepWizardForm: FormGroup;
+  submitFirstStep = false;
+  submitSecondStep = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -134,6 +136,8 @@ export class SignupComponent implements OnInit {
   get p() { return this.interestPageForm.controls }
   get n() { return this.planSelectionForm.controls; }
   get l() { return this.signInForm.controls }
+  get q() { return this.firstStepWizardForm.controls }
+  get r() { return this.secondStepWizardForm.controls }
 
   openuserTypeModal(content) {
     this.submitSignIn = false;
@@ -346,6 +350,23 @@ export class SignupComponent implements OnInit {
         console.log("plan info", this.planInformation)
       })
     }
+  }
+
+
+  validateFirstWizardStep() {
+    this.submitFirstStep = true;
+    if (this.firstStepWizardForm.invalid) {
+      return;
+    }
+    this.submitFirstStep = false;
+  }
+
+  validateSecondWizardStep() {
+    this.submitSecondStep = true;
+    if (this.secondStepWizardForm.invalid) {
+      return;
+    }
+    this.submitSecondStep = false;
   }
 
   sendPlanInfo(MonthlyPrice: any, annualPrice: any, planName: string) {
