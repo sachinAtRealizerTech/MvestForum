@@ -103,7 +103,7 @@ export class SignupComponent implements OnInit {
       eMail: ['', [Validators.required, Validators.email]],
       address: [''],
       city: [''],
-      state: [''],
+      state: ['', Validators.required],
       zipCode: [''],
       phoneNumber: [''],
       password: ['', Validators.required],
