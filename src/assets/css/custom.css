@@ -894,6 +894,22 @@ aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li:after {
 }
   
 
+.close {
+  margin: 0;
+  position: absolute !important;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color:#00CD95 !important;
+  color:#fff;
+  font-size: 16px;
+  outline: none !important;
+ opacity: 1 !important;
+  z-index: 9999 !important;
+}
+
 /* .fixed-content {
  
   bottom:0;

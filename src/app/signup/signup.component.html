@@ -827,6 +827,14 @@
 
     <form [formGroup]="userTypeForm">
         <div class="modal-content">
+                <div class=" justify-content-end">
+                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closePostQuestionModal()">
+                                
+                                        
+    
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div> 
 
             <div class="modal-body">
                 <div class="card shadow-none">
@@ -877,8 +885,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-accent btn-sm text-uppercase"
                     (click)="postUserType()">CONFIRM</button>
-                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-                    (click)="closePostQuestionModal()">CANCEL</button>
+                <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+                    (click)="closePostQuestionModal()">CANCEL</button> -->
             </div>
         </div>
     </form>
@@ -892,6 +900,16 @@
 <ng-template #passwordVerifyModal>
     <form>
         <div class="modal-content modal-md">
+
+                <div class=" justify-content-end">
+                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closeVerifyPasswordModal()">
+                                
+                                        
+    
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div> 
+
             <div class="modal-body py-3 px-4">
                 <div class="card shadow-none">
                     <div class="row">
@@ -901,10 +919,10 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
                     (click)="closeVerifyPasswordModal()">OK</button>
-            </div>
+            </div> 
 
 
         </div>
