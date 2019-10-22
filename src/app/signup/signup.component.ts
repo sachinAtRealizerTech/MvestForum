@@ -55,6 +55,7 @@ export class SignupComponent implements OnInit {
   secondStepWizardForm: FormGroup;
   submitFirstStep = false;
   submitSecondStep = false;
+  passwordVerifyModal: ElementRef;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -104,7 +105,7 @@ export class SignupComponent implements OnInit {
       address: [''],
       city: [''],
       state: ['', Validators.required],
-      zipCode: [''],
+      zipCode: ['', Validators.required],
       phoneNumber: [''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
@@ -220,14 +221,22 @@ export class SignupComponent implements OnInit {
     this.confirmEmail = this.userInfoForm.controls.eMail.value;
   }
 
-  submitUserInformation() {
+  submitUserInformation(passwordVerifyModal) {
     debugger;
     this.submitUserInfoForm = true;
+    this.passwordVerifyModal = passwordVerifyModal;
     if (this.userInfoForm.invalid) {
       return;
     }
     if (this.userInfoForm.controls.password.value != this.userInfoForm.controls.confirmPassword.value) {
-      alert("Passwords did not match...Please verify password.")
+
+      this.modalService.open(this.passwordVerifyModal, {
+        backdrop: 'static',
+        backdropClass: 'customBackdrop',
+        size: 'sm'
+      })
+
+      // alert("Passwords did not match...Please verify password.")
       return
     }
     this.submitUserInfoForm = false;
@@ -259,6 +268,11 @@ export class SignupComponent implements OnInit {
       }
     )
   }
+
+  closeVerifyPasswordModal() {
+    this.modalService.dismissAll(this.passwordVerifyModal);
+  }
+
 
   getStateList() {
     this.signupService.getStates().subscribe(data => {
@@ -459,7 +473,7 @@ export class SignupComponent implements OnInit {
       console.log("login", data);
       if (data['data']) {
         alert("You have been logged in successfully")
-        //this.router.navigateByUrl[]
+        this.router.navigate(['/profile'])
       }
       if (data['error'] == "email and password not valid") {
         alert("Sorry...You have not been logged in..Please verify your credentials")

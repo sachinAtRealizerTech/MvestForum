@@ -219,7 +219,8 @@
                         </div>
                         <div class="row justify-content-center text-center mt-3">
                             <div class="col-12">
-                                <button class="btn btn-accent text-white px-5" (click)=submitUserInformation()>NEXT
+                                <button class="btn btn-accent text-white px-5"
+                                    (click)=submitUserInformation(passwordVerifyModal)>NEXT
                                 </button>
                             </div>
                         </div>
@@ -781,6 +782,36 @@
 
 
 </div>
+
+<!------------------------------------------Password verification--------------------------------->
+
+<ng-template #passwordVerifyModal>
+    <form>
+        <div class="modal-content modal-md">
+            <div class="modal-body py-3 px-4">
+                <div class="card shadow-none">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="font-weight-semibold">Your passwords did not match. Please verify again.</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+                    (click)="closeVerifyPasswordModal()">OK</button>
+            </div>
+
+
+        </div>
+    </form>
+
+</ng-template>
+
+
+<!------------------------------------------End Password verification------------------------------>
+
+
 <!---------------------------------------Sign up Pupup------------------------------------>
 
 
