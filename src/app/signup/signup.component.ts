@@ -321,7 +321,6 @@ export class SignupComponent implements OnInit {
 
   getInterestQuestionAns() {
     this.signupService.getInterestQuestionAns().subscribe(data => {
-      console.log('interest', data);
       this.interestQstnAnsList = data['data'];
     })
   }
@@ -337,7 +336,7 @@ export class SignupComponent implements OnInit {
     if (this.interestPageForm.invalid) {
       return;
     }
-    this.goToThirdPage();
+
     this.submitInterestPrefForm = false;
     let body = {
       member_id: this.userId,
@@ -346,7 +345,7 @@ export class SignupComponent implements OnInit {
       answer_code: this.interestPageForm.controls.provider.value
     }
     this.signupService.postInterestPrefernce(body).subscribe(data => {
-
+      this.goToThirdPage();
     })
 
   }
@@ -355,13 +354,11 @@ export class SignupComponent implements OnInit {
     if (this.userTypeForm.controls.Ownership.value == "1") {
       this.signupService.planSelectionDataForMineralUser().subscribe(data => {
         this.planInformation = data['data'];
-        console.log("plan info", this.planInformation)
       })
     }
     else {
       this.signupService.planSelectionDataForProfessionalUser().subscribe(data => {
         this.planInformation = data['data']
-        console.log("plan info", this.planInformation)
       })
     }
   }
@@ -473,7 +470,8 @@ export class SignupComponent implements OnInit {
       console.log("login", data);
       if (data['data']) {
         alert("You have been logged in successfully")
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/dashboard']);
+        sessionStorage['userName'] = data['data']['f_name'] + " " + data['data']['l_name']
       }
       if (data['error'] == "email and password not valid") {
         alert("Sorry...You have not been logged in..Please verify your credentials")

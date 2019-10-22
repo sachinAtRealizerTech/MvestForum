@@ -18,10 +18,10 @@ import { CommunityComponent } from './community/community.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SignupComponent } from './signup/signup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
-
 
   {
     path: '',
@@ -99,6 +99,10 @@ const routes: Routes = [
       {
         path: 'signup',
         component: SignupComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
       }
 
     ]

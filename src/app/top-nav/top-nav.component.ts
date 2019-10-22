@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit {
+  userName: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.userName = sessionStorage['userName']
   }
 
 }
