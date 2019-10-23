@@ -939,6 +939,15 @@
 <ng-template #claimLeaseModal>
     <form>
         <div class="modal-content">
+
+                <div class=" justify-content-end">
+                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closeClaimLeaseModal()">
+                                
+                                        
+    
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div> 
             <div class="modal-body">
                 <div class="card shadow-none">
                     <div class="row">
@@ -970,8 +979,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-accent btn-sm text-uppercase"
                     (click)="completeUserRegistration()">Complete</button>
-                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-                    (click)="closeClaimLeaseModal()">Cancel</button>
+                <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+                    (click)="closeClaimLeaseModal()">Cancel</button> -->
             </div>
 
 
