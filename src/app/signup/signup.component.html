@@ -1,4 +1,6 @@
-<aside class="main-sidebar col-3 px-0 shadow-none" *ngIf="!signInPage">
+
+
+<aside class="main-sidebar col-lg-3 col-xl-3 px-0 shadow-none d-none d-lg-block d-md-none d-xl-block" *ngIf="!signInPage">
     <div class="main-navbar">
         <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
             <a class="navbar-brand w-100 mr-0" href="#">
@@ -34,20 +36,49 @@
 </aside>
 
 
- 
+<aside class="main-sidebar col-lg-3 col-xl-3 px-0 shadow-none d-none d-lg-block d-md-none d-xl-block" *ngIf="signInPage">
+    <div class="main-navbar ">
+        <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
+            <a class="navbar-brand w-100 mr-0" href="#">
+                <div class="d-table m-auto">
+                    <img id="main-logo" class="d-inline-block align-top mr-1" src="assets/images/avatars/logo1.jpg"
+                        width="auto" height="50" alt="MVest Logo">
+                </div>
+            </a>
+            <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+            </a>
+        </nav>
+    </div>
+    <div class="nav-wrapper text-white text-center">
+
+        <div class="sidebar">
+            <h6 class="text-green mt-5">DON'T HAVE AN ACCOUNT? </h6>
+            <h3 class="text-white text-center "> Sign up now</h3>
+            <button class="btn btn-accent text-white rounded-0 mt-3 px-5"
+                (click)="openuserTypeModal(userTypeModal)">SIGN UP
+            </button>
+        </div>
+
+    </div>
+</aside>
 
 
-<main class="main-content col-9 offset-lg-3 offset-md-3  px-0">
+<main class="main-content  col-12 col-md-12 col-lg-9 col-xl-9 col-sm-12 col-xs-12 offset-lg-3 offset-sm-0 px-0">
 
     <!-----------------------------------------------------------Top Nav---------------------------------------------------------->
 
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow p-2">
         <div class="container-fluid">
+                <div class=" justify-content-start align-text-left text-left h6 d-inline-flex d-block d-md-block d-lg-none">
+                        <img id="main-logo" class="d-inline-block align-top mr-1" src="assets/images/avatars/logo1.jpg"
+                        width="auto" height="50" alt="MVest Logo">
+                </div>
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
-                </svg>
+                <i class="material-icons md-30">
+                    menu
+                    </i> 
 
             </button>
 
@@ -96,7 +127,52 @@
 
     <!-------------------------------------------------------Sign In------------------>
 
-   
+    <div class="bg-white" *ngIf="signInPage">
+        <div class="card rounded-0 shadow-none">
+            <div class="card-header justify-content-center text-center pt-5">
+                <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
+                <h3 for="professional" class="mb-1">Ready to Go</h3>
+                <h5 for="accountdetails" class="text-muted">Login Details</h5>
+            </div>
+            <form [formGroup]="signInForm">
+                <div class="card-body">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="text-muted">eMail</label>
+                                <input class="form-control rounded" id="email" formControlName="email" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
+                                <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
+                                    <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password" class="text-muted">Password</label>
+                                <input class="form-control rounded" id="password" formControlName="password"
+                                    type="password" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
+                                <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
+                                    <div *ngIf="l.password.errors.required">Please enter your password.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-center mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
     <!------------------------------------------------------End Sign In----------->
 
 
@@ -105,7 +181,7 @@
     <div class="bg-white" *ngIf="userTypePage">
         <div class="card rounded-0 shadow-none">
             <div class="card-header justify-content-center text-center ">
-                <h3 for="professional" class=" pt-5 font-weight-semibold">Welcome to MVest</h3>
+                <h3 for="professional" class="font-weight-semibold">Welcome to MVest</h3>
                 <h5 for="accountdetails" class="text-muted h6">This resource is designed to equip you with the
                     most current information, value estimates, and news that is related specifically to your
                     leases and mineral interests.</h5>
@@ -357,7 +433,7 @@
 </main>
 
 
-<main class="main-content col-9 offset-lg-3 offset-md-3">
+<main class="main-content col-12 col-md-12 col-lg-9 col-xl-9 col-sm-12 col-xs-12 offset-lg-3 offset-sm-0 px-0">
 
     <!-----------------------------------Interest Page---------------------------------->
 
@@ -393,12 +469,12 @@
                                             {{questions.q_text}}
                                         </label>
                                     </div>
-                                    <div *ngIf="submitInterestPrefForm && p.interest.errors">
+                                    <!-- <div *ngIf="submitInterestPrefForm && p.interest.errors">
                                         <div *ngIf="p.interest.errors.required" class="text-danger small">Please
                                             select
                                             option from above.
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="w-100 py-1"></div>
                                     <div class="px-5">
                                         <div class="form-group">
@@ -412,14 +488,61 @@
                                                     {{answers.option_text}}
                                                 </label>
                                             </div>
-                                            <div *ngIf="submitInterestPrefForm && p.provider.errors">
+                                            <!-- <div *ngIf="submitInterestPrefForm && p.provider.errors">
                                                 <div *ngIf="p.provider.errors.required" class="text-danger small">
                                                     Please select
                                                     option from above.
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
+                                </div>
+
+                                <!---------------------------Other------------------>
+                                <div>
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="interest" value="3" name="interest"
+                                            class="custom-control-input" formControlName="interest">
+                                        <label class="custom-control-label" for="interest">
+                                            I am neither investor nor provider.
+                                        </label>
+                                    </div>
+                                    <!-- <div *ngIf="submitInterestPrefForm && p.interest.errors">
+                                        <div *ngIf="p.interest.errors.required" class="text-danger small">Please
+                                            select
+                                            option from above.
+                                        </div>
+                                    </div> -->
+                                    <div class="w-100 py-1"></div>
+                                    <div class="px-5">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="provider" value="null" name="provider"
+                                                    class="custom-control-input" formControlName="provider"
+                                                    (change)="sendAnswerText('null')">
+                                                <label class="custom-control-label" for="provider">
+                                                    Other
+                                                </label>
+                                            </div>
+                                            <!-- <div *ngIf="submitInterestPrefForm && p.provider.errors">
+                                                <div *ngIf="p.provider.errors.required" class="text-danger small">
+                                                    Please select
+                                                    option from above.
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--------------------------------------End Other----------------------------->
+
+                            </div>
+
+                            <div *ngIf="submitInterestPrefForm && p.provider.errors && p.interest.errors">
+                                <div *ngIf="p.provider.errors.required && p.interest.errors.required"
+                                    class="text-danger small">
+                                    Please select
+                                    option from above.
                                 </div>
                             </div>
                         </div>
@@ -445,7 +568,7 @@
 
 </main>
 
-<main class="main-content col-9 offset-lg-3 offset-md-3">
+<main class="main-content  col-md-9 col-sm-12 offset-lg-3 offset-md-3">
 
 
     <!----------------------------------Wizard pages------------------>
@@ -757,16 +880,17 @@
 
     <form [formGroup]="userTypeForm">
         <div class="modal-content">
-                <div class=" justify-content-end">
-                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closePostQuestionModal()">
-                                
-                                        
-    
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div> 
+            <div class=" justify-content-end">
+                <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                    (click)="closePostQuestionModal()">
 
-            <div class="modal-body">
+
+
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body pb-2">
                 <div class="card shadow-none">
                     <div class="row">
                         <div class="col-12">
@@ -775,13 +899,13 @@
                             <div class="d-inline-flex d-flex pt-2">
                                 <div class="form-group">
                                     <div class="custom-control custom-radio  ">
-                                        <input type="radio" id="Mineral" value="1" name="Ownership"
+                                        <input type="radio" id="Mineral" value="Mineral" name="Ownership"
                                             class="custom-control-input" formControlName="Ownership">
                                         <label class="custom-control-label" for="Mineral">Mineral Owner</label>
                                     </div>
                                     <div class=" pt-2">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="Professional" value="2" name="Ownership"
+                                            <input type="radio" id="Professional" value="Professional" name="Ownership"
                                                 class="custom-control-input pt-2" formControlName="Ownership">
                                             <label class="custom-control-label" for="Professional">Professional
                                                 Owner</label>
@@ -812,8 +936,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-accent btn-sm text-uppercase"
+            <div class="modal-footer border-0 justify-content-center pt-0">
+                <button type="button" class="btn btn-accent btn-sm text-uppercase "
                     (click)="postUserType()">CONFIRM</button>
                 <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
                     (click)="closePostQuestionModal()">CANCEL</button> -->
@@ -831,14 +955,15 @@
     <form>
         <div class="modal-content modal-md">
 
-                <div class=" justify-content-end">
-                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closeVerifyPasswordModal()">
-                                
-                                        
-    
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div> 
+            <div class=" justify-content-end">
+                <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                    (click)="closeVerifyPasswordModal()">
+
+
+
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
             <div class="modal-body py-3 px-4">
                 <div class="card shadow-none">
@@ -849,10 +974,10 @@
                     </div>
                 </div>
             </div>
-             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+            <div class="modal-footer border-0 justify-content-center pt-0">
+                <button type="button" class="btn btn-accent btn-sm text-uppercase "
                     (click)="closeVerifyPasswordModal()">OK</button>
-            </div> 
+            </div>
 
 
         </div>
@@ -869,15 +994,12 @@
 <ng-template #claimLeaseModal>
     <form>
         <div class="modal-content">
-
-                <div class=" justify-content-end">
-                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closeClaimLeaseModal()">
-                                
-                                        
-    
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div> 
+            <div class=" justify-content-end">
+                <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                    (click)="closeClaimLeaseModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
                 <div class="card shadow-none">
                     <div class="row">
@@ -906,7 +1028,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-0 justify-content-center pt-0">
                 <button type="button" class="btn btn-accent btn-sm text-uppercase"
                     (click)="completeUserRegistration()">Complete</button>
                 <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
