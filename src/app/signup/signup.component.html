@@ -34,32 +34,7 @@
 </aside>
 
 
-<aside class="main-sidebar col-3 px-0 shadow-none" *ngIf="signInPage">
-    <div class="main-navbar ">
-        <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
-            <a class="navbar-brand w-100 mr-0" href="#">
-                <div class="d-table m-auto">
-                    <img id="main-logo" class="d-inline-block align-top mr-1" src="assets/images/avatars/logo1.jpg"
-                        width="auto" height="50" alt="MVest Logo">
-                </div>
-            </a>
-            <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
-                <i class="material-icons">&#xE5C4;</i>
-            </a>
-        </nav>
-    </div>
-    <div class="nav-wrapper text-white text-center">
-
-        <div class="sidebar">
-            <h6 class="text-green mt-5">DON'T HAVE AN ACCOUNT? </h6>
-            <h3 class="text-white text-center "> Sign up now</h3>
-            <button class="btn btn-accent text-white rounded-0 mt-3 px-5"
-                (click)="openuserTypeModal(userTypeModal)">SIGN UP
-            </button>
-        </div>
-
-    </div>
-</aside>
+ 
 
 
 <main class="main-content col-9 offset-lg-3 offset-md-3  px-0">
@@ -121,52 +96,7 @@
 
     <!-------------------------------------------------------Sign In------------------>
 
-    <div class="bg-white" *ngIf="signInPage">
-        <div class="card rounded-0 shadow-none">
-            <div class="card-header justify-content-center text-center pt-5">
-                <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
-                <h3 for="professional" class="mb-1">Ready to Go</h3>
-                <h5 for="accountdetails" class="text-muted">Login Details</h5>
-            </div>
-            <form [formGroup]="signInForm">
-                <div class="card-body">
-                    <div class="row justify-content-center text-left">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email" class="text-muted">eMail</label>
-                                <input class="form-control rounded" id="email" formControlName="email" type="text"
-                                    placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
-                                <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
-                                    <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center text-left">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="password" class="text-muted">Password</label>
-                                <input class="form-control rounded" id="password" formControlName="password"
-                                    type="password" placeholder=""
-                                    [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
-                                <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
-                                    <div *ngIf="l.password.errors.required">Please enter your password.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center text-center mt-3">
-                        <div class="col-12">
-                            <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-    </div>
-
+   
     <!------------------------------------------------------End Sign In----------->
 
 
