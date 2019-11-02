@@ -1,155 +1,125 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark shadow">
-    <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="images/logopng.png" width="auto" height="56px">,lkmlnj</a>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
-            </svg>
-
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-between h6 mb-0" id="navbarNav">
-            <div class=" justify-content-start align-text-left text-left h6 d-inline-flex ">
-
-            </div>
-            <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
-                <ul class="navbar-nav">
-                    <li class="nav-item ">
-                        <a href="product.html" class="nav-link font-weight-medium active ">FEATURES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="services.html" class="nav-link font-weight-medium ">PLANS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="carrer.html" class="nav-link font-weight-medium ">OUR STORY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="about.html" class="nav-link font-weight-medium">NEWS</a>
-                    </li>
-                </ul>
-            </div>
-            <div
-                class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
-                <ul class="navbar-nav">
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link font-weight-medium align-self-center">SIGN IN</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <button class="btn btn-accent text-white rounded-0 pull-right">SIGN UP FREE
-                        </button>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</nav>
-<div class="container-fluid">
-    <div class="row justify-content-center text-center bg-dark">
-        <div class="col-sm-3 align-self-center pb-4">
-            <h6 class="text-green mt-5">ALREADY HAVE AN ACCOUNT? </h6>
-            <h3 class="text-white text-center "> Sign in now</h3>
-            <button class="btn btn-accent text-white rounded-0 mt-3 px-5">SIGN IN
-            </button>
-
-
-        </div>
-        <div class="col-sm-9 ">
-            <div class="card rounded-0">
-                <div class="card-header justify-content-center text-center mt-3">
-                    <div class="row text-left text-muted mb-3 ml-3">
-                        <i class="fa fa-arrow-circle-left" aria-hidden="true"><span class="mx-sm-2">Back</span></i>
-                    </div>
-
-
-                    <small for="signUp" class="text-green ">SIGN UP</small><br />
-                    <h3 for="professional" class="mb-1">Mineral Owner</h3>
-                    <h5 for="accountdetails" class="text-muted">Account Details</h5>
+ 
+<aside class="main-sidebar col-3 px-0">
+    <div class="main-navbar shadow-none">
+        <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
+            <!-- <a class="navbar-brand w-100 mr-0" href="#" >
+                <div class="d-table m-auto">
+                    <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;"
+                        src="assets/images/shards-dashboards-logo-success.svg" alt="Shards Dashboard">
+                    <span class="d-none d-md-inline ml-1">Gold Memeber</span>
                 </div>
-                <form id="frm1" name="frm1">
-                    <div class="card-body">
-                        <div class="row justify-content-center text-left">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="firstname" class="text-muted">First Name</label>
-                                    <input class="form-control rounded" id="firstname" type="text" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="lastname" class="text-muted">Last Name</label>
-                                    <input class="form-control rounded" id="lastname" type="text" placeholder="">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="email" class="text-muted">eMail</label>
-                                    <input class="form-control rounded" id="email" type="text" placeholder="">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="address" class="text-muted">Mailing Street Address</label>
-                                    <input class="form-control rounded" id="address" type="text" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="city" class="text-muted">City</label>
-                                    <input class="form-control rounded" id="city" type="text" placeholder="">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="state" class="text-muted">state</label>
-                                <select class="form-control" id="state">
-                                    <option>Select One</option>
-                                    <option>Maharashtra</option>
-                                    <option>Andhra Pradesh</option>
-                                    <option>Goa</option>
-                                </select>
-                            </div>
-
-
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="zipcode" class="text-muted">Zip Code</label>
-                                    <input class="form-control rounded" id="zipcode" type="text" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="phonenumber" class="text-muted">Phone Number</label>
-                                    <input class="form-control rounded" id="phonenumber" type="text" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="password" class="text-muted">Password</label>
-                                    <input class="form-control rounded" id="password" type="password" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="confirmpassword" class="text-muted">Confirm password</label>
-                                    <input class="form-control rounded" id="confirmpassword" type="password"
-                                        placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center text-center mt-3">
-                            <div class="col-12">
-                                <button class="btn btn-accent text-white px-5">NEXT
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+            </a> -->
+            <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+            </a>
+        </nav>
+    </div>
+    <div class="nav-wrapper text-white justify-content-center text-center">
+        <div class="sidebar px-auto">
+            <h6 class="text-green mt-5 text-uppercase">Don't HAVE AN ACCOUNT? </h6>
+            <h3 class="text-white text-center"> Sign Up Now</h3>
+            <button class="btn btn-accent text-white text-uppercase  rounded-0 mt-3 px-5" (click)="openuserTypeModal(userTypeModal)">SIGN Up
+            </button>
         </div>
     </div>
-</div>
+</aside>
+
+
+<main class="main-content col-9 offset-lg-3 offset-md-3  px-0">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow p-2">
+                <div class="container-fluid">
+                    <!-- <a class="navbar-brand" href="index.html"><img src="assets/images/avatars/logo1.jpg" width="auto"
+                            height="56px">MVest
+                    </a> -->
+                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+                        </svg>
+            
+                    </button>
+            
+                    <div class="collapse navbar-collapse justify-content-between h6 mb-0 " id="navbarNav">
+                        <div class=" justify-content-start align-text-left text-left h6 d-inline-flex ">
+            
+                        </div>
+                        <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
+                            <ul class="navbar-nav mb-0">
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link font-weight-semibold active text-muted ">FEATURES</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link font-weight-semibold text-muted ">PLANS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link font-weight-semibold text-muted ">OUR STORY</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link font-weight-semibold text-muted">NEWS</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
+                            <ul class="navbar-nav mb-0">
+                                <li class="nav-item align-self-center">
+                                    <a class="nav-link font-weight-semibold text-muted align-self-center">SIGN IN</a>
+                                </li>
+                                <li class="nav-item align-self-center">
+                                    <button class="btn btn-outline-accent text-white rounded-0 pull-right"
+                                        (click)="openuserTypeModal(userTypeModal)">SIGN UP FREE
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>  
+            
+            <div class="bg-white" *ngIf="signInPage">
+                    <div class="card rounded-0 shadow-none">
+                        <div class="card-header justify-content-center text-center pt-5">
+                            <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
+                            <h3 for="professional" class="mb-1">Ready to Go</h3>
+                            <h5 for="accountdetails" class="text-muted">Login Details</h5>
+                        </div>
+                        <form [formGroup]="signInForm">
+                            <div class="card-body">
+                                <div class="row justify-content-center text-left">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email" class="text-muted">eMail</label>
+                                            <input class="form-control rounded" id="email" formControlName="email" type="text"
+                                                placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
+                                            <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
+                                                <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center text-left">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="password" class="text-muted">Password</label>
+                                            <input class="form-control rounded" id="password" formControlName="password"
+                                                type="password" placeholder=""
+                                                [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
+                                            <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
+                                                <div *ngIf="l.password.errors.required">Please enter your password.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center text-center mt-3">
+                                    <div class="col-12">
+                                        <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+        
+                </div>
+          
+</main>
