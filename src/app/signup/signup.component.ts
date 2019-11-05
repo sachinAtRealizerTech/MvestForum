@@ -86,7 +86,9 @@ export class SignupComponent implements OnInit {
 
     this.interestPageForm = this.formBuilder.group({
       interest: ['', Validators.required],
-      provider: ['', Validators.required]
+      provider: ['', Validators.required],
+      interestOther: [],
+      providerOther: []
     })
 
     this.firstStepWizardForm = this.formBuilder.group({
@@ -160,7 +162,7 @@ export class SignupComponent implements OnInit {
     }
     this.professionalUserType = false;
     this.userTypeName = "Mineral"
-    if (this.userTypeForm.controls.Ownership.value == "2") {
+    if (this.userTypeForm.controls.Ownership.value == "Professional") {
       this.professionalUserType = true;
       this.userTypeName = "Professional"
     }
@@ -217,8 +219,8 @@ export class SignupComponent implements OnInit {
 
   setConfirmationValues() {
     this.confirmAddress = this.userInfoForm.controls.address.value;
-    this.confirmPhoneNumber = this.userInfoForm.controls.phoneNumber.value;
-    this.confirmEmail = this.userInfoForm.controls.eMail.value;
+    this.confirmPhoneNumber = this.alertInfoForm.controls.alertPhone.value;
+    this.confirmEmail = this.alertInfoForm.controls.alertEmail.value;
   }
 
   submitUserInformation(passwordVerifyModal) {
@@ -261,7 +263,6 @@ export class SignupComponent implements OnInit {
       };
       this.userId = data['data'];
       this.goToSecondPage();
-      this.setConfirmationValues();
     },
       error => {
         console.log(error);
@@ -275,6 +276,7 @@ export class SignupComponent implements OnInit {
 
 
   getStateList() {
+    debugger;
     this.signupService.getStates().subscribe(data => {
       this.statesList = data['data'];
     })
@@ -314,6 +316,7 @@ export class SignupComponent implements OnInit {
       else {
         this.goToThirdPage();
       }
+      this.setConfirmationValues();
       this.getPlanSelectionData();
     })
   }
@@ -322,6 +325,7 @@ export class SignupComponent implements OnInit {
   getInterestQuestionAns() {
     this.signupService.getInterestQuestionAns().subscribe(data => {
       this.interestQstnAnsList = data['data'];
+      console.log('interst', data['data'])
     })
   }
 
@@ -351,7 +355,7 @@ export class SignupComponent implements OnInit {
   }
 
   getPlanSelectionData() {
-    if (this.userTypeForm.controls.Ownership.value == "1") {
+    if (this.userTypeForm.controls.Ownership.value == "Mineral") {
       this.signupService.planSelectionDataForMineralUser().subscribe(data => {
         this.planInformation = data['data'];
       })
@@ -437,6 +441,8 @@ export class SignupComponent implements OnInit {
       this.interestPageForm.reset();
       this.userTypeForm.reset();
       this.userRegistrationForm.reset();
+      this.firstStepWizardForm.reset();
+      this.secondStepWizardForm.reset();
       this.signInPage = true;
       this.thirdPage = false;
       this.professionalUserType = false;
@@ -447,6 +453,16 @@ export class SignupComponent implements OnInit {
 
   openSignIn() {
     debugger;
+    this.submitUserInfoForm = false;
+    this.submitAlertInfoForm = false;
+    this.submitInterestPrefForm = false;
+    this.submitFirstStep = false;
+    this.submitSecondStep = false;
+    this.userInfoForm.reset();
+    this.alertInfoForm.reset();
+    this.interestPageForm.reset();
+    this.firstStepWizardForm.reset();
+    this.secondStepWizardForm.reset();
     this.signInPage = true;
     this.userTypePage = false;
     this.firstPage = false;
@@ -469,9 +485,8 @@ export class SignupComponent implements OnInit {
     this.signinService.signIn(body).subscribe(data => {
       console.log("login", data);
       if (data['data']) {
-        alert("You have been logged in successfully")
         this.router.navigate(['/dashboard']);
-        sessionStorage['userName'] = data['data']['f_name'] + " " + data['data']['l_name']
+        sessionStorage['userName'] = data['data']['f_name'] + " " + data['data']['l_name'];
       }
       if (data['error'] == "email and password not valid") {
         alert("Sorry...You have not been logged in..Please verify your credentials")

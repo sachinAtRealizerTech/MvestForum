@@ -1,4 +1,3 @@
- 
 <aside class="main-sidebar col-lg-3 col-xl-3 px-0">
     <div class="main-navbar shadow-none">
         <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
@@ -18,7 +17,8 @@
         <div class="sidebar px-auto">
             <h6 class="text-green mt-5 text-uppercase">Don't HAVE AN ACCOUNT? </h6>
             <h3 class="text-white text-center"> Sign Up Now</h3>
-            <button class="btn btn-accent text-white text-uppercase  rounded-0 mt-3 px-5" (click)="openuserTypeModal(userTypeModal)">SIGN Up
+            <button class="btn btn-accent text-white text-uppercase  rounded-0 mt-3 px-5"
+                (click)="openuserTypeModal(userTypeModal)">SIGN Up
             </button>
         </div>
     </div>
@@ -26,102 +26,100 @@
 
 
 <main class="main-content col-12 col-md-12 col-lg-9 col-xl-9 col-sm-12 col-xs-12 offset-lg-3 offset-sm-0 px-0">
-        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow p-2">
-                <div class="container-fluid">
-                    <!-- <a class="navbar-brand" href="index.html"><img src="assets/images/avatars/logo1.jpg" width="auto"
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-black shadow p-2">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="index.html"><img src="assets/images/avatars/logo1.jpg" width="auto"
                             height="56px">MVest
                     </a> -->
-                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="material-icons md-30">
-                                menu
-                                </i> 
-            
-                    </button>
-            
-                    <div class="collapse navbar-collapse justify-content-between h6 mb-0 " id="navbarNav">
-                        <div class=" justify-content-start align-text-left text-left h6 d-inline-flex ">
-            
-                        </div>
-                        <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
-                            <ul class="navbar-nav mb-0">
-                                <li class="nav-item ">
-                                    <a href="#" class="nav-link font-weight-semibold active text-muted ">FEATURES</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link font-weight-semibold text-muted ">PLANS</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link font-weight-semibold text-muted ">OUR STORY</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link font-weight-semibold text-muted">NEWS</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div
-                            class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
-                            <ul class="navbar-nav mb-0">
-                                <li class="nav-item align-self-center">
-                                    <a class="nav-link font-weight-semibold text-muted align-self-center">SIGN IN</a>
-                                </li>
-                                <li class="nav-item align-self-center">
-                                    <button class="btn btn-outline-accent text-white rounded-0 pull-right"
-                                        (click)="openuserTypeModal(userTypeModal)">SIGN UP FREE
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>  
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons md-30">
+                    menu
+                </i>
 
-            <div class="bg-white" >
-                    <div class="card rounded-0 shadow-none">
-                        <div class="card-header justify-content-center text-center pt-5">
-                            <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
-                            <h3 for="professional" class="mb-1">Ready to Go</h3>
-                            <h5 for="accountdetails" class="text-muted">Login Details</h5>
-                        </div>
-                        <form [formGroup]="signInForm">
-                            <div class="card-body">
-                                <div class="row justify-content-center text-left">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="email" class="text-muted">eMail</label>
-                                            <input class="form-control rounded" id="email" formControlName="email" type="text"
-                                                placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
-                                            <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
-                                                <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center text-left">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="text-muted">Password</label>
-                                            <input class="form-control rounded" id="password" formControlName="password"
-                                                type="password" placeholder=""
-                                                [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
-                                            <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
-                                                <div *ngIf="l.password.errors.required">Please enter your password.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center text-center mt-3">
-                                    <div class="col-12">
-                                        <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
-                                        </button>
-                                    </div>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between h6 mb-0 " id="navbarNav">
+                <div class=" justify-content-start align-text-left text-left h6 d-inline-flex ">
+
+                </div>
+                <div class=" justify-content-center align-text-left text-left h6 d-inline-flex ">
+                    <ul class="navbar-nav mb-0">
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link font-weight-semibold active text-muted ">FEATURES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-semibold text-muted ">PLANS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-semibold text-muted ">OUR STORY</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-semibold text-muted">NEWS</a>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex">
+                    <ul class="navbar-nav mb-0">
+                        <li class="nav-item align-self-center">
+                            <a class="nav-link font-weight-semibold text-muted align-self-center">SIGN IN</a>
+                        </li>
+                        <li class="nav-item align-self-center">
+                            <button class="btn btn-outline-accent text-white rounded-0 pull-right"
+                                (click)="openuserTypeModal(userTypeModal)">SIGN UP FREE
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-white">
+        <div class="card rounded-0 shadow-none">
+            <div class="card-header justify-content-center text-center pt-5">
+                <small for="signUp" class="text-green text-uppercase">SIGN IN</small><br />
+                <h3 for="professional" class="mb-1">Ready to Go</h3>
+                <h5 for="accountdetails" class="text-muted">Login Details</h5>
+            </div>
+            <form [formGroup]="signInForm">
+                <div class="card-body">
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="text-muted">eMail</label>
+                                <input class="form-control rounded" id="email" formControlName="email" type="text"
+                                    placeholder="" [ngClass]="{ 'is-invalid': submitSignIn && l.email.errors }">
+                                <div *ngIf="submitSignIn && l.email.errors" class="invalid-feedback">
+                                    <div *ngIf="l.email.errors.required">Please enter your Email Id.</div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-        
+                    <div class="row justify-content-center text-left">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password" class="text-muted">Password</label>
+                                <input class="form-control rounded" id="password" formControlName="password"
+                                    type="password" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitSignIn && l.password.errors }">
+                                <div *ngIf="submitSignIn && l.password.errors" class="invalid-feedback">
+                                    <div *ngIf="l.password.errors.required">Please enter your password.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-center mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-accent text-white px-5 text-uppercase" (click)="signIn()">Sign In
+                            </button>
+                        </div>
+                    </div>
                 </div>
-          
+            </form>
+        </div>
+
+    </div>
+
 </main>
-
-

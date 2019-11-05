@@ -27,12 +27,13 @@ const routes: Routes = [
   {
     path: '',
     component: SigninLayoutComponent,
+    //pathMatch: 'full',
     children: [
       {
         path: 'signup',
         component: SignupComponent
       },
-       {
+      {
         path: 'signin',
         component: SignInComponent
       }
