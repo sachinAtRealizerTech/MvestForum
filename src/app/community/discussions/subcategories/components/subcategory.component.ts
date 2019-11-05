@@ -97,6 +97,7 @@ export class SubcategoryComponent implements OnInit {
     this.loading = true;
     this.subcategoryService.getSubcategory(id).subscribe(data => {
       this.subCategoryList = data;
+      console.log('subcats', this.subCategoryList)
       this.loading = false;
       this.pageNotFound = false;
       this.categoryName = data['category_name'];

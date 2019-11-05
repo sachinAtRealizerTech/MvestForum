@@ -76,8 +76,12 @@
         </div>
       </div>
 
-      <div class="text-left" *ngIf="pageNotFound">
+      <!-- <div class="text-left" *ngIf="pageNotFound">
         <h5>No Records Found...</h5>
+      </div> -->
+
+      <div class="text-center" *ngIf="subCategoryList.length==0">
+        <h5>No Sub-Categories listed</h5>
       </div>
 
       <div class="row justify-content-center">
@@ -86,16 +90,17 @@
             <div class="row justify-content-left text-center px-3">
               <div>
                 <div class="row gutter-10">
-                  <div class="card m-2" *ngFor="let sc of subCategoryList?.sub_categories | filter:searchText">
+                  <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText">
                     <a routerLink="/discussionslist"
-                      [queryParams]="{discussionId:sc.subcat_id,subCategoryId:subCategoryId}"
+                      [queryParams]="{discussionId:sc.sub_categories.subcat_id,subCategoryId:subCategoryId}"
                       (click)="setTitle( 'Mvest-Discussions')">
                       <div class="card d-inline category-main"
-                        (click)="sendData(sc.subcat_id,sc.name,subCategoryList?.category_id,subCategoryList?.category_name)"
+                        (click)="sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,subCategoryList?.category_id,subCategoryList?.category_name)"
                         style="width:50rem">
-                        <img class="img-fluid img-thumbnail rounded-left" src="{{sc.image}}" alt="" width="250px">
+                        <img class="img-fluid img-thumbnail rounded-left" src="{{sc.sub_categories.image}}" alt=""
+                          width="250px">
                         <div class="category-text">
-                          {{sc.name | titlecase}}
+                          {{sc.sub_categories.name | titlecase}}
                         </div>
                       </div>
                     </a>

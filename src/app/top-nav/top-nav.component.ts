@@ -17,8 +17,11 @@ export class TopNavComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
+  public accesstoken = Utils.GetAccessToken()
+
   logout() {
     console.log('seuser', this.user)
+    console.log('accesstoken', this.accesstoken)
     localStorage.removeItem('currentUser');
     this.router.navigate(['/signin']);
   }

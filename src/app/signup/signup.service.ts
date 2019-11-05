@@ -15,39 +15,39 @@ export class SignupService {
   constructor(private httpClient: HttpClient) { }
 
   getStates() {
-    return this.httpClient.get(`${environment.APIBASEURL}/getmasterentities/state`, httpOptions)
+    return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/getmasterentities/state`, httpOptions)
   }
 
   getNotificationPreferencesList() {
-    return this.httpClient.get(`${environment.APIBASEURL}/getmasterentities/NotificationPreference`, httpOptions)
+    return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/getmasterentities/NotificationPreference`, httpOptions)
   }
 
   getInterestQuestionAns() {
-    return this.httpClient.get(`${environment.APIBASEURL}/PA_QuestionAns`, httpOptions)
+    return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/PA_QuestionAns`, httpOptions)
   }
 
   postInterestPrefernce(body) {
-    return this.httpClient.post(`${environment.APIBASEURL}/Save_QuestionAnswers`, body, httpOptions)
+    return this.httpClient.post(`${environment.APIBASEURL}/MVestUser/Save_QuestionAnswers`, body, httpOptions)
   }
 
   postNotificationPrefernece(body) {
-    return this.httpClient.put(`${environment.APIBASEURL}/UpdatePreferenceOption`, body, httpOptions)
+    return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/UpdatePreferenceOption`, body, httpOptions)
   }
 
   planSelectionDataForMineralUser() {
-    return this.httpClient.get(`${environment.APIBASEURL}/plan_selection/mineral`, httpOptions)
+    return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/plan_selection/mineral`, httpOptions)
   }
 
   planSelectionDataForProfessionalUser() {
-    return this.httpClient.get(`${environment.APIBASEURL}/plan_selection/professional`, httpOptions)
+    return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/plan_selection/professional`, httpOptions)
   }
 
   userRegistration(body) {
-    return this.httpClient.post(`${environment.APIBASEURL}/userRegistration`, body, httpOptions)
+    return this.httpClient.post(`${environment.APIBASEURL}/MVestUser/userRegistration`, body, httpOptions)
   }
 
   completeUserRegistration(body) {
-    return this.httpClient.put(`${environment.APIBASEURL}/payment_selection`, body, httpOptions)
+    return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/payment_selection`, body, httpOptions)
   }
 
 }

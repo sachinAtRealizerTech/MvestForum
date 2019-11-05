@@ -24,7 +24,8 @@ export class DiscussionsComponent implements OnInit {
   postQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
-  categoryList: CategoryList[] = [];
+  //categoryList: CategoryList[] = [];
+  categoryList: any
   searchText: any;
   categoriesList: any;
   categoryId: any;
@@ -102,6 +103,7 @@ export class DiscussionsComponent implements OnInit {
   getAllCategories() {
     this.loading = true;
     this.discussionsService.getAllCategories().subscribe(data => {
+      console.log('categories', data)
       this.categoryList = data;
       this.loading = false;
       this.pageNotFound = false;
