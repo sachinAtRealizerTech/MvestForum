@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Utils } from '../shared/Utils';
 
 
 @Component({
@@ -12,5 +13,7 @@ export class CommunityComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  public user = Utils.GetCurrentUser()
 
 }
