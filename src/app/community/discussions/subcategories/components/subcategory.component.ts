@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Utils } from 'src/app/shared/Utils';
 
 
 @Component({
@@ -93,6 +94,8 @@ export class SubcategoryComponent implements OnInit {
 
   get g() { return this.postQuestionForm.controls; }
 
+  public user = Utils.GetCurrentUser();
+
   getSubcategory(id) {
     this.loading = true;
     this.subcategoryService.getSubcategory(id).subscribe(data => {
@@ -148,7 +151,8 @@ export class SubcategoryComponent implements OnInit {
       subcategory: this.subCategoryName,
       post_title: this.postQuestionForm.controls.discussionTitle.value,
       Desc: this.postQuestionForm.controls.problemDescription.value,
-      userName: "Atul",
+      emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
     }
     this.subcategoryService.postQuestion(body).subscribe(data => {
       alert('Question Posted successfully...');

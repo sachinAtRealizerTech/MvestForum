@@ -95,7 +95,7 @@
                       [queryParams]="{discussionId:sc.sub_categories.subcat_id,subCategoryId:subCategoryId}"
                       (click)="setTitle( 'Mvest-Discussions')">
                       <div class="card d-inline category-main"
-                        (click)="sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,subCategoryList?.category_id,subCategoryList?.category_name)"
+                        (click)="sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc?.category_id,sc?.category_name)"
                         style="width:50rem">
                         <img class="img-fluid img-thumbnail rounded-left" src="{{sc.sub_categories.image}}" alt=""
                           width="250px">

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Utils } from 'src/app/shared/Utils';
 
 @Component({
   selector: 'app-discussion-details',
@@ -104,6 +105,8 @@ export class DiscussionDetailsComponent implements OnInit {
 
   get f() { return this.discussionDetailsQuestionForm.controls; }
 
+  public user = Utils.GetCurrentUser();
+
   getDiscussionDeatils(id: string) {
     this.loading = true;
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
@@ -137,7 +140,8 @@ export class DiscussionDetailsComponent implements OnInit {
     }
 
     let body = {
-      userName: "Atul",
+      emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name,
       Desc: this.replyForm.controls.Description.value,
       discussiondoc_Id: this.discussiondocId
     }
@@ -169,7 +173,8 @@ export class DiscussionDetailsComponent implements OnInit {
       subcategory: this.subCategoryName,
       post_title: this.discussionDetailsQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionDetailsQuestionForm.controls.problemDescription.value,
-      userName: "Atul",
+      emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postQuestion(body).subscribe(data => {
       alert("Question Posted Successfully");

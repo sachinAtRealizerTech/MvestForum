@@ -116,8 +116,8 @@
                           [value]="null" (change)="selectedCategory($event);getSubcategoriesList()"
                           [ngClass]="{ 'is-invalid': submitQuestion && g.CategoryName.errors }">
                           <option [value]="null" disabled hidden> Select Category</option>
-                          <option *ngFor="let c of categoryList" [value]="c.doc_id">
-                            {{c.name}}</option>
+                          <option *ngFor="let c of categoryList" [value]="c.Categories.doc_id">
+                            {{c.Categories.name}}</option>
                         </select>
                         <div *ngIf="submitQuestion && g.CategoryName.errors" class="invalid-feedback">
                           <div *ngIf="g.CategoryName.errors.required">Category Name is required</div>
@@ -136,8 +136,8 @@
                           (change)="selectedSubCategory($event)"
                           [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
                           <option disabled hidden> Sub-Category Name</option>
-                          <option *ngFor="let sc of subCategoryListDD?.sub_categories" [value]="sc.subcat_id">
-                            {{sc.name}}</option>
+                          <option *ngFor="let sc of subCategoryListDD" [value]="sc.sub_categories.subcat_id">
+                            {{sc.sub_categories.name}}</option>
                         </select>
                         <div *ngIf="submitQuestion && g.subCategoryName.errors" class="invalid-feedback">
                           <div *ngIf="g.subCategoryName.errors.required">Sub-Category Name is required</div>

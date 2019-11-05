@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Utils } from 'src/app/shared/Utils';
 
 @Component({
   selector: 'app-discussionslist',
@@ -89,6 +90,8 @@ export class DiscussionslistComponent implements OnInit {
 
   get g() { return this.discussionListQuestionForm.controls; }
 
+  public user = Utils.GetCurrentUser();
+
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
@@ -97,6 +100,7 @@ export class DiscussionslistComponent implements OnInit {
     this.loading = true;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
       this.discussionList = data;
+      console.log('discussionlist', this.discussionList)
       this.loading = false;
       this.pageNotFound = false;
     },
@@ -123,6 +127,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   postQuestion() {
+    debugger;
     this.categoryName = sessionStorage.getItem("category_name");
     this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
@@ -140,7 +145,8 @@ export class DiscussionslistComponent implements OnInit {
       subcategory: this.subCategoryName,
       post_title: this.discussionListQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionListQuestionForm.controls.problemDescription.value,
-      userName: "Atul",
+      emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
     }
     this.discussionlistService.postQuestion(body).subscribe(data => {
       alert("Question Posted Successfully");

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { Utils } from 'src/app/shared/Utils';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,7 +22,7 @@ export class SubcategoryService {
   }
 
   postQuestion(body) {
-    return this.httpClient.post(`${environment.APIBASEURL}/Discussion`, body, httpOptions)
+    return this.httpClient.post(`${environment.APIBASEURL}/Discussion`, body, Utils.getAuthHeader())
   }
 
 }

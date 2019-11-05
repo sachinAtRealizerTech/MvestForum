@@ -133,11 +133,17 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
-                                                    <div class="media p-3">
+                                                <div class="col-3 text-right text-muted">
+                                                    <div class="media p-3 ">
                                                         <div class="media-body mb-0">
 
-                                                            <ul class="list-inline d-flex mb-0">
+                                                            <small
+                                                                class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small>
+                                                            <br>
+                                                            <small class="font-weight-semibold">-by
+                                                                {{dl?.post_by_name}}</small>
+
+                                                            <!-- <ul class="list-inline d-flex mb-0">
                                                                 <li
                                                                     class="list-inline-item mb-1 h6  text-muted ml-auto">
                                                                     <span><small
@@ -148,11 +154,12 @@
 
                                                             <ul class="list-inline d-flex mb-0">
                                                                 <li
-                                                                    class="list-inline-item mb-1 h6  text-muted ml-auto">
-                                                                    <span><small class="font-weight-semibold">Asked By:
-                                                                            {{dl?.post_by}}</small></span>
+                                                                    class="list-inline-item mb-1 h6   text-muted ml-auto">
+                                                                    <span><small class="font-weight-semibold">-by
+                                                                            {{dl?.post_by_name}}</small></span>
                                                                 </li>
-                                                            </ul>
+                                                            </ul> -->
+
                                                         </div>
                                                     </div>
                                                 </div>

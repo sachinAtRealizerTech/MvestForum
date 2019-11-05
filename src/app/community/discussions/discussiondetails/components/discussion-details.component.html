@@ -76,11 +76,6 @@
 
   <!----------------------------------------- Discussion details--------------------------------------------------->
 
-  <div class="text-center" *ngIf="loading">
-    <div class="spinner-border text-accent" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
 
   <div class="row justify-content-center">
     <div class="col-xl-12 pb-3" style="text-align: justify;">
@@ -128,7 +123,9 @@
             </li>
           </ul>
 
-          <div *ngIf="commentBox" id="comment-box" class="">
+
+
+          <!-- <div *ngIf="commentBox" id="comment-box" class="">
             <div class="form-row">
               <div class="col-md-10">
                 <form class="p-3">
@@ -141,6 +138,29 @@
                   (click)="postComment()">Comment</button>
               </div>
             </div>
+          </div> -->
+
+          <!-- <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
+            data-target=".post-modal-xl"> -->
+
+          <div class="row pt-2 justify-content-between">
+
+            <div class="col-1">
+            </div>
+            <div class="col-9 border-top">
+              <h6>dummy comment</h6>
+            </div>
+            <div class="col-2 text-right border-top">
+              <span><small class="font-weight-semibold text-muted">- by</small></span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="text-center" *ngIf="loading">
+          <div class="spinner-border text-accent" role="status">
+            <span class="sr-only">Loading...</span>
           </div>
         </div>
 
@@ -178,6 +198,10 @@
                     class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}}</small></span>
               </li>
             </ul>
+
+            <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
+              data-target=".post-modal-xl">
+
           </div>
         </div>
       </div>

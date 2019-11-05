@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Utils } from 'src/app/shared/Utils';
 
 
 
@@ -100,6 +101,8 @@ export class DiscussionsComponent implements OnInit {
 
   get g() { return this.postQuestionForm.controls; }
 
+  public user = Utils.GetCurrentUser();
+
   getAllCategories() {
     this.loading = true;
     this.discussionsService.getAllCategories().subscribe(data => {
@@ -158,7 +161,8 @@ export class DiscussionsComponent implements OnInit {
       subcategory: this.subCategoryName,
       post_title: this.postQuestionForm.controls.discussionTitle.value,
       Desc: this.postQuestionForm.controls.problemDescription.value,
-      userName: "Atul",
+      emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
     }
     this.discussionsService.postQuestion(body).subscribe(data => {
       alert("Question Posted Successfully...");
