@@ -24,21 +24,25 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
 
-  {
-    path: '',
-    component: SigninLayoutComponent,
-    //pathMatch: 'full',
-    children: [
-      {
-        path: 'signup',
-        component: SignupComponent
-      },
-      {
-        path: 'signin',
-        component: SignInComponent
-      }
-    ]
-  },
+  { path: '', redirectTo: '/signup', pathMatch: 'full' },
+  { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SignInComponent },
+
+  // {
+  //   path: '',
+  //   component: SigninLayoutComponent,
+  //   //pathMatch: 'full',
+  //   children: [
+  //     {
+  //       path: 'signup',
+  //       component: SignupComponent
+  //     },
+  //     {
+  //       path: 'signin',
+  //       component: SignInComponent
+  //     }
+  //   ]
+  // },
 
 
   {
