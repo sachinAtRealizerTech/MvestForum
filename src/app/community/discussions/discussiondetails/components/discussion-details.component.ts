@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { DiscussiondetailsService } from '../services/discussiondetails.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,12 +14,14 @@ import { Utils } from 'src/app/shared/Utils';
 })
 export class DiscussionDetailsComponent implements OnInit {
 
+
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
 
   discussionDetailsQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
+  commentModal: ElementRef;
   discussionId: string;
   discussionDetails: any;
   discussionDetailsId: any;
@@ -111,6 +113,7 @@ export class DiscussionDetailsComponent implements OnInit {
     this.loading = true;
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
       this.discussionDetails = data;
+      console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id']
     })
@@ -181,6 +184,32 @@ export class DiscussionDetailsComponent implements OnInit {
       this.discussionDetailsQuestionForm.reset();
       this.getDiscussionDeatils(this.discussionDetailsId);
       this.closePostQuestionModal();
+    })
+  }
+
+  openCommentModal(commentTemplate, discDetails: any) {
+    debugger;
+    this.commentModal = commentTemplate;
+    this.modalService.open(this.commentModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closePostCommentModal() {
+    this.modalService.dismissAll(this.commentModal);
+  }
+
+  submitComment() {
+    let body = {
+      post_id: "5dc007c19edbaf26ac477d01",
+      comment_ids: "12da4300-fef4-11e9-98f0-776da231b4f5",
+      comment_text: "comment",
+      name: this.user.f_name + " " + this.user.l_name,
+      emailId: this.user.email_id
+    }
+    this.discussiondetailsService.commentToPost(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussionDetailsId);
     })
   }
 

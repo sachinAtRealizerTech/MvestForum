@@ -112,14 +112,15 @@
             </li>
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
-                  class="material-icons icon-muted md-24 ml-3">
+                  class="material-icons icon-muted md-24 ml-3"
+                  (click)="openCommentModal(postCommentModal,discussionDetails)">
                   mode_comment
                 </i>
               </a>
             </li>
             <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
-              <span><small
-                  class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}}</small></span>
+              <span><small class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}} <br>
+                  -by {{discussionDetails?.posts[0]?.post_by_name}}</small></span>
             </li>
           </ul>
 
@@ -143,15 +144,16 @@
           <!-- <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
             data-target=".post-modal-xl"> -->
 
-          <div class="row pt-2 justify-content-between">
+          <div class="row pt-2 justify-content-between" *ngFor="let qc of discussionDetails?.posts[0]?.comments">
 
             <div class="col-1">
             </div>
             <div class="col-9 border-top">
-              <h6>dummy comment</h6>
+              <h6>{{qc.comment_text}}</h6>
             </div>
             <div class="col-2 text-right border-top">
-              <span><small class="font-weight-semibold text-muted">- by</small></span>
+              <span><small class="font-weight-semibold text-muted"> {{qc.create_ts | timeAgo}} <br>
+                  -by {{qc.coment_by}}</small></span>
             </div>
           </div>
 
@@ -207,6 +209,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <!----------------------------------------- End Discussion details--------------------------------------------------->
@@ -296,21 +299,49 @@
   </form>
 </ng-template>
 
-
-
-
-
-
-
-
-
-
-
-<div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
-  aria-hidden="true">
-  <div class="modal-dialog modal-md bg-white shadow">
-
-  </div>
-</div>
-
 <!-----------------------------------------End Ask a question------------------------------------------------------------>
+
+
+<!-----------------------------------------post comment------------------------------------------------------------>
+<ng-template #postCommentModal>
+  <form>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your Comment</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="card shadow-none">
+          <div class="row">
+            <div class="col-12">
+              <form [formGroup]="postCommentForm">
+                <div class="form">
+
+                  <div class="form-group">
+                    <label for="title">Description :</label>
+                    <div class="w-100">
+                    </div>
+
+                    <angular-editor formControlName="comment" [config]="editorConfig"
+                      [ngClass]="{ 'is-invalid': submitQuestion && f.comment.errors }">
+                      <div *ngIf="submitQuestion && f.comment.errors" class="invalid-feedback">
+                        <div *ngIf="f.comment.errors.required">Comment is required</div>
+                      </div>
+                    </angular-editor>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="submitComment()">Post</button>
+        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closePostCommentModal()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-----------------------------------------End post comment------------------------------------------------------------>

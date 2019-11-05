@@ -29,4 +29,8 @@ export class DiscussiondetailsService {
     return this.httpClient.post(`${environment.APIBASEURL}/discussion`, body, httpOptions)
   }
 
+  commentToPost(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/AddComments`, body, httpOptions)
+  }
+
 }
