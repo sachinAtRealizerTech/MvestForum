@@ -26,6 +26,6 @@ export class DiscussionsService {
   }
 
   postQuestion(body) {
-    return this.httpClient.post(`${environment.APIBASEURL}/discussion`, body, httpOptions)
+    return this.httpClient.post(`${environment.APIBASEURL}/discussion`, body, Utils.getAuthHeader())
   }
 }

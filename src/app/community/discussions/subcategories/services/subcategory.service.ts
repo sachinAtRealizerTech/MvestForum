@@ -16,7 +16,7 @@ export class SubcategoryService {
   constructor(private httpClient: HttpClient) { }
 
   getSubcategory(id: string) {
-    return this.httpClient.get(`${environment.APIBASEURL}/MasterData/subcategory/${id}`).pipe(map(data => {
+    return this.httpClient.get(`${environment.APIBASEURL}/MasterData/subcategory/${id}`, Utils.getAuthHeader()).pipe(map(data => {
       return data
     }))
   }
