@@ -63,10 +63,10 @@ color:#868e96 !important
   .active:hover{
     color: #00CD95; 
   }
-  a .text-muted:hover{
+  /* a .text-muted:hover{
   color:#00CD95 !important;
   text-decoration-color:none !important
-} 
+}  */
 
 .text-333{
   color:#333;
@@ -74,11 +74,58 @@ color:#868e96 !important
 .text-red{
   color: #d80000 !important;
 }
- 
+ .bg-transparent{
+   background: none !important;
+ }
 .bg-red{
   background: #d80000 !important;
 }
  
+.bg-grey{
+  background: rgb(58, 58, 58);
+}
+.bg-dark-grey{
+  background: rgb(31, 29, 29);
+}
+
+.badge-accent{
+  background:#00CD95 !important;
+  border: 1px solid #00CD95 !important;
+  color: #fff !important;
+  border-radius: 0px !important;
+}
+.badge-outline-accent{
+  background:transparent;
+  border: 1px solid #00CD95 !important;
+  color: #212529 !important;
+  border-radius: 0px !important;
+}
+
+.card-height-450{
+  min-height:450px !important;
+  /* position: relative; */
+}
+/* .card-height-450 .btn{
+  position: fixed;
+  bottom:15% !important;
+} */
+.card-height-450:hover{
+  min-height:450px !important;
+  background: #00CD95 !important;
+  color:#fff !important;
+  
+} 
+
+
+.card-height-450:hover .text-green, .card-height-450:hover .text-muted{
+  color:#fff !important;  
+}
+.card-height-450:hover .btn-outline-accent ,.card-height-450:hover .btn-accent{
+ background: #fff!important;  
+ color:#00CD95 !important;
+}
+
+
 	.bg-black{
 		background: #000000;
 	}
@@ -97,6 +144,8 @@ color:#868e96 !important
 
   }
 /* font */
+ 
+
 .font-weight-semibold{
   font-weight: 500;
 }
@@ -125,9 +174,12 @@ color:#868e96 !important
 }	
 
 .rounded-5 {
-  border-radius: 22.357rem;
+  border-radius: 22.357rem !important;
 }
 
+.rounded-2 {
+  border-radius: 20px !important;
+}
 .rounded-50{
 	border-radius:50%;
   border:4px solid #fff;
@@ -180,7 +232,23 @@ color:#868e96 !important
   opacity: 1;
 } */
 /* checkbox end */
-
+/* Plan Position */
+.plan-center{
+  position:relative !important;
+  z-index: 1;
+}
+.plan-left{
+  position:absolute;
+  top:8% !important;
+  right:-10% !important;
+  left:10% !important;
+}
+.plan-right{
+  position:absolute;
+  top:8% !important;
+  left:-10% !important;
+  right:10% !important;
+}
 .breadcrumb {
   display: -ms-flexbox;
   display: flex;
