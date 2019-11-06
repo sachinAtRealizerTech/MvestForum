@@ -92,15 +92,31 @@
       </div>
 
       <div class="card card-small blog-comments mt-3">
-        <div class="card-header">
-          <div class="media  px-3 py-1">
-            <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
-              alt="Generic placeholder image">
-            <div class="media-body mb-0 align-self-center">
-              <h5 class="text-secondary h6 mb-0 font-weight-semibold"
-                innerHTML="{{discussionDetails?.posts[0]?.post_msg}}"></h5>
+        <div class="card-header pb-1">
+
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <div class="media px-3 py-1">
+                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
+                  alt="Generic placeholder image">
+                <div class="media-body mb-0 align-self-center">
+                  <h5 class="text-secondary h6 mb-0 font-weight-semibold"
+                    innerHTML="{{discussionDetails?.posts[0]?.post_msg}}"></h5>
+                </div>
+              </div>
             </div>
+
+            <div class="col-2 px-4 text-right">
+              <small class="font-weight-semibold text-muted pr-2">{{discussionDetails?.posts[0]?.post_date | timeAgo}}
+              </small>
+              <br>
+              <small class="font-weight-semibold text-muted pr-2"> -by
+                {{discussionDetails?.posts[0]?.post_by_name}}</small>
+            </div>
+
           </div>
+
+
         </div>
         <div class="card-body pt-0 mx-3 border-bottom">
           <ul class="list-inline d-flex  border-0 mb-0">
@@ -118,38 +134,18 @@
                 </i>
               </a>
             </li>
-            <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
-              <span><small class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}} <br>
-                  -by {{discussionDetails?.posts[0]?.post_by_name}}</small></span>
-            </li>
           </ul>
 
 
 
-          <!-- <div *ngIf="commentBox" id="comment-box" class="">
-            <div class="form-row">
-              <div class="col-md-10">
-                <form class="p-3">
-                  <textarea class="form-control border-0 rounded-5 bg-light form-control"
-                    placeholder="Write a Comment"></textarea>
-                </form>
-              </div>
-              <div class="col-md-2">
-                <button class="button primary border-0 rounded-5 bg-light form-control mt-4"
-                  (click)="postComment()">Comment</button>
-              </div>
-            </div>
-          </div> -->
 
-          <!-- <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
-            data-target=".post-modal-xl"> -->
 
           <div class="row pt-2 justify-content-between" *ngFor="let qc of discussionDetails?.posts[0]?.comments">
 
             <div class="col-1">
             </div>
             <div class="col-9 border-top">
-              <h6>{{qc.comment_text}}</h6>
+              <h6 class="mb-0 pt-1">{{qc.comment_text}}</h6>
 
               <ul class="list-inline d-flex  border-0 mb-0">
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
@@ -161,7 +157,7 @@
                 <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                   <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                       class="material-icons icon-muted md-24 ml-3"
-                      (click)="openCommentModal(postCommentModal,discussionDetails)">
+                      (click)="openCommentToCommentModal(postCommentToCommentModal,discussionDetails,qc)">
                       mode_comment
                     </i>
                   </a>
@@ -175,7 +171,19 @@
                   -by {{qc.comment_by_name}}</small></span>
             </div>
 
-
+            <div class="col-12" *ngFor="let cc of qc.reply">
+              <div class="row justify-content-center">
+                <div class="col-2">
+                </div>
+                <div class="col-8 border-top">
+                  <h6 class="mb-0 pt-1">{{cc.comment_text}}</h6>
+                </div>
+                <div class="col-2 text-right border-top">
+                  <small class="font-weight-semibold text-muted"> {{cc.create_ts | timeAgo}} <br>
+                    -by {{cc.comment_by_name}}</small>
+                </div>
+              </div>
+            </div>
 
 
           </div>
@@ -191,15 +199,31 @@
 
 
         <div *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index ">
-          <div class="card-header">
-            <div class="media px-3 ">
-              <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
-                alt="Generic placeholder image">
-              <div class="media-body mb-0 align-self-center">
-                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by_name}}</h5>
-                <h6 class="list-inline-item mb-1 h6  text-muted" innerHTML="{{p.post_msg}}"></h6>
+          <div class="card-header pb-1">
+
+
+            <div class="row justify-content-center">
+              <div class="col-10">
+                <div class="media px-3 ">
+                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
+                    alt="Generic placeholder image">
+                  <div class="media-body mb-0 align-self-center">
+                    <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by_name}}</h5>
+                    <h6 class="list-inline-item mb-1 h6  text-muted" innerHTML="{{p.post_msg}}"></h6>
+                  </div>
+                </div>
               </div>
+
+              <div class="col-2 px-4 text-right">
+                <small class="font-weight-semibold text-muted pr-2">{{p.post_date | timeAgo}}</small>
+              </div>
+
             </div>
+
+
+
+
+
 
           </div>
           <div class="border-bottom card-body pt-0 mx-3">
@@ -218,20 +242,18 @@
                   </i>
                 </a>
               </li>
-              <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
+              <!-- <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
                 <span><small class="font-weight-semibold">{{p.post_date | timeAgo}}</small></span>
-              </li>
+              </li> -->
             </ul>
 
-            <!-- <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
-              data-target=".post-modal-xl"> -->
 
             <div class="row pt-2 justify-content-between" *ngFor="let cm of p?.comments">
 
               <div class="col-1">
               </div>
               <div class="col-9 border-top">
-                <h6>{{cm?.comment_text}}</h6>
+                <h6 class="mb-0 pt-1">{{cm?.comment_text}}</h6>
 
                 <ul class="list-inline d-flex  border-0 mb-0">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
@@ -243,7 +265,7 @@
                   <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                     <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                         class="material-icons icon-muted md-24 ml-3"
-                        (click)="openCommentModal(postCommentModal,discussionDetails)">
+                        (click)="openCommentToCommentModal(postCommentToCommentModal,discussionDetails,cm)">
                         mode_comment
                       </i>
                     </a>
@@ -256,6 +278,21 @@
                 <span><small class="font-weight-semibold text-muted"> {{cm.create_ts | timeAgo}} <br>
                     -by {{cm.comment_by_name}}</small></span>
               </div>
+
+              <div class="col-12" *ngFor="let cc of cm.reply">
+                <div class="row justify-content-center">
+                  <div class="col-2">
+                  </div>
+                  <div class="col-8 border-top">
+                    <h6 class="mb-0 pt-1">{{cc.comment_text}}</h6>
+                  </div>
+                  <div class="col-2 text-right border-top">
+                    <small class="font-weight-semibold text-muted"> {{cc.create_ts | timeAgo}} <br>
+                      -by {{cc.comment_by_name}}</small>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -364,7 +401,7 @@
         <h5 class="modal-title">Your Comment</h5>
       </div>
 
-      <div class="modal-body">
+      <div class="modal-body py-3">
         <div class="card shadow-none">
           <div class="row">
             <div class="col-12">
@@ -376,12 +413,18 @@
                     <div class="w-100">
                     </div>
 
-                    <angular-editor formControlName="comment" [config]="editorConfig"
+                    <!-- <angular-editor formControlName="comment" [config]="editorConfig"
                       [ngClass]="{ 'is-invalid': submitComment && h.comment.errors }">
                       <div *ngIf="submitComment && h.comment.errors" class="invalid-feedback">
                         <div *ngIf="h.comment.errors.required">Comment is required</div>
                       </div>
-                    </angular-editor>
+                    </angular-editor> -->
+
+                    <textarea class="form-control" formControlName="comment"
+                      [ngClass]="{ 'is-invalid': submitComment && h.comment.errors }"></textarea>
+                    <div *ngIf="submitComment && h.comment.errors" class="invalid-feedback">
+                      <div *ngIf="h.comment.errors.required">Comment is required</div>
+                    </div>
 
                   </div>
                 </div>
@@ -392,6 +435,8 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postComment()">Post</button>
+        <!-- <button *ngIf="isReplyId" type="submit" class="btn btn-accent btn-sm text-uppercase"
+          (click)="postComment()">Post</button> -->
         <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
           (click)="closePostCommentModal()">Cancel</button>
       </div>
@@ -400,3 +445,56 @@
 </ng-template>
 
 <!-----------------------------------------End post comment------------------------------------------------------------>
+
+
+<!-----------------------------------------Comment to comment------------------------------------------------------------>
+<ng-template #postCommentToCommentModal>
+  <form>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your Comment</h5>
+      </div>
+
+      <div class="modal-body py-3">
+        <div class="card shadow-none">
+          <div class="row">
+            <div class="col-12">
+              <form [formGroup]="commentToCommentForm">
+                <div class="form">
+
+                  <div class="form-group">
+                    <label for="title">Description :</label>
+                    <div class="w-100">
+                    </div>
+
+                    <!-- <angular-editor formControlName="comment" [config]="editorConfig"
+                        [ngClass]="{ 'is-invalid': submitComment && h.comment.errors }">
+                        <div *ngIf="submitComment && h.comment.errors" class="invalid-feedback">
+                          <div *ngIf="h.comment.errors.required">Comment is required</div>
+                        </div>
+                      </angular-editor> -->
+
+                    <textarea class="form-control" formControlName="comment"
+                      [ngClass]="{ 'is-invalid': submitComment && m.comment.errors }"></textarea>
+                    <div *ngIf="submitComment && m.comment.errors" class="invalid-feedback">
+                      <div *ngIf="m.comment.errors.required">Comment is required</div>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-accent btn-sm text-uppercase"
+          (click)="postCommentToComment()">Post</button>
+        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closePostCommentModal()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-----------------------------------------End Comment to comment------------------------------------------------------------>

@@ -108,8 +108,7 @@
                                                             src="assets/images/avatars/2.jpg"
                                                             alt="Generic placeholder image">
 
-                                                        <div class="media-body mb-0"
-                                                            style="text-align: justify;  word-wrap:break-all; display:inline-block;">
+                                                        <div class="media-body mb-0">
 
                                                             <ul class="list-inline d-flex mb-0">
                                                                 <li class="list-inline-item mb-1 h6  text-muted">
@@ -123,25 +122,27 @@
                                                                     innerHTML="{{dl?.post_msg | summary}}">
                                                                     <!-- {{dl?.post_msg | summary}} -->
                                                                 </li>
-                                                                <!-- <a>Read More</a> -->
-                                                                <!-- <a click="readMoreDescription()"><span>read more</span></a>
-                                                                        <li *ngIf="readMore" class="list-inline-item mb-1 h6  text-muted">
-                                                                                {{dl?.post_msg}}
-                                                                            </li> -->
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3 text-right text-muted">
+                                                <div class="col-3 text-right">
                                                     <div class="media p-3 ">
                                                         <div class="media-body mb-0">
 
-                                                            <small
-                                                                class="font-weight-semibold">{{dl?.post_date | timeAgo}}</small>
-                                                            <br>
-                                                            <small class="font-weight-semibold">-by
-                                                                {{dl?.post_by_name}}</small>
+
+                                                            <span>
+                                                                <h6 class="font-weight-semibold small mb-1 text-muted">
+                                                                    {{dl?.post_date | timeAgo}}</h6>
+                                                            </span>
+
+
+                                                            <span>
+                                                                <h6 class="font-weight-semibold small mb-1 text-muted">
+                                                                    -by
+                                                                    {{dl?.post_by_name}}</h6>
+                                                            </span>
 
                                                             <!-- <ul class="list-inline d-flex mb-0">
                                                                 <li
@@ -298,11 +299,11 @@
 
 
 
-<div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
+<!-- <div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
     aria-hidden="true">
     <div class="modal-dialog modal-md bg-white shadow">
 
     </div>
-</div>
+</div> -->
 
 <!---------------------------------------------------End Ask a question------------------------------------------------------------>

@@ -15,6 +15,8 @@ import { Utils } from 'src/app/shared/Utils';
 export class DiscussionDetailsComponent implements OnInit {
   commentId: string;
   replyId: any;
+  isReplyCommment = false;
+  commentToCommentForm: FormGroup;
 
 
 
@@ -92,6 +94,10 @@ export class DiscussionDetailsComponent implements OnInit {
       comment: ['', Validators.required]
     })
 
+    this.commentToCommentForm = this.formBuilder.group({
+      comment: ['', Validators.required]
+    })
+
     this.replyForm = this.formBuilder.group({
       Description: ['', Validators.required]
     })
@@ -118,6 +124,8 @@ export class DiscussionDetailsComponent implements OnInit {
   get f() { return this.discussionDetailsQuestionForm.controls; }
 
   get h() { return this.commentForm.controls }
+
+  get m() { return this.commentToCommentForm.controls }
 
   public user = Utils.GetCurrentUser();
 
@@ -206,7 +214,7 @@ export class DiscussionDetailsComponent implements OnInit {
       this.commentId = discDetails.post_id
     }
     else {
-      this.commentId = discDetails.posts[0].post_id
+      this.commentId = discDetails.posts[0].post_id;
     }
     this.commentModal = commentTemplate;
     this.modalService.open(this.commentModal, {
@@ -215,17 +223,36 @@ export class DiscussionDetailsComponent implements OnInit {
     })
   }
 
-  openCommentToCommentModal(commentTemplate, discDetails: any) {
+
+  openCommentToCommentModal(postCommentToCommentModal, discDetails: any, qc: any) {
     debugger;
-    //this.postId = discDetails._id;
-    this.commentId = discDetails.posts[0].post_id;
-    this.replyId = discDetails.posts.comments.comment_id
-    this.commentModal = commentTemplate;
+    if (!discDetails.posts) {
+      this.commentId = discDetails.post_id;
+      this.replyId = qc.comment_id
+    }
+    else {
+      this.commentId = discDetails.posts[0].post_id;
+      this.replyId = qc.comment_id;
+    }
+    this.commentModal = postCommentToCommentModal;
     this.modalService.open(this.commentModal, {
       backdrop: 'static',
       backdropClass: 'customBackdrop'
     })
   }
+
+
+  // openCommentToCommentModal(commentTemplate, discDetails: any) {
+  //   debugger;
+  //   //this.postId = discDetails._id;
+  //   this.commentId = discDetails.posts[0].post_id;
+  //   this.replyId = discDetails.posts.comments.comment_id
+  //   this.commentModal = commentTemplate;
+  //   this.modalService.open(this.commentModal, {
+  //     backdrop: 'static',
+  //     backdropClass: 'customBackdrop'
+  //   })
+  // }
 
   closePostCommentModal() {
     this.modalService.dismissAll(this.commentModal);
@@ -254,14 +281,14 @@ export class DiscussionDetailsComponent implements OnInit {
   postCommentToComment() {
     debugger;
     this.submitComment = true;
-    if (this.commentForm.invalid) {
+    if (this.commentToCommentForm.invalid) {
       return
     }
     let body = {
-      post_id: this.postId,
+      post_id: this.discussiondocId,
       comment_ids: this.commentId,
       reply_id: this.replyId,
-      comment_text: this.commentForm.controls.comment.value,
+      comment_text: this.commentToCommentForm.controls.comment.value,
       name: this.user.f_name + " " + this.user.l_name,
       emailId: this.user.email_id
     }
