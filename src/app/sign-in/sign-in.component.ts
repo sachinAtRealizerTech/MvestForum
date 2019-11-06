@@ -41,16 +41,21 @@ export class SignInComponent implements OnInit {
 
     this.signinService.signIn(body).subscribe(data => {
       console.log("login", data);
-      if (data && data.token) {
+      if (data['data'] && data['data'].token) {
         this.router.navigate(['/dashboard']);
       }
-      // if (data['error'] == "email and password not valid") {
-      //   alert("Sorry...You have not been logged in..Please verify your credentials")
-      // }
+      if (data['message'] == "Invalid data...") {
+        alert("Sorry...You have not been logged in..Please verify your credentials")
+      }
     },
       err => {
         console.log('err', err)
       })
+  }
+
+  goToSignUp() {
+    this.signInForm.reset();
+    this.router.navigate(['/signup'])
   }
 
 

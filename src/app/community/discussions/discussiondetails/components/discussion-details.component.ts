@@ -13,12 +13,15 @@ import { Utils } from 'src/app/shared/Utils';
   styleUrls: ['./discussion-details.component.scss']
 })
 export class DiscussionDetailsComponent implements OnInit {
+  commentId: string;
+
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
 
   discussionDetailsQuestionForm: FormGroup;
+  commentForm: FormGroup;
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
   commentModal: ElementRef;
@@ -39,6 +42,8 @@ export class DiscussionDetailsComponent implements OnInit {
   subCategoryName: any;
   submitQuestion = false;
   loading: boolean;
+  postId: string;
+  submitComment = false;
 
   ngOnInit() {
     this.editorConfig = {
@@ -82,6 +87,10 @@ export class DiscussionDetailsComponent implements OnInit {
       toolbarPosition: 'top',
     };
 
+    this.commentForm = this.formBuilder.group({
+      comment: ['', Validators.required]
+    })
+
     this.replyForm = this.formBuilder.group({
       Description: ['', Validators.required]
     })
@@ -106,6 +115,8 @@ export class DiscussionDetailsComponent implements OnInit {
   get g() { return this.replyForm.controls; }
 
   get f() { return this.discussionDetailsQuestionForm.controls; }
+
+  get h() { return this.commentForm.controls }
 
   public user = Utils.GetCurrentUser();
 
@@ -189,6 +200,8 @@ export class DiscussionDetailsComponent implements OnInit {
 
   openCommentModal(commentTemplate, discDetails: any) {
     debugger;
+    this.postId = discDetails._id;
+    this.commentId = discDetails.posts[0].post_id;
     this.commentModal = commentTemplate;
     this.modalService.open(this.commentModal, {
       backdrop: 'static',
@@ -200,23 +213,30 @@ export class DiscussionDetailsComponent implements OnInit {
     this.modalService.dismissAll(this.commentModal);
   }
 
-  submitComment() {
+  postComment() {
+    debugger;
+    this.submitComment = true;
+    if (this.commentForm.invalid) {
+      return
+    }
     let body = {
-      post_id: "5dc007c19edbaf26ac477d01",
-      comment_ids: "12da4300-fef4-11e9-98f0-776da231b4f5",
-      comment_text: "comment",
+      post_id: this.postId,
+      comment_ids: this.commentId,
+      comment_text: this.commentForm.controls.comment.value,
       name: this.user.f_name + " " + this.user.l_name,
       emailId: this.user.email_id
     }
     this.discussiondetailsService.commentToPost(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussionDetailsId);
+      this.submitComment = false;
+      this.closePostCommentModal();
     })
   }
 
 
-  postComment() {
-    this.commentBox = false;
-  }
+  // postComment() {
+  //   this.commentBox = false;
+  // }
 
   showPostCommentBox() {
     this.postCommentBox = true;

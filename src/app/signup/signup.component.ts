@@ -451,6 +451,25 @@ export class SignupComponent implements OnInit {
   }
 
 
+  // openSignIn() {
+  //   debugger;
+  //   this.submitUserInfoForm = false;
+  //   this.submitAlertInfoForm = false;
+  //   this.submitInterestPrefForm = false;
+  //   this.submitFirstStep = false;
+  //   this.submitSecondStep = false;
+  //   this.userInfoForm.reset();
+  //   this.alertInfoForm.reset();
+  //   this.interestPageForm.reset();
+  //   this.firstStepWizardForm.reset();
+  //   this.secondStepWizardForm.reset();
+  //   this.signInPage = true;
+  //   this.userTypePage = false;
+  //   this.firstPage = false;
+  //   this.secondPage = false;
+  //   this.thirdPage = false;
+  // }
+
   openSignIn() {
     debugger;
     this.submitUserInfoForm = false;
@@ -468,6 +487,7 @@ export class SignupComponent implements OnInit {
     this.firstPage = false;
     this.secondPage = false;
     this.thirdPage = false;
+    this.router.navigate(['/signin']);
   }
 
   signIn() {

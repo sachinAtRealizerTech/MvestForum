@@ -86,7 +86,7 @@
         <div class="col-2">
           <a class="btn btn-accent btn-sm text-uppercase ml-auto" href="#" data-target=".reply-modal-lg"
             data-toggle="modal">
-            Reply to Question
+            Post Reply
           </a>
         </div>
       </div>
@@ -94,7 +94,7 @@
       <div class="card card-small blog-comments mt-3">
         <div class="card-header">
           <div class="media  px-3 py-1">
-            <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
+            <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
               alt="Generic placeholder image">
             <div class="media-body mb-0 align-self-center">
               <h5 class="text-secondary h6 mb-0 font-weight-semibold"
@@ -170,7 +170,7 @@
         <div *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index ">
           <div class="card-header">
             <div class="media px-3 ">
-              <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
+              <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
                 alt="Generic placeholder image">
               <div class="media-body mb-0 align-self-center">
                 <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
@@ -314,7 +314,7 @@
         <div class="card shadow-none">
           <div class="row">
             <div class="col-12">
-              <form [formGroup]="postCommentForm">
+              <form [formGroup]="commentForm">
                 <div class="form">
 
                   <div class="form-group">
@@ -323,9 +323,9 @@
                     </div>
 
                     <angular-editor formControlName="comment" [config]="editorConfig"
-                      [ngClass]="{ 'is-invalid': submitQuestion && f.comment.errors }">
-                      <div *ngIf="submitQuestion && f.comment.errors" class="invalid-feedback">
-                        <div *ngIf="f.comment.errors.required">Comment is required</div>
+                      [ngClass]="{ 'is-invalid': submitComment && h.comment.errors }">
+                      <div *ngIf="submitComment && h.comment.errors" class="invalid-feedback">
+                        <div *ngIf="h.comment.errors.required">Comment is required</div>
                       </div>
                     </angular-editor>
                   </div>
@@ -336,7 +336,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="submitComment()">Post</button>
+        <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postComment()">Post</button>
         <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
           (click)="closePostCommentModal()">Cancel</button>
       </div>

@@ -22,7 +22,7 @@ export class SigninService {
         // store user details and jwt token in session storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(data['data']));
       }
-      return data['data'];
+      return data;
     }));
   }
 
