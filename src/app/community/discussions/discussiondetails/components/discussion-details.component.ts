@@ -14,6 +14,7 @@ import { Utils } from 'src/app/shared/Utils';
 })
 export class DiscussionDetailsComponent implements OnInit {
   commentId: string;
+  replyId: any;
 
 
 
@@ -200,8 +201,25 @@ export class DiscussionDetailsComponent implements OnInit {
 
   openCommentModal(commentTemplate, discDetails: any) {
     debugger;
-    this.postId = discDetails._id;
+    //this.postId = discDetails._id;
+    if (!discDetails.posts) {
+      this.commentId = discDetails.post_id
+    }
+    else {
+      this.commentId = discDetails.posts[0].post_id
+    }
+    this.commentModal = commentTemplate;
+    this.modalService.open(this.commentModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  openCommentToCommentModal(commentTemplate, discDetails: any) {
+    debugger;
+    //this.postId = discDetails._id;
     this.commentId = discDetails.posts[0].post_id;
+    this.replyId = discDetails.posts.comments.comment_id
     this.commentModal = commentTemplate;
     this.modalService.open(this.commentModal, {
       backdrop: 'static',
@@ -220,8 +238,29 @@ export class DiscussionDetailsComponent implements OnInit {
       return
     }
     let body = {
+      post_id: this.discussiondocId,
+      comment_ids: this.commentId,
+      comment_text: this.commentForm.controls.comment.value,
+      name: this.user.f_name + " " + this.user.l_name,
+      emailId: this.user.email_id
+    }
+    this.discussiondetailsService.commentToPost(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussionDetailsId);
+      this.submitComment = false;
+      this.closePostCommentModal();
+    })
+  }
+
+  postCommentToComment() {
+    debugger;
+    this.submitComment = true;
+    if (this.commentForm.invalid) {
+      return
+    }
+    let body = {
       post_id: this.postId,
       comment_ids: this.commentId,
+      reply_id: this.replyId,
       comment_text: this.commentForm.controls.comment.value,
       name: this.user.f_name + " " + this.user.l_name,
       emailId: this.user.email_id

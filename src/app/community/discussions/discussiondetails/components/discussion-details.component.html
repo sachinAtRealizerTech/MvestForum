@@ -104,7 +104,7 @@
         </div>
         <div class="card-body pt-0 mx-3 border-bottom">
           <ul class="list-inline d-flex  border-0 mb-0">
-            <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
+            <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                   class="material-icons icon-muted md-24 ml-3">
                   thumb_up
@@ -150,11 +150,34 @@
             </div>
             <div class="col-9 border-top">
               <h6>{{qc.comment_text}}</h6>
+
+              <ul class="list-inline d-flex  border-0 mb-0">
+                <li class="list-inline-item mb-1 h6  text-muted align-self-center">
+                  <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                      class="material-icons icon-muted md-24 ml-3">
+                      thumb_up
+                    </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
+                </li>
+                <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
+                  <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                      class="material-icons icon-muted md-24 ml-3"
+                      (click)="openCommentModal(postCommentModal,discussionDetails)">
+                      mode_comment
+                    </i>
+                  </a>
+                </li>
+              </ul>
+
+
             </div>
             <div class="col-2 text-right border-top">
               <span><small class="font-weight-semibold text-muted"> {{qc.create_ts | timeAgo}} <br>
-                  -by {{qc.coment_by}}</small></span>
+                  -by {{qc.comment_by_name}}</small></span>
             </div>
+
+
+
+
           </div>
 
         </div>
@@ -173,7 +196,7 @@
               <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
                 alt="Generic placeholder image">
               <div class="media-body mb-0 align-self-center">
-                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by}}</h5>
+                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{p.post_by_name}}</h5>
                 <h6 class="list-inline-item mb-1 h6  text-muted" innerHTML="{{p.post_msg}}"></h6>
               </div>
             </div>
@@ -182,27 +205,58 @@
           <div class="border-bottom card-body pt-0 mx-3">
 
             <ul class="list-inline d-flex  border-0 mb-0">
-              <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
+              <li class="list-inline-item mb-1 h6 text-muted align-self-center">
                 <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                     class="material-icons icon-muted md-24 ml-3">
                     thumb_up
-                  </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
+                  </i> </a><span class="ml-1 align-self-center">{{p.likes}}</span>
               </li>
               <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                 <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
-                    class="material-icons icon-muted md-24 ml-3">
+                    class="material-icons icon-muted md-24 ml-3" (click)="openCommentModal(postCommentModal,p)">
                     mode_comment
                   </i>
                 </a>
               </li>
               <li class="list-inline-item mb-1 h6 ml-auto text-muted align-self-center">
-                <span><small
-                    class="font-weight-semibold">{{discussionDetails?.posts[0]?.post_date | timeAgo}}</small></span>
+                <span><small class="font-weight-semibold">{{p.post_date | timeAgo}}</small></span>
               </li>
             </ul>
 
-            <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
-              data-target=".post-modal-xl">
+            <!-- <input class="form-control rounded-5 form-control-lg" placeholder="Whats Happening ??" data-toggle="modal"
+              data-target=".post-modal-xl"> -->
+
+            <div class="row pt-2 justify-content-between" *ngFor="let cm of p?.comments">
+
+              <div class="col-1">
+              </div>
+              <div class="col-9 border-top">
+                <h6>{{cm?.comment_text}}</h6>
+
+                <ul class="list-inline d-flex  border-0 mb-0">
+                  <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
+                    <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                        class="material-icons icon-muted md-24 ml-3">
+                        thumb_up
+                      </i> </a><span class="ml-1 align-self-center">{{cm?.likes}}</span>
+                  </li>
+                  <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
+                    <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                        class="material-icons icon-muted md-24 ml-3"
+                        (click)="openCommentModal(postCommentModal,discussionDetails)">
+                        mode_comment
+                      </i>
+                    </a>
+                  </li>
+                </ul>
+
+
+              </div>
+              <div class="col-2 text-right border-top">
+                <span><small class="font-weight-semibold text-muted"> {{cm.create_ts | timeAgo}} <br>
+                    -by {{cm.comment_by_name}}</small></span>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -328,6 +382,7 @@
                         <div *ngIf="h.comment.errors.required">Comment is required</div>
                       </div>
                     </angular-editor>
+
                   </div>
                 </div>
               </form>
