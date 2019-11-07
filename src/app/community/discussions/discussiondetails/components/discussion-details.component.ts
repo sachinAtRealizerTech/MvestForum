@@ -255,6 +255,13 @@ export class DiscussionDetailsComponent implements OnInit {
   // }
 
   closePostCommentModal() {
+    this.submitComment = false;
+    this.commentForm.reset();
+    this.modalService.dismissAll(this.commentModal);
+  }
+
+  closeCommentToCommentModal() {
+    this.commentToCommentForm.reset();
     this.modalService.dismissAll(this.commentModal);
   }
 
@@ -295,7 +302,7 @@ export class DiscussionDetailsComponent implements OnInit {
     this.discussiondetailsService.commentToPost(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussionDetailsId);
       this.submitComment = false;
-      this.closePostCommentModal();
+      this.closeCommentToCommentModal();
     })
   }
 

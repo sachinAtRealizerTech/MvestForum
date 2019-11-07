@@ -124,7 +124,7 @@
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                   class="material-icons icon-muted md-24 ml-3">
                   thumb_up
-                </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes}}</span>
+                </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes.length}}</span>
             </li>
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -152,7 +152,7 @@
                   <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                       class="material-icons icon-muted md-24 ml-3">
                       thumb_up
-                    </i> </a><span class="ml-1 align-self-center">0</span>
+                    </i> </a><span class="ml-1 align-self-center">{{qc.likes.length}}</span>
                 </li>
                 <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                   <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -234,7 +234,7 @@
                 <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                     class="material-icons icon-muted md-24 ml-3">
                     thumb_up
-                  </i> </a><span class="ml-1 align-self-center">{{p.likes}}</span>
+                  </i> </a><span class="ml-1 align-self-center">{{p.likes?.length}}</span>
               </li>
               <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                 <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -261,7 +261,7 @@
                     <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                         class="material-icons icon-muted md-24 ml-3">
                         thumb_up
-                      </i> </a><span class="ml-1 align-self-center">0</span>
+                      </i> </a><span class="ml-1 align-self-center">{{cm.likes?.length}}</span>
                   </li>
                   <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                     <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -492,7 +492,7 @@
         <button type="submit" class="btn btn-accent btn-sm text-uppercase"
           (click)="postCommentToComment()">Post</button>
         <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-          (click)="closePostCommentModal()">Cancel</button>
+          (click)="closeCommentToCommentModal()">Cancel</button>
       </div>
     </div>
   </form>
