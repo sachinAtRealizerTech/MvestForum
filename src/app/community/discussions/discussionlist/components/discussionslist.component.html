@@ -117,11 +117,19 @@
                                                                 </li>
                                                             </ul>
 
-                                                            <ul class="list-inline d-flex mb-0">
+                                                            <ul class="list-inline mb-0">
                                                                 <li class="list-inline-item mb-1 h6  text-muted"
                                                                     innerHTML="{{dl?.post_msg | summary}}">
                                                                     <!-- {{dl?.post_msg | summary}} -->
+
+
                                                                 </li>
+                                                                <li
+                                                                    class="list-inline-item mb-1 h6 text-muted text-right">
+                                                                    <a href="#" (click)="readMore()"><u>- read
+                                                                            more</u></a>
+                                                                </li>
+
                                                             </ul>
                                                         </div>
                                                     </div>

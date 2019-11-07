@@ -121,10 +121,14 @@
         <div class="card-body pt-0 mx-3 border-bottom">
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
-                  class="material-icons icon-muted md-24 ml-3">
-                  thumb_up
-                </i> </a><span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes.length}}</span>
+              <a routerLink="#" (click)="postLike(discussionDetails)">
+                <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
+
+              <!-- <a  routerLink="#"
+                (click)="unlikePost(discussionDetails)"> <i class="material-icons icon-accent md-24 ml-3">thumb_up</i>
+              </a> -->
+
+              <span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes.length}}</span>
             </li>
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -149,10 +153,17 @@
 
               <ul class="list-inline d-flex  border-0 mb-0">
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                  <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                  <a routerLink="#" (click)="likeToComment(discussionDetails,qc)"> <i
                       class="material-icons icon-muted md-24 ml-3">
                       thumb_up
-                    </i> </a><span class="ml-1 align-self-center">{{qc.likes.length}}</span>
+                    </i> </a>
+
+                  <!-- <a *ngIf="qc.likes.includes(user.email_id)" routerLink="#"
+                    (click)="unLikeToComment(discussionDetails,qc)"> <i class="material-icons icon-accent md-24 ml-3">
+                      thumb_up
+                    </i> </a> -->
+
+                  <span class="ml-1 align-self-center">{{qc.likes.length}}</span>
                 </li>
                 <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                   <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -231,10 +242,15 @@
 
             <ul class="list-inline d-flex  border-0 mb-0">
               <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
-                    class="material-icons icon-muted md-24 ml-3">
-                    thumb_up
-                  </i> </a><span class="ml-1 align-self-center">{{p.likes?.length}}</span>
+
+                <a *ngIf="!isPostLikedByMe(p)" routerLink="#" (click)="postLike(p)"> <i
+                    class="material-icons icon-muted md-24 ml-3">thumb_up</i>
+                </a>
+                <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)"> <i
+                    class="material-icons icon-accent md-24 ml-3">thumb_up</i>
+                </a>
+
+                <span class="ml-1 align-self-center">{{p.likes?.length}}</span>
               </li>
               <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                 <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -258,10 +274,20 @@
 
                 <ul class="list-inline d-flex  border-0 mb-0">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
-                    <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+
+                    <a *ngIf="!isCommentLikedByMe(cm)" routerLink="#" (click)="likeToComment(discussionDetails,cm)"> <i
                         class="material-icons icon-muted md-24 ml-3">
                         thumb_up
-                      </i> </a><span class="ml-1 align-self-center">{{cm.likes?.length}}</span>
+                      </i>
+                    </a>
+
+                    <a *ngIf="isCommentLikedByMe(cm)" routerLink="#" (click)="unLikeToComment(discussionDetails,cm)"> <i
+                        class="material-icons icon-accent md-24 ml-3">
+                        thumb_up
+                      </i> </a>
+
+
+                    <span class="ml-1 align-self-center">{{cm.likes?.length}}</span>
                   </li>
                   <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                     <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i

@@ -17,6 +17,16 @@ export class DiscussionDetailsComponent implements OnInit {
   replyId: any;
   isReplyCommment = false;
   commentToCommentForm: FormGroup;
+  isLiked: boolean;
+  post_Id: any;
+  comment_Id: any;
+  postLikeFlag: boolean;
+  commentLikeFlag: boolean;
+  postQLikeFlag: boolean;
+  postALikeFlag: boolean;
+  like_Id: any;
+  postQCLikeFlag: boolean;
+  postACLikeFlag: boolean;
 
 
 
@@ -130,12 +140,65 @@ export class DiscussionDetailsComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   getDiscussionDeatils(id: string) {
+
     this.loading = true;
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
+      debugger;
       this.discussionDetails = data;
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
-      this.discussiondocId = data['_id']
+      this.discussiondocId = data['_id'];
+
+      //question
+
+      // if (this.discussionDetails.posts[0].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
+      //   this.postQLikeFlag = true;
+      // }
+      // else {
+      //   this.postQLikeFlag = false;
+      // }
+
+      // //answer
+
+      // for (let i = 1; i < this.discussionDetails.posts.length; i++) {
+      //   if (this.discussionDetails.posts[i].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
+      //     this.postALikeFlag = true;
+      //     break;
+      //   }
+      //   else {
+      //     this.postALikeFlag = false;
+      //   }
+      // }
+
+
+      // //question comment like
+
+      // for (let i = 0; i = 0; i++) {
+      //   for (let j = 0; j <= this.discussionDetails.posts[i].comments.length; j++) {
+      //     if (this.discussionDetails.posts[i].comments[j].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
+      //       this.postQCLikeFlag = true;
+      //       break;
+      //     }
+      //     else {
+      //       this.postQCLikeFlag = false;
+      //     }
+      //   }
+      // }
+
+
+      // //Answer comment like
+      // for (let i = 1; i < this.discussionDetails.posts.length; i++) {
+      //   for (let j = 0; j <= this.discussionDetails.posts[i].comments.length; j++) {
+      //     if (this.discussionDetails.posts[i].comments[j].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
+      //       this.postACLikeFlag = true;
+      //       break;
+      //     }
+      //     else {
+      //       this.postACLikeFlag = false;
+      //     }
+      //   }
+      // }
+
     })
   }
 
@@ -176,6 +239,16 @@ export class DiscussionDetailsComponent implements OnInit {
     })
   }
 
+  isPostLikedByMe(post: any): boolean {
+    let likedEmails = post.likes.map(l => l.like_by_emailId);
+    return (likedEmails.includes(this.user.email_id));
+  }
+
+  isCommentLikedByMe(comment: any) {
+    debugger;
+    let likedEmails = comment.likes.map(l => l.like_by_emailId);
+    return (likedEmails.includes(this.user.email_id));
+  }
 
   postQuestion() {
     debugger;
@@ -272,8 +345,8 @@ export class DiscussionDetailsComponent implements OnInit {
       return
     }
     let body = {
-      post_id: this.discussiondocId,
-      comment_ids: this.commentId,
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.commentId,
       comment_text: this.commentForm.controls.comment.value,
       name: this.user.f_name + " " + this.user.l_name,
       emailId: this.user.email_id
@@ -292,9 +365,9 @@ export class DiscussionDetailsComponent implements OnInit {
       return
     }
     let body = {
-      post_id: this.discussiondocId,
-      comment_ids: this.commentId,
-      reply_id: this.replyId,
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.commentId,
+      comment_id: this.replyId,
       comment_text: this.commentToCommentForm.controls.comment.value,
       name: this.user.f_name + " " + this.user.l_name,
       emailId: this.user.email_id
@@ -307,16 +380,97 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
 
-  // postComment() {
-  //   this.commentBox = false;
-  // }
+  postLike(discDetails: any) {
+    debugger;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+    }
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      like_emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
+    }
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussionDetailsId);
+      this.isLiked = true;
+    })
 
-  showPostCommentBox() {
-    this.postCommentBox = true;
   }
 
-  commentOnPost() {
-    this.postCommentBox = false;
+  unlikePost(discDetails: any) {
+    debugger;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      //this.like_Id = likeId;
+    }
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      like_by_emailId: this.user.email_id
+
+    }
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussionDetailsId);
+      this.isLiked = true;
+    })
+  }
+
+  likeToComment(discDetails: any, qc: any) {
+    debugger;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+      this.comment_Id = qc.comment_id
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      this.comment_Id = qc.comment_id;
+    }
+
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      comment_id: this.comment_Id,
+      like_emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
+    }
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussionDetailsId);
+      this.isLiked = true;
+    })
+
+  }
+
+
+  unLikeToComment(discDetails: any, qc: any) {
+    debugger;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+      this.comment_Id = qc.comment_id
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      this.comment_Id = qc.comment_id;
+    }
+
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      comment_id: this.comment_Id,
+      like_by_emailId: this.user.email_id
+
+    }
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussionDetailsId);
+      this.isLiked = true;
+    })
+
   }
 
 }
