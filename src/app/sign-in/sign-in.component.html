@@ -1,11 +1,18 @@
 <aside class="main-sidebar col-lg-3 col-xl-3 px-0">
     <div class="main-navbar shadow-none">
         <nav class="navbar align-items-stretch navbar-dark bg-black flex-md-nowrap p-0 shadow-none">
+
+            <a class="navbar-brand w-100 mr-0">
+                <div class="d-table m-auto">
+                    <img id="main-logo" class="d-inline-block align-top mr-1" src="assets/images/MVest-Logo.png"
+                        width="auto" height="50" alt="MVest Logo">
+                </div>
+            </a>
             <!-- <a class="navbar-brand w-100 mr-0" href="#" >
                 <div class="d-table m-auto">
                     <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;"
                         src="assets/images/shards-dashboards-logo-success.svg" alt="Shards Dashboard">
-                    <span class="d-none d-md-inline ml-1">Gold Memeber</span>
+                    <span class="d-none d-md-inline ml-1">Gold Member</span>
                 </div>
             </a> -->
             <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
@@ -108,6 +115,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div *ngIf="verifyLogin" class="row justify-content-center text-left text-danger">
+                        Invalid Email Or Password.
                     </div>
                     <div class="row justify-content-center text-center mt-3">
                         <div class="col-12">

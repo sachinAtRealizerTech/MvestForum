@@ -45,10 +45,10 @@
 
     <!-----------------------------------------Breadcrumb and search-------------------------------------------->
 
-    <div class="row justify-content-center py-3">
+    <div class="row justify-content-center">
         <div class="col-xl-12">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb px-0">
+                <ol class="breadcrumb px-0 mb-0">
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussions"
                             (click)="setTitle( 'Mvest-Categories' )">Categories</a></li>
                     <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/subcategory"
@@ -101,7 +101,7 @@
                                         (click)="setTitle( 'Mvest-Discussion Details')">
 
                                         <div class=" border-bottom p-1">
-                                            <div class="row">
+                                            <div class="row justify-content-center text-left text-break">
                                                 <div class="col-9">
                                                     <div class="media p-3">
                                                         <img class="mr-3 user-pic rounded-circle mr-2"
@@ -124,11 +124,12 @@
 
 
                                                                 </li>
-                                                                <li
+                                                                <!-- <li
                                                                     class="list-inline-item mb-1 h6 text-muted text-right">
-                                                                    <a href="#" (click)="readMore()"><u>- read
+                                                                    <a *ngIf="dl?.post_msg.length>100" href="#"
+                                                                        (click)="readMore()"><u>- read
                                                                             more</u></a>
-                                                                </li>
+                                                                </li> -->
 
                                                             </ul>
                                                         </div>

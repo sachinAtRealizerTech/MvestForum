@@ -38,8 +38,8 @@ export class DiscussionslistComponent implements OnInit {
     this.editorConfig = {
       editable: true,
       spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
+      height: '15rem',
+      minHeight: '4rem',
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',
@@ -149,7 +149,6 @@ export class DiscussionslistComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussionlistService.postQuestion(body).subscribe(data => {
-      alert("Question Posted Successfully");
       this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.discussionId);
       this.closePostQuestionModal();

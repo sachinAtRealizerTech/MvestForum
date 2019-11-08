@@ -38,8 +38,8 @@ export class SubcategoryComponent implements OnInit {
     this.editorConfig = {
       editable: true,
       spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
+      height: '15rem',
+      minHeight: '4rem',
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',

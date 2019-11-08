@@ -41,7 +41,7 @@
 
   <!-----------------------------------------Breadcrumb and search-------------------------------------------->
 
-  <div class="row justify-content-center py-3">
+  <div class="row justify-content-center">
     <div class="col-xl-12">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0 mb-1">
@@ -94,7 +94,7 @@
       <div class="card card-small blog-comments mt-3">
         <div class="card-header pb-1">
 
-          <div class="row justify-content-center">
+          <div class="row justify-content-center text-left text-break">
             <div class="col-10">
               <div class="media px-3 py-1">
                 <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
@@ -113,7 +113,6 @@
               <small class="font-weight-semibold text-muted pr-2"> -by
                 {{discussionDetails?.posts[0]?.post_by_name}}</small>
             </div>
-
           </div>
 
 
@@ -121,14 +120,15 @@
         <div class="card-body pt-0 mx-3 border-bottom">
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-              <a routerLink="#" (click)="postLike(discussionDetails)">
+              <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
+                (click)="postLike(discussionDetails)">
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
 
-              <!-- <a  routerLink="#"
+              <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
                 (click)="unlikePost(discussionDetails)"> <i class="material-icons icon-accent md-24 ml-3">thumb_up</i>
-              </a> -->
+              </a>
 
-              <span class="ml-1 align-self-center">{{discussionDetails?.posts[0].likes.length}}</span>
+              <span class="ml-1 align-self-center">{{discussionDetails?.posts[0]?.likes.length}}</span>
             </li>
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
@@ -153,15 +153,15 @@
 
               <ul class="list-inline d-flex  border-0 mb-0">
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                  <a routerLink="#" (click)="likeToComment(discussionDetails,qc)"> <i
+                  <a *ngIf="!isCommentLikedByMe(qc)" routerLink="#" (click)="likeToComment(discussionDetails,qc)"> <i
                       class="material-icons icon-muted md-24 ml-3">
                       thumb_up
                     </i> </a>
 
-                  <!-- <a *ngIf="qc.likes.includes(user.email_id)" routerLink="#"
-                    (click)="unLikeToComment(discussionDetails,qc)"> <i class="material-icons icon-accent md-24 ml-3">
+                  <a *ngIf="isCommentLikedByMe(qc)" routerLink="#" (click)="unLikeToComment(discussionDetails,qc)"> <i
+                      class="material-icons icon-accent md-24 ml-3">
                       thumb_up
-                    </i> </a> -->
+                    </i> </a>
 
                   <span class="ml-1 align-self-center">{{qc.likes.length}}</span>
                 </li>
@@ -213,7 +213,7 @@
           <div class="card-header pb-1">
 
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center text-break text-left">
               <div class="col-10">
                 <div class="media px-3 ">
                   <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"

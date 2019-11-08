@@ -25,8 +25,6 @@ export class DiscussionDetailsComponent implements OnInit {
   postQLikeFlag: boolean;
   postALikeFlag: boolean;
   like_Id: any;
-  postQCLikeFlag: boolean;
-  postACLikeFlag: boolean;
 
 
 
@@ -62,8 +60,8 @@ export class DiscussionDetailsComponent implements OnInit {
     this.editorConfig = {
       editable: true,
       spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
+      height: '15rem',
+      minHeight: '4rem',
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',
@@ -148,57 +146,6 @@ export class DiscussionDetailsComponent implements OnInit {
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id'];
-
-      //question
-
-      // if (this.discussionDetails.posts[0].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
-      //   this.postQLikeFlag = true;
-      // }
-      // else {
-      //   this.postQLikeFlag = false;
-      // }
-
-      // //answer
-
-      // for (let i = 1; i < this.discussionDetails.posts.length; i++) {
-      //   if (this.discussionDetails.posts[i].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
-      //     this.postALikeFlag = true;
-      //     break;
-      //   }
-      //   else {
-      //     this.postALikeFlag = false;
-      //   }
-      // }
-
-
-      // //question comment like
-
-      // for (let i = 0; i = 0; i++) {
-      //   for (let j = 0; j <= this.discussionDetails.posts[i].comments.length; j++) {
-      //     if (this.discussionDetails.posts[i].comments[j].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
-      //       this.postQCLikeFlag = true;
-      //       break;
-      //     }
-      //     else {
-      //       this.postQCLikeFlag = false;
-      //     }
-      //   }
-      // }
-
-
-      // //Answer comment like
-      // for (let i = 1; i < this.discussionDetails.posts.length; i++) {
-      //   for (let j = 0; j <= this.discussionDetails.posts[i].comments.length; j++) {
-      //     if (this.discussionDetails.posts[i].comments[j].likes.find(x => x['like_by_emailId'] == this.user.email_id)) {
-      //       this.postACLikeFlag = true;
-      //       break;
-      //     }
-      //     else {
-      //       this.postACLikeFlag = false;
-      //     }
-      //   }
-      // }
-
     })
   }
 
@@ -245,13 +192,11 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   isCommentLikedByMe(comment: any) {
-    debugger;
     let likedEmails = comment.likes.map(l => l.like_by_emailId);
     return (likedEmails.includes(this.user.email_id));
   }
 
   postQuestion() {
-    debugger;
     this.categoryName = sessionStorage.getItem("category_name");
     this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
@@ -281,7 +226,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   openCommentModal(commentTemplate, discDetails: any) {
-    debugger;
     //this.postId = discDetails._id;
     if (!discDetails.posts) {
       this.commentId = discDetails.post_id
@@ -298,7 +242,6 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   openCommentToCommentModal(postCommentToCommentModal, discDetails: any, qc: any) {
-    debugger;
     if (!discDetails.posts) {
       this.commentId = discDetails.post_id;
       this.replyId = qc.comment_id
@@ -339,7 +282,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   postComment() {
-    debugger;
     this.submitComment = true;
     if (this.commentForm.invalid) {
       return
@@ -359,7 +301,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   postCommentToComment() {
-    debugger;
     this.submitComment = true;
     if (this.commentToCommentForm.invalid) {
       return
@@ -381,7 +322,6 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   postLike(discDetails: any) {
-    debugger;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
     }
@@ -395,14 +335,14 @@ export class DiscussionDetailsComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussionDetailsId);
-      this.isLiked = true;
+      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
+        this.discussionDetails = data
+      });
     })
 
   }
 
   unlikePost(discDetails: any) {
-    debugger;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
     }
@@ -417,13 +357,13 @@ export class DiscussionDetailsComponent implements OnInit {
 
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussionDetailsId);
-      this.isLiked = true;
+      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
+        this.discussionDetails = data
+      });
     })
   }
 
   likeToComment(discDetails: any, qc: any) {
-    debugger;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
       this.comment_Id = qc.comment_id
@@ -441,15 +381,15 @@ export class DiscussionDetailsComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussionDetailsId);
-      this.isLiked = true;
+      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
+        this.discussionDetails = data
+      });
     })
 
   }
 
 
   unLikeToComment(discDetails: any, qc: any) {
-    debugger;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
       this.comment_Id = qc.comment_id
@@ -467,8 +407,9 @@ export class DiscussionDetailsComponent implements OnInit {
 
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussionDetailsId);
-      this.isLiked = true;
+      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
+        this.discussionDetails = data
+      });
     })
 
   }

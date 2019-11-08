@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SignInComponent implements OnInit {
   submitSignIn = false;
   signInForm: FormGroup;
+  verifyLogin = false;
 
   constructor(private signinService: SigninService, private router: Router, private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
@@ -43,9 +44,10 @@ export class SignInComponent implements OnInit {
       console.log("login", data);
       if (data['data'] && data['data'].token) {
         this.router.navigate(['/dashboard']);
+        this.verifyLogin = false;
       }
       if (data['message'] == "Invalid data...") {
-        alert("Sorry...You have not been logged in..Please verify your credentials")
+        this.verifyLogin = true;
       }
     },
       err => {

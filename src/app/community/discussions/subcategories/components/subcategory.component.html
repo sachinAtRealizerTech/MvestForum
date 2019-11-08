@@ -41,10 +41,10 @@
   <!-----------------------------------------Breadcrumb and search-------------------------------------------->
 
 
-  <div class="row justify-content-center py-3">
+  <div class="row justify-content-center">
     <div class="col-xl-12">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb px-0">
+        <ol class="breadcrumb px-0 mb-0">
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussions"
               (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
           <li class="breadcrumb-item"><a class="active text-green font-weight-semibold">Sub-Categories</a></li>
@@ -80,13 +80,13 @@
         <h5>No Records Found...</h5>
       </div> -->
 
-      <div class="text-center" *ngIf="subCategoryList.length==0">
+      <div class="text-center" *ngIf="subCategoryList?.length==0">
         <h5>No Sub-Categories listed</h5>
       </div>
 
       <div class="row justify-content-center">
         <div class="col-xl-12">
-          <div class="card align-self-center bg-white">
+          <div class="card align-self-center bg-white shadow-none">
             <div class="row justify-content-left text-center px-3">
               <div>
                 <div class="row gutter-10">
@@ -146,8 +146,8 @@
                           (change)="selectedSubCategory($event)"
                           [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
                           <option disabled hidden> Sub-Category Name</option>
-                          <option *ngFor="let sc of subCategoryList?.sub_categories" [value]="sc.subcat_id">
-                            {{sc.name}}</option>
+                          <option *ngFor="let sc of subCategoryList" [value]="sc?.sub_categories?.subcat_id">
+                            {{sc?.sub_categories?.name}}</option>
                         </select>
                         <div *ngIf="submitQuestion && g.subCategoryName.errors" class="invalid-feedback">
                           <div *ngIf="g.subCategoryName.errors.required">Sub-Category Name is required</div>

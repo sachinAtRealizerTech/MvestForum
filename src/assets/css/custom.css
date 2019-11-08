@@ -1085,4 +1085,42 @@ top:105px;
         }
         
         }
+
+
+        .angular-editor-toolbar-set [title="Insert Video"],
+        .angular-editor-toolbar-set  [title="Insert Image"],
+        .angular-editor-toolbar-set  [title="Unlink"],
+        .angular-editor-toolbar-set  [title="Insert Link"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Horizontal Line"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Text Color"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Background Color"],
+        /* .angular-editor-toolbar-set  .angular-editor-button[title="Unordered List"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Ordered List"], */
+        .angular-editor-toolbar-set  .angular-editor-button[title="Indent"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Outdent"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Justify Full"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Justify Right"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Justify Center"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Justify Left"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Subscript"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Superscript"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Strikethrough"],
+        .angular-editor-toolbar .angular-editor-toolbar-set .select-font,
+        .angular-editor-toolbar .angular-editor-toolbar-set .select-heading,
+        .angular-editor-toolbar .angular-editor-toolbar-set .select-font-size,
+        .angular-editor-toolbar .angular-editor-toolbar-set .select-custom-style{
+   display: none !important;
+}
+
+
+.angular-editor-toolbar .angular-editor-toolbar-set {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-right: 5px;
+  vertical-align: middle;
+   border: none !important;
+  margin-bottom: 3px;
+  height: 28px;
+}
       
