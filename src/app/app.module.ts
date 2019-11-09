@@ -24,6 +24,7 @@ import { SignupComponent } from './signup/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ArchwizardModule } from 'angular-archwizard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 //import { BsModalService } from 'ngx-bootstrap/modal';
 //import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 
@@ -55,7 +56,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     CommunityModule,
     NgbModule,
-    ArchwizardModule
+    ArchwizardModule,
     // ModalModule,
     // BsDropdownModule,
     // CollapseModule

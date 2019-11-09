@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-discussionslist',
@@ -15,7 +16,8 @@ import { Utils } from 'src/app/shared/Utils';
 export class DiscussionslistComponent implements OnInit {
 
   constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
+    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
+    private flashMessagesService: FlashMessagesService) { }
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
@@ -152,6 +154,7 @@ export class DiscussionslistComponent implements OnInit {
       this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.discussionId);
       this.closePostQuestionModal();
+      this.flashMessagesService.show('Your question posted successfully', { cssClass: 'bg-accent flash-message', timeout: 2000 });
     })
   }
 

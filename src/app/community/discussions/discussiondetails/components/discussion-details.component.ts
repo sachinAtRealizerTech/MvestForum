@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-discussion-details',
@@ -25,11 +26,13 @@ export class DiscussionDetailsComponent implements OnInit {
   postQLikeFlag: boolean;
   postALikeFlag: boolean;
   like_Id: any;
+  comment_to_id: any;
 
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
+    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
+    private flashMessagesService: FlashMessagesService) { }
 
   discussionDetailsQuestionForm: FormGroup;
   commentForm: FormGroup;
@@ -57,6 +60,10 @@ export class DiscussionDetailsComponent implements OnInit {
   submitComment = false;
 
   ngOnInit() {
+
+    //this.flashMessagesService.show('We are in about component!', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+
+
     this.editorConfig = {
       editable: true,
       spellcheck: true,
@@ -123,6 +130,8 @@ export class DiscussionDetailsComponent implements OnInit {
     this.getDiscussionDeatils(this.discussionDetailsId);
   }
 
+
+
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
@@ -166,6 +175,7 @@ export class DiscussionDetailsComponent implements OnInit {
     this.commentBox = true
   }
 
+
   sendReply() {
     this.submitReply = true;
     if (this.replyForm.invalid) {
@@ -186,15 +196,7 @@ export class DiscussionDetailsComponent implements OnInit {
     })
   }
 
-  isPostLikedByMe(post: any): boolean {
-    let likedEmails = post.likes.map(l => l.like_by_emailId);
-    return (likedEmails.includes(this.user.email_id));
-  }
 
-  isCommentLikedByMe(comment: any) {
-    let likedEmails = comment.likes.map(l => l.like_by_emailId);
-    return (likedEmails.includes(this.user.email_id));
-  }
 
   postQuestion() {
     this.categoryName = sessionStorage.getItem("category_name");
@@ -218,7 +220,7 @@ export class DiscussionDetailsComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postQuestion(body).subscribe(data => {
-      alert("Question Posted Successfully");
+      this.flashMessagesService.show('Your question posted successfully', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.discussionDetailsQuestionForm.reset();
       this.getDiscussionDeatils(this.discussionDetailsId);
       this.closePostQuestionModal();
@@ -257,18 +259,6 @@ export class DiscussionDetailsComponent implements OnInit {
     })
   }
 
-
-  // openCommentToCommentModal(commentTemplate, discDetails: any) {
-  //   debugger;
-  //   //this.postId = discDetails._id;
-  //   this.commentId = discDetails.posts[0].post_id;
-  //   this.replyId = discDetails.posts.comments.comment_id
-  //   this.commentModal = commentTemplate;
-  //   this.modalService.open(this.commentModal, {
-  //     backdrop: 'static',
-  //     backdropClass: 'customBackdrop'
-  //   })
-  // }
 
   closePostCommentModal() {
     this.submitComment = false;
@@ -335,9 +325,7 @@ export class DiscussionDetailsComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
-        this.discussionDetails = data
-      });
+      this.getDiscussionDeatils(this.discussiondocId);
     })
 
   }
@@ -357,9 +345,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
-        this.discussionDetails = data
-      });
+      this.getDiscussionDeatils(this.discussiondocId);
     })
   }
 
@@ -381,9 +367,7 @@ export class DiscussionDetailsComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
-        this.discussionDetails = data
-      });
+      this.getDiscussionDeatils(this.discussiondocId);
     })
 
   }
@@ -407,11 +391,80 @@ export class DiscussionDetailsComponent implements OnInit {
 
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.discussiondetailsService.getAllDiscussionsDetails(this.discussiondocId).subscribe(data => {
-        this.discussionDetails = data
-      });
+      this.getDiscussionDeatils(this.discussiondocId);
     })
 
+  }
+
+  isPostLikedByMe(post: any): boolean {
+    let likedEmails = post.likes.map(l => l.like_by_emailId);
+    return (likedEmails.includes(this.user.email_id));
+  }
+
+  isCommentLikedByMe(comment: any) {
+    let likedEmails = comment.likes.map(l => l.like_by_emailId);
+    return (likedEmails.includes(this.user.email_id));
+  }
+
+
+  likeCommentToComment(discDetails: any, pc: any, cc: any) {
+    debugger;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+      this.comment_Id = pc.comment_id
+      this.comment_to_id = cc.comment_id
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      this.comment_Id = pc.comment_id;
+      this.comment_to_id = cc.comment_id
+    }
+
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      comment_id: this.comment_Id,
+      comment_to_id: this.comment_to_id,
+      like_emailId: this.user.email_id,
+      name: this.user.f_name + " " + this.user.l_name
+    }
+
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussiondocId);
+    })
+
+  }
+
+  unLikeCommentToComment(discDetails: any, pc: any, cc: any) {
+    debugger;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+      this.comment_Id = pc.comment_id;
+      this.comment_to_id = cc.comment_id;
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      this.comment_Id = pc.comment_id;
+      this.comment_to_id = cc.comment_id;
+    }
+
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      comment_id: this.comment_Id,
+      comment_to_id: this.comment_to_id,
+      like_by_emailId: this.user.email_id
+    }
+
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussiondocId);
+    })
+  }
+
+
+  isCommentToCommentLikedByMe(comments: any) {
+    let likedEmails = comments.likes.map(l => l.like_by_emailId);
+    return (likedEmails.includes(this.user.email_id));
   }
 
 }

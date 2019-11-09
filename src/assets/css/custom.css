@@ -1105,6 +1105,8 @@ top:105px;
         .angular-editor-toolbar-set  .angular-editor-button[title="Subscript"],
         .angular-editor-toolbar-set  .angular-editor-button[title="Superscript"],
         .angular-editor-toolbar-set  .angular-editor-button[title="Strikethrough"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Undo"],
+        .angular-editor-toolbar-set  .angular-editor-button[title="Redo"],
         .angular-editor-toolbar .angular-editor-toolbar-set .select-font,
         .angular-editor-toolbar .angular-editor-toolbar-set .select-heading,
         .angular-editor-toolbar .angular-editor-toolbar-set .select-font-size,
@@ -1122,5 +1124,13 @@ top:105px;
    border: none !important;
   margin-bottom: 3px;
   height: 28px;
+}
+
+.btn-grey{
+  color: #fff !important;
+  border:2px solid rgb(102, 102, 102) !important;
+  border-color: rgb(102, 102, 102) !important;
+  background-color: rgb(102, 102, 102) !important;
+  box-shadow: none;
 }
       

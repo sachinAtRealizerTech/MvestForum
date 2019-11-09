@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { Utils } from 'src/app/shared/Utils';
 export class SubcategoryComponent implements OnInit {
 
   constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
+    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
+    private flashMessagesService: FlashMessagesService) { }
 
   editorConfig: AngularEditorConfig;
   postQuestionForm: FormGroup;
@@ -155,7 +157,7 @@ export class SubcategoryComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.subcategoryService.postQuestion(body).subscribe(data => {
-      alert('Question Posted successfully...');
+      this.flashMessagesService.show('Your question posted successfully', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
     })

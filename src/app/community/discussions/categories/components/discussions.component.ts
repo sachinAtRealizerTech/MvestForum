@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 
@@ -20,7 +21,7 @@ export class DiscussionsComponent implements OnInit {
 
   constructor(private discussionsService: DiscussionsService, private formBuilder: FormBuilder,
     private subcategoryService: SubcategoryService, private router: Router, private titleService: Title,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal, private flashMessagesService: FlashMessagesService) { }
 
   postQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
@@ -165,7 +166,7 @@ export class DiscussionsComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussionsService.postQuestion(body).subscribe(data => {
-      alert("Question Posted Successfully...");
+      this.flashMessagesService.show('Your question posted successfully.', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
     })

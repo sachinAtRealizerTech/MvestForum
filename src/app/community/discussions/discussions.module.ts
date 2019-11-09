@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { SummaryPipe } from 'src/app/shared/pipes/summary.pipe';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 @NgModule({
@@ -27,14 +28,16 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AngularEditorModule
+    AngularEditorModule,
+    FlashMessagesModule.forRoot(),
   ],
   exports: [
     Ng2SearchPipeModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    AngularEditorModule
+    AngularEditorModule,
+    FlashMessagesModule
   ]
 })
 export class DiscussionsModule { }
