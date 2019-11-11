@@ -10,23 +10,32 @@
                               <li class="nav-item align-self-center">
                             <h5 class="text-dark mb-0 font-weight-bold mr-3 align-self-center">Nearby Lease</h5>
                         </li>
-                        <li class="nav-item align-self-center"> 
+                        <!-- <li class="nav-item align-self-center"> 
                             <select class="font-weight-semibold text-accent mb-n3 mx-3">
                                 <option>Filter by : County</option>
                                 <option>Filter by : Distance</option>
                                 <option>Filter by : MyLease</option>
                                 <option>Filter by : Operator</option>
                             </select>
-                        </li>
+                        </li> -->
         
-                        <li class="nav-item mb-0 align-self-center "> 
+                        <!-- <li class="nav-item mb-0 align-self-center "> 
                             <select class="font-weight-semibold text-accent mb-0 ">
                                 <option>Texas</option>
                                 <option>Karnes</option>
                                 <option>Rockwall</option>
                             </select>
-                        </li>
-                        <div class="ml-auto d-inline-flex">  
+                        </li> -->
+
+                        
+                        <div class="ml-auto d-inline-flex"> 
+                                <li class="nav-item pull-right mr-3 align-self-center">
+                                        <a routerLink="/nearbyleases" data-toggle="tooltip" title="Search by Filter" class="badge badge-accent rounded-5 text-white text-uppercase "  data-toggle="modal" data-target="#searchfilter-modal-lg">
+                                          <i class="material-icons md-18 ">
+                                                  filter_list
+                                                  </i>
+                                          </a>
+                                    </li>  
                             <li class="nav-item pull-right mr-3 align-self-center">
                                 <form id="search-form" class="form-inline" role="form" method="post"
                                     action="//www.google.com/search" target="_blank">
@@ -85,7 +94,7 @@
                                                     <h6 class="mb-0">
                                                         <!-- <i class="material-icons mr-1 text-muted">mail
                                                         </i> -->
-                                                    <a href="#"><i class="material-icons md-18 icon-muted">
+                                                    <a routerLink="#"><i class="material-icons md-18 icon-muted">
                                                                 mail_outline
                                                                 </i></a>    
                                                     </h6> 
@@ -295,6 +304,98 @@
                         </ul>
                       </nav>
                 </div>
-                </div>    
+                </div>  
+                
+                
+
+                <div id="searchfilter-modal-lg" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            
+                            <div class="justify-content-end">
+                                    <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                                    data-dismiss="modal">
+                                 <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="form-row">
+                                            <!-- <div class="form-group col-8">
+                                                <label class="font-weight-semibold pr-3"> Search Nearby Leases :</label>
+                                                
+                                            </div> -->
+                                        </div>
+                                        <div class="form-row">
+                                                <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
+                                        </div>
+                                        <div class="form-row">
+                                               
+                                                <div class="form-group col-4">
+                                                    <label class="font-weight-semibold pr-3">County</label>
+                                                    <select class="form-control border" id="exampleFormControlSelect1">
+                                                            <option> Select County </option>
+                                                            <option>Karnes</option>
+                                                            <option>Texas</option>
+                                                            <option>Grimes</option>
+                                                            <option>Rockwall</option>
+                                                          </select>
+                                                </div>
+                                                <div class="form-group col-4">
+                                                        <label class="font-weight-semibold pr-3">Distance :</label>
+                                                        <select class="form-control border" id="exampleFormControlSelect1">
+                                                                <option> Select Distance </option> 
+                                                                <option>1.5 miles away</option>
+                                                                <option>2.2 miles away</option>
+                                                                <option>3.5 miles away</option>
+                                                                <option>4.2 miles away</option>
+                                                                <option>5.5 miles away</option> 
+                                                              </select>
+                                                    </div>
+                                                    <div class="form-group col-4">
+                                                            <label class="font-weight-semibold pr-3">Lease Name :</label>
+                                                            <select class="form-control border" id="exampleFormControlSelect1">
+                                                                    <option>Select Lease</option>
+                                                                    <option>San Christoval Raunch Unit A</option>
+                                                                    <option>San Christoval Raunch Unit B</option>
+                                                                    <option>San Christoval Raunch Unit C</option>
+                                                                    <option>San Christoval Raunch Unit D</option>
+                                                                    <option>San Christoval Raunch Unit E</option> 
+                                                                  </select>
+                                                        </div>
+                                            </div>
+                                            <div class="form-row">
+                                               
+                                                    <div class="form-group col-4">
+                                                        <label class="font-weight-semibold pr-3">Operator</label>
+                                                        <select class="form-control border" id="exampleFormControlSelect1">
+                                                                <option> Select Operator </option>
+                                                                <option>Operator 1</option>
+                                                                <option>Operator 2</option>
+                                                                <option>Operator 3</option>
+                                                                <option>Operator 4</option>
+                                                              </select>
+                                                    </div>
+                                                    <div class="form-group col-4">
+                                                            <label class="font-weight-semibold pr-3">Play Type :</label>
+                                                            <select class="form-control border" id="exampleFormControlSelect1">
+                                                                    <option> Select Play Type </option> 
+                                                                    <option>Play Type 1</option>
+                                                                    <option>Play Type 2</option>
+                                                                    <option>Play Type 3</option>
+                                                                    <option>Play Type 4</option>
+                                                                    <option>Play Type 5</option> 
+                                                                  </select>
+                                                        </div>
+                                                        
+                                                </div>
+                                       
+                                    </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-accent">Save</button>
+                              <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Close</button> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
     
        
