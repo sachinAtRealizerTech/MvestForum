@@ -156,6 +156,7 @@ export class DiscussionDetailsComponent implements OnInit {
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id'];
+      this.isLikePressed = false;
     })
   }
 
@@ -330,7 +331,7 @@ export class DiscussionDetailsComponent implements OnInit {
       }
       this.discussiondetailsService.postLike(body).subscribe(data => {
         this.getDiscussionDeatils(this.discussiondocId);
-        this.isLikePressed = false;
+
       })
     }
     else {
@@ -381,7 +382,6 @@ export class DiscussionDetailsComponent implements OnInit {
       }
       this.discussiondetailsService.postLike(body).subscribe(data => {
         this.getDiscussionDeatils(this.discussiondocId);
-        this.isLikePressed = false;
       })
     }
     else {
@@ -453,7 +453,6 @@ export class DiscussionDetailsComponent implements OnInit {
       }
 
       this.discussiondetailsService.postLike(body).subscribe(data => {
-        this.isLikePressed = false;
         this.getDiscussionDeatils(this.discussiondocId);
       })
     }
