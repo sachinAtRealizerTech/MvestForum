@@ -18,8 +18,10 @@ import { CommunityComponent } from './community/community.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SignupComponent } from './signup/signup.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component'; 
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component'; 
+import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SignInComponent },
+  { path: 'reset-password', component: ResetPasswordComponent},
 
   // {
   //   path: '',
@@ -113,7 +116,16 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'nearbyleases',
+        component: NearbyleasesComponent
+      },
+      {
+        path: 'nearbyneighbors',
+        component: NearbyneighborsComponent
       }
+
 
     ]
   }

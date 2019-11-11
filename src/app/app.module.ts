@@ -24,6 +24,9 @@ import { SignupComponent } from './signup/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ArchwizardModule } from 'angular-archwizard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
+import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 
 //import { BsModalService } from 'ngx-bootstrap/modal';
 //import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
@@ -47,6 +50,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommunityComponent,
     SignupComponent,
     DashboardComponent,
+    ResetPasswordComponent,
+    NearbyleasesComponent,
+    NearbyneighborsComponent,
   ],
   imports: [
     BrowserModule,
