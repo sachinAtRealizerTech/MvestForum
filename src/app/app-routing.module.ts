@@ -22,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component'; 
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 
 const routes: Routes = [
@@ -124,7 +125,15 @@ const routes: Routes = [
       {
         path: 'nearbyneighbors',
         component: NearbyneighborsComponent
-      }
+      },
+      {
+       
+        path: 'myaccount',
+               
+       component: MyaccountComponent
+       
+             
+       },
 
 
     ]

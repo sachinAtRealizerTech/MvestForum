@@ -27,6 +27,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 //import { BsModalService } from 'ngx-bootstrap/modal';
 //import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
@@ -53,6 +54,7 @@ import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.comp
     ResetPasswordComponent,
     NearbyleasesComponent,
     NearbyneighborsComponent,
+    MyaccountComponent
   ],
   imports: [
     BrowserModule,
