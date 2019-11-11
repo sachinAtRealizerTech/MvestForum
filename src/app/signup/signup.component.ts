@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SignupService } from './signup.service';
@@ -56,6 +56,7 @@ export class SignupComponent implements OnInit {
   submitSecondStep = false;
   passwordVerifyModal: ElementRef;
   duplicateEmail = false;
+  alertMembershipPlan: TemplateRef<any>;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -394,7 +395,6 @@ export class SignupComponent implements OnInit {
 
   completeUserRegistration() {
     debugger;
-
     if (this.planDuration == "Monthly") {
       this.todayDate = new Date();
       this.planExpiryDate = new Date(new Date().setMonth(new Date().getMonth() + 1))
@@ -416,7 +416,7 @@ export class SignupComponent implements OnInit {
     }
 
     this.signupService.completeUserRegistration(body).subscribe(data => {
-      alert('Your Plan and membership submitted successfully...');
+      // alert('Your Plan and membership submitted successfully...');
       this.modalService.dismissAll(this.claimLeaseModal);
       this.userInfoForm.reset();
       this.alertInfoForm.reset();
@@ -427,6 +427,7 @@ export class SignupComponent implements OnInit {
       this.secondStepWizardForm.reset();
       this.thirdPage = false;
       this.professionalUserType = false;
+      this.router.navigate(['/signin'])
     });
   }
 
@@ -447,6 +448,7 @@ export class SignupComponent implements OnInit {
     this.secondPage = false;
     this.thirdPage = false;
     this.duplicateEmail = false;
+    this.modalService.dismissAll(this.alertMembershipPlan)
     this.router.navigate(['/signin']);
   }
 

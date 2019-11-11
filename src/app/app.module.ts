@@ -18,7 +18,7 @@ import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { PathLocationStrategy, LocationStrategy } from '@angular/common';
+import { PathLocationStrategy, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CommunityModule } from './community/community.module';
 import { SignupComponent } from './signup/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -69,7 +69,7 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
     // BsDropdownModule,
     // CollapseModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
