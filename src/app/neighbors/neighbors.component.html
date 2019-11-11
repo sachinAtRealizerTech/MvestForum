@@ -48,7 +48,7 @@
                         <a routerLink="/nearbyleases" class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Find Neighbors</a>
                     </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
-                          <a routerLink="#" data-toggle="modal" data-target="#searchfilter-modal-lg" tooltip="Search by Filer" class="badge badge-accent rounded-5 text-white text-uppercase ">
+                          <a routerLink="#"  data-toggle="tooltip" title="Search by Filer" data-toggle="modal" data-target="#searchfilter-modal-lg" class="badge badge-accent rounded-5 text-white text-uppercase ">
                             <i class="material-icons md-18">
                                     filter_list
                                     </i>
@@ -472,7 +472,7 @@
             </div>
         <div class="modal-body pb-0">
             <div class="form-row">
-                <div class="form-group col-8">
+                <div class="form-group col-12">
                     <h6 class="font-weight-semibold pr-3"> Create New List :</h6>
                     <input type=""placeholder="Enter List Name" class="form-control">
                 </div>
@@ -489,17 +489,18 @@
     </a>
     <a *ngIf="additionalfilterflag" routerLink="#"(click)="closeAdditionalFilter()">
             <div class="form-row pt-2 d-flex  icon-muted">
-                 <div class="form-group col-12 border d-flex ">
-                 <h6 class="font-weight-semibold pr-3 align-self-center mb-0 p-2 bg-light">Additional Filters :</h6> 
+                 <div class="form-group col-12 border d-flex bg-light">
+                 <h6 class="font-weight-semibold pr-3 align-self-center mb-0 p-2">Additional Filters :</h6> 
                  <i class="material-icons md-24 ml-auto icon-muted align-self-center">
                         remove_circle
                         </i>
              </div>
      </div> 
  </a>
-            <div class="form-row" *ngIf="AdditionalFilterPage"> 
+            <div  *ngIf="AdditionalFilterPage">
+            <div class="form-row" > 
                     <div class="form-group col-4">
-                        <label class="font-weight-semibold pr-3">County</label>
+                        <label class="font-weight-semibold text-secondary pr-3 h6">County :</label>
                         <select class="form-control border" id="exampleFormControlSelect1">
                                 <option> Select County </option>
                                 <option>Karnes</option>
@@ -509,7 +510,7 @@
                               </select>
                     </div>
                     <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3">Distance :</label>
+                            <label class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
                             <select class="form-control border" id="exampleFormControlSelect1">
                                     <option> Select Distance </option> 
                                     <option>1.5 miles away</option>
@@ -520,7 +521,7 @@
                                   </select>
                         </div>
                         <div class="form-group col-4">
-                                <label class="font-weight-semibold pr-3">Lease Name :</label>
+                                <label class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                                 <select class="form-control border" id="exampleFormControlSelect1">
                                         <option>  Select Lease </option> 
                                         <option>San Christoval Raunch Unit A</option>
@@ -531,10 +532,10 @@
                                       </select>
                             </div>
                 </div>
-                <div class="form-row pt-3" *ngIf="AdditionalFilterPage">
+                <div class="form-row pt-3">
                    
                         <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3">Operator</label>
+                            <label class="font-weight-semibold text-secondary pr-3">Operator</label>
                             <select class="form-control border" id="exampleFormControlSelect1">
                                     <option> Select Operator </option>
                                     <option>John</option>
@@ -544,7 +545,7 @@
                                   </select>
                         </div>
                         <div class="form-group col-4">
-                                <label class="font-weight-semibold pr-3">Play Type :</label>
+                                <label class="font-weight-semibold text-secondary pr-3">Play Type :</label>
                                 <select class="form-control border" id="exampleFormControlSelect1">
                                         <option> Select Play Type </option> 
                                         <option>Play Type1/option>
@@ -553,6 +554,7 @@
                             </div>
                        
                     </div>
+                </div>
             <hr>
                     <div class="form-row ">
                             <div class="form-group col-12 ">
@@ -681,10 +683,10 @@
                         <div class="form-row">
                                 <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
                         </div>
-                        <div class="form-row">
+                        <div class="form-row pt-2">
                                
                                 <div class="form-group col-4">
-                                    <label class="font-weight-semibold pr-3">County</label>
+                                    <label class="font-weight-semibold text-secondary pr-3 h6">County</label>
                                     <select class="form-control border" id="exampleFormControlSelect1">
                                             <option> Select County </option>
                                             <option>Karnes</option>
@@ -694,7 +696,7 @@
                                           </select>
                                 </div>
                                 <div class="form-group col-4">
-                                        <label class="font-weight-semibold pr-3">Distance :</label>
+                                        <label class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
                                         <select class="form-control border" id="exampleFormControlSelect1">
                                                 <option> Select Distance </option> 
                                                 <option>1.5 miles away</option>
@@ -705,7 +707,7 @@
                                               </select>
                                     </div>
                                     <div class="form-group col-4">
-                                            <label class="font-weight-semibold pr-3">Lease Name :</label>
+                                            <label class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                                             <select class="form-control border" id="exampleFormControlSelect1">
                                                     <option>Select Lease</option>
                                                     <option>San Christoval Raunch Unit A</option>
@@ -719,7 +721,7 @@
                             <div class="form-row">
                                
                                     <div class="form-group col-4">
-                                        <label class="font-weight-semibold pr-3">Operator</label>
+                                        <label class="font-weight-semibold  text-secondary pr-3">Operator</label>
                                         <select class="form-control border" id="exampleFormControlSelect1">
                                                 <option> Select Operator </option>
                                                 <option>Operator 1</option>
@@ -729,7 +731,7 @@
                                               </select>
                                     </div>
                                     <div class="form-group col-4">
-                                            <label class="font-weight-semibold pr-3">Play Type :</label>
+                                            <label class="font-weight-semibold text-secondary pr-3">Play Type :</label>
                                             <select class="form-control border" id="exampleFormControlSelect1">
                                                     <option> Select Play Type </option> 
                                                     <option>Play Type 1</option>
