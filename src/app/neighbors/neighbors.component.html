@@ -48,7 +48,7 @@
                         <a routerLink="/nearbyleases" class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Find Neighbors</a>
                     </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
-                          <a routerLink="/nearbyleases" tooltip="Search by Filer" class="badge badge-accent rounded-5 text-white text-uppercase ">
+                          <a routerLink="#" data-toggle="modal" data-target="#searchfilter-modal-lg" tooltip="Search by Filer" class="badge badge-accent rounded-5 text-white text-uppercase ">
                             <i class="material-icons md-18">
                                     filter_list
                                     </i>
@@ -473,14 +473,14 @@
         <div class="modal-body pb-0">
             <div class="form-row">
                 <div class="form-group col-8">
-                    <label class="font-weight-semibold pr-3"> Create New List :</label>
+                    <h6 class="font-weight-semibold pr-3"> Create New List :</h6>
                     <input type=""placeholder="Enter List Name" class="form-control">
                 </div>
             </div> 
           <a *ngIf="!additionalfilterflag" routerLink="#"(click)="openAdditionalFilter()">
-               <div class="form-row pt-2 d-flex  icon-muted">
-                    <div class="form-group col-12 border d-flex">
-                    <h6 class="font-weight-semibold pr-3 align-self-center mb-0 p-2 bg-light">Additional Filters :</h6> 
+               <div class="form-row pt-2 d-flex icon-muted">
+                    <div class="form-group col-12 border d-flex bg-light ">
+                    <h6 class="font-weight-semibold pr-3 align-self-center mb-0 p-2">Additional Filters :</h6> 
                     <i class="material-icons icon-muted md-24 ml-auto align-self-center">
                             add_circle
                             </i>
@@ -556,7 +556,7 @@
             <hr>
                     <div class="form-row ">
                             <div class="form-group col-12 ">
-                            <h6 class="font-weight-semibold  ">Select Neighbors to Add :</h6> 
+                            <h6 class="font-weight-semibold  mb-0">Select Neighbors to Add :</h6> 
                     </div>
                 </div> 
                 <div class="form-row ">
@@ -657,3 +657,96 @@
       </div>
     </div>
   </div>
+
+
+
+
+  <div id="searchfilter-modal-lg" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            
+            <div class="justify-content-end">
+                    <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                    data-dismiss="modal">
+                 <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="form-row">
+                            <!-- <div class="form-group col-8">
+                                <label class="font-weight-semibold pr-3"> Search Nearby Leases :</label>
+                                
+                            </div> -->
+                        </div>
+                        <div class="form-row">
+                                <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
+                        </div>
+                        <div class="form-row">
+                               
+                                <div class="form-group col-4">
+                                    <label class="font-weight-semibold pr-3">County</label>
+                                    <select class="form-control border" id="exampleFormControlSelect1">
+                                            <option> Select County </option>
+                                            <option>Karnes</option>
+                                            <option>Texas</option>
+                                            <option>Grimes</option>
+                                            <option>Rockwall</option>
+                                          </select>
+                                </div>
+                                <div class="form-group col-4">
+                                        <label class="font-weight-semibold pr-3">Distance :</label>
+                                        <select class="form-control border" id="exampleFormControlSelect1">
+                                                <option> Select Distance </option> 
+                                                <option>1.5 miles away</option>
+                                                <option>2.2 miles away</option>
+                                                <option>3.5 miles away</option>
+                                                <option>4.2 miles away</option>
+                                                <option>5.5 miles away</option> 
+                                              </select>
+                                    </div>
+                                    <div class="form-group col-4">
+                                            <label class="font-weight-semibold pr-3">Lease Name :</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1">
+                                                    <option>Select Lease</option>
+                                                    <option>San Christoval Raunch Unit A</option>
+                                                    <option>San Christoval Raunch Unit B</option>
+                                                    <option>San Christoval Raunch Unit C</option>
+                                                    <option>San Christoval Raunch Unit D</option>
+                                                    <option>San Christoval Raunch Unit E</option> 
+                                                  </select>
+                                        </div>
+                            </div>
+                            <div class="form-row">
+                               
+                                    <div class="form-group col-4">
+                                        <label class="font-weight-semibold pr-3">Operator</label>
+                                        <select class="form-control border" id="exampleFormControlSelect1">
+                                                <option> Select Operator </option>
+                                                <option>Operator 1</option>
+                                                <option>Operator 2</option>
+                                                <option>Operator 3</option>
+                                                <option>Operator 4</option>
+                                              </select>
+                                    </div>
+                                    <div class="form-group col-4">
+                                            <label class="font-weight-semibold pr-3">Play Type :</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1">
+                                                    <option> Select Play Type </option> 
+                                                    <option>Play Type 1</option>
+                                                    <option>Play Type 2</option>
+                                                    <option>Play Type 3</option>
+                                                    <option>Play Type 4</option>
+                                                    <option>Play Type 5</option> 
+                                                  </select>
+                                        </div>
+                                        
+                                </div>
+                       
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-accent">Save</button>
+              <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Close</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
