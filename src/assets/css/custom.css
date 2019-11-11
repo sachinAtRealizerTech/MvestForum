@@ -987,6 +987,10 @@ aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li:after {
   
 }
   
+.scrollit {
+  overflow:scroll;
+  height:300px;
+}
 
 .close {
   margin: 0;
