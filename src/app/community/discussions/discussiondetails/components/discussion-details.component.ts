@@ -7,6 +7,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { DiscussionDetails } from 'src/app/models/discussions';
 
 @Component({
   selector: 'app-discussion-details',
@@ -40,7 +41,7 @@ export class DiscussionDetailsComponent implements OnInit {
   postQuestionModal: ElementRef;
   commentModal: ElementRef;
   discussionId: string;
-  discussionDetails: any;
+  discussionDetails: DiscussionDetails[];
   discussionDetailsId: any;
   subCategoryId: any;
   showDate: any;

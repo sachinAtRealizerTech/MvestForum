@@ -1,57 +1,106 @@
-export interface CategoryList{
-    cat_id:number;
-    doc_id:string;
-    name:string
+export interface CategoryList {
+    _id: string;
+    Categories: Categories
 }
 
-export interface SubCategoryList{
-    category_id:number;
-    category_name:string;
-    no_of_subcategories:number;
-    sub_categories:[SubCategories];
-    noOfDiscussions:number;
+export interface Categories {
+    cat_id: number;
+    doc_id: string;
+    image: string;
+    isActive: boolean;
+    name: string
 }
 
-export interface SubCategories{
-    subcat_id:number;
-    name:string;
-    no_of_discussions:number;
+export interface SubCategoryList {
+    _id: string;
+    category_id: number;
+    category_name: string;
+    no_of_subcategories: number;
+    sub_categories: sub_Categories;
 }
 
-export interface DiscussionsList{
-    category:string;
-    subcategory:string;
-    subcategory_id:number;
-    _id:string;
-    Discussions:Discussions[];
+export interface sub_Categories {
+    image: string;
+    isActive: boolean;
+    name: string;
+    no_of_discussions: number
+    subcat_id: string;
 }
 
-export interface Discussions{
-    id:string;
-    no_of_posts:number;
-    post_by:string;
-    post_msg:string;
-    post_time:Date;
-    title:string;
+export interface DiscussionsList {
+    _id: string;
+    category: string;
+    category_id: string;
+    sub_category: string;
+    sub_category_id: string;
+    discussions: [Discussions]
 }
 
-export interface DiscussionDetails{
-    category:string;
-    discussion_time:Date;
-    discussion_title:string;
-    discussion_title_description:string;
-    subcategory:string;
-    subcategory_id:number;
-    posts:[Posts]
+export interface Discussions {
+    doc_id: string;
+    post_by_emailId: string;
+    post_by_name: string;
+    post_date: Date;
+    post_msg: string;
+    title: string;
 }
 
-export interface Posts{
-    comments:[];
-    likes:number;
-    no_of_posts:number;
-    post_by:string;
-    post_msg:string;
-    post_time:string;
-    post_type:string;
-    sr_no:number;
+export interface DiscussionDetails {
+    category: string;
+    category_id: string;
+    posts: [Posts]
+    sub_category: string;
+    sub_category_id: string;
+    title: string;
+}
+
+export interface Posts {
+    comments: [PostComments]
+    likes: [PostLikes]
+    post_by_emailId: string;
+    post_by_name: string;
+    post_date: Date;
+    post_id: string;
+    post_msg: string;
+    post_type: string;
+}
+
+export interface PostComments {
+    comment_by_emailId: string;
+    comment_by_name: string;
+    comment_id: string;
+    comment_text: string;
+    comments: [Comment_Comments];
+    create_ts: Date;
+    likes: [Comment_Likes];
+}
+
+export interface PostLikes {
+    Id: string;
+    like_by_emailId: string;
+    like_by_name: string;
+    like_time: string;
+}
+
+export interface Comment_Comments {
+    comment_by_emailId: string;
+    comment_by_name: string;
+    comment_id: string;
+    comment_text: string;
+    create_ts: Date;
+    likes: [Comment_Comments_Likes];
+}
+
+export interface Comment_Likes {
+    Id: string;
+    like_by_emailId: string;
+    like_by_name: string;
+    like_time: Date;
+}
+
+export interface Comment_Comments_Likes {
+    Id: string;
+    like_by_emailId: string;
+    like_by_name: string;
+    like_time: string;
 }

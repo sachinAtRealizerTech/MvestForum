@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Utils } from 'src/app/shared/Utils';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { DiscussionsList } from '../../../../models/discussions'
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +13,7 @@ export class DiscussionslistService {
   constructor(private httpClient: HttpClient) { }
 
   getAllDiscussionsList(subcategoryId: string) {
-    return this.httpClient.get(`${environment.APIBASEURL}/discussion/${subcategoryId}`, Utils.getAuthHeader()).pipe(map(data => {
+    return this.httpClient.get<DiscussionsList[]>(`${environment.APIBASEURL}/discussion/${subcategoryId}`, Utils.getAuthHeader()).pipe(map(data => {
       return data
     }))
   }

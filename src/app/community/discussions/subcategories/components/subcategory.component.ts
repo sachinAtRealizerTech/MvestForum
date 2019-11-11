@@ -7,6 +7,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { SubCategoryList } from 'src/app/models/discussions';
 
 
 @Component({
@@ -23,12 +24,12 @@ export class SubcategoryComponent implements OnInit {
   editorConfig: AngularEditorConfig;
   postQuestionForm: FormGroup;
   postQuestionModal: ElementRef;
-  subCategoryList: any;
+  subCategoryList: SubCategoryList[];
   subCategoryId: string;
   searchText: any;
   categoriesList: any;
   categoryId: string;
-  subCategoryListDD: any;
+  subCategoryListDD: SubCategoryList[];
   submitQuestion: boolean;
   categoryName: any;
   subCategoryIdDD: any;

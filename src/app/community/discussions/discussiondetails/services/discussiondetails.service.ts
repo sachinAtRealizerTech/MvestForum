@@ -3,11 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Utils } from 'src/app/shared/Utils';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
+import { DiscussionDetails } from 'src/app/models/discussions';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +13,7 @@ export class DiscussiondetailsService {
   constructor(private httpClient: HttpClient) { }
 
   getAllDiscussionsDetails(discussion_id: string) {
-    return this.httpClient.get(`${environment.APIBASEURL}/discussion/Details/${discussion_id}`, Utils.getAuthHeader()).pipe(map(data => {
+    return this.httpClient.get<DiscussionDetails[]>(`${environment.APIBASEURL}/discussion/Details/${discussion_id}`, Utils.getAuthHeader()).pipe(map(data => {
       return data
     }))
   }

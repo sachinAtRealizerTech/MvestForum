@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { DiscussionsService } from '../services/discussions.service';
-import { CategoryList } from '../../../../models/discussions';
+import { CategoryList, SubCategoryList } from '../../../../models/discussions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubcategoryService } from '../../subcategories/Services/subcategory.service';
 import { Router } from '@angular/router';
@@ -26,12 +26,12 @@ export class DiscussionsComponent implements OnInit {
   postQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
-  //categoryList: CategoryList[] = [];
-  categoryList: any
+  categoryList: CategoryList[] = [];
+  //categoryList: any
   searchText: any;
   categoriesList: any;
   categoryId: any;
-  subCategoryListDD: any;
+  subCategoryListDD: SubCategoryList[] = [];
   submitQuestion: boolean;
   subCategoryId: any;
   categoryName: string;

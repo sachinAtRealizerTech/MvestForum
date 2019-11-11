@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
+import { DiscussionsList } from 'src/app/models/discussions';
 
 @Component({
   selector: 'app-discussionslist',
@@ -21,7 +22,7 @@ export class DiscussionslistComponent implements OnInit {
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
   discussionId: string;
-  discussionList: any;
+  discussionList: DiscussionsList[];
   subCategoryId: any;
   showDate: any;
   searchText: any;
