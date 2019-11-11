@@ -137,11 +137,12 @@
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
-                (click)="postLike(discussionDetails)">
+                (click)="postLike(discussionDetails?.posts[0])">
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
 
               <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
-                (click)="unlikePost(discussionDetails)"> <i class="material-icons icon-accent md-24 ml-3">thumb_up</i>
+                (click)="unlikePost(discussionDetails?.posts[0])"> <i
+                  class="material-icons icon-accent md-24 ml-3">thumb_up</i>
               </a>
 
               <span class="ml-1 align-self-center">{{discussionDetails?.posts[0]?.likes.length}}</span>

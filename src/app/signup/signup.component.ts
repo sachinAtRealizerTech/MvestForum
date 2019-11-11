@@ -46,7 +46,6 @@ export class SignupComponent implements OnInit {
   subscrptionAmount: any;
   planExpiryDate: Date;
   todayDate: Date;
-  signInPage = false;
   submitSignIn = false;
   interestPage = false;
   interestQstnAnsList: any;
@@ -56,6 +55,7 @@ export class SignupComponent implements OnInit {
   submitFirstStep = false;
   submitSecondStep = false;
   passwordVerifyModal: ElementRef;
+  duplicateEmail = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -111,17 +111,6 @@ export class SignupComponent implements OnInit {
       phoneNumber: [''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-
-      // firstName: ['', Validators.required],
-      // lastName: ['', Validators.required],
-      // eMail: ['', [Validators.required, Validators.email]],
-      // address: ['', Validators.required],
-      // city: ['', Validators.required],
-      // state: ['', Validators.required],
-      // zipCode: ['', Validators.required],
-      // phoneNumber: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
-      // password: ['', Validators.required],
-      // confirmPassword: ['', Validators.required],
     })
 
     this.planSelectionForm = this.formBuilder.group({
@@ -170,7 +159,6 @@ export class SignupComponent implements OnInit {
     this.firstPage = true;
     this.secondPage = false;
     this.thirdPage = false;
-    this.signInPage = false;
     this.closePostQuestionModal();
   }
 
@@ -180,7 +168,6 @@ export class SignupComponent implements OnInit {
     this.firstPage = false;
     this.secondPage = true;
     this.thirdPage = false;
-    this.signInPage = false;
     this.submitUserInfoForm = false;
     this.interestPage = false;
   }
@@ -190,7 +177,6 @@ export class SignupComponent implements OnInit {
     this.firstPage = true;
     this.secondPage = false;
     this.thirdPage = false;
-    this.signInPage = false;
     this.interestPage = false;
   }
 
@@ -199,7 +185,6 @@ export class SignupComponent implements OnInit {
     this.firstPage = false;
     this.secondPage = false;
     this.thirdPage = false;
-    this.signInPage = false;
     this.interestPage = true;
   }
 
@@ -212,7 +197,6 @@ export class SignupComponent implements OnInit {
     this.secondPage = false;
     this.thirdPage = true;
     this.userTypePage = false;
-    this.signInPage = false;
     this.submitAlertInfoForm = false;
     this.interestPage = false;
   }
@@ -226,6 +210,7 @@ export class SignupComponent implements OnInit {
   submitUserInformation(passwordVerifyModal) {
     debugger;
     this.submitUserInfoForm = true;
+    this.duplicateEmail = false;
     this.passwordVerifyModal = passwordVerifyModal;
     if (this.userInfoForm.invalid) {
       return;
@@ -237,8 +222,6 @@ export class SignupComponent implements OnInit {
         backdropClass: 'customBackdrop',
         size: 'sm'
       })
-
-      // alert("Passwords did not match...Please verify password.")
       return
     }
     this.submitUserInfoForm = false;
@@ -258,7 +241,7 @@ export class SignupComponent implements OnInit {
       this.submitUserInfoForm = false;
       console.log('status code', data['status_code'])
       if (data['error'] == "duplicate key value violates unique constraint \"unique_emailid\"") {
-        alert("Email is already registered...Please enter another mail id.");
+        this.duplicateEmail = true;
         return;
       };
       this.userId = data['data'];
@@ -335,7 +318,6 @@ export class SignupComponent implements OnInit {
 
   postInterestPrefernce() {
     debugger;
-    //this.goToInterestPage();
     this.submitInterestPrefForm = true;
     if (this.interestPageForm.invalid) {
       return;
@@ -443,32 +425,10 @@ export class SignupComponent implements OnInit {
       this.userRegistrationForm.reset();
       this.firstStepWizardForm.reset();
       this.secondStepWizardForm.reset();
-      this.signInPage = true;
       this.thirdPage = false;
       this.professionalUserType = false;
-      //this.router.navigateByUrl('/signup');
     });
   }
-
-
-  // openSignIn() {
-  //   debugger;
-  //   this.submitUserInfoForm = false;
-  //   this.submitAlertInfoForm = false;
-  //   this.submitInterestPrefForm = false;
-  //   this.submitFirstStep = false;
-  //   this.submitSecondStep = false;
-  //   this.userInfoForm.reset();
-  //   this.alertInfoForm.reset();
-  //   this.interestPageForm.reset();
-  //   this.firstStepWizardForm.reset();
-  //   this.secondStepWizardForm.reset();
-  //   this.signInPage = true;
-  //   this.userTypePage = false;
-  //   this.firstPage = false;
-  //   this.secondPage = false;
-  //   this.thirdPage = false;
-  // }
 
   openSignIn() {
     debugger;
@@ -482,39 +442,12 @@ export class SignupComponent implements OnInit {
     this.interestPageForm.reset();
     this.firstStepWizardForm.reset();
     this.secondStepWizardForm.reset();
-    this.signInPage = true;
     this.userTypePage = false;
     this.firstPage = false;
     this.secondPage = false;
     this.thirdPage = false;
+    this.duplicateEmail = false;
     this.router.navigate(['/signin']);
   }
-
-  signIn() {
-    debugger;
-    this.submitSignIn = true;
-    if (this.signInForm.invalid) {
-      return;
-    }
-    this.submitSignIn = false;
-    let body = {
-      email_id: this.signInForm.controls.email.value,
-      password: this.signInForm.controls.password.value
-    }
-
-    this.signinService.signIn(body).subscribe(data => {
-      console.log("login", data);
-      if (data['data']) {
-        this.router.navigate(['/dashboard']);
-        sessionStorage['userName'] = data['data']['f_name'] + " " + data['data']['l_name'];
-      }
-      if (data['error'] == "email and password not valid") {
-        alert("Sorry...You have not been logged in..Please verify your credentials")
-        //this.router.navigateByUrl[]
-      }
-    })
-  }
-
-
 
 }

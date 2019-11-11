@@ -58,6 +58,7 @@ export class DiscussionDetailsComponent implements OnInit {
   loading: boolean;
   postId: string;
   submitComment = false;
+  isLikePressed = false;
 
   ngOnInit() {
 
@@ -312,25 +313,35 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   postLike(discDetails: any) {
-    if (!discDetails.posts) {
-      this.post_Id = discDetails.post_id;
+    if (this.isLikePressed == false) {
+      if (!discDetails.posts) {
+        this.isLikePressed = true;
+        this.post_Id = discDetails.post_id;
+      }
+      else {
+        this.isLikePressed = true;
+        this.post_Id = discDetails.posts[0].post_id;
+      }
+      let body = {
+        discussion_doc_id: this.discussiondocId,
+        post_id: this.post_Id,
+        like_emailId: this.user.email_id,
+        name: this.user.f_name + " " + this.user.l_name
+      }
+      this.discussiondetailsService.postLike(body).subscribe(data => {
+        this.getDiscussionDeatils(this.discussiondocId);
+        this.isLikePressed = false;
+      })
     }
     else {
-      this.post_Id = discDetails.posts[0].post_id;
+      return
     }
-    let body = {
-      discussion_doc_id: this.discussiondocId,
-      post_id: this.post_Id,
-      like_emailId: this.user.email_id,
-      name: this.user.f_name + " " + this.user.l_name
-    }
-    this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussiondocId);
-    })
+
 
   }
 
   unlikePost(discDetails: any) {
+    this.isLikePressed = false;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
     }
@@ -342,7 +353,6 @@ export class DiscussionDetailsComponent implements OnInit {
       discussion_doc_id: this.discussiondocId,
       post_id: this.post_Id,
       like_by_emailId: this.user.email_id
-
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
@@ -350,30 +360,39 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   likeToComment(discDetails: any, qc: any) {
-    if (!discDetails.posts) {
-      this.post_Id = discDetails.post_id;
-      this.comment_Id = qc.comment_id
+    if (this.isLikePressed == false) {
+      if (!discDetails.posts) {
+        this.post_Id = discDetails.post_id;
+        this.comment_Id = qc.comment_id;
+        this.isLikePressed = true;
+      }
+      else {
+        this.post_Id = discDetails.posts[0].post_id;
+        this.comment_Id = qc.comment_id;
+        this.isLikePressed = true;
+      }
+
+      let body = {
+        discussion_doc_id: this.discussiondocId,
+        post_id: this.post_Id,
+        comment_id: this.comment_Id,
+        like_emailId: this.user.email_id,
+        name: this.user.f_name + " " + this.user.l_name
+      }
+      this.discussiondetailsService.postLike(body).subscribe(data => {
+        this.getDiscussionDeatils(this.discussiondocId);
+        this.isLikePressed = false;
+      })
     }
     else {
-      this.post_Id = discDetails.posts[0].post_id;
-      this.comment_Id = qc.comment_id;
+      return
     }
-
-    let body = {
-      discussion_doc_id: this.discussiondocId,
-      post_id: this.post_Id,
-      comment_id: this.comment_Id,
-      like_emailId: this.user.email_id,
-      name: this.user.f_name + " " + this.user.l_name
-    }
-    this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussiondocId);
-    })
 
   }
 
 
   unLikeToComment(discDetails: any, qc: any) {
+    this.isLikePressed = false;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
       this.comment_Id = qc.comment_id
@@ -409,34 +428,44 @@ export class DiscussionDetailsComponent implements OnInit {
 
   likeCommentToComment(discDetails: any, pc: any, cc: any) {
     debugger;
-    if (!discDetails.posts) {
-      this.post_Id = discDetails.post_id;
-      this.comment_Id = pc.comment_id
-      this.comment_to_id = cc.comment_id
+
+    if (this.isLikePressed == false) {
+      if (!discDetails.posts) {
+        this.post_Id = discDetails.post_id;
+        this.comment_Id = pc.comment_id
+        this.comment_to_id = cc.comment_id;
+        this.isLikePressed = true
+      }
+      else {
+        this.post_Id = discDetails.posts[0].post_id;
+        this.comment_Id = pc.comment_id;
+        this.comment_to_id = cc.comment_id
+        this.isLikePressed = true
+      }
+
+      let body = {
+        discussion_doc_id: this.discussiondocId,
+        post_id: this.post_Id,
+        comment_id: this.comment_Id,
+        comment_to_id: this.comment_to_id,
+        like_emailId: this.user.email_id,
+        name: this.user.f_name + " " + this.user.l_name
+      }
+
+      this.discussiondetailsService.postLike(body).subscribe(data => {
+        this.isLikePressed = false;
+        this.getDiscussionDeatils(this.discussiondocId);
+      })
     }
     else {
-      this.post_Id = discDetails.posts[0].post_id;
-      this.comment_Id = pc.comment_id;
-      this.comment_to_id = cc.comment_id
+      return
     }
-
-    let body = {
-      discussion_doc_id: this.discussiondocId,
-      post_id: this.post_Id,
-      comment_id: this.comment_Id,
-      comment_to_id: this.comment_to_id,
-      like_emailId: this.user.email_id,
-      name: this.user.f_name + " " + this.user.l_name
-    }
-
-    this.discussiondetailsService.postLike(body).subscribe(data => {
-      this.getDiscussionDeatils(this.discussiondocId);
-    })
 
   }
 
   unLikeCommentToComment(discDetails: any, pc: any, cc: any) {
     debugger;
+    this.isLikePressed = false
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
       this.comment_Id = pc.comment_id;
