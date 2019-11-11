@@ -62,9 +62,6 @@ export class DiscussionDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.flashMessagesService.show('We are in about component!', { cssClass: 'bg-accent flash-message', timeout: 2000 });
-
-
     this.editorConfig = {
       editable: true,
       spellcheck: true,
@@ -78,7 +75,7 @@ export class DiscussionDetailsComponent implements OnInit {
       showToolbar: true,
       placeholder: 'Enter text here...',
       defaultParagraphSeparator: '',
-      defaultFontName: '',
+      defaultFontName: 'Montserrat',
       defaultFontSize: '',
       fonts: [
         { class: 'arial', name: 'Arial' },
@@ -101,7 +98,7 @@ export class DiscussionDetailsComponent implements OnInit {
           tag: 'h1',
         },
       ],
-      // uploadUrl: 'v1/image',
+      uploadUrl: 'v1/image',
       sanitize: true,
       toolbarPosition: 'top',
     };

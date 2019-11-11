@@ -155,10 +155,10 @@
                         <label for="title">Sub-Category :</label>
                       </div>
                       <div class="col-8">
-                        <select class="form-control border" formControlName="subCategoryName" title="subCategoryName"
-                          (change)="selectedSubCategory($event)"
+                        <select class="form-control border" [value]="null" formControlName="subCategoryName"
+                          title="subCategoryName" (change)="selectedSubCategory($event)"
                           [ngClass]="{ 'is-invalid': submitQuestion && g.subCategoryName.errors }">
-                          <option disabled hidden> Sub-Category Name</option>
+                          <option [value]="null" disabled hidden> Sub-Category Name</option>
                           <option *ngFor="let sc of subCategoryList" [value]="sc?.sub_categories?.subcat_id">
                             {{sc?.sub_categories?.name}}</option>
                         </select>

@@ -471,6 +471,15 @@
                         <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
                       </div>
                     </angular-editor>
+
+                    <!-- <app-ngx-editor formControlName="problemDescription" [config]="editorConfig"
+                      [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }">
+                      <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
+                        <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
+                      </div>
+                    </app-ngx-editor> -->
+
+
                   </div>
                 </div>
               </form>

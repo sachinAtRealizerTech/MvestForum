@@ -11,6 +11,7 @@ import { RouterModule } from "@angular/router";
 import { SummaryPipe } from 'src/app/shared/pipes/summary.pipe';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+// import { NgxEditorModule } from 'ngx-editor';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     ReactiveFormsModule,
     RouterModule,
     AngularEditorModule,
+    // NgxEditorModule,
     FlashMessagesModule.forRoot(),
   ],
   exports: [
@@ -37,7 +39,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     RouterModule,
     ReactiveFormsModule,
     AngularEditorModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    // NgxEditorModule
   ]
 })
 export class DiscussionsModule { }
