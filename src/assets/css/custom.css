@@ -710,8 +710,8 @@ textarea:focus {
 
 }
 .js--image-preview--profile{
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -750,7 +750,7 @@ textarea:focus {
 /* browse img2 end*/
 .upload-options-profile {
   position: relative;
-  top: 80px;
+  top: 50px;
   height: 55px;
   background-color:transparent;
   cursor: pointer;
