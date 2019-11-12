@@ -13,7 +13,7 @@ export class DiscussiondetailsService {
   constructor(private httpClient: HttpClient) { }
 
   getAllDiscussionsDetails(discussion_id: string) {
-    return this.httpClient.get<DiscussionDetails[]>(`${environment.APIBASEURL}/discussion/Details/${discussion_id}`, Utils.getAuthHeader()).pipe(map(data => {
+    return this.httpClient.get<DiscussionDetails>(`${environment.APIBASEURL}/discussion/Details/${discussion_id}`, Utils.getAuthHeader()).pipe(map(data => {
       return data
     }))
   }

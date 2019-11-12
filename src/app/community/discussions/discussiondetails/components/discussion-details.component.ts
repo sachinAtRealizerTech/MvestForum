@@ -42,7 +42,7 @@ export class DiscussionDetailsComponent implements OnInit {
   postQuestionModal: ElementRef;
   commentModal: ElementRef;
   discussionId: string;
-  discussionDetails: DiscussionDetails[];
+  discussionDetails: DiscussionDetails;
   discussionDetailsId: any;
   subCategoryId: any;
   showDate: any;

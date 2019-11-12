@@ -33,10 +33,10 @@ export interface DiscussionsList {
     category_id: string;
     sub_category: string;
     sub_category_id: string;
-    discussions: [Discussions]
+    discussions: Array<discussions>
 }
 
-export interface Discussions {
+export interface discussions {
     doc_id: string;
     post_by_emailId: string;
     post_by_name: string;
@@ -48,13 +48,13 @@ export interface Discussions {
 export interface DiscussionDetails {
     category: string;
     category_id: string;
-    posts: [Posts]
+    posts: Array<posts>;
     sub_category: string;
     sub_category_id: string;
     title: string;
 }
 
-export interface Posts {
+export interface posts {
     comments: [PostComments]
     likes: [PostLikes]
     post_by_emailId: string;

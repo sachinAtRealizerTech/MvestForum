@@ -22,7 +22,7 @@ export class DiscussionslistComponent implements OnInit {
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
   discussionId: string;
-  discussionList: DiscussionsList[];
+  discussionList: DiscussionsList;
   subCategoryId: any;
   showDate: any;
   searchText: any;
