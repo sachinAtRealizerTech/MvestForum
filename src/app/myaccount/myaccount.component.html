@@ -7,25 +7,169 @@
         <a routerLink="/myaccount"><h5 class="text-dark mb-0 font-weight-bold mr-3">MY Account</h5></a>  
         </li>
         <li class="nav-item ">
-          <a routerLink="" class="active nav-link text-muted font-weight-bold" aria-controls="profile"
-            aria-selected="false">Account Details</a>
+          <a routerLink="" class="active nav-link text-muted font-weight-bold text-uppercase" aria-controls="profile"
+            aria-selected="false">Your Details</a>
         </li>
         <li class="nav-item ">
-          <a routerLink="" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
+          <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
             aria-selected="false">Alerts</a>
         </li>
         <li class="nav-item">
-          <a routerLink="" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
+          <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
             aria-selected="false">Settings</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
-            aria-selected="false">MESSAGES</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
+            aria-selected="false">Plan Subscription</a>
+        </li> -->
       
       </ul>
   
   
+    </div>
+  </div>
+
+  <div class="row py-3">
+    <div class="col-xl-12">
+      <div class="row justify-content-between no-gutters pb-4">
+        <div class="col-xl-8">
+          <ul class="list-inline d-flex mb-1">
+            <li class="list-inline-item h6 text-secondary">User Details</li>
+            <li class="list-inline-item ml-auto">
+              <!-- <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <small class="font-weight-semibold">All Posts</small>
+                          </a>
+                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            
+                        <option><a class="dropdown-item" >Latest</a></option>
+                        <a class="dropdown-item" href="#">Yesterday</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                     
+                   </div>  -->
+              <!-- <span class="custom-dropdown dropdown-menu dropdown-menu-small"> -->
+              <!-- <select>
+                <option>All Posts</option>
+                <option>My Posts</option>
+                <option>Bookmark</option>
+
+              </select> -->
+              <!-- </span> -->
+            </li>
+            <li *ngIf="!editflag" class="list-inline-item ml-auto mb-1">
+              <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  (click)="openSave()">
+                <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+              </a>
+            </li> 
+            <li *ngIf="editflag"  class="list-inline-item ml-auto mb-1">
+              <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  (click)="closeSave()">
+                <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+              </a>
+            </li>
+
+          </ul>
+          <div class="row justify-content-between no-gutters pb-3">
+            <div class="col-xl-12">
+              <div class="card card-small blog-comments"> 
+                <div class="card-body shadow p-4">
+                 <div class="form-row">
+                   <div class="form-group col-4">
+                      <label class="font-weight-semibold text-secondary">First Name : </label>
+                    <!-- <span contenteditable="true"> Atul </span>    -->
+                   <span><input type="text" value="Atul"   class="border-0 form-control" ></span> 
+                   </div>
+                   <div class="form-group col-6">
+                    <label class="font-weight-semibold text-secondary">Last Name : </label>
+                    <input type="text" value="Pawase"   class="border-0 form-control" >
+                 </div>
+                 </div>
+                 <div class="form-row">
+                  <div class="form-group col-4">
+                     <label class="font-weight-semibold text-secondary">Phone No: </label>
+                     <input type="text" value=" 9786523487"   class="border-0 form-control" > 
+                  </div>
+                  <div class="form-group col-6">
+                   <label class="font-weight-semibold text-secondary">eMail Id : </label>
+                   <input type="text" value=" atul22@gmail.com"   class="border-0 form-control" >  
+                </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-12">
+                     <label class="font-weight-semibold text-secondary">Mailing Street Address : </label>
+                     <input type="text" class="bg-light" value="422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar"   class="border-0 form-control" >   
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-4">
+                     <label class="font-weight-semibold text-secondary">State : </label>
+                     <input type="text" value="Maharashtra "   class="border-0 form-control" >    
+                  </div>
+                  <div class="form-group col-4">
+                    <label class="font-weight-semibold text-secondary">City : </label>
+                    <input type="text" value=" Pune  "   class="border-0 form-control" >     
+                 </div>
+                 <div class="form-group col-4">
+                  <label class="font-weight-semibold text-secondary">Pin Code : </label>
+                  <input type="text" value=" 411060 "   class="border-0 form-control" >   
+               </div>
+                </div>
+                </div>
+                <div *ngIf="savebutton" class="card-footer d-flex border-top ">
+                  <button class="btn btn-accent text-white rounded-0  px-5  ml-auto text-uppercase" >Update Details
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="col-xl-4"> 
+          <div class="col-xl-12 col-md-12 col-sm-12 mb-4"> 
+            <ul class="list-inline d-flex mb-1">
+              <li class="list-inline-item h6 text-secondary mb-0">Plan Details</li>
+              <li *ngIf="!editPlanflag" class="list-inline-item ml-auto mb-1">
+                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  (click)="openPlanSave()">
+                  <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+                </a>
+              </li> 
+              <li *ngIf="editPlanflag"  class="list-inline-item ml-auto mb-1">
+                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  (click)="closePlanSave()">
+                  <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+                </a>
+              </li>
+            </ul>
+            <div class="card justify-content-between shadow p-2 card-small blog-comments">
+              <div class="card-body text-center pb-0"> 
+                <div class="form-group text-left"> 
+                  <div class="custom-control custom-radio pb-3" >
+                      <input type="radio" id="customRadioInline1" value=""
+                          name="plan" class="custom-control-input" formControlName="plan" >
+                      <label class="custom-control-label"
+                          for="customRadioInline1">Bronze Plan</label> 
+                  </div>
+                  <div class="custom-control custom-radio pb-3" >
+                    <input type="radio" id="customRadioInline2" value=""
+                        name="plan" class="custom-control-input" formControlName="plan" >
+                    <label class="custom-control-label"
+                        for="customRadioInline2">Silver Plan</label> 
+                </div> 
+                <div class="custom-control custom-radio pb-3" >
+                  <input type="radio" id="customRadioInline3" value=""
+                      name="plan" class="custom-control-input" formControlName="plan" >
+                  <label class="custom-control-label"
+                      for="customRadioInline3">Silver Plan</label> 
+              </div>
+              </div> 
+              </div>  
+              <div *ngIf="plansavebutton" class="card-footer d-flex border-top">
+                <button class="btn btn-accent text-white rounded-0 text-uppercase px-5 ml-auto" >Update Plan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -6,10 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myaccount.component.scss']
 })
 export class MyaccountComponent implements OnInit {
-
+  savebutton=false;
+  editflag=false;
+  editPlanflag=false;
+  plansavebutton=false;
   constructor() { }
 
   ngOnInit() {
   }
-
+  openSave(){
+    this.savebutton=true;
+    this.editflag=true;
+  }
+  closeSave(){
+    this.savebutton=false;
+    this.editflag=false;
+  }
+  openPlanSave(){
+    this.plansavebutton=true;
+    this.editPlanflag=true;
+  }
+  closePlanSave(){
+    this.plansavebutton=false;
+    this.editPlanflag=false;
+  }
 }
