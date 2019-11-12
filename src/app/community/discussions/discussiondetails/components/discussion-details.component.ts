@@ -28,6 +28,7 @@ export class DiscussionDetailsComponent implements OnInit {
   postALikeFlag: boolean;
   like_Id: any;
   comment_to_id: any;
+  replyTemplate: TemplateRef<any>;
 
 
 
@@ -176,6 +177,20 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
 
+  openReplyTemplate(replyTemplate: TemplateRef<any>) {
+    this.replyTemplate = replyTemplate
+    this.modalService.open(this.replyTemplate, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+
+  }
+
+  closeReplyModal() {
+    this.replyForm.reset();
+    this.modalService.dismissAll(this.replyTemplate)
+  }
+
   sendReply() {
     this.submitReply = true;
     if (this.replyForm.invalid) {
@@ -193,6 +208,7 @@ export class DiscussionDetailsComponent implements OnInit {
       this.getDiscussionDeatils(this.discussionDetailsId);
       this.submitReply = false;
       this.replyForm.reset();
+      this.modalService.dismissAll(this.replyTemplate);
     })
   }
 

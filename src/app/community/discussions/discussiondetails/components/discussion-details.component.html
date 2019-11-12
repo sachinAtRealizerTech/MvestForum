@@ -101,8 +101,8 @@
           <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
         </div>
         <div class="col-2">
-          <a class="btn btn-accent btn-sm text-uppercase ml-auto" href="#" data-target=".reply-modal-lg"
-            data-toggle="modal">
+          <a class="btn btn-accent btn-sm text-uppercase ml-auto" routerLink="#"
+            (click)="openReplyTemplate(replyTemplate)">
             Post Reply
           </a>
         </div>
@@ -404,34 +404,33 @@
 
 <!----------------------------------------- Reply template------------------------------------------------------------>
 
-<div class="modal fade reply-modal-lg" tabindex="-1" role="dialog" aria-labelledby="reply-modal" aria-hidden="true">
-  <div class="modal-dialog modal-md bg-white shadow">
-    <form [formGroup]="replyForm" action="/action_page.php" class="needs-validation" novalidate>
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="card shadow-none">
-            <div class="form-group">
-              <label for="Description">Your Reply</label>
+<ng-template #replyTemplate>
 
-              <angular-editor formControlName="Description" [config]="editorConfig"
-                [ngClass]="{ 'is-invalid': submitReply && f.Description.errors }">
-                <div *ngIf="submitReply && f.Description.errors" class="invalid-feedback">
-                  <div *ngIf="f.Description.errors.required">Description is required</div>
-                </div>
-              </angular-editor>
-            </div>
+  <form [formGroup]="replyForm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card shadow-none">
+          <div class="form-group">
+            <label for="Description">Your Reply</label>
+
+            <angular-editor formControlName="Description" [config]="editorConfig"
+              [ngClass]="{ 'is-invalid': submitReply && f.Description.errors }">
+              <div *ngIf="submitReply && f.Description.errors" class="invalid-feedback">
+                <div *ngIf="f.Description.errors.required">Description is required</div>
+              </div>
+            </angular-editor>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal"
-            (click)=sendReply()>Reply</button>
-          <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-            data-dismiss="modal">Cancel</button>
-        </div>
       </div>
-    </form>
-  </div>
-</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)=sendReply()>Reply</button>
+        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closeReplyModal()">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+</ng-template>
 
 <!-----------------------------------------End Reply template------------------------------------------------------------>
 
