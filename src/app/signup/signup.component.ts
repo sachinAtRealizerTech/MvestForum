@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   userInfoForm: FormGroup;
   alertInfoForm: FormGroup;
   planSelectionForm: FormGroup;
-  userTypeForm: FormGroup;
+  // userTypeForm: FormGroup;
   signInForm: FormGroup;
   interestPageForm: FormGroup;
   firstStepWizardForm: FormGroup;
@@ -57,6 +57,8 @@ export class SignupComponent implements OnInit {
   passwordVerifyModal: ElementRef;
   duplicateEmail = false;
   alertMembershipPlan: TemplateRef<any>;
+  individualTab = true;
+  professionalTab = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -68,9 +70,9 @@ export class SignupComponent implements OnInit {
       password: ['', Validators.required]
     })
 
-    this.userTypeForm = this.formBuilder.group({
-      Ownership: ['', Validators.required]
-    });
+    // this.userTypeForm = this.formBuilder.group({
+    //   Ownership: ['', Validators.required]
+    // });
 
     this.userRegistrationForm = this.formBuilder.group({
       membershipType: ['', Validators.required],
@@ -118,11 +120,13 @@ export class SignupComponent implements OnInit {
 
     });
 
+
+    this.getMembersPlanSelectionData('Mineral')
     this.getStateList();
     this.getNotificationPreferencesList();
   }
 
-  get h() { return this.userTypeForm.controls }
+  // get h() { return this.userTypeForm.controls }
   get g() { return this.userRegistrationForm.controls; }
   get f() { return this.userInfoForm.controls; }
   get m() { return this.alertInfoForm.controls; }
@@ -146,22 +150,56 @@ export class SignupComponent implements OnInit {
     this.modalService.dismissAll(this.userTypeModal);
   }
 
-  postUserType() {
-    if (this.userTypeForm.invalid) {
-      return
+  getMembersPlanSelectionData(userType: string) {
+    debugger;
+    if (userType == "Mineral") {
+      this.signupService.planSelectionDataForMineralUser().subscribe(data => {
+        debugger;
+        this.planInformation = data['data'];
+        console.log('planinfomin', this.planInformation);
+        this.professionalTab = false;
+        this.individualTab = true;
+        this.professionalUserType = false;
+        this.userTypeName = "Mineral"
+      })
     }
-    this.professionalUserType = false;
-    this.userTypeName = "Mineral"
-    if (this.userTypeForm.controls.Ownership.value == "Professional") {
-      this.professionalUserType = true;
-      this.userTypeName = "Professional"
+    else {
+      this.signupService.planSelectionDataForProfessionalUser().subscribe(data => {
+        debugger;
+        this.planInformation = data['data'];
+        console.log('planinfoprof', this.planInformation)
+        this.professionalTab = true;
+        this.individualTab = false;
+        this.professionalUserType = true;
+        this.userTypeName = "Professional"
+      })
     }
+  }
+
+  sendPlanSelection(planId: string) {
+    debugger;
     this.userTypePage = false;
     this.firstPage = true;
     this.secondPage = false;
     this.thirdPage = false;
-    this.closePostQuestionModal();
   }
+
+  // postUserType() {
+  //   if (this.userTypeForm.invalid) {
+  //     return
+  //   }
+  //   this.professionalUserType = false;
+  //   this.userTypeName = "Mineral"
+  //   if (this.userTypeForm.controls.Ownership.value == "Professional") {
+  //     this.professionalUserType = true;
+  //     this.userTypeName = "Professional"
+  //   }
+  //   this.userTypePage = false;
+  //   this.firstPage = true;
+  //   this.secondPage = false;
+  //   this.thirdPage = false;
+  //   this.closePostQuestionModal();
+  // }
 
   goToSecondPage() {
     this.alertInfoForm.controls.alertPhone.setValue(this.userInfoForm.controls.phoneNumber.value)
@@ -227,7 +265,7 @@ export class SignupComponent implements OnInit {
     }
     this.submitUserInfoForm = false;
     let body = {
-      member_type: this.userTypeForm.controls.Ownership.value,
+      member_type: this.userTypeName,
       f_name: this.userInfoForm.controls.firstName.value,
       l_name: this.userInfoForm.controls.lastName.value,
       email_id: this.userInfoForm.controls.eMail.value,
@@ -337,8 +375,10 @@ export class SignupComponent implements OnInit {
 
   }
 
+
+
   getPlanSelectionData() {
-    if (this.userTypeForm.controls.Ownership.value == "Mineral") {
+    if (this.userTypeName == "Mineral") {
       this.signupService.planSelectionDataForMineralUser().subscribe(data => {
         this.planInformation = data['data'];
       })
@@ -416,18 +456,17 @@ export class SignupComponent implements OnInit {
     }
 
     this.signupService.completeUserRegistration(body).subscribe(data => {
-      // alert('Your Plan and membership submitted successfully...');
       this.modalService.dismissAll(this.claimLeaseModal);
       this.userInfoForm.reset();
       this.alertInfoForm.reset();
       this.interestPageForm.reset();
-      this.userTypeForm.reset();
+      // this.userTypeForm.reset();
       this.userRegistrationForm.reset();
       this.firstStepWizardForm.reset();
       this.secondStepWizardForm.reset();
       this.thirdPage = false;
       this.professionalUserType = false;
-      this.router.navigate(['/signin'])
+      this.router.navigate(['signin'])
     });
   }
 
@@ -449,7 +488,7 @@ export class SignupComponent implements OnInit {
     this.thirdPage = false;
     this.duplicateEmail = false;
     this.modalService.dismissAll(this.alertMembershipPlan)
-    this.router.navigate(['/signin']);
+    this.router.navigate(['signin']);
   }
 
 }
