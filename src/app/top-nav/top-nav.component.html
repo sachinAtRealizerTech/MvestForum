@@ -90,7 +90,7 @@
           <!-- <div class="dropdown-divider  text-secondary"></div> -->
           <a routerLink="/myaccount" class="dropdown-item  text-secondary">
             <i class="material-icons">&#xE879;</i> My Account </a>
-            <a routerLink="#" class="dropdown-item  text-secondary">
+            <a routerLink="#" class="dropdown-item  text-secondary" data-toggle="modal" data-target="#changepassword-modal-md">
               <i class="material-icons">&#xE879;</i> Change Password </a>
           <a routerLink="#" class="dropdown-item  text-secondary" (click)="logout()">
             <i class="material-icons">&#xE879;</i> Logout </a>
@@ -104,4 +104,49 @@
       </a>
     </nav>
   </nav>
+</div>
+
+
+<div id="changepassword-modal-md" class="modal" tabindex="-1" role="dialog">
+  <form [formGroup]="">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="justify-content-end">
+            <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+            data-dismiss="modal">
+         <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-row">
+                <h6 class="font-weight-semibold pr-3"> Change Password :</h6>
+            </div>
+            <div class="form-row pt-1">
+                <div class="form-group col-12"> 
+                  <label>Old Password</label>
+                  <input  formControlName="oldPwd" id="oldPwd" type="password" class="form-control">
+            </div>
+        </div>
+          <!-- <button class="btn btn-accent"> Verify </button> -->
+
+        <div class="form-row">
+            <div class="form-group col-12"> 
+              <label>New Password</label>
+              <input  formControlName="newPwd" id="newPwd" type="password" class="form-control">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12"> 
+          <label>Confirm Password</label>
+          <input  formControlName="confirmPwd" id="confirmPwd" type="password" class="form-control">
+    </div>
+</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-accent">Save</button>
+            <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Close</button> -->
+          </div>
+      </div>
+      </div>
+</div>
+</form>
 </div>
