@@ -1,9 +1,9 @@
 import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { SignupService } from './signup.service';
+import { SignupService } from '../services/signup.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SigninService } from './signin.service';
+import { SigninService } from '../../sign-in/services/signin.service';
 
 @Component({
   selector: 'app-signup',

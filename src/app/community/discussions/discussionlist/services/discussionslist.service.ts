@@ -22,5 +22,4 @@ export class DiscussionslistService {
     return this.httpClient.post(`${environment.APIBASEURL}/discussion`, body, Utils.getAuthHeader())
   }
 
-
 }

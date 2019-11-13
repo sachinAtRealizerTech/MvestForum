@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Auth } from '../models/Auth';
+import { Auth } from '../../models/Auth';
 import { map } from 'rxjs/operators';
 
 const httpOptions = {

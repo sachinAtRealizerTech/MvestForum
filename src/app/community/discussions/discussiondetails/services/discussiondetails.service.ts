@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Utils } from 'src/app/shared/Utils';
@@ -33,6 +33,5 @@ export class DiscussiondetailsService {
   postLike(body) {
     return this.httpClient.put(`${environment.APIBASEURL}/Discussion/AddLikes`, body, Utils.getAuthHeader())
   }
-
 
 }

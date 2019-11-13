@@ -4,7 +4,7 @@ import { DiscussionslistService } from '../Services/discussionslist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { DiscussionsList } from 'src/app/models/discussions';
 
@@ -72,7 +72,6 @@ export class DiscussionslistComponent implements OnInit {
           tag: 'h1',
         },
       ],
-      // uploadUrl: 'v1/image',
       sanitize: true,
       toolbarPosition: 'top',
     };
@@ -89,19 +88,21 @@ export class DiscussionslistComponent implements OnInit {
     this.getDiscussionList(this.discussionId)
   }
 
-  get g() { return this.discussionListQuestionForm.controls; }
-
+  //Getting current logined user details
   public user = Utils.GetCurrentUser();
 
+  //Setting title for the browser tab
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
 
-  getDiscussionList(id) {
+  //Setting getter properties for easy form access
+  get g() { return this.discussionListQuestionForm.controls; }
+
+  getDiscussionList(id: string) {
     this.loading = true;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
       this.discussionList = data;
-      console.log('discussionlist', this.discussionList)
       this.loading = false;
       this.pageNotFound = false;
     },
@@ -114,7 +115,7 @@ export class DiscussionslistComponent implements OnInit {
     )
   }
 
-  openAskQuestionModal(content) {
+  openAskQuestionModal(content: ElementRef<any>) {
     this.postQuestionModal = content;
     this.modalService.open(this.postQuestionModal, {
       backdrop: 'static',
@@ -128,7 +129,6 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   postQuestion() {
-    debugger;
     this.categoryName = sessionStorage.getItem("category_name");
     this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
