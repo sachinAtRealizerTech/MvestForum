@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="row pb-1 pt-2">
+  <div class="row pb-1 pt-4">
     <div class="col-12">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item align-self-center">
@@ -51,9 +51,36 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center pb-1 pt-3">
     <div class="col-xl-12">
-      <nav aria-label="breadcrumb">
+        <ul class="nav nav-tabs sub-tab border-0"  >
+           <li class="nav-item align-self-center" (click)="setTitle( 'Mvest-Categories')">
+              <a class="align-self-center" routerLink="/discussions">
+                   <h5 class="text-dark mb-0 font-weight-bold mr-3 align-self-center">Categories </h5>
+                  </a>
+              </li>
+         
+            
+        
+        <div class="ml-auto d-inline-flex"> 
+            <li class="nav-item align-self-center ml-auto">
+                <form id="search-form" class="form-inline">
+                    <div class="input-group search">
+                      <input type="text" class="form-control search-form" [(ngModel)]="searchText"
+                        [ngModelOptions]="{standalone: true}" placeholder="Search">
+                      <span class="input-group-btn">
+                        <button type="submit" class="search-btn">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+      </li> 
+             
+
+        </div>
+    </ul>
+      <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0 mb-0">
           <li class=""><a class="active text-green font-weight-semibold" routerLink="/discussions"
               (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
@@ -71,7 +98,7 @@
             </form>
           </li>
         </ol>
-      </nav>
+      </nav> -->
       <div>
 
         <!-- <div class="text-center" *ngIf="loading">
@@ -84,7 +111,7 @@
           <h5>No Records Found</h5>
         </div>
 
-        <div class="row gutter-10">
+        <div class="row gutter-10 pt-2">
           <div class="card m-2" *ngFor="let c of categoryList | filter:searchText">
             <a routerLink="/subcategory" [queryParams]="{subCategoryId: c.Categories.doc_id}"
               (click)="setTitle( 'Mvest-Subcategories')">
