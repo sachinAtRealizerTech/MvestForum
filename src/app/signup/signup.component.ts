@@ -60,6 +60,8 @@ export class SignupComponent implements OnInit {
   individualTab = true;
   professionalTab = false;
   emailVerificationPage = false;
+  selectedPlanInformation: any;
+  planId: any;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -177,8 +179,9 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  sendPlanSelection(planId: string) {
+  sendPlanSelection(planInformation: any) {
     debugger;
+    this.selectedPlanInformation = planInformation;
     this.userTypePage = false;
     this.firstPage = true;
     this.secondPage = false;
@@ -285,6 +288,7 @@ export class SignupComponent implements OnInit {
         return;
       };
       this.userId = data['data'];
+      console.log('userinfodata', data)
       this.goToSecondPage();
     },
       error => {
@@ -408,18 +412,28 @@ export class SignupComponent implements OnInit {
     this.submitSecondStep = false;
   }
 
-  sendPlanInfo(MonthlyPrice: any, annualPrice: any, planName: string) {
+  sendMonthlyPlanInfo(planInformation: any) {
     debugger;
-    this.selMonthlyPrice = MonthlyPrice,
-      this.selAnnualPrice = annualPrice,
-      this.planName = planName
+    //this.selMonthlyPrice = planInformation.monthly_price,
+    this.planName = planInformation.plan,
+      this.planDuration = "Monthly",
+      this.subscrptionAmount = planInformation.monthly_price,
+      this.planId = planInformation.mplan_id
   }
 
-  sendPlanDuration(duration: string, amount: any) {
+  sendYearlyPlanInfo(planInformation: any) {
     debugger;
-    this.subscrptionAmount = amount
-    this.planDuration = duration
+    this.subscrptionAmount = planInformation.annual_price,
+      this.planName = planInformation.plan,
+      this.planDuration = "Yearly",
+      this.planId = planInformation.mplan_id
   }
+
+  // sendPlanDuration(duration: string, amount: any) {
+  //   debugger;
+  //   this.subscrptionAmount = amount
+  //   this.planDuration = duration
+  // }
 
   openClaimLeaseModal(content) {
     this.claimLeaseModal = content;
@@ -446,14 +460,14 @@ export class SignupComponent implements OnInit {
 
     let body = {
       member_id: this.userId,
-      mplan_id: this.firstStepWizardForm.controls.membershipType.value,
-      amount: this.selMonthlyPrice,
+      mplan_id: this.planId,
+      amount: this.subscrptionAmount,
       transaction_id: 1,
       planexpiry_date: this.planExpiryDate,
       subscriptionduration: this.planDuration,
       istransactionsuccess: "Yes",
       transaction_date: new Date(),
-      transaction_type: this.secondStepWizardForm.controls.paymentSelection.value
+      transaction_type: "Online"
     }
 
     this.signupService.completeUserRegistration(body).subscribe(data => {

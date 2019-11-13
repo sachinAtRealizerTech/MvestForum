@@ -176,8 +176,9 @@
                         <div class="card-body text-white rounded-2">
                             <h3 class="font-weight-semibold text-white h5 text-green small text-uppercase ">
                                 {{planInformation[0]?.plan}}</h3>
-                            <p class="text-white font-weight-normal h3">${{planInformation[0]?.monthly_price}}</p>
-                            <h3 class="text-muted font-weight-semibold text-white h5 small">per month</h3>
+                            <p class="text-white font-weight-normal h3">
+                                ${{planInformation[0]?.monthly_price}} / ${{planInformation[0]?.annual_price}}</p>
+                            <h3 class="text-muted font-weight-semibold text-white h5 small">per month / per year</h3>
                             <h5 class="text-muted font-weight-normal h6">Simplest way t get started with First few
                                 Leases</h5>
                             <ul class="text-muted small text-left pt-2 font-weight-semibold">
@@ -193,7 +194,14 @@
                         </div>
                         <div class="card-footer border-0 bg-transparent rounded-2 ">
                             <button class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
-                                (click)="sendPlanSelection(planInformation[0]?.mplan_id)">Select
+                                (click)="sendPlanSelection(planInformation[0])">Select
+                                Monthly
+                                Plan
+                            </button>
+                            <br>
+                            <button class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
+                                (click)="sendPlanSelection(planInformation[0])">Select
+                                Yearly
                                 Plan
                             </button>
                         </div>
@@ -206,8 +214,8 @@
                             <h3 class="font-weight-semibold text-white h5 text-green small text-uppercase  ">
                                 {{planInformation[1]?.plan}}</h3>
                             <p for="accountdetails" class="text-white font-weight-normal h3">
-                                ${{planInformation[1]?.monthly_price}}</p>
-                            <h3 class="text-muted font-weight-semibold text-white h5 small">per month </h3>
+                                ${{planInformation[1]?.monthly_price}} / ${{planInformation[1]?.annual_price}}</p>
+                            <h3 class="text-muted font-weight-semibold text-white h5 small">per month / per year </h3>
                             <h5 class="text-muted font-weight-normal h6 pt-2">Advanced tool to easily manage a selected
                                 no. of Leases</h5>
                             <ul class="text-muted small text-left pt-3 font-weight-semibold">
@@ -223,7 +231,12 @@
                         </div>
                         <div class="card-footer border-0 bg-transparent rounded-2 pb-4">
                             <button class="btn btn-accent text-white rounded-0 pull-right text-uppercase mt-3"
-                                (click)="sendPlanSelection(planInformation[1]?.mplan_id)">Select
+                                (click)="sendPlanSelection(planInformation[1]?.mplan_id)">Select Monthly
+                                Plan
+                            </button>
+                            <br>
+                            <button class="btn btn-accent text-white rounded-0 pull-right text-uppercase mt-3"
+                                (click)="sendPlanSelection(planInformation[1]?.mplan_id)">Select Yearly
                                 Plan
                             </button>
                         </div>
@@ -237,8 +250,9 @@
                             <h3 class="font-weight-semibold text-white h5 text-green small text-uppercase  ">
                                 {{planInformation[2]?.plan}}
                             </h3>
-                            <p class="text-white font-weight-normal h3"> ${{planInformation[2]?.monthly_price}}</p>
-                            <h3 class="text-muted font-weight-semibold text-white h5 small">per month </h3>
+                            <p class="text-white font-weight-normal h3"> ${{planInformation[2]?.monthly_price}} /
+                                ${{planInformation[2]?.annual_price}}</p>
+                            <h3 class="text-muted font-weight-semibold text-white h5 small">per month / per year</h3>
                             <h5 class="text-muted font-weight-normal h6">Everything you need to manage a maximum amount
                                 of Leases</h5>
                             <ul class="text-muted small text-left pt-2 font-weight-semibold">
@@ -254,7 +268,12 @@
                         </div>
                         <div class="card-footer border-0 bg-transparent rounded-2">
                             <button class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
-                                (click)="sendPlanSelection(planInformation[2]?.mplan_id)">Select
+                                (click)="sendPlanSelection(planInformation[2]?.mplan_id)">Select Monthly
+                                Plan
+                            </button>
+                            <br>
+                            <button class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
+                                (click)="sendPlanSelection(planInformation[2]?.mplan_id)">Select Yearly
                                 Plan
                             </button>
                         </div>
@@ -672,8 +691,9 @@
 
 
             <aw-wizard>
-                <aw-wizard-step stepTitle="Plan Selection" [canExit]="firstStepWizardForm.valid">
-                    <div class="centered-content">
+                <aw-wizard-step stepTitle="Plan Selection">
+
+                    <!-- <div class="centered-content">
                         <div>
                             <div class="row justify-content-center text-center">
                                 <div class="col-12">
@@ -733,11 +753,361 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+
+
+                    <div class="row py-4">
+                        <div class="col-4">
+                            <div class="card card-height-450 bg-dark-grey text-white plan-left  justify-content-center text-center rounded-2"
+                                width="14px">
+                                <div class="card-body text-white rounded-2">
+                                    <h3 class="font-weight-semibold text-white h5 text-green small text-uppercase ">
+                                        {{planInformation[0]?.plan}}</h3>
+                                    <p class="text-white font-weight-normal h3">
+                                        ${{planInformation[0]?.monthly_price}} / ${{planInformation[0]?.annual_price}}
+                                    </p>
+                                    <h3 class="text-muted font-weight-semibold text-white h5 small">per month / per year
+                                    </h3>
+                                    <h5 class="text-muted font-weight-normal h6">Simplest way to get started with First
+                                        few
+                                        Leases</h5>
+                                    <ul class="text-muted small text-left pt-2 font-weight-semibold">
+                                        <li>5 Leases to "claim"</li>
+                                        <li>Limited Access to Cash Flow Analysis</li>
+                                        <li>Limited Access to Value Analysis</li>
+                                        <li>Limited Access to Mineral Evaluation</li>
+                                        <li>Limited Access to Forums & Data Shares</li>
+                                        <li>Limited Access to Activty Notifications</li>
+                                        <li>No access to Mapping and Research</li>
+                                        <li>No access to State Form & Downloads</li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer border-0 bg-transparent rounded-2 ">
+                                    <button
+                                        class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
+                                        (click)="sendMonthlyPlanInfo(planInformation[0])" awNextStep>Select
+                                        Monthly
+                                        Plan
+                                    </button>
+                                    <br>
+                                    <button
+                                        class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
+                                        (click)="sendYearlyPlanInfo(planInformation[0])" awNextStep>Select
+                                        Yearly
+                                        Plan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div
+                                class="card card-height-450 shadow-none bg-grey text-white plan-center justify-content-center text-center rounded-2">
+                                <div class="card-body text-white rounded-2 px-4">
+                                    <h3 class="font-weight-semibold text-white h5 text-green small text-uppercase  ">
+                                        {{planInformation[1]?.plan}}</h3>
+                                    <p for="accountdetails" class="text-white font-weight-normal h3">
+                                        ${{planInformation[1]?.monthly_price}} / ${{planInformation[1]?.annual_price}}
+                                    </p>
+                                    <h3 class="text-muted font-weight-semibold text-white h5 small">per month / per year
+                                    </h3>
+                                    <h5 class="text-muted font-weight-normal h6 pt-2">Advanced tool to easily manage a
+                                        selected
+                                        no. of Leases</h5>
+                                    <ul class="text-muted small text-left pt-3 font-weight-semibold">
+                                        <li>10 Leases to "claim"</li>
+                                        <li>Full Access to Cash Flow Analysis</li>
+                                        <li>Full Access to Value Analysis</li>
+                                        <li>Full Access to Mineral Evaluation</li>
+                                        <li>Full Access to Forums & Data Shares</li>
+                                        <li>Full Access to Activty Notifications</li>
+                                        <li>Limited to Mapping and Research</li>
+                                        <li>Limited to State Form & Downloads</li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer border-0 bg-transparent rounded-2 pb-4">
+                                    <button class="btn btn-accent text-white rounded-0 pull-right text-uppercase mt-3"
+                                        (click)="sendMonthlyPlanInfo(planInformation[1])" awNextStep>Select
+                                        Monthly
+                                        Plan
+                                    </button>
+                                    <br>
+                                    <button class="btn btn-accent text-white rounded-0 pull-right text-uppercase mt-3"
+                                        (click)="sendYearlyPlanInfo(planInformation[1])" awNextStep>Select
+                                        Yearly
+                                        Plan
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div
+                                class="card card-height-450 bg-dark-grey text-white plan-right  justify-content-center text-center rounded-2">
+                                <div class="card-body text-white rounded-2">
+                                    <h3 class="font-weight-semibold text-white h5 text-green small text-uppercase  ">
+                                        {{planInformation[2]?.plan}}
+                                    </h3>
+                                    <p class="text-white font-weight-normal h3"> ${{planInformation[2]?.monthly_price}}
+                                        /
+                                        ${{planInformation[2]?.annual_price}}</p>
+                                    <h3 class="text-muted font-weight-semibold text-white h5 small">per month / per year
+                                    </h3>
+                                    <h5 class="text-muted font-weight-normal h6">Everything you need to manage a maximum
+                                        amount
+                                        of Leases</h5>
+                                    <ul class="text-muted small text-left pt-2 font-weight-semibold">
+                                        <li>Unlimited Leases to "claim"</li>
+                                        <li>Unlimited Access to Cash Analysis </li>
+                                        <li>Unlimited Access to & Value Analysis</li>
+                                        <li>Unlimited Access to Mineral Evaluation</li>
+                                        <li>Unlimited Access to Forums & Data Shares</li>
+                                        <li>Unlimited Access to Activty Notifications</li>
+                                        <!-- <li>Unlimited to Mapping and Research</li>
+                                            <li>Unlimited to State Form & Downloads</li> -->
+                                    </ul>
+                                </div>
+                                <div class="card-footer border-0 bg-transparent rounded-2">
+                                    <button
+                                        class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
+                                        (click)="sendMonthlyPlanInfo(planInformation[2])" awNextStep>Select
+                                        Monthly
+                                        Plan
+                                    </button>
+                                    <br>
+                                    <button
+                                        class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3 "
+                                        (click)="sendYearlyPlanInfo(planInformation[2])" awNextStep>Select
+                                        Yearly
+                                        Plan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </aw-wizard-step>
-                <aw-wizard-step stepTitle="Payment Selection" [canExit]="secondStepWizardForm.valid">
+                <aw-wizard-step stepTitle="Payment Selection">
+
+
                     <div class="centered-content">
+                        <div>
+                            <div class="row justify-content-center text-left">
+                                <div class="col-12" [formGroup]="secondStepWizardForm">
+                                    <div class="row">
+                                        <!-- <div class="col-8">
+                                            <div class="card rounded-0 shadow-none">
+                                                <div class="card-body pb-3">
+                                                    <div class="row justify-content-center text-left">
+                                                        <div class="col-md-8 bg-light py-3 d-inline-flex d-flex">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-radio  ">
+                                                                    <input type="radio" id="Payment1" value="Paypal"
+                                                                        name="paymentSelection"
+                                                                        class="custom-control-input"
+                                                                        formControlName="paymentSelection">
+                                                                    <label class="custom-control-label"
+                                                                        for="Payment1">Paypal <img class="pl-3"
+                                                                            src="assets/images/content-management/paypal.png"
+                                                                            width="auto" height="20px"></label>
+
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Payment2"
+                                                                        value="Paper Check" name="paymentSelection"
+                                                                        class="custom-control-input"
+                                                                        formControlName="paymentSelection">
+                                                                    <label class="custom-control-label"
+                                                                        for="Payment2">Paper
+                                                                        Check <img class="pl-3"
+                                                                            src="assets/images/content-management/paypal.png"
+                                                                            width="auto" height="20px"></label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="submitSecondStep && r.paymentSelection.errors">
+                                                                    <div *ngIf="r.paymentSelection.errors.required"
+                                                                        class="text-danger small">
+                                                                        Please select
+                                                                        option from above.
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pt-3 font-weight-semibold">
+                                                                    <small class=" font-weight-semibold">*Pay instantly
+                                                                        and
+                                                                        securely
+                                                                        through
+                                                                        PayPal</small>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row justify-content-center text-left">
+                                                        <div
+                                                            class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
+                                                            <div class="form-group">
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Subscription2" value="2"
+                                                                        name="subscriptionAmount"
+                                                                        class="custom-control-input"
+                                                                        formControlName="subscriptionAmount"
+                                                                        (change)="sendPlanDuration('Monthly',selMonthlyPrice)">
+                                                                    <label class="custom-control-label"
+                                                                        for="Subscription2">Monthly
+                                                                        Subscription
+                                                                        -${{selMonthlyPrice}}/month</label>
+                                                                </div>
+                                                                <div class="w-100 py-2"></div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Subscription3" value="3"
+                                                                        name="subscriptionAmount"
+                                                                        class="custom-control-input"
+                                                                        formControlName="subscriptionAmount"
+                                                                        (change)="sendPlanDuration('Yearly',selAnnualPrice)">
+                                                                    <label class=" custom-control-label"
+                                                                        for="Subscription3">Yearly
+                                                                        Subscription
+                                                                        -${{selAnnualPrice}}/year</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="submitSecondStep && r.subscriptionAmount.errors">
+                                                                    <div *ngIf="r.subscriptionAmount.errors.required"
+                                                                        class="text-danger small">
+                                                                        Please select
+                                                                        option from above.
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pt-3 font-weight-semibold">
+                                                                    <small class=" font-weight-semibold">*you will
+                                                                        automatically
+                                                                        be
+                                                                        enrolled
+                                                                        in
+                                                                        auto-renewal. To change plan and/or payment
+                                                                        method,
+                                                                        you
+                                                                        can
+                                                                        do
+                                                                        so
+                                                                        through
+                                                                        your
+                                                                        Profile</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="col-7 bg-light py-3 pt-5 pl-5 ml-5">
+                                            <div class="  ">
+                                                <h6 class="text-muted">Credit Card Payment : </h6>
+                                                <div class="d-flex">
+                                                    <img class="border"
+                                                        src="assets/images/content-management/mastercard-icon.jpg"
+                                                        width="auto" height="40px"> &nbsp; &nbsp;
+                                                    <img class="border"
+                                                        src="assets/images/content-management/visa-icon.jpg"
+                                                        width="auto" height="40px"> &nbsp; &nbsp;
+                                                    <img class="border"
+                                                        src="assets/images/content-management/visa-icon.jpg"
+                                                        width="auto" height="40px"> &nbsp; &nbsp;
+                                                    <!-- <img src="assets/images/content-management/paypal.png" width="auto" height="40px"  > &nbsp; &nbsp; -->
+                                                </div>
+
+                                                <h6 class="text-muted pt-4">PayPal</h6>
+                                                <img class="border "
+                                                    src="assets/images/content-management/paypal-icon.jpg" width="auto"
+                                                    height="40px"> &nbsp; &nbsp;
+                                                <h6 class="text-muted pt-4">Paper Check </h6>
+                                                <img class="border"
+                                                    src="assets/images/content-management/electronic-check.jpg"
+                                                    width="auto" height="40px"> &nbsp; &nbsp;
+                                            </div>
+                                            <!--Display On Card Seletion -->
+                                            <!-- <div class="row justify-content-center pt-3">
+                                                       <div class="col-12"> 
+                                                           <div class="form-group">
+                                                           <label>Name on Card</label>
+                                                           <input type="text" class="form-control" placeholder="">
+                                                       </div>
+                                                       <div class="form-group">
+                                                               <label>Exp. Date</label>
+                                                               <input type="text" class="form-control" placeholder="">
+                                                           </div>
+                                                           <div class="form-group">
+                                                                   <label>Card No.</label>
+                                                                   <input type="text" class="form-control" placeholder="">
+                                                               </div>
+                                                               <div class="form-group">
+                                                                       <label>Security</label>
+                                                                       <input type="text" class="form-control" placeholder="">
+                                                                   </div>
+                                                       </div>
+                                                       </div> -->
+
+                                            <div class="row justify-content-center">
+                                                <div class="col-7">
+                                                    <button
+                                                        class="btn btn-accent text-white rounded-0 pull-right text-uppercase mt-3 ">Make
+                                                        Selection
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <div class="card bg-dark text-white justify-content-center text-center rounded-2"
+                                                width="14px">
+                                                <div class="card-body text-white rounded-2">
+                                                    <h3
+                                                        class="font-weight-semibold text-white h5 text-green small text-uppercase ">
+                                                        {{planName}}</h3>
+                                                    <p class="text-white font-weight-normal h3">${{subscrptionAmount}}
+                                                    </p>
+                                                    <h3 class="text-muted font-weight-semibold text-white h5 small">
+                                                        {{planDuration}}</h3>
+                                                    <h5 class="text-muted font-weight-normal h6">Simplest way to get
+                                                        started with First few Leases</h5>
+                                                    <ul class="text-muted small text-left pt-2 font-weight-semibold">
+                                                        <li>3 Leases to "claim"</li>
+                                                        <li>Limited Access to Cash Flow Analysis</li>
+                                                        <li>Limited Access to Value Analysis</li>
+                                                        <li>Limited Access to Mineral Evaluation</li>
+                                                        <li>Limited Access to Forums & Data Shares</li>
+                                                        <li>No access to Mapping and Research</li>
+                                                        <li>No access to State Form & Downloads</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="card-footer border-0 bg-transparent rounded-2 ">
+                                                    <button
+                                                        class="btn btn-outline-accent text-white rounded-0 pull-right text-uppercase mt-3"
+                                                        awPreviousStep>Change
+                                                        Plan
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center text-center pt-3 pb-2">
+                                        <div class="col-12">
+                                            <!-- <button type="button" class="btn btn-accent text-white px-5"
+                                                awPreviousStep>BACK
+                                            </button> -->
+                                            &nbsp;&nbsp;
+                                            <button type="button" class="btn btn-accent text-white px-5" awNextStep>NEXT
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="centered-content">
                         <div>
                             <div class="row justify-content-center text-center">
                                 <div [formGroup]="secondStepWizardForm">
@@ -784,18 +1154,6 @@
                                                 <div class="row justify-content-center text-left">
                                                     <div class="col-md-8 bg-light border-top py-3 d-inline-flex d-flex">
                                                         <div class="form-group">
-
-                                                            <!-- <div class="custom-control custom-radio  ">
-                                                                    <input type="radio" id="Subscription1" value="1"
-                                                                        name="subscriptionAmount"
-                                                                        class="custom-control-input"
-                                                                        formControlName="subscriptionAmount">
-                                                                    <label class="custom-control-label"
-                                                                        for="Subscription1">No
-                                                                        Payment
-                                                                        Necessary</label>
-                                                                </div> -->
-
                                                             <div class="w-100 py-2"></div>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="Subscription2" value="2"
@@ -865,7 +1223,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+
                 </aw-wizard-step>
                 <aw-wizard-step stepTitle="Review and Confirm">
                     <div class="centered-content">
