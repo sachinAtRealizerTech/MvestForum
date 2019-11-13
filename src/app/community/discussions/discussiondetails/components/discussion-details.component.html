@@ -13,7 +13,7 @@
   </div>
 
 
-  <div class="row pb-1 pt-2">
+  <div class="row pb-1 pt-4">
     <div class="col-12">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item align-self-center">
@@ -55,9 +55,52 @@
 
   <!-----------------------------------------Breadcrumb and search-------------------------------------------->
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center pb-1 pt-3">
     <div class="col-xl-12">
-      <nav aria-label="breadcrumb">
+        <ul class="nav nav-tabs sub-tab border-0 ">
+              
+            <li class="nav-item align-self-center" (click)="setTitle( 'Mvest-Categories')">
+                <a class="align-self-center" routerLink="/discussions">   
+                    <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Categories /</h5>
+                  </a>
+             </li>
+         
+        
+            <li class="nav-item align-self-center">
+                    <a class="align-self-center" routerLink="/subcategory"  [queryParams]="{subCategoryId:subCategoryId}"
+                    (click)="setTitle( 'Mvest-SubCategories' )">   <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Sub Categories / </h5>
+                </a>
+             </li> 
+             <li class="nav-item align-self-center">
+                    <a class="align-self-center"routerLink="/discussionslist" [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}"
+                    (click)="setTitle( 'Mvest-Discussions')">
+                    <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center"> Discussions / </h5>
+                </a>
+             </li> 
+             <li class="nav-item align-self-center">
+                <a class="align-self-center" >
+                <h5 class=" text-dark mb-0 font-weight-bold mr-3 align-self-center"> Discussions details</h5>
+            </a>
+         </li> 
+      <div class="ml-auto d-inline-flex"> 
+          <li class="nav-item align-self-center ml-auto">
+              <form id="search-form" class="form-inline">
+                  <div class="input-group search">
+                    <input type="text" class="form-control search-form" [(ngModel)]="searchText"
+                      [ngModelOptions]="{standalone: true}" placeholder="Search">
+                    <span class="input-group-btn">
+                      <button type="submit" class="search-btn">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+    </li> 
+           
+
+      </div>
+  </ul>
+      <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-0 mb-1">
           <li class="breadcrumb-item"><a class="text-secondary font-weight-semibold" routerLink="/discussions"
               (click)="setTitle( 'Mvest-Categories')">Categories</a></li>
@@ -82,7 +125,7 @@
             </form>
           </li>
         </ol>
-      </nav>
+      </nav> -->
     </div>
   </div>
 
@@ -94,8 +137,8 @@
 
 
 
-  <div class="row justify-content-center">
-    <div class="col-xl-12 pb-3" style="text-align: justify;">
+  <div class="row justify-content-center pt-4">
+    <div class="col-xl-12 pb-3">
       <div class="row">
         <div class="col-10">
           <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
@@ -165,7 +208,7 @@
 
             <div class="col-1">
             </div>
-            <div class="col-9 border-top">
+            <div class="col-9 border-top py-1">
               <h6 class="mb-0 pt-1">{{qc.comment_text}}</h6>
 
               <ul class="list-inline d-flex  border-0 mb-0">
@@ -194,7 +237,7 @@
 
 
             </div>
-            <div class="col-2 text-right border-top">
+            <div class="col-2 text-right border-top  py-1">
               <span><small class="font-weight-semibold text-muted"> {{qc.create_ts | timeAgo}} <br>
                   -by {{qc.comment_by_name}}</small></span>
             </div>
@@ -203,7 +246,7 @@
               <div class="row justify-content-center">
                 <div class="col-2">
                 </div>
-                <div class="col-8 border-top">
+                <div class="col-8 border-top  py-1">
                   <h6 class="mb-0 pt-1">{{cc.comment_text}}</h6>
 
                   <!---------New like-->
@@ -229,7 +272,7 @@
                   <!---------New like-->
 
                 </div>
-                <div class="col-2 text-right border-top">
+                <div class="col-2 text-right border-top  py-1">
                   <small class="font-weight-semibold text-muted"> {{cc.create_ts | timeAgo}} <br>
                     -by {{cc.comment_by_name}}</small>
                 </div>
@@ -314,7 +357,7 @@
 
               <div class="col-1">
               </div>
-              <div class="col-9 border-top">
+              <div class="col-9 border-top  py-1">
                 <h6 class="mb-0 pt-1">{{cm?.comment_text}}</h6>
 
                 <ul class="list-inline d-flex  border-0 mb-0">
@@ -346,7 +389,7 @@
 
 
               </div>
-              <div class="col-2 text-right border-top">
+              <div class="col-2 text-right border-top  py-1">
                 <span><small class="font-weight-semibold text-muted"> {{cm.create_ts | timeAgo}} <br>
                     -by {{cm.comment_by_name}}</small></span>
               </div>
@@ -355,7 +398,7 @@
                 <div class="row justify-content-center">
                   <div class="col-2">
                   </div>
-                  <div class="col-8 border-top">
+                  <div class="col-8 border-top py-1">
                     <h6 class="mb-0 pt-1">{{cc.comment_text}}</h6>
 
                     <!---------New like-->
@@ -383,7 +426,7 @@
 
 
                   </div>
-                  <div class="col-2 text-right border-top">
+                  <div class="col-2 text-right border-top py-1">
                     <small class="font-weight-semibold text-muted"> {{cc.create_ts | timeAgo}} <br>
                       -by {{cc.comment_by_name}}</small>
                   </div>
@@ -411,7 +454,7 @@
       <div class="modal-body">
         <div class="card shadow-none">
           <div class="form-group">
-            <label for="Description">Your Reply</label>
+            <h6 class="font-weight-semibold" for="Description">Your Reply</h6>
 
             <angular-editor formControlName="Description" [config]="editorConfig"
               [ngClass]="{ 'is-invalid': submitReply && f.Description.errors }">
@@ -516,15 +559,13 @@
                   <div class="form-group">
                     <label for="title">Description :</label>
                     <div class="w-100">
-                    </div>
-
+                    </div> 
                     <!-- <angular-editor formControlName="comment" [config]="editorConfig"
                       [ngClass]="{ 'is-invalid': submitComment && h.comment.errors }">
                       <div *ngIf="submitComment && h.comment.errors" class="invalid-feedback">
                         <div *ngIf="h.comment.errors.required">Comment is required</div>
                       </div>
-                    </angular-editor> -->
-
+                    </angular-editor> --> 
                     <textarea class="form-control" formControlName="comment"
                       [ngClass]="{ 'is-invalid': submitComment && h.comment.errors }"></textarea>
                     <div *ngIf="submitComment && h.comment.errors" class="invalid-feedback">
