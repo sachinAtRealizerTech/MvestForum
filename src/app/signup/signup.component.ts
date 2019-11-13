@@ -59,6 +59,7 @@ export class SignupComponent implements OnInit {
   alertMembershipPlan: TemplateRef<any>;
   individualTab = true;
   professionalTab = false;
+  emailVerificationPage = false;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
     private signupService: SignupService, private router: Router, private route: ActivatedRoute,
@@ -466,7 +467,8 @@ export class SignupComponent implements OnInit {
       this.secondStepWizardForm.reset();
       this.thirdPage = false;
       this.professionalUserType = false;
-      this.router.navigate(['signin'])
+      this.emailVerificationPage = true;
+      // this.router.navigate(['signin'])
     });
   }
 
@@ -487,6 +489,7 @@ export class SignupComponent implements OnInit {
     this.secondPage = false;
     this.thirdPage = false;
     this.duplicateEmail = false;
+    this.emailVerificationPage = false;
     this.modalService.dismissAll(this.alertMembershipPlan)
     this.router.navigate(['signin']);
   }

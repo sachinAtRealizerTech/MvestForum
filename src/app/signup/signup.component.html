@@ -248,8 +248,8 @@
                                 <li>Unlimited Access to Mineral Evaluation</li>
                                 <li>Unlimited Access to Forums & Data Shares</li>
                                 <li>Unlimited Access to Activty Notifications</li>
-                                <li>Unlimited to Mapping and Research</li>
-                                <li>Unlimited to State Form & Downloads</li>
+                                <!-- <li>Unlimited to Mapping and Research</li>
+                                <li>Unlimited to State Form & Downloads</li> -->
                             </ul>
                         </div>
                         <div class="card-footer border-0 bg-transparent rounded-2">
@@ -947,6 +947,29 @@
         </form>
     </div>
     <!------------------------------End wizard----------------------->
+
+
+    <!-----------------------------------------------Email Verification Page--------------------------------->
+
+    <div class="bg-white" *ngIf="emailVerificationPage">
+        <div class="card rounded-0 shadow-none pt-5">
+            <div class="card-header justify-content-center text-center ">
+                <h5 class="font-weight-semibold h4">Verify your Email Address</h5>
+                <h5 class="text-muted h6">Verification E-mail has been sent to your registered E-mail account.<br> Click
+                    the
+                    link in the email to confirm your email address.</h5>
+                <br>
+                <br>
+                <h6>Haven't recieved the email?... <a routerLink="#"><u>Resend email</u></a> </h6>
+                <h6>OR</h6>
+                <a routerLink="#" (click)="openSignIn()">
+                    <h5 class="text-muted h5"><u>Sign In Now</u></h5>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-----------------------------------------------End Email Verification Page---------------------------------->
 
 </main>
 
