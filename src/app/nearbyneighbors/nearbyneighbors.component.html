@@ -19,7 +19,7 @@
                 </li>
 
                 <div class="ml-auto d-inline-flex">
-                    <li class="nav-item pull-right mr-3 align-self-center">
+                    <!-- <li class="nav-item pull-right mr-3 align-self-center">
                         <a routerLink="#" data-toggle="tooltip" title="Search by Filter"
                             class="badge badge-accent rounded-5 text-white text-uppercase " data-toggle="modal"
                             data-target="#searchfilter-modal-lg">
@@ -27,8 +27,10 @@
                                 filter_list
                             </i>
                         </a>
-                    </li>
-
+                    </li> -->
+                    <li class="nav-item pull-right mr-3 align-self-center">
+                            <a routerLink="/nearbyleases" class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Connect All</a>
+                        </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
                         <form id="search-form" class="form-inline" role="form" method="post"
                             action="//www.google.com/search" target="_blank">
@@ -46,18 +48,66 @@
                     </li>
 
                 </div>
-            </ul>
-
-        </div>
-
+            </ul> 
+        </div> 
     </div>
 
-
-
-    <div class="row justify-content-between no-gutters">
+   <div class="row justify-content-between gutters-1">
+            <div class="col-md-12 col-xl-12">
+                <div class="card card-small mt-2 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="row p-3">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs sub-tab border-0">
+                                    <li class="nav-item align-self-center mb-0 text-accent pr-3 ">
+                                        <select class="text-accent font-weight-semibold dropdown-toggle">
+                                            <option>Lease : San Christoval Raunch Unit A</option>
+                                            <option>Lease : San Christoval Raunch Unit B</option>
+                                            <option>Lease : San Christoval Raunch Unit C</option>
+                                        </select>
+                                    </li>
+    
+                                    <li class="nav-item align-self-center mb-0 text-accent pr-3">
+                                        <select class="text-accent font-weight-semibold dropdown-toggle">
+                                            <option>Distance : 1.5 miles away</option>
+                                            <option>Distance : 2.5 miles away</option>
+                                            <option>Distance : 3.5 miles away</option>
+                                            <option>Distance : 4.5 miles away</option> 
+                                        </select>
+                                    </li>
+                                    <li class="nav-item align-self-center mb-0 text-accent pr-3">
+                                        <select class="text-accent font-weight-semibold dropdown-toggle">
+                                            <option>County : Karnes</option>
+                                            <option>County : Rockwall</option>
+                                            <option>County : Texas</option>
+                                        </select>
+                                    </li>
+                                    <li class="nav-item align-self-center mb-0 text-accent pr-3">
+                                            <select class="text-accent font-weight-semibold dropdown-toggle"> 
+                                                 <option>Operator : Joe Shon</option>
+                                                <option>Operator : Joe</option>
+                                                <option>Operator : Joe</option> 
+                                              </select>
+                                        </li> 
+                                        <li class="nav-item align-self-center mb-0 text-accent pr-3">
+                                                <select class="text-accent font-weight-semibold dropdown-toggle"> 
+                                                     <option>Play Type : 1</option>
+                                                    <option>Play Type : 1</option>
+                                                    <option>Play Type : 1</option> 
+                                                  </select>
+                                            </li> 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+    <div class="row justify-content-between  gutters-1">
         <div class="col-md-12 col-xl-6">
 
-            <div class="row justify-content-between no-gutters pb-3 ">
+            <div class="row justify-content-between  pb-3 ">
                 <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
 
                     <div class="card card-small blog-comments mt-3">
@@ -84,7 +134,7 @@
                                 <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                     <h6 class="mb-0">
                                         <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
+                                            class="mt-2 btn btn-grey align-self-center text-uppercase">Invite Sent</button>
                                     </h6>
                                 </div>
                             </div>
@@ -144,7 +194,7 @@
                                 <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                     <h6 class="mb-0">
                                         <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
+                                            class="mt-2 btn btn-accent align-self-center text-uppercase">Requested</button>
                                     </h6>
                                 </div>
                             </div>
@@ -157,9 +207,8 @@
 
 
 
-        <div class="col-xl-6">
-
-
+        <div class="col-xl-6"> 
+                <div class="row justify-content-between pb-3 ">
             <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
                 <div class="card card-small blog-comments mt-3">
                     <div class="card-body p-0">
@@ -184,7 +233,7 @@
                             <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                 <h6 class="mb-0">
                                     <button type="button"
-                                        class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
+                                        class="mt-2 btn btn-accent align-self-center text-uppercase">Requested</button>
                                 </h6>
                             </div>
                         </div>
@@ -244,7 +293,7 @@
                             <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                 <h6 class="mb-0">
                                     <button type="button"
-                                        class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
+                                        class="mt-2 btn btn-dark  align-self-center text-uppercase">Invite</button>
                                 </h6>
                             </div>
                         </div>
@@ -256,6 +305,7 @@
 
             </div>
         </div>
+    </div>
 
 
     </div>
