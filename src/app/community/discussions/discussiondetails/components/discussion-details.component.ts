@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { DiscussiondetailsService } from '../services/discussiondetails.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -32,9 +32,9 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
 
-  constructor(private discussiondetailsService: DiscussiondetailsService, private route: ActivatedRoute,
+  constructor(private discussiondetailsService: DiscussiondetailsService,
     private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService, private router: Router, private route: ActivatedRoute) { }
 
   discussionDetailsQuestionForm: FormGroup;
   commentForm: FormGroup;
@@ -156,6 +156,8 @@ export class DiscussionDetailsComponent implements OnInit {
       this.loading = false;
       this.discussiondocId = data['_id'];
       this.isLikePressed = false;
+      //this.router.navigate(['discussion-details'], { queryParams: { discussionDetailsId: this.discussionDetailsId, discussionId: this.discussionId, subCategoryId: this.subCategoryId } });
+
     })
   }
 
@@ -430,8 +432,13 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   isPostLikedByMe(post: any): boolean {
-    let likedEmails = post.likes.map(l => l.like_by_emailId);
-    return (likedEmails.includes(this.user.email_id));
+    if (post != null) {
+      let likedEmails = post.likes.map(l => l.like_by_emailId);
+      return (likedEmails.includes(this.user.email_id));
+    }
+    else {
+      return false;
+    }
   }
 
   isCommentLikedByMe(comment: any) {
