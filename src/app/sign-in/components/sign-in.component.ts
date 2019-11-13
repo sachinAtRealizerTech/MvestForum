@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SigninService } from '../signup/signin.service';
+import { SigninService } from '../services/signin.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,12 +9,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  submitSignIn = false;
-  signInForm: FormGroup;
-  verifyLogin = false;
 
   constructor(private signinService: SigninService, private router: Router, private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
+
+  submitSignIn = false;
+  signInForm: FormGroup;
+  verifyLogin = false;
 
   ngOnInit() {
 
@@ -25,8 +26,8 @@ export class SignInComponent implements OnInit {
 
   }
 
+  //Setting getter properties for easy form access
   get l() { return this.signInForm.controls }
-
 
   signIn() {
     debugger;

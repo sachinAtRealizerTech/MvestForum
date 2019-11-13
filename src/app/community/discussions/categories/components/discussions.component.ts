@@ -6,11 +6,9 @@ import { SubcategoryService } from '../../subcategories/Services/subcategory.ser
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
-
-
 
 @Component({
   selector: 'app-discussions',
@@ -27,11 +25,10 @@ export class DiscussionsComponent implements OnInit {
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
   categoryList: CategoryList[] = [];
-  //categoryList: any
+  subCategoryListDD: SubCategoryList[] = [];
   searchText: any;
   categoriesList: any;
   categoryId: any;
-  subCategoryListDD: SubCategoryList[] = [];
   submitQuestion: boolean;
   subCategoryId: any;
   categoryName: string;
@@ -78,7 +75,6 @@ export class DiscussionsComponent implements OnInit {
           tag: 'h1',
         },
       ],
-      // uploadUrl: 'v1/image',
       sanitize: true,
       toolbarPosition: 'top',
     };
@@ -107,7 +103,6 @@ export class DiscussionsComponent implements OnInit {
   getAllCategories() {
     this.loading = true;
     this.discussionsService.getAllCategories().subscribe(data => {
-      console.log('categories', data)
       this.categoryList = data;
       this.loading = false;
       this.pageNotFound = false;

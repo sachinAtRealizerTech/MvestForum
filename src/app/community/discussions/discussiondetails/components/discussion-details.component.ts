@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { DiscussionDetails } from 'src/app/models/discussions';
@@ -15,22 +15,6 @@ import { DiscussionDetails } from 'src/app/models/discussions';
   styleUrls: ['./discussion-details.component.scss']
 })
 export class DiscussionDetailsComponent implements OnInit {
-  commentId: string;
-  replyId: any;
-  isReplyCommment = false;
-  commentToCommentForm: FormGroup;
-  isLiked: boolean;
-  post_Id: any;
-  comment_Id: any;
-  postLikeFlag: boolean;
-  commentLikeFlag: boolean;
-  postQLikeFlag: boolean;
-  postALikeFlag: boolean;
-  like_Id: any;
-  comment_to_id: any;
-  replyTemplate: TemplateRef<any>;
-
-
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
     private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
@@ -38,8 +22,11 @@ export class DiscussionDetailsComponent implements OnInit {
 
   discussionDetailsQuestionForm: FormGroup;
   commentForm: FormGroup;
+  replyForm: FormGroup;
+  commentToCommentForm: FormGroup;
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
+  replyTemplate: TemplateRef<any>;
   commentModal: ElementRef;
   discussionId: string;
   discussionDetails: DiscussionDetails;
@@ -47,9 +34,6 @@ export class DiscussionDetailsComponent implements OnInit {
   subCategoryId: any;
   showDate: any;
   searchText: any;
-  commentBox = false;
-  postCommentBox = false;
-  replyForm: FormGroup;
   discussiondocId: any;
   submitReply = false;
   categoryName: any;
@@ -58,9 +42,15 @@ export class DiscussionDetailsComponent implements OnInit {
   subCategoryName: any;
   submitQuestion = false;
   loading: boolean;
-  postId: string;
   submitComment = false;
   isLikePressed = false;
+  commentId: string;
+  replyId: any;
+  isReplyCommment = false;
+  post_Id: any;
+  comment_Id: any;
+  comment_to_id: any;
+
 
   ngOnInit() {
 
@@ -130,12 +120,15 @@ export class DiscussionDetailsComponent implements OnInit {
     this.getDiscussionDeatils(this.discussionDetailsId);
   }
 
+  //Getting current user information
+  public user = Utils.GetCurrentUser();
 
-
+  //Setting browser tab title
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
 
+  //Setting getter properties for easy form access
   get g() { return this.replyForm.controls; }
 
   get f() { return this.discussionDetailsQuestionForm.controls; }
@@ -144,10 +137,9 @@ export class DiscussionDetailsComponent implements OnInit {
 
   get m() { return this.commentToCommentForm.controls }
 
-  public user = Utils.GetCurrentUser();
+
 
   getDiscussionDeatils(id: string) {
-
     this.loading = true;
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
       debugger;
@@ -156,8 +148,6 @@ export class DiscussionDetailsComponent implements OnInit {
       this.loading = false;
       this.discussiondocId = data['_id'];
       this.isLikePressed = false;
-      //this.router.navigate(['discussion-details'], { queryParams: { discussionDetailsId: this.discussionDetailsId, discussionId: this.discussionId, subCategoryId: this.subCategoryId } });
-
     })
   }
 
@@ -174,18 +164,12 @@ export class DiscussionDetailsComponent implements OnInit {
     this.modalService.dismissAll(this.postQuestionModal);
   }
 
-  showCommentBox() {
-    this.commentBox = true
-  }
-
-
   openReplyTemplate(replyTemplate: TemplateRef<any>) {
     this.replyTemplate = replyTemplate
     this.modalService.open(this.replyTemplate, {
       backdrop: 'static',
       backdropClass: 'customBackdrop'
     })
-
   }
 
   closeReplyModal() {
@@ -198,14 +182,12 @@ export class DiscussionDetailsComponent implements OnInit {
     if (this.replyForm.invalid) {
       return;
     }
-
     let body = {
       emailId: this.user.email_id,
       name: this.user.f_name + " " + this.user.l_name,
       Desc: this.replyForm.controls.Description.value,
       discussiondoc_Id: this.discussiondocId
     }
-
     this.discussiondetailsService.sendReply(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussionDetailsId);
       this.submitReply = false;
@@ -221,7 +203,6 @@ export class DiscussionDetailsComponent implements OnInit {
     this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
     this.subCategoryName = sessionStorage.getItem("subCatName");
-
     this.submitQuestion = true;
     if (this.discussionDetailsQuestionForm.invalid) {
       return
@@ -246,7 +227,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   openCommentModal(commentTemplate, discDetails: any) {
-    //this.postId = discDetails._id;
     if (!discDetails.posts) {
       this.commentId = discDetails.post_id
     }
@@ -347,14 +327,11 @@ export class DiscussionDetailsComponent implements OnInit {
       }
       this.discussiondetailsService.postLike(body).subscribe(data => {
         this.getDiscussionDeatils(this.discussiondocId);
-
       })
     }
     else {
       return
     }
-
-
   }
 
   unlikePost(discDetails: any) {
@@ -364,7 +341,6 @@ export class DiscussionDetailsComponent implements OnInit {
     }
     else {
       this.post_Id = discDetails.posts[0].post_id;
-      //this.like_Id = likeId;
     }
     let body = {
       discussion_doc_id: this.discussiondocId,
@@ -403,7 +379,6 @@ export class DiscussionDetailsComponent implements OnInit {
     else {
       return
     }
-
   }
 
 
@@ -423,12 +398,10 @@ export class DiscussionDetailsComponent implements OnInit {
       post_id: this.post_Id,
       comment_id: this.comment_Id,
       like_by_emailId: this.user.email_id
-
     }
     this.discussiondetailsService.postLike(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
     })
-
   }
 
   isPostLikedByMe(post: any): boolean {
@@ -448,8 +421,6 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   likeCommentToComment(discDetails: any, pc: any, cc: any) {
-    debugger;
-
     if (this.isLikePressed == false) {
       if (!discDetails.posts) {
         this.post_Id = discDetails.post_id;
@@ -463,7 +434,6 @@ export class DiscussionDetailsComponent implements OnInit {
         this.comment_to_id = cc.comment_id
         this.isLikePressed = true
       }
-
       let body = {
         discussion_doc_id: this.discussiondocId,
         post_id: this.post_Id,
@@ -472,7 +442,6 @@ export class DiscussionDetailsComponent implements OnInit {
         like_emailId: this.user.email_id,
         name: this.user.f_name + " " + this.user.l_name
       }
-
       this.discussiondetailsService.postLike(body).subscribe(data => {
         this.getDiscussionDeatils(this.discussiondocId);
       })
@@ -484,7 +453,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   unLikeCommentToComment(discDetails: any, pc: any, cc: any) {
-    debugger;
     this.isLikePressed = false
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;
@@ -496,7 +464,6 @@ export class DiscussionDetailsComponent implements OnInit {
       this.comment_Id = pc.comment_id;
       this.comment_to_id = cc.comment_id;
     }
-
     let body = {
       discussion_doc_id: this.discussiondocId,
       post_id: this.post_Id,
@@ -504,7 +471,6 @@ export class DiscussionDetailsComponent implements OnInit {
       comment_to_id: this.comment_to_id,
       like_by_emailId: this.user.email_id
     }
-
     this.discussiondetailsService.postLike(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
     })

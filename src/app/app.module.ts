@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProfileComponent } from './community/profile/profile.component';
-import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInComponent } from './sign-in/components/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
@@ -20,7 +20,7 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CommunityModule } from './community/community.module';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './signup/components/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ArchwizardModule } from 'angular-archwizard';
 import { DashboardComponent } from './dashboard/dashboard.component';

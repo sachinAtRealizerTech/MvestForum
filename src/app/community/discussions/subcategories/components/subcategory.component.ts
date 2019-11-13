@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { SubCategoryList } from 'src/app/models/discussions';
@@ -74,7 +74,6 @@ export class SubcategoryComponent implements OnInit {
           tag: 'h1',
         },
       ],
-      // uploadUrl: 'v1/image',
       sanitize: true,
       toolbarPosition: 'top',
     };
@@ -91,13 +90,16 @@ export class SubcategoryComponent implements OnInit {
     this.getSubcategory(this.subCategoryId);
   }
 
+  //Setting title for browser tab 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
 
-  get g() { return this.postQuestionForm.controls; }
-
+  // Get currently logined user information.
   public user = Utils.GetCurrentUser();
+
+  // Setting getter properties for easy form group access
+  get g() { return this.postQuestionForm.controls; }
 
   getSubcategory(id) {
     this.loading = true;
@@ -158,7 +160,7 @@ export class SubcategoryComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.subcategoryService.postQuestion(body).subscribe(data => {
-      this.flashMessagesService.show('Your question posted successfully', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.flashMessagesService.show('Your question posted successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
     })

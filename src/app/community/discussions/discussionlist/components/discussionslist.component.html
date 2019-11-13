@@ -12,6 +12,8 @@
         </div>
     </div>
 
+    <!------------------------------------------Community Menu--------------------------------------------->
+
     <div class="row  pb-1 pt-4">
         <div class="col-12">
 
@@ -55,50 +57,55 @@
         </div>
     </div>
 
+    <!----------------------------------------End Community Menu--------------------------------------------->
+
+
 
     <!-----------------------------------------Breadcrumb and search-------------------------------------------->
 
     <div class="row justify-content-center pb-1 pt-3">
         <div class="col-xl-12">
-                <ul class="nav nav-tabs sub-tab border-0">
-              
-                        <li class="nav-item align-self-center" (click)="setTitle( 'Mvest-Categories')">
-                            <a class="align-self-center" routerLink="/discussions">   
-                                <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Categories /</h5>
-                              </a>
-                         </li>
-                     
-                    
-                        <li class="nav-item align-self-center">
-                                <a class="align-self-center" routerLink="/subcategory"  [queryParams]="{subCategoryId:subCategoryId}"
-                                (click)="setTitle( 'Mvest-SubCategories' )">   <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Sub Categories / </h5>
-                            </a>
-                         </li>
-                         <li class="nav-item align-self-center">
-                                <a class="align-self-center"><h5 class=" text-dark mb-0 font-weight-bold mr-3 align-self-center"> Discussions </h5>
-                            </a>
-                         </li>
-                     
-                      
-                  
-                  <div class="ml-auto d-inline-flex"> 
-                      <li class="nav-item align-self-center ml-auto">
-                          <form id="search-form" class="form-inline">
-                              <div class="input-group search">
+            <ul class="nav nav-tabs sub-tab border-0">
+
+                <li class="nav-item align-self-center" (click)="setTitle( 'Mvest-Categories')">
+                    <a class="align-self-center" routerLink="/discussions">
+                        <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Categories /</h5>
+                    </a>
+                </li>
+
+
+                <li class="nav-item align-self-center">
+                    <a class="align-self-center" routerLink="/subcategory" [queryParams]="{subCategoryId:subCategoryId}"
+                        (click)="setTitle( 'Mvest-SubCategories' )">
+                        <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Sub Categories / </h5>
+                    </a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="align-self-center">
+                        <h5 class=" text-dark mb-0 font-weight-bold mr-3 align-self-center"> Discussions </h5>
+                    </a>
+                </li>
+
+
+
+                <div class="ml-auto d-inline-flex">
+                    <li class="nav-item align-self-center ml-auto">
+                        <form id="search-form" class="form-inline">
+                            <div class="input-group search">
                                 <input type="text" class="form-control search-form" [(ngModel)]="searchText"
-                                  [ngModelOptions]="{standalone: true}" placeholder="Search">
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search">
                                 <span class="input-group-btn">
-                                  <button type="submit" class="search-btn">
-                                    <i class="fa fa-search"></i>
-                                  </button>
+                                    <button type="submit" class="search-btn">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </span>
-                              </div>
-                            </form>
-                </li> 
-                       
-            
-                  </div>
-              </ul>
+                            </div>
+                        </form>
+                    </li>
+
+
+                </div>
+            </ul>
 
             <!-- <nav aria-label="breadcrumb">
                 <ol class="breadcrumb px-0 mb-0">
@@ -357,15 +364,5 @@
     </form>
 
 </ng-template>
-
-
-
-
-<!-- <div class="modal fade askquestion-modal-lg" tabindex="-1" role="dialog" aria-labelledby="askquestion-modal"
-    aria-hidden="true">
-    <div class="modal-dialog modal-md bg-white shadow">
-
-    </div>
-</div> -->
 
 <!---------------------------------------------------End Ask a question------------------------------------------------------------>
