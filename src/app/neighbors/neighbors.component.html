@@ -636,21 +636,20 @@
                 </div>
                 <div class="modal-body">
                         <div class="form-row">
-                            <!-- <div class="form-group col-8">
-                                <label class="font-weight-semibold pr-3"> Search Nearby Leases :</label>
-                                
-                            </div> -->
+                         
                         </div>
                         <div class="form-row">
                                 <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
                         </div>
-                        <input type="radio" name="filter" value="radio1" (change)="toggleFilterGroup()"  checked /> Filters For LeaseName And Distance<br>
-                        <div class="form-row pt-2">
-                               
-                               
-                                
-                                    <div class="form-group col-4">
-                                            <label class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
+                        <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
+                        <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" checked >
+                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters For Lease Name And Distance</label>
+                              </div>
+                       
+                        <div  class="form-row pt-2" >
+                            <div   class="form-group col-4">
+                                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                                             <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
                                                     <option>Select Lease</option>
                                                     <option>San Christoval Raunch Unit A</option>
@@ -661,7 +660,7 @@
                                                   </select>
                                         </div>
                                          <div class="form-group col-4">
-                                        <label class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
+                                        <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
                                         <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
                                                 <option> Select Distance </option> 
                                                 <option>1.5 miles away</option>
@@ -672,10 +671,19 @@
                                               </select>
                                     </div> 
                             </div>
-                            <input type="radio" name="filter" value="radio2" class="mt-4" (change)="toggleFilterGroup()"  /> Filters For County,Operator And PlayType<br>
-                            <div class="form-row" >
+                        </div>
+                            
+                            
+                            <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
+                            
+                            <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="filter" value="radio2"  class="custom-control-input"  (change)="toggleFilterGroup()"  >
+                                    <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters For County, Operator And PlayType </label>
+                                  </div>
+
+                            <div class="form-row pt-2 " >
                                   <div class="form-group col-4">
-                                    <label class="font-weight-semibold text-secondary pr-3 h6">County</label>
+                                    <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
                                     <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
                                             <option> Select County </option>
                                             <option>Karnes</option>
@@ -686,7 +694,7 @@
                                 </div> 
                                
                                     <div class="form-group col-4">
-                                        <label class="font-weight-semibold  text-secondary pr-3">Operator</label>
+                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
                                         <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
                                                 <option> Select Operator </option>
                                                 <option>Operator 1</option>
@@ -696,7 +704,7 @@
                                               </select>
                                     </div>
                                     <div class="form-group col-4">
-                                            <label class="font-weight-semibold text-secondary pr-3">Play Type :</label>
+                                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
                                             <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
                                                     <option> Select Play Type </option> 
                                                     <option>Play Type 1</option>
@@ -708,11 +716,11 @@
                                         </div>
                                         
                                 </div>
-                       
+                            </div>
                     </div>
             <div class="modal-footer">
               <button routerLink="/nearbyleases" type="button" class="btn btn-accent" data-dismiss="modal">Search</button>
-              <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Close</button> -->
+             
             </div>
           </div>
         </div>

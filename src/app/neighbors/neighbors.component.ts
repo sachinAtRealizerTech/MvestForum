@@ -9,6 +9,7 @@ export class NeighborsComponent implements OnInit {
   AdditionalFilterPage=false;
   additionalfilterflag=false;
   filterGroup = true;
+  
   constructor() { }
 
   ngOnInit() {
