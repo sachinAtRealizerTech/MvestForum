@@ -9,6 +9,7 @@ export class NeighborsComponent implements OnInit {
   AdditionalFilterPage=false;
   additionalfilterflag=false;
   filterGroup = true;
+  showFilter= true;
   
   constructor() { }
 
@@ -29,7 +30,14 @@ export class NeighborsComponent implements OnInit {
   
   toggleFilterGroup(){
     this.filterGroup = !this.filterGroup;
-  
+   
   }
- 
+
+  
+
+  showSelectedFilter(){
+this. showFilter= false;
+  }
+
+  
 }

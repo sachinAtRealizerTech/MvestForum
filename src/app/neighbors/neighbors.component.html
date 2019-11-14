@@ -19,7 +19,7 @@
                                 <a routerLink="/nearbyleases" class="btn btn-outline-accent btn-sm btn-block text-uppercase " data-toggle="modal" data-target="#newlist-modal-lg">New List</a>
                             </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
-                        <a routerLink="" class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-toggle="modal" data-target="#searchfilter-modal-lg"> New Neighbors</a>
+                        <a routerLink="" class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-toggle="modal" data-target="#newNeighbor-modal-lg"> New Neighbors</a>
                     </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
                           <a routerLink="#"  data-toggle="tooltip" title="Search by Filer" data-toggle="modal" data-target="#searchfilter-modal-lg" class="badge badge-accent rounded-5 text-white text-uppercase ">
@@ -47,11 +47,11 @@
         </div> 
     </div>
 
-    <div class="row justify-content-between gutters-1">
+    <div *ngIf="showFilter" class="row justify-content-between gutters-1">
             <div class="col-md-12 col-xl-12">
                 <div class="card card-small mt-1 shadow-sm">
                     <div class="card-body p-0">
-                        <div class="row p-2">
+                        <div class="row p-1">
                             <div class="col-12">
                                 <ul class="nav nav-tabs sub-tab border-0">
                                     
@@ -75,7 +75,62 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="!showFilter" class="row justify-content-between gutters-1">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card card-small mt-1 shadow-sm">
+                        <div class="card-body p-0">
+                            <div class="row p-2">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs sub-tab border-0">
+                                        <!-- <li class="nav-item align-self-center mb-0 text-accent pr-3 ">
+                                            <select class="text-accent font-weight-semibold dropdown-toggle">
+                                                <option>Lease : San Christoval Raunch Unit A</option>
+                                                <option>Lease : San Christoval Raunch Unit B</option>
+                                                <option>Lease : San Christoval Raunch Unit C</option>
+                                            </select>
+                                        </li>
         
+                                        <li class="nav-item align-self-center mb-0 text-accent pr-3">
+                                            <select class="text-accent font-weight-semibold dropdown-toggle">
+                                                <option>Distance : 1.5 miles away</option>
+                                                <option>Distance : 2.5 miles away</option>
+                                                <option>Distance : 3.5 miles away</option>
+                                                <option>Distance : 4.5 miles away</option> 
+                                            </select>
+                                        </li> -->
+                                        <li class="nav-item align-self-center mb-0 text-accent ">
+                                            <!-- <select class="text-accent font-weight-semibold dropdown-toggle">
+                                                <option>County : Karnes</option>
+                                                <option>County : Rockwall</option>
+                                                <option>County : Texas</option>
+                                            </select> --> 
+                                            <h6 class="text-accent font-weight-semibold mb-0">County : Karnes</h6>
+                                        </li>
+                                        <li class="nav-item align-self-center mb-0 text-accent ">
+        
+                                                <h6 class="text-accent font-weight-semibold mb-0"> | Operator : Joe Shon </h6>
+                                                <!-- <select class="text-accent font-weight-semibold dropdown-toggle"> 
+                                                     <option></option>
+                                                    <option>Operator : Joe</option>
+                                                    <option>Operator : Joe</option> 
+                                                  </select> -->
+                                            </li> 
+                                            <li class="nav-item align-self-center mb-0 text-accent  ">
+                                                    <h6 class="text-accent font-weight-semibold mb-0"> | Play Type : 1</h6>
+                                                
+                                                    <!-- <select class="text-accent font-weight-semibold dropdown-toggle"> 
+                                                         <option>Play Type : 1</option>
+                                                        <option>Play Type : 1</option>
+                                                        <option>Play Type : 1</option> 
+                                                      </select> -->
+                                                </li> 
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
         <div class="row justify-content-between gutters-1">
             <div class="col-md-12 col-xl-6"> 
                 <div class="row justify-content-between  pb-3 ">
@@ -459,62 +514,82 @@
      </div> 
  </a>
             <div  *ngIf="AdditionalFilterPage">
-            <div class="form-row" > 
-                    <div class="form-group col-4">
-                        <label class="font-weight-semibold text-secondary pr-3 h6">County :</label>
-                        <select class="form-control border" id="exampleFormControlSelect1">
-                                <option> Select County </option>
-                                <option>Karnes</option>
-                                <option>Texas</option>
-                                <option>Grimes</option>
-                                <option>Rockwall</option>
-                              </select>
-                    </div>
-                    <div class="form-group col-4">
-                            <label class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                    <option> Select Distance </option> 
-                                    <option>1.5 miles away</option>
-                                    <option>2.2 miles away</option>
-                                    <option>3.5 miles away</option>
-                                    <option>4.2 miles away</option>
-                                    <option>5.5 miles away</option> 
-                                  </select>
-                        </div>
-                        <div class="form-group col-4">
-                                <label class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
-                                <select class="form-control border" id="exampleFormControlSelect1">
-                                        <option>  Select Lease </option> 
-                                        <option>San Christoval Raunch Unit A</option>
-                                        <option>San Christoval Raunch Unit B</option>
-                                        <option>San Christoval Raunch Unit C</option>
-                                        <option>San Christoval Raunch Unit D</option>
-                                        <option>San Christoval Raunch Unit E</option> 
-                                      </select>
+                    <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" checked >
+                                    <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters For Lease Name And Distance</label>
+                                  </div>
+                           
+                            <div  class="form-row pt-2" >
+                                <div   class="form-group col-4">
+                                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                                        <option>Select Lease</option>
+                                                        <option>San Christoval Raunch Unit A</option>
+                                                        <option>San Christoval Raunch Unit B</option>
+                                                        <option>San Christoval Raunch Unit C</option>
+                                                        <option>San Christoval Raunch Unit D</option>
+                                                        <option>San Christoval Raunch Unit E</option> 
+                                                      </select>
+                                            </div>
+                                             <div class="form-group col-4">
+                                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                                    <option> Select Distance </option> 
+                                                    <option>1.5 miles away</option>
+                                                    <option>2.2 miles away</option>
+                                                    <option>3.5 miles away</option>
+                                                    <option>4.2 miles away</option>
+                                                    <option>5.5 miles away</option> 
+                                                  </select>
+                                        </div> 
+                                </div>
                             </div>
-                </div>
-                <div class="form-row pt-3">
-                   
-                        <div class="form-group col-4">
-                            <label class="font-weight-semibold text-secondary pr-3">Operator</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                    <option> Select Operator </option>
-                                    <option>John</option>
-                                    <option>Billy</option>
-                                    <option>Naya Hale</option>
-                                    <option>Joe </option>
-                                  </select>
-                        </div>
-                        <div class="form-group col-4">
-                                <label class="font-weight-semibold text-secondary pr-3">Play Type :</label>
-                                <select class="form-control border" id="exampleFormControlSelect1">
-                                        <option> Select Play Type </option> 
-                                        <option>Play Type1/option>
-                                        <option>Play Type1</option> 
-                                      </select>
-                            </div>
-                       
-                    </div>
+                                
+                                
+                                <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
+                                
+                                <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" name="filter" value="radio2"  class="custom-control-input"  (change)="toggleFilterGroup()"  >
+                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters For County, Operator And PlayType </label>
+                                      </div>
+    
+                                <div class="form-row pt-2 " >
+                                      <div class="form-group col-4">
+                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
+                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                <option> Select County </option>
+                                                <option>Karnes</option>
+                                                <option>Texas</option>
+                                                <option>Grimes</option>
+                                                <option>Rockwall</option>
+                                              </select>
+                                    </div> 
+                                   
+                                        <div class="form-group col-4">
+                                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                    <option> Select Operator </option>
+                                                    <option>Operator 1</option>
+                                                    <option>Operator 2</option>
+                                                    <option>Operator 3</option>
+                                                    <option>Operator 4</option>
+                                                  </select>
+                                        </div>
+                                        <div class="form-group col-4">
+                                                <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                        <option> Select Play Type </option> 
+                                                        <option>Play Type 1</option>
+                                                        <option>Play Type 2</option>
+                                                        <option>Play Type 3</option>
+                                                        <option>Play Type 4</option>
+                                                        <option>Play Type 5</option> 
+                                                      </select>
+                                            </div>
+                                            
+                                    </div>
+                                </div>
                 </div>
             <hr>
                     <div class="form-row ">
@@ -719,9 +794,111 @@
                             </div>
                     </div>
             <div class="modal-footer">
-              <button routerLink="/nearbyleases" type="button" class="btn btn-accent" data-dismiss="modal">Search</button>
+              <button routerLink="#" type="button" class="btn btn-accent" data-dismiss="modal" (click)="showSelectedFilter()">Search</button>
              
             </div>
           </div>
         </div>
       </div>
+
+      <div id="newNeighbor-modal-lg" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                
+                <div class="justify-content-end">
+                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                        data-dismiss="modal">
+                     <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-row">
+                             
+                            </div>
+                            <div class="form-row">
+                                    <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
+                            </div>
+                            <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" checked >
+                                    <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters For Lease Name And Distance</label>
+                                  </div>
+                           
+                            <div  class="form-row pt-2" >
+                                <div   class="form-group col-4">
+                                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                                        <option>Select Lease</option>
+                                                        <option>San Christoval Raunch Unit A</option>
+                                                        <option>San Christoval Raunch Unit B</option>
+                                                        <option>San Christoval Raunch Unit C</option>
+                                                        <option>San Christoval Raunch Unit D</option>
+                                                        <option>San Christoval Raunch Unit E</option> 
+                                                      </select>
+                                            </div>
+                                             <div class="form-group col-4">
+                                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                                    <option> Select Distance </option> 
+                                                    <option>1.5 miles away</option>
+                                                    <option>2.2 miles away</option>
+                                                    <option>3.5 miles away</option>
+                                                    <option>4.2 miles away</option>
+                                                    <option>5.5 miles away</option> 
+                                                  </select>
+                                        </div> 
+                                </div>
+                            </div>
+                                
+                                
+                                <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
+                                
+                                <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline2" name="filter" value="radio2"  class="custom-control-input"  (change)="toggleFilterGroup()"  >
+                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters For County, Operator And PlayType </label>
+                                      </div>
+    
+                                <div class="form-row pt-2 " >
+                                      <div class="form-group col-4">
+                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
+                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                <option> Select County </option>
+                                                <option>Karnes</option>
+                                                <option>Texas</option>
+                                                <option>Grimes</option>
+                                                <option>Rockwall</option>
+                                              </select>
+                                    </div> 
+                                   
+                                        <div class="form-group col-4">
+                                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                    <option> Select Operator </option>
+                                                    <option>Operator 1</option>
+                                                    <option>Operator 2</option>
+                                                    <option>Operator 3</option>
+                                                    <option>Operator 4</option>
+                                                  </select>
+                                        </div>
+                                        <div class="form-group col-4">
+                                                <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                        <option> Select Play Type </option> 
+                                                        <option>Play Type 1</option>
+                                                        <option>Play Type 2</option>
+                                                        <option>Play Type 3</option>
+                                                        <option>Play Type 4</option>
+                                                        <option>Play Type 5</option> 
+                                                      </select>
+                                            </div>
+                                            
+                                    </div>
+                                </div>
+                        </div>
+                <div class="modal-footer">
+                  <button routerLink="/nearbyleases" type="button" class="btn btn-accent" data-dismiss="modal">Search</button>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
