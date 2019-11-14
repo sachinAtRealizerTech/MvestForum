@@ -288,6 +288,7 @@ export class SignupComponent implements OnInit {
         return;
       };
       this.userId = data['data'];
+      this.sendConfirmationEmail();
       console.log('userinfodata', data)
       this.goToSecondPage();
     },
@@ -377,7 +378,6 @@ export class SignupComponent implements OnInit {
     this.signupService.postInterestPrefernce(body).subscribe(data => {
       this.goToThirdPage();
     })
-
   }
 
 
@@ -506,6 +506,16 @@ export class SignupComponent implements OnInit {
     this.emailVerificationPage = false;
     this.modalService.dismissAll(this.alertMembershipPlan)
     this.router.navigate(['signin']);
+  }
+
+  sendConfirmationEmail() {
+    debugger;
+    let body = {
+      _EmailId: this.userInfoForm.controls.eMail.value,
+    }
+    this.signupService.sendConfirmationEmail(body).subscribe(data => {
+      console.log('emaildata', data);
+    })
   }
 
 }
