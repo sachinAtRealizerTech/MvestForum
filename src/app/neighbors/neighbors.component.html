@@ -514,16 +514,16 @@
      </div> 
  </a>
             <div  *ngIf="AdditionalFilterPage">
-                    <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
+                    <div  class="p-3" [ngClass]="newListGroup?'shadow-sm':'shadow-none'">
                             <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" checked >
-                                    <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters For Lease Name And Distance</label>
+                                    <input type="radio" id="newList1" name="newList" class="custom-control-input" value="radio1" (change)="toggleNewListGroup()" checked >
+                                    <label [ngClass]="newListGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="newList1"> Filters For Lease Name And Distance</label>
                                   </div>
                            
                             <div  class="form-row pt-2" >
                                 <div   class="form-group col-4">
-                                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                                <label [ngClass]="newListGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!newListGroup">
                                                         <option>Select Lease</option>
                                                         <option>San Christoval Raunch Unit A</option>
                                                         <option>San Christoval Raunch Unit B</option>
@@ -533,8 +533,8 @@
                                                       </select>
                                             </div>
                                              <div class="form-group col-4">
-                                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                            <label [ngClass]="newListGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!newListGroup">
                                                     <option> Select Distance </option> 
                                                     <option>1.5 miles away</option>
                                                     <option>2.2 miles away</option>
@@ -547,17 +547,17 @@
                             </div>
                                 
                                 
-                                <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
+                                <div class="pt-3 p-3" [ngClass]="!newListGroup?'shadow-sm':'shadow-none'">
                                 
                                 <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="filter" value="radio2"  class="custom-control-input"  (change)="toggleFilterGroup()"  >
-                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters For County, Operator And PlayType </label>
+                                        <input type="radio" id="newList2" name="newList" value="radio2"  class="custom-control-input"  (change)="toggleNewListGroup()"  >
+                                        <label [ngClass]="!newListGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="newList2"> Filters For County, Operator And PlayType </label>
                                       </div>
     
                                 <div class="form-row pt-2 " >
                                       <div class="form-group col-4">
-                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
-                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                        <label [ngClass]="!newListGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
+                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newListGroup">
                                                 <option> Select County </option>
                                                 <option>Karnes</option>
                                                 <option>Texas</option>
@@ -567,8 +567,8 @@
                                     </div> 
                                    
                                         <div class="form-group col-4">
-                                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                            <label [ngClass]="!newListGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newListGroup">
                                                     <option> Select Operator </option>
                                                     <option>Operator 1</option>
                                                     <option>Operator 2</option>
@@ -577,8 +577,8 @@
                                                   </select>
                                         </div>
                                         <div class="form-group col-4">
-                                                <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                <label [ngClass]="!newListGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newListGroup">
                                                         <option> Select Play Type </option> 
                                                         <option>Play Type 1</option>
                                                         <option>Play Type 2</option>
@@ -818,16 +818,16 @@
                             <div class="form-row">
                                     <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
                             </div>
-                            <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
+                            <div  class="p-3" [ngClass]="newNeighborGroup?'shadow-sm':'shadow-none'">
                             <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" checked >
-                                    <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters For Lease Name And Distance</label>
+                                    <input type="radio" id="neighborradio1" name="neighborfilter" class="custom-control-input" value="radio1" (change)="toggleNewNeighborGroup()" checked >
+                                    <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="neighborradio1"> Filters For Lease Name And Distance</label>
                                   </div>
                            
                             <div  class="form-row pt-2" >
                                 <div   class="form-group col-4">
-                                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                                <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!newNeighborGroup">
                                                         <option>Select Lease</option>
                                                         <option>San Christoval Raunch Unit A</option>
                                                         <option>San Christoval Raunch Unit B</option>
@@ -837,8 +837,8 @@
                                                       </select>
                                             </div>
                                              <div class="form-group col-4">
-                                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
+                                            <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!newNeighborGroup">
                                                     <option> Select Distance </option> 
                                                     <option>1.5 miles away</option>
                                                     <option>2.2 miles away</option>
@@ -851,17 +851,17 @@
                             </div>
                                 
                                 
-                                <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
+                                <div class="pt-3 p-3" [ngClass]="!newNeighborGroup?'shadow-sm':'shadow-none'">
                                 
                                 <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="filter" value="radio2"  class="custom-control-input"  (change)="toggleFilterGroup()"  >
-                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters For County, Operator And PlayType </label>
+                                        <input type="radio" id="neighborradio2" name="neighborfilter" value="radio2"  class="custom-control-input"  (change)="toggleNewNeighborGroup()"  >
+                                        <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="neighborradio2"> Filters For County, Operator And PlayType </label>
                                       </div>
     
                                 <div class="form-row pt-2 " >
                                       <div class="form-group col-4">
-                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
-                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                        <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
+                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newNeighborGroup">
                                                 <option> Select County </option>
                                                 <option>Karnes</option>
                                                 <option>Texas</option>
@@ -871,8 +871,8 @@
                                     </div> 
                                    
                                         <div class="form-group col-4">
-                                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                            <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newNeighborGroup">
                                                     <option> Select Operator </option>
                                                     <option>Operator 1</option>
                                                     <option>Operator 2</option>
@@ -881,8 +881,8 @@
                                                   </select>
                                         </div>
                                         <div class="form-group col-4">
-                                                <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
+                                                <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
+                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newNeighborGroup">
                                                         <option> Select Play Type </option> 
                                                         <option>Play Type 1</option>
                                                         <option>Play Type 2</option>
