@@ -29,7 +29,7 @@
                         </a>
                     </li> -->
                     <li class="nav-item pull-right mr-3 align-self-center">
-                            <a routerLink="/nearbyleases" class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Connect All</a>
+                            <a routerLink="#"data-target="#connectall-modal-md" data-toggle="modal" class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Connect All</a>
                         </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
                         <form id="search-form" class="form-inline" role="form" method="post"
@@ -232,7 +232,7 @@
                                 </div>
                                 <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                     <h6 class="mb-0">
-                                        <button type="button"
+                                        <button type="button" 
                                             class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
                                     </h6>
                                 </div>
@@ -405,8 +405,8 @@
     </div>
 
 
-    <div id="searchfilter-modal-lg" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
+    <div id="connectall-modal-md" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
 
                 <div class="justify-content-end">
@@ -415,81 +415,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-row">
-                        <!-- <div class="form-group col-8">
-                                            <label class="font-weight-semibold pr-3"> Search Nearby Neighbors :</label>
-                                            
-                                        </div> -->
+                <div class="modal-body p-3">
+                     
+                    <div class="form-row text-center">
+                        <h6 class="font-weight-semibold pr-3">Are you Sure you want to Connect to All 8 Members on your Screen ??</h6>
                     </div>
-                    <div class="form-row">
-                        <h6 class="font-weight-semibold pr-3">Additional Filters :</h6>
-                    </div>
-                    <div class="form-row pt-2">
-
-                        <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3 text-secondary">County</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                <option> Select County </option>
-                                <option>Karnes</option>
-                                <option>Texas</option>
-                                <option>Grimes</option>
-                                <option>Rockwall</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3 text-secondary">Distance :</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                <option> Select Distance </option>
-                                <option>1.5 miles away</option>
-                                <option>2.2 miles away</option>
-                                <option>3.5 miles away</option>
-                                <option>4.2 miles away</option>
-                                <option>5.5 miles away</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3 text-secondary">Lease Name :</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                <option>Select Lease</option>
-                                <option>San Christoval Raunch Unit A</option>
-                                <option>San Christoval Raunch Unit B</option>
-                                <option>San Christoval Raunch Unit C</option>
-                                <option>San Christoval Raunch Unit D</option>
-                                <option>San Christoval Raunch Unit E</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-
-                        <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3 text-secondary">Operator</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                <option> Select Operator </option>
-                                <option>Operator 1</option>
-                                <option>Operator 2</option>
-                                <option>Operator 3</option>
-                                <option>Operator 4</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-4">
-                            <label class="font-weight-semibold pr-3 text-secondary">Play Type :</label>
-                            <select class="form-control border" id="exampleFormControlSelect1">
-                                <option> Select Play Type </option>
-                                <option>playType 1</option>
-                                <option>playType 2</option>
-                                <option>playType 3</option>
-                                <option>playType 4</option>
-                                <option>playType 5</option>
-                            </select>
-                        </div>
-
-                    </div>
-
+                   
+                    
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-accent">Save</button>
-                    <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Close</button> -->
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-accent"data-dismiss="modal">Yes</button>
+                  <button type="button" class="btn btn-outline-accent" data-dismiss="modal">No</button>  
                 </div>
             </div>
         </div>
