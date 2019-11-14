@@ -160,7 +160,8 @@
                 <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
                   alt="Generic placeholder image">
                 <div class="media-body mb-0 align-self-center">
-                  <h5 class="text-secondary h6 mb-0" innerHTML="{{discussionDetails?.posts[0]?.post_msg}}"></h5>
+                  <h5 class="text-secondary h6 mb-0" id="p{{discussionDetails?.posts[0]?.post_id}}"
+                    innerHTML="{{discussionDetails?.posts[0]?.post_msg}}"></h5>
                 </div>
               </div>
             </div>
@@ -208,7 +209,7 @@
             <div class="col-1">
             </div>
             <div class="col-9 border-top py-1">
-              <h6 class="mb-0 pt-1">{{qc.comment_text}}</h6>
+              <h6 class="mb-0 pt-1" id="p{{qc.comment_id}}">{{qc.comment_text}}</h6>
 
               <ul class="list-inline d-flex  border-0 mb-0">
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
@@ -246,7 +247,7 @@
                 <div class="col-2">
                 </div>
                 <div class="col-8 border-top  py-1">
-                  <h6 class="mb-0 pt-1">{{cc.comment_text}}</h6>
+                  <h6 class="mb-0 pt-1" id="p{{cc.comment_id}}">{{cc.comment_text}}</h6>
 
                   <!---------New like------->
 
@@ -302,7 +303,8 @@
                     alt="Generic placeholder image">
                   <div class="media-body mb-0 align-self-center">
                     <h5 class="text-muted h6 mb-0 font-weight-semibold">{{p.post_by_name}}</h5>
-                    <h6 class="list-inline-item mb-1 h6 text-secondary" innerHTML="{{p.post_msg}}"></h6>
+                    <h6 class="list-inline-item mb-1 h6 text-secondary" id="p{{p.post_id}}" innerHTML="{{p.post_msg}}">
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -346,7 +348,7 @@
               <div class="col-1">
               </div>
               <div class="col-9 border-top  py-1">
-                <h6 class="mb-0 pt-1">{{cm?.comment_text}}</h6>
+                <h6 class="mb-0 pt-1" id="p{{cm?.comment_id}}">{{cm?.comment_text}}</h6>
 
                 <ul class="list-inline d-flex  border-0 mb-0">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
@@ -387,7 +389,7 @@
                   <div class="col-2">
                   </div>
                   <div class="col-8 border-top py-1">
-                    <h6 class="mb-0 pt-1">{{cc.comment_text}}</h6>
+                    <h6 class="mb-0 pt-1" id="p{{cc?.comment_id}}">{{cc.comment_text}}</h6>
 
                     <!---------New like-->
 

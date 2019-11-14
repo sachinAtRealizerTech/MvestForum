@@ -18,11 +18,11 @@ import { CommunityComponent } from './community/community.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SignupComponent } from './signup/components/signup.component';
-import { DashboardComponent } from './dashboard/dashboard.component'; 
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component'; 
+import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
-import { MyaccountComponent } from './myaccount/myaccount.component'; 
+import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
 
 
@@ -31,8 +31,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SignInComponent },
-  { path: 'reset-password', component: ResetPasswordComponent},
-  { path: 'confirmemail',  component: ConfirmemailComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'confirmemail', component: ConfirmemailComponent },
   // {
   //   path: '',
   //   component: SigninLayoutComponent,
@@ -127,11 +127,10 @@ const routes: Routes = [
         path: 'nearbyneighbors',
         component: NearbyneighborsComponent
       },
-      { 
-        path: 'myaccount', 
-       component: MyaccountComponent  
-       },
-       
+      {
+        path: 'myaccount',
+        component: MyaccountComponent
+      },
 
 
     ]

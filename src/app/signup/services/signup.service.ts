@@ -54,4 +54,8 @@ export class SignupService {
     return this.httpClient.post(`${environment.APIBASEURL}/MVestUser/SendConfirmationEmail`, body, httpOptions)
   }
 
+  confirmEmail(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/ConfirmMemberEmail`, body, httpOptions)
+  }
+
 }

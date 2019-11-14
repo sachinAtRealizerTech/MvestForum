@@ -44,8 +44,15 @@ export class SignInComponent implements OnInit {
     this.signinService.signIn(body).subscribe(data => {
       console.log("login", data);
       if (data['data'] && data['data'].token) {
-        this.router.navigate(['/dashboard']);
-        this.verifyLogin = false;
+        if (data['data'].email_verified == true) {
+          this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: true } });
+          this.verifyLogin = false;
+        }
+        else {
+          this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: false } });
+          this.verifyLogin = false;
+        }
+
       }
       if (data['message'] == "Invalid data...") {
         this.verifyLogin = true;

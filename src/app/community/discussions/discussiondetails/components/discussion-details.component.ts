@@ -16,6 +16,7 @@ import { DiscussionDetails } from 'src/app/models/discussions';
 })
 export class DiscussionDetailsComponent implements OnInit {
 
+
   constructor(private discussiondetailsService: DiscussiondetailsService,
     private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
     private flashMessagesService: FlashMessagesService, private router: Router, private route: ActivatedRoute) { }
@@ -50,6 +51,7 @@ export class DiscussionDetailsComponent implements OnInit {
   post_Id: any;
   comment_Id: any;
   comment_to_id: any;
+  p_Id: string;
 
 
   ngOnInit() {
@@ -112,11 +114,14 @@ export class DiscussionDetailsComponent implements OnInit {
       problemDescription: ['', Validators.required]
     })
 
+
     this.route.queryParams.subscribe(params => {
       this.subCategoryId = params['subCategoryId']
       this.discussionId = params['discussionId'];
-      this.discussionDetailsId = params['discussionDetailsId']
+      this.discussionDetailsId = params['discussionDetailsId'];
+      this.p_Id = params['p_Id'];
     });
+
     this.getDiscussionDeatils(this.discussionDetailsId);
   }
 
@@ -148,6 +153,14 @@ export class DiscussionDetailsComponent implements OnInit {
       this.loading = false;
       this.discussiondocId = data['_id'];
       this.isLikePressed = false;
+
+      setTimeout(() => {
+        debugger;
+        const element = document.querySelector('#' + this.p_Id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        }
+      }, 2000)
     })
   }
 

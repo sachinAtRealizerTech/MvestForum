@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from '../Services/discussionslist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +20,7 @@ export class DiscussionslistComponent implements OnInit {
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
-  postQuestionModal: ElementRef;
+  postQuestionModal: TemplateRef<any>;
   discussionId: string;
   discussionList: DiscussionsList;
   subCategoryId: any;
@@ -115,7 +115,7 @@ export class DiscussionslistComponent implements OnInit {
     )
   }
 
-  openAskQuestionModal(content: ElementRef<any>) {
+  openAskQuestionModal(content: TemplateRef<any>) {
     this.postQuestionModal = content;
     this.modalService.open(this.postQuestionModal, {
       backdrop: 'static',
