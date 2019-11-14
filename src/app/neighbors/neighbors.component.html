@@ -47,7 +47,34 @@
         </div> 
     </div>
 
-   
+    <div class="row justify-content-between gutters-1">
+            <div class="col-md-12 col-xl-12">
+                <div class="card card-small mt-1 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="row p-2">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs sub-tab border-0">
+                                    
+                                    <li class="nav-item align-self-center mb-0 text-accent p-1">
+                                       
+                                        <h6 class="text-accent font-weight-semibold mb-0">All Neighbors</h6>
+                                    </li>
+                                    <!-- <li class="nav-item align-self-center mb-0 text-accent p-1">
+    
+                                            <h6 class="text-accent font-weight-semibold mb-0"> | Operator : Joe Shon </h6>
+                                           
+                                        </li>  -->
+                                        <!-- <li class="nav-item align-self-center mb-0 text-accent p-1">
+                                                <h6 class="text-accent font-weight-semibold mb-0"> | Play Type : 1</h6>
+                                             
+                                            </li>  -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="row justify-content-between gutters-1">
             <div class="col-md-12 col-xl-6"> 
@@ -617,13 +644,14 @@
                         <div class="form-row">
                                 <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
                         </div>
+                        <input type="radio" name="filter" value="radio1" (change)="toggleFilterGroup()"  checked /> Filters For LeaseName And Distance<br>
                         <div class="form-row pt-2">
                                
                                
                                 
                                     <div class="form-group col-4">
                                             <label class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1">
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
                                                     <option>Select Lease</option>
                                                     <option>San Christoval Raunch Unit A</option>
                                                     <option>San Christoval Raunch Unit B</option>
@@ -634,7 +662,7 @@
                                         </div>
                                          <div class="form-group col-4">
                                         <label class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                                        <select class="form-control border" id="exampleFormControlSelect1">
+                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
                                                 <option> Select Distance </option> 
                                                 <option>1.5 miles away</option>
                                                 <option>2.2 miles away</option>
@@ -644,10 +672,11 @@
                                               </select>
                                     </div> 
                             </div>
-                            <div class="form-row">
+                            <input type="radio" name="filter" value="radio2" class="mt-4" (change)="toggleFilterGroup()"  /> Filters For County,Operator And PlayType<br>
+                            <div class="form-row" >
                                   <div class="form-group col-4">
                                     <label class="font-weight-semibold text-secondary pr-3 h6">County</label>
-                                    <select class="form-control border" id="exampleFormControlSelect1">
+                                    <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
                                             <option> Select County </option>
                                             <option>Karnes</option>
                                             <option>Texas</option>
@@ -658,7 +687,7 @@
                                
                                     <div class="form-group col-4">
                                         <label class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                                        <select class="form-control border" id="exampleFormControlSelect1">
+                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
                                                 <option> Select Operator </option>
                                                 <option>Operator 1</option>
                                                 <option>Operator 2</option>
@@ -668,7 +697,7 @@
                                     </div>
                                     <div class="form-group col-4">
                                             <label class="font-weight-semibold text-secondary pr-3">Play Type :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1">
+                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
                                                     <option> Select Play Type </option> 
                                                     <option>Play Type 1</option>
                                                     <option>Play Type 2</option>

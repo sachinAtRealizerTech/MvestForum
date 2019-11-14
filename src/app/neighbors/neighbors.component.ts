@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NeighborsComponent implements OnInit {
   AdditionalFilterPage=false;
   additionalfilterflag=false;
+  filterGroup = true;
   constructor() { }
 
   ngOnInit() {
@@ -23,4 +24,11 @@ export class NeighborsComponent implements OnInit {
     this.additionalfilterflag=false;
 
   }
+  
+  
+  toggleFilterGroup(){
+    this.filterGroup = !this.filterGroup;
+  
+  }
+ 
 }
