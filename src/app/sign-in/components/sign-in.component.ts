@@ -45,12 +45,30 @@ export class SignInComponent implements OnInit {
       console.log("login", data);
       if (data['data'] && data['data'].token) {
         if (data['data'].email_verified == true) {
+          localStorage.setItem('currentUser', JSON.stringify(data['data']));
           this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: true } });
           this.verifyLogin = false;
         }
         else {
-          this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: false } });
-          this.verifyLogin = false;
+          debugger;
+          let date1 = new Date(data['data'].registration_date);
+          let date2 = new Date();
+
+          let Difference_In_Time = date2.getTime() - date1.getTime();
+
+          let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+          if (Difference_In_Days > 10) {
+            localStorage.setItem('currentUser', JSON.stringify(data['data']));
+            this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: false } });
+            this.verifyLogin = false;
+          }
+          else {
+            localStorage.setItem('currentUser', JSON.stringify(data['data']));
+            this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: false } });
+            this.verifyLogin = false;
+          }
+
         }
 
       }

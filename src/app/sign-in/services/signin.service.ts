@@ -20,7 +20,7 @@ export class SigninService {
     return this.httpClient.post<Auth>(`${environment.APIBASEURL}/MVestUser/login_user`, body, httpOptions).pipe(map(data => {
       if (data['data'] && data['data'].token) {
         // store user details and jwt token in session storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(data['data']));
+        //localStorage.setItem('currentUser', JSON.stringify(data['data']));
       }
       return data;
     }));
