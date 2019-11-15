@@ -12,8 +12,11 @@ import { SigninService } from '../../sign-in/services/signin.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
-    private signupService: SignupService, private router: Router, private route: ActivatedRoute,
+  constructor(private formBuilder: FormBuilder,
+    private modalService: NgbModal,
+    private signupService: SignupService,
+    private router: Router,
+    private route: ActivatedRoute,
     private signinService: SigninService) { }
 
   userTypePage: boolean = true;

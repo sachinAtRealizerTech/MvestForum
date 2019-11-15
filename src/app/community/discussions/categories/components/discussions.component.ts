@@ -17,9 +17,13 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class DiscussionsComponent implements OnInit {
 
-  constructor(private discussionsService: DiscussionsService, private formBuilder: FormBuilder,
-    private subcategoryService: SubcategoryService, private router: Router, private titleService: Title,
-    private modalService: NgbModal, private flashMessagesService: FlashMessagesService) { }
+  constructor(private discussionsService: DiscussionsService,
+    private formBuilder: FormBuilder,
+    private subcategoryService: SubcategoryService,
+    private router: Router,
+    private titleService: Title,
+    private modalService: NgbModal,
+    private flashMessagesService: FlashMessagesService) { }
 
   postQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;

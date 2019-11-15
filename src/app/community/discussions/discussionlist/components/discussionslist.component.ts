@@ -15,8 +15,11 @@ import { DiscussionsList } from 'src/app/models/discussions';
 })
 export class DiscussionslistComponent implements OnInit {
 
-  constructor(private discussionlistService: DiscussionslistService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal) { }
+  constructor(private discussionlistService: DiscussionslistService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private titleService: Title,
+    private modalService: NgbModal) { }
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;

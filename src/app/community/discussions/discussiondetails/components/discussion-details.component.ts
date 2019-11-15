@@ -17,8 +17,11 @@ import { DiscussionDetails } from 'src/app/models/discussions';
 export class DiscussionDetailsComponent implements OnInit {
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
-    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
-    private flashMessagesService: FlashMessagesService, private router: Router, private route: ActivatedRoute) { }
+    private formBuilder: FormBuilder,
+    private titleService: Title,
+    private modalService: NgbModal,
+    private flashMessagesService: FlashMessagesService,
+    private router: Router, private route: ActivatedRoute) { }
 
   discussionDetailsQuestionForm: FormGroup;
   commentForm: FormGroup;

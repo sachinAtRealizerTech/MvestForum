@@ -10,7 +10,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private signinService: SigninService, private router: Router, private route: ActivatedRoute,
+  constructor(private signinService: SigninService,
+    private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
 
   submitSignIn = false;
