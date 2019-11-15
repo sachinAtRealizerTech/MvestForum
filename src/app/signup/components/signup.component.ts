@@ -12,6 +12,10 @@ import { SigninService } from '../../sign-in/services/signin.service';
 })
 export class SignupComponent implements OnInit {
 
+  constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
+    private signupService: SignupService, private router: Router, private route: ActivatedRoute,
+    private signinService: SigninService) { }
+
   userTypePage: boolean = true;
   firstPage: boolean = false;
   secondPage: boolean = false;
@@ -62,10 +66,6 @@ export class SignupComponent implements OnInit {
   emailVerificationPage = false;
   selectedPlanInformation: any;
   planId: any;
-
-  constructor(private formBuilder: FormBuilder, private modalService: NgbModal,
-    private signupService: SignupService, private router: Router, private route: ActivatedRoute,
-    private signinService: SigninService) { }
 
   ngOnInit() {
     this.signInForm = this.formBuilder.group({
@@ -465,7 +465,7 @@ export class SignupComponent implements OnInit {
       transaction_id: 1,
       planexpiry_date: this.planExpiryDate,
       subscriptionduration: this.planDuration,
-      istransactionsuccess: "Yes",
+      istransactionsuccess: true,
       transaction_date: new Date(),
       transaction_type: "Online"
     }

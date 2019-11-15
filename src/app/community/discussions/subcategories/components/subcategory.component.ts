@@ -17,8 +17,11 @@ import { SubCategoryList } from 'src/app/models/discussions';
 })
 export class SubcategoryComponent implements OnInit {
 
-  constructor(private subcategoryService: SubcategoryService, private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private titleService: Title, private modalService: NgbModal,
+  constructor(private subcategoryService: SubcategoryService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private titleService: Title,
+    private modalService: NgbModal,
     private flashMessagesService: FlashMessagesService) { }
 
   editorConfig: AngularEditorConfig;
@@ -154,10 +157,10 @@ export class SubcategoryComponent implements OnInit {
       category_id: this.categoryId,
       subcategory_id: this.subCategoryIdDD,
       subcategory: this.subCategoryName,
-      post_title: this.postQuestionForm.controls.discussionTitle.value,
-      Desc: this.postQuestionForm.controls.problemDescription.value,
+      post_title: this.g.discussionTitle.value,
+      Desc: this.g.problemDescription.value,
       emailId: this.user.email_id,
-      name: this.user.f_name + " " + this.user.l_name
+      name: `${this.user.f_name} ${this.user.l_name}`
     }
     this.subcategoryService.postQuestion(body).subscribe(data => {
       this.flashMessagesService.show('Your question posted successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
