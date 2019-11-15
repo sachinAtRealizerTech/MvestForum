@@ -24,6 +24,7 @@ import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 const routes: Routes = [
@@ -130,6 +131,10 @@ const routes: Routes = [
       {
         path: 'myaccount',
         component: MyaccountComponent
+      },
+      {
+        path: 'notification',
+        component: NotificationComponent
       },
 
 

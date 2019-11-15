@@ -29,6 +29,7 @@ import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
+import { NotificationComponent } from './notification/notification.component';
 
 //import { BsModalService } from 'ngx-bootstrap/modal';
 //import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
@@ -56,7 +57,8 @@ import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
     NearbyleasesComponent,
     NearbyneighborsComponent,
     MyaccountComponent,
-    ConfirmemailComponent
+    ConfirmemailComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
