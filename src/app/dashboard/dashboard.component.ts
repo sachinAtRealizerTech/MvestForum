@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from '../shared/Utils';
 import { SignupService } from '../signup/services/signup.service';
@@ -14,22 +13,24 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('emailVerificationTemplate', { static: true }) emailVerificationModal: TemplateRef<any>;
 
-  verifyEmail: string;
+  constructor(private route: ActivatedRoute,
+    private modalService: NgbModal,
+    private signupService: SignupService) { }
 
-  constructor(private route: ActivatedRoute, private flashMessagesService: FlashMessagesService,
-    private modalService: NgbModal, private signupService: SignupService) { }
+  verifyEmail: boolean;
+  graceEndDate: Date;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       debugger;
-      this.verifyEmail = params['verifyEmail'];
-      if (this.verifyEmail == "false") {
+      this.verifyEmail = history.state.verifyEmail;
+      this.graceEndDate = history.state.graceEndDate;
+      if (this.verifyEmail == false) {
         debugger;
-        // this.flashMessagesService.show('Your E-mail ID is not verified yet...Please verify it within 10 days of your registration.', { cssClass: 'bg-warning flash-message', timeout: 10000 });
         this.modalService.open(this.emailVerificationModal, {
           backdrop: 'static',
           backdropClass: 'customBackdrop',
-          size: 'lg'
+
         })
       }
     });
@@ -46,6 +47,7 @@ export class DashboardComponent implements OnInit {
       _EmailId: this.user.email_id
     }
     this.signupService.sendConfirmationEmail(body).subscribe(data => {
+      this.modalService.dismissAll(this.emailVerificationModal)
     })
   }
 

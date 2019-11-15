@@ -1,69 +1,46 @@
 <div class="main-content-container container-fluid px-4">
- <div class="row justify-content-center text-center pt-5">
-    
-        <div class="col-6 border p-5 shadow top-bottom-center">
-                <div class="row justify-content-center text-center">
-                <div class="col-10 bg-black">
-                        <img src="assets/images/MVest-Logo.png" height="60px" width="auto">
-                 </div>
-                </div> 
-                <img class="pt-3"src="assets/images/email-success2.png" height="150px" width="auto" >
-            <h4 class="text-accent font-weight-semibold h5 pt-3">Congratulations !! </h4>
-            <h4 class="text-secondary font-weight-semibold h5 ">  Your eMail has been Confirmed</h4>
-         <h5 class="text-muted h6 font-weight-semibold">Thankyou , for registering with MVest !</h5>
-         <div class="w-100"></div>
-         <button routerLink="/signin" type="button" class="btn btn-accent text-accent mt-3">Sign In</button>
+
+        <!---------------------------------Successfully Email verified Page--------------------------->
+
+        <div class="row justify-content-center text-center pt-5" *ngIf="verifyEmailFlag">
+                <div class="col-6 border p-5 shadow top-bottom-center">
+                        <div class="row justify-content-center text-center">
+                                <div class="col-10 bg-black">
+                                        <img src="assets/images/MVest-Logo.png" height="60px" width="auto">
+                                </div>
+                        </div>
+                        <img class="pt-3" src="assets/images/email-success2.png" height="150px" width="auto">
+                        <h4 class="text-accent font-weight-semibold h5 pt-3">Congratulations !! </h4>
+                        <h4 class="text-secondary font-weight-semibold h5 "> Your eMail has been confirmed</h4>
+                        <h5 class="text-muted h6 font-weight-semibold">Thank you , for registering with MVest !</h5>
+                        <div class="w-100"></div>
+                        <button routerLink="/signin" type="button" class="btn btn-accent text-accent mt-3">Sign
+                                In</button>
+                </div>
         </div>
-</div>   
 
- 
-<!-- <div class="row justify-content-center text-center mt-5"> 
-        <div class="col-6 border p-5 shadow top-bottom-center">
-                <div class="row justify-content-end text-right">
-                <div class="col-10">
-                                <a class="text-secondary" data-dismiss="modal" routerLink="#"
-                                (click)="closeEmailVerificationAlertModal()"><u>Skip</u></a>
-                 </div>
-                </div> 
-                <img class="pt-3"src="assets/images/verify-email.png" height="150px" width="auto" >
-               
-            <h4 class="text-danger font-weight-semibold h5 pt-3">Verify your Email Id </h4>
-            <h4 class="text-secondary font-weight-semibold h5 "> till 24 Dec 2019 for full access </h4>
-         <h5 class="text-muted h6 font-weight-semibold">or your account might be blocked</h5>
-         <div class="w-100"></div>
-         <button routerLink="/signin" type="button" class="btn btn-accent text-accent mt-3">Verify Now</button>
+        <!---------------------------------End Successfully Email verified Page--------------------------->
+
+
+        <!---------------------------------Grace Period Over Page--------------------------->
+
+        <div class="p-5"></div>
+        <div class="row justify-content-center text-center" *ngIf="!verifyEmailFlag">
+                <div class="col-6 border p-5 shadow top-bottom-center">
+                        <img class="pt-3" src="assets/images/verify-email.png" height="150px" width="auto">
+
+                        <h4 class="text-danger font-weight-semibold h5 pt-3">Sorry {{firstName}} {{lastName}}, Your
+                                grace
+                                period is over </h4>
+                        <h5 class="text-muted h6 font-weight-semibold">You need to click on the link sent on your
+                                eMail<br>for Further Access </h5>
+                        <div class="w-100"></div>
+                        <button type="submit" class="btn btn-accent btn-sm text-uppercase mt-3"
+                                (click)="sendConfirmationEmail()">Resend
+                                E-mail</button> &nbsp; &nbsp;
+                </div>
         </div>
-</div>    -->
 
-<!-- <div class="card shadow-none"> -->
-        <!-- <div class="row justify-content-end text-right">
-            <div clas="col-12">
-                <a data-dismiss="modal" routerLink="#"
-                    (click)="closeEmailVerificationAlertModal()"><u>Skip</u></a>
-            </div>
-        </div>  -->
-        <!-- <div class="row justify-content-center text-center">
-            <div clas="col-12">
-                <img src="../../assets/images/verify-email.png" width="130" height="130">
-                <h5 class="font-weight-semibold">Verify E-Mail</h5> 
-                <h6>You need to verify your Email Id within 10 days of your registration... </h6>
-            </div>
-        </div>  -->
-      
+        <!---------------------------------End Grace Period Over Page--------------------------->
 
-    <!-- </div> -->
-<div class="p-5"></div>
-    <div class="row justify-content-center text-center  "> 
-                <div class="col-6 border p-5 shadow top-bottom-center"> 
-                        <img class="pt-3"src="assets/images/verify-email.png" height="150px" width="auto" >
-                       
-                    <h4 class="text-danger font-weight-semibold h5 pt-3">Sorry, Grace Period Over </h4> 
-                 <h5 class="text-muted h6 font-weight-semibold">You need to click on the link sent on your eMail<br>for Further Access </h5>
-                 <div class="w-100"></div> 
-                 <button type="submit" class="btn btn-accent btn-sm text-uppercase mt-3" (click)="sendConfirmationEmail()">Resend
-                        E-mail</button> &nbsp; &nbsp;
-                 <!-- <button routerLink="/signin" type="button" class="btn btn-outline-accent text-accent mt-3">Sign in</button> -->
-               
-                     </div>
-        </div>  
 </div>

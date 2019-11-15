@@ -9,15 +9,26 @@ import { SignupService } from '../signup/services/signup.service';
 })
 export class ConfirmemailComponent implements OnInit {
   confCode: string;
+  verifyEmailFlag = true;
+  firstName: string;
+  lastName: string;
 
   constructor(private route: ActivatedRoute, private signupService: SignupService) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.confCode = params['confCode']
-      //this.subCategoryId = params['subCategoryId'];
-      this.verifyEmail()
-    });
+
+    if (history.state.verifyEmail == false) {
+      this.verifyEmailFlag = false;
+      this.firstName = history.state.f_name;
+      this.lastName = history.state.l_name;
+    }
+    else {
+      this.verifyEmailFlag = true;
+      this.route.queryParams.subscribe(params => {
+        this.confCode = params['confCode']
+        this.verifyEmail();
+      });
+    }
   }
 
   verifyEmail() {
@@ -26,6 +37,7 @@ export class ConfirmemailComponent implements OnInit {
     }
     this.signupService.confirmEmail(body).subscribe(data => {
       console.log('verifyemaildata', data);
+      this.verifyEmailFlag = true;
     })
   }
 
