@@ -94,6 +94,9 @@ color:#868e96 !important
 .bg-grey{
   background: rgb(58, 58, 58);
 }
+.bg-light-grey{
+  background: rgb(238, 238, 238);
+}
 .bg-dark-grey{
   background: rgb(31, 29, 29);
 }
