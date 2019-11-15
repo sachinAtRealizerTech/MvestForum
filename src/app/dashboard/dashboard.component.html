@@ -12,33 +12,29 @@
 
 <ng-template #emailVerificationTemplate>
     <div class="modal-content">
-        <div class="modal-body text-center justify-content-center pb-2">
-            <div class="card shadow-none">
-                <div class="row justify-content-end text-right">
-                    <div clas="col-12">
-                        <a data-dismiss="modal" routerLink="#"
-                            (click)="closeEmailVerificationAlertModal()"><u>Skip</u></a>
-                    </div>
-                </div>
-
-
-                <div class="row justify-content-center text-center">
-                    <div clas="col-12">
-                        <img src="../../assets/images/verify-email.png" width="130" height="130">
-                    </div>
-                </div>
-
-                <h5 class="font-weight-semibold">Verify E-Mail</h5>
-
-                <h6>You need to verify your Email Id within 10 days of your registration... </h6>
-
-            </div>
+            <div class="modal-body text-center justify-content-center "> 
+                    <div class="row justify-content-end text-right">
+                            <div class="col-10">
+                                            <a class="text-secondary" data-dismiss="modal"
+                                            (click)="closeEmailVerificationAlertModal()"><u>Skip</u></a>
+                             </div>
+                            </div> 
+                    <div class="row justify-content-center text-center pt-3"> 
+                            <div class="col-12  top-bottom-center"> 
+                                    <img class="pt-3"src="assets/images/verify-email.png" height="150px" width="auto" >
+                                   
+                                <h4 class="text-danger font-weight-semibold h5 pt-3">Verify your Email Id </h4>
+                                <h4 class="text-secondary font-weight-semibold h5 "> till 24 Dec 2019 for full access </h4>
+                             <h5 class="text-muted h6 font-weight-semibold">or we will have to block your account</h5>
+                             <div class="w-100"></div>
+                             <h6 class="text-muted h6 font-weight-semibold pt-3">Check your Email or</h6>
+                             <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="sendConfirmationEmail()">Resend
+                                    E-mail</button> &nbsp; &nbsp;
+                             <!-- <button routerLink="/signin" type="button" class="btn btn-outline-accent text-accent mt-3">Sign in</button> -->
+                           
+                                 </div>
+                    </div>    
         </div>
-        <div class="modal-footer border-0 justify-content-center text-center">
-            <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="sendConfirmationEmail()">Resend
-                E-mail</button>
-            <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-                (click)="closeEmailVerificationAlertModal()">Skip</button> -->
-        </div>
+       
     </div>
 </ng-template>
