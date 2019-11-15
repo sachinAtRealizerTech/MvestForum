@@ -45,7 +45,6 @@ export class ConfirmemailComponent implements OnInit {
 
   sendConfirmationEmail() {
     let body = {
-      //_EmailId: ""
       _EmailId: history.state.eMailId
     }
     this.signupService.sendConfirmationEmail(body).subscribe(data => {
