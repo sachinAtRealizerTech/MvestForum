@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DiscussionslistService } from '../Services/discussionslist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
-import { DiscussionsList } from 'src/app/models/discussions';
+import { DiscussionsList } from '../../../models/discussionlist';
 
 @Component({
   selector: 'app-discussionslist',
@@ -106,8 +106,14 @@ export class DiscussionslistComponent implements OnInit {
     this.loading = true;
     this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
       this.discussionList = data;
+      debugger;
+      console.log('disclist', this.discussionList);
       this.loading = false;
       this.pageNotFound = false;
+      this.categoryName = this.discussionList['category'];
+      this.categoryId = this.discussionList['category_id'];
+      this.subCategoryIdDD = this.discussionList['sub_category_id'];
+      this.subCategoryName = this.discussionList['sub_category'];
     },
       err => {
         if (err.status == 404) {
@@ -132,11 +138,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   postQuestion() {
-    this.categoryName = sessionStorage.getItem("category_name");
-    this.categoryId = sessionStorage.getItem("category_id");
-    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
-    this.subCategoryName = sessionStorage.getItem("subCatName");
-
+    debugger;
     this.submitQuestion = true;
     if (this.discussionListQuestionForm.invalid) {
       return
@@ -157,10 +159,6 @@ export class DiscussionslistComponent implements OnInit {
       this.getDiscussionList(this.discussionId);
       this.closePostQuestionModal();
     })
-  }
-
-  readMoreDescription() {
-    this.readMore = true
   }
 
 }

@@ -7,8 +7,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { SubCategoryList } from 'src/app/models/discussions';
-
+import { SubCategoryList } from '../../../models/subcategory';
 
 @Component({
   selector: 'app-subcategory',
@@ -31,7 +30,7 @@ export class SubcategoryComponent implements OnInit {
   subCategoryId: string;
   searchText: any;
   categoriesList: any;
-  categoryId: string;
+  categoryId: any;
   subCategoryListDD: SubCategoryList[];
   submitQuestion: boolean;
   categoryName: any;
@@ -111,8 +110,8 @@ export class SubcategoryComponent implements OnInit {
       console.log('subcats', this.subCategoryList)
       this.loading = false;
       this.pageNotFound = false;
-      this.categoryName = data['category_name'];
-      this.categoryId = data['category_id'];
+      this.categoryName = data[0]['category_name'];
+      this.categoryId = data[0]['category_id'];
     },
       err => {
         if (err.status == 404) {
@@ -167,14 +166,6 @@ export class SubcategoryComponent implements OnInit {
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
     })
-  }
-
-  //-----------------------------------passing parameters to create a new discussion----------------------------------
-  sendData(subcatid: any, subCatName: string, categoryid: any, categoryname: any) {
-    sessionStorage.setItem("subcat_id", subcatid);
-    sessionStorage.setItem("subCatName", subCatName);
-    sessionStorage.setItem("category_id", categoryid);
-    sessionStorage.setItem("category_name", categoryname);
   }
 
 }

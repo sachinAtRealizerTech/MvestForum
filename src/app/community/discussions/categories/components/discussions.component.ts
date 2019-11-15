@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { DiscussionsService } from '../services/discussions.service';
-import { CategoryList, SubCategoryList } from '../../../../models/discussions';
+import { CategoryList } from '../../../models/category';
+import { SubCategoryList } from '../../../models/subcategory'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubcategoryService } from '../../subcategories/Services/subcategory.service';
 import { Router } from '@angular/router';
@@ -144,7 +145,7 @@ export class DiscussionsComponent implements OnInit {
   getSubcategoriesList() {
     this.subcategoryService.getSubcategory(this.categoryDocId).subscribe(data => {
       this.subCategoryListDD = data;
-      this.categoryId = data['category_id'];
+      this.categoryId = data[0]['category_id'];
     })
   }
 
@@ -162,7 +163,7 @@ export class DiscussionsComponent implements OnInit {
       post_title: this.postQuestionForm.controls.discussionTitle.value,
       Desc: this.postQuestionForm.controls.problemDescription.value,
       emailId: this.user.email_id,
-      name: this.user.f_name + " " + this.user.l_name
+      name: `${this.user.f_name} ${this.user.l_name}`
     }
     this.discussionsService.postQuestion(body).subscribe(data => {
       this.flashMessagesService.show('Your question posted successfully.', { cssClass: 'bg-accent flash-message', timeout: 2000 });

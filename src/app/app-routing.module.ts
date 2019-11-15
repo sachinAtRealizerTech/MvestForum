@@ -2,7 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './community/profile/profile.component';
-import { SignInComponent } from './sign-in/components/sign-in.component';
+import { SignInComponent } from './authentication/sign-in/components/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
@@ -17,13 +17,13 @@ import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
-import { SignupComponent } from './signup/components/signup.component';
+import { SignupComponent } from './authentication/signup/components/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
-import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
+import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
 import { NotificationComponent } from './notification/notification.component';
 
 

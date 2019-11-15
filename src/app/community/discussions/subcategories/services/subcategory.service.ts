@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Utils } from 'src/app/shared/Utils';
-import { SubCategoryList } from 'src/app/models/discussions';
+import { SubCategoryList } from '../../../models/subcategory';
 
 @Injectable({
   providedIn: 'root'

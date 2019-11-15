@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from '../shared/Utils';
-import { SignupService } from '../signup/services/signup.service';
+import { SignupService } from '../authentication/signup/services/signup.service';
 
 @Component({
   selector: 'app-dashboard',

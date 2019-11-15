@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProfileComponent } from './community/profile/profile.component';
-import { SignInComponent } from './sign-in/components/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
@@ -20,19 +19,14 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PathLocationStrategy, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CommunityModule } from './community/community.module';
-import { SignupComponent } from './signup/components/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { ArchwizardModule } from 'angular-archwizard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
-import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
 import { NotificationComponent } from './notification/notification.component';
-
-//import { BsModalService } from 'ngx-bootstrap/modal';
-//import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +36,6 @@ import { NotificationComponent } from './notification/notification.component';
     SideNavComponent,
     TopNavComponent,
     ProfileComponent,
-    SignInComponent,
     PhotosComponent,
     RequestsComponent,
     NewsfeedComponent,
@@ -51,14 +44,12 @@ import { NotificationComponent } from './notification/notification.component';
     MydiscussionsComponent,
     NeighborsComponent,
     CommunityComponent,
-    SignupComponent,
     DashboardComponent,
     ResetPasswordComponent,
     NearbyleasesComponent,
     NearbyneighborsComponent,
     MyaccountComponent,
-    ConfirmemailComponent,
-    NotificationComponent
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,10 +59,7 @@ import { NotificationComponent } from './notification/notification.component';
     ReactiveFormsModule,
     CommunityModule,
     NgbModule,
-    ArchwizardModule,
-    // ModalModule,
-    // BsDropdownModule,
-    // CollapseModule
+    AuthenticationModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]

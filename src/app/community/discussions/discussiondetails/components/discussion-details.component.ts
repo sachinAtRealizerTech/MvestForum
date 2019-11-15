@@ -7,7 +7,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { DiscussionDetails } from 'src/app/models/discussions';
+import { DiscussionDetails } from '../../../models/discussiondetails';
 
 @Component({
   selector: 'app-discussion-details',
@@ -137,14 +137,9 @@ export class DiscussionDetailsComponent implements OnInit {
 
   //Setting getter properties for easy form access
   get g() { return this.replyForm.controls; }
-
   get f() { return this.discussionDetailsQuestionForm.controls; }
-
   get h() { return this.commentForm.controls }
-
   get m() { return this.commentToCommentForm.controls }
-
-
 
   getDiscussionDeatils(id: string) {
     this.loading = true;
@@ -155,6 +150,10 @@ export class DiscussionDetailsComponent implements OnInit {
       this.loading = false;
       this.discussiondocId = data['_id'];
       this.isLikePressed = false;
+      this.categoryName = this.discussionDetails.category;
+      this.categoryId = this.discussionDetails.category_id;
+      this.subCategoryIdDD = this.discussionDetails.sub_category_id;
+      this.subCategoryName = this.discussionDetails.sub_category;
 
       setTimeout(() => {
         debugger;
@@ -214,10 +213,6 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   postQuestion() {
-    this.categoryName = sessionStorage.getItem("category_name");
-    this.categoryId = sessionStorage.getItem("category_id");
-    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
-    this.subCategoryName = sessionStorage.getItem("subCatName");
     this.submitQuestion = true;
     if (this.discussionDetailsQuestionForm.invalid) {
       return
