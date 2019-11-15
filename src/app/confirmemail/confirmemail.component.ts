@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { SignupService } from '../signup/services/signup.service';
 
 @Component({
@@ -13,7 +13,9 @@ export class ConfirmemailComponent implements OnInit {
   firstName: string;
   lastName: string;
 
-  constructor(private route: ActivatedRoute, private signupService: SignupService) { }
+  constructor(private route: ActivatedRoute,
+    private signupService: SignupService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -38,6 +40,16 @@ export class ConfirmemailComponent implements OnInit {
     this.signupService.confirmEmail(body).subscribe(data => {
       console.log('verifyemaildata', data);
       this.verifyEmailFlag = true;
+    })
+  }
+
+  sendConfirmationEmail() {
+    let body = {
+      //_EmailId: ""
+      _EmailId: history.state.eMailId
+    }
+    this.signupService.sendConfirmationEmail(body).subscribe(data => {
+      this.router.navigate(['/signin'])
     })
   }
 

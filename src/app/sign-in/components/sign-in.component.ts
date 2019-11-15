@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
       if (data['data'] && data['data'].token) {
         if (data['data'].email_verified == true) {
           localStorage.setItem('currentUser', JSON.stringify(data['data']));
-          this.router.navigate(['/dashboard'], { queryParams: { verifyEmail: true } });
+          this.router.navigate(['/dashboard'], { state: { verifyEmail: true } });
           this.verifyLogin = false;
         }
         else {
@@ -59,7 +59,7 @@ export class SignInComponent implements OnInit {
           let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
           if (Difference_In_Days > 10) {
-            this.router.navigate(['/confirmemail'], { state: { verifyEmail: false, f_name: data['data'].f_name, l_name: data['data'].l_name } });
+            this.router.navigate(['/confirmemail'], { state: { verifyEmail: false, f_name: data['data'].f_name, l_name: data['data'].l_name, eMailId: data['data'].email_id } });
             this.verifyLogin = false;
           }
           else {
