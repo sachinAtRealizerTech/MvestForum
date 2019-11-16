@@ -10,6 +10,9 @@ export class MyaccountComponent implements OnInit {
   editflag=false;
   editPlanflag=false;
   plansavebutton=false;
+  oldPassword= false;
+  changePasswordText=true;
+  newPassword=false;
   constructor() { }
 
   ngOnInit() {
@@ -30,4 +33,21 @@ export class MyaccountComponent implements OnInit {
     this.plansavebutton=false;
     this.editPlanflag=false;
   }
+  openOldPassword(){
+    this.oldPassword=true;
+    
+  }
+  closeOldPassword(){
+    this.oldPassword=false
+  }
+
+openNewPassword(){
+  this.newPassword=true;
+  this.oldPassword=false;
+}
+closeNewPassword(){
+  this.newPassword=false;
+}
+
+  
 }
