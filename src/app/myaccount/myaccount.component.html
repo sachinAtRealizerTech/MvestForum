@@ -255,12 +255,12 @@
 
     <div class="tab-pane fade show " id="notifications" role="tabpanel" aria-labelledby="home-tab">
     
-      <div class="row pt-3">
+      <div class="row pt-1">
         <div class="col-12">
             <ul class="list-inline d-inline-flex mb-1">
-                <li class="list-inline-item h6 text-secondary">Community Notifications</li>
+                <li class="list-inline-item h6 text-secondary align-self-center mb-1">Community Notifications</li>
              
-                <li class="list-inline-item  mb-1">
+                <li class="list-inline-item  mb-1 align-self-center">
                   <!-- <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     (click)="openSave()">
                     <small class="font-weight-semibold text-accent mb-0">Select</small>
@@ -270,24 +270,42 @@
                     <option>Sort by : Neighbors</option>
                   </select>
                 </li>
-                <li class="list-inline-item ">
+                <li class="list-inline-item align-self-center">
                     <select class="font-weight-semibold text-accent">
-                     <option>Notification Type : Information</option>
-                     <option>Notification Type : Warning</option>
+                     <option>Alert Type : Information</option>
+                     <option>Alert Type : Warning</option>
                    </select>
                  </li>  
-                 <li class="list-inline-item ">
+                 <li class="list-inline-item align-self-center">
                     <select class="font-weight-semibold text-accent">
                      <option>Status : Read</option>
                      <option>Status : Unread</option>
                    </select>
                  </li>  
-                <li *ngIf="editflag" class="list-inline-item ml-auto mb-1">
-                  <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               <!-- <li   class="list-inline-item ml-auto mb-1">
+                   <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     (click)="closeSave()">
                     <small class="font-weight-semibold text-accent mb-0">Select</small>
-                  </a>
-                </li>  
+                  </a> 
+                </li> -->
+                  <div class="ml-auto d-flex d-inline-flex">
+                      <li class="nav-item  ml-auto">
+                        <form id="search-form" class="form-inline">
+                          <div class="input-group search">
+                            <input type="text" class="form-control search-form" [(ngModel)]="searchText"
+                              [ngModelOptions]="{standalone: true}" placeholder="Search">
+                            <span class="input-group-btn">
+                              <button type="submit" class="search-btn">
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </form>
+                      </li>
+            
+            
+                    </div>
+                
 
               </ul>
         </div>
