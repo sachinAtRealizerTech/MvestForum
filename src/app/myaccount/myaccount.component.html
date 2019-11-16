@@ -255,29 +255,47 @@
 
     <div class="tab-pane fade show " id="notifications" role="tabpanel" aria-labelledby="home-tab">
     
-      
+      <div class="row pt-3">
+        <div class="col-12">
+            <ul class="list-inline d-inline-flex mb-1">
+                <li class="list-inline-item h6 text-secondary">Community Notifications</li>
+             
+                <li class="list-inline-item  mb-1">
+                  <!-- <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    (click)="openSave()">
+                    <small class="font-weight-semibold text-accent mb-0">Select</small>
+                  </a> -->
+                  <select class="font-weight-semibold text-accent">
+                    <option>Sort by : Community</option>
+                    <option>Sort by : Neighbors</option>
+                  </select>
+                </li>
+                <li class="list-inline-item ">
+                    <select class="font-weight-semibold text-accent">
+                     <option>Notification Type : Information</option>
+                     <option>Notification Type : Warning</option>
+                   </select>
+                 </li>  
+                 <li class="list-inline-item ">
+                    <select class="font-weight-semibold text-accent">
+                     <option>Status : Read</option>
+                     <option>Status : Unread</option>
+                   </select>
+                 </li>  
+                <li *ngIf="editflag" class="list-inline-item ml-auto mb-1">
+                  <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    (click)="closeSave()">
+                    <small class="font-weight-semibold text-accent mb-0">Select</small>
+                  </a>
+                </li>  
+
+              </ul>
+        </div>
+      </div>
         <div class="row">
-            <div class="col-md-6 col-xl-6 pt-3">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <ul class="list-inline d-flex mb-1">
-                          <li class="list-inline-item h6 text-secondary">Community Notifications</li>
-                          <li class="list-inline-item ml-auto">
-                          </li>
-                          <!-- <li class="list-inline-item ml-auto mb-1">
-                            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                              (click)="openSave()">
-                              <small class="font-weight-semibold text-accent mb-0">Select</small>
-                            </a>
-                          </li>
-                          <li *ngIf="editflag" class="list-inline-item ml-auto mb-1">
-                            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                              (click)="closeSave()">
-                              <small class="font-weight-semibold text-accent mb-0">Select</small>
-                            </a>
-                          </li> -->
-          
-                        </ul>
+            <div class="col-md-6 col-xl-8 pt-2">
+                <!-- <div class="row">
+                    <div class="col-xl-12">  -->
                         <div class="row justify-content-between no-gutters pb-3">
                           <div class="col-xl-12">
                               <div class="card shadow">
@@ -428,19 +446,19 @@
                           </div>
                         </div>
           
-                      </div>
-              </div>
+                      <!-- </div>
+              </div> -->
                
               </div>
 
-              <div class="col-md-6 col-xl-6 pt-3">
+              <div class="col-md-6 col-xl-8  pt-2">
                   <div class="row">
                       <div class="col-xl-12">
-                          <ul class="list-inline d-flex mb-1">
+                          <!-- <ul class="list-inline d-flex mb-1">
                             <li class="list-inline-item h6 text-secondary">Neighbors Notifications</li>
                             <li class="list-inline-item ml-auto">
                             </li> 
-                          </ul>
+                          </ul> -->
                           <div class="row justify-content-between no-gutters pb-3">
                             <div class="col-xl-12">
                                 <div class="card shadow ">
