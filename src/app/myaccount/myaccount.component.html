@@ -53,7 +53,7 @@
                 <li *ngIf="editflag" class="list-inline-item ml-auto mb-1">
                   <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     (click)="closeSave()">
-                    <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+                    <small class="font-weight-semibold text-accent mb-0"> Reset</small>
                   </a>
                 </li>
 
@@ -65,43 +65,52 @@
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">First Name : </label>
-                          <span><input type="text" value="Atul" class="border-0 form-control"></span>
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">Atul </label></h6>
+                           <input *ngIf="editflag" type="text" value="Atul" class="  form-control h6"> 
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">Last Name : </label>
-                          <input type="text" value="Pawase" class="border-0 form-control">
+                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary">Pawase </label></h6>
+                          <input *ngIf="editflag" type="text" value="Pawase" class="  form-control h6">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Phone No: </label>
-                          <input type="text" value=" 9786523487" class="border-0 form-control">
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">9786523487 </label></h6>  
+                          <input *ngIf="editflag" type="text" value=" 9786523487" class="  form-control h6">
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">eMail Id : </label>
-                          <input type="text" value=" atul22@gmail.com" class="border-0 form-control">
+                          <h6  *ngIf="!editflag"><label class="font-weight-normal text-secondary">atul22@gmail.com </label></h6>  
+                          <input *ngIf="editflag" type="text" value=" atul22@gmail.com" class=" form-control h6">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-12">
                           <label class="font-weight-semibold text-secondary">Mailing Street Address : </label>
-                          <input type="text" class="bg-light"
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar </label></h6>  
+                          
+                          <input *ngIf="editflag" type="text" class="bg-light"
                             value="422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar"
-                            class="border-0 form-control">
+                            class=" form-control h6">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">State : </label>
-                          <input type="text" value="Maharashtra " class="border-0 form-control">
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">Maharashtra  </label></h6>  
+                          <input *ngIf="editflag" type="text" value="Maharashtra " class=" form-control h6">
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">City : </label>
-                          <input type="text" value=" Pune  " class="border-0 form-control">
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">Pune  </label></h6>  
+                          <input *ngIf="editflag"  type="text" value=" Pune  " class=" form-control h6">
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Pin Code : </label>
-                          <input type="text" value=" 411060 " class="border-0 form-control">
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">411060 </label></h6>  
+                          <input *ngIf="editflag" type="text" value=" 411060 " class="  form-control h6">
                         </div>
                       </div>
                     </div>
@@ -320,7 +329,7 @@
     
       <div class="row pt-1">
         <div class="col-12">
-            <ul class="list-inline d-inline-flex mb-1">
+            <ul class="list-inline d-flex mb-1">
                 <li class="list-inline-item h6 text-secondary align-self-center mb-1">Community Notifications</li>
              
                 <li class="list-inline-item  mb-1 align-self-center">
@@ -328,18 +337,18 @@
                     (click)="openSave()">
                     <small class="font-weight-semibold text-accent mb-0">Select</small>
                   </a> -->
-                  <select class="font-weight-semibold text-accent">
+                  <select class="font-weight-semibol  text-accent">
                     <option>Sort by : Community</option>
                     <option>Sort by : Neighbors</option>
                   </select>
                 </li>
-                <li class="list-inline-item align-self-center">
+                <li class="list-inline-item  mb-1 align-self-center">
                     <select class="font-weight-semibold text-accent">
                      <option>Alert Type : Information</option>
                      <option>Alert Type : Warning</option>
                    </select>
                  </li>  
-                 <li class="list-inline-item align-self-center">
+                 <li class="list-inline-item  mb-1 align-self-center">
                     <select class="font-weight-semibold text-accent">
                      <option>Status : Read</option>
                      <option>Status : Unread</option>
@@ -351,8 +360,8 @@
                     <small class="font-weight-semibold text-accent mb-0">Select</small>
                   </a> 
                 </li> -->
-                  <div class="ml-auto d-flex d-inline-flex">
-                      <li class="nav-item  ml-auto">
+                  <!-- <div class="ml-auto d-flex d-inline-flex"> -->
+                      <li class="nav-item ml-auto">
                         <form id="search-form" class="form-inline">
                           <div class="input-group search">
                             <input type="text" class="form-control search-form" [(ngModel)]="searchText"
@@ -367,7 +376,7 @@
                       </li>
             
             
-                    </div>
+                    <!-- </div> -->
                 
 
               </ul>
