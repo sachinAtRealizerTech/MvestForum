@@ -8,16 +8,17 @@ import { SignupService } from '../signup/services/signup.service';
   styleUrls: ['./confirmemail.component.scss']
 })
 export class ConfirmemailComponent implements OnInit {
-  confCode: string;
-  verifyEmailFlag: boolean;
-  firstName: string;
-  lastName: string;
-  emailNotVerifyFlag: boolean
-  graceEmailFlag: boolean;
 
   constructor(private route: ActivatedRoute,
     private signupService: SignupService,
     private router: Router) { }
+
+  confCode: string;
+  verifyEmailFlag: boolean;
+  firstName: string;
+  lastName: string;
+  emailNotVerifyFlag: boolean;
+  graceEmailFlag: boolean;
 
   ngOnInit() {
 
@@ -29,7 +30,6 @@ export class ConfirmemailComponent implements OnInit {
       this.lastName = history.state.l_name;
     }
     else {
-      // this.verifyEmailFlag = true;
       this.route.queryParams.subscribe(params => {
         this.confCode = params['confCode']
         this.verifyEmail();

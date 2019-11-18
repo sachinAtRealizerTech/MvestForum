@@ -5,9 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="content-loading text-center" *ngIf="loading">
-        <div class="spinner-border text-accent" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
+        <app-loadingcircle></app-loadingcircle>
       </div>
     </div>
   </div>
@@ -133,9 +131,7 @@
                     <a routerLink="/discussionslist"
                       [queryParams]="{discussionId:sc.sub_categories.subcat_id,subCategoryId:subCategoryId}"
                       (click)="setTitle( 'Mvest-Discussions')">
-                      <div class="card d-inline category-main"
-                        (click)="sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc?.category_id,sc?.category_name)"
-                        style="width:50rem">
+                      <div class="card d-inline category-main" style="width:50rem">
                         <img class="img-fluid img-thumbnail rounded-left" src="{{sc.sub_categories.image}}" alt=""
                           width="250px">
                         <div class="category-text">

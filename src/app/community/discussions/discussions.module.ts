@@ -11,14 +11,19 @@ import { RouterModule } from "@angular/router";
 import { SummaryPipe } from 'src/app/shared/pipes/summary.pipe';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { DiscussionsComponent } from './categories/components/discussions.component';
+//import { DiscussionsComponent } from '../../../../discussions/categories/components/discussions.component';
+import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle.component';
 // import { NgxEditorModule } from 'ngx-editor';
 
 
 @NgModule({
   declarations: [
+    DiscussionsComponent,
     SubcategoryComponent,
     DiscussionslistComponent,
     DiscussionDetailsComponent,
+    LoadingcircleComponent,
     TimeAgoPipe,
     SummaryPipe
   ],

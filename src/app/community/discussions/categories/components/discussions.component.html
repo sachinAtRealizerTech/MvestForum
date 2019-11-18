@@ -2,12 +2,20 @@
 
   <flash-messages class="bg-accent text-center"></flash-messages>
 
-  <div class="row justify-content-center">
+  <!-- <div class="row justify-content-center">
     <div class="col-12">
       <div class="content-loading text-center" *ngIf="loading">
         <div class="spinner-border text-accent" role="status">
           <span class="sr-only">Loading...</span>
         </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
       </div>
     </div>
   </div>
