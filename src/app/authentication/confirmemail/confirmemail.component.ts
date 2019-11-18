@@ -9,9 +9,11 @@ import { SignupService } from '../signup/services/signup.service';
 })
 export class ConfirmemailComponent implements OnInit {
   confCode: string;
-  verifyEmailFlag = true;
+  verifyEmailFlag: boolean;
   firstName: string;
   lastName: string;
+  emailNotVerifyFlag: boolean
+  graceEmailFlag: boolean;
 
   constructor(private route: ActivatedRoute,
     private signupService: SignupService,
@@ -20,12 +22,14 @@ export class ConfirmemailComponent implements OnInit {
   ngOnInit() {
 
     if (history.state.verifyEmail == false) {
+      this.graceEmailFlag = true;
+      this.emailNotVerifyFlag = false;
       this.verifyEmailFlag = false;
       this.firstName = history.state.f_name;
       this.lastName = history.state.l_name;
     }
     else {
-      this.verifyEmailFlag = true;
+      // this.verifyEmailFlag = true;
       this.route.queryParams.subscribe(params => {
         this.confCode = params['confCode']
         this.verifyEmail();
@@ -39,7 +43,17 @@ export class ConfirmemailComponent implements OnInit {
     }
     this.signupService.confirmEmail(body).subscribe(data => {
       console.log('verifyemaildata', data);
-      this.verifyEmailFlag = true;
+      if (data['data'][0].confirmemailaddress = "INVALID_CODE") {
+        debugger;
+        this.emailNotVerifyFlag = true;
+        this.verifyEmailFlag = false;
+        this.graceEmailFlag = false;
+      }
+      else {
+        this.verifyEmailFlag = true;
+        this.emailNotVerifyFlag = false;
+        this.graceEmailFlag = false;
+      }
     })
   }
 
