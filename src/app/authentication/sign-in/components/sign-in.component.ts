@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SigninService } from '../services/signin.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { graceLimit } from '../../../shared/constants'
 
 @Component({
   selector: 'app-sign-in',
@@ -60,7 +61,7 @@ export class SignInComponent implements OnInit {
 
           let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-          if (Difference_In_Days > 10) {
+          if (Difference_In_Days > graceLimit.graceLimit) {
             this.router.navigate(['/confirmemail'], { state: { verifyEmail: false, f_name: data['data'].f_name, l_name: data['data'].l_name, eMailId: data['data'].email_id } });
             this.verifyLogin = false;
           }
