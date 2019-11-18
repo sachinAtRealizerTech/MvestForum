@@ -10,6 +10,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import * as htmlEditorConfig from '../../../../shared/htmleditorconfig.json'
 
 @Component({
   selector: 'app-discussions',
@@ -44,6 +45,7 @@ export class DiscussionsComponent implements OnInit {
   newCategory: boolean;
 
   ngOnInit() {
+    // this.editorConfig = htmlEditorConfig
     this.editorConfig = {
       editable: true,
       spellcheck: true,
