@@ -83,7 +83,7 @@
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">eMail Id : </label>
                           <h6  *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">atul22@gmail.com </label></h6>  
-                          <input *ngIf="editflag" type="text" value=" atul22@gmail.com" class=" form-control h6">
+                          <input *ngIf="editflag" disabled type="text" value=" atul22@gmail.com" class=" form-control h6  [disabled]='disableTextbox'">
                         </div>
                       </div>
                       <div class="form-row">
