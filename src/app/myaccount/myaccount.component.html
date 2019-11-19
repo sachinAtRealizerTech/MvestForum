@@ -17,7 +17,7 @@
             role="tab" aria-controls="notifications" aria-selected="false">Alerts</a>
         </li>
         <li class="nav-item">
-          <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+          <a routerLink="/settings" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
             aria-controls="contact" aria-selected="false">Settings</a>
         </li>
         <!-- <li class="nav-item">
@@ -60,36 +60,36 @@
               </ul>
               <div class="row justify-content-between no-gutters pb-3">
                 <div class="col-xl-12">
-                  <div class="card card-small blog-comments">
-                    <div class="card-body shadow p-4">
+                  <div class="card card-small  shadow">
+                    <div class="card-body p-4">
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">First Name : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">Atul </label></h6>
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary  mb-0">Atul </label></h6>
                            <input *ngIf="editflag" type="text" value="Atul" class="  form-control h6"> 
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">Last Name : </label>
-                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary">Pawase </label></h6>
+                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">Pawase </label></h6>
                           <input *ngIf="editflag" type="text" value="Pawase" class="  form-control h6">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Phone No: </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">9786523487 </label></h6>  
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">9786523487 </label></h6>  
                           <input *ngIf="editflag" type="text" value=" 9786523487" class="  form-control h6">
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">eMail Id : </label>
-                          <h6  *ngIf="!editflag"><label class="font-weight-normal text-secondary">atul22@gmail.com </label></h6>  
+                          <h6  *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">atul22@gmail.com </label></h6>  
                           <input *ngIf="editflag" type="text" value=" atul22@gmail.com" class=" form-control h6">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-12">
                           <label class="font-weight-semibold text-secondary">Mailing Street Address : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar </label></h6>  
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar </label></h6>  
                           
                           <input *ngIf="editflag" type="text" class="bg-light"
                             value="422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar"
@@ -99,17 +99,17 @@
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">State : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">Maharashtra  </label></h6>  
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">Maharashtra  </label></h6>  
                           <input *ngIf="editflag" type="text" value="Maharashtra " class=" form-control h6">
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">City : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">Pune  </label></h6>  
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">Pune  </label></h6>  
                           <input *ngIf="editflag"  type="text" value=" Pune  " class=" form-control h6">
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Pin Code : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary">411060 </label></h6>  
+                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">411060 </label></h6>  
                           <input *ngIf="editflag" type="text" value=" 411060 " class="  form-control h6">
                         </div>
                       </div>
@@ -351,28 +351,32 @@
       <div class="row pt-1">
         <div class="col-12">
             <ul class="list-inline d-flex mb-1">
-                <li class="list-inline-item h6 text-secondary align-self-center mb-1">Community Notifications</li>
+                <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">Notifications</li>
              
-                <li class="list-inline-item  mb-1 align-self-center">
+                <li class="list-inline-item  mb-1 align-self-center pr-3">
                   <!-- <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     (click)="openSave()">
                     <small class="font-weight-semibold text-accent mb-0">Select</small>
                   </a> -->
                   <select class="font-weight-semibold  text-accent">
-                    <option>Sort by : Community</option>
-                    <option>Sort by : Neighbors</option>
+                    <option>Feature : All</option>
+                    <option>  Community</option>
+                    <option>  Neighbors</option>
                   </select>
                 </li>
-                <li class="list-inline-item  mb-1 align-self-center">
-                    <select class="font-weight-semibold text-accent">
-                     <option>Alert Type : Information</option>
-                     <option>Alert Type : Warning</option>
+                <li class="list-inline-item  mb-1 align-self-center pr-3">
+                    <select class="font-weight-semibold text-accent ">
+                     <option>Type : All</option>
+                     <option>  Informative</option>
+                     <option> Acton</option>
                    </select>
                  </li>  
-                 <li class="list-inline-item  mb-1 align-self-center">
-                    <select class="font-weight-semibold text-accent">
-                     <option>Status : Read</option>
-                     <option>Status : Unread</option>
+                 <li class="list-inline-item  mb-1 align-self-center pr-3">
+                    <select class="font-weight-semibold text-accent ">
+                     <option>Status : All</option>
+                     <option> Read</option>
+                     <option> Unread</option>
+                     <option> Archive</option>
                    </select>
                  </li>  
                <!-- <li   class="list-inline-item ml-auto mb-1">
