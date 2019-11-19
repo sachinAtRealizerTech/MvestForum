@@ -1,5 +1,5 @@
 import { NgModule, Component } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { ProfileComponent } from './community/profile/profile.component';
 import { SignInComponent } from './authentication/sign-in/components/sign-in.component';
@@ -25,6 +25,7 @@ import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.comp
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
 import { NotificationComponent } from './notification/notification.component';
+import { AuthGuard } from './authentication/Components/guards/auth.guards';
 
 
 const routes: Routes = [
@@ -57,84 +58,103 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       },
 
       {
         path: 'photos',
-        component: PhotosComponent
+        component: PhotosComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'requests',
-        component: RequestsComponent
+        component: RequestsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'newsfeed',
-        component: NewsfeedComponent
+        component: NewsfeedComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'messages',
-        component: MessagesComponent
+        component: MessagesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'following',
-        component: FollowingComponent
+        component: FollowingComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'mydiscussions',
-        component: MydiscussionsComponent
+        component: MydiscussionsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'discussions',
-        component: DiscussionsComponent
+        component: DiscussionsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'subcategory',
-        component: SubcategoryComponent
+        component: SubcategoryComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'discussionslist',
-        component: DiscussionslistComponent
+        component: DiscussionslistComponent,
+        canActivate: [AuthGuard]
 
       },
       {
         path: 'discussion-details',
-        component: DiscussionDetailsComponent
+        component: DiscussionDetailsComponent,
+        canActivate: [AuthGuard]
 
       },
       {
         path: 'neighbors',
-        component: NeighborsComponent
+        component: NeighborsComponent,
+        canActivate: [AuthGuard]
 
       },
       {
         path: 'community',
-        component: CommunityComponent
+        component: CommunityComponent,
+        canActivate: [AuthGuard]
 
       },
       {
         path: 'signup',
-        component: SignupComponent
+        component: SignupComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'nearbyleases',
-        component: NearbyleasesComponent
+        component: NearbyleasesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'nearbyneighbors',
-        component: NearbyneighborsComponent
+        component: NearbyneighborsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'myaccount',
-        component: MyaccountComponent
+        component: MyaccountComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'notification',
-        component: NotificationComponent
+        component: NotificationComponent,
+        canActivate: [AuthGuard]
       },
 
 

@@ -3,6 +3,7 @@ import { SigninService } from '../services/signin.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { graceLimit } from '../../../shared/constants'
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -48,6 +49,7 @@ export class SignInComponent implements OnInit {
       console.log("login", data);
       if (data['data'] && data['data'].token) {
         if (data['data'].email_verified == true) {
+          this.signinService.loggedIn.next(true);
           localStorage.setItem('currentUser', JSON.stringify(data['data']));
           this.router.navigate(['/dashboard'], { state: { verifyEmail: true } });
           this.verifyLogin = false;
@@ -62,10 +64,12 @@ export class SignInComponent implements OnInit {
           let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
           if (Difference_In_Days > graceLimit.graceLimit) {
+            this.signinService.loggedIn.next(false);
             this.router.navigate(['/confirmemail'], { state: { verifyEmail: false, f_name: data['data'].f_name, l_name: data['data'].l_name, eMailId: data['data'].email_id } });
             this.verifyLogin = false;
           }
           else {
+            this.signinService.loggedIn.next(true);
             localStorage.setItem('currentUser', JSON.stringify(data['data']));
             let date1 = new Date(data['data'].registration_date);
             let graceEndDate = new Date(date1.setDate(date1.getDate() + 10))
@@ -89,7 +93,5 @@ export class SignInComponent implements OnInit {
     this.signInForm.reset();
     this.router.navigate(['/signup'])
   }
-
-
 
 }

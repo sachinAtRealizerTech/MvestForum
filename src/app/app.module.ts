@@ -28,6 +28,8 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 //import { LoadingcircleComponent } from './shared/loadingcircle/loadingcircle.component';
+import { CanActivate } from '@angular/router'
+import { AuthGuard } from './authentication/Components/guards/auth.guards';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,10 @@ import { AuthenticationModule } from './authentication/authentication.module';
     NgbModule,
     AuthenticationModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    [AuthGuard]
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
