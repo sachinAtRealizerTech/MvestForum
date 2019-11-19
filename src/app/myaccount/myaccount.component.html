@@ -169,22 +169,11 @@
                 </div>
               </div>
             </div> -->
-            <div class="col-xl-4">
+            <!-- <div class="col-xl-4">
                 <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
                   <ul class="list-inline d-flex">
                     <li class="list-inline-item h6 text-secondary mb-0">Security</li>
-                    <!-- <li *ngIf="!editPlanflag" class="list-inline-item ml-auto mb-1">
-                      <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        (click)="openPlanSave()">
-                        <small class="font-weight-semibold text-accent mb-0"> Edit</small>
-                      </a>
-                    </li> -->
-                    <!-- <li *ngIf="editPlanflag" class="list-inline-item ml-auto mb-1">
-                      <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        (click)="closePlanSave()">
-                        <small class="font-weight-semibold text-accent mb-0"> Edit</small>
-                      </a>
-                    </li> -->
+                   
                   </ul>
                   <div class="card justify-content-between shadow d-flex card-small ">
                     <div class="card-body text-center py-3">
@@ -225,8 +214,44 @@
                     
                   </div>
                 </div>
-              </div>
+              </div> -->
             
+                <div class="col-xl-4">
+                  <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                    <ul class="list-inline d-flex">
+                      <li class="list-inline-item h6 text-secondary mb-0">Security</li>
+                      </ul>
+                    <div class="card justify-content-between shadow d-flex card-small ">
+                      <div class="card-body text-center py-3">
+                        <div class="form-group text-left mb-0">
+                          <a routerLink="#" (click)="openChangePassword()">Change Password</a>
+                         
+                         <div *ngIf="Openpassword">
+                          <div  class="pt-2">
+                              <label class="text-secondary">Old Password</label>
+                              <input formControlName="oldPwd" id="oldPwd" type="password" class="form-control">
+                            </div>
+                              <div class="py-3">
+                                  <label class="text-secondary">New Password</label>
+                                  <input formControlName="newPwd" id="newPwd" type="password" class="form-control">
+                                </div>
+                                <div class="pb-3">
+                                    <label class="text-secondary">Confirm Password</label>
+                                    <input formControlName="confirmPwd" id="confirmPwd" type="password" class="form-control">
+                                  </div>
+                                  <div class="pb-3 justify-content-end text-right">
+                                      <button type="button" class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right" >Update</button>
+                                      <button type="button" class="btn btn-outline-accent  rounded-0 text-uppercase px-5  pull-right" (click)="closeChangePassword()" >Cancel</button>
+          
+                                    </div>
+                                 
+                                  </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
           
           </div>
         </div>
