@@ -30,6 +30,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 //import { LoadingcircleComponent } from './shared/loadingcircle/loadingcircle.component';
 import { CanActivate } from '@angular/router'
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AuthGuard } from './authentication/Components/guards/auth.guards';
     NearbyneighborsComponent,
     MyaccountComponent,
     NotificationComponent,
+    SettingsComponent,
     //LoadingcircleComponent,
   ],
   imports: [

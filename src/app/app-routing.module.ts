@@ -25,8 +25,8 @@ import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.comp
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
 import { NotificationComponent } from './notification/notification.component';
-import { AuthGuard } from './authentication/Components/guards/auth.guards';
-
+import { AuthGuard } from './authentication/Components/guards/auth.guards'; 
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
 
@@ -154,6 +154,11 @@ const routes: Routes = [
       {
         path: 'notification',
         component: NotificationComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
         canActivate: [AuthGuard]
       },
 

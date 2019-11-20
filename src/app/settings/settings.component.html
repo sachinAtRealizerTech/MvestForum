@@ -1,0 +1,292 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="row pb-3 pt-4">
+        <div class="col-12">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item align-self-center">
+                    <a routerLink="/myaccount">
+                        <h5 class="text-dark mb-0 font-weight-bold mr-3">My Account</h5>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a routerLink="/myaccount" class="nav-link text-muted font-weight-bold text-uppercase" data-toggle="tab"
+                        aria-controls="profile" aria-selected="false">My Details</a>
+                </li>
+                <li class="nav-item ">
+                    <a routerLink="/notification" class="nav-link text-muted font-weight-bold text-uppercase"
+                        data-toggle="tab" role="tab" aria-controls="notifications" aria-selected="false">Alerts</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/settings" class="active nav-link text-muted font-weight-bold text-uppercase"
+                        role="tab" aria-controls="contact" aria-selected="false">Settings</a>
+                </li>
+                <!-- <li class="nav-item">
+            <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
+              aria-selected="false">Manage Subscription</a>
+          </li>  -->
+                <!-- <li class="nav-item">
+            <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
+              aria-selected="false">Change Password</a>
+          </li>  -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="row justify-content-start py-3">
+        <div class="col-xl-12">
+            <div class="row justify-content-start no-gutters pb-4">
+                <div class="col-xl-8">
+                    <ul class="list-inline d-flex mb-1">
+                        <li class="list-inline-item h6 text-secondary">Notification Preferences</li>
+                        <li class="list-inline-item ml-auto">
+                        </li>
+                        <li *ngIf="!editPreferenceflag" class="list-inline-item ml-auto mb-1">
+                            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                (click)="openEditpreferences()">
+                                <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+                            </a>
+                        </li>
+                        <li *ngIf="editPreferenceflag" class="list-inline-item ml-auto mb-1">
+                            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                (click)="closeEditpreferences()">
+                                <small class="font-weight-semibold text-accent mb-0"> Reset</small>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="row justify-content-start  pb-3">
+                        <div class="col-xl-12">
+                            <div class="card card-small  shadow">
+                                <div class="card-body p-3">
+                                    <div class="form-row">
+                                        <div class="form-group mb-0 col-12">
+                                            <label class="font-weight-semibold text-secondary mb-0 pr-1">Notified via :
+                                            </label>
+                                            <label class="font-weight-normal text-secondary mb-0">Both text Messages an eMail.</label>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!editPreferencesPage" class="form-row">
+                                            <div class="col-12 form-group mb-0 pt-3">
+                                                <div class="custom-control custom-radio pb-3">
+                                                    <input type="radio" id="customRadioInline1" disabled name="Preferences"
+                                                        class="custom-control-input" formControlName="Preferences">
+                                                    <label class="custom-control-label" for="customRadioInline1">I prefer to
+                                                        be notified via text messages</label>
+                                                </div>
+                                                <div class="custom-control custom-radio pb-3">
+                                                    <input type="radio" id="customRadioInline2" disabled checked name="Preferences"
+                                                        class="custom-control-input" formControlName="Preferences">
+                                                    <label class="custom-control-label" for="customRadioInline2">I prefer to
+                                                        be notified via eMail</label>
+                                                </div>
+                                                <div class="custom-control custom-radio pb-3">
+                                                    <input type="radio" id="customRadioInline3" disabled name="Preferences"
+                                                        class="custom-control-input" formControlName="Preferences">
+                                                    <label class="custom-control-label" for="customRadioInline3">I prefer to
+                                                        be notified via both text mssages and eMails</label>
+                                                </div>
+                                                <div class="custom-control custom-radio pb-3">
+                                                    <input type="radio" id="customRadioInline4" disabled name="Preferences"
+                                                        class="custom-control-input" formControlName="Preferences">
+                                                    <label class="custom-control-label" for="customRadioInline4">I don't
+                                                        prefer to
+                                                        be notified </label>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    <div *ngIf="editPreferencesPage" class="form-row">
+                                        <div class="col-12 form-group mb-0 pt-3">
+                                            <div class="custom-control custom-radio pb-3">
+                                                <input type="radio" id="customRadioInline1" name="Preferences"
+                                                    class="custom-control-input" formControlName="Preferences">
+                                                <label class="custom-control-label" for="customRadioInline1">I prefer to
+                                                    be notified via text messages</label>
+                                            </div>
+                                            <div class="custom-control custom-radio pb-3">
+                                                <input type="radio" id="customRadioInline2" checked name="Preferences"
+                                                    class="custom-control-input" formControlName="Preferences">
+                                                <label class="custom-control-label" for="customRadioInline2">I prefer to
+                                                    be notified via eMail</label>
+                                            </div>
+                                            <div class="custom-control custom-radio pb-3">
+                                                <input type="radio" id="customRadioInline3" name="Preferences"
+                                                    class="custom-control-input" formControlName="Preferences">
+                                                <label class="custom-control-label" for="customRadioInline3">I prefer to
+                                                    be notified via both text mssages and eMails</label>
+                                            </div>
+                                            <div class="custom-control custom-radio pb-3">
+                                                <input type="radio" id="customRadioInline4" name="Preferences"
+                                                    class="custom-control-input" formControlName="Preferences">
+                                                <label class="custom-control-label" for="customRadioInline4">I don't
+                                                    prefer to
+                                                    be notified </label>
+                                            </div>
+                                            <div class="card-footer d-flex border-top pb-0">
+                                                <button
+                                                    class="btn btn-accent text-white rounded-0  px-5  ml-auto text-uppercase">Update
+                                                    Preferences
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                  
+                                </div>
+                                <div *ngIf="savebutton" class="card-footer d-flex border-top ">
+                                    <button
+                                        class="btn btn-accent text-white rounded-0  px-5  ml-auto text-uppercase">Update
+                                        Preferences
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <ul class="list-inline d-flex mb-1">
+                                    <li class="list-inline-item h6 text-secondary">Notification Preferences</li>
+                                    <li class="list-inline-item ml-auto">
+                                    </li>
+                                    <li *ngIf="!editPreferenceflag" class="list-inline-item ml-auto mb-1">
+                                        <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            (click)="openEditpreferences()">
+                                            <small class="font-weight-semibold text-accent mb-0"> Edit</small>
+                                        </a>
+                                    </li>
+                                    <li *ngIf="editPreferenceflag" class="list-inline-item ml-auto mb-1">
+                                        <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            (click)="closeEditpreferences()">
+                                            <small class="font-weight-semibold text-accent mb-0"> Reset</small>
+                                        </a>
+                                    </li>
+            
+                                </ul> -->
+                        <!-- <div class="col-xl-4">
+                          <div class="card card-small mt-3 shadow mt-3">
+                                    <div class="card-body p-3"> 
+                                        <div class="form-row">
+                                            <div class="form-group mb-0 d-flex col-12">
+                                                <label class="font-weight-semibold text-secondary mb-0 pr-1">Community Notifications
+                                                </label>
+                                                <div class="ml-auto">
+                                                <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                                        <label class="custom-control-label" for="customSwitch1"> </label>
+                                                      </div>
+                                                    </div>
+                                            </div>
+                                        </div> 
+                                          </div>
+                                   
+                                </div> 
+                            </div> 
+                            <div class="col-xl-4">
+                              <div class="card card-small mt-3 shadow mt-3">
+                                        <div class="card-body p-3"> 
+                                            <div class="form-row">
+                                                <div class="form-group mb-0 d-flex col-12">
+                                                    <label class="font-weight-semibold text-secondary mb-0 pr-1">Neighbors Notifications
+                                                    </label>
+                                                    <div class="ml-auto">
+                                                    <div class="custom-control custom-switch">
+                                                            <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                                            <label class="custom-control-label" for="customSwitch3"> </label>
+                                                          </div>
+                                                        </div>
+                                                </div>
+                                            </div> 
+                                              </div>
+                                       
+                                    </div>    
+                                </div> 
+                                <div class="col-xl-4">
+                                        <div class="card card-small mt-3 shadow mt-3">
+                                                  <div class="card-body p-3"> 
+                                                      <div class="form-row">
+                                                          <div class="form-group mb-0 d-flex col-12">
+                                                              <label class="font-weight-semibold text-secondary mb-0 pr-1">Request Notifications
+                                                              </label>
+                                                              <div class="ml-auto">
+                                                              <div class="custom-control custom-switch">
+                                                                      <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                                                      <label class="custom-control-label" for="customSwitch3"> </label>
+                                                                    </div>
+                                                                  </div>
+                                                          </div>
+                                                      </div> 
+                                                        </div>
+                                                 
+                                              </div>    
+                                          </div>  -->
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-xl-4">
+                    <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                        <ul class="list-inline d-flex">
+                            <li class="list-inline-item h6 text-secondary mb-0">Advance Preferences</li>
+                        </ul>
+                        <div class="card card-small mt-3 shadow mt-3">
+                            <div class="card-body p-3">
+                                <div class="form-row">
+                                    <div class="form-group mb-0 d-flex col-12">
+                                        <label class="font-weight-semibold text-secondary mb-0 pr-1">Community
+                                            Notifications
+                                        </label>
+                                        <div class="ml-auto">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" checked id="customSwitch4">
+                                                <label class="custom-control-label" for="customSwitch4"> </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-small mt-3 shadow mt-3">
+                            <div class="card-body p-3 ">
+                                <div class="form-row">
+                                    <div class="form-group mb-0 d-flex col-12">
+                                        <label class="font-weight-semibold text-secondary mb-0 pr-1">Neighbors
+                                            Notifications
+                                        </label>
+                                        <div class="ml-auto">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch5">
+                                                <label class="custom-control-label" for="customSwitch5"> </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card card-small mt-3 shadow mt-3">
+                                <div class="card-body p-3 ">
+                                    <div class="form-row">
+                                        <div class="form-group mb-0 d-flex col-12">
+                                            <label class="font-weight-semibold text-secondary mb-0 pr-1">Requests
+                                                Notifications
+                                            </label>
+                                            <div class="ml-auto">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" checked id="customSwitch6">
+                                                    <label class="custom-control-label" for="customSwitch6"> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
