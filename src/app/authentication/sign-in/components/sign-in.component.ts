@@ -49,6 +49,7 @@ export class SignInComponent implements OnInit {
       console.log("login", data);
       if (data['data'] && data['data'].token) {
         if (data['data'].email_verified == true) {
+          console.log('login', data['data'])
           this.signinService.loggedIn.next(true);
           localStorage.setItem('currentUser', JSON.stringify(data['data']));
           this.router.navigate(['/dashboard'], { state: { verifyEmail: true } });

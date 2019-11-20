@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Utils } from '../shared/Utils';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SigninService } from '../authentication/sign-in/services/signin.service';
+import { TopNavService } from './top-nav.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -13,7 +14,8 @@ export class TopNavComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private signinService: SigninService) { }
+    private signinService: SigninService,
+    private topNavService: TopNavService) { }
 
   ngOnInit() {
   }
@@ -22,15 +24,20 @@ export class TopNavComponent implements OnInit {
 
   public accesstoken = Utils.GetAccessToken()
 
-  // logout() {
-  //   console.log('seuser', this.user)
-  //   console.log('accesstoken', this.accesstoken)
-  //   localStorage.removeItem('currentUser');
-  //   this.router.navigate(['/signin']);
-  // }
-
   logout() {
     this.signinService.logout();
+  }
+
+  getNotificationMasterEntries() {
+    this.topNavService.getNotificationMasterEntries().subscribe(data => {
+      console.log('notificationmaster', data);
+    })
+  }
+
+  getMyNotifications(email: string) {
+    this.topNavService.getMyNotifications(email).subscribe(data => {
+      console.log('mynotifications', data)
+    })
   }
 
 }

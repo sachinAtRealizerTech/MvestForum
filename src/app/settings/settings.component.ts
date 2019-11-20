@@ -6,18 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  editPreferencesPage=false ;
-  editPreferenceflag=false;
+  editPreferencesPage = false;
+  editPreferenceflag = false;
   constructor() { }
 
   ngOnInit() {
   }
-  openEditpreferences(){
-    this.editPreferencesPage=true;
-    this.editPreferenceflag=true; 
+  openEditpreferences() {
+    this.editPreferencesPage = true;
+    this.editPreferenceflag = true;
   }
-  closeEditpreferences(){
-    this.editPreferencesPage=false;
-    this.editPreferenceflag=false;
+  closeEditpreferences() {
+    this.editPreferencesPage = false;
+    this.editPreferenceflag = false;
   }
 }
