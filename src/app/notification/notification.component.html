@@ -13,8 +13,8 @@
             aria-controls="profile" aria-selected="false">My Details</a>
         </li>
         <li class="nav-item ">
-          <a routerLink="/notification" class=" active nav-link text-muted font-weight-bold text-uppercase" data-toggle="tab"
-            role="tab" aria-controls="notifications" aria-selected="false">Alerts</a>
+          <a routerLink="/notification" class=" active nav-link text-muted font-weight-bold text-uppercase"
+            data-toggle="tab" role="tab" aria-controls="notifications" aria-selected="false">Alerts</a>
         </li>
         <li class="nav-item">
           <a routerLink="/settings" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
@@ -34,353 +34,274 @@
 
 
   <div class="tab-pane fade show " id="" role="tabpanel" aria-labelledby="home-tab">
-    
+
     <div class="row pt-1">
       <div class="col-12">
-          <ul class="list-inline d-flex mb-1">
-              <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">Notifications</li>
-           
-              <li class="list-inline-item  mb-1 align-self-center pr-3">
-                <!-- <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  (click)="openSave()">
-                  <small class="font-weight-semibold text-accent mb-0">Select</small>
-                </a> -->
-                <select class="font-weight-semibold  text-accent">
-                  <option>Feature : All</option>
-                  <option>  Community</option>
-                  <option>  Neighbors</option>
-                </select>
-              </li>
-              <li class="list-inline-item  mb-1 align-self-center pr-3">
-                  <select class="font-weight-semibold text-accent ">
-                   <option>Type : All</option>
-                   <option>  Informative</option>
-                   <option> Action</option>
-                 </select>
-               </li>  
-               <li class="list-inline-item  mb-1 align-self-center pr-3">
-                  <select class="font-weight-semibold text-accent ">
-                   <option>Status : All</option>
-                   <option> Read</option>
-                   <option> Unread</option>
-                   <option> Archive</option>
-                 </select>
-               </li>  
-             <!-- <li   class="list-inline-item ml-auto mb-1">
-                 <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  (click)="closeSave()">
-                  <small class="font-weight-semibold text-accent mb-0">Select</small>
-                </a> 
-              </li> -->
-                <!-- <div class="ml-auto d-flex d-inline-flex"> -->
-                    <li class="nav-item ml-auto">
-                      <form id="search-form" class="form-inline">
-                        <div class="input-group search">
-                          <input type="text" class="form-control search-form" [(ngModel)]="searchText"
-                            [ngModelOptions]="{standalone: true}" placeholder="Search">
-                          <span class="input-group-btn">
-                            <button type="submit" class="search-btn">
-                              <i class="fa fa-search"></i>
-                            </button>
-                          </span>
-                        </div>
-                      </form>
-                    </li>
-          
-          
-                  <!-- </div> -->
-              
+        <ul class="list-inline d-flex mb-1">
+          <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">Notifications</li>
 
-            </ul>
+          <li class="list-inline-item  mb-1 align-self-center pr-3">
+            <select class="font-weight-semibold  text-accent" [value]="All" (change)="selectFeature($event)">
+              <option value="All">Feature : All</option>
+              <option *ngFor="let mef of masterEntriesFeature" [value]="mef.Entities.Value">
+                {{mef.Entities.Value}}
+              </option>
+            </select>
+          </li>
+          <li class="list-inline-item  mb-1 align-self-center pr-3">
+            <select class="font-weight-semibold text-accent " [value]="Alert" (change)="selectType($event)">
+              <option value="All">Type : All</option>
+              <option *ngFor="let met of masterEntriesType" [value]="met.Entities.Value">{{met.Entities.Value}}
+              </option>
+            </select>
+          </li>
+          <li class="list-inline-item  mb-1 align-self-center pr-3">
+            <select class="font-weight-semibold text-accent " [value]="Unread" (change)="selectStatus($event)">
+              <option value="All">Status : All</option>
+              <option *ngFor="let mes of masterEntriesStatus" [value]="mes.Entities.Value">
+                {{mes.Entities.Value}}
+              </option>
+            </select>
+          </li>
+
+          <li class="nav-item ml-auto">
+            <form id="search-form" class="form-inline">
+              <div class="input-group search">
+                <input type="text" class="form-control search-form" [(ngModel)]="searchText"
+                  [ngModelOptions]="{standalone: true}" placeholder="Search">
+                <span class="input-group-btn">
+                  <button type="submit" class="search-btn">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </form>
+          </li>
+
+        </ul>
       </div>
     </div>
-      <div class="row">
-          <div class="col-md-6 col-xl-8 pt-2">
-              <!-- <div class="row">
-                  <div class="col-xl-12">  -->
-                      <div class="row justify-content-between no-gutters pb-3">
-                        <div class="col-xl-12">
-                            <div class="card shadow">
-                                <div class="card-body py-0  px-3">
-                                    <!-- <div class="row pb-2">
-                                        <div class="col-8 d-inline-flex"> 
-                                            <h6 class="mb-0 align-self-center  font-weight-semibold">Community : </h6> 
-                                            <h6 class="mb-0 align-self-center pull-right text-right text-accent ml-auto font-weight-semibold">Select </h6> 
-                                          </div>
-                                          
-                                        </div> -->
-                                  <div class="row  py-2 border-bottom"> 
-                                    <div class="col-8 "> 
-                                      <!-- <h6 class="mb-0 align-self-center small font-weight-semibold">1) You have received a Request from Shilpa Dhumal</h6>  -->
-                                      <div class="media">
-                                          <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px" width="30px">
-                                          <div class="media-body">
-                                            <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span class="font-weight-semibold text-secondary"> Naina Sharma </span>commented on your post</h6>
-                                            <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
-                                          </div>
-                                        </div>
-                                      
-                                      </div>
-              
-                                    <div class="col-4 text-right justify-content-end pull-right"> 
-                                         <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                                            <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                <a href="#" data-toggle="tooltip" title="Mark as Read"> <h6 class="mb-0 font-weight-semibold" >
-                                                    <i class="material-icons text-muted md-24">
-                                                       done
-                                                       </i>
-                                                   </h6> </a> 
-                                            </li>
-                                           -->
-                                                <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                    <a href="#" data-toggle="tooltip" title="Archive Notification"> <h6 class="mb-0 font-weight-semibold">
-                                                        <i class="material-icons md-22">
-                                                            archive
-                                                            </i>
-                                                       </h6> </a> 
-                                                </li>
-                                         
-                                        </ul>    
-                                      </div>
-                                  </div>
-                                  <div class="row bg-light-grey py-2 border-bottom"> 
-                                      <div class="col-8 "> 
-                                         <div class="media">
-                                            <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\0.jpg" alt=" " height="30px" width="30px">
-                                            <div class="media-body">
-                                              <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span class="font-weight-semibold text-secondary"> Shilpa Dhumal </span>commented on your post</h6>
-                                              <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
-                                            </div>
-                                          </div>
-                                        
-                                        </div>
-                
-                                      <div class="col-4 text-right justify-content-end pull-right"> 
-                                           <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                                              <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                  <a href="#" data-toggle="tooltip" title="Mark as Read"> <h6 class="mb-0 font-weight-semibold" >
-                                                      <i class="material-icons text-muted md-24">
-                                                         done
-                                                         </i>
-                                                     </h6> </a> 
-                                              </li>
-                                             -->
-                                                  <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                      <a href="#" data-toggle="tooltip" title="Archive Notification"> <h6 class="mb-0 font-weight-semibold">
-                                                          <i class="material-icons md-22">
-                                                              archive
-                                                              </i>
-                                                         </h6> </a> 
-                                                  </li>
-                                           
-                                          </ul>    
-                                        </div>
-                                    </div>
-                                    <div class="row  py-2 border-bottom"> 
-                                        <div class="col-8 "> 
-                                          <!-- <h6 class="mb-0 align-self-center small font-weight-semibold">1) You have received a Request from Shilpa Dhumal</h6>  -->
-                                          <div class="media">
-                                              <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px" width="30px">
-                                              <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span class="font-weight-semibold text-secondary"> Naina Sharma </span>commented on your post</h6>
-                                                <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
-                                              </div>
-                                            </div>
-                                          
-                                          </div>
-                  
-                                        <div class="col-4 text-right justify-content-end pull-right"> 
-                                             <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                                                <!-- <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                    <a href="#" data-toggle="tooltip" title="Mark as Read"> <h6 class="mb-0 font-weight-semibold" >
-                                                        <i class="material-icons text-muted md-24">
-                                                           done
-                                                           </i>
-                                                       </h6> </a> 
-                                                </li>
-                                               -->
-                                                    <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                        <a href="#" data-toggle="tooltip" title="Archive Notification"> <h6 class="mb-0 font-weight-semibold">
-                                                            <i class="material-icons md-22">
-                                                                archive
-                                                                </i>
-                                                           </h6> </a> 
-                                                    </li>
-                                             
-                                            </ul>    
-                                          </div>
-                                      </div>
-                                      
-                                </div>
-                              </div>
-                        </div>
+
+    <div class="row">
+      <div class="col-md-6 col-xl-8 pt-2">
+        <div class="row justify-content-between no-gutters pb-3">
+          <div class="col-xl-12">
+            <div class="card shadow">
+              <div class="card-body py-0  px-3">
+
+                <div class="row  py-2 border-bottom" *ngFor="let mn of myNotifications">
+                  <div class="col-8 ">
+
+                    <div class="media">
+                      <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
+                        width="30px">
+                      <div class="media-body">
+                        <h6 class="mt-0 mb-0 text-secondary font-weight-normal">{{mn.Notifications.Text}}</h6>
+                        <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">
+                          {{mn.Notifications.Date | date:'medium' }}
+                        </h6>
                       </div>
-        
-                    <!-- </div>
-            </div> -->
-             
+                    </div>
+
+                  </div>
+
+                  <div class="col-4 text-right justify-content-end pull-right">
+                    <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
+
+                      <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                        <a routerLink="#" data-toggle="tooltip" title="Archive Notification"
+                          (click)="archievingNotification(mn.Notifications.notId)">
+                          <h6 class="mb-0 font-weight-semibold">
+                            <i class="material-icons md-22">
+                              archive
+                            </i>
+                          </h6>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </div>
+
+                </div>
+
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div class="col-md-6 col-xl-8  pt-2">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <!-- <ul class="list-inline d-flex mb-1">
-                          <li class="list-inline-item h6 text-secondary">Neighbors Notifications</li>
-                          <li class="list-inline-item ml-auto">
-                          </li> 
-                        </ul> -->
-                        <div class="row justify-content-between no-gutters pb-3">
-                          <div class="col-xl-12">
-                              <div class="card shadow ">
-                                  <div class="card-body  py-0 px-3"> 
-                                    <div class="row  py-2 border-bottom"> 
-                                      <div class="col-8 "> 
-                                        <!-- <h6 class="mb-0 align-self-center small font-weight-semibold">1) You have received a Request from Shilpa Dhumal</h6>  -->
-                                        <div class="media">
-                                            <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px" width="30px">
-                                            <div class="media-body">
-                                              <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span class="font-weight-semibold text-secondary"> Naina Sharma </span>commented on your post</h6>
-                                              <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
-                                            </div>
-                                          </div>
-                                        
-                                        </div>
-                
-                                        <div class="col-4 text-right justify-content-end pull-right"> 
-                                            <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                                              <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                   <a href="#" data-toggle="tooltip" title="Confirm Request"> <h6 class="mb-0 font-weight-semibold" >
-                                                       <!-- <i class="material-icons text-muted md-24">
-                                                          done
-                                                          </i> --><i class="material-icons text-accent md-24">
-                                                                   check_circle
-                                                                   </i>
-                                                      </h6> </a> 
-                                               </li>
-                                              
-                                                   <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                       <a href="#" data-toggle="tooltip" title="Ignore Request"> <h6 class="mb-0 font-weight-semibold">
-                                                           <i class="material-icons text-danger md-24">
-                                                               cancel
-                                                               </i>
-                                                          </h6> </a> 
-                                                   </li>
-                                            
-                                           </ul>    
-                                         </div>
-                                    </div>
-                                    <div class="row bg-light-grey py-2 border-bottom"> 
-                                        <div class="col-8 "> 
-                                          <!-- <h6 class="mb-0 align-self-center small font-weight-semibold">1) You have received a Request from Shilpa Dhumal</h6>  -->
-                                          <div class="media">
-                                              <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px" width="30px">
-                                              <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span class="font-weight-semibold text-secondary"> Naina Sharma </span>sent you a Friend Request</h6>
-                                                <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
-                                              </div>
-                                            </div>
-                                          
-                                          </div>
-                  
-                                        <div class="col-4 text-right justify-content-end pull-right"> 
-                                             <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                                               <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                    <a href="#" data-toggle="tooltip" title="Confirm Request"> <h6 class="mb-0 font-weight-semibold" >
-                                                        <!-- <i class="material-icons text-muted md-24">
-                                                           done
-                                                           </i> --><i class="material-icons text-accent md-24">
-                                                                    check_circle
-                                                                    </i>
-                                                       </h6> </a> 
-                                                </li>
-                                               
-                                                    <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                        <a href="#" data-toggle="tooltip" title="Ignore Request"> <h6 class="mb-0 font-weight-semibold">
-                                                            <i class="material-icons text-danger md-24">
-                                                                cancel
-                                                                </i>
-                                                           </h6> </a> 
-                                                    </li>
-                                             
-                                            </ul>    
-                                          </div>
-                                      </div>
-                                      <div class="row  py-2 border-bottom"> 
-                                          <div class="col-8 "> 
-                                            <!-- <h6 class="mb-0 align-self-center small font-weight-semibold">1) You have received a Request from Shilpa Dhumal</h6>  -->
-                                            <div class="media">
-                                                <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px" width="30px">
-                                                <div class="media-body">
-                                                  <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span class="font-weight-semibold text-secondary"> Naina Sharma </span>commented on your post</h6>
-                                                  <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
-                                                </div>
-                                              </div>
-                                            
-                                            </div>
-                    
-                                            <div class="col-4 text-right justify-content-end pull-right"> 
-                                                <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                                                  <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                       <a href="#" data-toggle="tooltip" title="Confirm Request"> <h6 class="mb-0 font-weight-semibold" >
-                                                           <!-- <i class="material-icons text-muted md-24">
-                                                              done
-                                                              </i> --><i class="material-icons text-accent md-24">
-                                                                       check_circle
-                                                                       </i>
-                                                          </h6> </a> 
-                                                   </li>
-                                                  
-                                                       <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                                           <a href="#" data-toggle="tooltip" title="Ignore Request"> <h6 class="mb-0 font-weight-semibold">
-                                                               <i class="material-icons text-danger md-24">
-                                                                   cancel
-                                                                   </i>
-                                                              </h6> </a> 
-                                                       </li>
-                                                
-                                               </ul>    
-                                             </div>
-                                        </div>
-                                        
 
-                                 </div>
-                                </div>
-                          </div>
-                        </div>
-          
-                      </div>
-              </div>
-               
-              </div>
+
       </div>
 
+      <!-- <div class="col-md-6 col-xl-8  pt-2">
+        <div class="row">
+          <div class="col-xl-12">
+
+            <div class="row justify-content-between no-gutters pb-3">
+              <div class="col-xl-12">
+                <div class="card shadow ">
+                  <div class="card-body  py-0 px-3">
+                    <div class="row  py-2 border-bottom">
+                      <div class="col-8 ">
+                        <div class="media">
+                          <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
+                            width="30px">
+                          <div class="media-body">
+                            <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span
+                                class="font-weight-semibold text-secondary"> Naina Sharma </span>commented on your post
+                            </h6>
+                            <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-4 text-right justify-content-end pull-right">
+                        <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
+                          <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                            <a href="#" data-toggle="tooltip" title="Confirm Request">
+                              <h6 class="mb-0 font-weight-semibold">
+                                <i class="material-icons text-accent md-24">
+                                  check_circle
+                                </i>
+                              </h6>
+                            </a>
+                          </li>
+
+                          <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                            <a href="#" data-toggle="tooltip" title="Ignore Request">
+                              <h6 class="mb-0 font-weight-semibold">
+                                <i class="material-icons text-danger md-24">
+                                  cancel
+                                </i>
+                              </h6>
+                            </a>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row bg-light-grey py-2 border-bottom">
+                      <div class="col-8 ">
+                        <div class="media">
+                          <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
+                            width="30px">
+                          <div class="media-body">
+                            <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span
+                                class="font-weight-semibold text-secondary"> Naina Sharma </span>sent you a Friend
+                              Request</h6>
+                            <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-4 text-right justify-content-end pull-right">
+                        <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
+                          <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                            <a href="#" data-toggle="tooltip" title="Confirm Request">
+                              <h6 class="mb-0 font-weight-semibold">
+                                <i class="material-icons text-accent md-24">
+                                  check_circle
+                                </i>
+                              </h6>
+                            </a>
+                          </li>
+
+                          <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                            <a href="#" data-toggle="tooltip" title="Ignore Request">
+                              <h6 class="mb-0 font-weight-semibold">
+                                <i class="material-icons text-danger md-24">
+                                  cancel
+                                </i>
+                              </h6>
+                            </a>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row  py-2 border-bottom">
+                      <div class="col-8 ">
+                        <div class="media">
+                          <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
+                            width="30px">
+                          <div class="media-body">
+                            <h6 class="mt-0 mb-0 text-secondary font-weight-normal"><span
+                                class="font-weight-semibold text-secondary"> Naina Sharma </span>commented on your post
+                            </h6>
+                            <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">Yesterday, 2:15pm</h6>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-4 text-right justify-content-end pull-right">
+                        <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
+                          <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                            <a href="#" data-toggle="tooltip" title="Confirm Request">
+                              <h6 class="mb-0 font-weight-semibold">
+                                <i class="material-icons text-accent md-24">
+                                  check_circle
+                                </i>
+                              </h6>
+                            </a>
+                          </li>
+
+                          <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                            <a href="#" data-toggle="tooltip" title="Ignore Request">
+                              <h6 class="mb-0 font-weight-semibold">
+                                <i class="material-icons text-danger md-24">
+                                  cancel
+                                </i>
+                              </h6>
+                            </a>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
 
 
-<hr>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-      <div class="row justify-content-end text-right py-3">
-        <div class="col-md-12 col-xl-12 text-right">
-<nav aria-label="Page navigation example bg-dark">
-        <ul class="nav justify-content-end px-3 ">
-             
-          <li class="page-item border">
-            <a class="page-link py-1 h6 bg-accent " href="#" aria-label="Previous">
-              <span class="font-30" aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-         
-          <li class="text-accent font-weight-bold h6 p-2 align-self-center mb-0"> 1/10 </li> 
-          <li class="page-item border">
-            <a class="page-link py-1 h6 bg-accent" href="#" aria-label="Next">
-              <span class="font-30" aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-      
-        </ul>
-      </nav>
-</div>
-</div>
+          </div>
+        </div>
+
+      </div> -->
+
+    </div>
+
+    <hr>
+
+    <div class="row justify-content-end text-right py-3">
+      <div class="col-md-12 col-xl-12 text-right">
+        <nav aria-label="Page navigation example bg-dark">
+          <ul class="nav justify-content-end px-3 ">
+
+            <li class="page-item border">
+              <a class="page-link py-1 h6 bg-accent " href="#" aria-label="Previous">
+                <span class="font-30" aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+
+            <li class="text-accent font-weight-bold h6 p-2 align-self-center mb-0"> 1/10 </li>
+            <li class="page-item border">
+              <a class="page-link py-1 h6 bg-accent" href="#" aria-label="Next">
+                <span class="font-30" aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+
   </div>
-  </div>
+</div>

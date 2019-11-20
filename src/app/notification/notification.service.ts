@@ -14,7 +14,16 @@ export class NotificationService {
     return this.httpClient.get(`${environment.APIBASEURL}/MasterData/GetNotificationMasterEntries`, Utils.getAuthHeader())
   }
 
-  getMyNotifications(email: string) {
-    return this.httpClient.get(`${environment.APIBASEURL}/Notifications/GetMyNotifications/${email}/All/Unread/Info`, Utils.getAuthHeader())
+  getMyNotifications(email: string, feature: string, status: string, type: string) {
+    return this.httpClient.get(`${environment.APIBASEURL}/Notifications/GetMyNotifications/${email}/${feature}/${status}/${type}`, Utils.getAuthHeader())
   }
+
+  archievingNotification(body) {
+    return this.httpClient.post(`${environment.APIBASEURL}/Notifications/ArchieveNotification`, body, Utils.getAuthHeader())
+  }
+
+  getMyArchNotification(email: string) {
+    return this.httpClient.get(`${environment.APIBASEURL}/Notifications/GetMyArchNotifications/${email}`, Utils.getAuthHeader())
+  }
+
 }

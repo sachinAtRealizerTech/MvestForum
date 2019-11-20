@@ -45,6 +45,7 @@ import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle
     ReactiveFormsModule,
     AngularEditorModule,
     FlashMessagesModule,
+    TimeAgoPipe
     // NgxEditorModule
   ]
 })
