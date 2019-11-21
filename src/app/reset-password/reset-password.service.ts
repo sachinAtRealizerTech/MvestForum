@@ -13,4 +13,8 @@ export class ResetPasswordService {
   generatePasswordResetToken(body) {
     return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/GenerateResetPassowrdToken`, body, Utils.getAuthHeader())
   }
+
+  resetPassword(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/ResetPassword`, body, Utils.getAuthHeader())
+  }
 }
