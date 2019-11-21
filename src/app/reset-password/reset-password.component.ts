@@ -53,19 +53,6 @@ export class ResetPasswordComponent implements OnInit {
   get g() { return this.confirmEmailForm.controls }
   get f() { return this.resetPasswordForm.controls }
 
-  // submitEmail() {
-  //   this.isEmailVerify = true;
-  //   this.resetEmailPage = false;
-  // }
-
-  // openChangePasswordPage() {
-  //   this.changePasswordPage = true;
-  //   this.resetEmailPage = false;
-  //   this.isEmailVerify = false;
-  //   this.resetPasswordSuccess = false;
-  //   this.resetPasswordFailure = false;
-  // }
-
   goToSignIn() {
     this.submitConfirmEmail = false
     this.confirmEmailForm.reset();
@@ -104,18 +91,31 @@ export class ResetPasswordComponent implements OnInit {
       _newpwd: this.f.password.value
     }
     this.resetPasswordService.resetPassword(body).subscribe(data => {
-      this.submitResetPassword = true;
-      this.passwordMismatched = false;
-      this.resetPasswordSuccess = true;
-      this.changePasswordPage = false;
-      this.resetEmailPage = false;
-      this.isEmailVerify = false;
-      this.resetPasswordFailure = false;
-      this.resetPasswordForm.reset();
+      debugger;
+      console.log('resetpwd', data)
+      if (data['data'][0]['resetpassowrd'] == "INVALID_TOKEN") {
+        this.submitResetPassword = false;
+        this.passwordMismatched = false;
+        this.resetPasswordSuccess = false;
+        this.resetPasswordFailure = true;
+        this.changePasswordPage = false;
+        this.resetEmailPage = false;
+        this.isEmailVerify = false;
+        this.resetPasswordForm.reset();
+      }
+      else {
+        this.submitResetPassword = false;
+        this.passwordMismatched = false;
+        this.resetPasswordSuccess = true;
+        this.resetPasswordFailure = false;
+        this.changePasswordPage = false;
+        this.resetEmailPage = false;
+        this.isEmailVerify = false;
+        this.resetPasswordForm.reset();
+      }
+
     })
   }
-
-
 
 
 }
