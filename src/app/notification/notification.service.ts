@@ -19,7 +19,7 @@ export class NotificationService {
   }
 
   archievingNotification(body) {
-    return this.httpClient.post(`${environment.APIBASEURL}/Notifications/ArchieveNotification`, body, Utils.getAuthHeader())
+    return this.httpClient.put(`${environment.APIBASEURL}/Notifications/ArchieveNotification`, body, Utils.getAuthHeader())
   }
 
   getMyArchNotification(email: string) {

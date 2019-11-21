@@ -25,7 +25,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit() {
     this.getNotificationMasterEntries();
     this.getMyNotifications();
-    //this.getMyArchNotification();
+    this.getMyArchNotification("atul22@gmail.com");
   }
 
   public user = Utils.GetCurrentUser();
