@@ -31,6 +31,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { CanActivate } from '@angular/router'
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/settings.component';
+import { ArchivesComponent } from './archives/archives.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SettingsComponent } from './settings/settings.component';
     MyaccountComponent,
     NotificationComponent,
     SettingsComponent,
+    ArchivesComponent,
     //LoadingcircleComponent,
   ],
   imports: [
