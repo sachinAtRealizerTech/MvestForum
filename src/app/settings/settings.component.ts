@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from './settings.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Utils } from '../shared/Utils';
-import { SignupService } from '../authentication/signup/services/signup.service';
-
+import { SignupService } from '../authentication/signup/services/signup.service'; 
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -30,7 +30,8 @@ export class SettingsComponent implements OnInit {
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
-    private signupService: SignupService) { }
+    private signupService: SignupService,
+    private flashMessagesService : FlashMessagesService) { }
 
   ngOnInit() {
 
@@ -154,8 +155,9 @@ export class SettingsComponent implements OnInit {
     }
 
     this.signupService.postNotificationPrefernece(body).subscribe(data => {
-      alert('success');
       this.getNotificationPreferencesList();
+      this.flashMessagesService.show('Your Notification Preferences updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+
     })
   }
 
