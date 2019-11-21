@@ -17,12 +17,29 @@ export class ResetPasswordComponent implements OnInit {
   submitConfirmEmail = false;
   passwordMismatched = false;
   submitResetPassword = false;
+  resetPasswordToken: any;
+  resetPasswordSuccess = false;
+  resetPasswordFailure = false;
 
   constructor(private resetPasswordService: ResetPasswordService,
     private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+    let url = window.location.href;
+    if (url.includes('?')) {
+      this.route.queryParams.subscribe(params => {
+        this.resetPasswordToken = params['resetPasswordToken'];
+        this.changePasswordPage = true;
+        this.resetEmailPage = false;
+        this.isEmailVerify = false;
+        this.resetPasswordSuccess = false;
+        this.resetPasswordFailure = false;
+      })
+    }
+
     this.confirmEmailForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     })
@@ -36,16 +53,18 @@ export class ResetPasswordComponent implements OnInit {
   get g() { return this.confirmEmailForm.controls }
   get f() { return this.resetPasswordForm.controls }
 
-  submitEmail() {
-    this.isEmailVerify = true;
-    this.resetEmailPage = false;
-  }
+  // submitEmail() {
+  //   this.isEmailVerify = true;
+  //   this.resetEmailPage = false;
+  // }
 
-  openChangePasswordPage() {
-    this.isEmailVerify = false;
-    this.resetEmailPage = false;
-    this.changePasswordPage = true;
-  }
+  // openChangePasswordPage() {
+  //   this.changePasswordPage = true;
+  //   this.resetEmailPage = false;
+  //   this.isEmailVerify = false;
+  //   this.resetPasswordSuccess = false;
+  //   this.resetPasswordFailure = false;
+  // }
 
   goToSignIn() {
     this.submitConfirmEmail = false
@@ -62,30 +81,37 @@ export class ResetPasswordComponent implements OnInit {
       _emailid: this.g.email.value
     }
     this.resetPasswordService.generatePasswordResetToken(body).subscribe(data => {
-      this.isEmailVerify = true;
+      this.changePasswordPage = false;
       this.resetEmailPage = false;
-      this.submitConfirmEmail = false;
+      this.isEmailVerify = true;
+      this.resetPasswordSuccess = false;
+      this.resetPasswordFailure = false;
     })
   }
 
   resetPassword() {
+    debugger;
     this.submitResetPassword = true;
     if (this.resetPasswordForm.invalid) {
       return
     }
-    if (this.f.password != this.f.confirmPassword) {
+    if (this.f.password.value != this.f.confirmPassword.value) {
       this.passwordMismatched = true;
       return
     }
-
     let body = {
-      _rtoken: "85150b3f-f6d5-4c77-b4a7-8d12efbc00035",
+      _rtoken: this.resetPasswordToken,
       _newpwd: this.f.password.value
     }
     this.resetPasswordService.resetPassword(body).subscribe(data => {
       this.submitResetPassword = true;
-      this.resetPasswordForm.reset();
       this.passwordMismatched = false;
+      this.resetPasswordSuccess = true;
+      this.changePasswordPage = false;
+      this.resetEmailPage = false;
+      this.isEmailVerify = false;
+      this.resetPasswordFailure = false;
+      this.resetPasswordForm.reset();
     })
   }
 
