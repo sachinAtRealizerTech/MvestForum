@@ -20,14 +20,6 @@
           <a routerLink="/settings" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
             aria-controls="contact" aria-selected="false">Settings</a>
         </li>
-        <!-- <li class="nav-item">
-          <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
-            aria-selected="false">Manage Subscription</a>
-        </li>  -->
-        <!-- <li class="nav-item">
-          <a routerLink="" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
-            aria-selected="false">Change Password</a>
-        </li>  -->
       </ul>
     </div>
   </div>
@@ -35,6 +27,7 @@
 
 
   <div class="tab-content" id="myTabContent">
+
     <div class="tab-pane fade show active" id="userdetails" role="tabpanel" aria-labelledby="home-tab">
       <div class="row py-3">
         <div class="col-xl-12">
@@ -58,64 +51,87 @@
                 </li>
 
               </ul>
-              <div class="row justify-content-between no-gutters pb-3">
+
+              <div class="row justify-content-between no-gutters pb-3" [formGroup]="userProfileForm">
+
                 <div class="col-xl-12">
                   <div class="card card-small  shadow">
                     <div class="card-body p-4">
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">First Name : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary  mb-0">Atul </label></h6>
-                           <input *ngIf="editflag" type="text" value="Atul" class="  form-control h6"> 
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary  mb-0">{{g.FirstName.value | titlecase}} </label>
+                          </h6>
+                          <input *ngIf="editflag" type="text" value="Atul" class="form-control h6"
+                            formControlName="FirstName">
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">Last Name : </label>
-                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">Pawase </label></h6>
-                          <input *ngIf="editflag" type="text" value="Pawase" class="  form-control h6">
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary mb-0">{{g.LastName.value | titlecase}} </label>
+                          </h6>
+                          <input *ngIf="editflag" type="text" value="Pawase" class="form-control h6"
+                            formControlName="LastName">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Phone No: </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">9786523487 </label></h6>  
-                          <input *ngIf="editflag" type="text" value=" 9786523487" class="  form-control h6">
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary mb-0">{{g.PhoneNo.value}}
+                            </label></h6>
+                          <input *ngIf="editflag" type="text" value=" 9786523487" class="form-control h6"
+                            formControlName="PhoneNo">
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">eMail Id : </label>
-                          <h6  *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">atul22@gmail.com </label></h6>  
-                          <input *ngIf="editflag" disabled type="text" value=" atul22@gmail.com" class=" form-control h6  [disabled]='disableTextbox'">
+                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">{{g.Email.value}}
+                            </label></h6>
+                          <input *ngIf="editflag" disabled type="text" value=" atul22@gmail.com"
+                            class=" form-control h6  [disabled]='disableTextbox'" formControlName="Email">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-12">
                           <label class="font-weight-semibold text-secondary">Mailing Street Address : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar </label></h6>  
-                          
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary mb-0">{{g.Address.value}} </label></h6>
+
                           <input *ngIf="editflag" type="text" class="bg-light"
                             value="422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar"
-                            class=" form-control h6">
+                            class=" form-control h6" formControlName="Address">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">State : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">Maharashtra  </label></h6>  
-                          <input *ngIf="editflag" type="text" value="Maharashtra " class=" form-control h6">
+                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">{{g.State.value}}
+                            </label></h6>
+                          <input *ngIf="editflag" type="text" value="Maharashtra " class=" form-control h6"
+                            formControlName="State">
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">City : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">Pune  </label></h6>  
-                          <input *ngIf="editflag"  type="text" value=" Pune  " class=" form-control h6">
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary mb-0">{{g.City.value | titlecase}}
+                            </label></h6>
+                          <input *ngIf="editflag" type="text" value=" Pune  " class=" form-control h6"
+                            formControlName="City">
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Pin Code : </label>
-                          <h6 *ngIf="!editflag"><label  class="font-weight-normal text-secondary mb-0">411060 </label></h6>  
-                          <input *ngIf="editflag" type="text" value=" 411060 " class="  form-control h6">
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary mb-0">{{g.PinCode.value}} </label>
+                          </h6>
+                          <input *ngIf="editflag" type="text" value=" 411060 " class="form-control h6"
+                            formControlName="PinCode">
                         </div>
                       </div>
                     </div>
                     <div *ngIf="savebutton" class="card-footer d-flex border-top ">
-                      <button class="btn btn-accent text-white rounded-0  px-5  ml-auto text-uppercase">Update Details
+                      <button class="btn btn-accent text-white rounded-0  px-5  ml-auto text-uppercase"
+                        (click)="updateUserProfile()">Update Details
                       </button>
                     </div>
 
@@ -125,226 +141,52 @@
 
             </div>
 
-            <!-- <div class="col-xl-4">
+
+
+            <div class="col-xl-4">
               <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                <ul class="list-inline d-flex mb-1">
-                  <li class="list-inline-item h6 text-secondary mb-0">Plan Details</li>
-                  <li *ngIf="!editPlanflag" class="list-inline-item ml-auto mb-1">
-                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                      (click)="openPlanSave()">
-                      <small class="font-weight-semibold text-accent mb-0"> Edit</small>
-                    </a>
-                  </li>
-                  <li *ngIf="editPlanflag" class="list-inline-item ml-auto mb-1">
-                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                      (click)="closePlanSave()">
-                      <small class="font-weight-semibold text-accent mb-0"> Edit</small>
-                    </a>
-                  </li>
+                <ul class="list-inline d-flex">
+                  <li class="list-inline-item h6 text-secondary mb-0">Security</li>
                 </ul>
-                <div class="card justify-content-between shadow p-2 card-small ">
-                  <div class="card-body text-center pb-0">
-                    <div class="form-group text-left">
-                      <div class="custom-control custom-radio pb-3">
-                        <input type="radio" id="customRadioInline1" value="" name="plan" class="custom-control-input"
-                          formControlName="plan">
-                        <label class="custom-control-label text-dark" for="customRadioInline1">Bronze Plan</label>
-                      </div>
-                      <div class="custom-control custom-radio pb-3">
-                        <input type="radio" id="customRadioInline2" checked value="" name="plan"
-                          class="custom-control-input" formControlName="plan">
-                        <label class="custom-control-label text-dark" for="customRadioInline2">Silver Plan</label>
-                      </div>
-                      <div class="custom-control custom-radio pb-3">
-                        <input type="radio" id="customRadioInline3" value="" name="plan" class="custom-control-input"
-                          formControlName="plan">
-                        <label class="custom-control-label text-dark" for="customRadioInline3">Silver Plan</label>
+                <div class="card justify-content-between shadow d-flex card-small ">
+                  <div class="card-body text-center py-3">
+                    <div class="form-group text-left mb-0">
+                      <a routerLink="#" (click)="openChangePassword()">Change Password</a>
+
+                      <div *ngIf="Openpassword">
+                        <div class="pt-2">
+                          <label class="text-secondary">Old Password</label>
+                          <input formControlName="oldPwd" id="oldPwd" type="password" class="form-control">
+                        </div>
+                        <div class="py-3">
+                          <label class="text-secondary">New Password</label>
+                          <input formControlName="newPwd" id="newPwd" type="password" class="form-control">
+                        </div>
+                        <div class="pb-3">
+                          <label class="text-secondary">Confirm Password</label>
+                          <input formControlName="confirmPwd" id="confirmPwd" type="password" class="form-control">
+                        </div>
+                        <div class="pb-3 justify-content-end text-right">
+                          <button type="button"
+                            class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right">Update</button>
+                          <button type="button"
+                            class="btn btn-outline-accent  rounded-0 text-uppercase px-5  pull-right"
+                            (click)="closeChangePassword()">Cancel</button>
+
+                        </div>
+
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="plansavebutton" class="card-footer d-flex border-top">
-                    <button class="btn btn-accent text-white rounded-0 text-uppercase px-5 ml-auto">Update Plan
-                    </button>
-                  </div>
+
                 </div>
               </div>
-            </div> -->
-            <!-- <div class="col-xl-4">
-                <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                  <ul class="list-inline d-flex">
-                    <li class="list-inline-item h6 text-secondary mb-0">Security</li>
-                   
-                  </ul>
-                  <div class="card justify-content-between shadow d-flex card-small ">
-                    <div class="card-body text-center py-3">
-                      <div class="form-group text-left mb-0">
-                        <div *ngIf="changePasswordText" >
-                          
-                          <a (click)="openOldPassword()" routerLink="#">Change Password</a>
-                        </div>
-                        <div *ngIf="oldPassword">
-                        <div  class="py-3">
-                            <label class="text-secondary">Old Password</label>
-                            <input formControlName="oldPwd" id="oldPwd" type="password" class="form-control">
-                          </div>
-                          <div class="pb-3 justify-content-end text-right">
-                              <button type="button" class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right" (click)="openNewPassword()">Verify</button>
-                              <button type="button" class="btn btn-outline-accent  rounded-0 text-uppercase px-5  pull-right" (click)="closeOldPassword()">Cancel</button>
+            </div>
 
-                            </div>
-                          </div>
-                          <div *ngIf="newPassword">
-                            <div class="py-3">
-                                <label class="text-secondary">New Password</label>
-                                <input formControlName="newPwd" id="newPwd" type="password" class="form-control">
-                              </div>
-                              <div class="pb-3">
-                                  <label class="text-secondary">Confirm Password</label>
-                                  <input formControlName="confirmPwd" id="confirmPwd" type="password" class="form-control">
-                                </div>
-                                <div class="pb-3 justify-content-end text-right">
-                                    <button type="button" class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right" (click)="openNewPassword()">Update</button>
-                                    <button type="button" class="btn btn-outline-accent  rounded-0 text-uppercase px-5  pull-right" (click)="closeNewPassword()">Cancel</button>
-        
-                                  </div>
-                                </div>
-                        
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div> -->
-            
-                <div class="col-xl-4">
-                  <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                    <ul class="list-inline d-flex">
-                      <li class="list-inline-item h6 text-secondary mb-0">Security</li>
-                      </ul>
-                    <div class="card justify-content-between shadow d-flex card-small ">
-                      <div class="card-body text-center py-3">
-                        <div class="form-group text-left mb-0">
-                          <a routerLink="#" (click)="openChangePassword()">Change Password</a>
-                         
-                         <div *ngIf="Openpassword">
-                          <div  class="pt-2">
-                              <label class="text-secondary">Old Password</label>
-                              <input formControlName="oldPwd" id="oldPwd" type="password" class="form-control">
-                            </div>
-                              <div class="py-3">
-                                  <label class="text-secondary">New Password</label>
-                                  <input formControlName="newPwd" id="newPwd" type="password" class="form-control">
-                                </div>
-                                <div class="pb-3">
-                                    <label class="text-secondary">Confirm Password</label>
-                                    <input formControlName="confirmPwd" id="confirmPwd" type="password" class="form-control">
-                                  </div>
-                                  <div class="pb-3 justify-content-end text-right">
-                                      <button type="button" class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right" >Update</button>
-                                      <button type="button" class="btn btn-outline-accent  rounded-0 text-uppercase px-5  pull-right" (click)="closeChangePassword()" >Cancel</button>
-          
-                                    </div>
-                                 
-                                  </div>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-          
           </div>
         </div>
       </div>
     </div>
 
-    <div class="tab-pane fade show " id=" " role="tabpanel" aria-labelledby="home-tab">
-      <div class="row">
-        <div class="col-md-8 col-xl-8 pt-3">
-          <div class="card shadow ">
-            <div class="card-body py-2 px-3">
-              <div class="row ">
-                <div class="col-8 d-flex"> 
-                  <h6 class="mb-0 align-self-center font-weight-semibold">1) You have received a Request from Shilpa Dhumal</h6> 
-                </div>
-                <div class="col-4 text-right justify-content-end pull-right"> 
-                    <!-- <a href="#"> <h6 class="mb-0 font-weight-semibold">
-                        <i class="material-icons text-muted md-24">
-                           done
-                           </i>
-                       </h6> </a> 
-                       <a href="#"> <h6 class="mb-0 font-weight-semibold">
-                          <i class="material-icons text-muted md-24">
-                             done
-                             </i>
-                         </h6> </a>  -->
-                     <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                        <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                            <a href="#" data-toggle="tooltip" title="Mark as Read"> <h6 class="mb-0 font-weight-semibold" >
-                                <i class="material-icons text-muted md-24">
-                                   done
-                                   </i>
-                               </h6> </a> 
-                        </li>
-                      
-                            <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                <a href="#" data-toggle="tooltip" title="Archive Notification"> <h6 class="mb-0 font-weight-semibold">
-                                    <i class="material-icons md-24">
-                                        archive
-                                        </i>
-                                   </h6> </a> 
-                            </li>
-                     
-                    </ul>    
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 col-xl-8 pt-3">
-          <div class="card  shadow">
-            <div class="card-body  py-2 px-3">
-              <div class="row ">
-                <div class="col-8">
-                  <h6 class="mb-0 font-weight-semibold">2) You have received a Request from Shilpa Dhumal</h6>
-                </div>
-                <div class="col-4 text-right justify-content-end pull-right">  
-                     <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                        <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                            <a href="#" data-toggle="tooltip" title="Mark as Read"> <h6 class="mb-0 font-weight-semibold" >
-                                <i class="material-icons text-muted md-24">
-                                   done
-                                   </i>
-                               </h6> </a> 
-                        </li>
-                      
-                            <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                                <a href="#" data-toggle="tooltip" title="Archive Notification"> <h6 class="mb-0 font-weight-semibold">
-                                    <i class="material-icons md-24">
-                                        archive
-                                        </i>
-                                   </h6> </a> 
-                            </li>
-                     
-                    </ul>    
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 col-xl-8 pt-3">
-          <div class="card  shadow">
-            <div class="card-body py-2 px-3">
-              <div class="row ">
-                <div class="col-8">
-                  <h6 class="mb-0 font-weight-semibold">3) You have received a Request from Shilpa Dhumal</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-   
   </div>
