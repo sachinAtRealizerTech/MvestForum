@@ -95,4 +95,9 @@ export class SignInComponent implements OnInit {
     this.router.navigate(['/signup'])
   }
 
+  goToForgotPassword() {
+    this.signInForm.reset();
+    this.router.navigate(['/reset-password'])
+  }
+
 }
