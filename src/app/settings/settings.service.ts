@@ -18,5 +18,9 @@ export class SettingsService {
     return this.httpClient.put(`${environment.APIBASEURL}/Notifications/SaveNotificationOptions`, body, Utils.getAuthHeader())
   }
 
+  getMyNotificationPreferences(email: string) {
+    return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/GetMyNotificationPreferences/${email}`, Utils.getAuthHeader())
+  }
+
 
 }

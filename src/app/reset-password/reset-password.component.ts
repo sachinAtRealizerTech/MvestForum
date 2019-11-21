@@ -68,6 +68,7 @@ export class ResetPasswordComponent implements OnInit {
       _emailid: this.g.email.value
     }
     this.resetPasswordService.generatePasswordResetToken(body).subscribe(data => {
+      console.log('generateresettoken', data)
       this.changePasswordPage = false;
       this.resetEmailPage = false;
       this.isEmailVerify = true;

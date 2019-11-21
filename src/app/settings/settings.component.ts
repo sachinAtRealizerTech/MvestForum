@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from './settings.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Utils } from '../shared/Utils';
-import { SignupService } from '../authentication/signup/services/signup.service'; 
+import { SignupService } from '../authentication/signup/services/signup.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-settings',
@@ -27,24 +27,30 @@ export class SettingsComponent implements OnInit {
   preferenceName: any;
   neighborsNotification = false;
   unMarkAsAnswer: boolean;
+  myNotificationAllData: any;
+  submitNotificationMessagePrefForm = false;
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
     private signupService: SignupService,
-    private flashMessagesService : FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
 
     this.notificationMessagePrefForm = this.formBuilder.group({
       Preferences: [],
-      alerts: []
+      alerts: [],
+      notePhoneNo: ['', Validators.required],
+      noteEmailId: ['', [Validators.required, Validators.email]]
     })
 
     this.getNotificationOptions();
-    this.getNotificationPreferencesList();
+    this.getMyNotificationPreferences();
   }
 
   public user = Utils.GetCurrentUser();
+
+  get g() { return this.notificationMessagePrefForm.controls }
 
   openEditpreferences() {
     this.editPreferencesPage = true;
@@ -53,6 +59,8 @@ export class SettingsComponent implements OnInit {
   closeEditpreferences() {
     this.editPreferencesPage = false;
     this.editPreferenceflag = false;
+    this.submitNotificationMessagePrefForm = false;
+    this.getMyNotificationPreferences();
   }
 
   openCommunityNotification() {
@@ -131,33 +139,23 @@ export class SettingsComponent implements OnInit {
     })
   }
 
-  getNotificationPreferencesList() {
-    this.signupService.getNotificationPreferencesList().subscribe(data => {
-      console.log('preferenceinfo', data['data']);
-      this.notificationPrefList = data['data'];
-      for (let i = 0; i < this.notificationPrefList.length; i++) {
-        if (this.user.preference_optioncode == this.notificationPrefList[i]['masterdata_id']) {
-          this.preferenceName = this.notificationPrefList[i]['name'];
-          break;
-        }
-      }
-
-    })
-  }
-
   postNotificationPrefernece() {
     debugger;
+    this.submitNotificationMessagePrefForm = true
+    if (this.notificationMessagePrefForm.invalid) {
+      return
+    }
     let body = {
-      phone_number: this.user.notification_phonenumber,
-      email_id: this.user.notification_email,
+      phone_number: this.notificationMessagePrefForm.controls.notePhoneNo.value,
+      email_id: this.notificationMessagePrefForm.controls.noteEmailId.value,
       user_id: this.user.member_id,
       preferenceOption_Code: this.notificationMessagePrefForm.controls.alerts.value
     }
 
     this.signupService.postNotificationPrefernece(body).subscribe(data => {
-      this.getNotificationPreferencesList();
+      this.getMyNotificationPreferences();
       this.flashMessagesService.show('Your Notification Preferences updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
-
+      this.submitNotificationMessagePrefForm = false
     })
   }
 
@@ -169,6 +167,25 @@ export class SettingsComponent implements OnInit {
   closeNeighborsNotification() {
     this.neighborsNotification = false;
     this.neighborsNotificationflag = false;
+  }
+
+  getMyNotificationPreferences() {
+    this.settingsService.getMyNotificationPreferences(this.user.email_id).subscribe(data => {
+      console.log('prefdata', data);
+      this.notificationPrefList = data['data']['myNotPrefs'];
+      this.myNotificationAllData = data['data'];
+      let body = {
+        notePhoneNo: this.myNotificationAllData.notphoneno,
+        noteEmailId: this.myNotificationAllData.notemailid
+      }
+      this.notificationMessagePrefForm.patchValue(body);
+      for (let i = 0; i < this.notificationPrefList.length; i++) {
+        if (this.notificationPrefList[i]['selected'] == true) {
+          this.preferenceName = this.notificationPrefList[i]['notPref'];
+          break;
+        }
+      }
+    })
   }
 
 }
