@@ -1,4 +1,7 @@
 <div class="main-content-container container-fluid px-4">
+
+  <flash-messages class="bg-accent text-center pb-0"></flash-messages>
+
   <div class="row pb-3 pt-4">
     <div class="col-12">
 
@@ -63,16 +66,22 @@
                           <h6 *ngIf="!editflag"><label
                               class="font-weight-normal text-secondary  mb-0">{{g.FirstName.value | titlecase}} </label>
                           </h6>
-                          <input *ngIf="editflag" type="text" value="Atul" class="form-control h6"
-                            formControlName="FirstName">
+                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="FirstName"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.FirstName.errors }">
+                          <div *ngIf="submitUserProfile && g.FirstName.errors" class="invalid-feedback">
+                            <div *ngIf="g.FirstName.errors.required">First Name is required</div>
+                          </div>
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">Last Name : </label>
                           <h6 *ngIf="!editflag"><label
                               class="font-weight-normal text-secondary mb-0">{{g.LastName.value | titlecase}} </label>
                           </h6>
-                          <input *ngIf="editflag" type="text" value="Pawase" class="form-control h6"
-                            formControlName="LastName">
+                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="LastName"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.LastName.errors }">
+                          <div *ngIf="submitUserProfile && g.LastName.errors" class="invalid-feedback">
+                            <div *ngIf="g.LastName.errors.required">Last Name is required</div>
+                          </div>
                         </div>
                       </div>
                       <div class="form-row">
@@ -81,14 +90,19 @@
                           <h6 *ngIf="!editflag"><label
                               class="font-weight-normal text-secondary mb-0">{{g.PhoneNo.value}}
                             </label></h6>
-                          <input *ngIf="editflag" type="text" value=" 9786523487" class="form-control h6"
-                            formControlName="PhoneNo">
+                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="PhoneNo"
+                            pattern="^[7-9][0-9]{9}$"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.PhoneNo.errors }">
+                          <div *ngIf="submitUserProfile && g.PhoneNo.errors" class="invalid-feedback">
+                            <div *ngIf="g.PhoneNo.errors.required">Phone Number is required</div>
+                            <div *ngIf="g.PhoneNo.errors.pattern">Phone number is not valid</div>
+                          </div>
                         </div>
                         <div class="form-group col-6">
                           <label class="font-weight-semibold text-secondary">eMail Id : </label>
                           <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">{{g.Email.value}}
                             </label></h6>
-                          <input *ngIf="editflag" disabled type="text" value=" atul22@gmail.com"
+                          <input *ngIf="editflag" disabled type="text"
                             class=" form-control h6  [disabled]='disableTextbox'" formControlName="Email">
                         </div>
                       </div>
@@ -98,24 +112,27 @@
                           <h6 *ngIf="!editflag"><label
                               class="font-weight-normal text-secondary mb-0">{{g.Address.value}} </label></h6>
 
-                          <input *ngIf="editflag" type="text" class="bg-light"
-                            value="422/A/45, Iris garden, Model Colony, Near Om Super Market, Viman Nagar"
-                            class=" form-control h6" formControlName="Address">
+                          <input *ngIf="editflag" type="text" class="bg-light" class=" form-control h6"
+                            formControlName="Address"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.Address.errors }">
+                          <div *ngIf="submitUserProfile && g.Address.errors" class="invalid-feedback">
+                            <div *ngIf="g.Address.errors.required">Address is required</div>
+                          </div>
                         </div>
                       </div>
                       <div class="form-row">
-
-
-
 
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">State : </label>
                           <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">{{userStateName}}
                             </label></h6>
-                          <select *ngIf="editflag" class="form-control border" formControlName="State" id="State">
+                          <select *ngIf="editflag" class="form-control border" formControlName="State" id="State"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.State.errors }">
                             <option *ngFor="let s of stateList" value={{s.masterdata_id}}>{{s.name}}</option>
                           </select>
-
+                          <div *ngIf="submitUserProfile && g.State.errors" class="invalid-feedback">
+                            <div *ngIf="g.State.errors.required">State is required</div>
+                          </div>
                         </div>
 
 
@@ -124,8 +141,11 @@
                           <h6 *ngIf="!editflag"><label
                               class="font-weight-normal text-secondary mb-0">{{g.City.value | titlecase}}
                             </label></h6>
-                          <input *ngIf="editflag" type="text" value=" Pune  " class=" form-control h6"
-                            formControlName="City">
+                          <input *ngIf="editflag" type="text" class=" form-control h6" formControlName="City"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.City.errors }">
+                          <div *ngIf="submitUserProfile && g.City.errors" class="invalid-feedback">
+                            <div *ngIf="g.City.errors.required">City is required</div>
+                          </div>
                         </div>
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">Pin Code : </label>
@@ -133,7 +153,11 @@
                               class="font-weight-normal text-secondary mb-0">{{g.PinCode.value}} </label>
                           </h6>
                           <input *ngIf="editflag" type="text" value=" 411060 " class="form-control h6"
-                            formControlName="PinCode">
+                            formControlName="PinCode"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.PinCode.errors }">
+                          <div *ngIf="submitUserProfile && g.PinCode.errors" class="invalid-feedback">
+                            <div *ngIf="g.PinCode.errors.required">Pin code is required</div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -161,22 +185,38 @@
                     <div class="form-group text-left mb-0">
                       <a routerLink="#" (click)="openChangePassword()">Change Password</a>
 
-                      <div *ngIf="Openpassword">
+                      <div *ngIf="Openpassword" [formGroup]="changePasswordForm">
                         <div class="pt-2">
                           <label class="text-secondary">Old Password</label>
-                          <input formControlName="oldPwd" id="oldPwd" type="password" class="form-control">
+                          <input formControlName="oldPassword" type="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitChangePassword && f.oldPassword.errors }">
+                          <div *ngIf="submitChangePassword && f.oldPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.oldPassword.errors.required">Old Password is required</div>
+                          </div>
                         </div>
                         <div class="py-3">
                           <label class="text-secondary">New Password</label>
-                          <input formControlName="newPwd" id="newPwd" type="password" class="form-control">
+                          <input formControlName="newPassword" type="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitChangePassword && f.newPassword.errors }">
+                          <div *ngIf="submitChangePassword && f.newPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.newPassword.errors.required">New Password is required</div>
+                          </div>
                         </div>
                         <div class="pb-3">
                           <label class="text-secondary">Confirm Password</label>
-                          <input formControlName="confirmPwd" id="confirmPwd" type="password" class="form-control">
+                          <input formControlName="confirmPassword" type="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitChangePassword && f.confirmPassword.errors }">
+                          <div *ngIf="submitChangePassword && f.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.confirmPassword.errors.required">Password confirmation is required</div>
+                          </div>
+                          <div *ngIf="mismatchedPasswords" class="h6 text-danger">Entered passwords did not match
+                          </div>
+                          <div *ngIf="mismatchOldPassword" class="h6 text-danger">Old password is incorrect.</div>
                         </div>
                         <div class="pb-3 justify-content-end text-right">
                           <button type="button"
-                            class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right">Update</button>
+                            class="btn btn-accent text-white rounded-0 text-uppercase px-5 mr-2 pull-right"
+                            (click)="changePassword()">Update</button>
                           <button type="button"
                             class="btn btn-outline-accent  rounded-0 text-uppercase px-5  pull-right"
                             (click)="closeChangePassword()">Cancel</button>
@@ -184,6 +224,7 @@
                         </div>
 
                       </div>
+
                     </div>
                   </div>
 

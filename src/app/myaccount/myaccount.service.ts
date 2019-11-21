@@ -21,4 +21,8 @@ export class MyaccountService {
     return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/UpdateUserProfile`, body, Utils.getAuthHeader())
   }
 
+  changePassword(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/MVestUser/ChangePassword`, body, Utils.getAuthHeader())
+  }
+
 }

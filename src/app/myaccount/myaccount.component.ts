@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MyaccountService } from './myaccount.service';
 import { Utils } from '../shared/Utils';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SignupService } from '../authentication/signup/services/signup.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-myaccount',
@@ -20,21 +21,33 @@ export class MyaccountComponent implements OnInit {
   userDetails: any;
   stateList: any;
   userStateName: any;
+  submitUserProfile = false;
+  changePasswordForm: FormGroup;
+  submitChangePassword = false;
+  mismatchedPasswords = false;
+  mismatchOldPassword = false;
 
   constructor(private myaccountService: MyaccountService,
     private formBuilder: FormBuilder,
-    private signupService: SignupService) { }
+    private signupService: SignupService,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
     this.userProfileForm = this.formBuilder.group({
-      FirstName: [],
-      LastName: [],
-      PhoneNo: [],
-      Email: [],
-      Address: [],
-      State: [],
-      City: [],
-      PinCode: []
+      FirstName: ['', Validators.required],
+      LastName: ['', Validators.required],
+      PhoneNo: ['', Validators.required],
+      Email: ['', Validators.required],
+      Address: ['', Validators.required],
+      State: ['', Validators.required],
+      City: ['', Validators.required],
+      PinCode: ['', Validators.required]
+    })
+
+    this.changePasswordForm = this.formBuilder.group({
+      oldPassword: ['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     })
     //this.getStateList();
     this.getUserProfileDetails();
@@ -43,14 +56,17 @@ export class MyaccountComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   get g() { return this.userProfileForm.controls }
+  get f() { return this.changePasswordForm.controls }
 
   openSave() {
     this.savebutton = true;
     this.editflag = true;
   }
   closeSave() {
+    this.getUserProfileDetails();
     this.savebutton = false;
     this.editflag = false;
+    this.submitUserProfile = false;
   }
   openPlanSave() {
     this.plansavebutton = true;
@@ -66,15 +82,12 @@ export class MyaccountComponent implements OnInit {
   }
 
   closeChangePassword() {
+    this.mismatchOldPassword = false;
     this.Openpassword = false;
+    this.submitChangePassword = false;
+    this.mismatchedPasswords = false;
+    this.changePasswordForm.reset();
   }
-
-  // getStateList() {
-  //   this.signupService.getStates().subscribe(data => {
-  //     this.stateList = data['data'];
-  //     console.log('states', this.stateList);
-  //   })
-  // }
 
   getUserProfileDetails() {
     debugger;
@@ -106,7 +119,10 @@ export class MyaccountComponent implements OnInit {
 
 
   updateUserProfile() {
-    debugger;
+    this.submitUserProfile = true
+    if (this.userProfileForm.invalid) {
+      return
+    }
     let body = {
       _emailid: this.user.email_id,
       _fname: this.g.FirstName.value,
@@ -118,13 +134,40 @@ export class MyaccountComponent implements OnInit {
       _phonenumber: this.g.PhoneNo.value
     }
     this.myaccountService.updateUserProfile(body).subscribe(data => {
+      this.flashMessagesService.show('Your profile updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.submitUserProfile = false;
       this.getUserProfileDetails();
       this.closeSave();
     })
   }
 
 
+  changePassword() {
+    debugger;
+    this.submitChangePassword = true;
+    if (this.changePasswordForm.invalid) {
+      return
+    }
+    if (this.f.newPassword.value != this.f.confirmPassword.value) {
+      this.mismatchedPasswords = true;
+      return;
+    }
+    let body = {
+      _emailid: this.user.email_id,
+      _oldpassword: this.f.oldPassword.value,
+      _newpassword: this.f.newPassword.value
+    }
+    this.myaccountService.changePassword(body).subscribe(data => {
+      console.log('changepwd', data)
+      if (data['data'][0]['changepassword'] == "INCORRECT_PWD") {
+        this.mismatchOldPassword = true;
+      }
+      else {
+        this.flashMessagesService.show('Your password updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+        this.closeChangePassword();
 
-
+      }
+    })
+  }
 
 }
