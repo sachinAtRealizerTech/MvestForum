@@ -201,16 +201,17 @@
                                                 class="font-weight-semibold align-self-center text-secondary mb-0 pr-1">Neighbors
                                                 Notifications
                                             </label>
-                                            <!-- <div class="ml-auto" *ngIf="!communityNotificationflag"> 
-                                                   <a (click)="openCommunityNotification()" routerLink="#"data-toggle="tooltip" title="View Notification Options"> 
-                                                        <i  class="material-icons md-24 text-secondary">
-                                                            keyboard_arrow_down
-                                                            </i>
-                                                    </a> 
-                                               </div> -->
-                                            <div class="ml-auto">
-                                                <a routerLink="#" data-toggle="tooltip"
-                                                    title="Hide Notification Options">
+                                            <div class="ml-auto" *ngIf="!neighborsNotificationflag">
+                                                <a (click)="openNeighborsNotification()" routerLink="#"
+                                                    data-toggle="tooltip" title="View Notification Options">
+                                                    <i class="material-icons md-24 text-secondary">
+                                                        keyboard_arrow_down
+                                                    </i>
+                                                </a>
+                                            </div>
+                                            <div class="ml-auto" *ngIf="neighborsNotificationflag">
+                                                <a (click)="closeNeighborsNotification()" routerLink="#"
+                                                    data-toggle="tooltip" title="Hide Notification Options">
                                                     <i class="material-icons md-24 text-secondary">
                                                         keyboard_arrow_up
                                                     </i>
@@ -218,23 +219,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
+
+                                    <div class="form-row" *ngIf="neighborsNotificationflag">
                                         <div class="form-group mb-0 col-12 pt-2">
+
                                             <div class="py-1 d-flex ">
                                                 <label class="font-weight-normal text-secondary mb-0 pr-1">Neighbors
                                                     Requests
                                                 </label>
                                                 <div class="ml-auto">
                                                     <div class="custom-control custom-switch px-0">
-                                                        <input type="checkbox" class="custom-control-input" checked
-                                                            id="customSwitch7">
-                                                        <label class="custom-control-label" for="customSwitch7">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            [checked]="unMarkAsAnswer"
+                                                            (change)="selectUnMarkAsAnswer(!unMarkAsAnswer)"
+                                                            id="customSwitch11">
+                                                        <label class="custom-control-label" for="customSwitch11">
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="py-1 d-flex  ">
+                                            <!-- <div class="py-1 d-flex  ">
                                                 <label class="font-weight-normal text-secondary mb-0 pr-1">Accepted
                                                     Request
                                                 </label>
@@ -247,6 +252,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="py-1 d-flex ">
                                                 <label class="font-weight-normal text-secondary mb-0 ">Request
                                                     Suggestions
@@ -258,13 +264,14 @@
                                                         <label class="custom-control-label" for="customSwitch9"></label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
+
                             <!-- <div class="card card-small mt-3 shadow ">
                                 <div class="card-body p-3 ">
                                     <div class="form-row">

@@ -14,6 +14,7 @@ export class SettingsComponent implements OnInit {
   editPreferenceflag = false;
   communityNotification = false;
   communityNotificationflag = false;
+  neighborsNotificationflag = false;
   notificationMessagePrefForm: FormGroup
   notificationOptions: any;
   replyToDiscussion: boolean;
@@ -24,6 +25,8 @@ export class SettingsComponent implements OnInit {
   notificationCode: any;
   notificationPrefList: any;
   preferenceName: any;
+  neighborsNotification = false;
+  unMarkAsAnswer: boolean;
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
@@ -63,7 +66,7 @@ export class SettingsComponent implements OnInit {
 
   getNotificationOptions() {
     let body = {
-      emailId: this.user.email_id
+      emailId: "manisha@gmail.com"
     }
     this.settingsService.getNotificationOptions(body).subscribe(data => {
       this.notificationOptions = data
@@ -73,6 +76,7 @@ export class SettingsComponent implements OnInit {
       this.likedPost = this.notificationOptions[2]['Blocked'];
       this.replyOnComment = this.notificationOptions[3]['Blocked'];
       this.markAsRead = this.notificationOptions[4]['Blocked'];
+      this.unMarkAsAnswer = this.notificationOptions[5]['Blocked'];
     })
   }
 
@@ -107,10 +111,17 @@ export class SettingsComponent implements OnInit {
     this.saveNotificationOptions(this.markAsRead, this.notificationCode);
   }
 
+  selectUnMarkAsAnswer(flag: boolean) {
+    debugger;
+    this.unMarkAsAnswer = flag;
+    this.notificationCode = this.notificationOptions[5]['code'];
+    this.saveNotificationOptions(this.unMarkAsAnswer, this.notificationCode);
+  }
+
   saveNotificationOptions(notificationFlag: boolean, blockNotificationCode: string) {
     debugger;
     let body = {
-      emailId: this.user.email_id,
+      emailId: "manisha@gmail.com",
       blockNotificationsFlag: notificationFlag,
       blockNotification: blockNotificationCode
     }
@@ -148,6 +159,14 @@ export class SettingsComponent implements OnInit {
     })
   }
 
+  openNeighborsNotification() {
+    this.neighborsNotification = true;
+    this.neighborsNotificationflag = true;
+  }
 
+  closeNeighborsNotification() {
+    this.neighborsNotification = false;
+    this.neighborsNotificationflag = false;
+  }
 
 }

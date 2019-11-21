@@ -13,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   changePasswordPage = false;
   resetEmailPage = true;
   confirmEmailForm: FormGroup;
-  resetPasswordForm: FormGroup
+  resetPasswordForm: FormGroup;
   submitConfirmEmail = false;
   passwordMismatched = false;
   submitResetPassword = false;
