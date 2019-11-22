@@ -1,4 +1,7 @@
 <div class="main-content-container container-fluid px-4">
+
+  <flash-messages class="bg-accent text-center pb-0"></flash-messages>
+
   <div class="row pb-3 pt-4">
     <div class="col-12">
 
@@ -21,13 +24,13 @@
             aria-controls="contact" aria-selected="false">Settings</a>
         </li>
         <li class="nav-item">
-            <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
-              aria-selected="false">Manage Subscription</a>
-          </li>  
-          <li class="nav-item">
-            <a routerLink="/archives" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact"
-              aria-selected="false">Archives</a>
-          </li>   
+          <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+            aria-controls="contact" aria-selected="false">Manage Subscription</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/archives" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+            aria-controls="contact" aria-selected="false">Archives</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -41,7 +44,7 @@
           <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">Notifications</li>
 
           <li class="list-inline-item  mb-1 align-self-center pr-3">
-            <select class="font-weight-semibold  text-accent" [value]="All" (change)="selectFeature($event)">
+            <select class="font-weight-semibold  text-accent" (change)="selectFeature($event)">
               <option value="All">Feature : All</option>
               <option *ngFor="let mef of masterEntriesFeature" [value]="mef.Entities.Value">
                 {{mef.Entities.Value}}
@@ -49,14 +52,14 @@
             </select>
           </li>
           <li class="list-inline-item  mb-1 align-self-center pr-3">
-            <select class="font-weight-semibold text-accent " [value]="Alert" (change)="selectType($event)">
+            <select class="font-weight-semibold text-accent " (change)="selectType($event)">
               <option value="All">Type : All</option>
               <option *ngFor="let met of masterEntriesType" [value]="met.Entities.Value">{{met.Entities.Value}}
               </option>
             </select>
           </li>
           <li class="list-inline-item  mb-1 align-self-center pr-3">
-            <select class="font-weight-semibold text-accent " [value]="Unread" (change)="selectStatus($event)">
+            <select class="font-weight-semibold text-accent " (change)="selectStatus($event)">
               <option value="All">Status : All</option>
               <option *ngFor="let mes of masterEntriesStatus" [value]="mes.Entities.Value">
                 {{mes.Entities.Value}}
@@ -84,12 +87,12 @@
 
     <div class="row">
       <div class="col-md-6 col-xl-8 pt-2">
-        <div class="row justify-content-between no-gutters pb-3"*ngFor="let mn of myNotifications">
+        <div class="row justify-content-between no-gutters pb-3" *ngFor="let mn of myNotifications | filter:searchText">
           <div class="col-xl-12">
             <div class="card shadow">
-              <div class="card-body py-0  px-3"> 
-                <div class="row  py-2 border-bottom" >
-                  <div class="col-8 "> 
+              <div class="card-body py-0  px-3">
+                <div class="row  py-2 border-bottom">
+                  <div class="col-8 ">
                     <div class="media">
                       <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
                         width="30px">
@@ -110,9 +113,9 @@
                         <a routerLink="#" data-toggle="tooltip" title="Archive Notification"
                           (click)="archievingNotification(mn.Notifications.notId)">
                           <h6 class="mb-0 font-weight-semibold">
-                              <i class="material-icons md-22">
-                                  archive
-                                  </i>
+                            <i class="material-icons md-22">
+                              archive
+                            </i>
                           </h6>
                         </a>
                       </li>
@@ -275,7 +278,7 @@
 
     <hr>
 
-    <div class="row justify-content-end text-right py-3">
+    <!-- <div class="row justify-content-end text-right py-3">
       <div class="col-md-12 col-xl-12 text-right">
         <nav aria-label="Page navigation example bg-dark">
           <ul class="nav justify-content-end px-3 ">
@@ -298,7 +301,7 @@
           </ul>
         </nav>
       </div>
-    </div>
+    </div> -->
 
 
   </div>

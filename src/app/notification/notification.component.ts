@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { Utils } from '../shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-notification',
@@ -14,7 +15,8 @@ export class NotificationComponent implements OnInit {
   masterEntriesStatus: any = [];
   myNotifications: Object;
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService,
+    private flashMessagesService: FlashMessagesService) { }
 
   searchText: any;
   emailId: string = "atul22@gmail.com";
@@ -83,7 +85,7 @@ export class NotificationComponent implements OnInit {
       NotificationId: id
     }
     this.notificationService.archievingNotification(body).subscribe(data => {
-      alert('archived successfully')
+      this.flashMessagesService.show('Your have successfully archieved notification...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
     })
   }
 
