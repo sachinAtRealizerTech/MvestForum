@@ -22,6 +22,8 @@ export class TopNavComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
+  public userProfile = Utils.getCurrentUserProfileDetails();
+
   public accesstoken = Utils.GetAccessToken()
 
   logout() {

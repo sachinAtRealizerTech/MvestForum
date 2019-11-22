@@ -27,6 +27,7 @@ export class SigninService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserProfile');
     this.loggedIn.next(false);
     this.router.navigate(['/signin']);
   }

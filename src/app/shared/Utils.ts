@@ -1,7 +1,8 @@
 //import { User } from '../shared/Model/User';
 import { Injectable } from '@angular/core';
-import { Auth } from '../models/Auth';
+import { Auth, userProfile } from '../models/Auth';
 import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,8 @@ export class Utils {
     constructor() { }
 
     private static userKey = 'currentUser';
+
+    private static userDetails = 'currentUserProfile'
 
     public static SetUserInCookies(auth: Auth) {
         localStorage.setItem(this.userKey, JSON.stringify(auth));
@@ -43,4 +46,10 @@ export class Utils {
         };
         return httpOptions
     }
+
+    public static getCurrentUserProfileDetails(): userProfile {
+        debugger;
+        return localStorage.getItem(this.userDetails) ? JSON.parse(localStorage.getItem(this.userDetails)) : null;
+    }
+
 }

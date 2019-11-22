@@ -17,3 +17,15 @@ export interface Auth {
     token: string,
     zip_code: string,
 }
+
+export interface userProfile {
+    city: string,
+    f_name: string,
+    l_name: string,
+    mailing_st_address: string,
+    member_id: number
+    member_type: string,
+    phone_number: string,
+    state_master_id: any
+    zip_code: string,
+}

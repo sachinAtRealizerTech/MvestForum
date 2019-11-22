@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { graceLimit } from '../../../shared/constants'
 import { BehaviorSubject } from 'rxjs';
+import { MyaccountService } from 'src/app/myaccount/myaccount.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,10 +13,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SignInComponent implements OnInit {
 
+
   constructor(private signinService: SigninService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private myaccountService: MyaccountService) { }
 
   submitSignIn = false;
   signInForm: FormGroup;
@@ -54,6 +57,7 @@ export class SignInComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(data['data']));
           this.router.navigate(['/dashboard'], { state: { verifyEmail: true } });
           this.verifyLogin = false;
+          // this.getUserDetailsForSuccess(data['data'].email_id)
         }
         else {
           debugger;
@@ -76,8 +80,8 @@ export class SignInComponent implements OnInit {
             let graceEndDate = new Date(date1.setDate(date1.getDate() + 10))
             this.router.navigate(['/dashboard'], { state: { verifyEmail: false, graceEndDate: graceEndDate } });
             this.verifyLogin = false;
+            //this.getUserDetailsForGrace(data['data'].email_id)
           }
-
         }
 
       }
@@ -99,5 +103,23 @@ export class SignInComponent implements OnInit {
     this.signInForm.reset();
     this.router.navigate(['/reset-password'])
   }
+
+  // getUserDetailsForSuccess(emailId: string) {
+  //   this.myaccountService.getUserProfileDetails(emailId).subscribe(data => {
+  //     debugger;
+  //     console.log('profiledata', data[0])
+  //     localStorage.setItem('currentUserProfile', JSON.stringify(data[0]));
+  //     this.router.navigate(['/dashboard'], { state: { verifyEmail: true } });
+  //   })
+  // }
+
+  // getUserDetailsForGrace(emailId: string) {
+  //   this.myaccountService.getUserProfileDetails(emailId).subscribe(data => {
+  //     debugger;
+  //     console.log('profiledata', data[0])
+  //     //localStorage.setItem('currentUserProfile', JSON.stringify(data[0]));
+  //     this.router.navigate(['/dashboard'], { state: { verifyEmail: false, graceEndDate: this.graceEndDate } });
+  //   })
+  // }
 
 }

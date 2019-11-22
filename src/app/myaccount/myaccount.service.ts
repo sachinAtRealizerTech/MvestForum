@@ -13,6 +13,7 @@ export class MyaccountService {
 
   getUserProfileDetails(email: string) {
     return this.httpClient.get(`${environment.APIBASEURL}/MVestUser/GetUserProfile/${email}`, Utils.getAuthHeader()).pipe(map(data => {
+      //localStorage.setItem('currentUserProfile', JSON.stringify(data['data'][0]));
       return data['data']
     }))
   }
