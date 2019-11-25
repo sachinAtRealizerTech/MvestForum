@@ -15,6 +15,8 @@ export class NotificationComponent implements OnInit {
   masterEntriesStatus: any = [];
   myNotifications: Object;
 
+  showNotificationsPage=true;
+  showArchivesPage=false;
   constructor(private notificationService: NotificationService,
     private flashMessagesService: FlashMessagesService) { }
 
@@ -32,6 +34,14 @@ export class NotificationComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
+  showNotifications(){
+    this.showNotificationsPage=true;
+    this.showArchivesPage=false;
+  }
+  showArchives(){
+    this.showNotificationsPage=false;
+    this.showArchivesPage=true;
+  }
   getNotificationMasterEntries() {
     this.notificationService.getNotificationMasterEntries().subscribe(data => {
       console.log('notificationmaster', data);

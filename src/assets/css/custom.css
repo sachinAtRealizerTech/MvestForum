@@ -127,7 +127,7 @@ color:#868e96 !important
   background:#00CD95 !important;
   border: 1px solid #00CD95 !important;
   color: #fff !important;
-  border-radius: 0px !important;
+  /* border-radius: 0px !important; */
 }
 .badge-outline-accent{
   background:transparent;
