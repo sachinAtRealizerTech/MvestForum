@@ -124,6 +124,11 @@ export class DiscussionDetailsComponent implements OnInit {
       this.p_Id = params['p_Id'];
     });
 
+    this.categoryName = sessionStorage.getItem("category_name");
+    this.categoryId = sessionStorage.getItem("category_id");
+    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+    this.subCategoryName = sessionStorage.getItem("subCatName");
+
     this.getDiscussionDeatils(this.discussionDetailsId);
   }
 
@@ -150,10 +155,6 @@ export class DiscussionDetailsComponent implements OnInit {
       this.loading = false;
       this.discussiondocId = data['_id'];
       this.isLikePressed = false;
-      this.categoryName = this.discussionDetails.category;
-      this.categoryId = this.discussionDetails.category_id;
-      this.subCategoryIdDD = this.discussionDetails.sub_category_id;
-      this.subCategoryName = this.discussionDetails.sub_category;
 
       setTimeout(() => {
         debugger;
@@ -213,6 +214,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   postQuestion() {
+    debugger;
     this.submitQuestion = true;
     if (this.discussionDetailsQuestionForm.invalid) {
       return
