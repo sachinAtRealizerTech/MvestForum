@@ -3,95 +3,31 @@
   <app-community></app-community>
   <div class="row">
     <div class="col-xl-12 pb-1 pt-3">
-        <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
-            <li class="nav-item align-self-center">
-                <h5 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">My Discusssions</h5>
-            </li> 
-            <!-- <li class="nav-item align-self-center mb-0 text-accent pr-3">
-                <select class="text-accent font-weight-semibold dropdown-toggle"> 
-                     <option>My Lists</option>
-                    <option>Close Family</option>
-                    <option>Close Friends</option> 
-                  </select>
-            </li>   -->
-            <li class="list-inline-item align-self-center text-muted ml-5 font-weight-semibold"><a href="#"> Edit
-              order</a></li>
-        </ul> 
-    </div> 
-</div>
+      <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
+        <li class="nav-item align-self-center">
+          <h5 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">My Discusssions</h5>
+        </li>
+        <li class="list-inline-item align-self-center text-muted ml-5 font-weight-semibold"><a routerLink="#"> Edit
+            order</a></li>
+      </ul>
+    </div>
+  </div>
 
   <div class="row justify-content-start no-gutters  pb-3 pt-4">
     <div class="col-md-12 col-xl-12">
 
-      <!-- <ul class="list-inline d-flex mb-1">
-        <li class="list-inline-item h5 font-weight-bold">My Discussions</li>
-        <li class="list-inline-item h5 text-muted ml-5"><a href="#"><small class="font-weight-semibold">Edit
-              order</small></a></li>
-      </ul> -->
-
-
       <div class="row justify-content-start ">
-        <div class="col-md-5 col-xl-3">
+        <div class="col-md-5 col-xl-3" *ngFor="let md of myDiscussionGroups.DiscussionGroups">
           <div class="card">
-            <img class="img-fluid "src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+            <img class="img-fluid " src="{{md.imageurl}}" alt="">
             <div class="card-body py-4 px-3">
 
-              <h6 class="card-text text-dark font-weight-semibold mb-1">Reeves County property discussion </h6>
+              <h6 class="card-text text-dark font-weight-semibold mb-1">{{md._name | titlecase}} </h6>
               <p><small class="card-secondary mb-1">1.5k Members</small> </p>
-
-              <!-- <div class="card-footer py-0 text-center text-muted">
-                                        <h6 > <i class="material-icons mr-1">check_circle_outline </i><small class="text-muted font-weight-semibold text-uppercase">Following </small> </h6> 
-                                      </div> -->
             </div>
           </div>
         </div>
 
-
-        <div class="col-md-5 col-xl-3 ">
-
-          <div class="card">
-            <img class="img-fluid " src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
-            <div class="card-body py-4 px-3">
-
-              <h6 class="card-text text-dark font-weight-semibold mb-1">Caddo county mineral leasing </h6>
-              <p><small class="card-secondary mb-1">500 Members</small> </p>
-
-              <!-- <div class="card-footer py-0 text-center text-muted">
-                                        <h6 > <i class="material-icons mr-1">check_circle_outline </i><small class="text-muted font-weight-semibold text-uppercase">Following </small> </h6> 
-                                      </div> -->
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-5 col-xl-3">
-          <div class="card">
-            <img class="img-fluid" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
-            <div class="card-body py-4 px-3">
-
-              <h6 class="card-text text-dark font-weight-semibold mb-1">Lorem Ipsum Dolor sit, Amet </h6>
-              <p><small class="card-secondary mb-1">786 Members</small> </p>
-
-              <!-- <div class="card-footer py-0 text-center text-muted">
-                                          <h6 > <i class="material-icons mr-1">check_circle_outline </i><small class="text-muted font-weight-semibold text-uppercase">Following </small> </h6> 
-                                        </div> -->
-            </div>
-          </div>
-
-        </div>
-        <div class="col-md-5 col-xl-3">
-          <div class="card">
-            <img class="img-fluid " src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
-            <div class="card-body py-4 px-3">
-
-              <h6 class="card-text text-dark font-weight-semibold mb-1">Offers on my mineral interest </h6>
-              <p><small class="card-secondary mb-1">105 Members</small> </p>
-
-              <!-- <div class="card-footer py-0 text-center text-muted">
-                                            <h6 > <i class="material-icons mr-1">check_circle_outline </i><small class="text-muted font-weight-semibold text-uppercase">Following </small> </h6> 
-                                          </div> -->
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

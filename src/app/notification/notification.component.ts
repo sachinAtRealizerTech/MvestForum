@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { Utils } from '../shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { HighlightText } from '../shared/pipes/highlightText.pipe';
 
 @Component({
   selector: 'app-notification',
@@ -15,8 +16,8 @@ export class NotificationComponent implements OnInit {
   masterEntriesStatus: any = [];
   myNotifications: Object;
 
-  showNotificationsPage=true;
-  showArchivesPage=false;
+  showNotificationsPage = true;
+  showArchivesPage = false;
   constructor(private notificationService: NotificationService,
     private flashMessagesService: FlashMessagesService) { }
 
@@ -34,13 +35,13 @@ export class NotificationComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
-  showNotifications(){
-    this.showNotificationsPage=true;
-    this.showArchivesPage=false;
+  showNotifications() {
+    this.showNotificationsPage = true;
+    this.showArchivesPage = false;
   }
-  showArchives(){
-    this.showNotificationsPage=false;
-    this.showArchivesPage=true;
+  showArchives() {
+    this.showNotificationsPage = false;
+    this.showArchivesPage = true;
   }
   getNotificationMasterEntries() {
     this.notificationService.getNotificationMasterEntries().subscribe(data => {
