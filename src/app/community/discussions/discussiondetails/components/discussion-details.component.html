@@ -159,7 +159,7 @@
                   alt="Generic placeholder image">
                 <div class="media-body mb-0 align-self-center">
                   <h5 class="text-secondary h6 mb-0" id="p{{discussionDetails?.posts[0]?.post_id}}"
-                    innerHTML="{{discussionDetails?.posts[0]?.post_msg}}"></h5>
+                    innerHTML="{{discussionDetails?.posts[0]?.post_msg | highlight:searchText}}"></h5>
                 </div>
               </div>
             </div>
@@ -301,7 +301,8 @@
                     alt="Generic placeholder image">
                   <div class="media-body mb-0 align-self-center">
                     <h5 class="text-muted h6 mb-0 font-weight-semibold">{{p.post_by_name}}</h5>
-                    <h6 class="list-inline-item mb-1 h6 text-secondary" id="p{{p.post_id}}" innerHTML="{{p.post_msg}}">
+                    <h6 class="list-inline-item mb-1 h6 text-secondary" id="p{{p.post_id}}"
+                      innerHTML="{{p.post_msg | highlight:searchText}}">
                     </h6>
                   </div>
                 </div>

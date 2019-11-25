@@ -14,6 +14,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DiscussionsComponent } from './categories/components/discussions.component';
 //import { DiscussionsComponent } from '../../../../discussions/categories/components/discussions.component';
 import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle.component';
+import { HighlightText } from 'src/app/shared/pipes/highlightText.pipe';
 // import { NgxEditorModule } from 'ngx-editor';
 
 
@@ -25,7 +26,8 @@ import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle
     DiscussionDetailsComponent,
     LoadingcircleComponent,
     TimeAgoPipe,
-    SummaryPipe
+    SummaryPipe,
+    HighlightText,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle
     ReactiveFormsModule,
     AngularEditorModule,
     FlashMessagesModule,
-    TimeAgoPipe
+    TimeAgoPipe,
+    HighlightText,
     // NgxEditorModule
   ]
 })

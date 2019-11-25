@@ -32,7 +32,7 @@ import { CanActivate } from '@angular/router'
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
-import { HighlightText } from './shared/pipes/highlightText.pipe';
+//import { HighlightText } from './shared/pipes/highlightText.pipe';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { HighlightText } from './shared/pipes/highlightText.pipe';
     NotificationComponent,
     SettingsComponent,
     ArchivesComponent,
-    HighlightText
+    // HighlightText
     //LoadingcircleComponent,
   ],
   imports: [

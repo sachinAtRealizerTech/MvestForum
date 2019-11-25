@@ -170,14 +170,16 @@
 
                                                             <ul class="list-inline d-flex mb-0">
                                                                 <li class="list-inline-item mb-1 h6  text-muted">
-                                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                                        {{dl?.title | titlecase}}</h5>
+                                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
+                                                                        innerHTML="{{dl?.title | titlecase | highlight:searchText}}">
+
+                                                                    </h5>
                                                                 </li>
                                                             </ul>
 
                                                             <ul class="list-inline mb-0">
                                                                 <li class="list-inline-item mb-1 h6  text-muted"
-                                                                    innerHTML="{{dl?.post_msg | summary}}">
+                                                                    innerHTML="{{dl?.post_msg | summary | highlight:searchText}}">
                                                                     <!-- {{dl?.post_msg | summary}} -->
 
 
