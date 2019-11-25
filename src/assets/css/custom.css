@@ -1217,4 +1217,8 @@ top:105px;
    .btn-md{
     padding:.4286rem .875rem !important;
   } 
+
+  .cursor-pointer{
+    cursor: pointer;
+  }
       

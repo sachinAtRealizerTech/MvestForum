@@ -54,7 +54,7 @@ export class MyaccountComponent implements OnInit {
   }
 
   public user = Utils.GetCurrentUser();
-  public userProfile = Utils.getCurrentUserProfileDetails()
+  //public userProfile = Utils.getCurrentUserProfileDetails()
 
   get g() { return this.userProfileForm.controls }
   get f() { return this.changePasswordForm.controls }
@@ -137,7 +137,7 @@ export class MyaccountComponent implements OnInit {
     this.myaccountService.updateUserProfile(body).subscribe(data => {
       this.flashMessagesService.show('Your profile updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.submitUserProfile = false;
-      Utils.getCurrentUserProfileDetails();
+      // Utils.getCurrentUserProfileDetails();
       this.getUserProfileDetails();
       this.closeSave();
     })

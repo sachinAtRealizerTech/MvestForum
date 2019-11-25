@@ -60,6 +60,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   generatePasswordResetToken() {
+    debugger;
     this.submitConfirmEmail = true;
     if (this.confirmEmailForm.invalid) {
       return

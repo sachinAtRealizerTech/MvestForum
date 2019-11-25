@@ -75,7 +75,7 @@ export class SettingsComponent implements OnInit {
 
   getNotificationOptions() {
     let body = {
-      emailId: "manisha@gmail.com"
+      emailId: this.user.email_id
     }
     this.settingsService.getNotificationOptions(body).subscribe(data => {
       this.notificationOptions = data
@@ -130,7 +130,7 @@ export class SettingsComponent implements OnInit {
   saveNotificationOptions(notificationFlag: boolean, blockNotificationCode: string) {
     debugger;
     let body = {
-      emailId: "manisha@gmail.com",
+      emailId: this.user.email_id,
       blockNotificationsFlag: notificationFlag,
       blockNotification: blockNotificationCode
     }

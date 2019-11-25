@@ -19,7 +19,7 @@ export class NotificationComponent implements OnInit {
     private flashMessagesService: FlashMessagesService) { }
 
   searchText: any;
-  emailId: string = "atul22@gmail.com";
+  emailId: string;
   currentFeature: string = "All";
   currentStatus: string = "Unread";
   currentType: string = "Info";
@@ -27,7 +27,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit() {
     this.getNotificationMasterEntries();
     this.getMyNotifications();
-    this.getMyArchNotification("atul22@gmail.com");
+    this.getMyArchNotification(this.user.email_id);
   }
 
   public user = Utils.GetCurrentUser();
@@ -56,7 +56,7 @@ export class NotificationComponent implements OnInit {
   }
 
   getMyNotifications() {
-    this.notificationService.getMyNotifications(this.emailId, this.currentFeature, this.currentStatus, this.currentType).subscribe(data => {
+    this.notificationService.getMyNotifications(this.user.email_id, this.currentFeature, this.currentStatus, this.currentType).subscribe(data => {
       this.myNotifications = data;
       console.log('mynotifications', data)
     })
@@ -81,7 +81,7 @@ export class NotificationComponent implements OnInit {
   archievingNotification(id: string) {
     debugger;
     let body = {
-      emailid: "atul22@gmail.com",
+      emailid: this.user.email_id,
       NotificationId: id
     }
     this.notificationService.archievingNotification(body).subscribe(data => {
@@ -90,7 +90,7 @@ export class NotificationComponent implements OnInit {
   }
 
   getMyArchNotification(email: string) {
-    this.notificationService.getMyArchNotification(email).subscribe(data => {
+    this.notificationService.getMyArchNotification(this.user.email_id).subscribe(data => {
       console.log('Archive', data)
     })
   }

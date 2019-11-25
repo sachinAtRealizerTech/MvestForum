@@ -111,6 +111,7 @@ export class DiscussionsComponent implements OnInit {
     this.loading = true;
     this.discussionsService.getAllCategories().subscribe(data => {
       this.categoryList = data;
+      console.log('catlist', this.categoryList)
       this.loading = false;
       this.pageNotFound = false;
     },
@@ -147,7 +148,7 @@ export class DiscussionsComponent implements OnInit {
   getSubcategoriesList() {
     this.subcategoryService.getSubcategory(this.categoryDocId).subscribe(data => {
       this.subCategoryListDD = data;
-      this.categoryId = data[0]['category_id'];
+      this.categoryId = data[0]['doc_id'];
     })
   }
 
@@ -159,7 +160,7 @@ export class DiscussionsComponent implements OnInit {
     this.submitQuestion = false
     let body = {
       category: this.categoryName,
-      category_id: this.categoryId,
+      category_id: this.categoryDocId,
       subcategory_id: this.subCategoryId,
       subcategory: this.subCategoryName,
       post_title: this.postQuestionForm.controls.discussionTitle.value,

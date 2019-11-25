@@ -144,6 +144,10 @@ export class DiscussionslistComponent implements OnInit {
       return
     }
     this.submitQuestion = false;
+    this.categoryName = sessionStorage.getItem("category_name");
+    this.categoryId = sessionStorage.getItem("category_id");
+    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+    this.subCategoryName = sessionStorage.getItem("subCatName");
     let body = {
       category: this.categoryName,
       category_id: this.categoryId,

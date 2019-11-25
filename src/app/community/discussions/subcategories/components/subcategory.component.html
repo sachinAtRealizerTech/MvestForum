@@ -128,7 +128,7 @@
                   <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText">
                     <a routerLink="/discussionslist"
                       [queryParams]="{discussionId:sc.sub_categories.subcat_id,subCategoryId:subCategoryId}"
-                      (click)="setTitle( 'Mvest-Discussions')">
+                      (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
                       <div class="card d-inline category-main" style="width:50rem">
                         <img class="img-fluid img-thumbnail rounded-left" src="{{sc.sub_categories.image}}" alt=""
                           width="250px">

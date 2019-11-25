@@ -280,6 +280,7 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   postComment() {
+    debugger;
     this.submitComment = true;
     if (this.commentForm.invalid) {
       return

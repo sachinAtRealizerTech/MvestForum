@@ -127,7 +127,7 @@ export class SignupComponent implements OnInit {
     });
 
 
-    this.getMembersPlanSelectionData('Mineral')
+    this.getMembersPlanSelectionData('mineral')
     this.getStateList();
     this.getNotificationPreferencesList();
   }
@@ -158,7 +158,7 @@ export class SignupComponent implements OnInit {
 
   getMembersPlanSelectionData(userType: string) {
     debugger;
-    if (userType == "Mineral") {
+    if (userType == "mineral") {
       this.signupService.planSelectionDataForMineralUser().subscribe(data => {
         debugger;
         this.planInformation = data['data'];
@@ -166,7 +166,7 @@ export class SignupComponent implements OnInit {
         this.professionalTab = false;
         this.individualTab = true;
         this.professionalUserType = false;
-        this.userTypeName = "Mineral"
+        this.userTypeName = "mineral"
       })
     }
     else {
@@ -177,7 +177,7 @@ export class SignupComponent implements OnInit {
         this.professionalTab = true;
         this.individualTab = false;
         this.professionalUserType = true;
-        this.userTypeName = "Professional"
+        this.userTypeName = "professional"
       })
     }
   }
@@ -386,7 +386,7 @@ export class SignupComponent implements OnInit {
 
 
   getPlanSelectionData() {
-    if (this.userTypeName == "Mineral") {
+    if (this.userTypeName == "mineral") {
       this.signupService.planSelectionDataForMineralUser().subscribe(data => {
         this.planInformation = data['data'];
       })

@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, userProfile } from '../models/Auth';
 import { HttpHeaders } from '@angular/common/http';
+import { observable, Subject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,6 +10,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class Utils {
     constructor() { }
+
+    // private userDetailsObs = new Subject<userProfile>();
 
     private static userKey = 'currentUser';
 
@@ -47,9 +50,16 @@ export class Utils {
         return httpOptions
     }
 
-    public static getCurrentUserProfileDetails(): userProfile {
-        debugger;
-        return localStorage.getItem(this.userDetails) ? JSON.parse(localStorage.getItem(this.userDetails)) : null;
-    }
+
+    // getUserDetails(): Observable<userProfile> {
+    //     this.userDetailsObs=
+    //     return this.userDetailsObs.asObservable();
+    // }
+
+    // public static getCurrentUserProfileDetails(): userProfile {
+    //     debugger;
+    //     return localStorage.getItem(this.userDetails) ? JSON.parse(localStorage.getItem(this.userDetails)) : null;
+
+    // }
 
 }

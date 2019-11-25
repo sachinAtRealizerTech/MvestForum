@@ -111,7 +111,7 @@ export class SubcategoryComponent implements OnInit {
       this.loading = false;
       this.pageNotFound = false;
       this.categoryName = data[0]['category_name'];
-      this.categoryId = data[0]['category_id'];
+      this.categoryId = data[0]['_id'];
     },
       err => {
         if (err.status == 404) {
@@ -146,6 +146,7 @@ export class SubcategoryComponent implements OnInit {
   }
 
   postQuestion() {
+    debugger;
     this.submitQuestion = true;
     if (this.postQuestionForm.invalid) {
       return
@@ -166,6 +167,15 @@ export class SubcategoryComponent implements OnInit {
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
     })
+  }
+
+  //-----------------------------------passing parameters to create a new discussion----------------------------------
+  sendData(subcatid: any, subCatName: string, categoryid: any, categoryname: any) {
+    debugger;
+    sessionStorage.setItem("subcat_id", subcatid);
+    sessionStorage.setItem("subCatName", subCatName);
+    sessionStorage.setItem("category_id", categoryid);
+    sessionStorage.setItem("category_name", categoryname);
   }
 
 }
