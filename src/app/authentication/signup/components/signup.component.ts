@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
 import { SignupService } from '../services/signup.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SigninService } from '../../sign-in/services/signin.service';
+import { getLocaleNumberFormat } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -11,6 +12,7 @@ import { SigninService } from '../../sign-in/services/signin.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  formattedPhoneNumber: string;
 
   constructor(private formBuilder: FormBuilder,
     private modalService: NgbModal,
@@ -115,8 +117,8 @@ export class SignupComponent implements OnInit {
       eMail: ['', [Validators.required, Validators.email]],
       address: [''],
       city: [''],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.required],
+      state: [''],
+      zipCode: [''],
       phoneNumber: [''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
@@ -131,6 +133,8 @@ export class SignupComponent implements OnInit {
     this.getStateList();
     this.getNotificationPreferencesList();
   }
+
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   // get h() { return this.userTypeForm.controls }
   get g() { return this.userRegistrationForm.controls; }
@@ -285,7 +289,7 @@ export class SignupComponent implements OnInit {
     }
     this.signupService.userRegistration(body).subscribe(data => {
       this.submitUserInfoForm = false;
-      console.log('status code', data['status_code'])
+      console.log('status code', data)
       if (data['error'] == "duplicate key value violates unique constraint \"unique_emailid\"") {
         this.duplicateEmail = true;
         return;
@@ -449,6 +453,11 @@ export class SignupComponent implements OnInit {
   closeClaimLeaseModal() {
     this.modalService.dismissAll(this.claimLeaseModal);
   }
+
+  // formatPhoneNumber() {
+  //   this.formattedPhoneNumber = this.userInfoForm.controls.phoneNumber.value;
+
+  // }
 
 
   completeUserRegistration() {

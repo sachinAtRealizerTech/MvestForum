@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/components/signup.component';
 import { ConfirmemailComponent } from './confirmemail/confirmemail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArchwizardModule } from 'angular-archwizard';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ArchwizardModule } from 'angular-archwizard';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ArchwizardModule
+    ArchwizardModule,
+    TextMaskModule
   ],
   exports: [
     SignInComponent,
