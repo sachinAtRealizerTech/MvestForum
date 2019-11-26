@@ -29,6 +29,7 @@ export class SettingsComponent implements OnInit {
   unMarkAsAnswer: boolean;
   myNotificationAllData: any;
   submitNotificationMessagePrefForm = false;
+  prefCode: any;
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
@@ -145,11 +146,14 @@ export class SettingsComponent implements OnInit {
     if (this.notificationMessagePrefForm.invalid) {
       return
     }
+    if (this.notificationMessagePrefForm.controls.alerts.value) {
+      this.prefCode = this.notificationMessagePrefForm.controls.alerts.value
+    }
     let body = {
       phone_number: this.notificationMessagePrefForm.controls.notePhoneNo.value,
       email_id: this.notificationMessagePrefForm.controls.noteEmailId.value,
       user_id: this.user.member_id,
-      preferenceOption_Code: this.notificationMessagePrefForm.controls.alerts.value
+      preferenceOption_Code: this.prefCode
     }
 
     this.signupService.postNotificationPrefernece(body).subscribe(data => {
@@ -174,6 +178,7 @@ export class SettingsComponent implements OnInit {
       console.log('prefdata', data);
       this.notificationPrefList = data['data']['myNotPrefs'];
       this.myNotificationAllData = data['data'];
+      this.prefCode = this.myNotificationAllData.notprefId;
       let body = {
         notePhoneNo: this.myNotificationAllData.notphoneno,
         noteEmailId: this.myNotificationAllData.notemailid
@@ -182,6 +187,7 @@ export class SettingsComponent implements OnInit {
       for (let i = 0; i < this.notificationPrefList.length; i++) {
         if (this.notificationPrefList[i]['selected'] == true) {
           this.preferenceName = this.notificationPrefList[i]['notPref'];
+
           break;
         }
       }
