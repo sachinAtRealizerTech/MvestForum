@@ -178,12 +178,12 @@
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
-                (click)="postLike(discussionDetails?.posts[0])">
+                (click)="postLike(discussionDetails?.posts[0])"data-toggle="tooltip" title="Like Post">
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
 
               <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
                 (click)="unlikePost(discussionDetails?.posts[0])"> <i
-                  class="material-icons icon-accent md-24 ml-3">thumb_up</i>
+                  class="material-icons icon-accent md-24 ml-3"data-toggle="tooltip" title="Unlike Post">thumb_up</i>
               </a>
 
               <span class="ml-1 align-self-center">{{discussionDetails?.posts[0]?.likes.length}}</span>
@@ -191,7 +191,7 @@
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                   class="material-icons icon-muted md-24 ml-3"
-                  (click)="openCommentModal(postCommentModal,discussionDetails)">
+                  (click)="openCommentModal(postCommentModal,discussionDetails)"data-toggle="tooltip" title="Comment on Post">
                   mode_comment
                 </i>
               </a>
@@ -211,12 +211,12 @@
 
               <ul class="list-inline d-flex  border-0 mb-0">
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                  <a *ngIf="!isCommentLikedByMe(qc)" routerLink="#" (click)="likeToComment(discussionDetails,qc)"> <i
+                  <a *ngIf="!isCommentLikedByMe(qc)"data-toggle="tooltip" title="Like Post" routerLink="#" (click)="likeToComment(discussionDetails,qc)"> <i
                       class="material-icons icon-muted md-24 ml-3">
                       thumb_up
                     </i> </a>
 
-                  <a *ngIf="isCommentLikedByMe(qc)" routerLink="#" (click)="unLikeToComment(discussionDetails,qc)"> <i
+                  <a *ngIf="isCommentLikedByMe(qc)"data-toggle="tooltip" title="Unlike Post" routerLink="#" (click)="unLikeToComment(discussionDetails,qc)"> <i
                       class="material-icons icon-accent md-24 ml-3">
                       thumb_up
                     </i> </a>
@@ -224,7 +224,7 @@
                   <span class="ml-1 align-self-center">{{qc.likes.length}}</span>
                 </li>
                 <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-                  <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                  <a routerLink="#" data-toggle="tooltip" title="Comment on Post"> <i
                       class="material-icons icon-muted md-24 ml-3"
                       (click)="openCommentToCommentModal(postCommentToCommentModal,discussionDetails,qc)">
                       mode_comment
@@ -252,13 +252,13 @@
                   <ul class="list-inline d-flex  border-0 mb-0">
                     <li class="list-inline-item mb-1 h6  text-muted align-self-center">
                       <a *ngIf="!isCommentToCommentLikedByMe(cc)" routerLink="#"
-                        (click)="likeCommentToComment(discussionDetails,qc,cc)">
+                        (click)="likeCommentToComment(discussionDetails,qc,cc)"data-toggle="tooltip" title="Like Post">
                         <i class="material-icons icon-muted md-24 ml-3">
                           thumb_up
                         </i> </a>
 
                       <a *ngIf="isCommentToCommentLikedByMe(cc)" routerLink="#"
-                        (click)="unLikeCommentToComment(discussionDetails,qc,cc)">
+                        (click)="unLikeCommentToComment(discussionDetails,qc,cc)"data-toggle="tooltip" title="Unlike Post">
                         <i class="material-icons icon-accent md-24 ml-3">
                           thumb_up
                         </i> </a>
@@ -318,19 +318,26 @@
           <div class="border-bottom card-body pt-0 mx-3">
 
             <ul class="list-inline d-flex  border-0 mb-0">
+                <li class="list-inline-item mb-1 h6 text-muted align-self-center" id="#comment-box">
+                    <a routerLink="#"> 
+                      <i class="material-icons md-24 ml-3 icon-muted"data-toggle="tooltip" title="Mark as Answer">
+                          check_circle
+                          </i>
+                    </a>
+                  </li>
               <li class="list-inline-item mb-1 h6 text-muted align-self-center">
 
-                <a *ngIf="!isPostLikedByMe(p)" routerLink="#" (click)="postLike(p)"> <i
+                <a *ngIf="!isPostLikedByMe(p)" routerLink="#" (click)="postLike(p)"data-toggle="tooltip" title="Like Post"> <i
                     class="material-icons icon-muted md-24 ml-3">thumb_up</i>
                 </a>
-                <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)"> <i
+                <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)"data-toggle="tooltip" title="Unlike Post"> <i
                     class="material-icons icon-accent md-24 ml-3">thumb_up</i>
                 </a>
 
                 <span class="ml-1 align-self-center">{{p.likes?.length}}</span>
               </li>
               <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-                <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                <a routerLink="#" data-toggle="tooltip" title="Comment on Post"> <i
                     class="material-icons icon-muted md-24 ml-3" (click)="openCommentModal(postCommentModal,p)">
                     mode_comment
                   </i>

@@ -27,7 +27,8 @@ import { ConfirmemailComponent } from './authentication/confirmemail/confirmemai
 import { NotificationComponent } from './notification/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards'; 
 import { SettingsComponent } from './settings/settings.component';
-import { ArchivesComponent } from './archives/archives.component';
+import { ArchivesComponent } from './archives/archives.component'; 
+import { SearchresultsComponent } from './searchresults/searchresults.component';
 
 const routes: Routes = [
 
@@ -165,6 +166,11 @@ const routes: Routes = [
       {
         path: 'archives',
         component: ArchivesComponent,
+        canActivate: [AuthGuard]
+      }, 
+      {
+        path: 'searchresults',
+        component: SearchresultsComponent,
         canActivate: [AuthGuard]
       },
 

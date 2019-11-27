@@ -190,7 +190,15 @@ color:#868e96 !important
   padding-bottom: .19rem!important;
   padding-top: .19rem!important;
 }
-
+.border-accent{ 
+  /* border-top:0px  !important;
+  border-left:  1px solid rgba(189, 186, 186,0.3) !important;
+  border-right: 1px solid rgba(189, 186, 186,0.3) !important;
+  border-bottom: 1px solid rgba(189, 186, 186,0.3) !important;
+  box-shadow:  0 0 60px #333; */
+  box-shadow: 0px 5px 5px rgb(218, 218, 218), 
+  -3px 5px 5px rgb(218, 218, 218), 3px 5px 5px rgb(218, 218, 218);
+}
 .border-bottom-white{
   border-bottom: 2px solid #fff;
 }
@@ -324,6 +332,41 @@ color:#868e96 !important
     transition: all 250ms cubic-bezier(.27,.01,.38,1.06);;
 }
 
+ 
+.search-box{
+  position: relative;
+}
+.search-items{
+  position: absolute;
+  top:100%;
+  width:98%;
+ left:1%; 
+}
+
+.foreground {
+  /* background-color: rgba(0,0,0,0.122);
+  z-index: 3; */
+  /* backdrop-filter: blur(10px); */
+  /* backdrop-filter: contrast(40%); */
+
+  /* height: calc(100vh - 3.75rem - 1px);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  font-family: sans-serif;
+  text-align: center;
+  line-height: 1; 
+ -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(50px);   */
+background:#f1f1f1;
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(2px);
+}
+.grey-hover:hover{
+  background: #e6e6e6;
+}
 .main-sidebar .nav .nav-item, .main-sidebar .nav .nav-link {
   font-family: 'Montserrat', sans-serif !important;
 }
@@ -558,10 +601,8 @@ textarea:focus {
 	padding-left: 15px !important;
 }	
 
-.nav-tabs  a{
    
-}
-
+ 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link { 
   color:#00CD95 !important;
   background-color: #fff !important;
@@ -966,14 +1007,14 @@ textarea {
   letter-spacing: 0.6px;
   }
 
-.input-group-btn:focus{
-  /* border:2px solid #00CD95 !important;
-  */
+  /*.input-group-btn:focus{
+ border:2px solid #00CD95 !important;
+ 
   
-}
+} */
 
-button:focus{
-  /* border-radius: 0px 30px 30px 0px !important;
+ /* button:focus{
+ border-radius: 0px 30px 30px 0px !important;
   color: #ccc;
   cursor: pointer;
   font-weight: 500; 
@@ -983,19 +1024,27 @@ button:focus{
   font-size: .80rem;
   line-height: 1.125;
   background: transparent;
-  transition: all 250ms cubic-bezier(.27,.01,.38,1.06); */
+  transition: all 250ms cubic-bezier(.27,.01,.38,1.06); 
 
-  /* border:1px solid #00CD95 !important; */
-}
+    border:1px solid #00CD95 !important; 
+}*/
 
-.search-btn:focus{
-  /* border:1px solid #00CD95 !important; */
-}
+ /*.search-btn:focus{
+  border:1px solid #00CD95 !important; 
+}*/
   
+.pos-fixed{
+  position: fixed;
+  /* z-index :1; */
+}
 .font-30{
   font-size: 23px;
 }  
 
+.fontsize-1-25 {
+  font-size: 1rem;
+ 
+}
   .page-item{
   background: #00CD95 !important;
   color:#fff !important;
