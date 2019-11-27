@@ -9,6 +9,7 @@ import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { DiscussionDetails } from '../../../models/discussiondetails';
 
+
 @Component({
   selector: 'app-discussion-details',
   templateUrl: './discussion-details.component.html',
@@ -515,8 +516,7 @@ export class DiscussionDetailsComponent implements OnInit {
       isAnswer: flag
     }
     this.discussiondetailsService.markAsAnswer(body).subscribe(data => {
-
-      this.markAnswer = true;
+      this.getDiscussionDeatils(this.discussiondocId);
     })
   }
 
@@ -538,6 +538,27 @@ export class DiscussionDetailsComponent implements OnInit {
     this.modalService.dismissAll(this.editPostModal);
   }
 
+  isTimeOver(postDate: Date): boolean {
+    debugger;
+    let date1 = new Date()
+    let date2 = new Date(postDate)
+    let time1 = new Date(date1.getUTCFullYear(),
+      date1.getUTCMonth(),
+      date1.getUTCDate(),
+      date1.getUTCHours(),
+      date1.getUTCMinutes(),
+      date1.getUTCSeconds()
+    ).getTime();
+    let time2 = new Date(date2.getUTCFullYear(),
+      date2.getUTCMonth(),
+      date2.getUTCDate(),
+      date2.getUTCHours(),
+      date2.getUTCMinutes(),
+      date2.getUTCSeconds()).getTime();
+    console.log(Math.round((time1 - time2) / 1000 / 60))
+    return (Math.round((time1 - time2) / 1000 / 60)) < 30
+  }
+
 
   editPost() {
     this.submitEditForm = true;
@@ -550,9 +571,29 @@ export class DiscussionDetailsComponent implements OnInit {
       post_msg: this.n.Description.value
     }
     this.discussiondetailsService.editPost(body).subscribe(data => {
-      alert('posted successfully');
+      this.getDiscussionDeatils(this.discussiondocId);
       this.closeEditPostModal();
     })
   }
+
+  // isMarkAnswerByMe(post:any): boolean {
+  //   if (post != null) {
+  //     let isMarkAnswer = post.map(l => l.like_by_emailId);
+  //     return (likedEmails.includes(this.user.email_id));
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // }
+
+  // isPostdLikedByMe(post: any): boolean {
+  //   if (post != null) {
+  //     let likedEmails = post.likes.map(l => l.like_by_emailId);
+  //     return (likedEmails.includes(this.user.email_id));
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // }
 
 }
