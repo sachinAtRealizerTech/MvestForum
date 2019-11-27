@@ -178,12 +178,12 @@
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
               <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
-                (click)="postLike(discussionDetails?.posts[0])"data-toggle="tooltip" title="Like Post">
+                (click)="postLike(discussionDetails?.posts[0])" data-toggle="tooltip" title="Like Post">
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
 
               <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
-                (click)="unlikePost(discussionDetails?.posts[0])"> <i
-                  class="material-icons icon-accent md-24 ml-3"data-toggle="tooltip" title="Unlike Post">thumb_up</i>
+                (click)="unlikePost(discussionDetails?.posts[0])"> <i class="material-icons icon-accent md-24 ml-3"
+                  data-toggle="tooltip" title="Unlike Post">thumb_up</i>
               </a>
 
               <span class="ml-1 align-self-center">{{discussionDetails?.posts[0]?.likes.length}}</span>
@@ -191,7 +191,8 @@
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
               <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
                   class="material-icons icon-muted md-24 ml-3"
-                  (click)="openCommentModal(postCommentModal,discussionDetails)"data-toggle="tooltip" title="Comment on Post">
+                  (click)="openCommentModal(postCommentModal,discussionDetails)" data-toggle="tooltip"
+                  title="Comment on Post">
                   mode_comment
                 </i>
               </a>
@@ -210,19 +211,21 @@
               <h6 class="mb-0 pt-1" id="p{{qc.comment_id}}">{{qc.comment_text}}</h6>
 
               <ul class="list-inline d-flex  border-0 mb-0">
+
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                  <a *ngIf="!isCommentLikedByMe(qc)"data-toggle="tooltip" title="Like Post" routerLink="#" (click)="likeToComment(discussionDetails,qc)"> <i
-                      class="material-icons icon-muted md-24 ml-3">
+                  <a *ngIf="!isCommentLikedByMe(qc)" data-toggle="tooltip" title="Like Post" routerLink="#"
+                    (click)="likeToComment(discussionDetails,qc)"> <i class="material-icons icon-muted md-24 ml-3">
                       thumb_up
                     </i> </a>
 
-                  <a *ngIf="isCommentLikedByMe(qc)"data-toggle="tooltip" title="Unlike Post" routerLink="#" (click)="unLikeToComment(discussionDetails,qc)"> <i
-                      class="material-icons icon-accent md-24 ml-3">
+                  <a *ngIf="isCommentLikedByMe(qc)" data-toggle="tooltip" title="Unlike Post" routerLink="#"
+                    (click)="unLikeToComment(discussionDetails,qc)"> <i class="material-icons icon-accent md-24 ml-3">
                       thumb_up
                     </i> </a>
 
                   <span class="ml-1 align-self-center">{{qc.likes.length}}</span>
                 </li>
+
                 <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
                   <a routerLink="#" data-toggle="tooltip" title="Comment on Post"> <i
                       class="material-icons icon-muted md-24 ml-3"
@@ -231,6 +234,22 @@
                     </i>
                   </a>
                 </li>
+
+                <li class="list-inline-item mb-1 h6 text-muted align-self-center" id="#edit-box">
+                  <a routerLink="#" data-toggle="tooltip" title="Edit Your Post"> <i
+                      class="material-icons icon-muted md-24 ml-3">
+                      edit
+                    </i></a>
+                </li>
+
+                <li class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
+                  <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
+                      class="material-icons icon-muted md-25 ml-3">
+                      delete
+                    </i></a>
+                </li>
+
+
               </ul>
 
 
@@ -250,21 +269,40 @@
                   <!---------New like------->
 
                   <ul class="list-inline d-flex  border-0 mb-0">
+
+
+
                     <li class="list-inline-item mb-1 h6  text-muted align-self-center">
                       <a *ngIf="!isCommentToCommentLikedByMe(cc)" routerLink="#"
-                        (click)="likeCommentToComment(discussionDetails,qc,cc)"data-toggle="tooltip" title="Like Post">
+                        (click)="likeCommentToComment(discussionDetails,qc,cc)" data-toggle="tooltip" title="Like Post">
                         <i class="material-icons icon-muted md-24 ml-3">
                           thumb_up
                         </i> </a>
 
                       <a *ngIf="isCommentToCommentLikedByMe(cc)" routerLink="#"
-                        (click)="unLikeCommentToComment(discussionDetails,qc,cc)"data-toggle="tooltip" title="Unlike Post">
+                        (click)="unLikeCommentToComment(discussionDetails,qc,cc)" data-toggle="tooltip"
+                        title="Unlike Post">
                         <i class="material-icons icon-accent md-24 ml-3">
                           thumb_up
                         </i> </a>
 
                       <span class="ml-1 align-self-center">{{cc.likes.length}}</span>
                     </li>
+
+                    <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                      <a routerLink="#" data-toggle="tooltip" title="Edit Your Post"> <i
+                          class="material-icons icon-muted md-24 ml-3">
+                          edit
+                        </i></a>
+                    </li>
+
+                    <li class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center">
+                      <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
+                          class="material-icons icon-muted md-25 ml-3">
+                          delete
+                        </i></a>
+                    </li>
+
                   </ul>
 
                   <!--------End New like------>
@@ -318,20 +356,31 @@
           <div class="border-bottom card-body pt-0 mx-3">
 
             <ul class="list-inline d-flex  border-0 mb-0">
-                <li class="list-inline-item mb-1 h6 text-muted align-self-center" id="#comment-box">
-                    <a routerLink="#"> 
-                      <i class="material-icons md-24 ml-3 icon-muted"data-toggle="tooltip" title="Mark as Answer">
-                          check_circle
-                          </i>
-                    </a>
-                  </li>
+
+              <li *ngIf="!markAnswer" class="list-inline-item mb-1 h6 text-muted align-self-center">
+                <a routerLink="#" (click)="markAsAnswer(p.post_id,true)">
+                  <i class="material-icons md-24 ml-3 icon-muted" data-toggle="tooltip" title="Mark as Answer">
+                    check_circle
+                  </i>
+                </a>
+              </li>
+
+              <li *ngIf="markAnswer" class="list-inline-item mb-1 h6 text-muted align-self-center">
+                <a routerLink="#" (click)="markAsAnswer(p.post_id,false)">
+                  <i class="material-icons md-24 ml-3 icon-muted text-accent" data-toggle="tooltip"
+                    title="Mark as Answer">
+                    check_circle
+                  </i>
+                </a>
+              </li>
+
               <li class="list-inline-item mb-1 h6 text-muted align-self-center">
 
-                <a *ngIf="!isPostLikedByMe(p)" routerLink="#" (click)="postLike(p)"data-toggle="tooltip" title="Like Post"> <i
-                    class="material-icons icon-muted md-24 ml-3">thumb_up</i>
+                <a *ngIf="!isPostLikedByMe(p)" routerLink="#" (click)="postLike(p)" data-toggle="tooltip"
+                  title="Like Post"> <i class="material-icons icon-muted md-24 ml-3">thumb_up</i>
                 </a>
-                <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)"data-toggle="tooltip" title="Unlike Post"> <i
-                    class="material-icons icon-accent md-24 ml-3">thumb_up</i>
+                <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)" data-toggle="tooltip"
+                  title="Unlike Post"> <i class="material-icons icon-accent md-24 ml-3">thumb_up</i>
                 </a>
 
                 <span class="ml-1 align-self-center">{{p.likes?.length}}</span>
@@ -342,6 +391,21 @@
                     mode_comment
                   </i>
                 </a>
+              </li>
+
+              <li *ngIf="p.post_by_emailId==user.email_id"
+                class="list-inline-item mb-1 h6 text-muted align-self-center">
+                <a routerLink="#" (click)="openEditPostModal(editPostTemplate,p)" data-toggle="tooltip"
+                  title="Edit Your Post"> <i class="material-icons icon-muted md-24 ml-3">
+                    edit
+                  </i></a>
+              </li>
+
+              <li class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
+                <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
+                    class="material-icons icon-muted md-25 ml-3">
+                    delete
+                  </i></a>
               </li>
             </ul>
 
@@ -618,3 +682,35 @@
 </ng-template>
 
 <!-----------------------------------------End Comment to comment------------------------------------------------------------>
+
+<!-----------------------------------------Edit Post Modal------------------------------------------------------------------->
+
+<ng-template #editPostTemplate>
+
+  <form [formGroup]="editPostForm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card shadow-none">
+          <div class="form-group">
+            <h6 class="font-weight-semibold" for="Description">Edit Your Reply</h6>
+
+            <angular-editor formControlName="Description" [config]="editorConfig"
+              [ngClass]="{ 'is-invalid': submitEditForm && n.Description.errors }">
+              <div *ngIf="submitEditForm && n.Description.errors" class="invalid-feedback">
+                <div *ngIf="n.Description.errors.required">Description is required</div>
+              </div>
+            </angular-editor>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)=editPost()>Reply</button>
+        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closeEditPostModal()">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+</ng-template>
+
+<!-----------------------------------------End Edit Post Modal--------------------------------------------------------------->

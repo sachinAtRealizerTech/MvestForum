@@ -15,6 +15,8 @@ import { DiscussionDetails } from '../../../models/discussiondetails';
   styleUrls: ['./discussion-details.component.scss']
 })
 export class DiscussionDetailsComponent implements OnInit {
+  editPostId: any;
+
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
     private formBuilder: FormBuilder,
@@ -26,11 +28,13 @@ export class DiscussionDetailsComponent implements OnInit {
   discussionDetailsQuestionForm: FormGroup;
   commentForm: FormGroup;
   replyForm: FormGroup;
+  editPostForm: FormGroup;
   commentToCommentForm: FormGroup;
   editorConfig: AngularEditorConfig;
   postQuestionModal: ElementRef;
   replyTemplate: TemplateRef<any>;
   commentModal: ElementRef;
+  editPostModal: ElementRef;
   discussionId: string;
   discussionDetails: DiscussionDetails;
   discussionDetailsId: any;
@@ -54,6 +58,8 @@ export class DiscussionDetailsComponent implements OnInit {
   comment_Id: any;
   comment_to_id: any;
   p_Id: string;
+  markAnswer = false;
+  submitEditForm = false;
 
 
   ngOnInit() {
@@ -111,6 +117,10 @@ export class DiscussionDetailsComponent implements OnInit {
       Description: ['', Validators.required]
     })
 
+    this.editPostForm = this.formBuilder.group({
+      Description: ['', Validators.required]
+    })
+
     this.discussionDetailsQuestionForm = this.formBuilder.group({
       discussionTitle: ['', Validators.required],
       problemDescription: ['', Validators.required]
@@ -145,6 +155,7 @@ export class DiscussionDetailsComponent implements OnInit {
   get f() { return this.discussionDetailsQuestionForm.controls; }
   get h() { return this.commentForm.controls }
   get m() { return this.commentToCommentForm.controls }
+  get n() { return this.editPostForm.controls }
 
   getDiscussionDeatils(id: string) {
     this.loading = true;
@@ -193,6 +204,7 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   sendReply() {
+    debugger;
     this.submitReply = true;
     if (this.replyForm.invalid) {
       return;
@@ -493,6 +505,54 @@ export class DiscussionDetailsComponent implements OnInit {
   isCommentToCommentLikedByMe(comments: any) {
     let likedEmails = comments.likes.map(l => l.like_by_emailId);
     return (likedEmails.includes(this.user.email_id));
+  }
+
+  markAsAnswer(postId: string, flag: boolean) {
+    debugger;
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: postId,
+      isAnswer: flag
+    }
+    this.discussiondetailsService.markAsAnswer(body).subscribe(data => {
+
+      this.markAnswer = true;
+    })
+  }
+
+  openEditPostModal(editPostTemplate, p: any) {
+    debugger;
+    this.editPostModal = editPostTemplate;
+    this.editPostId = p.post_id;
+    let body = {
+      Description: p.post_msg
+    }
+    this.editPostForm.patchValue(body);
+    this.modalService.open(this.editPostModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closeEditPostModal() {
+    this.modalService.dismissAll(this.editPostModal);
+  }
+
+
+  editPost() {
+    this.submitEditForm = true;
+    if (this.editPostForm.invalid) {
+      return;
+    }
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.editPostId,
+      post_msg: this.n.Description.value
+    }
+    this.discussiondetailsService.editPost(body).subscribe(data => {
+      alert('posted successfully');
+      this.closeEditPostModal();
+    })
   }
 
 }
