@@ -357,7 +357,7 @@
 
             <ul class="list-inline d-flex  border-0 mb-0">
 
-              <li *ngIf="!p.isAnswer && (p.post_by_emailId==user.email_id)"
+              <li *ngIf="!p.isAnswer && (discussionDetails?.posts[0]?.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 h6 text-muted align-self-center">
                 <a routerLink="#" (click)="markAsAnswer(p.post_id,true)">
                   <i class="material-icons md-24 ml-3 icon-muted" data-toggle="tooltip" title="Mark as Answer">
@@ -366,7 +366,7 @@
                 </a>
               </li>
 
-              <li *ngIf="p.isAnswer && (p.post_by_emailId==user.email_id)"
+              <li *ngIf="p.isAnswer && (discussionDetails?.posts[0]?.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 h6 text-muted align-self-center">
                 <a routerLink="#" (click)="markAsAnswer(p.post_id,false)">
                   <i class="material-icons md-24 ml-3 icon-muted text-accent" data-toggle="tooltip"
