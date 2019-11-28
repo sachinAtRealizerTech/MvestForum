@@ -42,4 +42,8 @@ export class DiscussiondetailsService {
     return this.httpClient.put(`${environment.APIBASEURL}/Discussion/EditPost`, body, Utils.getAuthHeader())
   }
 
+  deletePost(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/DeletePost`, body, Utils.getAuthHeader())
+  }
+
 }

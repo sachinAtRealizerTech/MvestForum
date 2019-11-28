@@ -17,6 +17,10 @@ import { DiscussionDetails } from '../../../models/discussiondetails';
 })
 export class DiscussionDetailsComponent implements OnInit {
   editPostId: any;
+  editCommentModal: any;
+  editCommentId: any;
+  deleteModal: ElementRef;
+  deletePostId: any;
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
@@ -61,6 +65,8 @@ export class DiscussionDetailsComponent implements OnInit {
   p_Id: string;
   markAnswer = false;
   submitEditForm = false;
+  editCommentForm: FormGroup;
+  submitEditComment = false;
 
 
   ngOnInit() {
@@ -122,6 +128,10 @@ export class DiscussionDetailsComponent implements OnInit {
       Description: ['', Validators.required]
     })
 
+    this.editCommentForm = this.formBuilder.group({
+      comment: ['', Validators.required]
+    })
+
     this.discussionDetailsQuestionForm = this.formBuilder.group({
       discussionTitle: ['', Validators.required],
       problemDescription: ['', Validators.required]
@@ -157,6 +167,7 @@ export class DiscussionDetailsComponent implements OnInit {
   get h() { return this.commentForm.controls }
   get m() { return this.commentToCommentForm.controls }
   get n() { return this.editPostForm.controls }
+  get l() { return this.editCommentForm.controls }
 
   getDiscussionDeatils(id: string) {
     this.loading = true;
@@ -539,7 +550,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   isTimeOver(postDate: Date): boolean {
-    debugger;
     let date1 = new Date()
     let date2 = new Date(postDate)
     let time1 = new Date(date1.getUTCFullYear(),
@@ -555,7 +565,6 @@ export class DiscussionDetailsComponent implements OnInit {
       date2.getUTCHours(),
       date2.getUTCMinutes(),
       date2.getUTCSeconds()).getTime();
-    console.log(Math.round((time1 - time2) / 1000 / 60))
     return (Math.round((time1 - time2) / 1000 / 60)) < 30
   }
 
@@ -572,28 +581,72 @@ export class DiscussionDetailsComponent implements OnInit {
     }
     this.discussiondetailsService.editPost(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
+      this.flashMessagesService.show('Post has been updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.closeEditPostModal();
     })
   }
 
-  // isMarkAnswerByMe(post:any): boolean {
-  //   if (post != null) {
-  //     let isMarkAnswer = post.map(l => l.like_by_emailId);
-  //     return (likedEmails.includes(this.user.email_id));
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // }
+  openEditCommentModal(editCommentModal, discDetails: any, cm: any) {
+    this.editCommentModal = editCommentModal;
+    this.editCommentId = cm.comment_id;
+    let body = {
+      comment: cm.comment_text
+    }
+    this.editCommentForm.patchValue(body);
+    this.modalService.open(this.editCommentModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
 
-  // isPostdLikedByMe(post: any): boolean {
-  //   if (post != null) {
-  //     let likedEmails = post.likes.map(l => l.like_by_emailId);
-  //     return (likedEmails.includes(this.user.email_id));
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // }
+  closeEditCommentModal() {
+    this.modalService.dismissAll(this.editCommentModal);
+  }
+
+  editComment() {
+    debugger;
+    this.submitEditComment = true;
+    if (this.editCommentForm.invalid) {
+      return
+    }
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.editCommentId,
+      post_msg: this.l.comment.value
+    }
+    this.discussiondetailsService.editPost(body).subscribe(data => {
+      console.log('editdata', data)
+      this.flashMessagesService.show('Post has been updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getDiscussionDeatils(this.discussiondocId);
+      this.closeEditPostModal();
+    })
+  }
+
+
+  openDeletePostModal(deleteModal: any, p: any) {
+    this.deletePostId = p.post_id
+    this.deleteModal = deleteModal;
+    this.modalService.open(this.deleteModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closeDeletePostModal() {
+    this.modalService.dismissAll(this.deleteModal)
+  }
+
+  deletePost() {
+    debugger;
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.deletePostId
+    }
+    this.discussiondetailsService.deletePost(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussiondocId);
+      this.flashMessagesService.show('Comment has been deleted successfully', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.closeDeletePostModal();
+    })
+  }
 
 }

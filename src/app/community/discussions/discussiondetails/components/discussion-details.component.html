@@ -403,12 +403,14 @@
                   </i></a>
               </li>
 
-              <li class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
+              <li *ngIf="isTimeOver(p.post_date) && (p.post_by_emailId==user.email_id)"
+                class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center">
                 <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
-                    class="material-icons icon-muted md-25 ml-3">
+                    class="material-icons icon-muted md-25 ml-3" (click)="openDeletePostModal(deleteModal,p)">
                     delete
                   </i></a>
               </li>
+
             </ul>
 
             <!--------------------------End Answers to the Main Question------------------>
@@ -447,6 +449,23 @@
                       </i>
                     </a>
                   </li>
+
+                  <li *ngIf="isTimeOver(cm.create_ts) && (cm.comment_by_emailId==user.email_id)"
+                    class="list-inline-item mb-1 h6 text-muted align-self-center">
+                    <a routerLink="#" (click)="openEditCommentModal(editCommentModal,discussionDetails,cm)"
+                      data-toggle="tooltip" title="Edit Your Post"> <i class="material-icons icon-muted md-24 ml-3">
+                        edit
+                      </i></a>
+                  </li>
+
+                  <li *ngIf="isTimeOver(p.post_date) && (p.post_by_emailId==user.email_id)"
+                    class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
+                    <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
+                        class="material-icons icon-muted md-25 ml-3">
+                        delete
+                      </i></a>
+                  </li>
+
                 </ul>
 
 
@@ -716,3 +735,63 @@
 </ng-template>
 
 <!-----------------------------------------End Edit Post Modal--------------------------------------------------------------->
+
+<!-----------------------------------------Edit Comment Modal----------------------------------------------------------------->
+
+<ng-template #editCommentModal>
+  <form>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Your Comment</h5>
+      </div>
+
+      <div class="modal-body py-3">
+        <div class="card shadow-none">
+          <div class="row">
+            <div class="col-12">
+              <form [formGroup]="editCommentForm">
+                <div class="form">
+
+                  <div class="form-group">
+                    <label for="title">Description :</label>
+                    <div class="w-100">
+                    </div>
+                    <textarea class="form-control" formControlName="comment"
+                      [ngClass]="{ 'is-invalid': submitEditComment && l.comment.errors }"></textarea>
+                    <div *ngIf="submitEditComment && l.comment.errors" class="invalid-feedback">
+                      <div *ngIf="l.comment.errors.required">Comment is required</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="editComment()">Post</button>
+        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closeEditCommentModal()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-----------------------------------------End Edit Comment Modal------------------------------------------------------------->
+
+<!-----------------------------------------Delete Modal----------------------------------------------------------------------->
+<ng-template #deleteModal>
+  <form>
+    <div class="modal-body text-center p-3">
+      <h6 class="text-dark">Do You want to delete this post?</h6>
+    </div>
+    <div class="modal-footer border-0 pt-0 justify-content-center text-center">
+      <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="deletePost()">Yes</button>
+      <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+        (click)="closeDeletePostModal()">No</button>
+    </div>
+
+  </form>
+</ng-template>
+
+<!-----------------------------------------End Delete Modal------------------------------------------------------------------->
