@@ -23,7 +23,8 @@ import { TextMaskModule } from 'angular2-text-mask';
   exports: [
     SignInComponent,
     SignupComponent,
-    ConfirmemailComponent
+    ConfirmemailComponent,
+    TextMaskModule
   ]
 })
 export class AuthenticationModule { }

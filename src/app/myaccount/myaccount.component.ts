@@ -53,6 +53,7 @@ export class MyaccountComponent implements OnInit {
     this.getUserProfileDetails();
   }
 
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   public user = Utils.GetCurrentUser();
   //public userProfile = Utils.getCurrentUserProfileDetails()
 

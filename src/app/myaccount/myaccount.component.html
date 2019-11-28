@@ -99,11 +99,10 @@
                               class="font-weight-normal text-secondary mb-0">{{g.PhoneNo.value}}
                             </label></h6>
                           <input *ngIf="editflag" type="text" class="form-control h6" formControlName="PhoneNo"
-                            pattern="^[7-9][0-9]{9}$"
+                            [textMask]="{mask: mask}"
                             [ngClass]="{ 'is-invalid': submitUserProfile && g.PhoneNo.errors }">
                           <div *ngIf="submitUserProfile && g.PhoneNo.errors" class="invalid-feedback">
                             <div *ngIf="g.PhoneNo.errors.required">Phone Number is required</div>
-                            <div *ngIf="g.PhoneNo.errors.pattern">Phone number is not valid</div>
                           </div>
                         </div>
                         <div class="form-group col-6">
