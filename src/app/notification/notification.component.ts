@@ -97,6 +97,7 @@ export class NotificationComponent implements OnInit {
     }
     this.notificationService.archievingNotification(body).subscribe(data => {
       this.flashMessagesService.show('Your have successfully archieved notification...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+   this.getMyNotifications()
     })
   }
 
