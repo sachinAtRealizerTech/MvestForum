@@ -235,14 +235,16 @@
                   </a>
                 </li>
 
-                <li class="list-inline-item mb-1 h6 text-muted align-self-center" id="#edit-box">
+                <li *ngIf="isTimeOver(qc?.create_ts) && (qc?.comment_by_emailId==user.email_id)"
+                  class="list-inline-item mb-1 h6 text-muted align-self-center" id="#edit-box">
                   <a routerLink="#" data-toggle="tooltip" title="Edit Your Post"> <i
                       class="material-icons icon-muted md-24 ml-3">
                       edit
                     </i></a>
                 </li>
 
-                <li class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
+                <li *ngIf="isTimeOver(qc?.create_ts) && (qc?.comment_by_emailId==user.email_id)"
+                  class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
                   <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
                       class="material-icons icon-muted md-25 ml-3">
                       delete
@@ -289,14 +291,16 @@
                       <span class="ml-1 align-self-center">{{cc.likes.length}}</span>
                     </li>
 
-                    <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                    <li *ngIf="isTimeOver(cc?.create_ts) && (cc?.comment_by_emailId==user.email_id)"
+                      class="list-inline-item mb-1 h6 text-muted align-self-center">
                       <a routerLink="#" data-toggle="tooltip" title="Edit Your Post"> <i
                           class="material-icons icon-muted md-24 ml-3">
                           edit
                         </i></a>
                     </li>
 
-                    <li class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center">
+                    <li *ngIf="isTimeOver(cc?.create_ts) && (cc?.comment_by_emailId==user.email_id)"
+                      class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center">
                       <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
                           class="material-icons icon-muted md-25 ml-3">
                           delete
@@ -458,7 +462,7 @@
                       </i></a>
                   </li>
 
-                  <li *ngIf="isTimeOver(p.post_date) && (p.post_by_emailId==user.email_id)"
+                  <li *ngIf="isTimeOver(cm.create_ts) && (cm.comment_by_emailId==user.email_id)"
                     class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
                     <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
                         class="material-icons icon-muted md-25 ml-3">
@@ -500,6 +504,23 @@
 
                         <span class="ml-1 align-self-center">{{cc.likes.length}}</span>
                       </li>
+
+                      <li *ngIf="isTimeOver(cc.create_ts) && (cc.comment_by_emailId==user.email_id)"
+                        class="list-inline-item mb-1 h6 text-muted align-self-center">
+                        <a routerLink="#" (click)="openEditCommentModal(editCommentModal,discussionDetails,cm)"
+                          data-toggle="tooltip" title="Edit Your Post"> <i class="material-icons icon-muted md-24 ml-3">
+                            edit
+                          </i></a>
+                      </li>
+
+                      <li *ngIf="isTimeOver(cc.create_ts) && (cc.comment_by_emailId==user.email_id)"
+                        class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center" id="#edit-box">
+                        <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
+                            class="material-icons icon-muted md-25 ml-3">
+                            delete
+                          </i></a>
+                      </li>
+
                     </ul>
 
                     <!---------New like-->

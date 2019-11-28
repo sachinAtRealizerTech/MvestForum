@@ -644,7 +644,7 @@ export class DiscussionDetailsComponent implements OnInit {
     }
     this.discussiondetailsService.deletePost(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
-      this.flashMessagesService.show('Comment has been deleted successfully', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.flashMessagesService.show('Comment has been deleted successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.closeDeletePostModal();
     })
   }
