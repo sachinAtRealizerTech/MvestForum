@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
         this.modalService.open(this.emailVerificationModal, {
           backdrop: 'static',
           backdropClass: 'customBackdrop',
-
+          windowClass:'animated fadeInDown delay-1s',
         })
       }
     });
