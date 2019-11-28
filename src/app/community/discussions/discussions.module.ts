@@ -49,6 +49,7 @@ import { HighlightText } from 'src/app/shared/pipes/highlightText.pipe';
     FlashMessagesModule,
     TimeAgoPipe,
     HighlightText,
+    LoadingcircleComponent
     // NgxEditorModule
   ]
 })

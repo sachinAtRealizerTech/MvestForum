@@ -208,7 +208,7 @@
             <div class="col-1">
             </div>
             <div class="col-9 border-top py-1">
-              <h6 class="mb-0 pt-1" id="p{{qc.comment_id}}">{{qc.comment_text}}</h6>
+              <h6 class="mb-0 pt-1" id="p{{qc.comment_id}}" innerHTML="{{qc.comment_text | highlight:searchText}}"></h6>
 
               <ul class="list-inline d-flex  border-0 mb-0">
 
@@ -266,7 +266,8 @@
                 <div class="col-2">
                 </div>
                 <div class="col-8 border-top  py-1">
-                  <h6 class="mb-0 pt-1" id="p{{cc.comment_id}}">{{cc.comment_text}}</h6>
+                  <h6 class="mb-0 pt-1" id="p{{cc.comment_id}}" innerHTML="{{cc.comment_text | highlight:searchText}}">
+                  </h6>
 
                   <!---------New like------->
 
@@ -426,7 +427,8 @@
               <div class="col-1">
               </div>
               <div class="col-9 border-top  py-1">
-                <h6 class="mb-0 pt-1" id="p{{cm?.comment_id}}">{{cm?.comment_text}}</h6>
+                <h6 class="mb-0 pt-1" id="p{{cm?.comment_id}}" innerHTML="{{cm?.comment_text | highlight:searchText}}">
+                </h6>
 
                 <ul class="list-inline d-flex  border-0 mb-0">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
@@ -484,7 +486,8 @@
                   <div class="col-2">
                   </div>
                   <div class="col-8 border-top py-1">
-                    <h6 class="mb-0 pt-1" id="p{{cc?.comment_id}}">{{cc.comment_text}}</h6>
+                    <h6 class="mb-0 pt-1" id="p{{cc?.comment_id}}"
+                      innerHTML="{{cc.comment_text | highlight:searchText}}"></h6>
 
                     <!---------New like-->
 
