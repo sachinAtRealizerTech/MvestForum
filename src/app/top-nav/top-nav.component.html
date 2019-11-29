@@ -1,16 +1,119 @@
-<div class="main-navbar sticky-top bg-white shadow-sm">
+ <div class="main-navbar sticky-top bg-white shadow-sm bg-accent">
   <!-- Main Navbar -->
   <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-    <form action="#" class="main-navbar__search w-100-xl d-md-flex d-lg-flex d-xl-flex">
-      <div class="input-group input-group-seamless ml-3">
+    <form action="#" class="main-navbar__search  search-box w-100-xl d-md-flex d-lg-flex d-xl-flex">
+      <div class="input-group  input-group-seamless ml-3 dropdown">
         <div class="input-group-prepend">
           <div class="input-group-text">
             <i class="fas fa-search"></i>
           </div>
         </div>
-        <input class="navbar-search form-control" type="text" placeholder="Search" aria-label="Search">
+        <input class="navbar-search form-control" type="text" placeholder="Search">
+
       </div>
+
+      <!--     
+        <div class="px-3 search-items"> 
+          <div class="row justify-content-center px-2 bg-light shadow  border  rounded-bottom" >
+              <div class="col-12 ">
+           <div class="row"  >
+              <div class="col-12 pt-1 px-1">
+                  <div class="bg-white p-3">
+                    <h6 class="text-secondary font-weight-semibold mb-0">Community : </h6>
+                    <div class="py-2 grey-hover border-bottom "> 
+                        <a routerLink="#" >
+                            <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                           <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:...</h6> 
+                           </a> 
+                    </div> 
+                    <div class="py-2 grey-hover border-bottom "> 
+                        <a routerLink="#" >
+                            <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                           <h6 class="text-secondary small mb-0">  I've seen recommendations to be...</h6> 
+                           </a> 
+                    </div> 
+                    
+                   
+                  </div>
+                </div>
+                <div class="col-12 pt-1 px-1">
+                    <div class="bg-white px-3">
+                      <h6 class="text-secondary font-weight-semibold mb-0">News : </h6>
+                      <div class="py-2 grey-hover border-bottom "> 
+                          <a routerLink="#" >
+                              <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                             <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:...</h6> 
+                             </a> 
+                      </div> 
+                      <div class="py-2 grey-hover border-bottom "> 
+                          <a routerLink="#" >
+                              <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                             <h6 class="text-secondary small mb-0">  I've seen recommendations to be...</h6> 
+                             </a> 
+                      </div> 
+                      
+                       
+                    </div>
+                  </div>
+          </div> 
+          
+        </div>
+        </div>  
+        </div>   -->
+
+      <!-- first -->
+      <!-- <div class="px-3 shadow bg-white border search-items">
+        <div class="row">
+          <div class="col-12 py-2 border-bottom grey-hover d-flex d-inline-flex">
+              <h6 class="text-accent mb-0 pr-2">  <i class="material-icons text-accent md-18">
+                  done_all
+                  </i> </h6>
+            <a routerLink="#">
+               <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+            </a>
+          </div> 
+          <div class="col-12 py-2 border-bottom grey-hover">
+              
+              <a routerLink="#">
+                  <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                </a>
+              </div> 
+              <div class="col-12 py-2 border-bottom grey-hover d-flex d-inline-flex">
+                 
+                <a routerLink="#">
+                   <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                </a>
+                <h6 class="text-accent mb-0 pr-2 ml-auto">  <i class="material-icons text-accent ">
+                    check_circle
+                    </i> </h6>
+              </div> 
+              <div class="col-12 py-2 border-bottom grey-hover">
+                  <a routerLink="#">
+                      <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                    </a>
+                  </div> 
+                  <div class="col-12 py-2 border-bottom grey-hover d-flex d-inline-flex">
+                      <h6 class="text-accent mb-0 pr-2">  <i class="material-icons text-accent md-18">
+                          done 
+                          </i> </h6>
+                      <a routerLink="#">
+                          <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                        </a>
+                      </div> 
+                      <div class="col-12 py-1 border-bottom grey-hover text-center"> 
+                        <a routerLink="#">
+                            <h6 class="text-muted font-weight-semibold mb-0 small">View All Searches</h6>
+                          </a>
+                        </div> 
+        </div>
+      </div>   -->
+
+
+
     </form>
+
+
+
     <ul class="navbar-nav border-left flex-row">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-nowrap px-3 active d-none d-lg-block" data-toggle="dropdown" href="#"
@@ -173,27 +276,17 @@
                     <!-- <button class=" btn btn-md btn-accent">Accept</button>
                                       <button class=" btn btn-md btn-danger ml-2">Ignore</button> -->
                   </div>
-
                 </div>
-
-
-
               </div>
             </div>
 
           </div>
 
-
-
-
-
-
-
-
           <a class="dropdown-item notification__all text-center  text-secondary" routerLink="/notification"> View all
             Notifications </a>
         </div>
       </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-nowrap px-3 text-secondary" data-toggle="dropdown" href="#"
           role="button" aria-haspopup="true" aria-expanded="false">
@@ -217,14 +310,602 @@
             <i class="material-icons">&#xE879;</i> Logout </a>
         </div>
       </li>
-    </ul>
-    <nav class="nav">
-      <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left"
-        data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
-        <i class="material-icons">&#xE5D2;</i>
+    </ul> 
+ 
+<nav class="nav">
+  <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left"
+   data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+    <i class="material-icons">&#xE5D2;</i>
+  </a>
+</nav>
+
+    <!-- <nav class="nav">
+      <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-block d-lg-none text-center border-left"
+        data-toggle="collapse" data-target="#main-sidebar" aria-expanded="false" aria-controls="main-sidebar">
+        <i class="material-icons"
+        >&#xE5D2;</i>
       </a>
-    </nav>
-  </nav>
+    </nav>   -->
+
+  
+   
+
+
+</nav>
+
+
+  <!-- <div class="px-3 shadow bg-accent border search-items">   -->
+
+  <!-- Full width Long  text start -->
+
+  <!-- <div class="container search-items border">
+          <div class="row justify-content-center px-2 bg-light shadow  rounded-bottom" >
+              <div class="col-12 py-2 ">
+           <div class="row"  >
+              <div class="col-6 py-1 px-1">
+                  <div class="bg-white p-3">
+                    <h6 class="text-secondary font-weight-semibold">Community : </h6>
+                    <div class="py-2 grey-hover border-bottom "> 
+                        <a routerLink="#" >
+                            <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                           <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:...</h6> 
+                           </a> 
+                    </div> 
+                    <div class="py-2 grey-hover border-bottom "> 
+                        <a routerLink="#" >
+                            <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                           <h6 class="text-secondary small mb-0">  I've seen recommendations to be...</h6> 
+                           </a> 
+                    </div> 
+                 
+                   
+                  </div>
+                </div>
+                <div class="col-6 py-1 px-1">
+                    <div class="bg-white p-3">
+                      <h6 class="text-secondary font-weight-semibold">News : </h6>
+                      <div class="py-2 grey-hover border-bottom "> 
+                          <a routerLink="#" >
+                              <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                             <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:...</h6> 
+                             </a> 
+                      </div> 
+                      <div class="py-2 grey-hover border-bottom "> 
+                          <a routerLink="#" >
+                              <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                             <h6 class="text-secondary small mb-0">  I've seen recommendations to be...</h6> 
+                             </a> 
+                      </div> 
+                     
+                       
+                    </div>
+                  </div>
+          </div> 
+          <div class="row ">
+              <div class="col-6 py-1 px-1">
+                  <div class="bg-white p-3">
+                    <h6 class="text-secondary font-weight-semibold">Lease : </h6>
+                    <div class="py-2 grey-hover border-bottom "> 
+                        <a routerLink="#" >
+                            <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                           <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:https://www.pistonheads.com/search?SearchText=recall&PageNumber=1&SortBy=relevance...</h6> 
+                           </a> 
+                    </div> 
+                    <div class="py-2 grey-hover border-bottom "> 
+                        <a routerLink="#" >
+                            <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                            <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:https://www.pistonheads.com/search?SearchText=recall&PageNumber=1&SortBy=relevance...</h6> 
+                           </a> 
+                    </div> 
+                     
+                  </div>
+                </div>
+                <div class="col-6 py-1 px-1">
+                    <div class="bg-white p-3">
+                      <h6 class="text-secondary font-weight-semibold">Wells : </h6>
+                      <div class="py-2 grey-hover border-bottom "> 
+                          <a routerLink="#" >
+                              <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                              <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:https://www.pistonheads.com/search?SearchText=recall&PageNumber=1&SortBy=relevance...</h6>  
+                             </a> 
+                      </div> 
+                       
+                       <div class="py-2 grey-hover border-bottom "> 
+                          <a routerLink="#" >
+                              <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                             <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:https://www.pistonheads.com/search?SearchText=recall&PageNumber=1&SortBy=relevance...</h6> 
+                             </a> 
+                      </div> 
+                       
+                    </div>
+                  </div>
+          </div> 
+        </div>
+      </div>  
+      </div>  -->
+
+  <!-- Full width Long  text end -->
+
+
+
+
+  <!-- <div class="row">
+      <div class="col-12 py-2 border-bottom grey-hover d-flex d-inline-flex">
+          <h6 class="text-accent mb-0 pr-2">  <i class="material-icons text-accent md-18">
+              done_all
+              </i> </h6>
+        <a routerLink="#">
+           <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+        </a>
+      </div> 
+      <div class="col-12 py-2 border-bottom grey-hover">
+          
+          <a routerLink="#">
+              <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+            </a>
+          </div> 
+          <div class="col-12 py-2 border-bottom grey-hover d-flex d-inline-flex">
+             
+            <a routerLink="#">
+               <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+            </a>
+            <h6 class="text-accent mb-0 pr-2 ml-auto">  <i class="material-icons text-accent ">
+                check_circle
+                </i> </h6>
+          </div> 
+          <div class="col-12 py-2 border-bottom grey-hover">
+              <a routerLink="#">
+                  <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                </a>
+              </div> 
+              <div class="col-12 py-2 border-bottom grey-hover d-flex d-inline-flex">
+                  <h6 class="text-accent mb-0 pr-2">  <i class="material-icons text-accent md-18">
+                      done 
+                      </i> </h6>
+                  <a routerLink="#">
+                      <h6 class="text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                    </a>
+                  </div> 
+                  <div class="col-12 py-1 border-bottom grey-hover text-center"> 
+                    <a routerLink="#">
+                        <h6 class="text-muted font-weight-semibold mb-0 small">View All Searches</h6>
+                      </a>
+                    </div> 
+    </div> -->
+  <!-- </div>   -->
+
+<!-- Final text-muted heading -->
+    <!-- <div class="px-3 search-items border-accent animated fadeInDown delay-1s bg-white">
+      <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
+        <div class="col-12 "> 
+          <div class="row">
+            <div class="col-6 py-1 px-1">
+              <div class="bg-white py-2">
+                <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                    Community Results: </h6> 
+                    <div class="py-2 px-3 grey-hover border-bottom ">
+                        <a routerLink="#">
+                            <div class="media mb-0 d-flex">
+                                <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                    search
+                                    </i>
+                                <div class="media-body mb-0">
+                                    <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?
+                                      </h6>
+                                      <h6 class="text-secondary small mb-0">A forum, or message board, is an online discussion site where people can hold conversations in the form...</h6>
+                                 
+                                </div>
+                            </div> 
+                        </a>
+                      </div>
+                    <div class="py-2 px-3 grey-hover border-bottom ">
+                        <a routerLink="#">
+                            <div class="media mb-0 d-flex">
+                                <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                    search
+                                    </i>
+                                    <div class="media-body mb-0">
+                                        <h6 class=" text-muted font-weight-semibold mb-0">How to merge two sql databases with exceptions
+                                          </h6>
+                                          <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one is an existing database that has been going for 15 years...</h6>
+                                     
+                                    </div>
+                            </div>
+                       
+                        </a>
+                      </div>
+                      <div class="py-1 px-3 text-center border-bottom ">
+                          <a routerLink="#" >
+                              <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                </h6> 
+                          </a>
+                        </div>
+  
+              </div>
+            </div>
+            <div class="col-6 py-1 px-1">
+                <div class="bg-white py-2">
+                  <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                      News Results: </h6> 
+                      <div class="py-2 px-3 grey-hover border-bottom ">
+                          <a routerLink="#">
+                              <div class="media mb-0 d-flex">
+                                  <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                      search
+                                      </i>
+                                  <div class="media-body mb-0">
+                                      <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?
+                                        </h6>
+                                        <h6 class="text-secondary small mb-0">I've seen recommendations to be...I am trying to scrape or message board, online discussion site</h6>
+                                   
+                                  </div>
+                              </div> 
+                          </a>
+                        </div>
+                      <div class="py-2 px-3 grey-hover border-bottom ">
+                          <a routerLink="#">
+                              <div class="media mb-0 d-flex">
+                                  <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                      search
+                                      </i>
+                                  <div class="media-body mb-0">
+                                      <h6 class=" text-muted font-weight-semibold mb-0">NoReverseMatch error adding link to go back to category
+                                        </h6>
+                                        <h6 class="text-secondary small mb-0">I have sort of a metaquestion about UI design. The answers will all be opinion based, and it will entail a lot discussion...</h6>
+                                   
+                                  </div>
+                              </div>
+                         
+                          </a>
+                        </div>
+                        <div class="py-1 px-3 text-center border-bottom ">
+                            <a routerLink="#">
+                                <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                  </h6>
+                           
+                            </a>
+                          </div>
+    
+                </div>
+              </div>
+  
+              <div class="col-6 py-1 px-1">
+                  <div class="bg-white py-2">
+                    <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                        Lease Results: </h6> 
+                        <div class="py-2 px-3 grey-hover border-bottom ">
+                            <a routerLink="#">
+                                <div class="media mb-0 d-flex">
+                                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                        search
+                                        </i>
+                                    <div class="media-body mb-0">
+                                        <h6 class=" text-muted font-weight-semibold mb-0">How to merge two sql databases with exceptions
+                                          </h6>
+                                          <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one is an existing database that has been going for 15 years...</h6>
+                                     
+                                    </div>
+                                </div> 
+                            </a>
+                          </div>
+                        <div class="py-2 px-3 grey-hover border-bottom ">
+                            <a routerLink="#">
+                                <div class="media mb-0 d-flex">
+                                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                        search
+                                        </i>
+                                    <div class="media-body mb-0">
+                                        <h6 class=" text-muted font-weight-semibold mb-0">Error adding link to go back to category
+                                          </h6>
+                                          <h6 class="text-secondary small mb-0">I am making a forum site with Django and have set up categories, each with different topics that can be commented on...</h6>
+                                     
+                                    </div>
+                                </div>
+                           
+                            </a>
+                          </div>
+                          <div class="py-1 px-3 text-center border-bottom ">
+                              <a routerLink="#">
+                                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                    </h6>
+                             
+                              </a>
+                            </div>
+      
+                  </div>
+                </div>
+                <div class="col-6 py-1 px-1">
+                    <div class="bg-white py-2">
+                      <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                         Well Results: </h6> 
+                          <div class="py-2 px-3 grey-hover border-bottom ">
+                              <a routerLink="#">
+                                  <div class="media mb-0 d-flex">
+                                      <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                          search
+                                          </i>
+                                      <div class="media-body mb-0">
+                                          <h6 class=" text-muted font-weight-semibold mb-0">ValueError in Django Python Forum application
+                                            </h6>
+                                            <h6 class="text-secondary small mb-0">I'm trying to create a form where users can add a new topic within a category. Then the users will be able to comment on each topic....</h6>
+                                       
+                                      </div>
+                                  </div> 
+                              </a>
+                            </div>
+                          <div class="py-2 px-3 grey-hover border-bottom ">
+                              <a routerLink="#">
+                                  <div class="media mb-0 d-flex">
+                                      <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                          search
+                                          </i>
+                                      <div class="media-body mb-0">
+                                          <h6 class=" text-muted font-weight-semibold mb-0">Is there a free board/forum framework compliance?
+                                            </h6>
+                                            <h6 class="text-secondary small mb-0">i developp web apps and other stuff. I'm looking after a FREE forum/bb framework in GRPD compliance. In the past...</h6>
+                                       
+                                      </div>
+                                  </div>
+                             
+                              </a>
+                            </div>
+                            <div class="py-1 px-3 text-center border-bottom ">
+                                <a routerLink="#">
+                                    <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                      </h6>
+                               
+                                </a>
+                              </div>
+        
+                    </div>
+                  </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>   -->
+<!-- Final Underline Heading -->
+      <div class="px-3 search-items border-accent animated fadeInDown delay-1s bg-white">
+      <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
+        <div class="col-12 "> 
+          <div class="row">
+            <div class="col-6 py-1 px-1">
+              <div class="bg-white py-2">
+                <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                    Community Results: </h6> 
+                    <div class="py-2 px-3 grey-hover border-bottom ">
+                        <a routerLink="#">
+                            <div class="media mb-0 d-flex">
+                                <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                    search
+                                    </i>
+                                <div class="media-body mb-0">
+                                    <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize an array in Java?</u>
+                                      </h6>
+                                      <h6 class="text-secondary small mb-0">A forum, or message board, is an online discussion site where people can hold conversations in the form...</h6>
+                                 
+                                </div>
+                            </div> 
+                        </a>
+                      </div>
+                    <div class="py-2 px-3 grey-hover border-bottom ">
+                        <a routerLink="#">
+                            <div class="media mb-0 d-flex">
+                                <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                    search
+                                    </i>
+                                    <div class="media-body mb-0">
+                                        <h6 class=" text-muted font-weight-semibold mb-0"><u>How to merge two sql databases with exceptions</u>
+                                          </h6>
+                                          <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one is an existing database that has been going for 15 years...</h6>
+                                     
+                                    </div>
+                            </div>
+                       
+                        </a>
+                      </div>
+                      <div class="py-1 px-3 text-center border-bottom ">
+                          <a routerLink="#" >
+                              <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                </h6> 
+                          </a>
+                        </div>
+  
+              </div>
+            </div>
+            <div class="col-6 py-1 px-1">
+                <div class="bg-white py-2">
+                  <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                      News Results: </h6> 
+                      <div class="py-2 px-3 grey-hover border-bottom ">
+                          <a routerLink="#">
+                              <div class="media mb-0 d-flex">
+                                  <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                      search
+                                      </i>
+                                  <div class="media-body mb-0">
+                                      <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize an array in Java?</u>
+                                        </h6>
+                                        <h6 class="text-secondary small mb-0">I've seen recommendations to be...I am trying to scrape or message board, online discussion site</h6>
+                                   
+                                  </div>
+                              </div> 
+                          </a>
+                        </div>
+                      <div class="py-2 px-3 grey-hover border-bottom ">
+                          <a routerLink="#">
+                              <div class="media mb-0 d-flex">
+                                  <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                      search
+                                      </i>
+                                  <div class="media-body mb-0">
+                                      <h6 class=" text-muted font-weight-semibold mb-0"><u>NoReverseMatch error adding link to go back to category</u>
+                                        </h6>
+                                        <h6 class="text-secondary small mb-0">I have sort of a metaquestion about UI design. The answers will all be opinion based, and it will entail a lot discussion...</h6>
+                                   
+                                  </div>
+                              </div>
+                         
+                          </a>
+                        </div>
+                        <div class="py-1 px-3 text-center border-bottom ">
+                            <a routerLink="#">
+                                <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                  </h6>
+                           
+                            </a>
+                          </div>
+    
+                </div>
+              </div>
+  
+              <div class="col-6 py-1 px-1">
+                  <div class="bg-white py-2">
+                    <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
+                        Lease Results: </h6> 
+                        <div class="py-2 px-3 grey-hover border-bottom ">
+                            <a routerLink="#">
+                                <div class="media mb-0 d-flex">
+                                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                        search
+                                        </i>
+                                    <div class="media-body mb-0">
+                                        <h6 class=" text-muted font-weight-semibold mb-0"><u>How to merge two sql databases with exceptions</u>
+                                          </h6>
+                                          <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one is an existing database that has been going for 15 years...</h6>
+                                     
+                                    </div>
+                                </div> 
+                            </a>
+                          </div>
+                        <div class="py-2 px-3 grey-hover border-bottom ">
+                            <a routerLink="#">
+                                <div class="media mb-0 d-flex">
+                                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                        search
+                                        </i>
+                                    <div class="media-body mb-0">
+                                        <h6 class=" text-muted font-weight-semibold mb-0"><u>Error adding link to go back to category</u>
+                                          </h6>
+                                          <h6 class="text-secondary small mb-0">I am making a forum site with Django and have set up categories, each with different topics that can be commented on...</h6>
+                                     
+                                    </div>
+                                </div>
+                           
+                            </a>
+                          </div>
+                          <div class="py-1 px-3 text-center border-bottom ">
+                              <a routerLink="#">
+                                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                    </h6>
+                             
+                              </a>
+                            </div>
+      
+                  </div>
+                </div>
+                <div class="col-6 py-1 px-1">
+                    <div class="bg-white py-2">
+                      <h6 class="text-dark font-weight-semibold mb-0  px-3"> 
+                         Well Results: </h6> 
+                          <div class="py-2 px-3 grey-hover border-bottom ">
+                              <a routerLink="#">
+                                  <div class="media mb-0 d-flex">
+                                      <i class="material-icons align-self-center md-24 text-secondary mr-3">
+                                          search
+                                          </i>
+                                      <div class="media-body mb-0">
+                                          <h6 class=" text-muted font-weight-semibold mb-0"><u>ValueError in Django Python Forum application</u>
+                                            </h6>
+                                            <h6 class="text-secondary small mb-0">I'm trying to create a form where users can add a new topic within a category. Then the users will be able to comment on each topic....</h6>
+                                       
+                                      </div>
+                                  </div> 
+                              </a>
+                            </div>
+                          <div class="py-2 px-3 grey-hover border-bottom ">
+                              <a routerLink="#">
+                                  <div class="media mb-0 d-flex">
+                                      <i class="material-icons align-self-center md-24 text-muted mr-3">
+                                          search
+                                          </i>
+                                      <div class="media-body mb-0">
+                                          <h6 class=" text-muted font-weight-semibold mb-0"><u>Is there a free board/forum framework compliance?</u>
+                                            </h6>
+                                            <h6 class="text-secondary small mb-0">i developp web apps and other stuff. I'm looking after a FREE forum/bb framework in GRPD compliance. In the past...</h6>
+                                       
+                                      </div>
+                                  </div>
+                             
+                              </a>
+                            </div>
+                            <div class="py-1 px-3 text-center border-bottom ">
+                                <a routerLink="#">
+                                    <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                                      </h6>
+                               
+                                </a>
+                              </div>
+        
+                    </div>
+                  </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>  
+  
+ 
+ 
+ 
+ 
+    <!-- <div class="px-3 search-items border-accent"> 
+      <div class="row justify-content-center px-2 bg-light shadow-lg rounded-bottom" >
+          <div class="col-12 ">
+       <div class="row"  >
+          <div class="col-12 pt-1 px-1">
+              <div class="bg-white p-3">
+                <h6 class="text-secondary font-weight-semibold mb-0">Community : </h6>
+                <div class="py-2 grey-hover border-bottom "> 
+                    <a routerLink="#" >
+                        <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                       <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:...</h6> 
+                       </a> 
+                </div> 
+                <div class="py-2 grey-hover border-bottom "> 
+                    <a routerLink="#" >
+                        <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                       <h6 class="text-secondary small mb-0">  I've seen recommendations to be...</h6> 
+                       </a> 
+                </div> 
+                
+               
+              </div>
+            </div>
+            <div class="col-12 pt-1 px-1">
+                <div class="bg-white px-3">
+                  <h6 class="text-secondary font-weight-semibold mb-0">News : </h6>
+                  <div class="py-2 grey-hover border-bottom "> 
+                      <a routerLink="#" >
+                          <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                         <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:...</h6> 
+                         </a> 
+                  </div> 
+                  <div class="py-2 grey-hover border-bottom "> 
+                      <a routerLink="#" >
+                          <h6 class=" text-muted font-weight-semibold mb-0">How do I declare and initialize an array in Java?</h6>
+                         <h6 class="text-secondary small mb-0">  I've seen recommendations to be...</h6> 
+                         </a> 
+                  </div> 
+                  
+                   
+                </div>
+              </div>
+      </div> 
+      
+    </div>
+    </div>  
+    </div>   -->
 </div>
 
 
