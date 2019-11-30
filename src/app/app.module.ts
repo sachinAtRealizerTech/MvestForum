@@ -33,6 +33,7 @@ import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 //import { HighlightText } from './shared/pipes/highlightText.pipe';
 
 @NgModule({
@@ -71,7 +72,8 @@ import { SearchresultsComponent } from './searchresults/searchresults.component'
     ReactiveFormsModule,
     CommunityModule,
     NgbModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ClickOutsideModule
 
   ],
   providers: [

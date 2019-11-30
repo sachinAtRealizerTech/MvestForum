@@ -1,15 +1,15 @@
- <div class="main-navbar sticky-top bg-white shadow-sm bg-accent">
+<div class="main-navbar sticky-top bg-white shadow-sm bg-accent">
   <!-- Main Navbar -->
   <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-    <form action="#" class="main-navbar__search  search-box w-100-xl d-md-flex d-lg-flex d-xl-flex">
+    <form action="#" class="main-navbar__search  search-box w-100 d-md-flex d-lg-flex d-none" [formGroup]="searchForm">
       <div class="input-group  input-group-seamless ml-3 dropdown">
         <div class="input-group-prepend">
           <div class="input-group-text">
             <i class="fas fa-search"></i>
           </div>
         </div>
-        <input class="navbar-search form-control" type="text" placeholder="Search">
-
+        <input class="navbar-search form-control" type="text" formControlName="searchText" placeholder="Search"
+          (keyup)="setTimeoutForSearch()" (keydown)="resetTimeoutForSearch()">
       </div>
 
       <!--     
@@ -310,14 +310,14 @@
             <i class="material-icons">&#xE879;</i> Logout </a>
         </div>
       </li>
-    </ul> 
- 
-<nav class="nav">
-  <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left"
-   data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
-    <i class="material-icons">&#xE5D2;</i>
-  </a>
-</nav>
+    </ul>
+
+    <nav class="nav">
+      <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left"
+        data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+        <i class="material-icons">&#xE5D2;</i>
+      </a>
+    </nav>
 
     <!-- <nav class="nav">
       <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-block d-lg-none text-center border-left"
@@ -327,11 +327,11 @@
       </a>
     </nav>   -->
 
-  
-   
 
 
-</nav>
+
+
+  </nav>
 
 
   <!-- <div class="px-3 shadow bg-accent border search-items">   -->
@@ -474,8 +474,8 @@
     </div> -->
   <!-- </div>   -->
 
-<!-- Final text-muted heading -->
-    <!-- <div class="px-3 search-items border-accent animated fadeInDown delay-1s bg-white">
+  <!-- Final text-muted heading -->
+  <!-- <div class="px-3 search-items border-accent animated fadeInDown delay-1s bg-white">
       <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
         <div class="col-12 "> 
           <div class="row">
@@ -664,202 +664,215 @@
         </div>
       </div>
     </div>   -->
-<!-- Final Underline Heading -->
-      <div class="px-3 search-items border-accent animated fadeInDown delay-1s bg-white">
-      <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
-        <div class="col-12 "> 
-          <div class="row">
-            <div class="col-6 py-1 px-1">
-              <div class="bg-white py-2">
-                <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
-                    Community Results: </h6> 
-                    <div class="py-2 px-3 grey-hover border-bottom ">
-                        <a routerLink="#">
-                            <div class="media mb-0 d-flex">
-                                <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                    search
-                                    </i>
-                                <div class="media-body mb-0">
-                                    <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize an array in Java?</u>
-                                      </h6>
-                                      <h6 class="text-secondary small mb-0">A forum, or message board, is an online discussion site where people can hold conversations in the form...</h6>
-                                 
-                                </div>
-                            </div> 
-                        </a>
-                      </div>
-                    <div class="py-2 px-3 grey-hover border-bottom ">
-                        <a routerLink="#">
-                            <div class="media mb-0 d-flex">
-                                <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                    search
-                                    </i>
-                                    <div class="media-body mb-0">
-                                        <h6 class=" text-muted font-weight-semibold mb-0"><u>How to merge two sql databases with exceptions</u>
-                                          </h6>
-                                          <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one is an existing database that has been going for 15 years...</h6>
-                                     
-                                    </div>
-                            </div>
-                       
-                        </a>
-                      </div>
-                      <div class="py-1 px-3 text-center border-bottom ">
-                          <a routerLink="#" >
-                              <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
-                                </h6> 
-                          </a>
-                        </div>
-  
-              </div>
-            </div>
-            <div class="col-6 py-1 px-1">
-                <div class="bg-white py-2">
-                  <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
-                      News Results: </h6> 
-                      <div class="py-2 px-3 grey-hover border-bottom ">
-                          <a routerLink="#">
-                              <div class="media mb-0 d-flex">
-                                  <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                      search
-                                      </i>
-                                  <div class="media-body mb-0">
-                                      <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize an array in Java?</u>
-                                        </h6>
-                                        <h6 class="text-secondary small mb-0">I've seen recommendations to be...I am trying to scrape or message board, online discussion site</h6>
-                                   
-                                  </div>
-                              </div> 
-                          </a>
-                        </div>
-                      <div class="py-2 px-3 grey-hover border-bottom ">
-                          <a routerLink="#">
-                              <div class="media mb-0 d-flex">
-                                  <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                      search
-                                      </i>
-                                  <div class="media-body mb-0">
-                                      <h6 class=" text-muted font-weight-semibold mb-0"><u>NoReverseMatch error adding link to go back to category</u>
-                                        </h6>
-                                        <h6 class="text-secondary small mb-0">I have sort of a metaquestion about UI design. The answers will all be opinion based, and it will entail a lot discussion...</h6>
-                                   
-                                  </div>
-                              </div>
-                         
-                          </a>
-                        </div>
-                        <div class="py-1 px-3 text-center border-bottom ">
-                            <a routerLink="#">
-                                <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
-                                  </h6>
-                           
-                            </a>
-                          </div>
-    
-                </div>
-              </div>
-  
-              <div class="col-6 py-1 px-1">
-                  <div class="bg-white py-2">
-                    <h6 class="text-secondary font-weight-semibold mb-0  px-3"> 
-                        Lease Results: </h6> 
-                        <div class="py-2 px-3 grey-hover border-bottom ">
-                            <a routerLink="#">
-                                <div class="media mb-0 d-flex">
-                                    <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                        search
-                                        </i>
-                                    <div class="media-body mb-0">
-                                        <h6 class=" text-muted font-weight-semibold mb-0"><u>How to merge two sql databases with exceptions</u>
-                                          </h6>
-                                          <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one is an existing database that has been going for 15 years...</h6>
-                                     
-                                    </div>
-                                </div> 
-                            </a>
-                          </div>
-                        <div class="py-2 px-3 grey-hover border-bottom ">
-                            <a routerLink="#">
-                                <div class="media mb-0 d-flex">
-                                    <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                        search
-                                        </i>
-                                    <div class="media-body mb-0">
-                                        <h6 class=" text-muted font-weight-semibold mb-0"><u>Error adding link to go back to category</u>
-                                          </h6>
-                                          <h6 class="text-secondary small mb-0">I am making a forum site with Django and have set up categories, each with different topics that can be commented on...</h6>
-                                     
-                                    </div>
-                                </div>
-                           
-                            </a>
-                          </div>
-                          <div class="py-1 px-3 text-center border-bottom ">
-                              <a routerLink="#">
-                                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
-                                    </h6>
-                             
-                              </a>
-                            </div>
-      
-                  </div>
-                </div>
-                <div class="col-6 py-1 px-1">
-                    <div class="bg-white py-2">
-                      <h6 class="text-dark font-weight-semibold mb-0  px-3"> 
-                         Well Results: </h6> 
-                          <div class="py-2 px-3 grey-hover border-bottom ">
-                              <a routerLink="#">
-                                  <div class="media mb-0 d-flex">
-                                      <i class="material-icons align-self-center md-24 text-secondary mr-3">
-                                          search
-                                          </i>
-                                      <div class="media-body mb-0">
-                                          <h6 class=" text-muted font-weight-semibold mb-0"><u>ValueError in Django Python Forum application</u>
-                                            </h6>
-                                            <h6 class="text-secondary small mb-0">I'm trying to create a form where users can add a new topic within a category. Then the users will be able to comment on each topic....</h6>
-                                       
-                                      </div>
-                                  </div> 
-                              </a>
-                            </div>
-                          <div class="py-2 px-3 grey-hover border-bottom ">
-                              <a routerLink="#">
-                                  <div class="media mb-0 d-flex">
-                                      <i class="material-icons align-self-center md-24 text-muted mr-3">
-                                          search
-                                          </i>
-                                      <div class="media-body mb-0">
-                                          <h6 class=" text-muted font-weight-semibold mb-0"><u>Is there a free board/forum framework compliance?</u>
-                                            </h6>
-                                            <h6 class="text-secondary small mb-0">i developp web apps and other stuff. I'm looking after a FREE forum/bb framework in GRPD compliance. In the past...</h6>
-                                       
-                                      </div>
-                                  </div>
-                             
-                              </a>
-                            </div>
-                            <div class="py-1 px-3 text-center border-bottom ">
-                                <a routerLink="#">
-                                    <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
-                                      </h6>
-                               
-                                </a>
-                              </div>
-        
-                    </div>
-                  </div>
-          </div>
-  
+  <!-- Final Underline Heading -->
+
+
+  <div class="px-3 search-items border-accent animated fadeInDown bg-white"
+    *ngIf="searchedData?.length==0 && showSearch" (clickOutside)="onClickedOutside($event)">
+    <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
+      <div class="col-12 ">
+        <div class="row justify-content-center text-center">
+          <h6>No searched records found...</h6>
         </div>
       </div>
-    </div>  
-  
- 
- 
- 
- 
-    <!-- <div class="px-3 search-items border-accent"> 
+    </div>
+  </div>
+
+  <div class="px-3 search-items border-accent animated fadeInDown bg-white" *ngIf="searchedData?.length>0 && showSearch"
+    (clickOutside)="onClickedOutside($event)">
+    <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
+      <div class="col-12 ">
+        <div class="row">
+          <div class="col-6 py-1 px-1">
+            <div class="bg-white py-2">
+              <h6 class="text-secondary font-weight-semibold mb-0  px-3">
+                Community Results: </h6>
+              <div class="py-2 px-3 grey-hover border-bottom " *ngFor="let cs of communitySearchedData">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>{{cs.title}}</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">{{cs.body}}</h6>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="py-1 px-3 text-center border-bottom ">
+                <a routerLink="#" (click)="goToSearchResultPage()">
+                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                  </h6>
+                </a>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-6 py-1 px-1">
+            <div class="bg-white py-2">
+              <h6 class="text-secondary font-weight-semibold mb-0  px-3">
+                News Results: </h6>
+              <div class="py-2 px-3 grey-hover border-bottom ">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize an array in
+                          Java?</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">I've seen recommendations to be...I am trying to scrape or
+                        message board, online discussion site</h6>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="py-2 px-3 grey-hover border-bottom ">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>NoReverseMatch error adding link to go back
+                          to category</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">I have sort of a metaquestion about UI design. The answers
+                        will all be opinion based, and it will entail a lot discussion...</h6>
+
+                    </div>
+                  </div>
+
+                </a>
+              </div>
+              <div class="py-1 px-3 text-center border-bottom ">
+                <a routerLink="#">
+                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                  </h6>
+
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-6 py-1 px-1">
+            <div class="bg-white py-2">
+              <h6 class="text-secondary font-weight-semibold mb-0  px-3">
+                Lease Results: </h6>
+              <div class="py-2 px-3 grey-hover border-bottom ">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>How to merge two sql databases with
+                          exceptions</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">I have two forum databases, database1 and database2, one
+                        is
+                        an existing database that has been going for 15 years...</h6>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="py-2 px-3 grey-hover border-bottom ">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>Error adding link to go back to
+                          category</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">I am making a forum site with Django and have set up
+                        categories, each with different topics that can be commented on...</h6>
+
+                    </div>
+                  </div>
+
+                </a>
+              </div>
+              <div class="py-1 px-3 text-center border-bottom ">
+                <a routerLink="#">
+                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                  </h6>
+
+                </a>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-6 py-1 px-1">
+            <div class="bg-white py-2">
+              <h6 class="text-dark font-weight-semibold mb-0  px-3">
+                Well Results: </h6>
+              <div class="py-2 px-3 grey-hover border-bottom ">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-secondary mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>ValueError in Django Python Forum
+                          application</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">I'm trying to create a form where users can add a new
+                        topic
+                        within a category. Then the users will be able to comment on each topic....</h6>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="py-2 px-3 grey-hover border-bottom ">
+                <a routerLink="#">
+                  <div class="media mb-0 d-flex">
+                    <i class="material-icons align-self-center md-24 text-muted mr-3">
+                      search
+                    </i>
+                    <div class="media-body mb-0">
+                      <h6 class=" text-muted font-weight-semibold mb-0"><u>Is there a free board/forum framework
+                          compliance?</u>
+                      </h6>
+                      <h6 class="text-secondary small mb-0">i developp web apps and other stuff. I'm looking after a
+                        FREE forum/bb framework in GRPD compliance. In the past...</h6>
+
+                    </div>
+                  </div>
+
+                </a>
+              </div>
+              <div class="py-1 px-3 text-center border-bottom ">
+                <a routerLink="#">
+                  <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
+                  </h6>
+
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- <div class="px-3 search-items border-accent"> 
       <div class="row justify-content-center px-2 bg-light shadow-lg rounded-bottom" >
           <div class="col-12 ">
        <div class="row"  >

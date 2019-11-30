@@ -69,8 +69,7 @@
           <div class="card card-small blog-comments">
             <div class="card-body p-0" *ngFor="let dl of myDiscussionList?.discussions">
               <a routerLink="/discussion-details"
-                [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:myDiscussionList._id,subCategoryId:myDiscussionList.category_id}"
-                (click)="setTitle( 'Mvest-Discussion Details')">
+                [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:myDiscussionList._id,subCategoryId:myDiscussionList.category_id}">
 
                 <div class=" border-bottom p-1">
                   <div class="row justify-content-center text-left text-break">

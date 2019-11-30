@@ -110,10 +110,10 @@ export class DiscussionslistComponent implements OnInit {
       console.log('disclist', this.discussionList);
       this.loading = false;
       this.pageNotFound = false;
-      this.categoryName = this.discussionList['category'];
-      this.categoryId = this.discussionList['category_id'];
-      this.subCategoryIdDD = this.discussionList['sub_category_id'];
-      this.subCategoryName = this.discussionList['sub_category'];
+      this.categoryName = sessionStorage.getItem("category_name");
+      this.categoryId = sessionStorage.getItem("category_id");
+      this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+      this.subCategoryName = sessionStorage.getItem("subCatName");
     },
       err => {
         if (err.status == 404) {

@@ -17,4 +17,8 @@ export class TopNavService {
   getMyNotifications(email: string) {
     return this.httpClient.get(`${environment.APIBASEURL}/Notifications/GetMyNotifications/${email}/All/Unread/Info`, Utils.getAuthHeader())
   }
+
+  getSearchResult(id: string) {
+    return this.httpClient.get(`${environment.APIBASEURL}/SearchFramework/GetsearchResult/${id}`, Utils.getAuthHeader())
+  }
 }

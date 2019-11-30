@@ -13,6 +13,7 @@ export class MydiscussionsComponent implements OnInit {
   myDiscussionList: any;
   discussionListPage = false;
   loading = false;
+  pageNotFound = false;
 
   constructor(private mydiscussionsService: MydiscussionsService,
     private discussionslistService: DiscussionslistService) { }

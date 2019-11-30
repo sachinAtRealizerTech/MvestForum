@@ -143,6 +143,27 @@
                 </div>
             </div> -->
 
+            <!-- <div class="row justify-content-between gutters-1" *ngIf="discussionList?.discussions?.length>0">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card card-small mt-1 shadow-sm">
+                        <div class="card-body p-0">
+                            <div class="row p-1">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs sub-tab border-0">
+                                        <li class="nav-item align-self-center mb-0 text-accent p-1">
+                                            <h6 class="text-accent font-weight-semibold mb-0">You are viewing
+                                                discussions in
+                                                {{subCategoryName | titlecase}} of {{categoryName | titlecase}}
+                                                Category.</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
             <div class="row justify-content-between no-gutters pt-3">
                 <div class="col-md-12 col-xl-12">
                     <div class="row justify-content-between no-gutters">
@@ -177,11 +198,11 @@
                                                             </ul>
 
                                                             <ul class="list-inline mb-0 d-flex d-inline-flex">
-                                                                    <li class="list-inline-item mb-1 h6 text-accent">
-                                                                            <i class="material-icons md-20 text-accent">
-                                                                                check_circle
-                                                                            </i> 
-                                                                        </li>
+                                                                <li class="list-inline-item mb-1 h6 text-accent">
+                                                                    <i class="material-icons md-20 text-accent">
+                                                                        check_circle
+                                                                    </i>
+                                                                </li>
                                                                 <li class="list-inline-item mb-1 h6  text-muted"
                                                                     innerHTML="{{dl?.post_msg | summary | highlight:searchText}}">
                                                                     <!-- {{dl?.post_msg | summary}} -->
@@ -192,7 +213,7 @@
                                                                         (click)="readMore()"><u>- read
                                                                             more</u></a>
                                                                 </li> -->
-                                                               
+
                                                             </ul>
                                                         </div>
                                                     </div>
