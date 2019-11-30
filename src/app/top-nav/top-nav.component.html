@@ -687,16 +687,17 @@
             <div class="bg-white py-2">
               <h6 class="text-secondary font-weight-semibold mb-0  px-3">
                 Community Results: </h6>
-              <div class="py-2 px-3 grey-hover border-bottom " *ngFor="let cs of communitySearchedData">
+              <div class="py-2 px-3 grey-hover border-bottom " *ngFor="let cs of communitySearchedData | slice:0:2">
                 <a routerLink="#">
                   <div class="media mb-0 d-flex">
                     <i class="material-icons align-self-center md-24 text-muted mr-3">
                       search
                     </i>
                     <div class="media-body mb-0">
-                      <h6 class=" text-muted font-weight-semibold mb-0"><u>{{cs.title}}</u>
+                      <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted" routerLink="#"
+                          (click)="goToSearchLink(cs.url)"><u>{{cs.title}}</u></a>
                       </h6>
-                      <h6 class="text-secondary small mb-0">{{cs.body}}</h6>
+                      <h6 class="text-secondary small mb-0" innerHTML="{{cs.body}}"></h6>
 
                     </div>
                   </div>
@@ -704,7 +705,7 @@
               </div>
 
               <div class="py-1 px-3 text-center border-bottom ">
-                <a routerLink="#" (click)="goToSearchResultPage()">
+                <a routerLink="#" (click)="goToSearchResultPage(communitySearchedData[0]?.sf)">
                   <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all Results
                   </h6>
                 </a>

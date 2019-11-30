@@ -23,6 +23,7 @@ export class TopNavComponent implements OnInit {
   newsSearchedData: any[];
   wellsSearchedData: any[];
   showSearch = false;
+  searchType: string;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -90,30 +91,39 @@ export class TopNavComponent implements OnInit {
       console.log('searchedata', this.searchedData)
       for (let i = 0; i < this.searchedData.length; i++) {
         debugger;
-        if (this.searchedData[i]['w']['sd'][0]['sf'] == "community") {
-          console.log('ccs', this.searchedData[i]['w']['sd'][0])
-          this.communitySearchedData.push(this.searchedData[i]['w']['sd'][0])
+        if (this.searchedData[i]['sf'] == "community") {
+          console.log('ccs', this.searchedData[i])
+          this.communitySearchedData.push(this.searchedData[i])
         }
-        if (this.searchedData[i]['w']['sd'][0]['sf'] == "lease") {
-          console.log('ccs', this.searchedData[i]['w']['sd'][0])
-          this.leaseSearchedData.push(this.searchedData[i]['w']['sd'][0])
+        if (this.searchedData[i]['sf'] == "lease") {
+          console.log('ccs', this.searchedData[i])
+          this.leaseSearchedData.push(this.searchedData[i])
         }
-        if (this.searchedData[i]['w']['sd'][0]['sf'] == "news") {
-          console.log('ccs', this.searchedData[i]['w']['sd'][0])
-          this.newsSearchedData.push(this.searchedData[i]['w']['sd'][0])
+        if (this.searchedData[i]['sf'] == "news") {
+          console.log('ccs', this.searchedData[i])
+          this.newsSearchedData.push(this.searchedData[i])
         }
-        if (this.searchedData[i]['w']['sd'][0]['sf'] == "wells") {
-          console.log('ccs', this.searchedData[i]['w']['sd'][0])
-          this.wellsSearchedData.push(this.searchedData[i]['w']['sd'][0])
+        if (this.searchedData[i]['sf'] == "wells") {
+          console.log('ccs', this.searchedData[i])
+          this.wellsSearchedData.push(this.searchedData[i])
         }
       }
       console.log('communitySearchedData', this.communitySearchedData)
     })
   }
 
-  goToSearchResultPage() {
+  goToSearchResultPage(searchType: string) {
+    this.searchType = searchType
     this.showSearch = false;
-    this.router.navigate(['/searchresults'])
+    this.router.navigate(['/searchresults'], { queryParams: { searchText: this.searchText, searchType: this.searchType } })
+  }
+
+
+  goToSearchLink(url: string) {
+    debugger;
+    url = url.slice(31)
+    this.router.navigateByUrl(url)
+    this.showSearch = false;
   }
 
 }

@@ -11,13 +11,15 @@
                 </div>
                 <div class="col-12 pt-3">
                         <ul class="list-inline d-flex mb-1">
-                                <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">280 Search
+                                <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">
+                                        {{searchedData.length}} Search
                                         Results</li>
                                 <li class="list-inline-item mb-1">
-                                        <select class="font-weight-semibold  text-accent">
+                                        <select class="font-weight-semibold  text-accent" [value]="searchType"
+                                                (change)="selectSearchType($event)">
                                                 <option value="All">Feature : All</option>
-                                                <option value="All"> Community</option>
-                                                <option value="All"> News</option>
+                                                <option value="community"> Community</option>
+                                                <option value="news"> News</option>
                                         </select>
                                 </li>
                         </ul>
@@ -26,63 +28,15 @@
 
 
         <div class="row">
-                <div class="col-8 pt-2 px-3">
-                        <!-- <h6 class="text-secondary font-weight-semibold mb-0">Community : </h6> -->
-                </div>
-                <div class="col-10 grey-hover px-3 py-2 border-bottom ">
+
+                <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
                         <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize
-                                                an array in Java?</u> </h6>
-                                <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:
-                                        https://www.pistonheads.com/search?SearchText= recall&PageNumber=
-                                        1&SortBy=relevance &Order By=asc... </h6>
+                                <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted"
+                                                (click)="goToSearchLink(sd.url)"><u>{{sd.title}}</u></a> </h6>
+                                <h6 class="text-secondary small mb-0" innerHTML="{{sd.body}}"></h6>
                         </a>
                 </div>
-                <div class="col-10 grey-hover px-3 py-2 border-bottom ">
-                        <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize
-                                                an array in Java?</u></h6>
-                                <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:
-                                        https://www.pistonheads.com/search?SearchText=recall&PageNumber
-                                        =1&SortBy=relevance& Order By=asc... </h6>
-                        </a>
-                </div>
-                <div class="col-10 grey-hover px-3 py-2 border-bottom ">
-                        <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize
-                                                an array in Java?</u></h6>
-                                <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:
-                                        https://www.pistonheads.com/search?SearchText=recall& PageNumber=1&SortBy=
-                                        relevance& OrderBy=asc... </h6>
-                        </a>
-                </div>
-                <div class="col-10 grey-hover px-3 py-2 border-bottom ">
-                        <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize
-                                                an array in Java?</u></h6>
-                                <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:
-                                        https://www.pistonheads.com/search?SearchText=recall&PageNumber
-                                        =1&SortBy=relevancer By=asc... </h6>
-                        </a>
-                </div>
-                <div class="col-10 grey-hover px-3 py-2 border-bottom ">
-                        <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize
-                                                an array in Java?</u></h6>
-                                <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:
-                                        https://www.pistonheads.com/search?SearchText=recall&PageNumber
-                                        =1&SortBy=relevancer By=asc... </h6>
-                        </a>
-                </div>
-                <div class="col-10 grey-hover px-3 py-2 border-bottom ">
-                        <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><u>How do I declare and initialize
-                                                an array in Java?</u></h6>
-                                <h6 class="text-secondary small mb-0">I am trying to scrape the following URL:
-                                        https://www.pistonheads.com/search?SearchText=recall&PageNumber
-                                        =1&SortBy=relevancer By=asc... </h6>
-                        </a>
-                </div>
+
         </div>
 
 </div>

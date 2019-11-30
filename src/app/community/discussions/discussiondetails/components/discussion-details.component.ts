@@ -142,7 +142,7 @@ export class DiscussionDetailsComponent implements OnInit {
       this.subCategoryId = params['subCategoryId']
       this.discussionId = params['discussionId'];
       this.discussionDetailsId = params['discussionDetailsId'];
-      this.p_Id = params['p_Id'];
+      this.p_Id = params['PostId'];
     });
 
     this.categoryName = sessionStorage.getItem("category_name");
