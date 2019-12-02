@@ -666,6 +666,13 @@
     </div>   -->
   <!-- Final Underline Heading -->
 
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
 
   <div class="px-3 search-items border-accent animated fadeInDown bg-white"
     *ngIf="searchedData?.length==0 && showSearch" (clickOutside)="onClickedOutside($event)">
@@ -683,7 +690,8 @@
     <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
       <div class="col-12 ">
         <div class="row">
-          <div class="col-6 py-1 px-1">
+
+          <div class="col-6 py-1 px-1" *ngIf="communitySearchedData.length>0">
             <div class="bg-white py-2">
               <h6 class="text-secondary font-weight-semibold mb-0  px-3">
                 Community Results: </h6>
@@ -713,7 +721,8 @@
 
             </div>
           </div>
-          <div class="col-6 py-1 px-1">
+
+          <div class="col-6 py-1 px-1" *ngIf="newsSearchedData.length>0">
             <div class="bg-white py-2">
               <h6 class="text-secondary font-weight-semibold mb-0  px-3">
                 News Results: </h6>
@@ -763,7 +772,7 @@
             </div>
           </div>
 
-          <div class="col-6 py-1 px-1">
+          <div class="col-6 py-1 px-1" *ngIf="leaseSearchedData.length>0">
             <div class="bg-white py-2">
               <h6 class="text-secondary font-weight-semibold mb-0  px-3">
                 Lease Results: </h6>
@@ -813,7 +822,8 @@
 
             </div>
           </div>
-          <div class="col-6 py-1 px-1">
+
+          <div class="col-6 py-1 px-1" *ngIf="wellsSearchedData.length>0">
             <div class="bg-white py-2">
               <h6 class="text-dark font-weight-semibold mb-0  px-3">
                 Well Results: </h6>
@@ -863,6 +873,7 @@
 
             </div>
           </div>
+
         </div>
 
       </div>

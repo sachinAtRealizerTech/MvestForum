@@ -24,6 +24,7 @@ export class TopNavComponent implements OnInit {
   wellsSearchedData: any[];
   showSearch = false;
   searchType: string;
+  loading = false;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -61,7 +62,7 @@ export class TopNavComponent implements OnInit {
   }
 
   setTimeoutForSearch() {
-
+    this.loading = true;
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(() => {
       this.getSearchResult()
@@ -76,10 +77,17 @@ export class TopNavComponent implements OnInit {
 
   onClickedOutside(e: Event) {
     this.showSearch = false;
+    this.loading = false;
   }
 
   getSearchResult() {
     this.searchText = this.searchForm.controls.searchText.value;
+    if (this.searchText == "") {
+      this.loading = false;
+    }
+    else {
+      this.loading = true;
+    }
     this.communitySearchedData = [];
     this.newsSearchedData = [];
     this.leaseSearchedData = [];
@@ -87,6 +95,7 @@ export class TopNavComponent implements OnInit {
     this.topNavService.getSearchResult(this.searchText).subscribe(data => {
       debugger;
       this.showSearch = true;
+      this.loading = false;
       this.searchedData = data;
       console.log('searchedata', this.searchedData)
       for (let i = 0; i < this.searchedData.length; i++) {
