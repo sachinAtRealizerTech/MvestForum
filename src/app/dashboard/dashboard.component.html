@@ -10,21 +10,55 @@
 </div>
 
 
-  <ng-template #emailVerificationTemplate>
+<!-- Leaves Texture -->
+   <ng-template #emailVerificationTemplate >
 
-    <div class="modal-content modal-md animated fadeInDown delay-1s" >
+    <div class="modal-content modal-md animated fadeInDown delay-1s"  style="  background-image: url(assets/images/pattern6-circle1.png);">
         <div class="modal-body text-center justify-content-center ">
             <div class="row justify-content-end text-right">
                 <div class="col-10">
-                    <a class="text-secondary cursor-pointer" (click)="closeEmailVerificationAlertModal()">Skip</a>
+                    <a class="text-secondary cursor-pointer" (click)="closeEmailVerificationAlertModal()"><u>Skip</u></a>
                 </div>
             </div>
-            <div class="row justify-content-center text-center pt-3">
+            <div class="row justify-content-center text-center p-3" >
+                <div class="col-12 text-center top-bottom-center">
+                    <img src="assets/images/verify-email.png" height="150px" width="auto">
+
+                    <h4 class="text-secondary font-weight-semibold h5 pt-3">Verify your Email Id </h4>
+                    <h4 class="text-danger font-weight-semibold h5 "> till {{graceEndDate | date:'mediumDate'}} for
+                        full
+                        access </h4>
+                    <h5 class="text-muted h6 font-weight-semibold">or we will have to block your account</h5>
+                    <div class="w-100"></div>
+                    <h6 class="text-muted h6 font-weight-semibold pt-3">Didn't receive any Email ??</h6>
+                    <button type="submit" class="btn btn-accent btn-sm text-uppercase"
+                        (click)="sendConfirmationEmail()">Resend
+                        E-mail</button> &nbsp; &nbsp;
+                     
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</ng-template>    
+
+<!-- <ng-template #emailVerificationTemplate >
+
+    <div class="modal-content modal-md animated fadeInDown delay-1s"  style=" background: cover;  background-image: url(assets/images/farm.png);">
+        <div class="modal-body text-center justify-content-center ">
+            <div class="row justify-content-end text-right">
+                <div class="col-10">
+                    <a class="text-muted cursor-pointer" (click)="closeEmailVerificationAlertModal()">Skip</a>
+                </div>
+            </div>
+            <div class="row justify-content-center text-center p-3" >
                 <div class="col-12  top-bottom-center">
                     <img src="assets/images/verify-email.png" height="150px" width="auto">
 
-                    <h4 class="text-danger font-weight-semibold h5 pt-3">Verify your Email Id </h4>
-                    <h4 class="text-secondary font-weight-semibold h5 "> till {{graceEndDate | date:'mediumDate'}} for
+                    <h4 class="text-secondary font-weight-semibold h5 pt-3">Verify your Email Id </h4>
+                    <h4 class="text-danger font-weight-semibold h5 "> till {{graceEndDate | date:'mediumDate'}} for
                         full
                         access </h4>
                     <h5 class="text-muted h6 font-weight-semibold">or we will have to block your account</h5>
@@ -41,7 +75,7 @@
 
     </div>
 
-</ng-template>  
+</ng-template>  -->
 
 <!-- <div class="modal-content modal-md animated fadeInDown delay-1s" >
     <div class="modal-body text-center justify-content-center ">
