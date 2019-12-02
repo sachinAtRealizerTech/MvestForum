@@ -35,7 +35,7 @@ export class MydiscussionsComponent implements OnInit {
 
   getMyDiscussionsList(subCatId: string) {
     this.loading = true;
-    this.discussionslistService.getAllDiscussionsList(subCatId).subscribe(data => {
+    this.discussionslistService.getAllDiscussionsList(subCatId, true, this.user.email_id).subscribe(data => {
       this.discussionListPage = true;
       this.loading = false;
       this.myDiscussionList = data;

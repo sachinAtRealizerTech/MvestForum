@@ -12,8 +12,8 @@ export class DiscussionslistService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllDiscussionsList(subcategoryId: string) {
-    return this.httpClient.get<DiscussionsList>(`${environment.APIBASEURL}/discussion/${subcategoryId}`, Utils.getAuthHeader()).pipe(map(data => {
+  getAllDiscussionsList(subcategoryId: string, myDiscussion: boolean, email: string) {
+    return this.httpClient.get<DiscussionsList>(`${environment.APIBASEURL}/discussion/${subcategoryId}/${myDiscussion}/${email}`, Utils.getAuthHeader()).pipe(map(data => {
       return data
     }))
   }

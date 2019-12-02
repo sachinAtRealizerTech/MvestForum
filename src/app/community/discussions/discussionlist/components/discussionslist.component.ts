@@ -104,7 +104,7 @@ export class DiscussionslistComponent implements OnInit {
 
   getDiscussionList(id: string) {
     this.loading = true;
-    this.discussionlistService.getAllDiscussionsList(id).subscribe(data => {
+    this.discussionlistService.getAllDiscussionsList(id, false, this.user.email_id).subscribe(data => {
       this.discussionList = data;
       debugger;
       console.log('disclist', this.discussionList);
