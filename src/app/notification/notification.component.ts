@@ -3,6 +3,7 @@ import { NotificationService } from './notification.service';
 import { Utils } from '../shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { HighlightText } from '../shared/pipes/highlightText.pipe';
+import { error } from 'util';
 
 @Component({
   selector: 'app-notification',
@@ -68,9 +69,13 @@ export class NotificationComponent implements OnInit {
 
   getMyNotifications() {
     this.notificationService.getMyNotifications(this.user.email_id, this.currentFeature, this.currentStatus, this.currentType).subscribe(data => {
+      debugger;
       this.myNotifications = data;
       console.log('mynotifications', data)
     })
+    err => {
+      console.log('error', err)
+    }
   }
 
   selectFeature(event: any) {
@@ -97,7 +102,7 @@ export class NotificationComponent implements OnInit {
     }
     this.notificationService.archievingNotification(body).subscribe(data => {
       this.flashMessagesService.show('Your have successfully archieved notification...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
-   this.getMyNotifications()
+      this.getMyNotifications()
     })
   }
 

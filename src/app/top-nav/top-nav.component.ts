@@ -16,7 +16,7 @@ export class TopNavComponent implements OnInit {
   searchForm: FormGroup
   searchText: any;
   searchedData: any;
-  doneTypingInterval = 1000
+  doneTypingInterval = 500
   typingTimer: any
   communitySearchedData: any[];
   leaseSearchedData: any[];
@@ -25,6 +25,7 @@ export class TopNavComponent implements OnInit {
   showSearch = false;
   searchType: string;
   loading = false;
+  threeChars = true;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -62,6 +63,11 @@ export class TopNavComponent implements OnInit {
   }
 
   setTimeoutForSearch() {
+    this.communitySearchedData = [];
+    this.newsSearchedData = [];
+    this.leaseSearchedData = [];
+    this.wellsSearchedData = [];
+    this.showSearch = true;
     this.loading = true;
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(() => {
@@ -81,20 +87,22 @@ export class TopNavComponent implements OnInit {
   }
 
   getSearchResult() {
+    debugger;
     this.searchText = this.searchForm.controls.searchText.value;
     if (this.searchText == "") {
       this.loading = false;
+      this.threeChars = true;
     }
     else {
       this.loading = true;
     }
-    this.communitySearchedData = [];
-    this.newsSearchedData = [];
-    this.leaseSearchedData = [];
-    this.wellsSearchedData = [];
+    if (this.searchText.length < 3) {
+      this.threeChars = true;
+      return
+    }
+    this.threeChars = false;
     this.topNavService.getSearchResult(this.searchText).subscribe(data => {
       debugger;
-      this.showSearch = true;
       this.loading = false;
       this.searchedData = data;
       console.log('searchedata', this.searchedData)
@@ -126,7 +134,6 @@ export class TopNavComponent implements OnInit {
     this.showSearch = false;
     this.router.navigate(['/searchresults'], { queryParams: { searchText: this.searchText, searchType: this.searchType } })
   }
-
 
   goToSearchLink(url: string) {
     debugger;
