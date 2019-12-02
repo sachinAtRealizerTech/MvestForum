@@ -698,8 +698,8 @@
 
   <div class="px-3 search-items border-accent animated fadeInDown bg-white" *ngIf="showSearch"
     (clickOutside)="onClickedOutside($event)">
-    <div class="row justify-content-center p-2 bg-light shadow-lg rounded-bottom">
-      <h6 *ngIf="threeChars" class="text-accent">*Enter minimum three characters to see search results </h6>
+    <div class="row justify-content-center text-left p-2 bg-light  rounded-bottom">
+      <h6 *ngIf="threeChars" class="text-danger small mb-0">* Enter minimum three characters to see search results </h6>
       <div class="col-12 ">
         <div class="row">
 
