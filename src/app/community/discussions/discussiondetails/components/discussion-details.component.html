@@ -65,14 +65,14 @@
 
 
         <li class="nav-item align-self-center">
-          <a class="align-self-center" routerLink="/subcategory" [queryParams]="{subCategoryId:subCategoryId}"
+          <a class="align-self-center" routerLink="/subcategory" [queryParams]="{categoryId:categoryId}"
             (click)="setTitle( 'Mvest-SubCategories' )">
             <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center">Sub Categories / </h5>
           </a>
         </li>
         <li class="nav-item align-self-center">
           <a class="align-self-center" routerLink="/discussionslist"
-            [queryParams]="{subCategoryId:subCategoryId,discussionId:discussionId}"
+            [queryParams]="{subCategoryId:subCategoryId,categoryId:categoryId}"
             (click)="setTitle( 'Mvest-Discussions')">
             <h5 class=" text-muted mb-0 font-weight-bold mr-3 align-self-center"> Discussions / </h5>
           </a>
@@ -235,7 +235,7 @@
                   </a>
                 </li>
 
-                <li *ngIf="isTimeOver(qc?.create_ts) && (qc?.comment_by_emailId==user.email_id)"
+                <!-- <li *ngIf="isTimeOver(qc?.create_ts) && (qc?.comment_by_emailId==user.email_id)"
                   class="list-inline-item mb-1 h6 text-muted align-self-center" id="#edit-box">
                   <a routerLink="#" data-toggle="tooltip" title="Edit Your Post"> <i
                       class="material-icons icon-muted md-24 ml-3">
@@ -249,7 +249,7 @@
                       class="material-icons icon-muted md-25 ml-3">
                       delete
                     </i></a>
-                </li>
+                </li> -->
 
 
               </ul>
@@ -292,7 +292,7 @@
                       <span class="ml-1 align-self-center">{{cc.likes.length}}</span>
                     </li>
 
-                    <li *ngIf="isTimeOver(cc?.create_ts) && (cc?.comment_by_emailId==user.email_id)"
+                    <!-- <li *ngIf="isTimeOver(cc?.create_ts) && (cc?.comment_by_emailId==user.email_id)"
                       class="list-inline-item mb-1 h6 text-muted align-self-center">
                       <a routerLink="#" data-toggle="tooltip" title="Edit Your Post"> <i
                           class="material-icons icon-muted md-24 ml-3">
@@ -306,7 +306,7 @@
                           class="material-icons icon-muted md-25 ml-3">
                           delete
                         </i></a>
-                    </li>
+                    </li> -->
 
                   </ul>
 
@@ -456,7 +456,7 @@
                     </a>
                   </li>
 
-                  <li *ngIf="isTimeOver(cm.create_ts) && (cm.comment_by_emailId==user.email_id)"
+                  <!-- <li *ngIf="isTimeOver(cm.create_ts) && (cm.comment_by_emailId==user.email_id)"
                     class="list-inline-item mb-1 h6 text-muted align-self-center">
                     <a routerLink="#" (click)="openEditCommentModal(editCommentModal,discussionDetails,cm)"
                       data-toggle="tooltip" title="Edit Your Post"> <i class="material-icons icon-muted md-24 ml-3">
@@ -470,7 +470,7 @@
                         class="material-icons icon-muted md-25 ml-3">
                         delete
                       </i></a>
-                  </li>
+                  </li> -->
 
                 </ul>
 
@@ -507,7 +507,7 @@
 
                         <span class="ml-1 align-self-center">{{cc.likes.length}}</span>
                       </li>
-
+                      <!-- 
                       <li *ngIf="isTimeOver(cc.create_ts) && (cc.comment_by_emailId==user.email_id)"
                         class="list-inline-item mb-1 h6 text-muted align-self-center">
                         <a routerLink="#" (click)="openEditCommentModal(editCommentModal,discussionDetails,cm)"
@@ -522,7 +522,7 @@
                             class="material-icons icon-muted md-25 ml-3">
                             delete
                           </i></a>
-                      </li>
+                      </li> -->
 
                     </ul>
 

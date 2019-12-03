@@ -140,9 +140,9 @@ export class DiscussionDetailsComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.subCategoryId = params['subCategoryId']
-      this.discussionId = params['discussionId'];
-      this.discussionDetailsId = params['discussionDetailsId'];
-      this.p_Id = params['PostId'];
+      this.categoryId = params['categoryId'];
+      this.discussionDetailsId = params['discussionId'];
+      this.p_Id = params['postId'];
     });
 
     this.categoryName = sessionStorage.getItem("category_name");
@@ -372,6 +372,7 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   unlikePost(discDetails: any) {
+    debugger;
     this.isLikePressed = false;
     if (!discDetails.posts) {
       this.post_Id = discDetails.post_id;

@@ -62,11 +62,15 @@ export class TopNavComponent implements OnInit {
     })
   }
 
-  setTimeoutForSearch() {
+  setTimeoutForSearch(event) {
     this.communitySearchedData = [];
     this.newsSearchedData = [];
     this.leaseSearchedData = [];
     this.wellsSearchedData = [];
+    if (event.key == "Escape") {
+      this.escapeSearch();
+      return
+    }
     this.showSearch = true;
     this.loading = true;
     clearTimeout(this.typingTimer);
@@ -140,6 +144,12 @@ export class TopNavComponent implements OnInit {
     url = url.slice(31)
     this.router.navigateByUrl(url)
     this.showSearch = false;
+  }
+
+  escapeSearch() {
+    this.showSearch = false;
+    this.searchText = "";
+    this.searchForm.controls.searchText.patchValue("");
   }
 
 }

@@ -87,9 +87,9 @@ export class SubcategoryComponent implements OnInit {
     })
 
     this.route.queryParams.subscribe(params => {
-      this.subCategoryId = params['subCategoryId'];
+      this.categoryId = params['categoryId'];
     });
-    this.getSubcategory(this.subCategoryId);
+    this.getSubcategory(this.categoryId);
   }
 
   //Setting title for browser tab 
@@ -111,7 +111,7 @@ export class SubcategoryComponent implements OnInit {
       this.loading = false;
       this.pageNotFound = false;
       this.categoryName = data[0]['category_name'];
-      this.categoryId = data[0]['_id'];
+      // this.categoryId = data[0]['_id'];
     },
       err => {
         if (err.status == 404) {

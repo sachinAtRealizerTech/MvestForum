@@ -85,10 +85,10 @@ export class DiscussionslistComponent implements OnInit {
     })
 
     this.route.queryParams.subscribe(params => {
-      this.discussionId = params['discussionId'];
+      this.categoryId = params['categoryId'];
       this.subCategoryId = params['subCategoryId']
     });
-    this.getDiscussionList(this.discussionId)
+    this.getDiscussionList(this.subCategoryId)
   }
 
   //Getting current logined user details
@@ -160,7 +160,7 @@ export class DiscussionslistComponent implements OnInit {
     }
     this.discussionlistService.postQuestion(body).subscribe(data => {
       this.discussionListQuestionForm.reset();
-      this.getDiscussionList(this.discussionId);
+      this.getDiscussionList(this.subCategoryId);
       this.closePostQuestionModal();
     })
   }

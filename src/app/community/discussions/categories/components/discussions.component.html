@@ -122,7 +122,7 @@
 
         <div class="row gutter-10 pt-2">
           <div class="card m-2" *ngFor="let c of categoryList | filter:searchText">
-            <a routerLink="/subcategory" [queryParams]="{subCategoryId: c.Categories.doc_id}"
+            <a routerLink="/subcategory" [queryParams]="{categoryId: c.Categories.doc_id}"
               (click)="setTitle( 'Mvest-Subcategories')">
               <div class="card d-inline category-main" style="width:50rem">
                 <img class="img-fluid img-thumbnail rounded-left" src="{{c.Categories.image}}" alt="" width="250px">
