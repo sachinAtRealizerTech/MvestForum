@@ -31,9 +31,19 @@
 
                 <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
                         <a routerLink="#">
-                                <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted"
-                                                (click)="goToSearchLink(sd.url)"><u>{{sd.title}}</u></a> </h6>
-                                <h6 class="text-secondary small mb-0" innerHTML="{{sd.body | stripHtml}}"></h6>
+                                <h6 *ngIf="sd.title?.length<100" class=" text-muted font-weight-semibold mb-0"><a
+                                                class="text-muted"
+                                                (click)="goToSearchLink(sd.url)"><u>{{sd.title}}</u></a>
+                                </h6>
+                                <h6 *ngIf="sd.title?.length>=100" class=" text-muted font-weight-semibold mb-0"><a
+                                                class="text-muted"
+                                                (click)="goToSearchLink(sd.url)"><u>{{sd.title | slice:0:100}}...</u></a>
+                                </h6>
+                                <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
+                                        innerHTML="{{sd?.body | stripHtml}}"></h6>
+
+                                <h6 *ngIf="sd.body?.length>=200" class="text-secondary mb-0"
+                                        innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
                         </a>
                 </div>
 
