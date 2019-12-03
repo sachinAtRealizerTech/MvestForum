@@ -152,9 +152,4 @@ export class TopNavComponent implements OnInit {
     this.searchForm.controls.searchText.patchValue("");
   }
 
-  replaceHtml(s: string) {
-    debugger;
-    return s.replace(/<[^>]*>/, '');
-  }
-
 }
