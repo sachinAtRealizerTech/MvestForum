@@ -33,7 +33,7 @@
                         <a routerLink="#">
                                 <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted"
                                                 (click)="goToSearchLink(sd.url)"><u>{{sd.title}}</u></a> </h6>
-                                <h6 class="text-secondary small mb-0" innerHTML="{{sd.body}}"></h6>
+                                <h6 class="text-secondary small mb-0" innerHTML="{{sd.body | stripHtml}}"></h6>
                         </a>
                 </div>
 

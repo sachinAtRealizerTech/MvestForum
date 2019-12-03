@@ -724,7 +724,7 @@
                 </div>
               </div>
 
-              <div class="py-2 px-3 grey-hover border-bottom " *ngFor="let cs of communitySearchedData | slice:0:3">
+              <div class="py-2 px-3 grey-hover border-bottom " *ngFor="let cs of communitySearchedData | slice:0:2">
 
                 <a routerLink="#">
                   <div class="media mb-0 d-flex">
@@ -733,9 +733,9 @@
                     </i>
                     <div class="media-body mb-0">
                       <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted" routerLink="#"
-                          (click)="goToSearchLink(cs.url)"><u>{{cs.title | slice:0:100}}</u></a>
+                          (click)="goToSearchLink(cs.url)"><u>{{cs.title | slice:0:50}}</u></a>
                       </h6>
-                      <!-- <p class="h6 text-secondary small mb-0">{{cs.body | slice:0:50}}</p> -->
+                      <p class="h6 text-secondary small mb-0">{{cs.body | stripHtml | slice:0:100}}</p>
                     </div>
                   </div>
                 </a>

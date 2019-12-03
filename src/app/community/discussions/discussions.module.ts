@@ -15,6 +15,7 @@ import { DiscussionsComponent } from './categories/components/discussions.compon
 //import { DiscussionsComponent } from '../../../../discussions/categories/components/discussions.component';
 import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle.component';
 import { HighlightText } from 'src/app/shared/pipes/highlightText.pipe';
+import { stripHtmlPipe } from '../../shared/pipes/stripHtml.pipe'
 // import { NgxEditorModule } from 'ngx-editor';
 
 
@@ -28,6 +29,7 @@ import { HighlightText } from 'src/app/shared/pipes/highlightText.pipe';
     TimeAgoPipe,
     SummaryPipe,
     HighlightText,
+    stripHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { HighlightText } from 'src/app/shared/pipes/highlightText.pipe';
     TimeAgoPipe,
     HighlightText,
     LoadingcircleComponent,
-    SummaryPipe
+    SummaryPipe,
+    stripHtmlPipe
     // NgxEditorModule
   ]
 })
