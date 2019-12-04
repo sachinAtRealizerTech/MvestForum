@@ -133,9 +133,9 @@
 
   <!----------------------------------------- Discussion details--------------------------------------------------->
 
-  <div class="row justify-content-center pt-4">
+  <div class="row justify-content-center pt-2">
     <div class="col-xl-12 pb-3">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-10">
           <h5 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h5>
         </div>
@@ -145,26 +145,27 @@
             Post Reply
           </a>
         </div>
-      </div>
+      </div> -->
 
       <!-------------------------Main Question--------->
 
-      <div class="card card-small blog-comments mt-3">
+      <div class="card card-small mt-3">
         <div class="card-header pb-0">
 
           <div class="row justify-content-center text-left text-break">
-            <div class="col-10">
+            <div class="col-xl-10 col-lg-9 col-md-8 col-sm-8 col-9">
               <div class="media px-3 py-1">
                 <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
                   alt="Generic placeholder image">
                 <div class="media-body mb-0 align-self-center">
+                    <h6 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h6>
                   <h5 class="text-secondary h6 mb-0" id="p{{discussionDetails?.posts[0]?.post_id}}"
                     innerHTML="{{discussionDetails?.posts[0]?.post_msg | highlight:searchText}}"></h5>
                 </div>
               </div>
             </div>
 
-            <div class="col-2 px-4 text-right">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-3 px-4 text-right">
               <small class="font-weight-semibold text-muted pr-2">{{discussionDetails?.posts[0]?.post_date | timeAgo}}
               </small>
               <br>
@@ -173,10 +174,14 @@
             </div>
           </div>
         </div>
-
+      
         <div class="card-body pt-0 mx-3 border-bottom">
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
+                <a  routerLink="#"
+                (click)="openReplyTemplate(replyTemplate)" data-toggle="tooltip" title="Answer to Post">
+                <i class="material-icons icon-muted md-30 ml-3">reply</i> </a>
+
               <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
                 (click)="postLike(discussionDetails?.posts[0])" data-toggle="tooltip" title="Like Post">
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
@@ -203,11 +208,11 @@
 
           <!------------------------Main Question Comments--------------->
 
-          <div class="row pt-2 justify-content-between" *ngFor="let qc of discussionDetails?.posts[0]?.comments">
+          <div class="row pt-2 justify-content-between text-breaks" *ngFor="let qc of discussionDetails?.posts[0]?.comments">
 
             <div class="col-1">
             </div>
-            <div class="col-9 border-top py-1">
+            <div class="col-xl-9 col-lg-8 col-md-7 col-sm-7 col-8 border-top py-1">
               <h6 class="mb-0 pt-1" id="p{{qc.comment_id}}" innerHTML="{{qc.comment_text | highlight:searchText}}"></h6>
 
               <ul class="list-inline d-flex  border-0 mb-0">
@@ -256,16 +261,16 @@
 
 
             </div>
-            <div class="col-2 text-right border-top  py-1">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-3 text-right border-top  py-1">
               <span><small class="font-weight-semibold text-muted"> {{qc.create_ts | timeAgo}} <br>
                   -by {{qc.comment_by_name}}</small></span>
             </div>
 
             <div class="col-12" *ngFor="let cc of qc.comments">
-              <div class="row justify-content-center">
-                <div class="col-2">
+              <div class="row justify-content-center text-break ">
+                <div class="col-2 ">
                 </div>
-                <div class="col-8 border-top  py-1">
+                <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6 col-7 border-top  py-1">
                   <h6 class="mb-0 pt-1" id="p{{cc.comment_id}}" innerHTML="{{cc.comment_text | highlight:searchText}}">
                   </h6>
 
@@ -313,15 +318,12 @@
                   <!--------End New like------>
 
                 </div>
-                <div class="col-2 text-right border-top  py-1">
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-3 text-right border-top py-1">
                   <small class="font-weight-semibold text-muted"> {{cc.create_ts | timeAgo}} <br>
                     -by {{cc.comment_by_name}}</small>
                 </div>
               </div>
-
-
-
-
+ 
             </div>
 
 
@@ -331,9 +333,14 @@
 
 
         </div>
-
+      </div>
+      <div class="row pt-4">
+        <div class="col-12">
+          <h6 class="text-muted">20 Replies</h6>
+        </div>
+      </div>
         <!--------------------------Answers to the Main Question------------------>
-
+        <div class="card card-small">
         <div *ngFor="let p of discussionDetails?.posts | slice:1 | filter:searchText; let i= index ">
           <div class="card-header pb-0">
 
