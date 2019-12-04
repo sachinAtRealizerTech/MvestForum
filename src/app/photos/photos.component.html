@@ -1,11 +1,11 @@
 <div class="main-content-container container-fluid px-4">
   <app-community></app-community>
 
-  <div class="row pt-4">
-    <div class="col-xl-12 pb-4">
+  <div class="row">
+    <div class="col-xl-12 pb-1 pt-3">
       <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
         <li class="nav-item align-self-center">
-          <h5 class="text-dark mb-0 font-weight-bold mr-3">Photos</h5>
+          <h5 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">Photos</h5>
         </li>
         <li class="nav-item">
           <a href="#leasephotos" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
@@ -37,7 +37,7 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="leasephotos" role="tabpanel" aria-labelledby="home-tab">
 
-      <div class="row text-center text-lg-left">
+      <div class="row text-center text-lg-left mt-2">
 
         <div class="col-lg-3 col-md-4 col-6">
           <a href="#" class="d-block mb-4 h-100">
@@ -194,16 +194,23 @@
     <div class="modal-dialog modal-md bg-white shadow">
       <form action="/action_page.php" class="needs-validation" novalidate>
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add Photo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class=" justify-content-end">
+                <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" data-dismiss="modal">
+             <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          <!-- <div class="modal-header">
+             <h5 class="modal-title">Add Photo</h5> 
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+            </button> 
+          </div> -->
           <div class="modal-body">
+
             <div class="form-group">
-              <label for="photo">Add Photo to : </label>
-              <div class="custom-control custom-radio custom-control-inline ml-2">
+                <!-- <label for="title" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Add Photo :</label> -->
+              <label for="photo" class="align-self-center mb-1 h6 text-dark font-weight-semibold">Add Photo to : </label>
+              <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
                 <label class="custom-control-label" for="customRadioInline1">Lease</label>
               </div>
@@ -213,9 +220,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="leasetype">Lease : </label>
-              <select class="custom-select my-1 pr-5" id="inlineFormCustomSelectPref">
-                <option selected>Choose Lease Type...</option>
+              <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Lease : </label>
+              <select class="form-control my-1 pr-5 border" id="inlineFormCustomSelectPref">
+                <option selected>Select Lease Type</option>
                 <option value="1">County</option>
                 <option value="2">Operator</option>
                 <option value="3">Play Type</option>
@@ -224,7 +231,7 @@
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-              <label for="leasetype mb-4">Upload Photo : </label>
+              <label for="leasetype mb-4" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Upload Photo : </label>
               <div class="js--image-preview  shadow  ">
               </div>
               <div class="upload-options">
@@ -237,7 +244,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-accent">Submit</button>
-            <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button>
+            <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button> -->
           </div>
         </div>
       </form>
@@ -248,25 +255,31 @@
     <div class="modal-dialog modal-md bg-white shadow">
       <form action="/action_page.php" class="needs-validation" novalidate>
         <div class="modal-content">
-          <div class="modal-header">
+            <div class=" justify-content-end">
+                <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" data-dismiss="modal">
+             <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+          <!-- <div class="modal-header">
             <h5 class="modal-title">Add Album</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+          </div> -->
           <div class="modal-body">
             <div class="form-group">
-              <label for="photo">Title : </label>
+              <label for="photo" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Album Title : </label>
               <input type="text" id="" class="form-control">
             </div>
             <div class="form-group align-items-start">
-              <label for="descriptions">Descriptions : </label>
+              <label for="descriptions" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Descriptions : </label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               <div class="valid-feedback">Valid.</div>
               <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-              <label for="leasetype mb-4">Add Album Photo : </label>
+              <label for="leasetype mb-4" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Add Album Photo : </label>
               <div class="js--image-preview  shadow  ">
               </div>
               <div class="upload-options">
@@ -279,7 +292,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-accent">Submit</button>
-            <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button>
+            <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button> -->
           </div>
         </div>
       </form>
