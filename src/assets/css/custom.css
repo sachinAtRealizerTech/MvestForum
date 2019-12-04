@@ -171,7 +171,7 @@ color:#868e96 !important
 		background: #000000;
 	}
 	.bg-green{
-		background: green;
+		background: #00CD95 ;
 	}
 	.text-green{
 		color: #00CD95 !important;
@@ -213,6 +213,7 @@ color:#868e96 !important
 .material-icons.md-22 { font-size: 22px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-25 { font-size: 25px; }
+.material-icons.md-26 { font-size: 26px; }
 .material-icons.md-30 { font-size: 30px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
@@ -1013,6 +1014,10 @@ textarea {
   font-weight: 400;
   letter-spacing: 0.6px;
   }
+  select .form-control:focus {
+    box-shadow: none !important;
+    }
+  
 
   /*.input-group-btn:focus{
  border:2px solid #00CD95 !important;
