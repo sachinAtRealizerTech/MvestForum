@@ -56,82 +56,6 @@
       <!---------------------------------------------Discussions Listing----------------------------------------------->
 
 
-
-
-      <div class="row justify-content-between no-gutters" *ngIf="discussionListPage">
-        <div class="col-md-12 col-xl-8 pb-3">
-
-
-          <div class="text-left" *ngIf="pageNotFound">
-            <h5>No Records Found...</h5>
-          </div>
-
-          <div class="card card-small blog-comments">
-            <div class="card-body p-0" *ngFor="let dl of myDiscussionList?.discussions">
-              <a routerLink="/discussion-details"
-                [queryParams]="{discussionDetailsId:dl.doc_id,discussionId:myDiscussionList._id,subCategoryId:myDiscussionList.category_id}">
-
-                <div class=" border-bottom p-1">
-                  <div class="row justify-content-center text-left text-break">
-                    <div class="col-9">
-                      <div class="media p-3">
-                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
-                          alt="Generic placeholder image">
-                        <div class="media-body mb-0">
-
-                          <ul class="list-inline d-flex mb-0">
-                            <li class="list-inline-item mb-1 h6  text-muted">
-                              <h5 class="text-dark h6 mb-0 font-weight-semibold" innerHTML="{{dl?.title | titlecase}}">
-                              </h5>
-                            </li>
-                          </ul>
-
-                          <ul class="list-inline mb-0">
-
-                            <li class="list-inline-item mb-1 h6 text-accent">
-                              <i class="material-icons md-20 text-accent">
-                                check_circle
-                              </i>
-                            </li>
-
-                            <li class="list-inline-item mb-1 h6  text-muted" innerHTML="{{dl?.post_msg}}">
-                            </li>
-
-
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-3 text-right">
-                      <div class="media p-3 ">
-                        <div class="media-body mb-0">
-
-                          <span>
-                            <h6 class="font-weight-semibold small mb-1 text-muted">
-                              {{dl?.post_date | timeAgo}}</h6>
-                          </span>
-
-                          <span>
-                            <h6 class="font-weight-semibold small mb-1 text-muted">
-                              -by
-                              {{dl?.post_by_name}}</h6>
-                          </span>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-
       <div class="row justify-content-between no-gutters" *ngIf="discussionListPage">
         <div class="col-md-12 col-xl-8 pb-3">
           <div class="text-left" *ngIf="pageNotFound">
@@ -191,8 +115,6 @@
                               -by
                               {{dl?.post_by_name}}</h6>
                           </span>
-
-
 
                         </div>
                       </div>
