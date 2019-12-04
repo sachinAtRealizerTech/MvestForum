@@ -744,16 +744,17 @@ textarea:focus {
 .upload-options {
   position: relative;
   height: 55px;
-  background-color: #00CD95;
+  /* background-color: #00CD95; */
   cursor: pointer;
   overflow: hidden;
   text-align: center;
   -webkit-transition: background-color ease-in-out 150ms;
   transition: background-color ease-in-out 150ms;
 }
-.upload-options:hover {
-  background-color: #00CD95;
-}
+  .upload-options:hover {
+  color: #00CD95;
+  cursor: pointer !important;
+}  
 .upload-options input {
   width: 0.1px;
   height: 0.1px;
@@ -784,6 +785,16 @@ textarea:focus {
   position: absolute;
   font-size: 2.5rem;
   color: #e6e6e6;
+  /* top: calc(50% - 2.5rem); */
+  left: calc(50% - 1.25rem);
+  z-index: 0;
+}
+.upload-options label::after:hover{
+  content: 'add';
+  font-family: 'Material Icons';
+  position: absolute;
+  font-size: 2.5rem;
+  color: #00cd95 !important;
   /* top: calc(50% - 2.5rem); */
   left: calc(50% - 1.25rem);
   z-index: 0;
