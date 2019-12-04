@@ -558,10 +558,16 @@
 
   <form [formGroup]="replyForm">
     <div class="modal-content">
+
+        <div class=" justify-content-end">
+            <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closeReplyModal()">
+         <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
       <div class="modal-body">
         <div class="card shadow-none">
           <div class="form-group">
-            <h6 class="font-weight-semibold" for="Description">Your Reply</h6>
+            <h6 class="align-self-center mb-3 text-dark font-weight-semibold" for="Description">Your Reply</h6>
 
             <angular-editor formControlName="Description" [config]="editorConfig"
               [ngClass]="{ 'is-invalid': submitReply && f.Description.errors }">
@@ -574,8 +580,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)=sendReply()>Reply</button>
-        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-          (click)="closeReplyModal()">Cancel</button>
+        <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closeReplyModal()">Cancel</button> -->
       </div>
     </div>
   </form>
@@ -650,19 +656,25 @@
 <ng-template #postCommentModal>
   <form>
     <div class="modal-content">
-      <div class="modal-header">
+        <div class=" justify-content-end">
+            <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closePostCommentModal()">
+         <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      <!-- <div class="modal-header">
         <h5 class="modal-title">Your Comment</h5>
-      </div>
+      </div> -->
 
       <div class="modal-body py-3">
         <div class="card shadow-none">
           <div class="row">
             <div class="col-12">
+                <h6 class="align-self-center mb-3 text-dark font-weight-semibold" for="Description">Your Comment : </h6>
               <form [formGroup]="commentForm">
                 <div class="form">
 
                   <div class="form-group">
-                    <label for="title">Description :</label>
+                    <!-- <label for="title" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Description :</label> -->
                     <div class="w-100">
                     </div>
                     <textarea class="form-control" formControlName="comment"
@@ -679,8 +691,8 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postComment()">Post</button>
-        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-          (click)="closePostCommentModal()">Cancel</button>
+        <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closePostCommentModal()">Cancel</button> -->
       </div>
     </div>
   </form>
@@ -740,6 +752,11 @@
 
   <form [formGroup]="editPostForm">
     <div class="modal-content">
+        <div class=" justify-content-end">
+            <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closeEditPostModal()">
+         <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
       <div class="modal-body">
         <div class="card shadow-none">
           <div class="form-group">
@@ -756,8 +773,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)=editPost()>Reply</button>
-        <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-          (click)="closeEditPostModal()">Cancel</button>
+        <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
+          (click)="closeEditPostModal()">Cancel</button> -->
       </div>
     </div>
   </form>
