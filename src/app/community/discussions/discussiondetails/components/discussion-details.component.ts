@@ -521,6 +521,7 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   markAsAnswer(postId: string, flag: boolean) {
+    debugger;
     let isAnswerFlag = this.discussionDetails.posts.map(l => l.isAnswer);
     let answerFlagPresent: Boolean = isAnswerFlag.includes(true);
     if (answerFlagPresent == true) {

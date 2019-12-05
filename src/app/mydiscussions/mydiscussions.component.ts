@@ -34,6 +34,7 @@ export class MydiscussionsComponent implements OnInit {
   }
 
   getMyDiscussionsList(subCatId: string) {
+    debugger;
     this.loading = true;
     this.discussionslistService.getAllDiscussionsList(subCatId, true, this.user.email_id).subscribe(data => {
       this.discussionListPage = true;
@@ -45,6 +46,15 @@ export class MydiscussionsComponent implements OnInit {
 
   goToMyDiscussionGroup() {
     this.discussionListPage = false;
+  }
+
+  markAsAnswer(dl: boolean) {
+    if (dl == true) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 
 

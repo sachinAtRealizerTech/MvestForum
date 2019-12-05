@@ -84,8 +84,13 @@
                           </ul>
 
                           <ul class="list-inline mb-0 d-flex d-inline-flex">
-                            <li class="list-inline-item mb-1 h6 text-accent">
+                            <li *ngIf="markAsAnswer(dl?.isAnswer)" class="list-inline-item mb-1 h6 text-accent">
                               <i class="material-icons md-20 text-accent">
+                                check_circle
+                              </i>
+                            </li>
+                            <li *ngIf="!markAsAnswer(dl?.isAnswer)" class="list-inline-item mb-1 h6 text-accent">
+                              <i class="material-icons md-20 text-muted">
                                 check_circle
                               </i>
                             </li>
