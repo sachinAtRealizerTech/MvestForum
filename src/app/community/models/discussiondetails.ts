@@ -16,6 +16,7 @@ export interface posts {
     post_id: string;
     post_msg: string;
     post_type: string;
+    isAnswer: boolean
 }
 
 export interface PostComments {

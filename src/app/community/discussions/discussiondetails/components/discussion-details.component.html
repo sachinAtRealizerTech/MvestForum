@@ -380,9 +380,8 @@
 
               <li *ngIf="p.isAnswer && (discussionDetails?.posts[0]?.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 h6 text-muted align-self-center">
-                <a routerLink="#" (click)="markAsAnswer(p.post_id,false)">
-                  <i class="material-icons md-24 ml-3 icon-muted text-accent" data-toggle="tooltip"
-                    title="Un-mark as Answer">
+                <a routerLink="#">
+                  <i class="material-icons md-24 ml-3 icon-muted text-accent">
                     check_circle
                   </i>
                 </a>

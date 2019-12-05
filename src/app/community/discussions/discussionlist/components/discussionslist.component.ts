@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
-import { DiscussionsList } from '../../../models/discussionlist';
+import { DiscussionsList, discussions } from '../../../models/discussionlist';
 
 @Component({
   selector: 'app-discussionslist',
@@ -159,10 +159,20 @@ export class DiscussionslistComponent implements OnInit {
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussionlistService.postQuestion(body).subscribe(data => {
+      console.log('postquestiomdata', data)
       this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.subCategoryId);
       this.closePostQuestionModal();
     })
+  }
+
+  markAsAnswer(dl: boolean) {
+    if (dl == true) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 
 }

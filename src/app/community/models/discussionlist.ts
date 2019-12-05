@@ -14,4 +14,5 @@ export interface discussions {
     post_date: Date;
     post_msg: string;
     title: string;
+    isAnswer: boolean;
 }

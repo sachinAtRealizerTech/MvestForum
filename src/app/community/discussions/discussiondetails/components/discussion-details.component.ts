@@ -521,14 +521,20 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   markAsAnswer(postId: string, flag: boolean) {
-    debugger;
+    let isAnswerFlag = this.discussionDetails.posts.map(l => l.isAnswer);
+    let answerFlagPresent: Boolean = isAnswerFlag.includes(true);
+    if (answerFlagPresent == true) {
+      return
+    }
     let body = {
       discussion_doc_id: this.discussiondocId,
       post_id: postId,
-      isAnswer: flag
+      isAnswer: flag,
+      subcat_id: this.subCategoryId
     }
     this.discussiondetailsService.markAsAnswer(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
+      this.flashMessagesService.show('You have marked this question for answer.', { cssClass: 'bg-accent flash-message', timeout: 2000 })
     })
   }
 
