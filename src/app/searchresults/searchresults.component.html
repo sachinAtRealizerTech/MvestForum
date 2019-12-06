@@ -25,19 +25,21 @@
                         </ul>
                 </div>
         </div>
-
-
         <div class="row">
-
-                <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
+                        <div class="col-10">
+        <div class="card shadow p-0">
+                <div class="card-body py-1 px-4">
+                        <div class="row">
+                                <!-- <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
                         <a routerLink="#">
-                                <h6 *ngIf="sd.title?.length<100" class=" text-muted font-weight-semibold mb-0"><a
-                                                class="text-muted"
-                                                (click)="goToSearchLink(sd.url)"><u>{{sd.title}}</u></a>
+                                <a
+                                class="text-muted" (click)="goToSearchLink(sd.url)">
+                                 <h6 *ngIf="sd.title?.length<100" class=" text-muted font-weight-semibold mb-0"><u> Q. {{sd.title}}</u>
                                 </h6>
+                        </a>
                                 <h6 *ngIf="sd.title?.length>=100" class=" text-muted font-weight-semibold mb-0"><a
                                                 class="text-muted"
-                                                (click)="goToSearchLink(sd.url)"><u>{{sd.title | slice:0:100}}...</u></a>
+                                                (click)="goToSearchLink(sd.url)"><u><span class="text-secondary"> Q. </span> {{sd.title | slice:0:280}}...</u></a>
                                 </h6>
                                 <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
                                         innerHTML="{{sd?.body | stripHtml}}"></h6>
@@ -45,9 +47,83 @@
                                 <h6 *ngIf="sd.body?.length>=200" class="text-secondary mb-0"
                                         innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
                         </a>
+                </div> -->
+                               
+                <!-- <div class="col-12 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
+                                        <a class="text-muted cursor-pointer" (click)="goToSearchLink(sd.url)">
+
+                                                <h6 *ngIf="sd.title?.length<100"
+                                                        class=" text-muted font-weight-semibold mb-0">
+                                                        <u> {{sd.title}}</u>
+                                                </h6>
+
+                                                <h6 *ngIf="sd.title?.length>=100"
+                                                        class=" text-muted font-weight-semibold mb-0">
+                                                        <u> {{sd.title | slice:0:280}}...</u>
+                                                </h6>
+                                                <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
+                                                        innerHTML="{{sd?.body | stripHtml}}"></h6>
+
+                                                <h6 *ngIf="sd.body?.length>=200" class="text-secondary mb-0"
+                                                        innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
+                                        </a>
+                                </div> -->
+                                <div class="col-12 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
+                                                <div class="media   py-1">
+                                                                <i class="material-icons md-24 text-muted mr-3">
+                                                                                remove_red_eye
+                                                                              </i>  
+                                                        <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
+                                                  <div class="media-body mb-0 align-self-center">
+                                                                <a
+                                                                class="text-muted cursor-pointer" (click)="goToSearchLink(sd.url)">
+                                                               
+                                                                 <h6 *ngIf="sd.title?.length<100" class=" text-muted font-weight-semibold mb-0">
+                                                                         <u>   {{sd.title}}</u>
+                                                                </h6>
+                                                       
+                                                                <h6 *ngIf="sd.title?.length>=100" class=" text-muted font-weight-semibold mb-0"> 
+                                                                        <u> {{sd.title | slice:0:280}}...</u> 
+                                                                </h6>
+                                                                <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
+                                                                        innerHTML="{{sd?.body | stripHtml}}"></h6>
+                                
+                                                                <h6 *ngIf="sd.body?.length>=200" class="text-secondary mb-0"
+                                                                        innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
+                                                                </a>
+                                                  </div>
+                                                </div>
+                       
+                        </div> 
+                                <!-- <div class="col-10 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
+                                <div class="media px-3 py-1">
+                                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/7.png"
+                                    alt="Generic placeholder image">
+                                  <div class="media-body mb-0 align-self-center">
+                                                <a
+                                                class="text-muted cursor-pointer" (click)="goToSearchLink(sd.url)">
+                                               
+                                                 <h6 *ngIf="sd.title?.length<100" class=" text-muted font-weight-semibold mb-0">
+                                                         <u> Q. {{sd.title}}</u>
+                                                </h6>
+                                       
+                                                <h6 *ngIf="sd.title?.length>=100" class=" text-muted font-weight-semibold mb-0"> 
+                                                        <u><span class="text-secondary"> Q. </span> {{sd.title | slice:0:280}}...</u> 
+                                                </h6>
+                                                <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
+                                                        innerHTML="{{sd?.body | stripHtml}}"></h6>
+                
+                                                <h6 *ngIf="sd.body?.length>=200" class="text-secondary mb-0"
+                                                        innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
+                                                </a>
+                                  </div>
+                                </div>
+       
+        </div> -->
+
+                        </div>
                 </div>
-
         </div>
-
 </div>
-<!-- </div>  -->
+</div>
+        <!-- </div>  -->
