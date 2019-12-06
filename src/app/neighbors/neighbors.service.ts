@@ -17,4 +17,22 @@ export class NeighborsService {
   getLeaseNeighbors(body) {
     return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/GetLeaseNeighbors`, body, Utils.getAuthHeader())
   }
+
+  getMyConnectRequests(emailId: string) {
+    return this.httpclient.get(`${environment.APIBASEURL}/Neighbors/GetMYConnectRequests/${emailId}`, Utils.getAuthHeader())
+  }
+
+  acceptConnectRequest(body) {
+    return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/AcceptNeighborReq`, body, Utils.getAuthHeader())
+  }
+
+  getLeaseOwners(body) {
+    return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/GetLeaseOwners`, body, Utils.getAuthHeader())
+  }
+
+
+  sendConnectRequest(body) {
+    return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/ConnectNeighbor`, body, Utils.getAuthHeader())
+  }
+
 }

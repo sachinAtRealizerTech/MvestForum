@@ -30,6 +30,7 @@ export class NeighborsComponent implements OnInit {
   newNeighborForm: FormGroup
   districtCode: string;
   leaseNumber: string;
+  myConnectRequests: any;
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -45,6 +46,7 @@ export class NeighborsComponent implements OnInit {
     })
 
     this.getMyLeases(this.user.email_id);
+    this.getMyConnectRequests();
     //this.getLeaseNeighbors();
   }
 
@@ -60,7 +62,6 @@ export class NeighborsComponent implements OnInit {
     debugger;
     this.AdditionalFilterPage = false;
     this.additionalfilterflag = false;
-
   }
 
   toggleFilterGroup() {
@@ -92,7 +93,6 @@ export class NeighborsComponent implements OnInit {
       this.playTypeFilter = true;
     }
   }
-
 
   openSearchFilterModal(searchFilterModal) {
     this.searchFilterModal = searchFilterModal;
@@ -146,9 +146,7 @@ export class NeighborsComponent implements OnInit {
       this.myLeases = data
       console.log("MyLeases", data);
     })
-
   }
-
 
   getLeaseValues(event) {
     debugger;
@@ -169,9 +167,30 @@ export class NeighborsComponent implements OnInit {
     this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
       console.log("leaseNeighbors", data);
       this.closeNewNeighborModal();
-      this.router.navigate(['/nearbyleases'])
+      sessionStorage.setItem("leaseNumber", this.leaseNumber);
+      sessionStorage.setItem("districtNumber", this.districtCode);
+      sessionStorage.setItem("distanceWithin", this.g.distanceWithin.value)
+      this.router.navigate(['/nearbyleases']);
     })
+  }
 
+  getMyConnectRequests() {
+    this.neighborsService.getMyConnectRequests('ash@gmail.com').subscribe(data => {
+      this.myConnectRequests = data
+      console.log('myconnectrequest', this.myConnectRequests)
+    })
+  }
+
+
+  acceptConnectRequest() {
+    let body = {
+      neb_emailid: "newsachins@gmail.com",
+      my_emailid: "ash@gmail.com",
+      action: "Accept"
+    }
+    this.neighborsService.acceptConnectRequest(body).subscribe(data => {
+      alert('request accepted');
+    })
   }
 
 }

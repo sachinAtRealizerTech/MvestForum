@@ -12,11 +12,11 @@
                 <li class="nav-item align-self-center">
                     <h5 class="text-dark mb-0 font-weight-bold mr-3 align-self-center">Nearby Lease</h5>
                 </li>
-               <div class="ml-auto d-inline-flex">
+                <div class="ml-auto d-inline-flex">
                     <li class="nav-item pull-right mr-3 align-self-center">
                         <a routerLink="#" data-toggle="tooltip" title="Search by Filter"
-                            class="badge badge-accent rounded-5 text-white text-uppercase " data-toggle="modal"
-                            data-target="#searchfilter-modal-lg">
+                            class="badge badge-accent rounded-5 text-white text-uppercase "
+                            (click)="openSearchFilterModal(searchFilterModal)">
                             <i class="material-icons md-18 ">
                                 filter_list
                             </i>
@@ -39,8 +39,8 @@
                     </li>
 
                 </div>
-            </ul> 
-        </div> 
+            </ul>
+        </div>
     </div>
 
     <div class="row justify-content-between gutters-1">
@@ -50,20 +50,26 @@
                     <div class="row">
                         <div class="col-12">
                             <ul class="nav nav-tabs sub-tab border-0">
-                              
+
                                 <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
-                                   
-                                    <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a routerLink="#"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+
+                                    <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                 </li>
                                 <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
 
-                                        <h6 class="text-accent font-weight-semibold mb-0">  Operator : Joe Shon <a routerLink="#"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a> </h6>
-                                        
-                                    </li> 
-                                    <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
-                                            <h6 class="text-accent font-weight-semibold mb-0">  Play Type : 1 <a routerLink="#"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-                                         
-                                        </li> 
+                                    <h6 class="text-accent font-weight-semibold mb-0"> Operator : Joe Shon <a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a> </h6>
+
+                                </li>
+                                <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+                                    <h6 class="text-accent font-weight-semibold mb-0"> Play Type : 1 <a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -73,49 +79,9 @@
     </div>
 
     <div class="row justify-content-between gutters-1">
-        <div class="col-md-12 col-xl-6">
-
+        <div class="col-md-12 col-xl-12">
             <div class="row justify-content-between   pb-3 ">
-                <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        
-                                        <div class="media-body mb-0">
-
-                                            <ul class="list-inline  mb-0">
-                                               
-                                                <li
-                                                    class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                    LOREM ISPUM IS A DUMMY TEXT
-                                                </li>
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                        San Christoval Ranch Unit B </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                    8.2 miles away
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 d-flex justify-content-end text-right">
-                                  
-                                    <h6 class="mb-0 align-self-center">
-                                        <button routerLink="/nearbyneighbors" type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">View
-                                            (25)</button>
-
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let nl of nearByLeases.leases">
                     <div class="card card-small blog-comments mt-3">
                         <div class="card-body p-0">
                             <div class="row p-3">
@@ -130,11 +96,12 @@
                                                     LOREM ISPUM IS A DUMMY TEXT
                                                 </li>
                                                 <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                        San Christoval Ranch Unit B </h5>
+                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
+                                                        data-toggle="modal" title="Feature Coming Soon">
+                                                        {{nl.lease_name}}</h5>
                                                 </a>
                                                 <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                    8.2 miles away
+                                                    {{nl.distance}} miles away
                                                 </li>
                                             </ul>
                                         </div>
@@ -143,8 +110,9 @@
                                 <div class=" col-4 d-flex justify-content-end text-right">
 
                                     <h6 class="mb-0 align-self-center">
-                                        <button routerLink="/nearbyneighbor" type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">View
+                                        <button routerLink="#" type="button"
+                                            class="mt-2 btn btn-accent align-self-center text-uppercase"
+                                            (click)="viewNeighbors()">View
                                             (5)</button>
 
                                     </h6>
@@ -152,233 +120,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <div class="media-body mb-0">
-
-                                            <ul class="list-inline  mb-0">
-
-                                                <li
-                                                    class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                    LOREM ISPUM IS A DUMMY TEXT
-                                                </li>
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                        San Christoval Ranch Unit B </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                    8.2 miles away
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 d-flex justify-content-end text-right">
-
-                                    <h6 class="mb-0 align-self-center">
-                                        <button routerLink="/nearbyneighbor" type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">View
-                                            (5)</button>
-
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-small blog-comments mt-3">
-                            <div class="card-body p-0">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <div class="media-body mb-0">
-    
-                                                <ul class="list-inline  mb-0">
-    
-                                                    <li
-                                                        class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                        LOREM ISPUM IS A DUMMY TEXT
-                                                    </li>
-                                                    <a href="#">
-                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                            San Christoval Ranch Unit B </h5>
-                                                    </a>
-                                                    <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                        8.2 miles away
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-    
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="/nearbyneighbor" type="button"
-                                                class="mt-2 btn btn-accent align-self-center text-uppercase">View
-                                                (5)</button>
-    
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-12 col-xl-6">
-            <div class="row justify-content-between pb-3 ">
-                <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <div class="media-body mb-0">
-
-                                            <ul class="list-inline  mb-0">
-                                                <!-- <a href="nearbyneighbor"> 
-                                                                     <li class="list-inline-item mb-1 h6 text-muted"> 
-                                                                </li>
-                                                            </a> -->
-                                                <li
-                                                    class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                    LOREM ISPUM IS A DUMMY TEXT
-                                                </li>
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                        San Christoval Ranch Unit B </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                    8.2 miles away
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 d-flex justify-content-end text-right">
-
-                                    <h6 class="mb-0 align-self-center">
-                                        <button routerLink="/nearbyneighbor" type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase px-4">View
-                                            (10)</button>
-
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <div class="media-body mb-0">
-
-                                            <ul class="list-inline  mb-0">
-                                                <li
-                                                    class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                    LOREM ISPUM IS A DUMMY TEXT
-                                                </li>
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                        San Christoval Ranch Unit B </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                    8.2 miles away
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 d-flex justify-content-end text-right">
-
-                                    <h6 class="mb-0 align-self-center">
-                                        <button routerLink="/nearbyneighbor" type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">View
-                                            (1113)</button>
-
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card card-small blog-comments mt-3">
-                            <div class="card-body p-0">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <div class="media-body mb-0">
-    
-                                                <ul class="list-inline  mb-0">
-                                                    
-                                                    <li
-                                                        class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                        LOREM ISPUM IS A DUMMY TEXT
-                                                    </li>
-                                                    <a href="#">
-                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                            San Christoval Ranch Unit B </h5>
-                                                    </a>
-                                                    <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                        8.2 miles away
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-    
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="/nearbyneighbor" type="button"
-                                                class="mt-2 btn btn-accent align-self-center text-uppercase px-4">View
-                                                (10)</button>
-    
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-small blog-comments mt-3">
-                            <div class="card-body p-0">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <div class="media-body mb-0">
-    
-                                                <ul class="list-inline  mb-0">
-                                                    <li
-                                                        class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                        LOREM ISPUM IS A DUMMY TEXT
-                                                    </li>
-                                                    <a href="#">
-                                                        <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="modal" title="Feature Coming Soon">
-                                                            San Christoval Ranch Unit B </h5>
-                                                    </a>
-                                                    <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                        8.2 miles away
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-    
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="/nearbyneighbor" type="button"
-                                                class="mt-2 btn btn-accent align-self-center text-uppercase">View
-                                                (187)</button>
-    
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                 </div>
             </div>
         </div>
@@ -397,7 +138,7 @@
                             <span class="sr-only">Previous</span>
                         </a>
                     </li>
-                   
+
                     <li class="text-accent font-weight-bold h6 p-2 align-self-center mb-0"> 1/10 </li>
                     <li class="page-item border">
                         <a class="page-link py-1 h6 bg-accent" href="#" aria-label="Next">
@@ -412,102 +153,115 @@
     </div>
 
 
-    <div id="searchfilter-modal-lg" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                
-                <div class="justify-content-end">
-                        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
-                        data-dismiss="modal">
-                     <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                            
-                            <div class="form-row">
-                                    <h6 class="font-weight-semibold pr-3">Additional Filters :</h6> 
-                            </div>
-                            <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
-                            <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" checked >
-                                    <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters For Lease Name And Distance</label>
-                                  </div>
-                           
-                            <div  class="form-row pt-2" >
-                                <div   class="form-group col-4">
-                                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
-                                                        <option>Select Lease</option>
-                                                        <option>San Christoval Raunch Unit A</option>
-                                                        <option>San Christoval Raunch Unit B</option>
-                                                        <option>San Christoval Raunch Unit C</option>
-                                                        <option>San Christoval Raunch Unit D</option>
-                                                        <option>San Christoval Raunch Unit E</option> 
-                                                      </select>
-                                            </div>
-                                             <div class="form-group col-4">
-                                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!filterGroup">
-                                                    <option> Select Distance </option> 
-                                                    <option>1.5 miles away</option>
-                                                    <option>2.2 miles away</option>
-                                                    <option>3.5 miles away</option>
-                                                    <option>4.2 miles away</option>
-                                                    <option>5.5 miles away</option> 
-                                                  </select>
-                                        </div> 
-                                </div>
-                            </div>
-                                
-                                
-                                <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
-                                
-                                <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="filter" value="radio2"  class="custom-control-input"  (change)="toggleFilterGroup()"  >
-                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters For County, Operator And PlayType </label>
-                                      </div>
-    
-                                <div class="form-row pt-2 " >
-                                      <div class="form-group col-4">
-                                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
-                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
-                                                <option> Select County </option>
-                                                <option>Karnes</option>
-                                                <option>Texas</option>
-                                                <option>Grimes</option>
-                                                <option>Rockwall</option>
-                                              </select>
-                                    </div> 
-                                   
-                                        <div class="form-group col-4">
-                                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
-                                                    <option> Select Operator </option>
-                                                    <option>Operator 1</option>
-                                                    <option>Operator 2</option>
-                                                    <option>Operator 3</option>
-                                                    <option>Operator 4</option>
-                                                  </select>
-                                        </div>
-                                        <div class="form-group col-4">
-                                                <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="filterGroup">
-                                                        <option> Select Play Type </option> 
-                                                        <option>Play Type 1</option>
-                                                        <option>Play Type 2</option>
-                                                        <option>Play Type 3</option>
-                                                        <option>Play Type 4</option>
-                                                        <option>Play Type 5</option> 
-                                                      </select>
-                                            </div>
-                                            
-                                    </div>
-                                </div>
-                        </div>
-                <div class="modal-footer">
-                  <button routerLink="/nearbyleases" type="button" class="btn btn-accent" data-dismiss="modal">Search</button>
-                 
-                </div>
-              </div>
+    <ng-template #searchFilterModal>
+
+        <div class="modal-content" [formGroup]="searchFilterForm">
+
+            <div class="justify-content-end">
+                <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+                    (click)="closeSearchFilterModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
+            <div class="modal-body">
+
+                <div class="form-row">
+                    <h6 class="font-weight-semibold pr-3">Additional Filters :</h6>
+                </div>
+                <div class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input"
+                            value="radio1" (change)="toggleFilterGroup()" checked>
+                        <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
+                            class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters
+                            For
+                            Lease Name And Distance</label>
+                    </div>
+
+                    <div class="form-row pt-2">
+                        <div class="form-group col-4">
+                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
+                                class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
+                            <select class="form-control border" formControlName="leaseName"
+                                id="exampleFormControlSelect1" [value]="null" [disabled]="!filterGroup"
+                                (change)="getLeaseValues($event)">
+                                <option [value]="null" hidden>Select Lease</option>
+                                <option *ngFor="let ml of myLeases.leases"
+                                    value="{{ml.lease_number}} {{ml.district_code}}">{{ml.lease_name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-4">
+                            <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
+                                class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
+                            <select class="form-control border" [value]="null" formControlName="distanceWithin"
+                                id="exampleFormControlSelect2" [disabled]="!filterGroup">
+                                <option [value]="null" hidden> Select Distance </option>
+                                <option [value]="2.5">2.5 miles away</option>
+                                <option [value]="5.0">5.0 miles away</option>
+                                <option [value]="7.5">7.5 miles away</option>
+                                <option [value]="10.0">10.0 miles away</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pt-3 p-3" [ngClass]="!filterGroup?'shadow-sm':'shadow-none'">
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="filter" value="radio2"
+                            class="custom-control-input" (change)="toggleFilterGroup()">
+                        <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
+                            class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters
+                            For
+                            County, Operator And PlayType </label>
+                    </div>
+
+                    <div class="form-row pt-2 ">
+                        <div class="form-group col-4">
+                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
+                                class="font-weight-semibold text-secondary pr-3 h6">County</label>
+                            <select class="form-control border" id="exampleFormControlSelect3" [disabled]="filterGroup">
+                                <option> Select County </option>
+                                <option>Karnes</option>
+                                <option>Texas</option>
+                                <option>Grimes</option>
+                                <option>Rockwall</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
+                                class="font-weight-semibold  text-secondary pr-3">Operator</label>
+                            <select class="form-control border" id="exampleFormControlSelect4" [disabled]="filterGroup">
+                                <option> Select Operator </option>
+                                <option>Operator 1</option>
+                                <option>Operator 2</option>
+                                <option>Operator 3</option>
+                                <option>Operator 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-4">
+                            <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
+                                class="font-weight-semibold text-secondary pr-3">Play Type :</label>
+                            <select class="form-control border" id="exampleFormControlSelect5" [disabled]="filterGroup">
+                                <option> Select Play Type </option>
+                                <option>Play Type 1</option>
+                                <option>Play Type 2</option>
+                                <option>Play Type 3</option>
+                                <option>Play Type 4</option>
+                                <option>Play Type 5</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button routerLink="#" type="button" class="btn btn-accent"
+                    (click)="getNeighboringLeases()">Search</button>
+
+            </div>
+        </div>
+
+    </ng-template>

@@ -29,8 +29,9 @@
                         </a>
                     </li> -->
                     <li class="nav-item pull-right mr-3 align-self-center">
-                            <a routerLink="#"data-target="#connectall-modal-md" data-toggle="modal" class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Connect All</a>
-                        </li> 
+                        <a routerLink="#" data-target="#connectall-modal-md" data-toggle="modal"
+                            class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Connect All</a>
+                    </li>
                     <li class="nav-item pull-right mr-3 align-self-center">
                         <form id="search-form" class="form-inline" role="form" method="post"
                             action="//www.google.com/search" target="_blank">
@@ -48,60 +49,70 @@
                     </li>
 
                 </div>
-            </ul> 
-        </div> 
+            </ul>
+        </div>
     </div>
 
-   <div class="row justify-content-between gutters-1">
-            <div class="col-md-12 col-xl-12">
-                <div class="card card-small mt-1 shadow-none">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="nav nav-tabs sub-tab border-0">
-                                    <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
-                                            <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a routerLink="#"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-                                     </li>
-    
-                                    <li class="nav-item align-self-center mb-0 text-accent p-2  shadow-sm mr-2">
-                                            <h6 class="text-accent font-weight-semibold mb-0"> Operator : Joe Shon<a routerLink="#"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-                                                 </li>
-                                  <li class="nav-item align-self-center mb-0 text-accent p-2  shadow-sm  mr-2">
-                                        <h6 class="text-accent font-weight-semibold mb-0"> Play Type : 1<a routerLink="#"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-                                        </li>
-                            <li class="nav-item align-self-center mb-0 text-accent p-2 ml-auto">
+    <div class="row justify-content-between gutters-1">
+        <div class="col-md-12 col-xl-12">
+            <div class="card card-small mt-1 shadow-none">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs sub-tab border-0">
+                                <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+                                    <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                </li>
+
+                                <li class="nav-item align-self-center mb-0 text-accent p-2  shadow-sm mr-2">
+                                    <h6 class="text-accent font-weight-semibold mb-0"> Operator : Joe Shon<a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                </li>
+                                <li class="nav-item align-self-center mb-0 text-accent p-2  shadow-sm  mr-2">
+                                    <h6 class="text-accent font-weight-semibold mb-0"> Play Type : 1<a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                </li>
+                                <li class="nav-item align-self-center mb-0 text-accent p-2 ml-auto">
                                     <h6 class="mb-0">
-                                            <a routerLink="/nearbyneighbors" class="align-self-center font-weight-semibold"><u>Next Lease >></u></a>
-                                        </h6> 
-                                     </li>  
-                                </ul>
-                            </div>
+                                        <a routerLink="/nearbyneighbors"
+                                            class="align-self-center font-weight-semibold"><u>Next Lease >></u></a>
+                                    </h6>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-        
+        </div>
+    </div>
+
     <div class="row justify-content-between pt-1 gutters-1">
-        <div class="col-md-12 col-xl-6">
+        <div class="col-md-12 col-xl-12">
 
             <div class="row justify-content-between  pb-3 ">
-                <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
 
+                <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let lw of leaseOwnersList.owners">
                     <div class="card card-small blog-comments mt-3">
                         <div class="card-body p-0">
                             <div class="row p-3">
                                 <div class="col-8">
                                     <div class="media mb-0">
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                                             alt="Generic placeholder image">
                                         <div class="media-body mb-0">
-                                            
-                                            <ul class="list-inline  mb-0"> 
-                                                <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                         <li class="list-inline-item mb-0 h6 text-muted">
-                                                                San Christoval Raunch Unit B
-                                                             </li>
+                                            <ul class="list-inline  mb-0">
+                                                <a href="#">
+                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
+                                                        data-toggle="tooltip" title="Feature Coming Soon">{{lw.name}}
+                                                    </h5>
+                                                </a>
+                                                <li class="list-inline-item mb-0 h6 text-muted">
+                                                    {{leaseName | titlecase}}
+                                                </li>
                                                 <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
                                                     9.2 miles away
                                                 </li>
@@ -112,97 +123,8 @@
                                 <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                     <h6 class="mb-0">
                                         <button type="button"
-                                            class="mt-2 btn btn-grey align-self-center text-uppercase">Invite Sent</button>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                                <ul class="list-inline  mb-0"> 
-                                                    <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                        <li class="list-inline-item mb-0 h6 text-muted">
-                                                               San Christoval Raunch Unit B
-                                                            </li>
-                                               <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                   9.2 miles away
-                                               </li>
-                                           </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                                <ul class="list-inline  mb-0"> 
-                                                        <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                        <li class="list-inline-item mb-0 h6 text-muted">
-                                                               San Christoval Raunch Unit B
-                                                            </li>
-                                               <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                   9.2 miles away
-                                               </li>
-                                           </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">Requested</button>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-small blog-comments mt-3">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                                <ul class="list-inline  mb-0"> 
-                                                        <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                        <li class="list-inline-item mb-0 h6 text-muted">
-                                                               San Christoval Raunch Unit B
-                                                            </li>
-                                               <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                   9.2 miles away
-                                               </li>
-                                           </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button" 
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
+                                            class="mt-2 btn btn-accent align-self-center text-uppercase"
+                                            (click)="sendConnectRequest(lw)">Connect</button>
                                     </h6>
                                 </div>
                             </div>
@@ -210,139 +132,10 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
 
-
-
-        <div class="col-xl-6"> 
-                <div class="row justify-content-between pb-3 ">
-            <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                <div class="card card-small blog-comments mt-3">
-                    <div class="card-body p-0">
-                        <div class="row p-3">
-                            <div class="col-8">
-                                <div class="media mb-0">
-                                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
-                                        alt="Generic placeholder image">
-                                    <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0"> 
-                                                <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                    <li class="list-inline-item mb-0 h6 text-muted">
-                                                           San Christoval Raunch Unit B
-                                                        </li>
-                                           <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                               9.2 miles away
-                                           </li>
-                                       </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                <h6 class="mb-0">
-                                    <button type="button"
-                                        class="mt-2 btn btn-accent align-self-center text-uppercase">Requested</button>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-small blog-comments mt-3">
-                    <div class="card-body p-0">
-                        <div class="row p-3">
-                            <div class="col-8">
-                                <div class="media mb-0">
-                                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                        alt="Generic placeholder image">
-                                    <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0"> 
-                                                <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                    <li class="list-inline-item mb-0 h6 text-muted">
-                                                           San Christoval Raunch Unit B
-                                                        </li>
-                                           <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                               9.2 miles away
-                                           </li>
-                                       </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                <h6 class="mb-0">
-                                    <button type="button"
-                                        class="mt-2 btn btn-accent align-self-center text-uppercase">Connect</button>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-small blog-comments mt-3">
-                    <div class="card-body p-0">
-                        <div class="row p-3">
-                            <div class="col-8">
-                                <div class="media mb-0">
-                                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
-                                        alt="Generic placeholder image">
-                                    <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0"> 
-                                                <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                    <li class="list-inline-item mb-0 h6 text-muted">
-                                                           San Christoval Raunch Unit B
-                                                        </li>
-                                           <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                               9.2 miles away
-                                           </li>
-                                       </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                <h6 class="mb-0">
-                                    <button type="button"
-                                        class="mt-2 btn btn-dark  align-self-center text-uppercase">Invite</button>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-small blog-comments mt-3">
-                    <div class="card-body p-0">
-                        <div class="row p-3">
-                            <div class="col-8">
-                                <div class="media mb-0">
-                                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                                        alt="Generic placeholder image">
-                                    <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0"> 
-                                                    <a href="#">   <h5 class="text-dark h6 mb-0 font-weight-semibold" data-toggle="tooltip" title="Feature Coming Soon">Megan Park</h5></a> 
-                                                    <li class="list-inline-item mb-0 h6 text-muted">
-                                                           San Christoval Raunch Unit B
-                                                        </li>
-                                           <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                               9.2 miles away
-                                           </li>
-                                       </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                <h6 class="mb-0">
-                                    <button type="button"
-                                        class="mt-2 btn btn-accent align-self-center text-uppercase">Requested</button>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
- 
-
-
-            </div>
-        </div>
-    </div>
 
 
     </div>
@@ -385,19 +178,18 @@
                     </button>
                 </div>
                 <div class="modal-body p-3">
-                     
+
                     <div class="form-row text-center">
-                        <h6 class="font-weight-semibold pr-3">Are you Sure you want to Connect to All 8 Members on your Screen ??</h6>
+                        <h6 class="font-weight-semibold pr-3">Are you Sure you want to Connect to All 8 Members on your
+                            Screen ??</h6>
                     </div>
-                   
-                    
+
+
                 </div>
                 <div class="modal-footer ">
-                    <button type="button" class="btn btn-accent"data-dismiss="modal">Yes</button>
-                  <button type="button" class="btn btn-outline-accent" data-dismiss="modal">No</button>  
+                    <button type="button" class="btn btn-accent" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-outline-accent" data-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
     </div>
-
-   
