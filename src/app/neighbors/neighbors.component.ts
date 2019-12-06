@@ -1,5 +1,7 @@
 import { Component, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NeighborsService } from './neighbors.service';
+import { Utils } from '../shared/Utils';
 
 @Component({
   selector: 'app-neighbors',
@@ -23,10 +25,12 @@ export class NeighborsComponent implements OnInit {
   searchFilterModal: ElementRef;
   newNeighborModal: ElementRef;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,private neighborsService: NeighborsService) { }
 
   ngOnInit() {
+    this.Getleases(this.user.email_id)
   }
+  public user = Utils.GetCurrentUser();
 
   openAdditionalFilter() {
     this.AdditionalFilterPage = true;
@@ -115,5 +119,13 @@ export class NeighborsComponent implements OnInit {
   closeNewNeighborModal() {
     this.modalService.dismissAll(this.newNeighborModal);
   }
+
+ Getleases(email:string){
+  debugger;
+  this.neighborsService.Getlease(email).subscribe(data=>{
+   console.log("Leases",data);
+  })
+
+}
 
 }
