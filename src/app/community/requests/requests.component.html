@@ -1,7 +1,7 @@
 <div class="main-content-container container-fluid px-4">
 
     <div class="row pb-3 pt-4">
-        <div class="col-12"> 
+        <div class="col-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item align-self-center">
                     <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
@@ -70,133 +70,31 @@
             <div class="row justify-content-between no-gutters pb-3 pt-2">
                 <div class="col-md-12 col-xl-8">
                     <div class="row justify-content-between no-gutters   ">
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                            <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for connect</h6>
-                            <div class="card mt-3"> 
-                                <div class="card-body p-0"> 
-                                    <div class="row p-3">
-                                        <div class="col-8">
-                                            <div class="media mb-0">
-                                                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                                                    alt="Generic placeholder image">
-                                                <div class="media-body mb-0">
-                                                    
-                                                    <ul class="list-inline mb-0">  
-                                                        <li class="list-inline-item mb-1 font-weight-semibold text-dark">
-                                                            John Doe
-                                                        </li>
-                                                        <!-- <li class="list-inline-item">
-                                                            <a routerLink="#"><svg class="icon-muted-svg"
-                                                                    xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                    height="20" viewBox="0 0 24 24">
-                                                                    <path
-                                                                        d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                                                                </svg></a>
-                                                        </li> -->
-                                                                 <li class="list-inline-item mb-0 h6 text-muted">
-                                                                        San Christoval Raunch Unit B
-                                                                     </li>
-                                                        <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            9.2 miles away
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                            <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-accent align-self-center text-uppercase mr-3">Accept</button>
-                                            </h6>
-                                            <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase">Ignore</button>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div> 
 
-                            </div>
+                        <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for connect</h6>
 
-                            <!-- <div class="card card-small blog-comments mt-3">
-
+                        <div class="col-xl-12 col-md-12 col-sm-12 mt-3" *ngFor="let cr of receivedRequest">
+                            <div class="card">
                                 <div class="card-body p-0">
-                                    <div class="  p-1">
-                                        <div class="media p-3">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-
-
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 h6 font-weight-semibold text-dark">
-                                                        John Doe
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <a routerLink="#"><svg class="icon-muted-svg"
-                                                                xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                                                            </svg></a>
-                                                    </li>
-                                                </ul>
-
-                                                <ul class="list-inline d-flex mb-0">
-
-                                                    <li
-                                                        class="list-inline-item mb-1 h6 font-weight-semibold text-muted">
-                                                        Operators
-                                                        -
-                                                    </li>
-                                                    <li
-                                                        class="list-inline-item mb-1 h6 font-weight-semibold text-muted">
-                                                        60
-                                                        miles
-                                                        away
-                                                    </li>
-
-                                                    <div class="ml-auto d-inline-flex">
-                                                        <li class="pull-right mr-3">
-                                                            <a href="#"
-                                                                class="btn btn-accent btn-sm btn-block text-uppercase">Connect</a>
-                                                        </li>
-                                                        <li class="pull-right">
-                                                            <a href="#"
-                                                                class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Ignore</a>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                                <ul class="list-inline d-flex mb-0">
-
-
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div> -->
-                            <div class="card mt-3"> 
-                                <div class="card-body p-0"> 
                                     <div class="row p-3">
                                         <div class="col-8">
                                             <div class="media mb-0">
-                                                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                                                    alt="Generic placeholder image">
+                                                <img class="mr-3 user-pic rounded-circle mr-2"
+                                                    src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
                                                 <div class="media-body mb-0">
-                                                    
-                                                    <ul class="list-inline mb-0">  
-                                                        <li class="list-inline-item mb-1 font-weight-semibold text-dark">
-                                                            John Doe
-                                                        </li> 
-                                                                 <li class="list-inline-item mb-0 h6 text-muted">
-                                                                        San Christoval Raunch Unit B
-                                                                     </li>
-                                                        <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            9.2 miles away
+
+                                                    <ul class="list-inline mb-0">
+                                                        <li
+                                                            class="list-inline-item mb-1 font-weight-semibold text-dark">
+                                                            {{cr.nebs.nebname}}
+                                                        </li>
+
+                                                        <li class="list-inline-item mb-0 h6 text-muted">
+                                                            San Christoval Raunch Unit B
+                                                        </li>
+                                                        <li
+                                                            class="list-inline-item mb-1 font-weight-semibold small text-muted">
+                                                            {{cr.nebs.distance}} miles away
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -205,22 +103,18 @@
                                         <div class=" col-4 align-items-center d-flex justify-content-end text-right">
                                             <h6 class="mb-0">
                                                 <button type="button"
-                                                    class="mt-2 btn btn-accent align-self-center text-uppercase mr-3">Accept</button>
+                                                    class="mt-2 btn btn-accent align-self-center text-uppercase mr-3"
+                                                    (click)="acceptConnectRequest(cr.nebs)">Accept</button>
                                             </h6>
                                             <h6 class="mb-0">
                                                 <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase">Ignore</button>
+                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase"
+                                                    (click)="ignoreConnectRequest(cr.nebs)">Ignore</button>
                                             </h6>
                                         </div>
                                     </div>
-                                </div> 
-
+                                </div>
                             </div>
-                           
-
-                            
- 
-
                         </div>
                     </div>
                 </div>
@@ -286,6 +180,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 

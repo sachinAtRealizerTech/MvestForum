@@ -30,7 +30,6 @@ export class NeighborsService {
     return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/GetLeaseOwners`, body, Utils.getAuthHeader())
   }
 
-
   sendConnectRequest(body) {
     return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/ConnectNeighbor`, body, Utils.getAuthHeader())
   }

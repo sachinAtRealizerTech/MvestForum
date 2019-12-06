@@ -97,9 +97,10 @@
             </div> 
 
         <div class="row justify-content-between gutters-1">
-            <div class="col-md-12 col-xl-6"> 
+            <div class="col-md-12 col-xl-12"> 
                 <div class="row justify-content-between  pb-3 ">
-                    <div class="col-xl-12 col-md-12 col-sm-12 mb-4">  
+                    <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let cr of acceptedRequests">  
+                        
                         <div class="card card-small blog-comments mt-3"> 
                             <div class="card-body p-0"> 
                                 <div class="row p-3">
@@ -108,14 +109,14 @@
                                             <img class="mr-3 user-pic rounded-circle mr-2"
                                                 src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
                                             <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{cr.nebs.nebname}}</h5>
                                                 <a href="#"> 
                                                         <h5 class="text-dark h6 mb-0  text-muted"> 
                                                             San Christoval Ranch Unit B  </h5>
                                                         </a>
                                                 <ul class="list-inline d-flex mb-0">
                                                     <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                        9.2 miles away
+                                                        {{cr.nebs.distance}} miles away
                                                     </li>
 
                                                 </ul>
@@ -129,278 +130,20 @@
                                                         mail_outline
                                                         </i></a>    
                                             </h6> 
-                                        <h6 class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
+                                        <h6 *ngIf="cr.nebs.status=='Accepted'" class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
                                             </i><small class="text-muted font-weight-semibold text-uppercase">connected
                                             </small> </h6> 
+                                            <h6 *ngIf="cr.nebs.status=='reqSent'" class="mb-0 align-self-center">
+                                                    <button type="button"
+                                                        class=" btn btn-accent align-self-center text-uppercase">Requested</button>
+                                                </h6> 
                                     </div> 
                                 </div> 
                             </div> 
                         </div>
-                        
-                        <div class="card card-small blog-comments mt-3"> 
-                            <div class="card-body p-0"> 
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">John Doe</h5>
-                                                <a href="#"> 
-                                                        <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                            San Christoval Ranch Unit B  </h5>
-                                                        </a>
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                        9.2 miles away
-                                                    </li> 
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4  justify-content-end text-right">
-                                            <h6 class="mb-0">
-                                               
-                                                <a href="#"><i class="material-icons md-18 icon-muted">
-                                                        mail_outline
-                                                        </i></a> 
-                                            </h6> 
-                                        <h6 class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
-                                            </i><small class="text-muted font-weight-semibold text-uppercase">connected
-                                            </small> </h6> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                        </div>
-                        <div class="card card-small blog-comments mt-3"> 
-                            <div class="card-body p-0"> 
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/1.jpg" alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Tony Stark</h5>
-                                                <a href="#"> 
-                                                        <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                            San Christoval Ranch Unit B  </h5>
-                                                        </a>
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                        9.2 miles away
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4  justify-content-end text-right">
-                                            <h6 class="mb-0"> 
-                                                <a href="#"><i class="material-icons md-18 icon-muted">
-                                                        mail_outline
-                                                        </i></a>  
-                                            </h6> 
-                                        <h6  class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
-                                            </i><small class="text-muted font-weight-semibold text-uppercase">connected
-                                            </small> </h6> 
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-small blog-comments mt-3">
-                            <div class="card-body p-0">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/3.jpg" alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Sam Jorden</h5>
-                                                <a href="#"> 
-                                                        <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                            San Christoval Ranch Unit B  </h5>
-                                                        </a>
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                        9.2 miles away
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                            <h6 class="mb-0 align-self-center">
-                                                <button type="button"
-                                                    class=" btn btn-accent align-self-center text-uppercase">Requested</button>
-                                            </h6> 
-                                        </div> 
-                                    </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="col-xl-6">
-                    <div class="row justify-content-between">
-
-                <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
-                    <div class="card card-small blog-comments mt-3">
-
-                        <div class="card-body p-0">
-
-                            <div class="row p-3">
-                                <div class="col-8">
-                                    <div class="media mb-0">
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/6.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">Naya Hale</h5>
-                                            <a href="#"> 
-                                                    <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                        San Christoval Ranch Unit B  </h5>
-                                                    </a>
-                                            <ul class="list-inline d-flex mb-0">
-                                                <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                    9.2 miles away
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-4  justify-content-end text-right">
-                                        <h6 class="mb-0">
-                                           
-                                            <a href="#"><i class="material-icons md-18 icon-muted">
-                                                    mail_outline
-                                                    </i></a> 
-                                        </h6> 
-                                    <h6 class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
-                                        </i><small class="text-muted font-weight-semibold text-uppercase">connected
-                                        </small> </h6> 
-                                </div> 
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="card card-small blog-comments mt-3"> 
-                            <div class="card-body p-0"> 
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Megan Park</h5>
-                                                <a href="#"> 
-                                                        <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                            San Christoval Ranch Unit B  </h5>
-                                                        </a>
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                        9.2 miles away
-                                                    </li> 
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                        <h6 class="mb-0">
-                                            <button type="button"
-                                                class="btn btn-accent align-self-center text-uppercase">Connect</button>
-                                        </h6> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                        </div>
-                    <div class="card card-small blog-comments mt-3">
-
-                            <div class="card-body p-0">
-    
-                                    <div class="row p-3">
-                                        <div class="col-8">
-                                            <div class="media mb-0">
-                                                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                                    alt="Generic placeholder image">
-                                                <div class="media-body mb-0">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Megan Park</h5>
-                                                    <a href="#"> 
-                                                            <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                                San Christoval Ranch Unit B  </h5>
-                                                            </a>
-                                                    <ul class="list-inline d-flex mb-0">
-                                                        <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            9.2 miles away
-                                                        </li>
-        
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                            <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="btn btn-dark align-self-center text-uppercase text-white">Invite</button>
-                                            </h6>
-        
-                                        </div>
-        
-        
-                                    </div>
-        
-                                </div>
-
-                    </div>
-                   <div class="card card-small blog-comments mt-3">
-
-                            <div class="card-body p-0">
-    
-                                    <div class="row p-3">
-                                        <div class="col-8">
-                                            <div class="media mb-0">
-                                                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/6.jpg"
-                                                    alt="Generic placeholder image">
-                                                <div class="media-body mb-0">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Megan Park</h5>
-                                                    <a href="#"> 
-                                                            <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                                San Christoval Ranch Unit B  </h5>
-                                                            </a>
-                                                    <ul class="list-inline d-flex mb-0">
-                                                        <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            9.2 miles away
-                                                        </li>
-        
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=" col-4 align-items-center d-flex justify-content-end text-right">
-                                            <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="btn btn-grey text-white align-self-center text-uppercase">Invite Sent</button>
-                                            </h6>
-        
-                                        </div>
-        
-        
-                                    </div>
-        
-                                </div>
-
                     </div>
 
-                </div>
+                   
                 </div>
             </div>
           

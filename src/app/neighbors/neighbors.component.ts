@@ -31,6 +31,7 @@ export class NeighborsComponent implements OnInit {
   districtCode: string;
   leaseNumber: string;
   myConnectRequests: any;
+  acceptedRequests: any[] = [];
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -176,7 +177,12 @@ export class NeighborsComponent implements OnInit {
 
   getMyConnectRequests() {
     this.neighborsService.getMyConnectRequests('ash@gmail.com').subscribe(data => {
-      this.myConnectRequests = data
+      this.myConnectRequests = data;
+      for (let i = 0; i < this.myConnectRequests.length; i++) {
+        if (this.myConnectRequests[i]['nebs']['status'] == 'Accepted') {
+          this.acceptedRequests.push(this.myConnectRequests[i]);
+        }
+      }
       console.log('myconnectrequest', this.myConnectRequests)
     })
   }

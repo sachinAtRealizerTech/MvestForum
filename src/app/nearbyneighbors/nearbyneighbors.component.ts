@@ -34,18 +34,20 @@ export class NearbyneighborsComponent implements OnInit {
   }
 
   sendConnectRequest(lw: any) {
+    debugger;
     let body = {
       myname: this.user.f_name + " " + this.user.l_name,
       myemail_id: this.user.email_id,
       myleasenumber: "9048",
-      nebemail_id: "ash@gmail.com",
+      nebemail_id: lw.email_id,
       nebleasenumber: "9666",
-      nebname: "Aishwarya Belapurkar",
+      nebname: lw.name,
       distance: "2.7"
     }
 
     return this.neighborsService.sendConnectRequest(body).subscribe(data => {
-      alert('request sent successfully')
+      alert('request sent successfully');
+      this.getLeaseOwner();
     })
   }
 
