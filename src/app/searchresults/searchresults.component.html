@@ -26,9 +26,9 @@
                 </div>
         </div>
         <div class="row">
-                        <div class="col-10">
+                        <div class="col-10 pb-3">
         <div class="card shadow p-0">
-                <div class="card-body py-1 px-4">
+                <div class="card-body py-2 px-4">
                         <div class="row">
                                 <!-- <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
                         <a routerLink="#">
@@ -69,9 +69,10 @@
                                         </a>
                                 </div> -->
                                 <div class="col-12 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
-                                                <div class="media   py-1">
-                                                                <i class="material-icons md-24 text-muted mr-3">
-                                                                                remove_red_eye
+                                                <div class="media  py-1">
+                                                                <i class="material-icons md-30 text-muted mr-2">
+                                                                                <!-- remove_red_eye -->
+                                                                                arrow_right
                                                                               </i>  
                                                         <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
                                                   <div class="media-body mb-0 align-self-center">
@@ -83,8 +84,9 @@
                                                                 </h6>
                                                        
                                                                 <h6 *ngIf="sd.title?.length>=100" class=" text-muted font-weight-semibold mb-0"> 
-                                                                        <u> {{sd.title | slice:0:280}}...</u> 
+                                                                        <u>{{sd.title | slice:0:280}}...</u> 
                                                                 </h6>
+                                                                <!-- <span>Q : </span>  -->
                                                                 <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
                                                                         innerHTML="{{sd?.body | stripHtml}}"></h6>
                                 

@@ -60,6 +60,12 @@ a .serach-view-title:hover {
   .icon-muted{
 color:#868e96 !important
   }
+  .icon-muted-negative{
+    color:#868e96 !important;
+  }
+  .icon-muted-negative:hover{
+    color:#c4183c !important;
+  }
   .icon-accent-svg{
     fill:#00CD95 !important
       }
@@ -113,6 +119,9 @@ color:#868e96 !important
   background: #d80000 !important;
 }
  
+.bg-muted {
+  background: #868e96!important;
+}
 .bg-grey{
   background: rgb(58, 58, 58);
 }
@@ -210,6 +219,8 @@ color:#868e96 !important
 }
 /* material-icons */
 .material-icons.md-18 { font-size: 18px; }
+.material-icons.md-20 { font-size: 20px; }
+.material-icons.md-21 { font-size: 21px; }
 .material-icons.md-22 { font-size: 22px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-25 { font-size: 25px; }
@@ -1299,7 +1310,7 @@ top:128px;
   } 
 
   .cursor-pointer{
-    cursor: pointer;
+    cursor: pointer !important;
   }
       
 
@@ -1339,14 +1350,14 @@ top:128px;
   
     10%,
     20% {
-      transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      transform: scale3d(3, 3, 3) rotate3d(0, 0, 1, -3deg);
     }
   
     30%,
     50%,
     70%,
     90% {
-      transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+      transform: scale3d(5,5, 5) rotate3d(0, 0, 1, 8deg);
     }
   
     40%,
@@ -1364,7 +1375,38 @@ top:128px;
     animation-name: tada;
   }
 
- 
+  @keyframes pulse {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
+  
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  .pulse {
+    animation-name: pulse;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+  
   /* Animation Styles End*/ 
   
   .coverphoto{
