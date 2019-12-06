@@ -18,15 +18,19 @@ export class SearchresultsComponent implements OnInit {
 
   constructor(private topNavService: TopNavService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
-      this.searchText = params['searchText']
       this.searchType = params['searchType']
     })
 
-    this.getSearchResult(this.searchText)
+    this.searchedData = JSON.parse(sessionStorage.getItem("searchedData"));
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    //this.getSearchResult(this.searchText);
   }
 
   selectSearchType(event) {

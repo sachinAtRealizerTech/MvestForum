@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NeighborsService } from './neighbors.service';
 import { Utils } from '../shared/Utils';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-neighbors',
@@ -24,12 +26,30 @@ export class NeighborsComponent implements OnInit {
   playTypeFilter = false;
   searchFilterModal: ElementRef;
   newNeighborModal: ElementRef;
+  myLeases: any;
+  newNeighborForm: FormGroup
+  districtCode: string;
+  leaseNumber: string;
 
-  constructor(private modalService: NgbModal,private neighborsService: NeighborsService) { }
+  constructor(private modalService: NgbModal,
+    private neighborsService: NeighborsService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.Getleases(this.user.email_id)
+
+    this.newNeighborForm = this.formBuilder.group({
+      leaseName: [],
+      distanceWithin: []
+    })
+
+    this.getMyLeases(this.user.email_id);
+    //this.getLeaseNeighbors();
   }
+
+  get g() { return this.newNeighborForm.controls }
+
   public user = Utils.GetCurrentUser();
 
   openAdditionalFilter() {
@@ -120,12 +140,38 @@ export class NeighborsComponent implements OnInit {
     this.modalService.dismissAll(this.newNeighborModal);
   }
 
- Getleases(email:string){
-  debugger;
-  this.neighborsService.Getlease(email).subscribe(data=>{
-   console.log("Leases",data);
-  })
+  getMyLeases(email: string) {
+    debugger;
+    this.neighborsService.getMyLease(email).subscribe(data => {
+      this.myLeases = data
+      console.log("MyLeases", data);
+    })
 
-}
+  }
+
+
+  getLeaseValues(event) {
+    debugger;
+    console.log(event.target.value)
+    let compKey: string = event.target.value;
+    let compKeyArray: Array<string> = compKey.split(" ");
+    this.leaseNumber = compKeyArray[0];
+    this.districtCode = compKeyArray[1];
+  }
+
+  getLeaseNeighbors() {
+    debugger;
+    let body = {
+      leaseNumber: this.leaseNumber,
+      distNumber: this.districtCode,
+      distanceWithin: this.g.distanceWithin.value
+    }
+    this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
+      console.log("leaseNeighbors", data);
+      this.closeNewNeighborModal();
+      this.router.navigate(['/nearbyleases'])
+    })
+
+  }
 
 }

@@ -762,7 +762,7 @@
 
     <ng-template #newNeighborModal>
 
-              <div class="modal-content">
+              <div class="modal-content" [formGroup]="newNeighborForm">
                 
                 <div class="justify-content-end">
                         <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
@@ -786,24 +786,20 @@
                             <div  class="form-row pt-2" >
                                 <div   class="form-group col-4">
                                                 <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
-                                                <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!newNeighborGroup">
-                                                        <option>Select Lease</option>
-                                                        <option>San Christoval Raunch Unit A</option>
-                                                        <option>San Christoval Raunch Unit B</option>
-                                                        <option>San Christoval Raunch Unit C</option>
-                                                        <option>San Christoval Raunch Unit D</option>
-                                                        <option>San Christoval Raunch Unit E</option> 
+                                                <select class="form-control border" [value]="null" id="exampleFormControlSelect1" formControlName="leaseName" [disabled]="!newNeighborGroup"
+                                                (change)="getLeaseValues($event)">
+                                                        <option [value]="null" hidden>Select Lease</option>
+                                                        <option *ngFor="let ml of myLeases.leases" value="{{ml.lease_number}} {{ml.district_code}}" >{{ml.lease_name | titlecase}}</option>
                                                       </select>
                                             </div>
                                              <div class="form-group col-4">
                                             <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="!newNeighborGroup">
-                                                    <option> Select Distance </option> 
-                                                    <option>1.5 miles away</option>
-                                                    <option>2.2 miles away</option>
-                                                    <option>3.5 miles away</option>
-                                                    <option>4.2 miles away</option>
-                                                    <option>5.5 miles away</option> 
+                                            <select class="form-control border" id="exampleFormControlSelect1" formControlName="distanceWithin" [disabled]="!newNeighborGroup">
+                                                    <option [value]="null" hidden> Select Distance </option> 
+                                                    <option [value]="2.5">2.5 miles away</option>
+                                                    <option [value]="5.0">5.0 miles away</option>
+                                                    <option [value]="7.5">7.5 miles away</option>
+                                                    <option [value]="10.0">10.0 miles away</option>
                                                   </select>
                                         </div> 
                                 </div>
@@ -855,7 +851,7 @@
                                 </div>
                         </div>
                 <div class="modal-footer">
-                  <button routerLink="/nearbyleases" type="button" class="btn btn-accent" data-dismiss="modal">Search</button>                
+                  <button routerLink="#" type="button" class="btn btn-accent" data-dismiss="modal" (click)="getLeaseNeighbors()">Search</button>                
                 </div>
               </div>
 

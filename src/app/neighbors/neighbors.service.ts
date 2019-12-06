@@ -8,9 +8,13 @@ import { Utils } from '../shared/Utils';
 })
 export class NeighborsService {
 
-  constructor(private httpclient:HttpClient) { }
+  constructor(private httpclient: HttpClient) { }
 
-  Getlease(emailId: string){
-return this.httpclient.get(`${environment.APIBASEURL}/Neighbors/GetMyLeases/${emailId}`,Utils.getAuthHeader())
+  getMyLease(emailId: string) {
+    return this.httpclient.get(`${environment.APIBASEURL}/Neighbors/GetMyLeases/${emailId}`, Utils.getAuthHeader())
+  }
+
+  getLeaseNeighbors(body) {
+    return this.httpclient.post(`${environment.APIBASEURL}/Neighbors/GetLeaseNeighbors`, body, Utils.getAuthHeader())
   }
 }
