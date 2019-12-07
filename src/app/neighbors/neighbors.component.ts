@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NeighborsService } from './neighbors.service';
 import { Utils } from '../shared/Utils';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -37,6 +37,8 @@ export class NeighborsComponent implements OnInit {
   searchFilterForm: FormGroup
   leaseName: string;
   filteredRequests: any[];
+  myConnectedNeighbors: any;
+  allNeighboursCount: number;
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -47,8 +49,8 @@ export class NeighborsComponent implements OnInit {
   ngOnInit() {
 
     this.newNeighborForm = this.formBuilder.group({
-      leaseName: [],
-      distanceWithin: []
+      leaseName: ['', Validators.required],
+      distanceWithin: ['', Validators.required]
     })
 
     this.searchFilterForm = this.formBuilder.group({
@@ -56,8 +58,9 @@ export class NeighborsComponent implements OnInit {
       distanceWithin: []
     })
 
-    this.getMyLeases(this.user.email_id);
-    this.getMyConnectRequests();
+    this.getMyLeases(this.user.member_id);
+    this.getMemberNeighbors();
+    //this.getMyConnectRequests();
     //this.getLeaseNeighbors();
   }
 
@@ -155,10 +158,10 @@ export class NeighborsComponent implements OnInit {
     this.modalService.dismissAll(this.newNeighborModal);
   }
 
-  getMyLeases(email: string) {
+  getMyLeases(id: number) {
     debugger;
-    this.neighborsService.getMyLease(email).subscribe(data => {
-      this.myLeases = data
+    this.neighborsService.getMyLease(id).subscribe(data => {
+      this.myLeases = data['data']
       console.log("MyLeases", data);
     })
   }
@@ -175,57 +178,90 @@ export class NeighborsComponent implements OnInit {
 
   getLeaseNeighbors() {
     debugger;
+    if (this.newNeighborForm.invalid) {
+      return
+    }
+    this.loading = true
     let body = {
-      leaseNumber: this.leaseNumber,
-      distNumber: this.districtCode,
-      distanceWithin: this.g.distanceWithin.value
+      _leasenumber: this.leaseNumber,
+      _distCode: this.districtCode,
+      // distanceWithin: this.g.distanceWithin.value
     }
     this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
-      console.log("leaseNeighbors", data);
+      // console.log("leaseNeighbors", data);
       this.closeNewNeighborModal();
+      this.loading = false
       sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
       sessionStorage.setItem("nearbydistrictNumber", this.districtCode);
       sessionStorage.setItem("nearbydistanceWithin", this.g.distanceWithin.value)
       this.router.navigate(['/nearbyleases']);
-    })
+    },
+      error => {
+        this.loading = false
+      })
   }
 
-  getMyConnectRequests() {
-    this.neighborsService.getMyConnectRequests('ash@gmail.com').subscribe(data => {
-      this.myConnectRequests = data;
-      for (let i = 0; i < this.myConnectRequests.length; i++) {
-        if (this.myConnectRequests[i]['nebs']['status'] == 'Accepted') {
-          this.acceptedRequests.push(this.myConnectRequests[i]);
-        }
-      }
-      console.log('myconnectrequest', this.myConnectRequests)
-    })
+  // getMyConnectRequests() {
+  //   this.loading = true;
+  //   this.neighborsService.getMyConnectRequests('ash@gmail.com').subscribe(data => {
+  //     this.loading = false;
+  //     this.myConnectRequests = data;
+  //     for (let i = 0; i < this.myConnectRequests.length; i++) {
+  //       if (this.myConnectRequests[i]['nebs']['status'] == 'Accepted') {
+  //         this.acceptedRequests.push(this.myConnectRequests[i]);
+  //       }
+  //     }
+  //     console.log('myconnectrequest', this.myConnectRequests)
+  //   },
+  //     error => {
+  //       this.loading = false;
+  //     })
+  // }
+
+  getMemberNeighbors() {
+    this.loading = true;
+    this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
+      this.loading = false;
+      this.myConnectedNeighbors = data['data'];
+      this.allNeighboursCount = this.myConnectedNeighbors.length;
+      sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
+      this.acceptedRequests = this.myConnectedNeighbors
+      console.log('myconnectneighbors', this.myConnectedNeighbors)
+    },
+      error => {
+        this.loading = false;
+        console.log(error)
+      })
   }
 
   getFilterSearch() {
     debugger;
-    for (let i = 0; i < this.acceptedRequests.length; i++) {
+    if (this.searchFilterForm.invalid) {
+      return
+    }
+    for (let i = 0; i < this.myConnectedNeighbors.length; i++) {
       if (i == 0) {
         this.filteredRequests = [];
       }
-      if (this.acceptedRequests[i]['nebs']['neblsno'] == this.leaseName && this.acceptedRequests[i]['nebs']['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
+      if (this.acceptedRequests[i]['leasenumber'] == this.leaseNumber && this.acceptedRequests[i]['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
         this.filteredRequests.push(this.acceptedRequests[i])
       }
     }
     this.acceptedRequests = [];
-    this.acceptedRequests = this.filteredRequests
+    this.acceptedRequests = this.filteredRequests;
+    this.closeSearchFilter();
   }
 
 
-  acceptConnectRequest() {
-    let body = {
-      neb_emailid: "newsachins@gmail.com",
-      my_emailid: "ash@gmail.com",
-      action: "Accept"
-    }
-    this.neighborsService.acceptConnectRequest(body).subscribe(data => {
-      alert('request accepted');
-    })
-  }
+  // acceptConnectRequest() {
+  //   let body = {
+  //     neb_emailid: "newsachins@gmail.com",
+  //     my_emailid: "ash@gmail.com",
+  //     action: "Accept"
+  //   }
+  //   this.neighborsService.acceptConnectRequest(body).subscribe(data => {
+  //     alert('request accepted');
+  //   })
+  // }
 
 }

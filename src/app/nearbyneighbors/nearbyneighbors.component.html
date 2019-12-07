@@ -8,7 +8,8 @@
             <ul class="nav nav-tabs sub-tab border-0">
                 <a class="align-self-center" routerLink="/neighbors">
                     <li class="nav-item align-self-center">
-                        <h5 class="text-muted mb-0 font-weight-bold mr-3 align-self-center">Neighbors(78) / </h5>
+                        <h5 class="text-muted mb-0 font-weight-bold mr-3 align-self-center">
+                            Neighbors({{allNeighboursCount}}) / </h5>
                     </li>
                 </a>
                 <a class="align-self-center" routerLink="/nearbyleases">
@@ -99,7 +100,7 @@
 
             <div class="row justify-content-between  pb-3 ">
 
-                <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let lw of leaseOwnersList.owners">
+                <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let lw of leaseOwnersList">
                     <div class="card card-small blog-comments mt-3">
                         <div class="card-body p-0">
                             <div class="row p-3">
@@ -111,7 +112,7 @@
                                             <ul class="list-inline  mb-0">
                                                 <a href="#">
                                                     <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">{{lw.name}}
+                                                        data-toggle="tooltip" title="Feature Coming Soon">{{lw.mname}}
                                                     </h5>
                                                 </a>
                                                 <li class="list-inline-item mb-0 h6 text-muted">
@@ -171,7 +172,7 @@
     </div>
 
 
-    <div id="connectall-modal-md" class="modal" tabindex="-1" role="dialog">
+    <!-- <div id="connectall-modal-md" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
 
@@ -196,4 +197,4 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->

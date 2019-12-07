@@ -6,7 +6,8 @@
             <ul class="nav nav-tabs sub-tab border-0">
                 <a class="align-self-center" routerLink="/neighbors">
                     <li class="nav-item align-self-center">
-                        <h5 class="text-muted mb-0 font-weight-bold mr-3 align-self-center">Neighbors(78) /</h5>
+                        <h5 class="text-muted mb-0 font-weight-bold mr-3 align-self-center">
+                            Neighbors({{allNeighboursCount}}) /</h5>
                     </li>
                 </a>
                 <li class="nav-item align-self-center">
@@ -98,8 +99,16 @@
 
     <div class="row justify-content-between gutters-1">
         <div class="col-md-12 col-xl-12">
+
+            <div class="row justify-content-center text-center  py-3 pt-5" *ngIf="nearByLeases?.length==0">
+                <div class="col-xl-6 col-md-6 col-sm-6">
+                    <h6 class="font-weight-semibold text-secondary">There are no nearby leases for your search criteria.
+                    </h6>
+                </div>
+            </div>
+
             <div class="row justify-content-between   pb-3 ">
-                <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let nl of nearByLeases.leases">
+                <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let nl of nearByLeases">
                     <div class="card card-small blog-comments mt-3">
                         <div class="card-body p-0">
                             <div class="row p-3">
@@ -111,15 +120,15 @@
 
                                                 <li
                                                     class="list-inline-item font-weight-semibold mb-0 small text-uppercase text-muted">
-                                                    LOREM ISPUM IS A DUMMY TEXT
+                                                    {{nl._operatorname}}
                                                 </li>
-                                                <a href="#">
+                                                <a>
                                                     <h5 class="text-dark h6 mb-0 font-weight-semibold"
                                                         data-toggle="modal" title="Feature Coming Soon">
-                                                        {{nl.lease_name}}</h5>
+                                                        {{nl.leasename}}</h5>
                                                 </a>
                                                 <li class="list-inline-item mb-0 small font-weight-semibold text-muted">
-                                                    {{nl.distance}} miles away
+                                                    {{nl._dist_in_miles}} miles away
                                                 </li>
                                             </ul>
                                         </div>
@@ -130,8 +139,8 @@
                                     <h6 class="mb-0 align-self-center">
                                         <button routerLink="#" type="button"
                                             class="mt-2 btn btn-accent align-self-center text-uppercase"
-                                            (click)="viewNeighbors()">View
-                                            (5)</button>
+                                            (click)="viewNeighbors(nl)">View
+                                            ({{nl?._noofowners ? nl._noofowners :'0'}})</button>
 
                                     </h6>
                                 </div>
@@ -204,8 +213,8 @@
                                 id="exampleFormControlSelect1" [value]="null" [attr.disabled]="!filterGroup?'':null"
                                 (change)="getLeaseValues($event)">
                                 <option [value]="null" hidden>Select Lease</option>
-                                <option *ngFor="let ml of myLeases.leases"
-                                    value="{{ml.lease_number}}&{{ml.district_code}}&{{ml.lease_name}}">{{ml.lease_name}}
+                                <option *ngFor="let ml of myLeases"
+                                    value="{{ml.leasenumber}}&{{ml.dist_number}}&{{ml.leasename}}">{{ml.leasename}}
                                 </option>
                             </select>
                         </div>

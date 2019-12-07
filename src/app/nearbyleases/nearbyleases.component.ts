@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NeighborsService } from '../neighbors/neighbors.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from '../shared/Utils';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -27,6 +27,7 @@ export class NearbyleasesComponent implements OnInit {
   operatorFilter = false;
   playTypeFilter = false;
   loading = false;
+  allNeighboursCount: string;
 
   constructor(private neighborsService: NeighborsService,
     private modalService: NgbModal,
@@ -44,7 +45,8 @@ export class NearbyleasesComponent implements OnInit {
     this.leaseNumber = sessionStorage.getItem("nearbyleaseNumber");
     this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
     this.distanceWithin = sessionStorage.getItem("nearbydistanceWithin");
-    this.searchFilterForm.controls.distanceWithin.patchValue(this.distanceWithin)
+    this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount");
+    //this.searchFilterForm.controls.distanceWithin.patchValue(this.distanceWithin)
 
     this.getNeighboringLeases();
     this.getMyLeases();
@@ -85,7 +87,7 @@ export class NearbyleasesComponent implements OnInit {
       this.countyFilter = false;
       this.operatorFilter = false;
       this.playTypeFilter = false;
-      // this.closeSearchFilterModal();
+      this.closeSearchFilterModal();
       this.getNeighboringLeases()
     }
     else {
@@ -101,19 +103,28 @@ export class NearbyleasesComponent implements OnInit {
 
   getNeighboringLeases() {
     debugger;
+    // if (this.searchFilterForm.invalid) {
+    //   return
+    // }
     this.loading = true;
     let body = {
-      leaseNumber: this.leaseNumber,
-      distNumber: this.districtNumber,
-      distanceWithin: this.searchFilterForm.controls.distanceWithin.value
+      _leasenumber: this.leaseNumber,
+      _distCode: this.districtNumber,
+      //distanceWithin: this.searchFilterForm.controls.distanceWithin.value
     }
     this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
-      this.nearByLeases = data;
-      this.leaseName = this.nearByLeases['leases'][0]['lease_name']
-      this.distance = this.nearByLeases['leases'][0]['distance']
+      this.nearByLeases = data['data'];
+
+      // this.leaseName = this.nearByLeases[0]['leasename'];
+      // this.distance = this.nearByLeases[0]['_dist_in_miles'];
+      sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
+      sessionStorage.setItem("nearbydistrictNumber", this.districtNumber);
+      sessionStorage.setItem("nearbydistanceWithin", this.searchFilterForm.controls.distanceWithin.value);
+
       console.log('nearbyLeases', this.nearByLeases)
-      this.closeSearchFilterModal();
+      // this.closeSearchFilterModal();
       this.loading = false;
+
     },
       error => {
         this.loading = false;
@@ -146,18 +157,25 @@ export class NearbyleasesComponent implements OnInit {
   }
 
   getMyLeases() {
-    this.neighborsService.getMyLease(this.user.email_id).subscribe(data => {
-      this.myLeases = data
+    this.neighborsService.getMyLease(this.user.member_id).subscribe(data => {
+      this.myLeases = data['data']
     })
   }
 
-  viewNeighbors(leaseNumber) {
-    sessionStorage.setItem("leaseNumber", leaseNumber)
+  viewNeighbors(nl: any) {
+    sessionStorage.setItem("nearByNbrleaseNo", nl.leasenumber);
+    sessionStorage.setItem("nearByNbrDistNo", nl.dist_number);
+    sessionStorage.setItem("nearbyleaseName", nl.leasename);
+    sessionStorage.setItem("nearByNbrDistance", nl._dist_in_miles)
     let body = {
-      leaseNumber: "2.9666",
-      email_id: this.user.email_id
+      _distCode: nl.dist_number,
+      _leasenumber: nl.leasenumber,
+      _myemailid: this.user.email_id,
+      _memberid: this.user.member_id
     }
-    this.neighborsService.getLeaseOwners(body).subscribe(data => {
+
+    this.neighborsService.getLeaseOwnersWithConnect(body).subscribe(data => {
+      console.log('neighborswithconnectstatus', data)
       this.router.navigate(['/nearbyneighbors']);
     })
   }

@@ -12,43 +12,60 @@ export class NearbyneighborsComponent implements OnInit {
   leaseNumber: string;
   leaseOwnersList: any;
   leaseName: string;
+  districtNumber: string;
+  memLeaseNumber: string;
+  memDistrictnumber: string;
+  nebDistance: string;
+  allNeighboursCount: string;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
-    this.leaseNumber = sessionStorage.getItem("leaseNumber");
-    this.getLeaseOwner()
+    this.leaseNumber = sessionStorage.getItem("nearByNbrleaseNo");
+    this.districtNumber = sessionStorage.getItem("nearByNbrDistNo");
+    this.leaseName = sessionStorage.getItem("nearbyleaseName");
+    this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount")
+    this.getLeaseOwner();
   }
 
   public user = Utils.GetCurrentUser();
 
   getLeaseOwner() {
     let body = {
-      leaseNumber: "2.9666",
-      email_id: this.user.email_id
+      _distCode: this.districtNumber,
+      _leasenumber: this.leaseNumber,
+      _myemailid: this.user.email_id,
+      _memberid: this.user.member_id
     }
-    this.neighborsService.getLeaseOwners(body).subscribe(data => {
-      this.leaseOwnersList = data
-      this.leaseName = this.leaseOwnersList.lease_name
+    this.neighborsService.getLeaseOwnersWithConnect(body).subscribe(data => {
+      this.leaseOwnersList = data['data']
+      //this.leaseName = this.leaseOwnersList.lease_name
       console.log('leaseOwnersList', this.leaseOwnersList)
     })
   }
 
   sendConnectRequest(lw: any) {
     debugger;
+    this.memLeaseNumber = sessionStorage.getItem("nearbyleaseNumber");
+    this.memDistrictnumber = sessionStorage.getItem("nearbydistrictNumber");
+    this.nebDistance = sessionStorage.getItem("nearByNbrDistance");
     let body = {
-      myname: this.user.f_name + " " + this.user.l_name,
-      myemail_id: this.user.email_id,
-      myleasenumber: "9048",
-      nebemail_id: lw.email_id,
-      nebleasenumber: "9666",
-      nebname: lw.name,
-      distance: "2.7"
+      _memdistCode: this.memDistrictnumber,
+      _memleasenumber: this.memLeaseNumber,
+      _memberid: this.user.member_id,
+      _myemailid: this.user.email_id,
+      _nebdistCode: this.districtNumber,
+      _nebleasenumber: this.leaseNumber,
+      _nebid: lw.mid,
+      _nebemailid: lw.memaild,
+      distance: this.nebDistance
+
     }
 
     return this.neighborsService.sendConnectRequest(body).subscribe(data => {
       //alert('request sent successfully');
+      console.log('connectresponse', data)
       this.flashMessagesService.show("You have successfully sent the connect request...", { cssClass: 'bg-accent flash-message', timeout: 2000 })
       this.getLeaseOwner();
     })

@@ -23,38 +23,41 @@ export class RequestsComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   getMyConnectRequests() {
-    this.neighborsService.getMyConnectRequests("ash@gmail.com").subscribe(data => {
-      this.myConnectRequests = data;
+    this.neighborsService.getMyConnectRequests(this.user.member_id).subscribe(data => {
+      this.myConnectRequests = data['data'];
       console.log('myconnectrequests', this.myConnectRequests)
-      for (let i = 0; i < this.myConnectRequests.length; i++) {
-        if (this.myConnectRequests[i]['nebs']['status'] == 'reqReceieved') {
-          this.receivedRequest.push(this.myConnectRequests[i])
-        }
-      }
+
+      // for (let i = 0; i < this.myConnectRequests.length; i++) {
+      //   if (this.myConnectRequests[i]['nebs']['status'] == 'reqReceieved') {
+      //     this.receivedRequest.push(this.myConnectRequests[i])
+      //   }
+      // }
+
     })
   }
 
   acceptConnectRequest(reqData: any) {
     debugger;
     let body = {
-      neb_emailid: reqData.nebemail_id,
-      my_emailid: this.user.email_id,
-      action: "Accept"
+      _memberid: this.user.member_id,
+      _nebid: reqData._nebid,
+      _status: "accepted"
     }
     this.neighborsService.acceptConnectRequest(body).subscribe(data => {
-      this.flashMessagesService.show(`You are now connected with ${reqData.nebname}`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      this.flashMessagesService.show(`You have successfully got connected`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       alert('success')
     })
   }
 
   ignoreConnectRequest(reqData: any) {
     let body = {
-      neb_emailid: reqData.nebemail_id,
-      my_emailid: this.user.email_id,
-      action: "Ignore"
+      _memberid: this.user.member_id,
+      _nebid: reqData._nebid,
+      _status: "ignore"
     }
     this.neighborsService.acceptConnectRequest(body).subscribe(data => {
       alert('request rejected');
+      this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
     })
   }
 

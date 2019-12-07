@@ -77,7 +77,14 @@
 
                         <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for connect</h6>
 
-                        <div class="col-xl-12 col-md-12 col-sm-12 mt-3" *ngFor="let cr of receivedRequest">
+
+                        <div class="col-xl-12 col-md-12 col-sm-12 mt-3 text-center"
+                            *ngIf="myConnectRequests?.length==0">
+                            <h6>Currently, There are no connect requests for you...</h6>
+                        </div>
+
+                        <div class="col-xl-12 col-md-12 col-sm-12 mt-3" *ngFor="let cr of myConnectRequests">
+
                             <div class="card">
                                 <div class="card-body p-0">
                                     <div class="row p-3">
@@ -90,15 +97,15 @@
                                                     <ul class="list-inline mb-0">
                                                         <li
                                                             class="list-inline-item mb-1 font-weight-semibold text-dark">
-                                                            {{cr.nebs.nebname}}
+                                                            {{cr.name}}
                                                         </li>
 
                                                         <li class="list-inline-item mb-0 h6 text-muted">
-                                                            San Christoval Raunch Unit B
+                                                            {{cr.lease_name}}
                                                         </li>
                                                         <li
                                                             class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            {{cr.nebs.distance}} miles away
+                                                            {{cr.distance}} miles away
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -108,18 +115,19 @@
                                             <h6 class="mb-0">
                                                 <button type="button"
                                                     class="mt-2 btn btn-accent align-self-center text-uppercase mr-3"
-                                                    (click)="acceptConnectRequest(cr.nebs)">Accept</button>
+                                                    (click)="acceptConnectRequest(cr)">Accept</button>
                                             </h6>
                                             <h6 class="mb-0">
                                                 <button type="button"
                                                     class="mt-2 btn btn-outline-accent align-self-center text-uppercase"
-                                                    (click)="ignoreConnectRequest(cr.nebs)">Ignore</button>
+                                                    (click)="ignoreConnectRequest(cr)">Ignore</button>
                                             </h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
