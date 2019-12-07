@@ -257,8 +257,11 @@
               <h6 class="text-secondary font-weight-semibold mb-0 px-3">
                 Community Results: </h6>
               <div class="py-5 px-3 justify-content-center text-center align-self-center">
-                <h6 class="text-muted font-weight-semibold mb-0" *ngIf="communitySearchedData.length==0">No Search
-                  Records Found</h6>
+
+                <h6 class="text-muted font-weight-semibold mb-0" *ngIf="communitySearchedData.length==0">
+                  Oops ! No Search Results Found</h6>
+                  <h6 class="text-muted font-weight-normal small mb-0 px-3" *ngIf="communitySearchedData.length==0">
+                  We searched far and wide but couldn't find any records matching your search. Please try another Search</h6>
               </div>
             </div>
 
