@@ -51,24 +51,42 @@
                         <div class="col-12">
                             <ul class="nav nav-tabs sub-tab border-0">
 
-                                <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+                                <li *ngIf="leaseFilter"
+                                    class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+
+                                    <h6 class="text-accent font-weight-semibold mb-0">Lease : {{leaseName}}<a
+                                            routerLink="#" (click)="closeLeaseFilter()"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                </li>
+
+                                <li *ngIf="distanceFilter"
+                                    class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+
+                                    <h6 class="text-accent font-weight-semibold mb-0">Distance : {{distance}} miles
+                                        away<a routerLink="#" (click)="closeDistanceFilter()"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                </li>
+
+                                <li *ngIf="countyFilter"
+                                    class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
 
                                     <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a
                                             routerLink="#"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                 </li>
-                                <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+                                <li *ngIf="operatorFilter"
+                                    class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
 
                                     <h6 class="text-accent font-weight-semibold mb-0"> Operator : Joe Shon <a
                                             routerLink="#"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a> </h6>
 
                                 </li>
-                                <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+                                <li *ngIf="playTypeFilter"
+                                    class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
                                     <h6 class="text-accent font-weight-semibold mb-0"> Play Type : 1 <a
                                             routerLink="#"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-
                                 </li>
                             </ul>
                         </div>
@@ -171,7 +189,7 @@
                 <div class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input"
-                            value="radio1" (change)="toggleFilterGroup()" checked>
+                            value="radio1" (change)="toggleFilterGroup()" [checked]="filterGroup">
                         <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
                             class="custom-control-label font-weight-semibold" for="customRadioInline1"> Filters
                             For
@@ -183,18 +201,19 @@
                             <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
                                 class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                             <select class="form-control border" formControlName="leaseName"
-                                id="exampleFormControlSelect1" [value]="null" [disabled]="!filterGroup"
+                                id="exampleFormControlSelect1" [value]="null" [attr.disabled]="!filterGroup?'':null"
                                 (change)="getLeaseValues($event)">
                                 <option [value]="null" hidden>Select Lease</option>
                                 <option *ngFor="let ml of myLeases.leases"
-                                    value="{{ml.lease_number}} {{ml.district_code}}">{{ml.lease_name}}</option>
+                                    value="{{ml.lease_number}}&{{ml.district_code}}&{{ml.lease_name}}">{{ml.lease_name}}
+                                </option>
                             </select>
                         </div>
                         <div class="form-group col-4">
                             <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
                                 class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
                             <select class="form-control border" [value]="null" formControlName="distanceWithin"
-                                id="exampleFormControlSelect2" [disabled]="!filterGroup">
+                                id="exampleFormControlSelect2" [attr.disabled]="!filterGroup?'':null">
                                 <option [value]="null" hidden> Select Distance </option>
                                 <option [value]="2.5">2.5 miles away</option>
                                 <option [value]="5.0">5.0 miles away</option>
@@ -210,7 +229,7 @@
 
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="customRadioInline2" name="filter" value="radio2"
-                            class="custom-control-input" (change)="toggleFilterGroup()">
+                            class="custom-control-input" (change)="toggleFilterGroup()" [checked]="!filterGroup">
                         <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
                             class="custom-control-label font-weight-semibold" for="customRadioInline2"> Filters
                             For
@@ -258,8 +277,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button routerLink="#" type="button" class="btn btn-accent"
-                    (click)="getNeighboringLeases()">Search</button>
+                <button routerLink="#" type="button" class="btn btn-accent" (click)="searchFilterData()">Search</button>
 
             </div>
         </div>

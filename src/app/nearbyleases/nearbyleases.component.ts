@@ -19,6 +19,14 @@ export class NearbyleasesComponent implements OnInit {
   searchFilterModal: TemplateRef<any>;
   myLeases: any;
   searchFilterForm: FormGroup;
+  leaseName: string;
+  distance: string;
+  leaseFilter = false;
+  distanceFilter = false;
+  countyFilter = false;
+  operatorFilter = false;
+  playTypeFilter = false;
+  loading = false;
 
   constructor(private neighborsService: NeighborsService,
     private modalService: NgbModal,
@@ -33,9 +41,9 @@ export class NearbyleasesComponent implements OnInit {
       distanceWithin: []
     })
 
-    this.leaseNumber = sessionStorage.getItem("leaseNumber");
-    this.districtNumber = sessionStorage.getItem("districtNumber");
-    this.distanceWithin = sessionStorage.getItem("distanceWithin");
+    this.leaseNumber = sessionStorage.getItem("nearbyleaseNumber");
+    this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
+    this.distanceWithin = sessionStorage.getItem("nearbydistanceWithin");
     this.searchFilterForm.controls.distanceWithin.patchValue(this.distanceWithin)
 
     this.getNeighboringLeases();
@@ -49,7 +57,51 @@ export class NearbyleasesComponent implements OnInit {
     this.filterGroup = !this.filterGroup;
   }
 
+  closeLeaseFilter() {
+    this.leaseFilter = false;
+  }
+
+  closeDistanceFilter() {
+    this.distanceFilter = false;
+  }
+
+  closeCountyFilter() {
+    this.countyFilter = false;
+  }
+
+  closeOperatorFilter() {
+    this.operatorFilter = false;
+  }
+
+  closePlayTypeFilter() {
+    this.playTypeFilter = false;
+  }
+
+  searchFilterData() {
+    //this.showFilter = false;
+    if (this.filterGroup == true) {
+      this.leaseFilter = true;
+      this.distanceFilter = true;
+      this.countyFilter = false;
+      this.operatorFilter = false;
+      this.playTypeFilter = false;
+      // this.closeSearchFilterModal();
+      this.getNeighboringLeases()
+    }
+    else {
+      this.leaseFilter = false;
+      this.distanceFilter = false;
+      this.countyFilter = true;
+      this.operatorFilter = true;
+      this.playTypeFilter = true;
+      this.closeSearchFilterModal();
+      this.getNeighboringLeases();
+    }
+  }
+
   getNeighboringLeases() {
+    debugger;
+    this.loading = true;
     let body = {
       leaseNumber: this.leaseNumber,
       distNumber: this.districtNumber,
@@ -57,8 +109,16 @@ export class NearbyleasesComponent implements OnInit {
     }
     this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
       this.nearByLeases = data;
+      this.leaseName = this.nearByLeases['leases'][0]['lease_name']
+      this.distance = this.nearByLeases['leases'][0]['distance']
+      console.log('nearbyLeases', this.nearByLeases)
       this.closeSearchFilterModal();
-    })
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+        this.closeSearchFilterModal();
+      })
   }
 
   openSearchFilterModal(searchFilterModal: TemplateRef<any>) {
@@ -78,9 +138,11 @@ export class NearbyleasesComponent implements OnInit {
     debugger;
     console.log(event.target.value)
     let compKey: string = event.target.value;
-    let compKeyArray: Array<string> = compKey.split(" ");
+    let compKeyArray: Array<string> = compKey.split("&");
     this.leaseNumber = compKeyArray[0];
     this.districtNumber = compKeyArray[1];
+    this.leaseName = compKeyArray[2];
+    sessionStorage.setItem("leaseNumber", this.leaseNumber);
   }
 
   getMyLeases() {

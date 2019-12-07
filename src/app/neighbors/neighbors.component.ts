@@ -32,6 +32,11 @@ export class NeighborsComponent implements OnInit {
   leaseNumber: string;
   myConnectRequests: any;
   acceptedRequests: any[] = [];
+  loading = false;
+  isDisabled = false;
+  searchFilterForm: FormGroup
+  leaseName: string;
+  filteredRequests: any[];
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -46,12 +51,18 @@ export class NeighborsComponent implements OnInit {
       distanceWithin: []
     })
 
+    this.searchFilterForm = this.formBuilder.group({
+      leaseName: [],
+      distanceWithin: []
+    })
+
     this.getMyLeases(this.user.email_id);
     this.getMyConnectRequests();
     //this.getLeaseNeighbors();
   }
 
   get g() { return this.newNeighborForm.controls }
+  get f() { return this.searchFilterForm.controls }
 
   public user = Utils.GetCurrentUser();
 
@@ -66,6 +77,7 @@ export class NeighborsComponent implements OnInit {
   }
 
   toggleFilterGroup() {
+
     this.filterGroup = !this.filterGroup;
   }
 
@@ -74,6 +86,7 @@ export class NeighborsComponent implements OnInit {
   }
 
   toggleNewNeighborGroup() {
+    //this.isDisabled = !this.isDisabled
     this.newNeighborGroup = !this.newNeighborGroup;
   }
 
@@ -85,6 +98,7 @@ export class NeighborsComponent implements OnInit {
       this.countyFilter = false;
       this.operatorFilter = false;
       this.playTypeFilter = false;
+      this.getFilterSearch()
     }
     else {
       this.leaseFilter = false;
@@ -153,9 +167,10 @@ export class NeighborsComponent implements OnInit {
     debugger;
     console.log(event.target.value)
     let compKey: string = event.target.value;
-    let compKeyArray: Array<string> = compKey.split(" ");
+    let compKeyArray: Array<string> = compKey.split("&");
     this.leaseNumber = compKeyArray[0];
     this.districtCode = compKeyArray[1];
+    this.leaseName = compKeyArray[2]
   }
 
   getLeaseNeighbors() {
@@ -168,9 +183,9 @@ export class NeighborsComponent implements OnInit {
     this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
       console.log("leaseNeighbors", data);
       this.closeNewNeighborModal();
-      sessionStorage.setItem("leaseNumber", this.leaseNumber);
-      sessionStorage.setItem("districtNumber", this.districtCode);
-      sessionStorage.setItem("distanceWithin", this.g.distanceWithin.value)
+      sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
+      sessionStorage.setItem("nearbydistrictNumber", this.districtCode);
+      sessionStorage.setItem("nearbydistanceWithin", this.g.distanceWithin.value)
       this.router.navigate(['/nearbyleases']);
     })
   }
@@ -185,6 +200,20 @@ export class NeighborsComponent implements OnInit {
       }
       console.log('myconnectrequest', this.myConnectRequests)
     })
+  }
+
+  getFilterSearch() {
+    debugger;
+    for (let i = 0; i < this.acceptedRequests.length; i++) {
+      if (i == 0) {
+        this.filteredRequests = [];
+      }
+      if (this.acceptedRequests[i]['nebs']['neblsno'] == this.leaseName && this.acceptedRequests[i]['nebs']['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
+        this.filteredRequests.push(this.acceptedRequests[i])
+      }
+    }
+    this.acceptedRequests = [];
+    this.acceptedRequests = this.filteredRequests
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NeighborsService } from '../neighbors/neighbors.service';
 import { Utils } from '../shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-nearbyneighbors',
@@ -12,7 +13,8 @@ export class NearbyneighborsComponent implements OnInit {
   leaseOwnersList: any;
   leaseName: string;
 
-  constructor(private neighborsService: NeighborsService) { }
+  constructor(private neighborsService: NeighborsService,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
     this.leaseNumber = sessionStorage.getItem("leaseNumber");
@@ -46,7 +48,8 @@ export class NearbyneighborsComponent implements OnInit {
     }
 
     return this.neighborsService.sendConnectRequest(body).subscribe(data => {
-      alert('request sent successfully');
+      //alert('request sent successfully');
+      this.flashMessagesService.show("You have successfully sent the connect request...", { cssClass: 'bg-accent flash-message', timeout: 2000 })
       this.getLeaseOwner();
     })
   }

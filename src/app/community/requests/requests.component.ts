@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NeighborsService } from 'src/app/neighbors/neighbors.service';
 import { Utils } from 'src/app/shared/Utils';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-requests',
@@ -11,7 +13,8 @@ export class RequestsComponent implements OnInit {
   myConnectRequests: any;
   receivedRequest: any[] = [];
 
-  constructor(private neighborsService: NeighborsService) { }
+  constructor(private neighborsService: NeighborsService,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
     this.getMyConnectRequests();
@@ -32,13 +35,15 @@ export class RequestsComponent implements OnInit {
   }
 
   acceptConnectRequest(reqData: any) {
+    debugger;
     let body = {
       neb_emailid: reqData.nebemail_id,
       my_emailid: this.user.email_id,
       action: "Accept"
     }
     this.neighborsService.acceptConnectRequest(body).subscribe(data => {
-      alert('request accepted');
+      this.flashMessagesService.show(`You are now connected with ${reqData.nebname}`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      alert('success')
     })
   }
 
