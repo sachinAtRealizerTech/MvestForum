@@ -17,6 +17,9 @@ export class NearbyneighborsComponent implements OnInit {
   memDistrictnumber: string;
   nebDistance: string;
   allNeighboursCount: string;
+  searchText: string;
+  p: any;
+  allLeaseOwnersList: any;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
@@ -39,7 +42,13 @@ export class NearbyneighborsComponent implements OnInit {
       _memberid: this.user.member_id
     }
     this.neighborsService.getLeaseOwnersWithConnect(body).subscribe(data => {
-      this.leaseOwnersList = data['data']
+      this.allLeaseOwnersList = data['data'];
+      this.leaseOwnersList = [];
+      for (let i = 0; i < this.allLeaseOwnersList.length; i++) {
+        if (this.allLeaseOwnersList[i]['status'] == null) {
+          this.leaseOwnersList.push(this.allLeaseOwnersList[i])
+        }
+      }
       //this.leaseName = this.leaseOwnersList.lease_name
       console.log('leaseOwnersList', this.leaseOwnersList)
     })

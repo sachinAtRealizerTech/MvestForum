@@ -38,4 +38,8 @@ export class NeighborsService {
     return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/get_member_neighbors/${Id}`, Utils.getAuthHeader())
   }
 
+  getMemberList(Id: number) {
+    return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/get_member_list/${Id}`, Utils.getAuthHeader())
+  }
+
 }

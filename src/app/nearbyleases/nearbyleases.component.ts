@@ -28,6 +28,8 @@ export class NearbyleasesComponent implements OnInit {
   playTypeFilter = false;
   loading = false;
   allNeighboursCount: string;
+  searchText: string;
+  p: any
 
   constructor(private neighborsService: NeighborsService,
     private modalService: NgbModal,
@@ -46,6 +48,11 @@ export class NearbyleasesComponent implements OnInit {
     this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
     this.distanceWithin = sessionStorage.getItem("nearbydistanceWithin");
     this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount");
+
+    // if (sessionStorage.getItem("nearbyleaseNumber") != 'undefined' && sessionStorage.getItem("nearbydistanceWithin") != 'undefined') {
+    //   this.leaseFilter = true;
+    //   this.distanceFilter = true;
+    // }
     //this.searchFilterForm.controls.distanceWithin.patchValue(this.distanceWithin)
 
     this.getNeighboringLeases();

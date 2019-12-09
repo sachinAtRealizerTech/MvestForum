@@ -147,6 +147,7 @@ export class TopNavComponent implements OnInit {
             this.wellsSearchedData.push(this.searchedData[i])
           }
         }
+
         console.log('communitySearchedData', this.communitySearchedData)
       })
     }
@@ -162,8 +163,8 @@ export class TopNavComponent implements OnInit {
           this.communitySearchedData.push(this.searchedData[i])
         }
       }
+      sessionStorage.setItem("searchedData", JSON.stringify(this.communitySearchedData))
       this.loading = false;
-
 
     }
 

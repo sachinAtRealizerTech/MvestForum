@@ -39,6 +39,9 @@ export class NeighborsComponent implements OnInit {
   filteredRequests: any[];
   myConnectedNeighbors: any;
   allNeighboursCount: number;
+  searchText: string;
+  p: any;
+  membersList: any;
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -60,6 +63,7 @@ export class NeighborsComponent implements OnInit {
 
     this.getMyLeases(this.user.member_id);
     this.getMemberNeighbors();
+    this.getMemberList();
     //this.getMyConnectRequests();
     //this.getLeaseNeighbors();
   }
@@ -127,10 +131,14 @@ export class NeighborsComponent implements OnInit {
 
   closeLeaseFilter() {
     this.leaseFilter = false;
+    this.distanceFilter = false;
+    this.getMemberNeighbors();
   }
 
   closeDistanceFilter() {
     this.distanceFilter = false;
+    this.leaseFilter = false;
+    this.getMemberNeighbors();
   }
 
   closeCountyFilter() {
@@ -225,6 +233,7 @@ export class NeighborsComponent implements OnInit {
       this.myConnectedNeighbors = data['data'];
       this.allNeighboursCount = this.myConnectedNeighbors.length;
       sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
+      this.acceptedRequests = [];
       this.acceptedRequests = this.myConnectedNeighbors
       console.log('myconnectneighbors', this.myConnectedNeighbors)
     },
@@ -243,8 +252,8 @@ export class NeighborsComponent implements OnInit {
       if (i == 0) {
         this.filteredRequests = [];
       }
-      if (this.acceptedRequests[i]['leasenumber'] == this.leaseNumber && this.acceptedRequests[i]['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
-        this.filteredRequests.push(this.acceptedRequests[i])
+      if (this.myConnectedNeighbors[i]['leasenumber'] == this.leaseNumber && this.myConnectedNeighbors[i]['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
+        this.filteredRequests.push(this.myConnectedNeighbors[i])
       }
     }
     this.acceptedRequests = [];
@@ -263,5 +272,12 @@ export class NeighborsComponent implements OnInit {
   //     alert('request accepted');
   //   })
   // }
+
+  getMemberList() {
+    this.neighborsService.getMemberList(161).subscribe(data => {
+      this.membersList = data['data']
+      console.log('membersList', this.membersList)
+    })
+  }
 
 }
