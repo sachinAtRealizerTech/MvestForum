@@ -1325,6 +1325,13 @@ top:128px;
     height: 235px;
   }
 
+  .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #00CD95 !important;
+    color: #fefefe;
+    cursor: default;
+}
+
 
   /* Animation Styles Start*/
   @keyframes fadeInDown {
