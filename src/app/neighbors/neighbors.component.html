@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="row justify-content-between  pb-3 ">
-                    <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let cr of acceptedRequests">  
+                    <div class="col-xl-6 col-md-6 col-sm-6" *ngFor="let cr of acceptedRequests | paginate: { itemsPerPage: 2, currentPage: p }">  
                         
                         <div class="card card-small blog-comments mt-3"> 
                             <div class="card-body p-0"> 
@@ -178,7 +178,8 @@
 
         <div class="row justify-content-end text-right py-3">
                 <div class="col-md-12 col-xl-12 text-right">
-        <nav aria-label="Page navigation example bg-dark">
+
+        <!-- <nav aria-label="Page navigation example bg-dark">
                 <ul class="nav justify-content-end px-3 ">
                      
                   <li class="page-item border">
@@ -197,7 +198,11 @@
                   </li>
               
                 </ul>
-              </nav>
+              </nav> -->
+
+
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
         </div>
         </div>    
    

@@ -35,6 +35,7 @@ import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 //import { HighlightText } from './shared/pipes/highlightText.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
     CommunityModule,
     NgbModule,
     AuthenticationModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgxPaginationModule
 
   ],
   providers: [
