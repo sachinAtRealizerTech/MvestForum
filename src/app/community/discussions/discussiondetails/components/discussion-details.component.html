@@ -186,8 +186,9 @@
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
 
               <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
-                (click)="unlikePost(discussionDetails?.posts[0])"> <i class="material-icons icon-accent md-24 ml-3 animated tada"
-                  data-toggle="tooltip" title="Unlike Post" animation-duration="80s" >thumb_up</i>
+                (click)="unlikePost(discussionDetails?.posts[0])"> <i
+                  class="material-icons icon-accent md-24 ml-3 animated tada" data-toggle="tooltip" title="Unlike Post"
+                  animation-duration="80s">thumb_up</i>
               </a>
 
               <span class="ml-1 align-self-center">{{discussionDetails?.posts[0]?.likes.length}}</span>
@@ -224,7 +225,8 @@
                     </i> </a>
 
                   <a *ngIf="isCommentLikedByMe(qc)" data-toggle="tooltip" title="Unlike Post" routerLink="#"
-                    (click)="unLikeToComment(discussionDetails,qc)"> <i class="material-icons icon-accent md-24 ml-3 animated tada" animation-duration="80s">
+                    (click)="unLikeToComment(discussionDetails,qc)"> <i
+                      class="material-icons icon-accent md-24 ml-3 animated tada" animation-duration="80s">
                       thumb_up
                     </i> </a>
 
@@ -393,7 +395,8 @@
                   title="Like Post"> <i class="material-icons icon-muted md-24 ml-3">thumb_up</i>
                 </a>
                 <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)" data-toggle="tooltip"
-                  title="Unlike Post"> <i class="material-icons icon-accent md-24 ml-3 animated tada" animation-duration="80s">thumb_up</i>
+                  title="Unlike Post"> <i class="material-icons icon-accent md-24 ml-3 animated tada"
+                    animation-duration="80s">thumb_up</i>
                 </a>
 
                 <span class="ml-1 align-self-center">{{p.likes?.length}}</span>
@@ -840,19 +843,19 @@
 
 <!-----------------------------------------Delete Modal----------------------------------------------------------------------->
 <ng-template #deleteModal>
-    <form> 
-  <div class="modal animated fadeInDown">
-    
-    <div class="modal-body text-center p-3">
-      <h6 class="text-secondary font-weight-semibold">Are you sure you want to delete this post?</h6>
-    </div>
-    <div class="modal-footer border-0 pt-0 justify-content-center text-center">
-     <!-- <button type="submit" class="btn btn-outline-accent btn-sm text-uppercase" (click)="deletePost()">Delete</button>   -->
-      <button type="submit" class="btn btn-outline-accent btn-sm text-uppercase"(click)="deletePost()">Delete</button>  
-        <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)="closeDeletePostModal()">Cancel</button>
-    </div> 
-</div>
-</form>
+
+
+
+  <div class="modal-body text-center p-3">
+    <h6 class="text-secondary font-weight-semibold">Are you sure you want to delete this post?</h6>
+  </div>
+  <div class="modal-footer border-0 pt-0 justify-content-center text-center">
+    <!-- <button type="submit" class="btn btn-outline-accent btn-sm text-uppercase" (click)="deletePost()">Delete</button>   -->
+    <button type="button" class="btn btn-outline-accent btn-sm text-uppercase" (click)="deletePost()">Delete</button>
+    <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)="closeDeletePostModal()">Cancel</button>
+  </div>
+
+
 </ng-template>
 
 <!-----------------------------------------End Delete Modal------------------------------------------------------------------->

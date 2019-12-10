@@ -19,7 +19,7 @@ export class DiscussionDetailsComponent implements OnInit {
   editPostId: any;
   editCommentModal: any;
   editCommentId: any;
-  deleteModal: ElementRef;
+  deleteModal: TemplateRef<any>;
   deletePostId: any;
 
 
@@ -631,7 +631,7 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
 
-  openDeletePostModal(deleteModal: any, p: any) {
+  openDeletePostModal(deleteModal: TemplateRef<any>, p: any) {
     this.deletePostId = p.post_id
     this.deleteModal = deleteModal;
     this.modalService.open(this.deleteModal, {
