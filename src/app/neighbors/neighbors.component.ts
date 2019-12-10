@@ -4,6 +4,7 @@ import { NeighborsService } from './neighbors.service';
 import { Utils } from '../shared/Utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-neighbors',
@@ -27,7 +28,8 @@ export class NeighborsComponent implements OnInit {
   searchFilterModal: ElementRef;
   newNeighborModal: ElementRef;
   myLeases: any;
-  newNeighborForm: FormGroup
+  newNeighborForm: FormGroup;
+  newListForm: FormGroup;
   districtCode: string;
   leaseNumber: string;
   myConnectRequests: any;
@@ -47,6 +49,12 @@ export class NeighborsComponent implements OnInit {
   rawData: any;
   listName: any;
   selectedNbrLstDtls: any;
+  newListMembers: any;
+  newListModal: TemplateRef<any>;
+  listLeaseName: any;
+  newListDistance: any;
+  newListFilteredMembers: any;
+  listLeaseNumber: any;
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -64,6 +72,10 @@ export class NeighborsComponent implements OnInit {
     this.searchFilterForm = this.formBuilder.group({
       leaseName: [],
       distanceWithin: []
+    })
+
+    this.newListForm = this.formBuilder.group({
+      listName: ['', Validators.required]
     })
 
     this.getMyLeases(this.user.member_id);
@@ -234,7 +246,10 @@ export class NeighborsComponent implements OnInit {
 
   getMemberNeighbors() {
     this.loading = true;
+    this.myConnectedNeighbors = [];
+    this.filteredRequests = [];
     this.selectedNbrLstDtls = [];
+    this.allNeighboursCount = 0;
     this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
       this.loading = false;
       this.myConnectedNeighbors = data['data'];
@@ -280,7 +295,7 @@ export class NeighborsComponent implements OnInit {
   // }
 
   getMemberList() {
-    this.neighborsService.getMemberList(this.user.member_id = 161).subscribe(data => {
+    this.neighborsService.getMemberList(this.user.member_id).subscribe(data => {
       this.membersList = data['data']
       console.log('membersList', this.membersList)
     })
@@ -295,7 +310,7 @@ export class NeighborsComponent implements OnInit {
   }
 
   getNeighborsListDetails() {
-    this.neighborsService.getNeighborsListDetails(this.listTypeId = 1, this.user.member_id = 161).subscribe(data => {
+    this.neighborsService.getNeighborsListDetails(this.listTypeId, this.user.member_id).subscribe(data => {
       this.neighboursListDetails = data['data']
       console.log('neighboursListDetails', this.neighboursListDetails);
       this.selectedNbrLstDtls = []
@@ -305,6 +320,54 @@ export class NeighborsComponent implements OnInit {
         }
       }
     })
+  }
+
+
+  getMemberNeighborsForNewList() {
+    this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
+      this.newListMembers = data['data'];
+      console.log('newListMembers', this.newListMembers)
+    })
+  }
+
+  openNewListModal(newListModal: TemplateRef<any>) {
+    this.newListModal = newListModal
+    this.modalService.open(this.newListModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop',
+      size: 'lg'
+    })
+  }
+
+  closeNewListModal() {
+    this.modalService.dismissAll(this.newListModal)
+  }
+
+  selectLeaseForNewList(event) {
+    this.listLeaseNumber = event.target.value
+  }
+
+  selectDistanceForNewList(event) {
+    this.newListDistance = event.target.value;
+    this.getFilteredNewListMembers();
+  }
+
+  getFilteredNewListMembers() {
+
+    if (this.listLeaseNumber == null) {
+      return
+    }
+
+    if (this.newListDistance == null) {
+      this.newListFilteredMembers = []
+      for (let i = 0; i < this.newListMembers.length; i++) {
+        if (this.newListMembers[i]['neb_lease_number'] == this.listLeaseNumber && this.newListMembers[i]['status'] == "accetped") {
+          this.newListFilteredMembers.push(this.newListMembers[i])
+        }
+      }
+
+    }
+
   }
 
 
