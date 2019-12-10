@@ -149,10 +149,10 @@
                                             <img class="mr-3 user-pic rounded-circle mr-2"
                                                 src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
                                             <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{cr.name}}</h5>
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{cr.name | titlecase}}</h5>
                                                 <a> 
                                                         <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                            {{cr.lease_name}}  </h5>
+                                                            {{cr.lease_name | titlecase}}  </h5>
                                                         </a>
                                                 <ul class="list-inline d-flex mb-0">
                                                     <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
@@ -163,7 +163,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" col-4  justify-content-end text-right" *ngIf="cr.status=='accetped'">
+                                    <div class=" col-4  justify-content-end text-right" *ngIf="cr.status=='accepted'">
                                             <h6 class="mb-0">
                                              
                                             <a><i class="material-icons md-18 icon-muted">
@@ -619,21 +619,31 @@
                                 <div   class="form-group col-4">
                                                 <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                                                 <select class="form-control border" id="exampleFormControlSelect1" formControlName="leaseName" 
-                                                (change)="getLeaseValues($event)" [value]="null" [attr.disabled]="!newNeighborGroup?'':null">
+                                                (change)="getLeaseValues($event)" [value]="null" [attr.disabled]="!newNeighborGroup?'':null"
+                                                [ngClass]="{ 'is-invalid': submitNewNeighborForm && g.leaseName.errors }">
                                                         <option [value]="null" hidden>Select Lease</option>
                                                         <option *ngFor="let ml of myLeases" value="{{ml.leasenumber}}&{{ml.dist_number}}&{{ml.leasename}}" >{{ml.leasename | titlecase}}</option>
                                                       </select>
+                                                      <div *ngIf="submitNewNeighborForm && g.leaseName.errors" class="invalid-feedback">
+                                                          <div *ngIf="g.leaseName.errors.required">Lease Name is required</div>
+                                                        </div> 
                                             </div>
+                                           
                                              <div class="form-group col-4">
                                             <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" formControlName="distanceWithin" [value]="null" [attr.disabled]="!newNeighborGroup?'':null">
+                                            <select class="form-control border" id="exampleFormControlSelect1" formControlName="distanceWithin" [value]="null" [attr.disabled]="!newNeighborGroup?'':null"
+                                            [ngClass]="{ 'is-invalid': submitNewNeighborForm && g.distanceWithin.errors }">
                                                     <option [value]="null" hidden> Select Distance </option> 
                                                     <option [value]="2.5">2.5 miles away</option>
                                                     <option [value]="5.0">5.0 miles away</option>
                                                     <option [value]="7.5">7.5 miles away</option>
                                                     <option [value]="10.0">10.0 miles away</option>
                                                   </select>
+                                                  <div *ngIf="submitNewNeighborForm && g.distanceWithin.errors" class="invalid-feedback">
+                                                      <div *ngIf="g.distanceWithin.errors.required">Distance is required</div>
+                                                    </div> 
                                         </div> 
+                                       
                                 </div>
                             </div>
                                 

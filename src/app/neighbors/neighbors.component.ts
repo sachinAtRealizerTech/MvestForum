@@ -55,6 +55,7 @@ export class NeighborsComponent implements OnInit {
   newListDistance: any;
   newListFilteredMembers: any;
   listLeaseNumber: any;
+  submitNewNeighborForm = false;
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -172,6 +173,7 @@ export class NeighborsComponent implements OnInit {
   }
 
   openNewNeighborModal(newNeighborModal) {
+    this.submitNewNeighborForm = false;
     this.newNeighborModal = newNeighborModal;
     this.modalService.open(this.newNeighborModal, {
       backdrop: 'static',
@@ -182,6 +184,7 @@ export class NeighborsComponent implements OnInit {
 
   closeNewNeighborModal() {
     this.modalService.dismissAll(this.newNeighborModal);
+    this.submitNewNeighborForm = false;
   }
 
   getMyLeases(id: number) {
@@ -204,6 +207,7 @@ export class NeighborsComponent implements OnInit {
 
   getLeaseNeighbors() {
     debugger;
+    this.submitNewNeighborForm = true;
     if (this.newNeighborForm.invalid) {
       return
     }
@@ -326,6 +330,9 @@ export class NeighborsComponent implements OnInit {
   getMemberNeighborsForNewList() {
     this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
       this.newListMembers = data['data'];
+      for (let i = 0; i < this.newListMembers.length; i++) {
+        this.newListMembers.push()
+      }
       console.log('newListMembers', this.newListMembers)
     })
   }
@@ -361,7 +368,7 @@ export class NeighborsComponent implements OnInit {
     if (this.newListDistance == null) {
       this.newListFilteredMembers = []
       for (let i = 0; i < this.newListMembers.length; i++) {
-        if (this.newListMembers[i]['neb_lease_number'] == this.listLeaseNumber && this.newListMembers[i]['status'] == "accetped") {
+        if (this.newListMembers[i]['neb_lease_number'] == this.listLeaseNumber && this.newListMembers[i]['status'] == "accepted") {
           this.newListFilteredMembers.push(this.newListMembers[i])
         }
       }
@@ -369,7 +376,5 @@ export class NeighborsComponent implements OnInit {
     }
 
   }
-
-
 
 }
