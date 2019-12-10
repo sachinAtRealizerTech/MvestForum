@@ -81,7 +81,7 @@ export class NeighborsComponent implements OnInit {
     this.getMyLeases(this.user.member_id);
     this.getMemberNeighbors();
     this.getMemberList();
-    this.getNeighborsListDetails();
+    //this.getNeighborsListDetails();
     //this.getMyConnectRequests();
     //this.getLeaseNeighbors();
   }
