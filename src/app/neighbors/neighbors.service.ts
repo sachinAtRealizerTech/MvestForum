@@ -43,7 +43,11 @@ export class NeighborsService {
   }
 
   getNeighborsListDetails(listId: number, userId: number) {
-    return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/get_member_list/${listId}/${userId}`, Utils.getAuthHeader())
+    return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/get_neighbor_listdetails/${listId}/${userId}`, Utils.getAuthHeader())
+  }
+
+  saveNeighborList(body) {
+    return this.httpclient.post(`${environment.APIBASEURL}/Neighbor/saveneblist`, body, Utils.getAuthHeader())
   }
 
 }

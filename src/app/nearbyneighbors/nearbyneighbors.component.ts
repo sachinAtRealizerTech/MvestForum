@@ -69,7 +69,6 @@ export class NearbyneighborsComponent implements OnInit {
       _nebid: lw.mid,
       _nebemailid: lw.memaild,
       distance: this.nebDistance
-
     }
 
     return this.neighborsService.sendConnectRequest(body).subscribe(data => {
