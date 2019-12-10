@@ -42,6 +42,11 @@ export class NeighborsComponent implements OnInit {
   searchText: string;
   p: any;
   membersList: any;
+  neighboursListDetails: any;
+  listTypeId: number;
+  rawData: any;
+  listName: any;
+  selectedNbrLstDtls: any;
 
   constructor(private modalService: NgbModal,
     private neighborsService: NeighborsService,
@@ -64,6 +69,7 @@ export class NeighborsComponent implements OnInit {
     this.getMyLeases(this.user.member_id);
     this.getMemberNeighbors();
     this.getMemberList();
+    this.getNeighborsListDetails();
     //this.getMyConnectRequests();
     //this.getLeaseNeighbors();
   }
@@ -228,6 +234,7 @@ export class NeighborsComponent implements OnInit {
 
   getMemberNeighbors() {
     this.loading = true;
+    this.selectedNbrLstDtls = [];
     this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
       this.loading = false;
       this.myConnectedNeighbors = data['data'];
@@ -248,10 +255,9 @@ export class NeighborsComponent implements OnInit {
     if (this.searchFilterForm.invalid) {
       return
     }
+    this.filteredRequests = [];
+    this.selectedNbrLstDtls = [];
     for (let i = 0; i < this.myConnectedNeighbors.length; i++) {
-      if (i == 0) {
-        this.filteredRequests = [];
-      }
       if (this.myConnectedNeighbors[i]['leasenumber'] == this.leaseNumber && this.myConnectedNeighbors[i]['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
         this.filteredRequests.push(this.myConnectedNeighbors[i])
       }
@@ -268,16 +274,39 @@ export class NeighborsComponent implements OnInit {
   //     my_emailid: "ash@gmail.com",
   //     action: "Accept"
   //   }
-  //   this.neighborsService.acceptConnectRequest(body).subscribe(data => {
+  //   this.neighborsService.acceptConnectRequest(body).subscribe(data => {0
   //     alert('request accepted');
   //   })
   // }
 
   getMemberList() {
-    this.neighborsService.getMemberList(161).subscribe(data => {
+    this.neighborsService.getMemberList(this.user.member_id = 161).subscribe(data => {
       this.membersList = data['data']
       console.log('membersList', this.membersList)
     })
   }
+
+  selectListType(event) {
+    this.rawData = event.target.value;
+    this.rawData = this.rawData.split("&")
+    this.listTypeId = this.rawData[0];
+    this.listName = this.rawData[1];
+    this.getNeighborsListDetails();
+  }
+
+  getNeighborsListDetails() {
+    this.neighborsService.getNeighborsListDetails(this.listTypeId = 1, this.user.member_id = 161).subscribe(data => {
+      this.neighboursListDetails = data['data']
+      console.log('neighboursListDetails', this.neighboursListDetails);
+      this.selectedNbrLstDtls = []
+      for (let i = 0; i < this.neighboursListDetails.length; i++) {
+        if (this.neighboursListDetails[i]['list_name'] == this.listName) {
+          this.selectedNbrLstDtls.push(this.neighboursListDetails[i]);
+        }
+      }
+    })
+  }
+
+
 
 }
