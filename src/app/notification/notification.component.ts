@@ -74,7 +74,7 @@ export class NotificationComponent implements OnInit {
       console.log('mynotifications', data)
     })
     err => {
-      console.log('error', err)
+      console.log('getMyNotifications', err)
     }
   }
 

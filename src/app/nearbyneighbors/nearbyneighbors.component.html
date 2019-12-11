@@ -83,8 +83,8 @@
                                 </li> -->
                                 <li class="nav-item align-self-center mb-0 text-accent p-2 ml-auto">
                                     <h6 class="mb-0">
-                                        <a routerLink="/nearbyneighbors"
-                                            class="align-self-center font-weight-semibold"><u>Next Lease >></u></a>
+                                        <a routerLink="#" class="align-self-center font-weight-semibold"
+                                            (click)="getNextLeaseOwners()"><u>Next Lease >></u></a>
                                     </h6>
                                 </li>
                             </ul>
@@ -180,7 +180,7 @@
     </div>
 
 
-    <!-- <div id="connectall-modal-md" class="modal" tabindex="-1" role="dialog">
+    <div id="connectall-modal-md" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
 
@@ -200,9 +200,10 @@
 
                 </div>
                 <div class="modal-footer ">
-                    <button type="button" class="btn btn-accent" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-accent" (click)="connectAll()"
+                        data-dismiss="modal">Yes</button>
                     <button type="button" class="btn btn-outline-accent" data-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>

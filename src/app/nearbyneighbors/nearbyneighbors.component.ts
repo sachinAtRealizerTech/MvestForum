@@ -20,6 +20,12 @@ export class NearbyneighborsComponent implements OnInit {
   searchText: string;
   p: any;
   allLeaseOwnersList: any;
+  conAllNebId: string;
+  conAllNebMaild: string;
+  nearByLeases: any = [];
+  loading = false;
+  nextLeaseCounter = 1;
+  conAllNebName: string;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
@@ -28,13 +34,15 @@ export class NearbyneighborsComponent implements OnInit {
     this.leaseNumber = sessionStorage.getItem("nearByNbrleaseNo");
     this.districtNumber = sessionStorage.getItem("nearByNbrDistNo");
     this.leaseName = sessionStorage.getItem("nearbyleaseName");
-    this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount")
+    this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount");
+    this.nearByLeases = JSON.parse(sessionStorage.getItem("multiLeasesArray"));
     this.getLeaseOwner();
   }
 
   public user = Utils.GetCurrentUser();
 
   getLeaseOwner() {
+    this.loading = true;
     let body = {
       _distCode: this.districtNumber,
       _leasenumber: this.leaseNumber,
@@ -50,8 +58,32 @@ export class NearbyneighborsComponent implements OnInit {
         }
       }
       //this.leaseName = this.leaseOwnersList.lease_name
-      console.log('leaseOwnersList', this.leaseOwnersList)
-    })
+      console.log('leaseOwnersList', this.leaseOwnersList);
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
+  }
+
+  getNextLeaseOwners() {
+    debugger;
+    for (let j = 1; j < this.nearByLeases.length; j++) {
+      if (this.nextLeaseCounter == j) {
+        this.districtNumber = this.nearByLeases[j]['dist_number'];
+        this.leaseNumber = this.nearByLeases[j]['leasenumber'];
+        this.getLeaseOwner();
+        this.nextLeaseCounter++;
+        break;
+      }
+    }
+  }
+
+  connectAll() {
+    debugger;
+    this.conAllNebId = this.leaseOwnersList.map(value => value.mid).join(",");
+    this.conAllNebMaild = this.leaseOwnersList.map(value => value.memaild).join(",");
+    this.conAllNebName = this.leaseOwnersList.map(value => value.mname).join(",");
   }
 
   sendConnectRequest(lw: any) {
@@ -68,6 +100,8 @@ export class NearbyneighborsComponent implements OnInit {
       _nebleasenumber: this.leaseNumber,
       _nebid: lw.mid,
       _nebemailid: lw.memaild,
+      _myfname: this.user.f_name,
+      _nebname: lw.mname,
       distance: this.nebDistance
     }
 

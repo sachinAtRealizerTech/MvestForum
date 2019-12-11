@@ -22,7 +22,6 @@ export class Utils {
     }
 
     public static GetCurrentUser(): Auth {
-        debugger;
         return localStorage.getItem(this.userKey) ? JSON.parse(localStorage.getItem(this.userKey)) : null;
     }
 

@@ -182,7 +182,8 @@ export class NearbyleasesComponent implements OnInit {
     }
 
     this.neighborsService.getLeaseOwnersWithConnect(body).subscribe(data => {
-      console.log('neighborswithconnectstatus', data)
+      console.log('neighborswithconnectstatus', data);
+      sessionStorage.setItem("multiLeasesArray", JSON.stringify(this.nearByLeases))
       this.router.navigate(['/nearbyneighbors']);
     })
   }

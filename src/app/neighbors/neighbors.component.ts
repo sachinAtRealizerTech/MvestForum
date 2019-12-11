@@ -36,7 +36,7 @@ export class NeighborsComponent implements OnInit {
   acceptedRequests: any[] = [];
   loading = false;
   isDisabled = false;
-  searchFilterForm: FormGroup
+  searchFilterLeaseForm: FormGroup
   leaseName: string;
   filteredRequests: any[];
   myConnectedNeighbors: any;
@@ -61,6 +61,21 @@ export class NeighborsComponent implements OnInit {
   operatorList: any;
   countyList: any;
   nebIdCsvArray: any = [];
+  submitNewListForm = false;
+  checkCheckboxFlag = false;
+  searchFilterCountyOperatorForm: FormGroup;
+  submitsearchFilterLeaseForm = false;
+  submitSearchFilterCountyOperatorForm = false;
+  filterBy: string;
+  searchfilterInput: any;
+  countyNumber: string;
+  operatorNumber: string;
+  searchFilterLeaseNo: string;
+  searchFilterDistCode: string;
+  searchFiltercountyNo: any;
+  SearchFilterOperatorNo: any;
+  listCountyNumber: any;
+  listOperatorNumber: any;
 
 
   constructor(private modalService: NgbModal,
@@ -76,28 +91,37 @@ export class NeighborsComponent implements OnInit {
       distanceWithin: ['', Validators.required]
     })
 
-    this.searchFilterForm = this.formBuilder.group({
-      leaseName: [],
-      distanceWithin: []
+    this.searchFilterLeaseForm = this.formBuilder.group({
+      leaseName: ['', Validators.required],
+      //distanceWithin: []
+    })
+
+    this.searchFilterCountyOperatorForm = this.formBuilder.group({
+      county: ['', Validators.required],
+      operator: ['', Validators.required]
     })
 
     this.newListForm = this.formBuilder.group({
       listName: ['', Validators.required],
-      addedNeighbors: ['', Validators.required]
+      addedNeighbors: []
     })
 
     this.getMyLeases(this.user.member_id);
-    this.getMemberNeighbors();
+    // this.getMemberNeighbors();
     this.getMemberList();
 
     this.getCountiesAndOperators();
     //this.getNeighborsListDetails();
     //this.getMyConnectRequests();
     //this.getLeaseNeighbors();
+
+    this.getAllMemberNeighbors();
   }
 
   get g() { return this.newNeighborForm.controls }
-  get f() { return this.searchFilterForm.controls }
+  get f() { return this.searchFilterLeaseForm.controls }
+  get n() { return this.newListForm.controls }
+  get c() { return this.searchFilterCountyOperatorForm.controls }
 
   public user = Utils.GetCurrentUser();
 
@@ -112,8 +136,11 @@ export class NeighborsComponent implements OnInit {
   }
 
   toggleFilterGroup() {
-
     this.filterGroup = !this.filterGroup;
+    this.submitsearchFilterLeaseForm = false;
+    this.submitSearchFilterCountyOperatorForm = false;
+    this.searchFilterLeaseForm.reset();
+    this.searchFilterCountyOperatorForm.reset();
   }
 
   toggleNewListGroup() {
@@ -126,6 +153,7 @@ export class NeighborsComponent implements OnInit {
   }
 
   searchFilterData() {
+    debugger
     this.showFilter = false;
     if (this.filterGroup == true) {
       this.leaseFilter = true;
@@ -141,6 +169,7 @@ export class NeighborsComponent implements OnInit {
       this.countyFilter = true;
       this.operatorFilter = true;
       this.playTypeFilter = true;
+      this.getFilterSearch()
     }
   }
 
@@ -154,6 +183,11 @@ export class NeighborsComponent implements OnInit {
   }
 
   closeSearchFilter() {
+    this.filterGroup = true;
+    this.submitsearchFilterLeaseForm = false;
+    this.submitSearchFilterCountyOperatorForm = false;
+    this.searchFilterLeaseForm.reset();
+    this.searchFilterCountyOperatorForm.reset();
     this.modalService.dismissAll(this.searchFilterModal)
   }
 
@@ -171,14 +205,23 @@ export class NeighborsComponent implements OnInit {
 
   closeCountyFilter() {
     this.countyFilter = false;
+    this.operatorFilter = false;
+    this.playTypeFilter = false;
+    this.getAllMemberNeighbors();
   }
 
   closeOperatorFilter() {
+    this.countyFilter = false;
     this.operatorFilter = false;
+    this.playTypeFilter = false;
+    this.getAllMemberNeighbors();
   }
 
   closePlayTypeFilter() {
+    this.countyFilter = false;
+    this.operatorFilter = false;
     this.playTypeFilter = false;
+    this.getAllMemberNeighbors();
   }
 
   openNewNeighborModal(newNeighborModal) {
@@ -231,6 +274,24 @@ export class NeighborsComponent implements OnInit {
     this.leaseName = compKeyArray[2]
   }
 
+  getSearchFilterLeaseValues(event) {
+    console.log(event.target.value)
+    let compKey: string = event.target.value;
+    let compKeyArray: Array<string> = compKey.split("&");
+    this.searchFilterLeaseNo = compKeyArray[0];
+    this.searchFilterDistCode = compKeyArray[1];
+    this.leaseName = compKeyArray[2]
+
+  }
+
+  getSearchFilterCountyValues(event) {
+    this.searchFiltercountyNo = event.target.value
+  }
+
+  getSearchFilterOperatorValues(event) {
+    this.SearchFilterOperatorNo = event.target.value
+  }
+
   getLeaseNeighbors() {
     debugger;
     this.submitNewNeighborForm = true;
@@ -257,23 +318,6 @@ export class NeighborsComponent implements OnInit {
       })
   }
 
-  // getMyConnectRequests() {
-  //   this.loading = true;
-  //   this.neighborsService.getMyConnectRequests('ash@gmail.com').subscribe(data => {
-  //     this.loading = false;
-  //     this.myConnectRequests = data;
-  //     for (let i = 0; i < this.myConnectRequests.length; i++) {
-  //       if (this.myConnectRequests[i]['nebs']['status'] == 'Accepted') {
-  //         this.acceptedRequests.push(this.myConnectRequests[i]);
-  //       }
-  //     }
-  //     console.log('myconnectrequest', this.myConnectRequests)
-  //   },
-  //     error => {
-  //       this.loading = false;
-  //     })
-  // }
-
   getMemberNeighbors() {
     this.loading = true;
     this.myConnectedNeighbors = [];
@@ -295,34 +339,171 @@ export class NeighborsComponent implements OnInit {
       })
   }
 
-  getFilterSearch() {
-    debugger;
-    if (this.searchFilterForm.invalid) {
-      return
-    }
-    this.filteredRequests = [];
-    this.neighboursListDetails = [];
-    for (let i = 0; i < this.myConnectedNeighbors.length; i++) {
-      if (this.myConnectedNeighbors[i]['neb_lease_number'] == this.leaseNumber && this.myConnectedNeighbors[i]['distance'] <= this.searchFilterForm.controls.distanceWithin.value) {
-        this.filteredRequests.push(this.myConnectedNeighbors[i])
-      }
-    }
-    this.acceptedRequests = [];
-    this.acceptedRequests = this.filteredRequests;
-    this.closeSearchFilter();
+  // getFilterSearch() {
+  //   debugger;
+  //   if (this.searchFilterLeaseForm.invalid) {
+  //     return
+  //   }
+  //   this.filteredRequests = [];
+  //   this.neighboursListDetails = [];
+  //   for (let i = 0; i < this.myConnectedNeighbors.length; i++) {
+  //     if (this.myConnectedNeighbors[i]['neb_lease_number'] == this.leaseNumber) {
+  //       this.filteredRequests.push(this.myConnectedNeighbors[i])
+  //     }
+  //   }
+  //   this.acceptedRequests = [];
+  //   this.acceptedRequests = this.filteredRequests;
+  //   this.closeSearchFilter();
+  // }
+
+
+  getAllMemberNeighbors() {
+    this.loading = true;
+    this.allNeighboursCount = 0;
+    let body = {
+      _member_id: this.user.member_id,
+      _filter_by: "none",
+      _lease_number: null,
+      _district_code: "",
+      _county_no: "",
+      _operator_number: ""
+    };
+    this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
+      debugger;
+      this.myConnectedNeighbors = data['data']
+      this.allNeighboursCount = this.myConnectedNeighbors.length;
+      this.acceptedRequests = this.myConnectedNeighbors;
+      console.log('newFilteredData', data['data']);
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
 
-  // acceptConnectRequest() {
-  //   let body = {
-  //     neb_emailid: "newsachins@gmail.com",
-  //     my_emailid: "ash@gmail.com",
-  //     action: "Accept"
-  //   }
-  //   this.neighborsService.acceptConnectRequest(body).subscribe(data => {0
-  //     alert('request accepted');
-  //   })
-  // }
+  getFilteredMemberNeighbors() {
+    this.loading = true;
+    let body = this.searchfilterInput;
+    this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
+      console.log('newFilteredData', data['data'])
+      this.acceptedRequests = data['data'];
+      this.loading = false;
+      this.closeSearchFilter();
+    },
+      error => {
+        this.loading = false;
+      })
+  }
+
+  getFilterSearch() {
+    debugger;
+
+    switch (this.filterGroup) {
+      case true: {
+        if (this.searchFilterLeaseForm.invalid) {
+          this.submitsearchFilterLeaseForm = true;
+          return
+        }
+        this.searchfilterInput = {
+          _member_id: this.user.member_id,
+          _filter_by: "lease",
+          _lease_number: this.searchFilterLeaseNo,
+          _district_code: this.searchFilterDistCode,
+          _county_no: "",
+          _operator_number: ""
+        }
+        this.getFilteredMemberNeighbors();
+        break;
+      }
+      case false: {
+        if (this.searchFilterCountyOperatorForm.invalid) {
+          this.submitSearchFilterCountyOperatorForm = true;
+          return
+        }
+        this.searchfilterInput = {
+          _member_id: this.user.member_id,
+          _filter_by: "CountyNOperators",
+          _lease_number: null,
+          _district_code: "",
+          _county_no: this.searchFiltercountyNo,
+          _operator_number: this.SearchFilterOperatorNo
+        }
+        this.getFilteredMemberNeighbors();
+        break;
+      }
+      default: {
+        this.searchfilterInput = {
+          _member_id: this.user.member_id,
+          _filter_by: "none",
+          _lease_number: null,
+          _district_code: "",
+          _county_no: "",
+          _operator_number: ""
+        }
+        this.getFilteredMemberNeighbors();
+        break;
+      }
+    }
+  }
+
+  selectLeaseForNewList(event) {
+    this.listLeaseNumber = event.target.value;
+    this.getFilteredNewListMembers();
+  }
+
+  selectCountyForNewList(event) {
+    this.listCountyNumber = event.target.value;
+  }
+
+  selectOperatorForNewList(event) {
+    this.listOperatorNumber = event.target.value;
+    this.getFilteredNewListMembers();
+  }
+
+  getFilteredNewListMembers() {
+    debugger;
+
+    switch (this.newListGroup) {
+      case true: {
+        this.searchfilterInput = {
+          _member_id: this.user.member_id,
+          _filter_by: "lease",
+          _lease_number: this.searchFilterLeaseNo,
+          _district_code: this.searchFilterDistCode,
+          _county_no: "",
+          _operator_number: ""
+        }
+        this.getFilteredMemberNeighbors();
+        break;
+      }
+      case false: {
+        this.searchfilterInput = {
+          _member_id: this.user.member_id,
+          _filter_by: "CountyNOperators",
+          _lease_number: null,
+          _district_code: "",
+          _county_no: this.listCountyNumber,
+          _operator_number: this.listOperatorNumber
+        }
+        this.getFilteredMemberNeighbors();
+        break;
+      }
+      default: {
+        this.searchfilterInput = {
+          _member_id: this.user.member_id,
+          _filter_by: "none",
+          _lease_number: null,
+          _district_code: "",
+          _county_no: "",
+          _operator_number: ""
+        }
+        this.getFilteredMemberNeighbors();
+        break;
+      }
+    }
+  }
+
 
   getMemberList() {
     this.loading = true;
@@ -367,7 +548,15 @@ export class NeighborsComponent implements OnInit {
     this.newListFilteredMembers = [];
     this.newListMembers = [];
     this.loading = true;
-    this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
+    let body = {
+      _member_id: this.user.member_id,
+      _filter_by: "none",
+      _lease_number: null,
+      _district_code: "",
+      _county_no: "",
+      _operator_number: ""
+    };
+    this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
       this.newListMembers = data['data'];
       console.log('newListMembers', this.newListMembers);
       this.loading = false;
@@ -391,38 +580,56 @@ export class NeighborsComponent implements OnInit {
   closeNewListModal() {
     this.modalService.dismissAll(this.newListModal);
     this.newListForm.reset();
+    this.checkCheckboxFlag = false;
   }
 
-  selectLeaseForNewList(event) {
-    this.listLeaseNumber = event.target.value;
-    this.getFilteredNewListMembers();
-  }
+
 
   // selectDistanceForNewList(event) {
   //   this.newListDistance = event.target.value;
   //   this.getFilteredNewListMembers();
   // }
 
-  getFilteredNewListMembers() {
-    if (this.listLeaseNumber == null) {
-      return
-    }
-    this.loading = true;
-    this.newListFilteredMembers = []
-    for (let i = 0; i < this.newListMembers.length; i++) {
-      if (this.newListMembers[i]['neb_lease_number'] == this.listLeaseNumber && this.newListMembers[i]['status'] == "accepted") {
-        this.newListFilteredMembers.push(this.newListMembers[i])
-      }
-    }
-    this.loading = false;
-  }
+  // getFilteredNewListMembers() {
+  //   if (this.listLeaseNumber == null) {
+  //     return
+  //   }
+  //   this.loading = true;
+  //   this.newListFilteredMembers = []
+  //   for (let i = 0; i < this.newListMembers.length; i++) {
+  //     if (this.newListMembers[i]['neb_lease_number'] == this.listLeaseNumber && this.newListMembers[i]['status'] == "accepted") {
+  //       this.newListFilteredMembers.push(this.newListMembers[i])
+  //     }
+  //   }
+  //   this.loading = false;
+  // }
+
+
+  // getFilteredNewListMembers() {
+  //   if (this.listLeaseNumber == null) {
+  //     return
+  //   }
+  //   this.loading = true;
+  //   this.newListFilteredMembers = [];
+  //   let body = {
+
+  //   }
+  //   // this.neighborsService.getMemberNeighborsWithFilter()
+  //   this.loading = false;
+  // }
 
 
   saveNeighborList() {
     debugger;
+    this.submitNewListForm = true
     if (this.newListForm.invalid) {
       return
     }
+    if (this.nebIdCsvArray.length == 0) {
+      this.checkCheckboxFlag = true;
+      return
+    }
+    this.checkCheckboxFlag = false;
     this.loading = true;
     this.nebIdCsv = this.nebIdCsvArray.join(",");
     let body = {
@@ -435,10 +642,12 @@ export class NeighborsComponent implements OnInit {
       this.getMemberList();
       this.nebIdCsvArray = [];
       this.closeNewListModal();
+      this.submitNewListForm = false;
     },
       error => {
         this.loading = false;
         this.nebIdCsvArray = [];
+        this.submitNewListForm = false;
       })
 
   }
@@ -447,11 +656,11 @@ export class NeighborsComponent implements OnInit {
   onAddedNeighborSelection(event: any, res: any) {
     debugger;
     if (event.target.checked) {
+      this.checkCheckboxFlag = false;
       this.nebIdCsvArray.push(res.neighbor_id);
       console.log('addedArray', this.nebIdCsvArray)
     }
     else if (!event.target.checked) {
-
       let index = this.nebIdCsvArray.indexOf(res.neighbor_id);
       if (index > -1) {
         this.nebIdCsvArray.splice(index, 1);

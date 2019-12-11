@@ -54,4 +54,8 @@ export class NeighborsService {
     return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/get_countiesnoperators/`, Utils.getAuthHeader())
   }
 
+  getMemberNeighborsWithFilter(body) {
+    return this.httpclient.post(`${environment.APIBASEURL}/Neighbor/get_member_neighbors_withfilters`, body, Utils.getAuthHeader())
+  }
+
 }
