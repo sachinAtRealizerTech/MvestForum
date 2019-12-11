@@ -57,6 +57,10 @@ export class NeighborsComponent implements OnInit {
   listLeaseNumber: any;
   submitNewNeighborForm = false;
   nebIdCsv: any;
+  countiesAndOperators: any;
+  operatorList: any;
+  countyList: any;
+  nebIdCsvArray: any = [];
 
 
   constructor(private modalService: NgbModal,
@@ -85,7 +89,8 @@ export class NeighborsComponent implements OnInit {
     this.getMyLeases(this.user.member_id);
     this.getMemberNeighbors();
     this.getMemberList();
-    this.getMemberNeighborsForNewList();
+
+    this.getCountiesAndOperators();
     //this.getNeighborsListDetails();
     //this.getMyConnectRequests();
     //this.getLeaseNeighbors();
@@ -199,6 +204,23 @@ export class NeighborsComponent implements OnInit {
     })
   }
 
+  getCountiesAndOperators() {
+    this.neighborsService.getCountiesAndOperators().subscribe(data => {
+      this.countiesAndOperators = data['data'];
+      console.log('countiesandoperators', this.countiesAndOperators);
+      this.operatorList = [];
+      this.countyList = [];
+      for (let i = 0; i < this.countiesAndOperators.length; i++) {
+        if (this.countiesAndOperators[i]['entity_type'] == "operator") {
+          this.operatorList.push(this.countiesAndOperators[i])
+        }
+        else if (this.countiesAndOperators[i]['entity_type'] == "county") {
+          this.countyList.push(this.countiesAndOperators[i])
+        }
+      }
+    })
+  }
+
   getLeaseValues(event) {
     debugger;
     console.log(event.target.value)
@@ -256,8 +278,8 @@ export class NeighborsComponent implements OnInit {
     this.loading = true;
     this.myConnectedNeighbors = [];
     this.filteredRequests = [];
-    this.neighboursListDetails = [];
-    //this.allNeighboursCount = 0;
+    //this.neighboursListDetails = [];
+    this.allNeighboursCount = 0;
     this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
       this.loading = false;
       this.myConnectedNeighbors = data['data'];
@@ -281,7 +303,7 @@ export class NeighborsComponent implements OnInit {
     this.filteredRequests = [];
     this.neighboursListDetails = [];
     for (let i = 0; i < this.myConnectedNeighbors.length; i++) {
-      if (this.myConnectedNeighbors[i]['leasenumber'] == this.leaseNumber && this.myConnectedNeighbors[i]['distance'] == this.searchFilterForm.controls.distanceWithin.value) {
+      if (this.myConnectedNeighbors[i]['neb_lease_number'] == this.leaseNumber && this.myConnectedNeighbors[i]['distance'] <= this.searchFilterForm.controls.distanceWithin.value) {
         this.filteredRequests.push(this.myConnectedNeighbors[i])
       }
     }
@@ -303,10 +325,15 @@ export class NeighborsComponent implements OnInit {
   // }
 
   getMemberList() {
+    this.loading = true;
     this.neighborsService.getMemberList(this.user.member_id).subscribe(data => {
-      this.membersList = data['data']
+      this.membersList = data['data'];
+      this.loading = false;
       console.log('membersList', this.membersList)
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   selectListType(event) {
@@ -339,14 +366,20 @@ export class NeighborsComponent implements OnInit {
   getMemberNeighborsForNewList() {
     this.newListFilteredMembers = [];
     this.newListMembers = [];
+    this.loading = true;
     this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
       this.newListMembers = data['data'];
       console.log('newListMembers', this.newListMembers);
+      this.loading = false;
       this.newListFilteredMembers = this.newListMembers;
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   openNewListModal(newListModal: TemplateRef<any>) {
+    this.getMemberNeighborsForNewList();
     this.newListModal = newListModal
     this.modalService.open(this.newListModal, {
       backdrop: 'static',
@@ -356,7 +389,8 @@ export class NeighborsComponent implements OnInit {
   }
 
   closeNewListModal() {
-    this.modalService.dismissAll(this.newListModal)
+    this.modalService.dismissAll(this.newListModal);
+    this.newListForm.reset();
   }
 
   selectLeaseForNewList(event) {
@@ -370,7 +404,6 @@ export class NeighborsComponent implements OnInit {
   // }
 
   getFilteredNewListMembers() {
-
     if (this.listLeaseNumber == null) {
       return
     }
@@ -381,7 +414,6 @@ export class NeighborsComponent implements OnInit {
         this.newListFilteredMembers.push(this.newListMembers[i])
       }
     }
-
     this.loading = false;
   }
 
@@ -391,20 +423,42 @@ export class NeighborsComponent implements OnInit {
     if (this.newListForm.invalid) {
       return
     }
+    this.loading = true;
+    this.nebIdCsv = this.nebIdCsvArray.join(",");
     let body = {
       _member_id: this.user.member_id,
       _list_name: this.newListForm.controls.listName.value,
       _neb_l: this.nebIdCsv
     }
     this.neighborsService.saveNeighborList(body).subscribe(data => {
-      alert('List added successfully...')
+      this.loading = false;
+      this.getMemberList();
+      this.nebIdCsvArray = [];
       this.closeNewListModal();
-    })
+    },
+      error => {
+        this.loading = false;
+        this.nebIdCsvArray = [];
+      })
+
   }
 
 
-  onAddedNeighborSelection(res: any) {
-    this.nebIdCsv = res.neighbor_id
+  onAddedNeighborSelection(event: any, res: any) {
+    debugger;
+    if (event.target.checked) {
+      this.nebIdCsvArray.push(res.neighbor_id);
+      console.log('addedArray', this.nebIdCsvArray)
+    }
+    else if (!event.target.checked) {
+
+      let index = this.nebIdCsvArray.indexOf(res.neighbor_id);
+      if (index > -1) {
+        this.nebIdCsvArray.splice(index, 1);
+      }
+      console.log('removedArray', this.nebIdCsvArray)
+    }
+
   }
 
 }

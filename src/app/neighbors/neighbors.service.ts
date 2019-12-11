@@ -50,4 +50,8 @@ export class NeighborsService {
     return this.httpclient.post(`${environment.APIBASEURL}/Neighbor/saveneblist`, body, Utils.getAuthHeader())
   }
 
+  getCountiesAndOperators() {
+    return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/get_countiesnoperators/`, Utils.getAuthHeader())
+  }
+
 }
