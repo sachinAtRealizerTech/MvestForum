@@ -961,15 +961,18 @@ textarea:focus {
 .category-main{
   position: relative;
   text-align: center;
-  color: white;
+  color: white !important;
   font-weight:500;
+  /* background: black !important; */
+    z-index: 2;  
 }
 
 .category-text{
   position: absolute;
- top: 220%;
+ top: 320% !important;
   left: 10%;
 
+ 
 }
 select{
   background: transparent !important;
@@ -1332,7 +1335,9 @@ top:128px;
     cursor: default;
 }
 
-
+.bg-black-overlay{
+  background: rgba(0, 0, 0, 0.075) !important;
+}
   /* Animation Styles Start*/
   @keyframes fadeInDown {
     from {

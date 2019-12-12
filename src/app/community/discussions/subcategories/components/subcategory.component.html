@@ -145,12 +145,12 @@
             <div class="row justify-content-left text-center px-3">
               <div>
                 <div class="row gutter-10">
-                  <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText">
+                  <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText"style="background: #000000;"> 
                     <a routerLink="/discussionslist"
                       [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
                       (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
-                      <div class="card d-inline category-main" style="width:50rem">
-                        <img class="img-fluid img-thumbnail rounded-left" src="{{sc.sub_categories.image}}" alt=""
+                      <div class=" d-inline category-main" style="width:50rem">
+                        <img class="img-fluid img-thumbnail rounded-left" style="opacity: 0.7;" src="{{sc.sub_categories.image}}" alt=""
                           width="250px">
                         <div class="category-text">
                           {{sc.sub_categories.name | titlecase}}
