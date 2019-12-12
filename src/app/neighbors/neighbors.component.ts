@@ -28,7 +28,7 @@ export class NeighborsComponent implements OnInit {
   searchFilterModal: ElementRef;
   newNeighborModal: ElementRef;
   myLeases: any;
-  newNeighborForm: FormGroup;
+  newNeighborLeaseForm: FormGroup;
   newListForm: FormGroup;
   districtCode: string;
   leaseNumber: string;
@@ -55,7 +55,7 @@ export class NeighborsComponent implements OnInit {
   newListDistance: any;
   newListFilteredMembers: any;
   listLeaseNumber: any;
-  submitNewNeighborForm = false;
+  submitNewNeighborLeaseForm = false;
   nebIdCsv: any;
   countiesAndOperators: any;
   operatorList: any;
@@ -64,8 +64,10 @@ export class NeighborsComponent implements OnInit {
   submitNewListForm = false;
   checkCheckboxFlag = false;
   searchFilterCountyOperatorForm: FormGroup;
+  newNeighborCountyNOperatorForm: FormGroup;
   submitsearchFilterLeaseForm = false;
   submitSearchFilterCountyOperatorForm = false;
+  submitNewNeighborCountyNOperatorForm = false;
   filterBy: string;
   searchfilterInput: any;
   countyNumber: string;
@@ -76,6 +78,8 @@ export class NeighborsComponent implements OnInit {
   SearchFilterOperatorNo: any;
   listCountyNumber: any;
   listOperatorNumber: any;
+  newNeighborCounty: any;
+  newNeighborOperator: any;
 
 
   constructor(private modalService: NgbModal,
@@ -86,9 +90,14 @@ export class NeighborsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.newNeighborForm = this.formBuilder.group({
+    this.newNeighborLeaseForm = this.formBuilder.group({
       leaseName: ['', Validators.required],
-      distanceWithin: ['', Validators.required]
+      //distanceWithin: ['', Validators.required]
+    })
+
+    this.newNeighborCountyNOperatorForm = this.formBuilder.group({
+      county: ['', Validators.required],
+      operator: ['', Validators.required]
     })
 
     this.searchFilterLeaseForm = this.formBuilder.group({
@@ -118,10 +127,12 @@ export class NeighborsComponent implements OnInit {
     this.getAllMemberNeighbors();
   }
 
-  get g() { return this.newNeighborForm.controls }
+  get g() { return this.newNeighborLeaseForm.controls }
+  get h() { return this.newNeighborCountyNOperatorForm.controls }
   get f() { return this.searchFilterLeaseForm.controls }
   get n() { return this.newListForm.controls }
   get c() { return this.searchFilterCountyOperatorForm.controls }
+
 
   public user = Utils.GetCurrentUser();
 
@@ -150,6 +161,8 @@ export class NeighborsComponent implements OnInit {
   toggleNewNeighborGroup() {
     //this.isDisabled = !this.isDisabled
     this.newNeighborGroup = !this.newNeighborGroup;
+    this.submitNewNeighborCountyNOperatorForm = false;
+    this.submitNewNeighborLeaseForm = false
   }
 
   searchFilterData() {
@@ -194,13 +207,13 @@ export class NeighborsComponent implements OnInit {
   closeLeaseFilter() {
     this.leaseFilter = false;
     this.distanceFilter = false;
-    this.getMemberNeighbors();
+    this.getAllMemberNeighbors();
   }
 
   closeDistanceFilter() {
     this.distanceFilter = false;
     this.leaseFilter = false;
-    this.getMemberNeighbors();
+    this.getAllMemberNeighbors();
   }
 
   closeCountyFilter() {
@@ -225,7 +238,8 @@ export class NeighborsComponent implements OnInit {
   }
 
   openNewNeighborModal(newNeighborModal) {
-    this.submitNewNeighborForm = false;
+    this.submitNewNeighborLeaseForm = false;
+    this.submitNewNeighborCountyNOperatorForm = false;
     this.newNeighborModal = newNeighborModal;
     this.modalService.open(this.newNeighborModal, {
       backdrop: 'static',
@@ -236,7 +250,7 @@ export class NeighborsComponent implements OnInit {
 
   closeNewNeighborModal() {
     this.modalService.dismissAll(this.newNeighborModal);
-    this.submitNewNeighborForm = false;
+    this.submitNewNeighborLeaseForm = false;
   }
 
   getMyLeases(id: number) {
@@ -264,15 +278,7 @@ export class NeighborsComponent implements OnInit {
     })
   }
 
-  getLeaseValues(event) {
-    debugger;
-    console.log(event.target.value)
-    let compKey: string = event.target.value;
-    let compKeyArray: Array<string> = compKey.split("&");
-    this.leaseNumber = compKeyArray[0];
-    this.districtCode = compKeyArray[1];
-    this.leaseName = compKeyArray[2]
-  }
+
 
   getSearchFilterLeaseValues(event) {
     console.log(event.target.value)
@@ -292,30 +298,93 @@ export class NeighborsComponent implements OnInit {
     this.SearchFilterOperatorNo = event.target.value
   }
 
+  selectLeaseForNewNeighbor(event) {
+    debugger;
+    console.log(event.target.value)
+    let compKey: string = event.target.value;
+    let compKeyArray: Array<string> = compKey.split("&");
+    this.leaseNumber = compKeyArray[0];
+    this.districtCode = compKeyArray[1];
+    this.leaseName = compKeyArray[2]
+  }
+
+  selectCountyForNewNeighbor(event) {
+    this.newNeighborCounty = event.target.value
+  }
+
+  selectOperatorForNewNeighbor(event) {
+    this.newNeighborOperator = event.target.value
+  }
+
   getLeaseNeighbors() {
     debugger;
-    this.submitNewNeighborForm = true;
-    if (this.newNeighborForm.invalid) {
-      return
-    }
     this.loading = true
-    let body = {
-      _leasenumber: this.leaseNumber,
-      _distCode: this.districtCode,
-      // distanceWithin: this.g.distanceWithin.value
-    }
-    this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
-      // console.log("leaseNeighbors", data);
-      this.closeNewNeighborModal();
-      this.loading = false
+    if (this.newNeighborGroup == true) {
+      this.submitNewNeighborLeaseForm = true;
+      if (this.newNeighborLeaseForm.invalid) {
+        this.loading = false
+        return;
+      }
       sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
       sessionStorage.setItem("nearbydistrictNumber", this.districtCode);
-      sessionStorage.setItem("nearbydistanceWithin", this.g.distanceWithin.value)
+      // sessionStorage.setItem("nearbydistanceWithin", this.g.distanceWithin.value);
+      sessionStorage.setItem("newNeighborFilterFlag", "Lease")
+      this.loading = false;
+      this.closeNewNeighborModal();
       this.router.navigate(['/nearbyleases']);
-    },
-      error => {
+
+      // let body = {
+      //   _filterBy: "lease",
+      //   _leasenumber: this.leaseNumber,
+      //   _distCode: this.districtCode,
+      //   _countycode: "",
+      //   _op_number: ""
+      // }
+      // this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
+      //   this.closeNewNeighborModal();
+      //   this.loading = false
+      //   sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
+      //   sessionStorage.setItem("nearbydistrictNumber", this.districtCode);
+      //   sessionStorage.setItem("nearbydistanceWithin", this.g.distanceWithin.value)
+      //   this.router.navigate(['/nearbyleases']);
+      // },
+      //   error => {
+      //     this.loading = false
+      //   })
+    }
+    else if (this.newNeighborGroup == false) {
+      this.submitNewNeighborCountyNOperatorForm = true;
+      if (this.newNeighborCountyNOperatorForm.invalid) {
         this.loading = false
-      })
+        return
+      }
+      sessionStorage.setItem("nearbyCountyNumber", this.newNeighborCounty);
+      sessionStorage.setItem("nearbyOperatorNumber", this.newNeighborOperator);
+      this.loading = false;
+      sessionStorage.setItem("newNeighborFilterFlag", "CountyNOperator");
+      this.closeNewNeighborModal();
+      this.router.navigate(['/nearbyleases']);
+
+      // let body = {
+      //   _filterBy: "",
+      //   _leasenumber: null,
+      //   _distCode: "",
+      //   _countycode: this.newNeighborCounty,
+      //   _op_number: this.newNeighborOperator
+      // }
+      // this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
+      //   this.closeNewNeighborModal();
+      //   this.submitNewNeighborCountyNOperatorForm = false;
+      //   this.loading = false
+      //   sessionStorage.setItem("nearbyCountyNumber", this.newNeighborCounty);
+      //   sessionStorage.setItem("nearbyOperatorNumber", this.newNeighborOperator);
+      //   this.router.navigate(['/nearbyleases']);
+      // },
+      //   error => {
+      //     this.loading = false
+      //   })
+
+    }
   }
 
   getMemberNeighbors() {
@@ -339,31 +408,14 @@ export class NeighborsComponent implements OnInit {
       })
   }
 
-  // getFilterSearch() {
-  //   debugger;
-  //   if (this.searchFilterLeaseForm.invalid) {
-  //     return
-  //   }
-  //   this.filteredRequests = [];
-  //   this.neighboursListDetails = [];
-  //   for (let i = 0; i < this.myConnectedNeighbors.length; i++) {
-  //     if (this.myConnectedNeighbors[i]['neb_lease_number'] == this.leaseNumber) {
-  //       this.filteredRequests.push(this.myConnectedNeighbors[i])
-  //     }
-  //   }
-  //   this.acceptedRequests = [];
-  //   this.acceptedRequests = this.filteredRequests;
-  //   this.closeSearchFilter();
-  // }
-
-
   getAllMemberNeighbors() {
+    debugger;
     this.loading = true;
     this.allNeighboursCount = 0;
     let body = {
       _member_id: this.user.member_id,
       _filter_by: "none",
-      _lease_number: null,
+      _lease_number: 0,
       _district_code: "",
       _county_no: "",
       _operator_number: ""
@@ -377,6 +429,7 @@ export class NeighborsComponent implements OnInit {
       this.loading = false;
     },
       error => {
+        console.log('getallmemberneighbor error', error)
         this.loading = false;
       })
   }
@@ -385,6 +438,7 @@ export class NeighborsComponent implements OnInit {
   getFilteredMemberNeighbors() {
     this.loading = true;
     let body = this.searchfilterInput;
+    this.neighboursListDetails = [];
     this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
       console.log('newFilteredData', data['data'])
       this.acceptedRequests = data['data'];
@@ -424,7 +478,7 @@ export class NeighborsComponent implements OnInit {
         this.searchfilterInput = {
           _member_id: this.user.member_id,
           _filter_by: "CountyNOperators",
-          _lease_number: null,
+          _lease_number: 0,
           _district_code: "",
           _county_no: this.searchFiltercountyNo,
           _operator_number: this.SearchFilterOperatorNo
@@ -436,7 +490,7 @@ export class NeighborsComponent implements OnInit {
         this.searchfilterInput = {
           _member_id: this.user.member_id,
           _filter_by: "none",
-          _lease_number: null,
+          _lease_number: 0,
           _district_code: "",
           _county_no: "",
           _operator_number: ""
@@ -461,6 +515,20 @@ export class NeighborsComponent implements OnInit {
     this.getFilteredNewListMembers();
   }
 
+
+  getFilteredNewListMemberNeighbors() {
+    this.loading = true;
+    let body = this.searchfilterInput;
+    this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
+      console.log('newFilteredData', data['data'])
+      this.newListFilteredMembers = data['data'];
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
+  }
+
   getFilteredNewListMembers() {
     debugger;
 
@@ -474,31 +542,31 @@ export class NeighborsComponent implements OnInit {
           _county_no: "",
           _operator_number: ""
         }
-        this.getFilteredMemberNeighbors();
+        this.getFilteredNewListMemberNeighbors();
         break;
       }
       case false: {
         this.searchfilterInput = {
           _member_id: this.user.member_id,
           _filter_by: "CountyNOperators",
-          _lease_number: null,
+          _lease_number: 0,
           _district_code: "",
           _county_no: this.listCountyNumber,
           _operator_number: this.listOperatorNumber
         }
-        this.getFilteredMemberNeighbors();
+        this.getFilteredNewListMemberNeighbors();
         break;
       }
       default: {
         this.searchfilterInput = {
           _member_id: this.user.member_id,
           _filter_by: "none",
-          _lease_number: null,
+          _lease_number: 0,
           _district_code: "",
           _county_no: "",
           _operator_number: ""
         }
-        this.getFilteredMemberNeighbors();
+        this.getFilteredNewListMemberNeighbors();
         break;
       }
     }
@@ -534,12 +602,6 @@ export class NeighborsComponent implements OnInit {
       this.neighboursListDetails = data['data']
       console.log('neighboursListDetails', this.neighboursListDetails);
       this.loading = false;
-      // this.selectedNbrLstDtls = []
-      // for (let i = 0; i < this.neighboursListDetails.length; i++) {
-      //   if (this.neighboursListDetails[i]['list_name'] == this.listName) {
-      //     this.selectedNbrLstDtls.push(this.neighboursListDetails[i]);
-      //   }
-      // }
     })
   }
 

@@ -30,6 +30,10 @@ export class NearbyleasesComponent implements OnInit {
   allNeighboursCount: string;
   searchText: string;
   p: any
+  neighborFilterFlag: string;
+  countyNumber: string;
+  operatorNumber: string;
+  leaseInput: any
 
   constructor(private neighborsService: NeighborsService,
     private modalService: NgbModal,
@@ -44,17 +48,33 @@ export class NearbyleasesComponent implements OnInit {
       distanceWithin: []
     })
 
-    this.leaseNumber = sessionStorage.getItem("nearbyleaseNumber");
-    this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
-    this.distanceWithin = sessionStorage.getItem("nearbydistanceWithin");
+    this.neighborFilterFlag = sessionStorage.getItem("newNeighborFilterFlag");
+
+    if (this.neighborFilterFlag == "Lease") {
+      this.leaseNumber = sessionStorage.getItem("nearbyleaseNumber");
+      this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
+      this.leaseInput = {
+        _filterBy: "lease",
+        _leasenumber: this.leaseNumber,
+        _distCode: this.districtNumber,
+        _countycode: "",
+        _op_number: ""
+      }
+    }
+    else if (this.neighborFilterFlag == "CountyNOperator") {
+      this.countyNumber = sessionStorage.getItem("nearbyCountyNumber");
+      this.operatorNumber = sessionStorage.getItem("nearbyOperatorNumber")
+      this.leaseInput = {
+        _filterBy: "",
+        _leasenumber: 0,
+        _distCode: "",
+        _countycode: this.countyNumber,
+        _op_number: this.operatorNumber
+      }
+    }
+
+    // this.distanceWithin = sessionStorage.getItem("nearbydistanceWithin");
     this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount");
-
-    // if (sessionStorage.getItem("nearbyleaseNumber") != 'undefined' && sessionStorage.getItem("nearbydistanceWithin") != 'undefined') {
-    //   this.leaseFilter = true;
-    //   this.distanceFilter = true;
-    // }
-    //this.searchFilterForm.controls.distanceWithin.patchValue(this.distanceWithin)
-
     this.getNeighboringLeases();
     this.getMyLeases();
   }
@@ -110,33 +130,36 @@ export class NearbyleasesComponent implements OnInit {
 
   getNeighboringLeases() {
     debugger;
-    // if (this.searchFilterForm.invalid) {
-    //   return
-    // }
     this.loading = true;
-    let body = {
-      _leasenumber: this.leaseNumber,
-      _distCode: this.districtNumber,
-      //distanceWithin: this.searchFilterForm.controls.distanceWithin.value
-    }
-    this.neighborsService.getLeaseNeighbors(body).subscribe(data => {
-      this.nearByLeases = data['data'];
-
-      // this.leaseName = this.nearByLeases[0]['leasename'];
-      // this.distance = this.nearByLeases[0]['_dist_in_miles'];
-      sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
-      sessionStorage.setItem("nearbydistrictNumber", this.districtNumber);
-      sessionStorage.setItem("nearbydistanceWithin", this.searchFilterForm.controls.distanceWithin.value);
-
-      console.log('nearbyLeases', this.nearByLeases)
-      // this.closeSearchFilterModal();
-      this.loading = false;
-
-    },
-      error => {
+    if (this.neighborFilterFlag == "Lease") {
+      this.neighborsService.getLeaseNeighbors(this.leaseInput).subscribe(data => {
+        this.nearByLeases = data['data'];
+        sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
+        sessionStorage.setItem("nearbydistrictNumber", this.districtNumber);
+        //sessionStorage.setItem("nearbydistanceWithin", this.searchFilterForm.controls.distanceWithin.value);
+        console.log('nearbyLeases', this.nearByLeases);
         this.loading = false;
-        this.closeSearchFilterModal();
-      })
+      },
+        error => {
+          this.loading = false;
+          this.closeSearchFilterModal();
+        })
+    }
+    else if (this.neighborFilterFlag == "CountyNOperator") {
+      this.neighborsService.getLeaseNeighbors(this.leaseInput).subscribe(data => {
+        this.nearByLeases = data['data'];
+        sessionStorage.setItem("nearbyCountyNumber", this.countyNumber);
+        sessionStorage.setItem("nearbyOperatorNumber", this.operatorNumber);
+        //sessionStorage.setItem("nearbydistanceWithin", this.searchFilterForm.controls.distanceWithin.value);
+        console.log('nearbyLeases', this.nearByLeases);
+        this.loading = false;
+      },
+        error => {
+          this.loading = false;
+          this.closeSearchFilterModal();
+        })
+    }
+
   }
 
   openSearchFilterModal(searchFilterModal: TemplateRef<any>) {

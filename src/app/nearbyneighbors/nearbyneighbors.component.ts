@@ -98,10 +98,10 @@ export class NearbyneighborsComponent implements OnInit {
       _myemailid: this.user.email_id,
       _nebdistCode: this.districtNumber,
       _nebleasenumber: this.leaseNumber,
-      _nebid: lw.mid,
-      _nebemailid: lw.memaild,
+      _nebid: this.conAllNebId,
+      _nebemailid: this.conAllNebMaild,
       _myfname: this.user.f_name,
-      _nebname: lw.mname,
+      _nebname: this.conAllNebName,
       distance: this.nebDistance
     }
 

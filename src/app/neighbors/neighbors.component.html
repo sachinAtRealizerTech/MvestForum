@@ -100,7 +100,7 @@
                 </div>
             </div> 
 
-            <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="acceptedRequests?.length==0 && allNeighboursCount==0 ">
+            <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="acceptedRequests?.length==0 && allNeighboursCount==0 && neighboursListDetails?.length==0">
                 <div class="col-md-3 text-center col-3 col-xl-3 py-5 ">   
                         <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image" height="250px" width="auto">
                       </div>     
@@ -113,7 +113,7 @@
                 </div>      
               </div>
 
-            <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="acceptedRequests?.length==0  && allNeighboursCount>0">
+            <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="acceptedRequests?.length==0 && allNeighboursCount>0 && neighboursListDetails?.length==0">
                 <div class="col-md-3 text-center col-3 col-xl-3 py-5 ">   
                         <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image" height="250px" width="auto">
                       </div>     
@@ -553,7 +553,7 @@
 
     <ng-template #newNeighborModal>
 
-              <div class="modal-content" [formGroup]="newNeighborForm">
+              <div class="modal-content">
                 
                 <div class="justify-content-end">
                         <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
@@ -574,21 +574,21 @@
                                     <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="neighborradio1"> Choose Lease Name And Distance</label>
                                   </div>
                            
-                            <div  class="form-row pt-2" >
+                            <div  class="form-row pt-2" [formGroup]="newNeighborLeaseForm">
                                 <div   class="form-group col-4">
                                                 <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                                                 <select class="form-control border" id="exampleFormControlSelect1" formControlName="leaseName" 
-                                                (change)="getLeaseValues($event)" [value]="null" [attr.disabled]="!newNeighborGroup?'':null"
-                                                [ngClass]="{ 'is-invalid': submitNewNeighborForm && g.leaseName.errors }">
+                                                (change)="selectLeaseForNewNeighbor($event)" [value]="null" [attr.disabled]="!newNeighborGroup?'':null"
+                                                [ngClass]="{ 'is-invalid': submitNewNeighborLeaseForm && g.leaseName.errors }">
                                                         <option [value]="null" hidden>Select Lease</option>
                                                         <option *ngFor="let ml of myLeases" value="{{ml.leasenumber}}&{{ml.dist_number}}&{{ml.leasename}}" >{{ml.leasename | titlecase}}</option>
                                                       </select>
-                                                      <div *ngIf="submitNewNeighborForm && g.leaseName.errors" class="invalid-feedback">
+                                                      <div *ngIf="submitNewNeighborLeaseForm && g.leaseName.errors" class="invalid-feedback">
                                                           <div *ngIf="g.leaseName.errors.required">Lease Name is required</div>
                                                         </div> 
                                             </div>
                                            
-                                             <div class="form-group col-4">
+                                             <!-- <div class="form-group col-4">
                                             <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
                                             <select class="form-control border" id="exampleFormControlSelect1" formControlName="distanceWithin" [value]="null" [attr.disabled]="!newNeighborGroup?'':null"
                                             [ngClass]="{ 'is-invalid': submitNewNeighborForm && g.distanceWithin.errors }">
@@ -601,7 +601,7 @@
                                                   <div *ngIf="submitNewNeighborForm && g.distanceWithin.errors" class="invalid-feedback">
                                                       <div *ngIf="g.distanceWithin.errors.required">Distance is required</div>
                                                     </div> 
-                                        </div> 
+                                        </div>  -->
                                        
                                 </div>
                             </div>
@@ -614,37 +614,36 @@
                                         <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="neighborradio2"> Choose County, Operator And PlayType </label>
                                       </div>
     
-                                <div class="form-row pt-2 " >
+                                <div class="form-row pt-2 " [formGroup]="newNeighborCountyNOperatorForm">
                                       <div class="form-group col-4">
-                                        <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3 h6">County</label>
-                                        <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newNeighborGroup">
-                                                <option> Select County </option>
-                                                <option>Karnes</option>
-                                                <option>Texas</option>
-                                                <option>Grimes</option>
-                                                <option>Rockwall</option>
+                                        <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">County</label>
+                                        <select class="form-control border" formControlName="county" [value]="null" id="county24" [attr.disabled]="newNeighborGroup"
+                                        (change)="selectCountyForNewNeighbor($event)"
+                                        [ngClass]="{ 'is-invalid': submitNewNeighborCountyNOperatorForm && h.county.errors }">
+                                          <option [value]="null" hidden> Select County </option>
+                                          <option *ngFor="let cl of countyList" value="{{cl.county_no}}">{{cl.county_name}}</option>
                                               </select>
+                                              <div *ngIf="submitNewNeighborCountyNOperatorForm && h.county.errors" class="invalid-feedback">
+                                                <div *ngIf="h.county.errors.required">County Name is required</div>
+                                              </div>
                                     </div> 
                                    
                                         <div class="form-group col-4">
                                             <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                                            <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newNeighborGroup">
-                                                    <option> Select Operator </option>
-                                                    <option>Operator 1</option>
-                                                    <option>Operator 2</option>
-                                                    <option>Operator 3</option>
-                                                    <option>Operator 4</option>
+                                            <select class="form-control border" formControlName="operator" [value]="null" id="operator23" [attr.disabled]="newNeighborGroup"
+                                            (change)="selectOperatorForNewNeighbor($event)"
+                                            [ngClass]="{ 'is-invalid': submitNewNeighborCountyNOperatorForm && h.operator.errors }">
+                                              <option [value]="null" hidden> Select Operator </option>
+                                              <option *ngFor="let ol of operatorList" value="{{ol.county_no}}">{{ol.county_name}}</option>
                                                   </select>
+                                                  <div *ngIf="submitNewNeighborCountyNOperatorForm && h.operator.errors" class="invalid-feedback">
+                                                    <div *ngIf="h.operator.errors.required">Operator Name is required</div>
+                                                  </div>
                                         </div>
                                         <div class="form-group col-4">
                                                 <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">Play Type :</label>
                                                 <select class="form-control border" id="exampleFormControlSelect1" [disabled]="newNeighborGroup">
                                                         <option> Select Play Type </option> 
-                                                        <option>Play Type 1</option>
-                                                        <option>Play Type 2</option>
-                                                        <option>Play Type 3</option>
-                                                        <option>Play Type 4</option>
-                                                        <option>Play Type 5</option> 
                                                       </select>
                                             </div>
                                             
