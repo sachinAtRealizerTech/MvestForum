@@ -61,39 +61,47 @@
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                 </li>
 
-                                <li *ngIf="distanceFilter"
+                                <!-- <li *ngIf="distanceFilter"
                                     class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
 
                                     <h6 class="text-accent font-weight-semibold mb-0">Distance : {{distance}} miles
                                         away<a routerLink="#" (click)="closeDistanceFilter()"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-                                </li>
+                                </li> -->
 
                                 <li *ngIf="countyFilter"
                                     class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
 
-                                    <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a
-                                            routerLink="#"><span
+                                    <h6 class="text-accent font-weight-semibold mb-0">County : {{countyName}}<a
+                                            routerLink="#" (click)="closeCountyFilter()"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                 </li>
                                 <li *ngIf="operatorFilter"
                                     class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
 
-                                    <h6 class="text-accent font-weight-semibold mb-0"> Operator : Joe Shon <a
-                                            routerLink="#"><span
+                                    <h6 class="text-accent font-weight-semibold mb-0"> Operator : {{operatorName}} <a
+                                            routerLink="#" (click)="closeOperatorFilter()"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a> </h6>
 
                                 </li>
-                                <li *ngIf="playTypeFilter"
+                                <!-- <li *ngIf="playTypeFilter"
                                     class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
                                     <h6 class="text-accent font-weight-semibold mb-0"> Play Type : 1 <a
                                             routerLink="#"><span
                                                 class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="content-loading text-center" *ngIf="loading">
+                <app-loadingcircle></app-loadingcircle>
             </div>
         </div>
     </div>
@@ -187,7 +195,7 @@
 
     <ng-template #searchFilterModal>
 
-        <div class="modal-content" [formGroup]="searchFilterForm">
+        <div class="modal-content">
 
             <div class="justify-content-end">
                 <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
@@ -209,20 +217,24 @@
                             Lease Name And Distance</label>
                     </div>
 
-                    <div class="form-row pt-2">
+                    <div class="form-row pt-2" [formGroup]="searchFilterLeaseForm">
                         <div class="form-group col-4">
                             <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
                                 class="font-weight-semibold text-secondary pr-3 h6">Lease Name :</label>
                             <select class="form-control border" formControlName="leaseName"
                                 id="exampleFormControlSelect1" [value]="null" [attr.disabled]="!filterGroup?'':null"
-                                (change)="getLeaseValues($event)">
+                                (change)="getLeaseValues($event)"
+                                [ngClass]="{ 'is-invalid': submitSearchFilterLeaseForm && f.leaseName.errors }">
                                 <option [value]="null" hidden>Select Lease</option>
                                 <option *ngFor="let ml of myLeases"
                                     value="{{ml.leasenumber}}&{{ml.dist_number}}&{{ml.leasename}}">{{ml.leasename}}
                                 </option>
                             </select>
+                            <div *ngIf="submitSearchFilterLeaseForm && f.leaseName.errors" class="invalid-feedback">
+                                <div *ngIf="f.leaseName.errors.required">Lease Name is required</div>
+                            </div>
                         </div>
-                        <div class="form-group col-4">
+                        <!-- <div class="form-group col-4">
                             <label [ngClass]="filterGroup?'text-secondary':'text-muted'"
                                 class="font-weight-semibold text-secondary pr-3 h6">Distance :</label>
                             <select class="form-control border" [value]="null" formControlName="distanceWithin"
@@ -233,7 +245,7 @@
                                 <option [value]="7.5">7.5 miles away</option>
                                 <option [value]="10.0">10.0 miles away</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -248,40 +260,47 @@
                             County, Operator And PlayType </label>
                     </div>
 
-                    <div class="form-row pt-2 ">
+                    <div class="form-row pt-2 " [formGroup]="searchFilterCountyNOperatorForm">
                         <div class="form-group col-4">
                             <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
-                                class="font-weight-semibold text-secondary pr-3 h6">County</label>
-                            <select class="form-control border" id="exampleFormControlSelect3" [disabled]="filterGroup">
-                                <option> Select County </option>
-                                <option>Karnes</option>
-                                <option>Texas</option>
-                                <option>Grimes</option>
-                                <option>Rockwall</option>
+                                class="font-weight-semibold text-secondary pr-3">County</label>
+                            <select class="form-control border" id="county1" formControlName="county"
+                                [attr.disabled]="filterGroup?'':null" [value]="null"
+                                [ngClass]="{ 'is-invalid': submitSearchFilterCountyOperatorForm && c.county.errors }"
+                                (change)="getCountyValues($event)">
+                                <option [value]="null" hidden> Select County </option>
+                                <option *ngFor="let cl of countyList" value="{{cl.county_no}}&{{cl.county_name}}">
+                                    {{cl.county_name}}
+                                </option>
                             </select>
+                            <div *ngIf="submitSearchFilterCountyOperatorForm && c.county.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="c.county.errors.required">County Name is required</div>
+                            </div>
                         </div>
 
                         <div class="form-group col-4">
                             <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
                                 class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                            <select class="form-control border" id="exampleFormControlSelect4" [disabled]="filterGroup">
-                                <option> Select Operator </option>
-                                <option>Operator 1</option>
-                                <option>Operator 2</option>
-                                <option>Operator 3</option>
-                                <option>Operator 4</option>
+                            <select class="form-control border" id="operator1" formControlName="operator"
+                                [attr.disabled]="filterGroup?'':null" [value]="null"
+                                [ngClass]="{ 'is-invalid': submitSearchFilterCountyOperatorForm && c.operator.errors }"
+                                (change)="getOperatorValues($event)">
+                                <option [value]="null" hidden> Select Operator </option>
+                                <option *ngFor="let ol of operatorList" value="{{ol.county_no}}&{{ol.county_name}}">
+                                    {{ol.county_name}}
+                                </option>
                             </select>
+                            <div *ngIf="submitSearchFilterCountyOperatorForm && c.operator.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="c.operator.errors.required">Operator Name is required</div>
+                            </div>
                         </div>
                         <div class="form-group col-4">
                             <label [ngClass]="!filterGroup?'text-secondary':'text-muted'"
                                 class="font-weight-semibold text-secondary pr-3">Play Type :</label>
                             <select class="form-control border" id="exampleFormControlSelect5" [disabled]="filterGroup">
                                 <option> Select Play Type </option>
-                                <option>Play Type 1</option>
-                                <option>Play Type 2</option>
-                                <option>Play Type 3</option>
-                                <option>Play Type 4</option>
-                                <option>Play Type 5</option>
                             </select>
                         </div>
 

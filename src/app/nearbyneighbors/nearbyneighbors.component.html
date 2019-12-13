@@ -65,6 +65,13 @@
                     <div class="row">
                         <div class="col-12">
                             <ul class="nav nav-tabs sub-tab border-0">
+
+                                <li *ngIf="nextLeaseFlag"
+                                    class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
+                                    <h6 class="text-accent font-weight-semibold mb-0">Lease Name : {{nextLeaseName}}<a
+                                            routerLink="#"><span
+                                                class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                </li>
                                 <!-- <li class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">
                                     <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a
                                             routerLink="#"><span
@@ -99,6 +106,10 @@
     <div class="row justify-content-between pt-1 gutters-1">
         <div class="col-md-12 col-xl-12">
 
+            <div class="col-md-12 col-xl-12 text-center" *ngIf="leaseOwnersList?.length==0">
+                <h6>Currently, there are no neighbors under this lease.</h6>
+            </div>
+
             <div class="row justify-content-between  pb-3 ">
 
                 <div class="col-xl-6 col-md-6 col-sm-6"
@@ -121,7 +132,7 @@
                                                     {{leaseName | titlecase}}
                                                 </li>
                                                 <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                    9.2 miles away
+                                                    {{nebDistance}} miles away
                                                 </li>
                                             </ul>
                                         </div>
@@ -131,7 +142,7 @@
                                     <h6 class="mb-0">
                                         <button type="button"
                                             class="mt-2 btn btn-accent align-self-center text-uppercase"
-                                            (click)="sendConnectRequest(lw)">Connect</button>
+                                            (click)="sendOneConnectRequest(lw)">Connect</button>
                                     </h6>
                                 </div>
                             </div>

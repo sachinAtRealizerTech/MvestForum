@@ -116,14 +116,8 @@ export class NeighborsComponent implements OnInit {
     })
 
     this.getMyLeases(this.user.member_id);
-    // this.getMemberNeighbors();
     this.getMemberList();
-
     this.getCountiesAndOperators();
-    //this.getNeighborsListDetails();
-    //this.getMyConnectRequests();
-    //this.getLeaseNeighbors();
-
     this.getAllMemberNeighbors();
   }
 
@@ -161,6 +155,8 @@ export class NeighborsComponent implements OnInit {
   toggleNewNeighborGroup() {
     //this.isDisabled = !this.isDisabled
     this.newNeighborGroup = !this.newNeighborGroup;
+    this.newNeighborLeaseForm.reset();
+    this.newNeighborCountyNOperatorForm.reset();
     this.submitNewNeighborCountyNOperatorForm = false;
     this.submitNewNeighborLeaseForm = false
   }
@@ -387,31 +383,30 @@ export class NeighborsComponent implements OnInit {
     }
   }
 
-  getMemberNeighbors() {
-    this.loading = true;
-    this.myConnectedNeighbors = [];
-    this.filteredRequests = [];
-    //this.neighboursListDetails = [];
-    this.allNeighboursCount = 0;
-    this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
-      this.loading = false;
-      this.myConnectedNeighbors = data['data'];
-      this.allNeighboursCount = this.myConnectedNeighbors.length;
-      sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
-      this.acceptedRequests = [];
-      this.acceptedRequests = this.myConnectedNeighbors
-      console.log('myconnectneighbors', this.myConnectedNeighbors)
-    },
-      error => {
-        this.loading = false;
-        console.log(error)
-      })
-  }
+  // getMemberNeighbors() {
+  //   this.loading = true;
+  //   this.myConnectedNeighbors = [];
+  //   this.filteredRequests = [];
+  //   //this.neighboursListDetails = [];
+  //   this.allNeighboursCount = 0;
+  //   this.neighborsService.getMemberNeighbors(this.user.member_id).subscribe(data => {
+  //     this.loading = false;
+  //     this.myConnectedNeighbors = data['data'];
+  //     this.allNeighboursCount = this.myConnectedNeighbors.length;
+  //     sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
+  //     this.acceptedRequests = [];
+  //     this.acceptedRequests = this.myConnectedNeighbors
+  //     console.log('myconnectneighbors', this.myConnectedNeighbors)
+  //   },
+  //     error => {
+  //       this.loading = false;
+  //       console.log(error)
+  //     })
+  // }
 
   getAllMemberNeighbors() {
     debugger;
     this.loading = true;
-    this.allNeighboursCount = 0;
     let body = {
       _member_id: this.user.member_id,
       _filter_by: "none",
@@ -422,8 +417,11 @@ export class NeighborsComponent implements OnInit {
     };
     this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
       debugger;
+      this.allNeighboursCount = 0;
+      this.neighboursListDetails = [];
       this.myConnectedNeighbors = data['data']
       this.allNeighboursCount = this.myConnectedNeighbors.length;
+      sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
       this.acceptedRequests = this.myConnectedNeighbors;
       console.log('newFilteredData', data['data']);
       this.loading = false;
@@ -613,7 +611,7 @@ export class NeighborsComponent implements OnInit {
     let body = {
       _member_id: this.user.member_id,
       _filter_by: "none",
-      _lease_number: null,
+      _lease_number: 0,
       _district_code: "",
       _county_no: "",
       _operator_number: ""
@@ -653,7 +651,7 @@ export class NeighborsComponent implements OnInit {
   // }
 
   // getFilteredNewListMembers() {
-  //   if (this.listLeaseNumber == null) {
+  //   if (this.listLeaseNumber == 0) {
   //     return
   //   }
   //   this.loading = true;
@@ -668,7 +666,7 @@ export class NeighborsComponent implements OnInit {
 
 
   // getFilteredNewListMembers() {
-  //   if (this.listLeaseNumber == null) {
+  //   if (this.listLeaseNumber == 0) {
   //     return
   //   }
   //   this.loading = true;

@@ -26,6 +26,8 @@ export class NearbyneighborsComponent implements OnInit {
   loading = false;
   nextLeaseCounter = 1;
   conAllNebName: string;
+  nextLeaseName: any;
+  nextLeaseFlag = false;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
@@ -36,12 +38,14 @@ export class NearbyneighborsComponent implements OnInit {
     this.leaseName = sessionStorage.getItem("nearbyleaseName");
     this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount");
     this.nearByLeases = JSON.parse(sessionStorage.getItem("multiLeasesArray"));
+    this.nebDistance = sessionStorage.getItem("nearByNbrDistance");
     this.getLeaseOwner();
   }
 
   public user = Utils.GetCurrentUser();
 
   getLeaseOwner() {
+    debugger;
     this.loading = true;
     let body = {
       _distCode: this.districtNumber,
@@ -50,6 +54,7 @@ export class NearbyneighborsComponent implements OnInit {
       _memberid: this.user.member_id
     }
     this.neighborsService.getLeaseOwnersWithConnect(body).subscribe(data => {
+      debugger;
       this.allLeaseOwnersList = data['data'];
       this.leaseOwnersList = [];
       for (let i = 0; i < this.allLeaseOwnersList.length; i++) {
@@ -68,7 +73,10 @@ export class NearbyneighborsComponent implements OnInit {
 
   getNextLeaseOwners() {
     debugger;
+    this.loading = true;
     for (let j = 1; j < this.nearByLeases.length; j++) {
+      this.nextLeaseFlag = true;
+      this.nextLeaseName = this.nearByLeases[j]['leasename']
       if (this.nextLeaseCounter == j) {
         this.districtNumber = this.nearByLeases[j]['dist_number'];
         this.leaseNumber = this.nearByLeases[j]['leasenumber'];
@@ -76,6 +84,7 @@ export class NearbyneighborsComponent implements OnInit {
         this.nextLeaseCounter++;
         break;
       }
+      this.loading = false;
     }
   }
 
@@ -84,9 +93,10 @@ export class NearbyneighborsComponent implements OnInit {
     this.conAllNebId = this.leaseOwnersList.map(value => value.mid).join(",");
     this.conAllNebMaild = this.leaseOwnersList.map(value => value.memaild).join(",");
     this.conAllNebName = this.leaseOwnersList.map(value => value.mname).join(",");
+    this.sendConnectRequest()
   }
 
-  sendConnectRequest(lw: any) {
+  sendConnectRequest() {
     debugger;
     this.memLeaseNumber = sessionStorage.getItem("nearbyleaseNumber");
     this.memDistrictnumber = sessionStorage.getItem("nearbydistrictNumber");
@@ -102,6 +112,33 @@ export class NearbyneighborsComponent implements OnInit {
       _nebemailid: this.conAllNebMaild,
       _myfname: this.user.f_name,
       _nebname: this.conAllNebName,
+      distance: this.nebDistance
+    }
+
+    return this.neighborsService.sendConnectRequest(body).subscribe(data => {
+      //alert('request sent successfully');
+      console.log('connectresponse', data)
+      this.flashMessagesService.show("You have successfully sent the connect request to all...", { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      this.getLeaseOwner();
+    })
+  }
+
+  sendOneConnectRequest(lw: any) {
+    debugger;
+    this.memLeaseNumber = sessionStorage.getItem("nearbyleaseNumber");
+    this.memDistrictnumber = sessionStorage.getItem("nearbydistrictNumber");
+    this.nebDistance = sessionStorage.getItem("nearByNbrDistance");
+    let body = {
+      _memdistCode: this.memDistrictnumber,
+      _memleasenumber: this.memLeaseNumber,
+      _memberid: this.user.member_id,
+      _myemailid: this.user.email_id,
+      _nebdistCode: this.districtNumber,
+      _nebleasenumber: this.leaseNumber,
+      _nebid: lw.mid,
+      _nebemailid: lw.memaild,
+      _myfname: this.user.f_name,
+      _nebname: lw.mname,
       distance: this.nebDistance
     }
 

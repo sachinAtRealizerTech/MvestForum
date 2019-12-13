@@ -45,12 +45,8 @@ export class RequestsComponent implements OnInit {
       _status: "accepted"
     }
     this.neighborsService.acceptConnectRequest(body).subscribe(data => {
-      if (data['data']['accept_or_ignore_neighbors_req'] == "success") {
-        this.flashMessagesService.show(`You have successfully got connected`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-      }
-      else {
-        this.flashMessagesService.show(`Sorry, You can not connect with the member yet...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-      }
+      debugger;
+      this.flashMessagesService.show(`You have successfully got connected`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       this.getMyConnectRequests()
     })
   }
@@ -62,12 +58,8 @@ export class RequestsComponent implements OnInit {
       _status: "ignore"
     }
     this.neighborsService.acceptConnectRequest(body).subscribe(data => {
-      if (data['data']['accept_or_ignore_neighbors_req'] == "success") {
-        this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-      }
-      else {
-        this.flashMessagesService.show(`You are not successful in declining the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-      }
+      debugger;
+      this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       this.getMyConnectRequests()
     })
   }

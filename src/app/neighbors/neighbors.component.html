@@ -511,7 +511,7 @@
                                   <div class="form-group col-4">
                                     <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">County</label>
                                     <select class="form-control border" [value]="null" id="county1" formControlName="county" [attr.disabled]="filterGroup?'':null"
-                                    (change)="getCountyValues($event)"
+                                    (change)="getSearchFilterCountyValues($event)"
                                     [ngClass]="{ 'is-invalid': submitSearchFilterCountyOperatorForm && c.county.errors }">
                                         <option [value]="null" hidden> Select County </option>
                                         <option *ngFor="let cl of countyList" value="{{cl.county_no}}">{{cl.county_name}}</option>
@@ -524,7 +524,7 @@
                                     <div class="form-group col-4">
                                         <label [ngClass]="!filterGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
                                         <select class="form-control border" [value]="null" id="operator1" formControlName="operator" [attr.disabled]="filterGroup?'':null"
-                                        (change)="getOperatorValues($event)"
+                                        (change)="getSearchFilterOperatorValues($event)"
                                         [ngClass]="{ 'is-invalid': submitSearchFilterCountyOperatorForm && c.operator.errors }">
                                             <option [value]="null" hidden> Select Operator </option>
                                             <option *ngFor="let ol of operatorList" value="{{ol.county_no}}">{{ol.county_name}}</option>
@@ -617,7 +617,7 @@
                                 <div class="form-row pt-2 " [formGroup]="newNeighborCountyNOperatorForm">
                                       <div class="form-group col-4">
                                         <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold text-secondary pr-3">County</label>
-                                        <select class="form-control border" formControlName="county" [value]="null" id="county24" [attr.disabled]="newNeighborGroup"
+                                        <select class="form-control border" formControlName="county" [value]="null" id="county24" [attr.disabled]="newNeighborGroup?'':null"
                                         (change)="selectCountyForNewNeighbor($event)"
                                         [ngClass]="{ 'is-invalid': submitNewNeighborCountyNOperatorForm && h.county.errors }">
                                           <option [value]="null" hidden> Select County </option>
@@ -630,7 +630,7 @@
                                    
                                         <div class="form-group col-4">
                                             <label [ngClass]="!newNeighborGroup?'text-secondary':'text-muted'" class="font-weight-semibold  text-secondary pr-3">Operator</label>
-                                            <select class="form-control border" formControlName="operator" [value]="null" id="operator23" [attr.disabled]="newNeighborGroup"
+                                            <select class="form-control border" formControlName="operator" [value]="null" id="operator23" [attr.disabled]="newNeighborGroup?'':null"
                                             (change)="selectOperatorForNewNeighbor($event)"
                                             [ngClass]="{ 'is-invalid': submitNewNeighborCountyNOperatorForm && h.operator.errors }">
                                               <option [value]="null" hidden> Select Operator </option>

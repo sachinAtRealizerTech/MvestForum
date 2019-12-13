@@ -18,7 +18,7 @@ export class NearbyleasesComponent implements OnInit {
   distanceWithin: string;
   searchFilterModal: TemplateRef<any>;
   myLeases: any;
-  searchFilterForm: FormGroup;
+  searchFilterLeaseForm: FormGroup;
   leaseName: string;
   distance: string;
   leaseFilter = false;
@@ -34,6 +34,14 @@ export class NearbyleasesComponent implements OnInit {
   countyNumber: string;
   operatorNumber: string;
   leaseInput: any
+  searchFilterCountyNOperatorForm: FormGroup;
+  submitSearchFilterLeaseForm = false;
+  submitSearchFilterCountyOperatorForm = false;
+  countiesAndOperators: any;
+  operatorList: any = [];
+  countyList: any = [];
+  countyName: string;
+  operatorName: string;
 
   constructor(private neighborsService: NeighborsService,
     private modalService: NgbModal,
@@ -43,13 +51,20 @@ export class NearbyleasesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.searchFilterForm = this.formbuilder.group({
-      leaseName: [],
-      distanceWithin: []
+    this.getCountiesAndOperators();
+
+    this.searchFilterLeaseForm = this.formbuilder.group({
+      leaseName: ['', Validators.required],
+      //distanceWithin: []
+    })
+
+    this.searchFilterCountyNOperatorForm = this.formbuilder.group({
+      county: ['', Validators.required],
+      operator: ['', Validators.required]
     })
 
     this.neighborFilterFlag = sessionStorage.getItem("newNeighborFilterFlag");
-
+    debugger;
     if (this.neighborFilterFlag == "Lease") {
       this.leaseNumber = sessionStorage.getItem("nearbyleaseNumber");
       this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
@@ -62,6 +77,7 @@ export class NearbyleasesComponent implements OnInit {
       }
     }
     else if (this.neighborFilterFlag == "CountyNOperator") {
+      debugger;
       this.countyNumber = sessionStorage.getItem("nearbyCountyNumber");
       this.operatorNumber = sessionStorage.getItem("nearbyOperatorNumber")
       this.leaseInput = {
@@ -81,9 +97,17 @@ export class NearbyleasesComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
+  get f() { return this.searchFilterLeaseForm.controls }
+  get c() { return this.searchFilterCountyNOperatorForm.controls }
+
+
   toggleFilterGroup() {
     debugger;
     this.filterGroup = !this.filterGroup;
+    this.submitSearchFilterLeaseForm = false;
+    this.submitSearchFilterCountyOperatorForm = false
+    this.searchFilterCountyNOperatorForm.reset();
+    this.searchFilterLeaseForm.reset();
   }
 
   closeLeaseFilter() {
@@ -109,23 +133,51 @@ export class NearbyleasesComponent implements OnInit {
   searchFilterData() {
     //this.showFilter = false;
     if (this.filterGroup == true) {
+      this.submitSearchFilterLeaseForm = true
+      if (this.searchFilterLeaseForm.invalid) {
+        return
+      }
       this.leaseFilter = true;
       this.distanceFilter = true;
       this.countyFilter = false;
       this.operatorFilter = false;
       this.playTypeFilter = false;
       this.closeSearchFilterModal();
-      this.getNeighboringLeases()
+      this.neighborFilterFlag == "Lease"
+      this.getNeighboringLeases();
+
     }
     else {
+      this.submitSearchFilterCountyOperatorForm = true
+      if (this.searchFilterCountyNOperatorForm.invalid) {
+        return
+      }
       this.leaseFilter = false;
       this.distanceFilter = false;
       this.countyFilter = true;
       this.operatorFilter = true;
       this.playTypeFilter = true;
       this.closeSearchFilterModal();
+      this.neighborFilterFlag == "CountyNOperator"
       this.getNeighboringLeases();
     }
+  }
+
+  getCountiesAndOperators() {
+    this.neighborsService.getCountiesAndOperators().subscribe(data => {
+      this.countiesAndOperators = data['data'];
+      console.log('countiesandoperators', this.countiesAndOperators);
+      this.operatorList = [];
+      this.countyList = [];
+      for (let i = 0; i < this.countiesAndOperators.length; i++) {
+        if (this.countiesAndOperators[i]['entity_type'] == "operator") {
+          this.operatorList.push(this.countiesAndOperators[i])
+        }
+        else if (this.countiesAndOperators[i]['entity_type'] == "county") {
+          this.countyList.push(this.countiesAndOperators[i])
+        }
+      }
+    })
   }
 
   getNeighboringLeases() {
@@ -133,6 +185,8 @@ export class NearbyleasesComponent implements OnInit {
     this.loading = true;
     if (this.neighborFilterFlag == "Lease") {
       this.neighborsService.getLeaseNeighbors(this.leaseInput).subscribe(data => {
+        debugger;
+        this.nearByLeases = [];
         this.nearByLeases = data['data'];
         sessionStorage.setItem("nearbyleaseNumber", this.leaseNumber);
         sessionStorage.setItem("nearbydistrictNumber", this.districtNumber);
@@ -147,6 +201,8 @@ export class NearbyleasesComponent implements OnInit {
     }
     else if (this.neighborFilterFlag == "CountyNOperator") {
       this.neighborsService.getLeaseNeighbors(this.leaseInput).subscribe(data => {
+        debugger;
+        this.nearByLeases = [];
         this.nearByLeases = data['data'];
         sessionStorage.setItem("nearbyCountyNumber", this.countyNumber);
         sessionStorage.setItem("nearbyOperatorNumber", this.operatorNumber);
@@ -172,7 +228,10 @@ export class NearbyleasesComponent implements OnInit {
   }
 
   closeSearchFilterModal() {
-    this.modalService.dismissAll(this.searchFilterModal)
+    this.modalService.dismissAll(this.searchFilterModal);
+    this.searchFilterLeaseForm.reset();
+    this.searchFilterCountyNOperatorForm.reset();
+    this.filterGroup = true;
   }
 
   getLeaseValues(event) {
@@ -184,6 +243,20 @@ export class NearbyleasesComponent implements OnInit {
     this.districtNumber = compKeyArray[1];
     this.leaseName = compKeyArray[2];
     sessionStorage.setItem("leaseNumber", this.leaseNumber);
+  }
+
+  getCountyValues(event) {
+    let compKey: string = event.target.value;
+    let compKeyArray: Array<string> = compKey.split("&");
+    this.countyNumber = compKeyArray[0];
+    this.countyName = compKeyArray[1];
+  }
+
+  getOperatorValues(event) {
+    let compKey: string = event.target.value;
+    let compKeyArray: Array<string> = compKey.split("&");
+    this.operatorNumber = compKeyArray[0];
+    this.operatorName = compKeyArray[1];
   }
 
   getMyLeases() {
