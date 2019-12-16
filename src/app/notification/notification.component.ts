@@ -19,6 +19,7 @@ export class NotificationComponent implements OnInit {
 
   showNotificationsPage = true;
   showArchivesPage = false;
+  archivedNotifications: any;
   constructor(private notificationService: NotificationService,
     private flashMessagesService: FlashMessagesService) { }
 
@@ -108,7 +109,8 @@ export class NotificationComponent implements OnInit {
 
   getMyArchNotification(email: string) {
     this.notificationService.getMyArchNotification(this.user.email_id).subscribe(data => {
-      console.log('Archive', data)
+      console.log('Archive', data);
+      this.archivedNotifications = data;
     })
   }
 

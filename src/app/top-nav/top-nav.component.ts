@@ -30,6 +30,10 @@ export class TopNavComponent implements OnInit {
   oldSearchText: string;
   newSearchText: string;
   searchedDataSession: string;
+  searchTextString: string[];
+  searchFirstText: string;
+  searchDataArray: string[] = [];
+  newSearchTextArray: string[];
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -113,16 +117,17 @@ export class TopNavComponent implements OnInit {
     }
     if (this.searchText.length < 3) {
       this.threeChars = true;
+      this.searchedData = [];
       return
     }
     this.threeChars = false;
-
     this.searchedDataSession = sessionStorage.getItem("searchedData")
     console.log('searchedDataSession', this.searchedDataSession)
 
     if (this.searchedData.length == 0) {
-      // console.log('searchedDataSessionIndex', this.searchedDataSession.indexOf(this.searchText))
-      this.topNavService.getSearchResult(this.searchText).subscribe(data => {
+      this.searchTextString = this.searchText.split(" ");
+      this.searchFirstText = this.searchTextString[0];
+      this.topNavService.getSearchResult(this.searchFirstText).subscribe(data => {
         debugger;
         this.loading = false;
         this.searchedData = data;
@@ -155,7 +160,7 @@ export class TopNavComponent implements OnInit {
       debugger;
       let i = this.searchText.indexOf(' ');
       this.oldSearchText = this.searchText.substring(0, i);
-      console.log("oldtext", this.oldSearchText)
+      console.log("oldtext", this.oldSearchText);
       this.newSearchText = this.searchText.substring(i);
       console.log("newtext", this.newSearchText)
       for (let i = 0; i < this.searchedData.length; i++) {
@@ -165,77 +170,32 @@ export class TopNavComponent implements OnInit {
       }
       sessionStorage.setItem("searchedData", JSON.stringify(this.communitySearchedData))
       this.loading = false;
-
     }
 
-    //     if (this.searchedData.length == 0) {
-    // //search api call      
-    //       this.topNavService.getSearchResult(this.searchText).subscribe(data => {
-    //         debugger;
-    //         this.loading = false;
-    //         this.searchedData = data;
-    //         sessionStorage.setItem("searchedData", this.searchedData)
-    //         console.log('searchedata', this.searchedData)
-    //         for (let i = 0; i < this.searchedData.length; i++) {
-    //           debugger;
-    //           if (this.searchedData[i]['sf'] == "community") {
-    //             console.log('ccs', this.searchedData[i])
-    //             this.communitySearchedData.push(this.searchedData[i])
-    //           }
-    //           if (this.searchedData[i]['sf'] == "lease") {
-    //             console.log('ccs', this.searchedData[i])
-    //             this.leaseSearchedData.push(this.searchedData[i])
-    //           }
-    //           if (this.searchedData[i]['sf'] == "news") {
-    //             console.log('ccs', this.searchedData[i])
-    //             this.newsSearchedData.push(this.searchedData[i])
-    //           }
-    //           if (this.searchedData[i]['sf'] == "wells") {
-    //             console.log('ccs', this.searchedData[i])
-    //             this.wellsSearchedData.push(this.searchedData[i])
-    //           }
-    //         }
-    //         console.log('communitySearchedData', this.communitySearchedData)
-    //       })
-    //     }
-    //     else {
-    //       this.searchText.replace(" ", "/")
-
-    //       let i = this.searchText.indexOf(' ');
-    //       this.oldSearchText = this.searchText.substring(0, i);
-    //       console.log("oldtext", this.oldSearchText)
-    //       this.newSearchText = this.searchText.substring(i);
-    //       console.log("newtext", this.newSearchText)
-    //     }
-
-
-    // this.topNavService.getSearchResult(this.searchText).subscribe(data => {
+    // else {
     //   debugger;
-    //   this.loading = false;
-    //   this.searchedData = data;
-    //   sessionStorage.setItem("searchedData", this.searchedData)
-    //   console.log('searchedata', this.searchedData)
-    //   for (let i = 0; i < this.searchedData.length; i++) {
-    //     debugger;
-    //     if (this.searchedData[i]['sf'] == "community") {
-    //       console.log('ccs', this.searchedData[i])
-    //       this.communitySearchedData.push(this.searchedData[i])
-    //     }
-    //     if (this.searchedData[i]['sf'] == "lease") {
-    //       console.log('ccs', this.searchedData[i])
-    //       this.leaseSearchedData.push(this.searchedData[i])
-    //     }
-    //     if (this.searchedData[i]['sf'] == "news") {
-    //       console.log('ccs', this.searchedData[i])
-    //       this.newsSearchedData.push(this.searchedData[i])
-    //     }
-    //     if (this.searchedData[i]['sf'] == "wells") {
-    //       console.log('ccs', this.searchedData[i])
-    //       this.wellsSearchedData.push(this.searchedData[i])
+
+    //   this.searchDataArray = this.searchedData.map(l => l.body)
+    //   console.log('searchDataArray', this.searchDataArray);
+    //   let i = this.searchText.indexOf(' ');
+    //   this.oldSearchText = this.searchText.substring(0, i + 1);
+    //   console.log("oldtext", this.oldSearchText);
+    //   this.newSearchText = this.searchText.substring(i);
+    //   console.log("newtext", this.newSearchText);
+    //   this.newSearchTextArray = this.newSearchText.split(" ");
+    //   this.communitySearchedData = [];
+    //   for (let i = 0; i < this.newSearchTextArray.length; i++) {
+    //     for (let j = 0; j < this.searchDataArray.length; j++) {
+    //       if (this.searchDataArray[j].includes(this.newSearchTextArray[i])) {
+    //         this.communitySearchedData.push(this.searchedData[i])
+    //       }
     //     }
     //   }
-    //   console.log('communitySearchedData', this.communitySearchedData)
-    // })
+
+    //   sessionStorage.setItem("searchedData", JSON.stringify(this.communitySearchedData))
+    //   this.loading = false;
+    // }
+
   }
 
   goToSearchResultPage(searchType: string) {

@@ -594,10 +594,10 @@ export class NeighborsComponent implements OnInit {
 
   getNeighborsListDetails() {
     this.loading = true;
-    this.acceptedRequests = [];
     this.neighborsService.getNeighborsListDetails(this.listTypeId, this.user.member_id).subscribe(data => {
       debugger;
-      this.neighboursListDetails = data['data']
+      this.acceptedRequests = [];
+      this.neighboursListDetails = data['data'];
       console.log('neighboursListDetails', this.neighboursListDetails);
       this.loading = false;
     })

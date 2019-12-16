@@ -196,30 +196,6 @@
         <div class="col-12">
           <ul class="list-inline d-flex mb-1">
             <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">Archives</li>
-
-            <!-- <li class="list-inline-item  mb-1 align-self-center pr-3">
-            <select class="font-weight-semibold  text-accent" (change)="selectFeature($event)">
-              <option value="All">Feature : All</option>
-              <option *ngFor="let mef of masterEntriesFeature" [value]="mef.Entities.Value">
-                {{mef.Entities.Value}}
-              </option>
-            </select>
-          </li>
-          <li class="list-inline-item  mb-1 align-self-center pr-3">
-            <select class="font-weight-semibold text-accent " (change)="selectType($event)">
-              <option value="All">Type : All</option>
-              <option *ngFor="let met of masterEntriesType" [value]="met.Entities.Value">{{met.Entities.Value}}
-              </option>
-            </select>
-          </li>
-          <li class="list-inline-item  mb-1 align-self-center pr-3">
-            <select class="font-weight-semibold text-accent " (change)="selectStatus($event)">
-              <option value="All">Status : All</option>
-              <option *ngFor="let mes of masterEntriesStatus" [value]="mes.Entities.Value">
-                {{mes.Entities.Value}}
-              </option>
-            </select>
-          </li>  -->
             <div class="list-inline d-flex ml-auto">
               <li class="nav-item mr-3">
                 <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
@@ -246,7 +222,8 @@
 
       <div class="row">
         <div class="col-md-6 col-xl-8 pt-2">
-          <div class="row justify-content-between no-gutters pb-3">
+          <div class="row justify-content-between no-gutters pb-3"
+            *ngFor="let an of archivedNotifications | filter:searchText">
             <div class="col-xl-12">
               <div class="card shadow">
                 <div class="card-body py-0  px-3">
@@ -256,9 +233,11 @@
                         <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
                           width="30px">
                         <div class="media-body">
-                          <h6 class="mt-0 mb-0 text-secondary font-weight-normal">Shilpa Dhumal</h6>
+                          <h6 class="mt-0 mb-0 text-secondary font-weight-normal"
+                            [innerHtml]="an.Notifications.Text | highlight:searchText">
+                          </h6>
                           <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">
-                            commented on your Post
+                            {{an.Notifications.Date | date:'medium' }}
                           </h6>
                         </div>
                       </div>
@@ -266,7 +245,8 @@
                     <div class="col-4 text-right justify-content-end pull-right">
                       <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
                         <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                          <a routerLink="#" data-toggle="tooltip" title="Archive Notification">
+                          <a routerLink="#" data-toggle="tooltip" title="Archive Notification"
+                            (click)="archievingNotification(mn.Notifications.notId)">
                             <h6 class="mb-0 font-weight-semibold">
                               <i class="material-icons md-22">
                                 unarchive
@@ -282,43 +262,32 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-8 pt-2">
-          <div class="row justify-content-between no-gutters pb-3">
-            <div class="col-xl-12">
-              <div class="card shadow">
-                <div class="card-body py-0  px-3">
-                  <div class="row  py-2 border-bottom">
-                    <div class="col-8 ">
-                      <div class="media">
-                        <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
-                          width="30px">
-                        <div class="media-body">
-                          <h6 class="mt-0 mb-0 text-secondary font-weight-normal">Shilpa Dhumal</h6>
-                          <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">
-                            commented on your Post
-                          </h6>
-                        </div>
+        <!-- 
+      <div class="col-md-6 col-xl-4  pt-2">
+        <div class="row">
+          <div class="col-xl-12">
+
+            <div class="row justify-content-between no-gutters pb-3">
+              <div class="col-xl-12">
+                <div class="card shadow ">
+                  <div class="card-body  py-0 px-3">
+                    <div class="row py-2 border-bottom">
+                      <div class="col-12 d-flex"> 
+                        <a routerLink="#"><h6 class="mb-0 align-self-center text-accent">View All Archives</h6></a>
                       </div>
-                    </div>
-                    <div class="col-4 text-right justify-content-end pull-right">
-                      <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
-                        <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                          <a routerLink="#" data-toggle="tooltip" title="Archive Notification">
-                            <h6 class="mb-0 font-weight-semibold">
-                              <i class="material-icons md-22">
-                                unarchive
-                              </i>
-                            </h6>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+
+                     
+                    </div> 
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
+
+      </div>  -->
+
       </div>
 
       <hr>
