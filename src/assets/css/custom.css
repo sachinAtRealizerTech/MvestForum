@@ -968,6 +968,27 @@ textarea:focus {
     z-index: 2;  
 }
 
+.avatar-container{
+  width:100px !important;
+  height:100px !important;
+}
+.avatar-content{
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding-top: 28px;
+  border-radius: 100%;
+  /* border:5px solid #ffffff; */
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+   background-color: #212529 !important;  
+   background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,205,149,1) 90%) !important; 
+  font: 25px/50px Montserrat, sans-serif !important; 
+  width:100px;
+height:100px;
+}
+
+
 .category-text{
   position: absolute;
  top: 320% !important;
