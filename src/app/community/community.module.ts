@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 //import { DiscussionsComponent } from './discussions/categories/components/discussions.component';
 import { DiscussionsModule } from '../community/discussions/discussions.module';
 //import { LoadingcircleComponent } from '../shared/loadingcircle/loadingcircle.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -12,10 +13,12 @@ import { DiscussionsModule } from '../community/discussions/discussions.module';
   ],
   imports: [
     CommonModule,
-    DiscussionsModule
+    DiscussionsModule,
+    ImageCropperModule
   ],
   exports: [
-    DiscussionsModule
+    DiscussionsModule,
+    ImageCropperModule
   ]
 })
 export class CommunityModule { }
