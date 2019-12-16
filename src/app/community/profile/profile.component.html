@@ -19,10 +19,11 @@
                      
                    </div>  -->
               <!-- <span class="custom-dropdown dropdown-menu dropdown-menu-small"> -->
-              <select>
+              <select class="font-weight-normal text-secondary">
                 <option>All Posts</option>
                 <option>My Posts</option>
-                <option>Bookmark</option>
+                <option>MVest News</option>
+                <option>Official News</option>
 
               </select>
               <!-- </span> -->
@@ -361,12 +362,12 @@
               </form> -->
     <form action="/action_page.php" class="needs-validation" novalidate>
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Post</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+          <div class=" justify-content-end">
+              <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" data-dismiss="modal">
+           <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
 
         <div class="modal-body">
           <div class="card shadow-none">
@@ -382,12 +383,13 @@
                     </form> -->
                 <form>
                   <div class="form-group">
-                    <label for="title">Subject :</label>
-                    <input type="text" class="form-control" id="title" placeholder="">
+                    <label class="font-weight-semibold text-dark h6">Your Post :</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter Subject">
                   </div>
                   <div class="form-group">
-                    <label for="leasetype">
-                      Forums : </label><select class="custom-select my-1 pr-5" id="inlineFormCustomSelectPref">
+                    <label for="leasetype" class="font-weight-semibold text-dark h6">
+                      Forums : </label>
+                      <select class=" pr-5 form-control border" id="inlineFormCustomSelectPref">
                       <option selected="">Choose Forum Type...</option>
                       <option value="1">County</option>
                       <option value="2">Operator</option>
