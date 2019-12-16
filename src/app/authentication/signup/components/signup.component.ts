@@ -257,6 +257,13 @@ export class SignupComponent implements OnInit {
     this.confirmEmail = this.alertInfoForm.controls.alertEmail.value;
   }
 
+  omitSpecialChar(event) {
+    debugger;
+    var k;
+    k = event.charCode;
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57) || (k >= 96 && k <= 105));
+  }
+
   submitUserInformation(passwordVerifyModal) {
     debugger;
     this.submitUserInfoForm = true;

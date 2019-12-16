@@ -317,7 +317,8 @@
                                 <label for="firstname" class="text-muted">First Name<span
                                         class="text-danger fontsize-1-25 font-weight-semibold"> * </span></label>
                                 <input class="form-control rounded" formControlName="firstName" id="firstname"
-                                    type="text" placeholder=""
+                                    type="text" placeholder="" pattern="/[A-Z]{5}\d{4}[A-Z]{1}/i"
+                                    (keypress)="omitSpecialChar($event)"
                                     [ngClass]="{ 'is-invalid': submitUserInfoForm && f.firstName.errors }">
                                 <div *ngIf="submitUserInfoForm && f.firstName.errors" class="invalid-feedback">
                                     <div *ngIf="f.firstName.errors.required">First Name is required</div>
@@ -329,7 +330,8 @@
                                 <label for="lastname" class="text-muted">Last Name<span
                                         class="text-danger fontsize-1-25 font-weight-semibold"> * </span></label>
                                 <input class="form-control rounded" formControlName="lastName" id="lastname" type="text"
-                                    placeholder=""
+                                    placeholder="" pattern="/[A-Z]{5}\d{4}[A-Z]{1}/i"
+                                    (keypress)="omitSpecialChar($event)"
                                     [ngClass]="{ 'is-invalid': submitUserInfoForm && f.lastName.errors }">
                                 <div *ngIf="submitUserInfoForm && f.lastName.errors" class="invalid-feedback">
                                     <div *ngIf="f.lastName.errors.required">Last Name is required</div>
@@ -365,7 +367,8 @@
                             <div class="form-group">
                                 <label for="city" class="text-muted">City</label>
                                 <input class="form-control rounded" formControlName="city" id="city" type="text"
-                                    placeholder="" [ngClass]="{ 'is-invalid': submitUserInfoForm && f.city.errors }">
+                                    (keypress)="omitSpecialChar($event)" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.city.errors }">
                                 <div *ngIf="submitUserInfoForm && f.city.errors" class="invalid-feedback">
                                     <div *ngIf="f.city.errors.required">City is required</div>
                                 </div>
