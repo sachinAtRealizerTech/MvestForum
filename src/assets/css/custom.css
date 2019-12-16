@@ -862,8 +862,8 @@ textarea:focus {
 
 }
 .js--image-preview--profile{
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   border:1px solid #ccc;
   border-radius: 50%;
   position: relative;
@@ -903,7 +903,7 @@ textarea:focus {
 /* browse img2 end*/
 .upload-options-profile {
   position: relative;
-  top: 50px;
+  top: 35px;
   height: 55px;
   background-color:transparent;
   cursor: pointer;
@@ -1424,6 +1424,72 @@ top:128px;
   
   .coverphoto{
     height:60px !important ;
-    width: 124px !important;
- 
+    width: 124px !important; 
    }
+
+   .albumphoto{
+     position: relative;
+    height:100px !important ;
+    width: 100px !important; 
+   }
+
+   .albumphoto {
+    position: relative;
+    height: 55px;
+    /* background-color: #00CD95; */
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    -webkit-transition: background-color ease-in-out 150ms;
+    transition: background-color ease-in-out 150ms;
+  }
+    /* .albumphoto:hover {
+    color: #00CD95;
+    cursor: pointer !important;
+  }   */
+  .albumphoto input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+   .albumphoto label {
+     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .albumphoto label::after {
+    content: 'add';
+    font-family: 'Material Icons';
+    position: absolute;
+    font-size: 2.5rem;
+    color: #e6e6e6;
+    /* top: calc(50% - 2.5rem); */
+    left: calc(50% - 1.25rem);
+    z-index: 0;
+  }
+  .albumphoto label::after:hover{
+    content: 'add';
+    font-family: 'Material Icons';
+    position: absolute;
+    font-size: 2.5rem;
+    color: #00cd95 !important;
+    /* top: calc(50% - 2.5rem); */
+    left: calc(50% - 1.25rem);
+    z-index: 0;
+  }
