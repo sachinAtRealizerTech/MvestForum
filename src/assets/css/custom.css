@@ -864,6 +864,7 @@ textarea:focus {
 .js--image-preview--profile{
   height: 150px;
   width: 150px;
+  border:1px solid #ccc;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -912,7 +913,7 @@ textarea:focus {
   transition: background-color ease-in-out 150ms;
 }
 .upload-options-profile:hover {
-  background-color: #00CD95;
+  background-color:none;
 }
 .upload-options-profile input {
   width: 0.1px;
