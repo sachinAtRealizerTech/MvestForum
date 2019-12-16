@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Utils } from '../shared/Utils';
 import { CommunityService } from './community.service';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-community',
@@ -11,12 +14,20 @@ import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 export class CommunityComponent implements OnInit {
   selectedFile: any;
   imagePreview: string | ArrayBuffer;
+  newDisplayPicForm: FormGroup;
+  newDisplayPicModal: TemplateRef<any>;
 
   @ViewChild(ImageCropperComponent, { static: false }) imageCropper: ImageCropperComponent;
 
-  constructor(private communityService: CommunityService) { }
+  constructor(private communityService: CommunityService,
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.newDisplayPicForm = this.formBuilder.group({
+      // croppedImage: ['', Validators.required],
+      newDisplayPic: ['', Validators.required]
+    })
   }
 
   public user = Utils.GetCurrentUser();
@@ -24,11 +35,30 @@ export class CommunityComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
+  openNewDisplayPicForm(newDisplayPicModal: TemplateRef<any>) {
+    this.newDisplayPicModal = newDisplayPicModal;
+    this.modalService.open(this.newDisplayPicModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop',
+      //size: 'lg'
+    })
+  }
+
+  closeNewDisplayPicForm() {
+    this.modalService.dismissAll(this.newDisplayPicModal);
+    this.newDisplayPicForm.reset();
+  }
+
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }
+
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
+  }
+
+  cropperReady() {
+    // cropper ready
   }
 
   cropIt(evnt) {
@@ -52,7 +82,9 @@ export class CommunityComponent implements OnInit {
     debugger;
     //Upload file here send a binary data
     this.communityService.OnUploadFile(this.croppedImage)
-      .subscribe();
+      .subscribe(data => {
+
+      });
   }
 
 

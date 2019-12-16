@@ -49,8 +49,14 @@
         style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;">
         <div class="media align-items-end profile-header ">
           <div class="justify-content-start mr-3">
-            <img href="#" data-toggle="modal" data-target=".profile-modal-lg" src="assets/images/MProfile.png" alt="..."
-              width="100" class="rounded-50 mt-2 profile img-thumbnail cursor-pointer">
+
+            <ngx-avatar name="{{user.f_name}} {{user.l_name}}" width="200"
+              class="rounded-50 profile img-thumbnail cursor-pointer" src=""
+              (click)="openNewDisplayPicForm(newDisplayPicModal)"></ngx-avatar>
+
+            <!-- <img href="#" (click)="openNewDisplayPicForm(newDisplayPicModal)" src="assets/images/MProfile.png" alt="..."
+              width="100" class="rounded-50 mt-2 profile img-thumbnail cursor-pointer"> -->
+
           </div>
 
           <div class="media-body justify-content-center text-left text-white ">
@@ -180,7 +186,65 @@
 </div>
 
 
-<div class="modal fade profile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="profile-modal" aria-hidden="true">
+<ng-template #newDisplayPicModal>
+
+
+
+  <div class="modal-content modal-md" [formGroup]="newDisplayPicForm">
+    <div class=" justify-content-end">
+      <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+        (click)="closeNewDisplayPicForm()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-row">
+
+        <div class="form-group col-12">
+          <label for="leasetype mb-4" class="font-weight-semibold">Browse to Add Profile Photo : </label>
+        </div>
+      </div>
+      <div class="form-row">
+
+        <div class="form-group col-4">
+          <img class="js--image-preview--profile mt-2" [src]="croppedImage" width="70" height="70">
+        </div>
+
+        <div class="form-group col-4">
+
+          <div class="js--image-preview--profile mt-2">
+            <div class="upload-options-profile  align-self-end">
+              <label>
+                <input type="file" class="image-upload rounded-5 text-dark" formControlName="newDisplayPic"
+                  (change)="fileChangeEvent($event)" accept="image/*" />
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+          [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+        </image-cropper>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-accent text-uppercase" (click)="onUploadFile()">Submit</button>
+    </div>
+  </div>
+
+
+
+</ng-template>
+
+
+<!-- <div class="modal fade profile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="profile-modal" aria-hidden="true">
   <div class="modal-dialog modal-md bg-white shadow">
     <form action="/action_page.php" class="needs-validation" novalidate>
       <div class="modal-content">
@@ -223,17 +287,13 @@
           </div>
         </div>
 
-
-
-
         <div class="modal-footer">
           <button type="button" class="btn btn-accent text-uppercase" (click)="onUploadFile()">Submit</button>
-          <!-- <button type="button" class="btn btn-outline-accent text-uppercase" data-dismiss="modal">Cancel</button> -->
         </div>
       </div>
     </form>
   </div>
-</div>
+</div> -->
 
 
 
