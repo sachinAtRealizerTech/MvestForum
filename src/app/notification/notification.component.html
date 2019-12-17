@@ -93,7 +93,7 @@
       <div class="row">
         <div class="col-md-6 col-xl-8 pt-2">
           <div class="row justify-content-between no-gutters pb-3"
-            *ngFor="let mn of myNotifications | filter:searchText">
+            *ngFor="let mn of myNotifications | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p }">
             <div class="col-xl-12">
               <div class="card shadow">
                 <div class="card-body py-0  px-3">
@@ -164,7 +164,9 @@
 
       <div class="row justify-content-end text-right py-3">
         <div class="col-md-12 col-xl-12 text-right">
-          <nav aria-label="Page navigation example bg-dark">
+
+
+          <!-- <nav aria-label="Page navigation example bg-dark">
             <ul class="nav justify-content-end px-3 ">
 
               <li class="page-item border">
@@ -183,9 +185,12 @@
               </li>
 
             </ul>
-          </nav>
+          </nav> -->
+
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
       </div>
+
     </div>
 
 
@@ -223,7 +228,7 @@
       <div class="row">
         <div class="col-md-6 col-xl-8 pt-2">
           <div class="row justify-content-between no-gutters pb-3"
-            *ngFor="let an of archivedNotifications | filter:searchText">
+            *ngFor="let an of archivedNotifications | filter:searchText | paginate: { itemsPerPage: 10, currentPage: q }">
             <div class="col-xl-12">
               <div class="card shadow">
                 <div class="card-body py-0  px-3">
@@ -294,7 +299,10 @@
 
       <div class="row justify-content-end text-right py-3">
         <div class="col-md-12 col-xl-12 text-right">
-          <nav aria-label="Page navigation example bg-dark">
+
+          <pagination-controls (pageChange)="q = $event"></pagination-controls>
+
+          <!-- <nav aria-label="Page navigation example bg-dark">
             <ul class="nav justify-content-end px-3 ">
 
               <li class="page-item border">
@@ -313,7 +321,8 @@
               </li>
 
             </ul>
-          </nav>
+          </nav> -->
+
         </div>
       </div>
     </div>

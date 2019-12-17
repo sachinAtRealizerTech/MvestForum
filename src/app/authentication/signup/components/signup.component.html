@@ -388,8 +388,12 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="zipcode" class="text-muted">Zip Code</label>
-                                <input class="form-control rounded" formControlName="zipCode" id="zipcode" type="number"
-                                    placeholder="">
+                                <input class="form-control rounded" formControlName="zipCode" id="zipcode" type="text"
+                                    placeholder="" pattern="^[0-9]*[1-9][0-9]*$"
+                                    [ngClass]="{ 'is-invalid': submitUserInfoForm && f.zipCode.errors }">
+                                <div *ngIf="submitUserInfoForm && f.zipCode.errors" class="invalid-feedback">
+                                    <div *ngIf="f.zipCode.errors.pattern">Invalid Zip Code.</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
