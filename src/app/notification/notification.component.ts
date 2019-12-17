@@ -16,6 +16,8 @@ export class NotificationComponent implements OnInit {
   masterEntriesType: any = [];
   masterEntriesStatus: any = [];
   myNotifications: any = [];
+  p: any;
+  q: any;
 
   showNotificationsPage = true;
   showArchivesPage = false;

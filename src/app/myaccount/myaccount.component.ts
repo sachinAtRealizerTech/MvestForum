@@ -26,6 +26,8 @@ export class MyaccountComponent implements OnInit {
   submitChangePassword = false;
   mismatchedPasswords = false;
   mismatchOldPassword = false;
+  userDetailsArray: any;
+  loading = false;
 
   constructor(private myaccountService: MyaccountService,
     private formBuilder: FormBuilder,
@@ -93,8 +95,11 @@ export class MyaccountComponent implements OnInit {
 
   getUserProfileDetails() {
     debugger;
+    this.loading = true;
     this.myaccountService.getUserProfileDetails(this.user.email_id).subscribe(data => {
+      this.loading = false;
       console.log('userdetails', data);
+      this.userDetailsArray = data
       this.userDetails = data[0];
       this.signupService.getStates().subscribe(data => {
         this.stateList = data['data'];

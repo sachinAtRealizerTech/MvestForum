@@ -2,6 +2,14 @@
 
   <flash-messages class="bg-accent text-center pb-0"></flash-messages>
 
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
+
   <div class="row pb-3 pt-4">
     <div class="col-12">
 
@@ -27,7 +35,7 @@
           <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
             aria-controls="contact" aria-selected="false">Manage Subscription</a>
         </li>
-       
+
       </ul>
     </div>
   </div>
@@ -62,7 +70,7 @@
 
               <div class="row justify-content-between no-gutters pb-3" [formGroup]="userProfileForm">
 
-                <div class="col-xl-12">
+                <div class="col-xl-12" *ngIf="userDetailsArray?.length>0">
                   <div class="card card-small  shadow">
                     <div class="card-body p-4">
                       <div class="form-row">
