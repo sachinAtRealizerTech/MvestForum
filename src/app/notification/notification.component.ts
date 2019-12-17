@@ -15,11 +15,11 @@ export class NotificationComponent implements OnInit {
   masterEntriesFeature: any = [];
   masterEntriesType: any = [];
   masterEntriesStatus: any = [];
-  myNotifications: Object;
+  myNotifications: any = [];
 
   showNotificationsPage = true;
   showArchivesPage = false;
-  archivedNotifications: any;
+  archivedNotifications: any = [];
   constructor(private notificationService: NotificationService,
     private flashMessagesService: FlashMessagesService) { }
 
@@ -32,7 +32,6 @@ export class NotificationComponent implements OnInit {
   ngOnInit() {
     this.getNotificationMasterEntries();
     this.getMyNotifications();
-    this.getMyArchNotification(this.user.email_id);
   }
 
   public user = Utils.GetCurrentUser();
@@ -44,6 +43,7 @@ export class NotificationComponent implements OnInit {
   showArchives() {
     this.showNotificationsPage = false;
     this.showArchivesPage = true;
+    this.getMyArchNotification(this.user.email_id);
   }
   getNotificationMasterEntries() {
     this.notificationService.getNotificationMasterEntries().subscribe(data => {
@@ -72,6 +72,7 @@ export class NotificationComponent implements OnInit {
     this.notificationService.getMyNotifications(this.user.email_id, this.currentFeature, this.currentStatus, this.currentType).subscribe(data => {
       debugger;
       this.myNotifications = data;
+      this.myNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
       console.log('mynotifications', data)
     })
     err => {
@@ -111,6 +112,7 @@ export class NotificationComponent implements OnInit {
     this.notificationService.getMyArchNotification(this.user.email_id).subscribe(data => {
       console.log('Archive', data);
       this.archivedNotifications = data;
+      this.archivedNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
     })
   }
 

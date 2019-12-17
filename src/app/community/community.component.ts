@@ -18,6 +18,7 @@ export class CommunityComponent implements OnInit {
   newDisplayPicModal: TemplateRef<any>;
 
   @ViewChild(ImageCropperComponent, { static: false }) imageCropper: ImageCropperComponent;
+  croppedImageBlob: Blob;
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
@@ -53,8 +54,14 @@ export class CommunityComponent implements OnInit {
     this.imageChangedEvent = event;
   }
 
+  // imageCropped(event: ImageCroppedEvent) {
+  //   this.croppedImage = event.base64;
+  // }
+
   imageCropped(event: ImageCroppedEvent) {
+    debugger;
     this.croppedImage = event.base64;
+    this.croppedImageBlob = this.dataURItoBlob(this.croppedImage)
   }
 
   cropperReady() {
@@ -63,6 +70,16 @@ export class CommunityComponent implements OnInit {
 
   cropIt(evnt) {
     console.log(this.croppedImage);
+  }
+
+
+  dataURItoBlob(dataURI) {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
   }
 
 
@@ -81,7 +98,13 @@ export class CommunityComponent implements OnInit {
   onUploadFile() {
     debugger;
     //Upload file here send a binary data
-    this.communityService.OnUploadFile(this.croppedImage)
+    let file = new File([this.croppedImageBlob], "profilepic.jpeg", {
+      type: 'image/jpeg'
+    })
+    const formData = new FormData();
+    formData.append('profile', file);
+    console.log('formdata', formData)
+    this.communityService.onUploadFile(formData)
       .subscribe(data => {
 
       });

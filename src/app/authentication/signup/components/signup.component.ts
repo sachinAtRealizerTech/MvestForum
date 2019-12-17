@@ -13,6 +13,7 @@ import { getLocaleNumberFormat } from '@angular/common';
 })
 export class SignupComponent implements OnInit {
   formattedPhoneNumber: string;
+  alertPhoneValidation = false;
 
   constructor(private formBuilder: FormBuilder,
     private modalService: NgbModal,
@@ -90,7 +91,7 @@ export class SignupComponent implements OnInit {
     });
 
     this.alertInfoForm = this.formBuilder.group({
-      alertPhone: ['', [Validators.required, Validators.minLength, Validators.maxLength]],
+      alertPhone: [''],
       alertEmail: ['', [Validators.required, Validators.email]],
       alerts: ['', Validators.required]
     })
@@ -260,7 +261,7 @@ export class SignupComponent implements OnInit {
   omitSpecialChar(event) {
     debugger;
     var k;
-    k = event.charCode;
+    k = event.keyCode;
     return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57) || (k >= 96 && k <= 105));
   }
 
@@ -341,7 +342,12 @@ export class SignupComponent implements OnInit {
     if (this.alertInfoForm.invalid) {
       return;
     }
+    if ((this.m.alerts.value == "53" || this.m.alerts.value == "51") && this.m.alertPhone.value == "") {
+      this.alertPhoneValidation = true;
+      return;
+    }
     this.submitAlertInfoForm = false;
+    this.alertPhoneValidation = false;
     let body = {
       phone_number: this.alertInfoForm.controls.alertPhone.value,
       email_id: this.alertInfoForm.controls.alertEmail.value,

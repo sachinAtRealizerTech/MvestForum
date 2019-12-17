@@ -227,8 +227,7 @@
 
       <div class="form-row">
         <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
-          [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
-          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+          [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()">
         </image-cropper>
       </div>
 

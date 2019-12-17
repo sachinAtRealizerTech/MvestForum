@@ -30,6 +30,7 @@ export class SettingsComponent implements OnInit {
   myNotificationAllData: any;
   submitNotificationMessagePrefForm = false;
   prefCode: any;
+  notePhoneValidate = false;
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
@@ -41,7 +42,7 @@ export class SettingsComponent implements OnInit {
     this.notificationMessagePrefForm = this.formBuilder.group({
       Preferences: [],
       alerts: [],
-      notePhoneNo: ['', Validators.required],
+      notePhoneNo: [''],
       noteEmailId: ['', [Validators.required, Validators.email]]
     })
 
@@ -50,6 +51,7 @@ export class SettingsComponent implements OnInit {
   }
 
   public user = Utils.GetCurrentUser();
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 
   get g() { return this.notificationMessagePrefForm.controls }
 
@@ -149,6 +151,11 @@ export class SettingsComponent implements OnInit {
     if (this.notificationMessagePrefForm.controls.alerts.value) {
       this.prefCode = this.notificationMessagePrefForm.controls.alerts.value
     }
+    if (this.prefCode == "53" || this.prefCode == "51") {
+      this.notePhoneValidate = true;
+      return
+    }
+    this.notePhoneValidate = false
     let body = {
       phone_number: this.notificationMessagePrefForm.controls.notePhoneNo.value,
       email_id: this.notificationMessagePrefForm.controls.noteEmailId.value,
