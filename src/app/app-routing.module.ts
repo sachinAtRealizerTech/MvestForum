@@ -28,7 +28,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
-import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { SearchresultsComponent } from './searchresults/searchresults.component'; 
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
 
 const routes: Routes = [
 
@@ -171,6 +172,11 @@ const routes: Routes = [
       {
         path: 'searchresults',
         component: SearchresultsComponent,
+        canActivate: [AuthGuard]
+      },
+       {
+        path: 'bookmarks',
+        component: BookmarksComponent,
         canActivate: [AuthGuard]
       },
 
