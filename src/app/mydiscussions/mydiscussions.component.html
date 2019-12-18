@@ -43,7 +43,7 @@
         <div class="col-md-5 col-xl-3" *ngFor="let md of myDiscussionGroups.DiscussionGroups">
           <div class="card cursor-pointer" (click)="getMyDiscussionsList(md.subcatid)">
             <img class="img-fluid " src="{{md.imageurl}}" alt="">
-            <div class="card-body py-4 px-3">
+            <div class="card-body py-2 px-3">
 
               <h6 class="card-text text-dark font-weight-semibold mb-1">{{md._name | titlecase}} </h6>
               <p><small class="card-secondary mb-1">1.5k Members</small> </p>
@@ -57,7 +57,7 @@
 
 
       <div class="row justify-content-between no-gutters" *ngIf="discussionListPage">
-        <div class="col-md-12 col-xl-8 pb-3">
+        <div class="col-md-12 col-xl-10 pb-3">
           <div class="text-left" *ngIf="pageNotFound">
             <h5>No Records Found.</h5>
           </div>
@@ -69,14 +69,14 @@
 
                 <div class=" border-bottom p-1">
                   <div class="row justify-content-center text-left text-break">
-                    <div class="col-9">
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8">
                       <div class="media p-3">
                         <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
                           alt="Generic placeholder image">
                         <div class="media-body mb-0">
 
                           <ul class="list-inline d-flex mb-0">
-                            <li class="list-inline-item mb-1 h6  text-muted">
+                            <li class="list-inline-item mb-1 h6 text-muted">
                               <h5 class="text-dark h6 mb-0 font-weight-semibold" innerHTML="{{dl?.title | titlecase}}">
 
                               </h5>
@@ -94,20 +94,20 @@
                                 check_circle
                               </i>
                             </li>
-                            <li class="list-inline-item mb-1 h6  text-muted" innerHTML="{{dl?.post_msg}}">
-
-                            </li>
-
-
+                            <li class="list-inline-item mb-1 h6  text-muted" innerHTML="{{dl?.post_msg}}"> 
+                            </li> 
                           </ul>
                         </div>
                       </div>
-                    </div>
-
-                    <div class="col-3 text-right">
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4  text-right">
                       <div class="media p-3 ">
                         <div class="media-body mb-0">
-
+                          <h6 class="mb-0 font-weight-semibold"> 
+                            <i class="material-icons icon-muted md-22">
+                            turned_in_not
+                          </i>  
+                        </h6> 
 
                           <span>
                             <h6 class="font-weight-semibold small mb-1 text-muted">
