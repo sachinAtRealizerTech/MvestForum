@@ -1,7 +1,7 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 
-import { ProfileComponent } from './community/profile/profile.component';
+import { ProfileComponent } from './community/profile/components/profile.component';
 import { SignInComponent } from './authentication/sign-in/components/sign-in.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';

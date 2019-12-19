@@ -1,6 +1,15 @@
 <div class="main-content-container container-fluid px-4">
   <app-community></app-community>
 
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
+
   <div class="row py-3">
     <div class="col-xl-12">
       <div class="row justify-content-between no-gutters py-2">
@@ -141,40 +150,41 @@
             <ul class="list-inline d-flex mb-1">
               <li class="list-inline-item h6 text-secondary mb-0">Stats</li>
             </ul>
+
             <div class="card justify-content-center shadow p-2">
               <div class="card-body text-center p-2 ">
                 <ul class="list-inline d-flex">
                   <li class="list-inline-item flex-1 h6 mb-0">
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Likes </small>
-                    <br><span class="text-dark font-weight-semibold">86</span>
+                    <br><span class="text-dark font-weight-semibold">{{communityStats.likes}}</span>
                   </li>
                   <li class="list-inline-item flex-1 h6 mb-0">
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Notification</small>
-                    <br><span class="text-dark font-weight-semibold">986</span>
+                    <br><span class="text-dark font-weight-semibold">{{communityStats.Notifications}}</span>
                   </li>
                   <li class="list-inline-item flex-1 h6 mb-0">
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Posts </small>
-                    <br><span class="text-dark font-weight-semibold">256</span>
+                    <br><span class="text-dark font-weight-semibold">{{communityStats.Posts}}</span>
                   </li>
                 </ul>
                 <ul class="list-inline d-flex">
                   <li class="list-inline-item flex-1 h6 mb-0">
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Messages </small>
-                    <br><span class="text-dark font-weight-semibold">256</span>
+                    <br><span class="text-dark font-weight-semibold">{{communityStats.Messages}}</span>
                   </li>
                   <li class="list-inline-item flex-1 h6 mb-0">
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Followers</small>
-                    <br><span class="text-dark font-weight-semibold">256</span>
+                    <br><span class="text-dark font-weight-semibold">{{communityStats.Followers}}</span>
                   </li>
                   <li class="list-inline-item flex-1 h6 mb-0">
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Comments </small>
-                    <br><span class="text-dark font-weight-semibold">256</span>
+                    <br><span class="text-dark font-weight-semibold">{{communityStats.comments}}</span>
                   </li>
                 </ul>
 
