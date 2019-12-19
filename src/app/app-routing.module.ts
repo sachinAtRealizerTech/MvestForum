@@ -30,6 +30,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component'; 
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
+import { MvestUserComponent } from './mvest-user/mvest-user.component';
 
 const routes: Routes = [
 
@@ -177,6 +178,11 @@ const routes: Routes = [
        {
         path: 'bookmarks',
         component: BookmarksComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'mvest-user',
+        component: MvestUserComponent,
         canActivate: [AuthGuard]
       },
 
