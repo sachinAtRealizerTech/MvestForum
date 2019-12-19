@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { DiscussionsList, discussions } from '../../../models/discussionlist';
 import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-discussionslist',
@@ -21,7 +22,8 @@ export class DiscussionslistComponent implements OnInit {
     private formBuilder: FormBuilder,
     private titleService: Title,
     private modalService: NgbModal,
-    private bookmarksService: BookmarksService) { }
+    private bookmarksService: BookmarksService,
+    private flashMessagesService: FlashMessagesService) { }
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
@@ -186,6 +188,8 @@ export class DiscussionslistComponent implements OnInit {
     }
     this.bookmarksService.bookmarkDiscussion(body).subscribe(data => {
       console.log('bookmark', data);
+      this.flashMessagesService.show('You have successfully added this post to bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getDiscussionList(this.subCategoryId);
     },
       error => {
         console.log(error);
@@ -199,6 +203,8 @@ export class DiscussionslistComponent implements OnInit {
     }
     this.bookmarksService.removeBookmark(body).subscribe(data => {
       console.log('removebookmark', data);
+      this.flashMessagesService.show('You have successfully removed this post from bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getDiscussionList(this.subCategoryId);
     },
       error => {
         console.log(error);

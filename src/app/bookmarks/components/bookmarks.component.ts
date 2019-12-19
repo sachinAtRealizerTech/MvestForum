@@ -35,7 +35,8 @@ export class BookmarksComponent implements OnInit {
     }
     this.bookmarksService.removeBookmark(body).subscribe(data => {
       console.log('removebookmark', data);
-      this.flashMessagesService.show('You have successfully removed this post from bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      this.flashMessagesService.show('You have successfully removed this post from bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getBookmarks();
     },
       error => {
         console.log(error);
