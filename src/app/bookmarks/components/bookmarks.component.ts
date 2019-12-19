@@ -10,7 +10,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./bookmarks.component.scss']
 })
 export class BookmarksComponent implements OnInit {
-  bookmarksList: Bookmarks[] = [];
+  bookmarksList: Bookmarks[];
+  loading = false;
 
   constructor(private bookmarksService: BookmarksService,
     private flashMessagesService: FlashMessagesService) { }
@@ -22,13 +23,19 @@ export class BookmarksComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   getBookmarks() {
+    this.loading = true;
     this.bookmarksService.getBookmarks(this.user.email_id).subscribe(data => {
       this.bookmarksList = data['Bookmarks'];
+      this.loading = false
       console.log('bookmarkslist', this.bookmarksList);
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   removeBookmark(docId: string) {
+
     let body = {
       email_id: this.user.email_id,
       disc_doc_Id: docId

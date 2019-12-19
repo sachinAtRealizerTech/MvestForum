@@ -11,7 +11,6 @@ import { reduce } from 'rxjs/operators';
 })
 export class RequestsComponent implements OnInit {
   myConnectRequests: any;
-  receivedRequest: any[] = [];
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
@@ -27,13 +26,6 @@ export class RequestsComponent implements OnInit {
     this.neighborsService.getMyConnectRequests(this.user.member_id).subscribe(data => {
       this.myConnectRequests = data['data'];
       console.log('myconnectrequests', this.myConnectRequests)
-
-      // for (let i = 0; i < this.myConnectRequests.length; i++) {
-      //   if (this.myConnectRequests[i]['status'] == 'reqReceieved') {
-      //     this.receivedRequest.push(this.myConnectRequests[i])
-      //   }
-      // }
-
     })
   }
 

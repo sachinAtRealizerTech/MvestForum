@@ -3,6 +3,14 @@
 
   <flash-messages class="bg-accent text-center"></flash-messages>
 
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-xl-8 pb-1 pt-3">
       <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
@@ -57,6 +65,10 @@
       <div class="row">
         <div class="col-md-12 col-lg-10 col-sm-12 col-xl-8">
           <div class="row justify-content-between no-gutters pb-3">
+
+            <div class="col-xl-12 pt-2 text-center" *ngIf="bookmarksList.length==0">
+              <h6>Currently, You have not added anything to the discussion bookmarks...</h6>
+            </div>
 
             <div class="col-xl-12 pt-2" *ngFor="let bl of bookmarksList">
               <div class="card shadow">
