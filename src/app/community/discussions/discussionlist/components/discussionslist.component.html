@@ -201,13 +201,14 @@
                             <div class="card card-small blog-comments">
                                 <div class="card-body p-0"
                                     *ngFor="let dl of discussionList?.discussions | filter : searchText">
-                                    <a routerLink="/discussion-details"
-                                        [queryParams]="{discussionId:dl.doc_id,categoryId:categoryId,subCategoryId:subCategoryId}"
-                                        (click)="setTitle( 'Mvest-Discussion Details')">
 
-                                        <div class=" border-bottom">
-                                            <div class="row justify-content-center text-left text-break">
-                                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8">
+
+                                    <div class=" border-bottom">
+                                        <div class="row justify-content-center text-left text-break">
+                                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8">
+                                                <a routerLink="/discussion-details"
+                                                    [queryParams]="{discussionId:dl.doc_id,categoryId:categoryId,subCategoryId:subCategoryId}"
+                                                    (click)="setTitle( 'Mvest-Discussion Details')">
                                                     <div class="media p-3">
                                                         <img class="mr-3 user-pic rounded-circle mr-2"
                                                             src="assets/images/avatars/2.jpg"
@@ -258,35 +259,37 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
+                                            </div>
 
-                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 text-right">
-                                                    <div class="media p-3 ">
-                                                        <div class="media-body mb-0">
-                                                            <h6 class="mb-0 font-weight-semibold">
-                                                                <i class="material-icons icon-muted md-22">
-                                                                    turned_in_not
-                                                                </i>
-                                                            </h6>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4 text-right">
+                                                <div class="media p-3 ">
+                                                    <div class="media-body mb-0">
+                                                        <h6 class="mb-0 font-weight-semibold">
+                                                            <i class="material-icons icon-muted md-22"
+                                                                (click)="bookmarkDiscussion(dl?.doc_id)">
+                                                                turned_in_not
+                                                            </i>
+                                                        </h6>
 
-                                                            <span>
-                                                                <h6 class="font-weight-semibold small mb-0 text-muted">
-                                                                    {{dl?.post_date | timeAgo}}</h6>
-                                                            </span>
+                                                        <span>
+                                                            <h6 class="font-weight-semibold small mb-0 text-muted">
+                                                                {{dl?.post_date | timeAgo}}</h6>
+                                                        </span>
 
 
-                                                            <span>
-                                                                <h6 class="font-weight-semibold small mb-0 text-muted">
-                                                                    -by
-                                                                    {{dl?.post_by_name}}</h6>
-                                                            </span>
+                                                        <span>
+                                                            <h6 class="font-weight-semibold small mb-0 text-muted">
+                                                                -by
+                                                                {{dl?.post_by_name}}</h6>
+                                                        </span>
 
-                                                            <!-- <span>
+                                                        <!-- <span>
                                                             <h5 class="text-muted small mb-0 font-weight-semibold">
                                                                     <u>25 views</u>
                                                             </h5>
                                                         </span> -->
-                                                            <!-- <ul class="list-inline d-flex mb-0">
+                                                        <!-- <ul class="list-inline d-flex mb-0">
                                                                 <li
                                                                     class="list-inline-item mb-1 h6  text-muted ml-auto">
                                                                     <span><small
@@ -303,12 +306,12 @@
                                                                 </li>
                                                             </ul> -->
 
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

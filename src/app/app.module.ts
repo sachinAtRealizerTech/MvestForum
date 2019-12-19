@@ -36,7 +36,7 @@ import { SearchresultsComponent } from './searchresults/searchresults.component'
 import { ClickOutsideModule } from 'ng-click-outside';
 //import { HighlightText } from './shared/pipes/highlightText.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 
 @NgModule({
   declarations: [

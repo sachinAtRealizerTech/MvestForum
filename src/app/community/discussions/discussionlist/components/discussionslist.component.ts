@@ -7,6 +7,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { DiscussionsList, discussions } from '../../../models/discussionlist';
+import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
 
 @Component({
   selector: 'app-discussionslist',
@@ -19,7 +20,8 @@ export class DiscussionslistComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private titleService: Title,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private bookmarksService: BookmarksService) { }
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
@@ -173,6 +175,34 @@ export class DiscussionslistComponent implements OnInit {
     else {
       return false
     }
+  }
+
+  bookmarkDiscussion(docId: string) {
+    debugger;
+    let body = {
+      email_id: this.user.email_id,
+      subcatId: this.subCategoryId,
+      disc_doc_Id: docId
+    }
+    this.bookmarksService.bookmarkDiscussion(body).subscribe(data => {
+      console.log('bookmark', data);
+    },
+      error => {
+        console.log(error);
+      })
+  }
+
+  removeBookmark(docId: string) {
+    let body = {
+      email_id: this.user.email_id,
+      disc_doc_Id: docId
+    }
+    this.bookmarksService.removeBookmark(body).subscribe(data => {
+      console.log('removebookmark', data);
+    },
+      error => {
+        console.log(error);
+      })
   }
 
 }

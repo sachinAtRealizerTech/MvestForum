@@ -29,7 +29,7 @@ import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component'; 
-import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 
 const routes: Routes = [
 
