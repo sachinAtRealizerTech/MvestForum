@@ -10,7 +10,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages.component';
-import { FollowingComponent } from './following/following.component';
+import { FollowingComponent } from './following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';

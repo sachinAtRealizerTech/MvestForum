@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NeighborsService } from 'src/app/neighbors/neighbors.service';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { reduce } from 'rxjs/operators';
+import { FollowingService } from 'src/app/following/services/following.service';
+import { FollowRequest } from '../models/followingMembers'
 
 @Component({
   selector: 'app-requests',
@@ -11,12 +12,15 @@ import { reduce } from 'rxjs/operators';
 })
 export class RequestsComponent implements OnInit {
   myConnectRequests: any;
+  followRequest: FollowRequest[];
 
   constructor(private neighborsService: NeighborsService,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService,
+    private followingService: FollowingService) { }
 
   ngOnInit() {
     this.getMyConnectRequests();
+    this.getMyFollowRequest();
   }
 
   public user = Utils.GetCurrentUser();
@@ -54,6 +58,45 @@ export class RequestsComponent implements OnInit {
       this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       this.getMyConnectRequests()
     })
+  }
+
+  getMyFollowRequest() {
+    this.followingService.getMyFollowRequest(this.user.member_id = 215).subscribe(data => {
+      this.followRequest = data['data'];
+      console.log('followrequest', this.followRequest)
+    },
+      error => {
+
+      })
+  }
+
+  acceptFollowRequest(id: number) {
+    let body = {
+      _member_id: this.user.member_id,
+      _follower_id: id,
+      _action: 'accept'
+    }
+    this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
+      this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+    },
+      error => {
+
+      })
+
+  }
+
+  ignoreFollowRequest(id: number) {
+    let body = {
+      _member_id: this.user.member_id,
+      _follower_id: id,
+      _action: 'ignored'
+    }
+    this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
+      this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+    },
+      error => {
+
+      })
   }
 
 }

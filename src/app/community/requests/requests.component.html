@@ -203,7 +203,13 @@
                     <div class="row justify-content-between no-gutters pb-3 ">
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
                             <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Following</h6>
-                            <div class="card card-small blog-comments mt-3">
+
+                            <div class="col-xl-12 col-md-12 col-sm-12 mt-3 text-center"
+                                *ngIf="followRequest?.length==0">
+                                <h6>Currently, There are no following requests for you...</h6>
+                            </div>
+
+                            <div class="card card-small blog-comments mt-3" *ngFor="let fr of followRequest">
 
                                 <div class="card-body p-0">
                                     <div class="  p-1">
@@ -215,7 +221,7 @@
 
                                                 <ul class="list-inline d-flex mb-0">
                                                     <li class="list-inline-item mb-1 h6 font-weight-semibold text-dark">
-                                                        Tony Stark
+                                                        {{fr.f_name | titlecase}} {{fr.l_name | titlecase}}
                                                     </li>
                                                     <li class="list-inline-item">
                                                         <a routerLink="#"><svg class="icon-muted-svg"
@@ -243,12 +249,12 @@
 
                                                     <div class="ml-auto d-inline-flex">
                                                         <li class="pull-right mr-3">
-                                                            <a href="#"
-                                                                class="btn btn-accent btn-sm btn-block text-uppercase">Follow</a>
+                                                            <a class="btn btn-accent btn-sm btn-block text-uppercase"
+                                                                (click)="acceptFollowRequest(fr. member_id)">Follow</a>
                                                         </li>
                                                         <li class="pull-right">
-                                                            <a href="#"
-                                                                class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Ignore</a>
+                                                            <a class="btn btn-outline-accent btn-sm btn-block text-uppercase"
+                                                                (click)="ignoreFollowRequest(fr. member_id)">Ignore</a>
                                                         </li>
                                                     </div>
                                                 </ul>
@@ -264,131 +270,6 @@
                                 </div>
 
                             </div>
-
-                            <div class="card card-small blog-comments mt-3">
-
-                                <div class="card-body p-0">
-                                    <div class="  p-1">
-                                        <div class="media p-3">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/3.jpg" alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-
-
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 h6 font-weight-semibold text-dark">
-                                                        Sam Jorden
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <a routerLink="#"><svg class="icon-muted-svg"
-                                                                xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                                                            </svg></a>
-                                                    </li>
-                                                </ul>
-
-                                                <ul class="list-inline d-flex mb-0">
-
-                                                    <li
-                                                        class="list-inline-item mb-1 h6 font-weight-semibold text-muted">
-                                                        Play Type
-                                                        -
-                                                    </li>
-                                                    <li
-                                                        class="list-inline-item mb-1 h6 font-weight-semibold text-muted">
-                                                        40
-                                                        miles
-                                                        away
-                                                    </li>
-
-                                                    <div class="ml-auto d-inline-flex">
-                                                        <li class="pull-right mr-3">
-                                                            <a href="#"
-                                                                class="btn btn-accent btn-sm btn-block text-uppercase">Follow</a>
-                                                        </li>
-                                                        <li class="pull-right">
-                                                            <a href="#"
-                                                                class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Ignore</a>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                                <ul class="list-inline d-flex mb-0">
-
-
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="card card-small blog-comments mt-3">
-
-                                <div class="card-body p-0">
-                                    <div class="  p-1">
-                                        <div class="media p-3">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/2.jpg" alt="Generic placeholder image">
-                                            <div class="media-body mb-0">
-
-
-                                                <ul class="list-inline d-flex mb-0">
-                                                    <li class="list-inline-item mb-1 h6 font-weight-semibold text-dark">
-                                                        John Doe
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <a routerLink="#"><svg class="icon-muted-svg"
-                                                                xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" viewBox="0 0 24 24">
-                                                                <path
-                                                                    d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                                                            </svg></a>
-                                                    </li>
-                                                </ul>
-
-                                                <ul class="list-inline d-flex mb-0">
-
-                                                    <li
-                                                        class="list-inline-item mb-1 h6 font-weight-semibold text-muted">
-                                                        counties
-                                                        -
-                                                    </li>
-                                                    <li
-                                                        class="list-inline-item mb-1 h6 font-weight-semibold text-muted">
-                                                        120
-                                                        miles
-                                                        away
-                                                    </li>
-
-                                                    <div class="ml-auto d-inline-flex">
-                                                        <li class="pull-right mr-3">
-                                                            <a href="#"
-                                                                class="btn btn-accent btn-sm btn-block text-uppercase">Follow</a>
-                                                        </li>
-                                                        <li class="pull-right">
-                                                            <a href="#"
-                                                                class="btn btn-outline-accent btn-sm btn-block text-uppercase ">Ignore</a>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                                <ul class="list-inline d-flex mb-0">
-
-
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
 
                         </div>
                     </div>
