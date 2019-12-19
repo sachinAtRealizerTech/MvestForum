@@ -10,10 +10,10 @@
         <a routerLink="/profile" class="active nav-link text-muted font-weight-bold" aria-controls="profile"
           aria-selected="false">MY PROFILE</a>
       </li>
-      <li class="nav-item ">
+      <!-- <li class="nav-item ">
         <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
           aria-selected="false">NEWS FEED</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
           aria-selected="false">DISCUSSIONS</a>
@@ -81,16 +81,16 @@
               aria-selected="false" routerLinkActive='active'>Following</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" role="tab"
-              aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
+            <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" role="tab" aria-controls="contact"
+              aria-selected="false" routerLinkActive='active'>Neighbors</a>
           </li>
           <li class="nav-item">
             <a routerLink="/mydiscussions" class="nav-link text-white font-weight-normal" role="tab"
               aria-controls="contact" aria-selected="false" routerLinkActive='active'>My Discusssion Groups</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/bookmarks" class="nav-link text-white font-weight-normal" role="tab"
-              aria-controls="contact" aria-selected="false" routerLinkActive='active'>Bookmarks</a>
+            <a routerLink="/bookmarks" class="nav-link text-white font-weight-normal" role="tab" aria-controls="contact"
+              aria-selected="false" routerLinkActive='active'>Bookmarks</a>
           </li>
 
         </ul>
@@ -207,7 +207,7 @@
       </div>
       <div class="form-row">
 
-        <div class="form-group col-4">
+        <div class="form-group col-4" *ngIf="isImageCropped">
           <img class="js--image-preview--profile mt-2" [src]="croppedImage" width="70" height="70">
         </div>
 

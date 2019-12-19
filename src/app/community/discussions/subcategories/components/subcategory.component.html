@@ -21,10 +21,10 @@
           <a routerLink="/profile" class="nav-link text-muted font-weight-bold" aria-controls="profile"
             aria-selected="false">MY PROFILE</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
             aria-selected="false">NEWS FEED</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a routerLink="/discussions" class="active nav-link text-muted font-weight-bold" role="tab"
             aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
@@ -145,13 +145,14 @@
             <div class="row justify-content-left text-center px-3">
               <div>
                 <div class="row gutter-10">
-                  <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText"style="background: #000000;"> 
+                  <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText"
+                    style="background: #000000;">
                     <a routerLink="/discussionslist"
                       [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
                       (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
                       <div class=" d-inline category-main" style="width:50rem">
-                        <img class="img-fluid img-thumbnail rounded-left" style="opacity: 0.7;" src="{{sc.sub_categories.image}}" alt=""
-                          width="250px">
+                        <img class="img-fluid img-thumbnail rounded-left" style="opacity: 0.7;"
+                          src="{{sc.sub_categories.image}}" alt="" width="250px">
                         <div class="category-text">
                           {{sc.sub_categories.name | titlecase}}
                         </div>
@@ -178,11 +179,12 @@
 <ng-template #postQuestionModal>
   <form>
     <div class="modal-content">
-        <div class=" justify-content-end">
-            <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" (click)="closePostQuestionModal()">
-         <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+      <div class=" justify-content-end">
+        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+          (click)="closePostQuestionModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <!-- <div class="modal-header">
         <h5 class="modal-title">Ask a Question</h5>
       </div> -->
@@ -191,13 +193,14 @@
         <div class="card shadow-none">
           <div class="row">
             <div class="col-12">
-                <h5 class="h6 font-weight-semibold"><u>Ask a Question</u></h5>
+              <h5 class="h6 font-weight-semibold"><u>Ask a Question</u></h5>
               <form [formGroup]="postQuestionForm">
                 <div class="form">
                   <div class="form-group">
                     <div class="form-row">
                       <div class="col-4">
-                        <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Sub-Category :</label>
+                        <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Sub-Category
+                          :</label>
                       </div>
                       <div class="col-8">
                         <select class="form-control border" [value]="null" formControlName="subCategoryName"
@@ -215,7 +218,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Discussion Title :</label>
+                    <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Discussion Title
+                      :</label>
                     <input type="text" class="form-control" id="title" formControlName="discussionTitle" placeholder=""
                       [ngClass]="{ 'is-invalid': submitQuestion && g.discussionTitle.errors }">
                     <div *ngIf="submitQuestion && g.discussionTitle.errors" class="invalid-feedback">
@@ -224,7 +228,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Description :</label>
+                    <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Description
+                      :</label>
                     <div class="w-100">
                     </div>
                     <angular-editor formControlName="problemDescription" [config]="editorConfig"

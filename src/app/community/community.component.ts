@@ -16,6 +16,7 @@ export class CommunityComponent implements OnInit {
   imagePreview: string | ArrayBuffer;
   newDisplayPicForm: FormGroup;
   newDisplayPicModal: TemplateRef<any>;
+  isImageCropped = false;
 
   @ViewChild(ImageCropperComponent, { static: false }) imageCropper: ImageCropperComponent;
   croppedImageBlob: Blob;
@@ -48,6 +49,7 @@ export class CommunityComponent implements OnInit {
   closeNewDisplayPicForm() {
     this.modalService.dismissAll(this.newDisplayPicModal);
     this.newDisplayPicForm.reset();
+    this.isImageCropped = false;
   }
 
   fileChangeEvent(event: any): void {
@@ -60,6 +62,7 @@ export class CommunityComponent implements OnInit {
 
   imageCropped(event: ImageCroppedEvent) {
     debugger;
+    this.isImageCropped = true;
     this.croppedImage = event.base64;
     this.croppedImageBlob = this.dataURItoBlob(this.croppedImage)
   }
@@ -106,7 +109,7 @@ export class CommunityComponent implements OnInit {
     console.log('formdata', formData)
     this.communityService.onUploadFile(formData)
       .subscribe(data => {
-
+        this.isImageCropped = false;
       });
   }
 

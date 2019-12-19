@@ -21,10 +21,10 @@
           <a routerLink="/profile" class="nav-link text-muted font-weight-bold" aria-controls="profile"
             aria-selected="false">MY PROFILE</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
             aria-selected="false">NEWS FEED</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a routerLink="/discussions" class="active nav-link text-muted font-weight-bold" role="tab"
             aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
@@ -496,8 +496,8 @@
                   </div>
                   <div class="col-8 border-top py-1">
                     <h6 class="mb-0 pt-1" id="p{{cc?.comment_id}}"
-                      innerHTML="{{cc.comment_text | highlight:searchText}}"></h6> 
-                      
+                      innerHTML="{{cc.comment_text | highlight:searchText}}"></h6>
+
                     <!---------New like-->
 
                     <ul class="list-inline d-flex  border-0 mb-0">
@@ -621,7 +621,7 @@
             <div class="col-12">
               <h5 class="h6 font-weight-semibold"><u>Ask a Question</u></h5>
               <form [formGroup]="discussionDetailsQuestionForm">
-                <div class="form"> 
+                <div class="form">
                   <div class="form-group">
                     <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Discussion Title
                       :</label>

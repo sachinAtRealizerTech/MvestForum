@@ -32,10 +32,10 @@
           <a routerLink="/profile" class="nav-link text-muted font-weight-bold" aria-controls="profile"
             aria-selected="false">MY PROFILE</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
             aria-selected="false">NEWS FEED</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a routerLink="/discussions" class="active nav-link text-muted font-weight-bold" role="tab"
             aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
@@ -125,7 +125,8 @@
             <a routerLink="/subcategory" [queryParams]="{categoryId: c.Categories.doc_id}"
               (click)="setTitle( 'Mvest-Subcategories')">
               <div class=" d-inline category-main px-0" style="width:50rem">
-                <img class="img-fluid img-thumbnail rounded-left " style="opacity: 0.7;" src="{{c.Categories.image}}" alt="" width="250px">
+                <img class="img-fluid img-thumbnail rounded-left " style="opacity: 0.7;" src="{{c.Categories.image}}"
+                  alt="" width="250px">
                 <div class="category-text">
                   {{c.Categories.name | titlecase}}
                 </div>
