@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FollowingService } from '../services/following.service';
 import { Utils } from 'src/app/shared/Utils';
-import { FollowingMembers, FollowerMembers } from '../../community/models/followingMembers'
+import { FollowingMembers, FollowerMembers, SearchedMembers } from '../../community/models/followingMembers'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -16,6 +16,11 @@ export class FollowingComponent implements OnInit {
   loading = false;
   followNewUsers: TemplateRef<any>;
   followNewUsersForm: FormGroup
+  memberFirstName: string;
+  memberLastName: string;
+  searchedMembers: SearchedMembers[];
+  noSearchedMembers: boolean;
+  searchedMembersPresent: boolean;
 
   constructor(private followingService: FollowingService,
     private modalService: NgbModal,
@@ -31,6 +36,8 @@ export class FollowingComponent implements OnInit {
   }
 
   public user = Utils.GetCurrentUser();
+
+  get g() { return this.followNewUsersForm.controls }
 
   getFollowingMembers() {
     this.loading = true;
@@ -56,19 +63,36 @@ export class FollowingComponent implements OnInit {
       })
   }
 
+  getMembersFirstAndLastName() {
+    debugger;
+    let fullName = this.g.searchMember.value;
+    let fullNameArray = fullName.split(" ");
+    this.memberFirstName = fullNameArray[0];
+    this.memberLastName = fullNameArray[1];
+  }
+
   searchMembersToFollow() {
     this.loading = true;
     let body = {
-      _fname: "SACHIN",
-      _lname: "SHINDE",
-      _city: "PUNE",
-      _member_id: "215"
+      _fname: this.memberFirstName,
+      _lname: this.memberLastName,
+      _city: this.g.city.value,
+      _member_id: this.user.member_id
     }
     this.followingService.searchMembersToFollow(body).subscribe(data => {
-
+      this.searchedMembers = data['data'];
+      if (this.searchedMembers.length == 0) {
+        this.noSearchedMembers = true
+      }
+      else if (this.searchedMembers.length > 0) {
+        this.searchedMembersPresent = true;
+      }
+      this.loading = false;
+      console.log('searchedmembers', this.searchedMembers)
     },
       error => {
-        console.log(error)
+        console.log(error);
+        this.loading = false;
       })
   }
 
@@ -82,7 +106,23 @@ export class FollowingComponent implements OnInit {
   }
 
   closeFollowNewUsersModal() {
-    this.modalService.dismissAll(this.followNewUsers)
+    this.modalService.dismissAll(this.followNewUsers);
+    this.followNewUsersForm.reset();
+    this.noSearchedMembers = false;
+    this.searchedMembersPresent = false;
+  }
+
+  followMember(id: number) {
+    let body = {
+      _member_id: this.user.member_id,
+      _follower_id: id
+    }
+    this.followingService.followMember(body).subscribe(data => {
+
+    },
+      error => {
+
+      })
   }
 
 }

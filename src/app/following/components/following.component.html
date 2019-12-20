@@ -101,12 +101,12 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active mt-3" id="following" role="tabpanel" aria-labelledby="home-tab">
             <div class="row justify-content-between no-gutters">
-                <div class="col-md-6 col-xl-6">
+                <div class="col-md-12 col-xl-12">
 
                     <div class="row justify-content-between no-gutters pb-3 ">
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4" *ngFor="let fml of followingMembersList">
 
-                            <div class="card card-small blog-comments" *ngFor="let fml of followingMembersList">
+                            <div class="card card-small blog-comments">
                                 <div class="card-body p-0">
                                     <div class="pt-3 px-3 pb-0">
                                         <div class="media">
@@ -118,7 +118,7 @@
                                                     {{fml.l_name | titlecase}}</h5>
                                                 <ul class="list-inline d-flex mb-0">
                                                     <li class="list-inline-item mb-1 h6 text-muted">
-                                                        Verified Mineral Owner
+                                                        Verified {{fml.member_type | titlecase}} Owner
                                                     </li>
                                                     <div class="ml-auto d-inline-flex">
                                                         <li class="pull-right text-muted h6 text-uppercase">
@@ -197,12 +197,12 @@
 
         <div class="tab-pane fade show" id="followers" role="tabpanel" aria-labelledby="home-tab">
             <div class="row justify-content-between no-gutters">
-                <div class="col-md-12 col-xl-6">
+                <div class="col-md-12 col-xl-12">
 
                     <div class="row justify-content-between no-gutters pb-3 ">
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4" *ngFor="let flr of followerMembersList">
 
-                            <div class="card card-small blog-comments" *ngFor="let flr of followerMembersList">
+                            <div class="card card-small blog-comments">
                                 <div class="card-body p-0">
                                     <div class="py-3 px-3 ">
                                         <div class="media">
@@ -214,7 +214,7 @@
                                                     {{flr.l_name | titlecase}}</h5>
                                                 <ul class="list-inline d-flex mb-0">
                                                     <li class="list-inline-item mb-1 h6 text-muted">
-                                                        Verified Mineral Owner
+                                                        Verified {{flr.member_type | titlecase}} Owner
                                                     </li>
                                                     <div class="ml-auto d-inline-flex">
                                                         <li class="pull-right text-muted h6 text-uppercase">
@@ -260,7 +260,7 @@
                 <div class="form-group col-4">
                     <h6 class="font-weight-semibold pr-3">Search Member :</h6>
                     <input type="text" class="form-control" formControlName="searchMember"
-                        placeholder="Enter Member Name">
+                        placeholder="Enter Member Name" (blur)="getMembersFirstAndLastName()">
                 </div>
                 <!-- <div   class="form-group col-4 "> 
                             <h6 class="font-weight-semibold pr-3">State:</h6> 
@@ -272,10 +272,11 @@
                             </div> -->
                 <div class="form-group col-4 ">
                     <h6 class="font-weight-semibold pr-3">City :</h6>
-                    <select class="text-secondary form-control border" formControlName="city">
-                        <option>Rockwall</option>
-                        <option>Karnes</option>
-                        <option>Blanco</option>
+                    <select class="text-secondary form-control border" formControlName="city"
+                        (change)="searchMembersToFollow()">
+                        <option [value]="Pune">Pune</option>
+                        <!-- <option>Karnes</option>
+                        <option>Blanco</option> -->
                     </select>
                 </div>
                 <!-- <div   class="form-group col-12 text-left"> 
@@ -283,28 +284,32 @@
                                     </div>     -->
             </div>
             <hr>
-            <div class="form-row ">
+            <div class="form-row " *ngIf="noSearchedMembers">
+                <div class="form-group col-12 text-center">
+                    <h6 class="mb-0">Currently, There are no members for your search criteria...
+                    </h6>
+                </div>
+            </div>
+            <div class="form-row " *ngIf="searchedMembersPresent">
+
                 <div class="form-group col-12">
                     <h6 class="font-weight-semibold mb-0">List of Searched Member :</h6>
                 </div>
-                <div class="form-group col-6">
+
+                <div class="form-group col-6" *ngFor="let sm of searchedMembers">
                     <div class="card shadow-none border ">
                         <div class="card-body p-0">
                             <div class="row p-3">
                                 <div class="col-md-8 col-sm-12">
                                     <div class="media mb-0">
-                                        <!-- <div class="custom-control custom-checkbox mr-2">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                  </div> -->
                                         <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
                                             alt="Generic placeholder image">
                                         <div class="media-body mb-0">
                                             <ul class="list-inline  mb-0">
                                                 <a href="#">
                                                     <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">Megan
-                                                        Park
+                                                        data-toggle="tooltip" title="Feature Coming Soon">
+                                                        {{sm.f_name | titlecase}} {{sm.l_name | titlecase}}
                                                     </h5>
                                                 </a>
                                                 <li class="list-inline-item mb-0 h6 text-muted">
@@ -321,232 +326,8 @@
                                     class="col-md-4 col-sm-12 align-items-center d-flex justify-content-end text-right">
                                     <h6 class="mb-0">
                                         <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2">Follow</button>
-                                    </h6>
-                                    <!-- <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase" >Ignore</button>
-                                            </h6> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-6">
-                    <div class="card shadow-none border ">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="media mb-0">
-                                        <!-- <div class="custom-control custom-checkbox mr-2">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                  </div> -->
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0">
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">Megan
-                                                        Park
-                                                    </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 h6 text-muted">
-                                                    The Terminator of Texas
-                                                </li>
-                                                <!-- <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            2.5 miles away
-                                                        </li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-md-4 col-sm-12 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2">Follow</button>
-                                    </h6>
-                                    <!-- <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase" >Ignore</button>
-                                            </h6> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-6">
-                    <div class="card shadow-none border ">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="media mb-0">
-                                        <!-- <div class="custom-control custom-checkbox mr-2">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                  </div> -->
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0">
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">Megan
-                                                        Park
-                                                    </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 h6 text-muted">
-                                                    The Terminator of Texas
-                                                </li>
-                                                <!-- <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            2.5 miles away
-                                                        </li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-md-4 col-sm-12 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2">Follow</button>
-                                    </h6>
-                                    <!-- <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase" >Ignore</button>
-                                            </h6> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-6">
-                    <div class="card shadow-none border ">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="media mb-0">
-                                        <!-- <div class="custom-control custom-checkbox mr-2">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                  </div> -->
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0">
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">Megan
-                                                        Park
-                                                    </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 h6 text-muted">
-                                                    The Terminator of Texas
-                                                </li>
-                                                <!-- <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            2.5 miles away
-                                                        </li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-md-4 col-sm-12 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2">Follow</button>
-                                    </h6>
-                                    <!-- <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase" >Ignore</button>
-                                            </h6> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-6">
-                    <div class="card shadow-none border ">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="media mb-0">
-                                        <!-- <div class="custom-control custom-checkbox mr-2">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                  </div> -->
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0">
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">Megan
-                                                        Park
-                                                    </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 h6 text-muted">
-                                                    The Terminator of Texas
-                                                </li>
-                                                <!-- <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            2.5 miles away
-                                                        </li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-md-4 col-sm-12 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2">Follow</button>
-                                    </h6>
-                                    <!-- <h6 class="mb-0">
-                                                <button type="button"
-                                                    class="mt-2 btn btn-outline-accent align-self-center text-uppercase" >Ignore</button>
-                                            </h6> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-6">
-                    <div class="card shadow-none border ">
-                        <div class="card-body p-0">
-                            <div class="row p-3">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="media mb-0">
-                                        <!-- <div class="custom-control custom-checkbox mr-2">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                  </div> -->
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body mb-0">
-                                            <ul class="list-inline  mb-0">
-                                                <a href="#">
-                                                    <h5 class="text-dark h6 mb-0 font-weight-semibold"
-                                                        data-toggle="tooltip" title="Feature Coming Soon">Megan
-                                                        Park
-                                                    </h5>
-                                                </a>
-                                                <li class="list-inline-item mb-0 h6 text-muted">
-                                                    The Terminator of Texas
-                                                </li>
-                                                <!-- <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
-                                                            2.5 miles away
-                                                        </li> -->
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-md-4 col-sm-12 align-items-center d-flex justify-content-end text-right">
-                                    <h6 class="mb-0">
-                                        <button type="button"
-                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2">Follow</button>
+                                            class="mt-2 btn btn-accent align-self-center text-uppercase mr-2"
+                                            (click)="followMember(sm.member_id)">Follow</button>
                                     </h6>
                                     <!-- <h6 class="mb-0">
                                                 <button type="button"
@@ -560,11 +341,9 @@
             </div>
         </div>
 
-
-
-
         <div class="modal-footer">
-            <button routerLink="#" type="button" class="btn btn-accent" data-dismiss="modal">Done</button>
+            <button routerLink="#" type="button" class="btn btn-accent"
+                (click)="closeFollowNewUsersModal()">Done</button>
         </div>
     </div>
 
