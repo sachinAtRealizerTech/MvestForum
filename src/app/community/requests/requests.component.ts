@@ -82,7 +82,7 @@ export class RequestsComponent implements OnInit {
     let body = {
       _member_id: this.user.member_id,
       _follower_id: id,
-      _action: 'accept'
+      _action: 'accepted'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
       this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })

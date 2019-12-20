@@ -3,7 +3,8 @@ import { FollowingService } from '../services/following.service';
 import { Utils } from 'src/app/shared/Utils';
 import { FollowingMembers, FollowerMembers, SearchedMembers } from '../../community/models/followingMembers'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-following',
@@ -21,15 +22,18 @@ export class FollowingComponent implements OnInit {
   searchedMembers: SearchedMembers[];
   noSearchedMembers: boolean;
   searchedMembersPresent: boolean;
+  followReqstResponse: any;
+  submitfollowNewUsersForm = false;
 
   constructor(private followingService: FollowingService,
     private modalService: NgbModal,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
     this.followNewUsersForm = this.formBuilder.group({
-      searchMember: [],
-      city: []
+      searchMember: ['', Validators.required],
+      city: ['', Validators.required]
     });
     this.getFollowingMembers();
     this.getFollowerMembers();
@@ -41,7 +45,7 @@ export class FollowingComponent implements OnInit {
 
   getFollowingMembers() {
     this.loading = true;
-    this.followingService.getFollowingMembers(this.user.member_id = 214).subscribe(data => {
+    this.followingService.getFollowingMembers(this.user.member_id).subscribe(data => {
       this.followingMembersList = data['data'];
       this.loading = false;
       console.log('followingmembers', this.followingMembersList);
@@ -53,7 +57,7 @@ export class FollowingComponent implements OnInit {
   }
 
   getFollowerMembers() {
-    this.followingService.getFollowerMembers(this.user.member_id = 215).subscribe(data => {
+    this.followingService.getFollowerMembers(this.user.member_id).subscribe(data => {
       this.followerMembersList = data['data'];
       this.loading = false;
       console.log('followermembers', this.followerMembersList)
@@ -66,12 +70,25 @@ export class FollowingComponent implements OnInit {
   getMembersFirstAndLastName() {
     debugger;
     let fullName = this.g.searchMember.value;
-    let fullNameArray = fullName.split(" ");
-    this.memberFirstName = fullNameArray[0];
-    this.memberLastName = fullNameArray[1];
+    if (fullName.indexOf(' ') >= 0) {
+      let fullNameArray = fullName.split(" ");
+      this.memberFirstName = fullNameArray[0];
+      this.memberLastName = fullNameArray[1];
+      if (this.followNewUsersForm.valid) {
+        this.searchMembersToFollow();
+      }
+    }
+    else {
+      return
+    }
   }
 
   searchMembersToFollow() {
+    this.submitfollowNewUsersForm = true
+    if (this.followNewUsersForm.invalid) {
+      return
+    }
+    this.submitfollowNewUsersForm = false
     this.loading = true;
     let body = {
       _fname: this.memberFirstName,
@@ -79,7 +96,14 @@ export class FollowingComponent implements OnInit {
       _city: this.g.city.value,
       _member_id: this.user.member_id
     }
+    // let body = {
+    //   _fname: "SACHIN",
+    //   _lname: "SHINDE",
+    //   _city: "PUNE",
+    //   _member_id: "215"
+    // }
     this.followingService.searchMembersToFollow(body).subscribe(data => {
+      debugger;
       this.searchedMembers = data['data'];
       if (this.searchedMembers.length == 0) {
         this.noSearchedMembers = true
@@ -110,15 +134,30 @@ export class FollowingComponent implements OnInit {
     this.followNewUsersForm.reset();
     this.noSearchedMembers = false;
     this.searchedMembersPresent = false;
+    this.submitfollowNewUsersForm = false
   }
 
-  followMember(id: number) {
+  followMember(searchedMembers: SearchedMembers) {
+    debugger;
     let body = {
       _member_id: this.user.member_id,
-      _follower_id: id
+      _follower_id: searchedMembers.member_id
     }
     this.followingService.followMember(body).subscribe(data => {
-
+      debugger;
+      this.followReqstResponse = data['data'][0]
+      if (this.followReqstResponse.followmembers == "alreadyRequested") {
+        this.flashMessagesService.show('Follow request is already sent to this member...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      }
+      else if (this.followReqstResponse.followmembers == "requested") {
+        this.flashMessagesService.show('Request to follow has been sent successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
+      else if (this.followReqstResponse.followmembers == "alreadyAccepted") {
+        this.flashMessagesService.show('You are already following this member...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
+      else if (this.followReqstResponse.followmembers == "alreadyIgnored") {
+        this.flashMessagesService.show('Member has already ignored your request...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
     },
       error => {
 
