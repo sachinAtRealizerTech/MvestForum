@@ -164,4 +164,38 @@ export class FollowingComponent implements OnInit {
       })
   }
 
+
+  unfollowMember(id: number) {
+    let body = {
+      _member_id: this.user.member_id,
+      _follower_id: id,
+      _action: 'unfollow'
+    }
+    this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
+      if (data['data']['acceptignorefollowrequests'] == "Success") {
+        this.flashMessagesService.show(`You have successfully unfollowed the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
+    },
+      error => {
+
+      })
+  }
+
+  blockMember(id: string) {
+    let body = {
+      _member_id: this.user.member_id,
+      _follower_id: id,
+      _action: 'blocked'
+    }
+    this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
+      if (data['data']['acceptignorefollowrequests'] == "Success") {
+        this.flashMessagesService.show(`You have successfully blocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
+    },
+      error => {
+
+      })
+
+  }
+
 }

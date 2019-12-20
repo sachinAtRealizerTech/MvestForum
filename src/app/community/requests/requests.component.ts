@@ -85,7 +85,9 @@ export class RequestsComponent implements OnInit {
       _action: 'accepted'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      if (data['data']['acceptignorefollowrequests'] == "Success") {
+        this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
     },
       error => {
 
@@ -100,7 +102,9 @@ export class RequestsComponent implements OnInit {
       _action: 'ignored'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      if (data['data']['acceptignorefollowrequests'] == "Success") {
+        this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      }
     },
       error => {
 
