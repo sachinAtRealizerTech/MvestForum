@@ -13,6 +13,7 @@ import { FollowRequest } from '../models/followingMembers'
 export class RequestsComponent implements OnInit {
   myConnectRequests: any;
   followRequest: FollowRequest[];
+  loading = false;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService,
@@ -27,10 +28,15 @@ export class RequestsComponent implements OnInit {
 
   getMyConnectRequests() {
     debugger;
+    this.loading = true;
     this.neighborsService.getMyConnectRequests(this.user.member_id).subscribe(data => {
       this.myConnectRequests = data['data'];
+      this.loading = false;
       console.log('myconnectrequests', this.myConnectRequests)
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   acceptConnectRequest(reqData: any) {
@@ -61,12 +67,14 @@ export class RequestsComponent implements OnInit {
   }
 
   getMyFollowRequest() {
+    this.loading = true;
     this.followingService.getMyFollowRequest(this.user.member_id = 215).subscribe(data => {
       this.followRequest = data['data'];
+      this.loading = false;
       console.log('followrequest', this.followRequest)
     },
       error => {
-
+        this.loading = false;
       })
   }
 

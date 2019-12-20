@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FollowingService } from '../services/following.service';
 import { Utils } from 'src/app/shared/Utils';
 import { FollowingMembers, FollowerMembers } from '../../community/models/followingMembers'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-following',
@@ -12,10 +14,18 @@ export class FollowingComponent implements OnInit {
   followingMembersList: FollowingMembers[];
   followerMembersList: FollowerMembers[];
   loading = false;
+  followNewUsers: TemplateRef<any>;
+  followNewUsersForm: FormGroup
 
-  constructor(private followingService: FollowingService) { }
+  constructor(private followingService: FollowingService,
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.followNewUsersForm = this.formBuilder.group({
+      searchMember: [],
+      city: []
+    });
     this.getFollowingMembers();
     this.getFollowerMembers();
   }
@@ -44,6 +54,35 @@ export class FollowingComponent implements OnInit {
       error => {
         this.loading = false;
       })
+  }
+
+  searchMembersToFollow() {
+    this.loading = true;
+    let body = {
+      _fname: "SACHIN",
+      _lname: "SHINDE",
+      _city: "PUNE",
+      _member_id: "215"
+    }
+    this.followingService.searchMembersToFollow(body).subscribe(data => {
+
+    },
+      error => {
+        console.log(error)
+      })
+  }
+
+  openFollowNewUsersModal(followNewUsers: TemplateRef<any>) {
+    this.followNewUsers = followNewUsers
+    this.modalService.open(this.followNewUsers, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop',
+      size: 'lg'
+    })
+  }
+
+  closeFollowNewUsersModal() {
+    this.modalService.dismissAll(this.followNewUsers)
   }
 
 }

@@ -27,6 +27,12 @@ export class FollowingService {
     return this.http.post(`${environment.APIBASEURL}/Followers/AcceptIgnoreFollowRequests`, body, Utils.getAuthHeader())
   }
 
+  searchMembersToFollow(body) {
+    return this.http.post(`${environment.APIBASEURL}/Followers/search_members_to_follow`, body, Utils.getAuthHeader())
+  }
 
+  followMember(body) {
+    return this.http.post(`${environment.APIBASEURL}/Followers/followmembers`, body, Utils.getAuthHeader())
+  }
 
 }
