@@ -12,25 +12,25 @@
                 <div class="col-12 pt-3">
                         <ul class="list-inline d-flex mb-1">
                                 <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">
-                                        {{searchedData.length}} Search
+                                        {{searchedData.length}} Community
                                         Results</li>
-                                <li class="list-inline-item mb-1">
+                                <!-- <li class="list-inline-item mb-1">
                                         <select class="font-weight-semibold  text-accent" [value]="searchType"
                                                 (change)="selectSearchType($event)">
                                                 <option value="All">Feature : All</option>
                                                 <option value="community"> Community</option>
                                                 <option value="news"> News</option>
                                         </select>
-                                </li>
+                                </li> -->
                         </ul>
                 </div>
         </div>
         <div class="row">
-                        <div class="col-10 pb-3">
-        <div class="card shadow p-0">
-                <div class="card-body py-2 px-4">
-                        <div class="row">
-                                <!-- <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
+                <div class="col-8 pb-3">
+                        <div class="card shadow p-0">
+                                <div class="card-body py-2 px-4">
+                                        <div class="row">
+                                                <!-- <div class="col-10 grey-hover px-3 py-2 border-bottom " *ngFor="let sd of searchedData">
                         <a routerLink="#">
                                 <a
                                 class="text-muted" (click)="goToSearchLink(sd.url)">
@@ -48,8 +48,8 @@
                                         innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
                         </a>
                 </div> -->
-                               
-                <!-- <div class="col-12 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
+
+                                                <!-- <div class="col-12 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
                                         <a class="text-muted cursor-pointer" (click)="goToSearchLink(sd.url)">
 
                                                 <h6 *ngIf="sd.title?.length<100"
@@ -68,36 +68,43 @@
                                                         innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
                                         </a>
                                 </div> -->
-                                <div class="col-12 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
-                                                <div class="media  py-1">
+                                                <div class="col-12 grey-hover px-3 py-3 border-bottom "
+                                                        *ngFor="let sd of searchedData">
+                                                        <div class="media  py-1">
                                                                 <i class="material-icons md-30 text-muted mr-2">
-                                                                                <!-- remove_red_eye -->
-                                                                                arrow_right
-                                                                              </i>  
-                                                        <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
-                                                  <div class="media-body mb-0 align-self-center">
-                                                                <a
-                                                                class="text-muted cursor-pointer" (click)="goToSearchLink(sd.url)">
-                                                               
-                                                                 <h6 *ngIf="sd.title?.length<100" class=" text-muted font-weight-semibold mb-0">
-                                                                         <u>   {{sd.title}}</u>
-                                                                </h6>
-                                                       
-                                                                <h6 *ngIf="sd.title?.length>=100" class=" text-muted font-weight-semibold mb-0"> 
-                                                                        <u>{{sd.title | slice:0:280}}...</u> 
-                                                                </h6>
-                                                                <!-- <span>Q : </span>  -->
-                                                                <h6 *ngIf="sd.body?.length<200" class="text-secondary mb-0"
-                                                                        innerHTML="{{sd?.body | stripHtml}}"></h6>
-                                
-                                                                <h6 *ngIf="sd.body?.length>=200" class="text-secondary mb-0"
-                                                                        innerHTML="{{sd?.body | stripHtml | slice:0:200}}..."></h6>
-                                                                </a>
-                                                  </div>
+                                                                        <!-- remove_red_eye -->
+                                                                        arrow_right
+                                                                </i>
+                                                                <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
+                                                                <div class="media-body mb-0 align-self-center">
+                                                                        <a class="text-muted cursor-pointer"
+                                                                                (click)="goToSearchLink(sd.url)">
+
+                                                                                <h6 *ngIf="sd.title?.length<100"
+                                                                                        class=" text-muted font-weight-semibold mb-0">
+                                                                                        <u> {{sd.title}}</u>
+                                                                                </h6>
+
+                                                                                <h6 *ngIf="sd.title?.length>=100"
+                                                                                        class=" text-muted font-weight-semibold mb-0">
+                                                                                        <u>{{sd.title | slice:0:280}}...</u>
+                                                                                </h6>
+                                                                                <!-- <span>Q : </span>  -->
+                                                                                <h6 *ngIf="sd.body?.length<200"
+                                                                                        class="text-secondary mb-0"
+                                                                                        innerHTML="{{sd?.body | stripHtml}}">
+                                                                                </h6>
+
+                                                                                <h6 *ngIf="sd.body?.length>=200"
+                                                                                        class="text-secondary mb-0"
+                                                                                        innerHTML="{{sd?.body | stripHtml | slice:0:200}}...">
+                                                                                </h6>
+                                                                        </a>
+                                                                </div>
+                                                        </div>
+
                                                 </div>
-                       
-                        </div> 
-                                <!-- <div class="col-10 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
+                                                <!-- <div class="col-10 grey-hover px-3 py-3 border-bottom " *ngFor="let sd of searchedData">
                                 <div class="media px-3 py-1">
                                   <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/7.png"
                                     alt="Generic placeholder image">
@@ -123,9 +130,115 @@
        
         </div> -->
 
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+               
+                <div class="col-4 pb-3">
+                        <div class="card shadow p-0">
+                                <div class="card-body py-2 px-4">
+                                        <div class="row "> 
+                                                <h6 class="text-secondary font-weight-semibold mb-0 px-3">News Results</h6>
+                                                <div class="col-12 grey-hover  border-bottom  px-3 py-2" >
+                                                        <div class="media ">
+                                                                <i class="material-icons md-30 text-muted mr-2">
+                                                                        <!-- remove_red_eye -->
+                                                                        arrow_right
+                                                                </i>
+                                                                <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
+                                                                <div class="media-body mb-0 align-self-center">
+                                                                        <a class="text-muted cursor-pointer">
+ 
+
+                                                                                <h6   class=" text-muted font-weight-semibold mb-0">
+                                                                                        <u>Title Here</u>
+                                                                                </h6>
+                                                                                <!-- <span>Q : </span>  -->
+                                                                                <h6  class="text-secondary mb-0" >
+                                                                                        This is a Result Discription 
+                                                                                </h6>
+
+                                                                                
+                                                                        </a>
+                                                                </div>
+                                                        </div>
+
+                                                </div> 
+                                                <div class="col-12  py-1 border-bottom " >
+                                              <a routerLink="#"><h6 class="text-accent small serach-view-title text-center font-weight-semibold mb-0 px-3">View all Results (10)</h6></a>  
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <div class="card-body py-2 px-4">
+                                        <div class="row"> 
+                                                <h6 class="text-secondary font-weight-semibold mb-0 px-3">Well Results</h6>
+                                                <div class="col-12 grey-hover px-3 py-2 border-bottom " >
+                                                        <div class="media ">
+                                                                <i class="material-icons md-30 text-muted mr-2">
+                                                                        <!-- remove_red_eye -->
+                                                                        arrow_right
+                                                                </i>
+                                                                <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
+                                                                <div class="media-body mb-0 align-self-center">
+                                                                        <a class="text-muted cursor-pointer">
+ 
+
+                                                                                <h6   class=" text-muted font-weight-semibold mb-0">
+                                                                                        <u>Title Here</u>
+                                                                                </h6>
+                                                                                <!-- <span>Q : </span>  -->
+                                                                                <h6  class="text-secondary mb-0" >
+                                                                                        This is a Result Discription 
+                                                                                </h6>
+
+                                                                                
+                                                                        </a>
+                                                                </div>
+                                                        </div>
+
+                                                </div> 
+                                                <div class="col-12  py-1 border-bottom " >
+                                                        <a routerLink="#"><h6 class="text-accent small serach-view-title text-center font-weight-semibold mb-0 px-3">View all Results (10)</h6></a>  
+                                                          </div>
+                                        </div>
+                                </div>
+
+                                <div class="card-body py-2 px-4">
+                                        <div class="row"> 
+                                                <h6 class="text-secondary font-weight-semibold mb-0 px-3">Lease Results</h6>
+                                                <div class="col-12 grey-hover px-3 py-2 border-bottom " >
+                                                        <div class="media ">
+                                                                <i class="material-icons md-30 text-muted mr-2">
+                                                                        <!-- remove_red_eye -->
+                                                                        arrow_right
+                                                                </i>
+                                                                <!-- <h6 class="font-weight-semibold text-secondary pr-3">S1</h6> -->
+                                                                <div class="media-body mb-0 align-self-center">
+                                                                        <a class="text-muted cursor-pointer">
+ 
+
+                                                                                <h6   class=" text-muted font-weight-semibold mb-0">
+                                                                                        <u>Title Here</u>
+                                                                                </h6>
+                                                                                <!-- <span>Q : </span>  -->
+                                                                                <h6  class="text-secondary mb-0" >
+                                                                                        This is a Result Discription 
+                                                                                </h6>
+
+                                                                                
+                                                                        </a>
+                                                                </div>
+                                                        </div>
+
+                                                </div> 
+                                                <div class="col-12  py-1 border-bottom " >
+                                                        <a routerLink="#"><h6 class="text-accent small serach-view-title text-center font-weight-semibold mb-0 px-3">View all Results (10)</h6></a>  
+                                                          </div>
+                                        </div>
+                                </div>
                         </div>
                 </div>
         </div>
-</div>
-</div>
         <!-- </div>  -->
