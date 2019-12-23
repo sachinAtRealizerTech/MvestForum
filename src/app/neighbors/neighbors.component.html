@@ -146,8 +146,14 @@
                                 <div class="row p-3">
                                     <div class="col-8">
                                         <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+
+                                          <ngx-avatar class="mr-3 mr-2"
+                                          name="{{cr?.name}}" [size]="40" src="">
+                                      </ngx-avatar>
+
+                                            <!-- <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image"> -->
+
                                             <div class="media-body mb-0">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">{{cr.name | titlecase}}</h5>
                                                 <a> 
@@ -200,8 +206,14 @@
                                 <div class="row p-3">
                                     <div class="col-8">
                                         <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+
+                                          <ngx-avatar class="mr-3 mr-2"
+                                          name="{{snr?.name}}" [size]="40" src="">
+                                      </ngx-avatar>
+
+                                            <!-- <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image"> -->
+
                                             <div class="media-body mb-0">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">{{snr.name}}</h5>
                                                 <a> 

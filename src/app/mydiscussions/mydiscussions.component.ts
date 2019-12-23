@@ -30,7 +30,10 @@ export class MydiscussionsComponent implements OnInit {
       console.log('mydiscussions', data['data']);
       this.loading = false;
       this.myDiscussionGroups = data['data']
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   getMyDiscussionsList(subCatId: string) {
@@ -41,7 +44,10 @@ export class MydiscussionsComponent implements OnInit {
       this.loading = false;
       this.myDiscussionList = data;
       console.log('mydisclist', this.myDiscussionList)
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   goToMyDiscussionGroup() {

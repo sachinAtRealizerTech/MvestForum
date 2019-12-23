@@ -151,8 +151,15 @@
           <div class="row justify-content-center text-left text-break">
             <div class="col-xl-10 col-lg-9 col-md-8 col-sm-8 col-9">
               <div class="media px-3 py-1">
-                <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
-                  alt="Generic placeholder image">
+
+
+                <ngx-avatar class="mr-3" name="{{discussionDetails?.posts[0]?.post_by_name}}" [size]="40" src="">
+                </ngx-avatar>
+
+                <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
+                  alt="Generic placeholder image"> -->
+
+
                 <div class="media-body mb-0 align-self-center">
                   <h6 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h6>
                   <h5 class="text-secondary h6 mb-0" id="p{{discussionDetails?.posts[0]?.post_id}}"
@@ -192,7 +199,7 @@
             <li class="list-inline-item mb-0 h6 text-muted align-self-center">
               <a routerLink="#">
                 <i class="material-icons icon-muted md-24 ml-3 mt-1" data-toggle="tooltip"
-                  title="Dislike Post" >thumb_down_alt</i>
+                  title="Dislike Post">thumb_down_alt</i>
               </a>
             </li>
 
@@ -352,8 +359,14 @@
             <div class="row justify-content-center text-break text-left">
               <div class="col-10">
                 <div class="media px-3 ">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
-                    alt="Generic placeholder image">
+
+
+                  <ngx-avatar class="mr-3" name="{{p?.post_by_name}}" [size]="40" src="">
+                  </ngx-avatar>
+
+                  <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
+                    alt="Generic placeholder image"> -->
+
                   <div class="media-body mb-0 align-self-center">
                     <h5 class="text-muted h6 mb-0 font-weight-semibold">{{p.post_by_name}}</h5>
                     <h6 class="list-inline-item mb-1 h6 text-secondary" id="p{{p.post_id}}"
