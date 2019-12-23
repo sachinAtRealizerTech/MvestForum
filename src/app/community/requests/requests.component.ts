@@ -80,14 +80,18 @@ export class RequestsComponent implements OnInit {
   }
 
   acceptFollowRequest(id: number) {
+    debugger;
     let body = {
       _member_id: this.user.member_id,
       _follower_id: id,
       _action: 'accepted'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data']['acceptignorefollowrequests'] == "Success") {
-        this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      debugger;
+      console.log('followingresponseaccept', data)
+      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
+        this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
+        this.getMyFollowRequest();
       }
     },
       error => {
@@ -103,8 +107,9 @@ export class RequestsComponent implements OnInit {
       _action: 'ignored'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data']['acceptignorefollowrequests'] == "Success") {
-        this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
+        this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
+        this.getMyFollowRequest();
       }
     },
       error => {

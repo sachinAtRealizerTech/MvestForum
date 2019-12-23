@@ -31,6 +31,7 @@ export class SettingsComponent implements OnInit {
   submitNotificationMessagePrefForm = false;
   prefCode: any;
   notePhoneValidate = false;
+  loading = false;
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
@@ -144,16 +145,18 @@ export class SettingsComponent implements OnInit {
 
   postNotificationPrefernece() {
     debugger;
-    this.submitNotificationMessagePrefForm = true
+    this.submitNotificationMessagePrefForm = true;
+    if (this.g.alerts.value == "53" || this.g.alerts.value == "51") {
+      if (this.g.notePhoneNo.value == "") {
+        this.notePhoneValidate = true;
+        return
+      }
+    }
     if (this.notificationMessagePrefForm.invalid) {
       return
     }
     if (this.notificationMessagePrefForm.controls.alerts.value) {
       this.prefCode = this.notificationMessagePrefForm.controls.alerts.value
-    }
-    if (this.prefCode == "53" || this.prefCode == "51") {
-      this.notePhoneValidate = true;
-      return
     }
     this.notePhoneValidate = false
     let body = {
@@ -181,8 +184,10 @@ export class SettingsComponent implements OnInit {
   }
 
   getMyNotificationPreferences() {
+    this.loading = true;
     this.settingsService.getMyNotificationPreferences(this.user.email_id).subscribe(data => {
       console.log('prefdata', data);
+      this.loading = false;
       this.notificationPrefList = data['data']['myNotPrefs'];
       this.myNotificationAllData = data['data'];
       this.prefCode = this.myNotificationAllData.notprefId;
@@ -194,11 +199,13 @@ export class SettingsComponent implements OnInit {
       for (let i = 0; i < this.notificationPrefList.length; i++) {
         if (this.notificationPrefList[i]['selected'] == true) {
           this.preferenceName = this.notificationPrefList[i]['notPref'];
-
           break;
         }
       }
-    })
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
 }

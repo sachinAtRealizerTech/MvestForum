@@ -104,7 +104,7 @@
                           width="30px">
                         <div class="media-body">
                           <h6 class="mt-0 mb-0 text-secondary font-weight-normal"
-                            [innerHtml]="mn.Notifications.Text | highlight:searchText">
+                            [innerHtml]="mn.Notifications.Text | slice:0:400 | highlight:searchText">
                           </h6>
                           <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">
                             {{mn.Notifications.Date | date:'medium' }}
@@ -239,7 +239,7 @@
                           width="30px">
                         <div class="media-body">
                           <h6 class="mt-0 mb-0 text-secondary font-weight-normal"
-                            [innerHtml]="an.Notifications.Text | highlight:searchText">
+                            [innerHtml]="an.Notifications.Text | slice:0:400 | highlight:searchText">
                           </h6>
                           <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">
                             {{an.Notifications.Date | date:'medium' }}
@@ -250,7 +250,7 @@
                     <div class="col-4 text-right justify-content-end pull-right">
                       <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
                         <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                          <a routerLink="#" data-toggle="tooltip" title="Archive Notification"
+                          <a routerLink="#" data-toggle="tooltip" title="Unarchive Notification"
                             (click)="archievingNotification(an.Notifications.notId)">
                             <h6 class="mb-0 font-weight-semibold">
                               <i class="material-icons md-22">
