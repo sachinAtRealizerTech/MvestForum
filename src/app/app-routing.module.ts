@@ -3,7 +3,7 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { ProfileComponent } from './community/profile/components/profile.component';
 import { SignInComponent } from './authentication/sign-in/components/sign-in.component';
-import { PhotosComponent } from './photos/photos.component';
+import { PhotosComponent } from './photos/components/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages.component';
