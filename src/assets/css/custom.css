@@ -996,7 +996,7 @@ height: 35px !important;
 
 
 
-.avatar-container{
+/* .avatar-container{
   width:100px !important;
   height:100px !important;
 }
@@ -1005,8 +1005,7 @@ height: 35px !important;
   justify-content: center;
   vertical-align: middle;
   padding-top: 28px;
-  border-radius: 100%;
-  /* border:5px solid #ffffff; */
+  border-radius: 100%; 
   text-transform: uppercase;
   color: rgb(255, 255, 255);
    background-color: #212529 !important;  
@@ -1014,7 +1013,7 @@ height: 35px !important;
   font: 25px/50px Montserrat, sans-serif !important; 
   width:100px;
 height:100px;
-}
+} */
 
 
 .category-text{
@@ -1024,21 +1023,71 @@ height:100px;
 
  
 }
+  
 select{
   background: transparent !important;
-  border:none !important;
-  font-size: 95% !important;
-  
+  /* border:none !important; */
+  /* font-size: 95% !important; */
+  font-size: .8125rem !important;
+  /* box-shadow: 5px 5px 8px 5px #cccccc; */
   
 }
-select:focus{
+/* select option:checked  {
+  content: attr(title);
+  background: #666 !important;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  border: none;
+} */
+
+select:focus {
   background: transparent !important;
-  border:none !important;
-  outline: none !important;
+  border-color:  #cccccc !important;
+  outline:none !important;
 }
  
 
+.rounded-border{
+  border:2px solid #ffffff !important;
+  border-radius: 50%;
+  /* height:40px;
+  width:40px; */
+}
+ 
+.select .dropdown-rounded{
+  border-radius: 30px;
+  border:2px solid #ffffff ;
+  color:#ffffff !important;
+  letter-spacing: 0.6px;
+  padding: 0.4rem 1.3rem !important;
+}
 
+.dropdown-rounded{
+  border-radius: 30px;
+  border:2px solid #ffffff ;
+  color:#ffffff !important;
+  letter-spacing: 0.6px;
+  padding: 0.4rem 1.3rem !important;
+}
+
+.dropdown-rounded select{
+  color:#ffffff !important;
+}
+.dropdown-rounded select option{
+  color: #000000 !important;
+ 
+  /* background: red;
+  outline: rgba(90,97,105,.1);
+  border-color: rgba(90,97,105,.1); */
+}
+.dropdown-rounded select option:hover{
+  color: #000000 !important;
+  background: green !important;
+  outline: none ;
+  border-color: none ;
+}
 
 
 .search-form .form-group {
@@ -1310,7 +1359,7 @@ top:128px;
 
 
         .angular-editor-toolbar-set [title="Insert Video"],
-        .angular-editor-toolbar-set  [title="Insert Image"],
+        /* .angular-editor-toolbar-set  [title="Insert Image"], */
         .angular-editor-toolbar-set  [title="Unlink"],
         .angular-editor-toolbar-set  [title="Insert Link"],
         .angular-editor-toolbar-set  .angular-editor-button[title="Horizontal Line"],
