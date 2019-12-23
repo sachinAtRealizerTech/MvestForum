@@ -210,9 +210,16 @@
                                                     [queryParams]="{discussionId:dl.doc_id,categoryId:categoryId,subCategoryId:subCategoryId}"
                                                     (click)="setTitle( 'Mvest-Discussion Details')">
                                                     <div class="media p-3">
-                                                        <img class="mr-3 user-pic rounded-circle mr-2"
+
+                                                        <ngx-avatar class="mr-3 mr-2"
+                                                            name="{{dl?.post_by_name | slice:0:10}}" [size]="40" src="">
+                                                        </ngx-avatar>
+
+                                                        <!-- <img class="mr-3 user-pic rounded-circle mr-2"
                                                             src="assets/images/avatars/2.jpg"
-                                                            alt="Generic placeholder image">
+                                                            alt="Generic placeholder image"> -->
+
+
                                                         <div class="media-body mb-0">
 
                                                             <ul class="list-inline d-flex mb-0">

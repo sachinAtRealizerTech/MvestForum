@@ -27,7 +27,7 @@
                 <li class="nav-item align-self-center ml-auto">
 
 
-                    <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="dropdownMenuLink"
+                    <!-- <a class="nav-link font-weight-bold dropdown-toggle" href="#" id="dropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My Lists
                     </a>
@@ -36,7 +36,7 @@
                         <a class="dropdown-item" href="#">My Lists</a>
                         <a class="dropdown-item" href="#">Bookmarked Lists</a>
                         <a class="dropdown-item" href="#">Shared Lists</a>
-                    </div>
+                    </div> -->
                     <!-- <select>
                               <option value="0">All Posts</option>
                               <option value="10">Latest</option>
@@ -60,10 +60,10 @@
                     </span>   -->
                 </li>
                 <div class="ml-auto d-inline-flex">
-                    <li class="nav-item pull-right mr-3 align-self-center">
+                    <!-- <li class="nav-item pull-right mr-3 align-self-center">
                         <a class="btn btn-outline-accent btn-sm btn-block text-uppercase " data-toggle="modal"
                             data-target=".photo-modal-lg">New List</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item pull-right mr-3 align-self-center">
                         <a class="btn btn-outline-accent btn-sm btn-block text-uppercase "
                             (click)=openFollowNewUsersModal(followNewUsers)> Follow New Users </a>
@@ -105,9 +105,27 @@
             <div class="row justify-content-between no-gutters">
                 <div class="col-md-12 col-xl-12">
 
-                    <div class="row justify-content-center text-center pt-3" *ngIf="followingMembersList?.length==0">
-                        <h6>Currently, You are not following anyone...</h6>
+                    <div class="row justify-content-center text-center gutters-1"
+                        *ngIf="followingMembersList?.length==0">
+                        <div class="col-md-3 text-center col-3 col-xl-3 ">
+                            <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
+                                height="250px" width="auto">
+                        </div>
+                        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                            <div class="align-self-center">
+                                <h6 class="text-muted font-weight-semibold ">Currently, You are not
+                                    following anyone...</h6>
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Following
+                                    Members. </h6>
+                                <h6 class="text-muted font-weight-semibold ">You can Follow New Users by
+                                    clicking on "Follow New Users" in the above tab.</h6>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- <div class="row justify-content-center text-center pt-3" *ngIf="followingMembersList?.length==0">
+                        <h6>Currently, You are not following anyone...</h6>
+                    </div> -->
 
                     <div class="row justify-content-between pb-3 ">
 
@@ -118,8 +136,14 @@
                                 <div class="card-body p-0">
                                     <div class="pt-3 px-3 pb-0">
                                         <div class="media">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image">
+
+                                            <ngx-avatar class="mr-3" name="{{fml.f_name}} {{fml.l_name}}" [size]="40"
+                                                src="">
+                                            </ngx-avatar>
+
+                                            <!-- <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image"> -->
+
                                             <div class="media-body mb-0">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">
                                                     {{fml.f_name | titlecase}}
@@ -207,9 +231,28 @@
             <div class="row justify-content-between no-gutters">
                 <div class="col-md-12 col-xl-12">
 
-                    <div class="row justify-content-center text-center pt-3" *ngIf="followerMembersList?.length==0">
-                        <h6>Currently, other member is following you...</h6>
+                    <div class="row justify-content-center text-center gutters-1"
+                        *ngIf="followerMembersList?.length==0">
+                        <div class="col-md-3 text-center col-3 col-xl-3 ">
+                            <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
+                                height="250px" width="auto">
+                        </div>
+                        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                            <div class="align-self-center">
+                                <h6 class="text-muted font-weight-semibold ">Currently,No other member
+                                    is following you...</h6>
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
+                                    Followers.
+                                </h6>
+                                <h6 class="text-muted font-weight-semibold ">You can follow New Users by
+                                    clicking on "Follow New Users" in the above tab.</h6>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- <div class="row justify-content-center text-center pt-3" *ngIf="followerMembersList?.length==0">
+                        <h6>Currently, other member is following you...</h6>
+                    </div> -->
 
                     <div class="row justify-content-between pb-3 ">
                         <div class="col-xl-6 col-md-6 col-sm-6 mb-4"
@@ -219,8 +262,14 @@
                                 <div class="card-body p-0">
                                     <div class="py-3 px-3 ">
                                         <div class="media">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/7.png" alt="Generic placeholder image">
+
+                                            <ngx-avatar class="mr-3" name="{{flr.f_name}} {{flr.l_name}}" [size]="40"
+                                                src="">
+                                            </ngx-avatar>
+
+                                            <!-- <img class="mr-3 user-pic rounded-circle mr-2"
+                                                src="assets/images/avatars/7.png" alt="Generic placeholder image"> -->
+
                                             <div class="media-body mb-0">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">
                                                     {{flr.f_name | titlecase}}
@@ -268,36 +317,50 @@
         </div>
         <div class="modal-body">
             <div class="form-row ">
-                <div class="form-group col-4">
-                    <h6 class="font-weight-semibold pr-3">Search Member :</h6>
-                    <input type="text" class="form-control" formControlName="searchMember"
-                        placeholder="Enter Member Name" (keyup)="getMembersFirstAndLastName()"
-                        [ngClass]="{ 'is-invalid': submitfollowNewUsersForm && g.searchMember.errors }">
-                    <div *ngIf="submitfollowNewUsersForm && g.searchMember.errors" class="invalid-feedback">
-                        <div *ngIf="g.searchMember.errors.required">Member Name is required.</div>
+                <div class="form-group col-3">
+                    <h6 class="font-weight-semibold pr-3">First Name :</h6>
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name"
+                        [ngClass]="{ 'is-invalid': submitfollowNewUsersForm && g.firstName.errors }">
+                    <div *ngIf="submitfollowNewUsersForm && g.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="g.firstName.errors.required">First Name is required.</div>
                     </div>
                 </div>
-                <!-- <div   class="form-group col-4 "> 
-                            <h6 class="font-weight-semibold pr-3">State:</h6> 
-                                <select class="text-secondary form-control border">
-                                    <option>Texas</option>
-                                    <option>Texas</option>
-                                    <option>Texas</option>
-                                </select>
-                            </div> -->
-                <div class="form-group col-4 ">
+
+                <div class="form-group col-3">
+                    <h6 class="font-weight-semibold pr-3">Last Name :</h6>
+                    <input type="text" class="form-control" formControlName="lastName" placeholder="Enter Last Name"
+                        [ngClass]="{ 'is-invalid': submitfollowNewUsersForm && g.lastName.errors }">
+                    <div *ngIf="submitfollowNewUsersForm && g.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="g.lastName.errors.required">Last Name is required.</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-3">
                     <h6 class="font-weight-semibold pr-3">City :</h6>
-                    <select class="text-secondary form-control border" formControlName="city"
-                        [ngClass]="{ 'is-invalid': submitfollowNewUsersForm && g.city.errors }"
-                        (change)="searchMembersToFollow()">
-                        <option [value]="Pune">Pune</option>
-                        <!-- <option>Karnes</option>
-                        <option>Blanco</option> -->
-                    </select>
+                    <input type="text" class="form-control" formControlName="city" placeholder="Enter City Name"
+                        [ngClass]="{ 'is-invalid': submitfollowNewUsersForm && g.city.errors }">
                     <div *ngIf="submitfollowNewUsersForm && g.city.errors" class="invalid-feedback">
                         <div *ngIf="g.city.errors.required">City is required.</div>
                     </div>
                 </div>
+
+                <div class="form-group col-3 ">
+                    <h6 class="font-weight-semibold pr-4"></h6>
+                    <button routerLink="#" type="button" class="btn btn-accent"
+                        (click)="searchMembersToFollow()">Search</button>
+                </div>
+                <!-- <div class="form-group col-4 ">
+                    <h6 class="font-weight-semibold pr-3">City :</h6>
+                    <select class="text-secondary form-control border" formControlName="city"
+                        [ngClass]="{ 'is-invalid': submitfollowNewUsersForm && g.city.errors }"
+                        (change)="searchMembersToFollow()">
+                        <option value="Pune">Pune</option>
+                    </select>
+                    <div *ngIf="submitfollowNewUsersForm && g.city.errors" class="invalid-feedback">
+                        <div *ngIf="g.city.errors.required">City is required.</div>
+                    </div>
+                </div> -->
                 <!-- <div   class="form-group col-12 text-left"> 
                                     <button routerLink="#" type="button" class="btn btn-accent" data-dismiss="modal" >Search</button>       
                                     </div>     -->

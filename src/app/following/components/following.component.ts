@@ -17,13 +17,14 @@ export class FollowingComponent implements OnInit {
   loading = false;
   followNewUsers: TemplateRef<any>;
   followNewUsersForm: FormGroup
-  memberFirstName: string;
-  memberLastName: string;
   searchedMembers: SearchedMembers[];
   noSearchedMembers: boolean;
   searchedMembersPresent: boolean;
   followReqstResponse: any;
   submitfollowNewUsersForm = false;
+  searchText: string;
+  allFollowingMembersList: FollowingMembers[];
+  allFollowerMembersList: FollowerMembers[];
 
   constructor(private followingService: FollowingService,
     private modalService: NgbModal,
@@ -32,7 +33,8 @@ export class FollowingComponent implements OnInit {
 
   ngOnInit() {
     this.followNewUsersForm = this.formBuilder.group({
-      searchMember: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       city: ['', Validators.required]
     });
     this.getFollowingMembers();
@@ -46,8 +48,15 @@ export class FollowingComponent implements OnInit {
   getFollowingMembers() {
     this.loading = true;
     this.followingService.getFollowingMembers(this.user.member_id).subscribe(data => {
-      this.followingMembersList = data['data'];
+      this.allFollowingMembersList = data['data'];
+      this.followingMembersList = [];
+      for (let i = 0; i < this.allFollowingMembersList.length; i++) {
+        if (this.allFollowingMembersList[i].status == "accepted") {
+          this.followingMembersList.push(this.allFollowingMembersList[i])
+        }
+      }
       this.loading = false;
+      console.log('allfollowingmembers', this.allFollowingMembersList);
       console.log('followingmembers', this.followingMembersList);
     },
       error => {
@@ -58,29 +67,19 @@ export class FollowingComponent implements OnInit {
 
   getFollowerMembers() {
     this.followingService.getFollowerMembers(this.user.member_id).subscribe(data => {
-      this.followerMembersList = data['data'];
+      this.allFollowerMembersList = data['data'];
+      this.followerMembersList = [];
+      for (let i = 0; i < this.allFollowerMembersList.length; i++) {
+        if (this.allFollowerMembersList[i].status == "accepted") {
+          this.followerMembersList.push(this.allFollowerMembersList[i]);
+        }
+      }
       this.loading = false;
       console.log('followermembers', this.followerMembersList)
     },
       error => {
         this.loading = false;
       })
-  }
-
-  getMembersFirstAndLastName() {
-    debugger;
-    let fullName = this.g.searchMember.value;
-    if (fullName.indexOf(' ') >= 0) {
-      let fullNameArray = fullName.split(" ");
-      this.memberFirstName = fullNameArray[0];
-      this.memberLastName = fullNameArray[1];
-      if (this.followNewUsersForm.valid) {
-        this.searchMembersToFollow();
-      }
-    }
-    else {
-      return
-    }
   }
 
   searchMembersToFollow() {
@@ -91,17 +90,11 @@ export class FollowingComponent implements OnInit {
     this.submitfollowNewUsersForm = false
     this.loading = true;
     let body = {
-      _fname: this.memberFirstName,
-      _lname: this.memberLastName,
+      _fname: this.g.firstName.value,
+      _lname: this.g.lastName.value,
       _city: this.g.city.value,
       _member_id: this.user.member_id
     }
-    // let body = {
-    //   _fname: "SACHIN",
-    //   _lname: "SHINDE",
-    //   _city: "PUNE",
-    //   _member_id: "215"
-    // }
     this.followingService.searchMembersToFollow(body).subscribe(data => {
       debugger;
       this.searchedMembers = data['data'];

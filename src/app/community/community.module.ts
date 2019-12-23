@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DiscussionsModule } from '../community/discussions/discussions.module';
 //import { LoadingcircleComponent } from '../shared/loadingcircle/loadingcircle.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { AvatarModule } from 'ngx-avatar';
+
 
 
 @NgModule({
@@ -16,12 +16,12 @@ import { AvatarModule } from 'ngx-avatar';
     CommonModule,
     DiscussionsModule,
     ImageCropperModule,
-    AvatarModule
+
   ],
   exports: [
     DiscussionsModule,
     ImageCropperModule,
-    AvatarModule
+
   ]
 })
 export class CommunityModule { }

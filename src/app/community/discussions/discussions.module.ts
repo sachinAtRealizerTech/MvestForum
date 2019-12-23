@@ -15,7 +15,8 @@ import { DiscussionsComponent } from './categories/components/discussions.compon
 //import { DiscussionsComponent } from '../../../../discussions/categories/components/discussions.component';
 import { LoadingcircleComponent } from '../../shared/loadingcircle/loadingcircle.component';
 import { HighlightText } from 'src/app/shared/pipes/highlightText.pipe';
-import { stripHtmlPipe } from '../../shared/pipes/stripHtml.pipe'
+import { stripHtmlPipe } from '../../shared/pipes/stripHtml.pipe';
+import { AvatarModule } from 'ngx-avatar';
 // import { NgxEditorModule } from 'ngx-editor';
 
 
@@ -39,6 +40,7 @@ import { stripHtmlPipe } from '../../shared/pipes/stripHtml.pipe'
     ReactiveFormsModule,
     RouterModule,
     AngularEditorModule,
+    AvatarModule,
     // NgxEditorModule,
     FlashMessagesModule.forRoot(),
   ],
@@ -53,7 +55,8 @@ import { stripHtmlPipe } from '../../shared/pipes/stripHtml.pipe'
     HighlightText,
     LoadingcircleComponent,
     SummaryPipe,
-    stripHtmlPipe
+    stripHtmlPipe,
+    AvatarModule
     // NgxEditorModule
   ]
 })

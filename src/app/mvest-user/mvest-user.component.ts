@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Utils } from '../shared/Utils';
 
 @Component({
   selector: 'app-mvest-user',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MvestUserComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  public user = Utils.GetCurrentUser();
 
 }

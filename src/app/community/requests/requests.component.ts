@@ -67,8 +67,9 @@ export class RequestsComponent implements OnInit {
   }
 
   getMyFollowRequest() {
+    debugger;
     this.loading = true;
-    this.followingService.getMyFollowRequest(this.user.member_id = 215).subscribe(data => {
+    this.followingService.getMyFollowRequest(this.user.member_id).subscribe(data => {
       this.followRequest = data['data'];
       this.loading = false;
       console.log('followrequest', this.followRequest)
