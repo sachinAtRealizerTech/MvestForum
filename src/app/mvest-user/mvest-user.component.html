@@ -1,5 +1,17 @@
 <div class="main-content-container container-fluid px-4">
-    <div class="row py-4">
+    <div class="row pt-3">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+          <a routerLink="/profile" class="cursor-pointer d-flex d-inline-flex">
+              <h6 class="font-weight-semibold text-muted align-self-center mb-0 pr-2">
+                <i class="material-icons md-20 icon-muted">
+                arrow_back
+                </i> </h6>  
+                <h6 class="font-weight-semibold text-muted align-self-center mb-0">
+                   Go to My Profile </h6>
+                </a>  
+        </div>
+    </div>
+    <div class="row pb-4 py-2">
         <div class="col-xl-12 col-md-12 col-sm-12">
             <!-- Profile widget -->
             <div class="bg-warning shadow overflow-hidden">
@@ -18,8 +30,7 @@
                         </div>
 
                         <div class="media-body justify-content-center text-left text-white ">
-                            <h4 class="text-white font-weight-medium username">{{user.f_name | titlecase}}
-                                {{user.l_name | titlecase}}
+                            <h4 class="text-white font-weight-medium username">Atul Pawase 
                             </h4>
 
                         </div>
@@ -27,7 +38,7 @@
                         <div class="profile-btn justify-content-end align-self-end">
                             <ul class="list-inline d-inline-flex mb-0">
 
-                                <li class="list-inline-item mb-0 h6 text-muted">
+                                <!-- <li class="list-inline-item mb-0 h6 text-muted">
                                     <a routerLink="#" 
                                         class="  text-uppercase">
                                         <select class="btn btn-outline-white text-uppercase py-0 border-0">
@@ -35,16 +46,33 @@
                                             <option>Connected</option>
                                             <option>Connected</option>
                                         </select></a>
-                                </li>
+                                </li> -->
                                 <li class="list-inline-item mb-0 h6 text-muted">
+                                  <a routerLink="#" 
+                                      class=" text-uppercase">
+                                      <select class="dropdown-rounded text-uppercase py-0 ">
+                                          <option class="text-secondary">Connected</option>
+                                          <option class="text-secondary">Disonnected</option > 
+                                      </select></a>
+                              </li>
+                              <li class="list-inline-item mb-0 h6 text-muted">
+                                <a routerLink="#" 
+                                    class=" text-uppercase">
+                                    <select class="dropdown-rounded text-uppercase py-0 ">
+                                        <option class="text-secondary">Following</option>
+                                        <option class="text-secondary">UnFollow</option >
+                                        <option class="text-secondary">Connected</option>
+                                    </select></a>
+                            </li>
+                                <!-- <li class="list-inline-item mb-0 h6 text-muted">
                                     <a routerLink="#" 
-                                        class="btn btn-outline-white text-uppercase">
-                                        <select class="text-white text-accent text-uppercase py-0 border-0">
+                                        class=" dropdown-rounded text-uppercase">
+                                        <select class=" text-uppercase py-0 border-0">
                                             <option>Following</option>
                                             <option>Connected</option>
                                             <option>Connected</option>
                                         </select></a>
-                                </li>
+                                </li> -->
                                 <!-- <li class="list-inline-item mb-0 h6 text-muted">
                                     <a href="#"
                                         class="btn btn-outline-white btn-sm btn-block text-uppercase">Following</a>
@@ -73,10 +101,10 @@
                 <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
                     <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
                         <li class="nav-item bg-dark ml-5">
-                            <a routerLink="/photos" class="nav-link text-white font-weight-normal" role="tab"
+                            <a routerLink="/photos" class="nav-link text-white active font-weight-normal" role="tab"
                                 aria-controls="" aria-selected="false" routerLinkActive='active'>Timeline</a>
                         </li>
-                        <!-- <li class="nav-item">
+                       <li class="nav-item">
                             <a routerLink="/following" class="nav-link text-white font-weight-normal" role="tab"
                                 aria-controls="contact" aria-selected="false" routerLinkActive='active'>Following</a>
                         </li>
@@ -84,7 +112,7 @@
                             <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" role="tab"
                                 aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
                         </li>
-                        <li class="nav-item">
+                        <!--  <li class="nav-item">
                             <a routerLink="/mydiscussions" class="nav-link text-white font-weight-normal" role="tab"
                                 aria-controls="contact" aria-selected="false" routerLinkActive='active'>My Discusssion
                                 Groups</a>
@@ -100,4 +128,238 @@
             <!-- End profile widget -->
         </div>
     </div>
+
+    <div class="row py-3">
+        <div class="col-xl-12">
+          <div class="row justify-content-between no-gutters py-2">
+            <div class="col-xl-8">
+              <ul class="list-inline d-flex mb-1">
+                <li class="list-inline-item h6 text-secondary">Atul's Posts</li> 
+    
+              </ul>
+            
+              <div class="row justify-content-between no-gutters pb-3">
+                <div class="col-xl-12">
+                  <div class="card card-small shadow blog-comments">
+    
+                    <div class="card-header p-0">
+                      <div class="media d-flex align-items-center pt-3 px-3">
+                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                          alt="Generic placeholder image">
+                        <div class="media-body mb-0">
+                          <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+                          <h5 class="text-muted h6 mb-0 font-weight-semibold small">May 3 at 8:30pm</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body pb-1">
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold">Lorem Ispum is a Dummy text</h5>
+                      <p class="text-secondary pt-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, laboris commodo consequat.
+                      </p>
+                      <img class="img-fluid" src="assets/images/content-management/6.jpeg" alt="Generic placeholder image">
+                      <ul class="list-inline d-flex">
+                        <a routerLink="">
+                          <li class="list-inline-item pt-2 mb-0"> <i class="material-icons icon-muted">
+                              mode_comment
+                            </i>
+                          </li>
+                        </a>
+                        <li class="list-inline-item ml-2 pt-2 mb-0">
+                          <small class="text-secondary">2 Comments </small>
+                        </li>
+                        <li class="list-inline-item h6 pt-2 font-weight-semibold text-muted ml-auto">
+                          <i class="material-icons">
+                            keyboard_arrow_up
+                          </i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card-footer pt-0">
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold"></h5>
+                      <div class="media d-flex align-items-center px-3">
+    
+                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
+                          alt="Generic placeholder image">
+                        <div class="media-body mb-0">
+                          <div class="bg-light align-self-center rounded-5 py-55 px-3">
+                            <p class="text-dark mb-0">
+                              <span class="font-weight-bold">John Doe : </span>Lorem ipsum dolor sit amet, consectetur sed
+                              do eiu..
+                            </p>
+    
+                          </div>
+                          <div class="align-self-center px-3">
+                            <small class="text-secondary mb-0">
+                              May 3 at 8:30pm
+                            </small>
+    
+                          </div>
+    
+                        </div>
+                      </div>
+    
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+    
+            <div class="col-xl-4">
+    
+              <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
+     
+         
+    
+                <ul class="list-inline d-flex  mb-1">
+                  <li class="list-inline-item h6 text-secondary mb-1">Discussions</li>
+                  <li class="list-inline-item ml-auto mb-1">
+                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <small class="font-weight-semibold text-secondary mb-0"> Edit</small>
+                    </a>
+                  </li>
+                </ul>
+                <div class="card card-small blog-comments">
+    
+                  <div class="card-body shadow p-0">
+                    <div class="media d-flex align-items-center p-3">
+                      <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
+                        alt="Generic placeholder image">
+                      <div class="media-body mb-0">
+                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Texas Royalty Deed Wording</h5>
+                      </div>
+                    </div>
+    
+                    <div class="media d-flex align-items-center p-3">
+                      <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
+                        alt="Generic placeholder image">
+                      <div class="media-body mb-0">
+                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Horizontal Drilling Question</h5>
+                      </div>
+                    </div>
+    
+                    <div class="media d-flex align-items-center p-3">
+                      <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
+                        alt="Generic placeholder image">
+                      <div class="media-body mb-0">
+                        <h5 class="text-dark h6 mb-0 font-weight-semibold">Caddo county mineral leasing</h5>
+                      </div>
+                    </div>
+                  </div>
+    
+    
+                  <div class="card-footer border-top">
+                    <div class="row">
+                      <div class="col text-center view-report">
+                        <a href="" class="text-secondary font-weight-bold ">See All</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-12">
+                <ul class="list-inline d-flex mb-0">
+                  <li class="list-inline-item h6 text-secondary">Photos</li>
+                  <li class="list-inline-item ml-auto">
+                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <small class="font-weight-semibold text-secondary ">Add Photo</small>
+                    </a>
+                  </li>
+                </ul>
+                <div class="card card-small shadow">
+                  <div class="card-body p-2">
+                    <div class="row text-center text-lg-left">
+    
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-6">
+                        <a href="#" class="d-block mb-4 h-100">
+                          <img class="img-fluid img-thumbnail rounded-0"
+                            src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer border-top">
+                    <div class="row">
+                      <div class="col text-center view-report">
+                        <a href="" class="text-secondary font-weight-bold ">See All Photos</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+    
+    
+        </div>
+      </div>
 </div>
