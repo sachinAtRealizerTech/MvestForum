@@ -80,11 +80,11 @@
         <div class="tab-pane fade show active" id="connect" role="tabpanel" aria-labelledby="home-tab">
             <!-- <div class="container container-fluid px-4"> -->
             <div class="row justify-content-between no-gutters pb-3 pt-2">
-                <div class="col-md-12 col-xl-8">
-                    <div class="row justify-content-between no-gutters   ">
-
+                <div class="col-md-12 col-xl-8 ">
+                  
+                    <div class="row justify-content-between no-gutters   "> 
+                        <div class="col-xl-12 text-left "> 
                         <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Connect</h6>
-
                         <!-- <div class="row justify-content-center text-center gutters-1"
                             *ngIf="myConnectRequests?.length==0">
                             <div class="col-md-3 text-center col-3 col-xl-3 ">
@@ -103,25 +103,26 @@
                                 </div>
                             </div>
                         </div> -->
-
+                        </div>
 
                         <div class="col-xl-12 col-md-12 col-sm-12 mt-3 text-center"
                             *ngIf="myConnectRequests?.length==0">
-                            <div class="col-md-3 text-center col-3 col-xl-3 ">
+                            <div class="row justify-content-center ">
+                            <div class="col-xl-4 text-center ">
                                 <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
-                                    height="250px" width="auto">
+                                    height="200px" width="auto">
                             </div>
-                            <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                            <div class="col-xl-6 text-left d-flex">
                                 <div class="align-self-center">
-                                    <h6 class="text-secondary font-weight-semibold text-uppercase">Currently, There are
-                                        no connect requests for you...</h6>
+                                    <h6 class="text-secondary font-weight-semibold text-uppercase"> No connect requests yet !</h6>
                                     <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
                                         Neighbors who has sent you connect requests. </h6>
                                 </div>
                             </div>
                         </div>
+                        </div>
 
-                        <div class="col-xl-12 col-md-12 col-sm-12 mt-3" *ngFor="let cr of myConnectRequests">
+                        <div class="col-xl-12 col-md-12 col-sm-12 " *ngFor="let cr of myConnectRequests">
 
                             <div class="card">
                                 <div class="card-body p-0">
@@ -169,6 +170,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="w-100"></div>
                         </div>
 
                     </div>
@@ -246,23 +248,25 @@
                     <div class="row justify-content-start no-gutters ">
 
                         <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Following</h6>
-
-                        <div class="col-xl-12 col-md-12 col-sm-12 mt-3 text-center" *ngIf="followRequest?.length==0">
-                            <div class="col-md-3 text-center col-3 col-xl-3 ">
-                                <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
-                                    height="250px" width="auto">
-                            </div>
-                            <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
-                                <div class="align-self-center">
-                                    <h6 class="text-secondary font-weight-semibold text-uppercase">Currently, There are
-                                        no following requests for you...</h6>
-                                    <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
-                                        Neighbors who has sent you follow requests. </h6>
-                                </div>
-                            </div>
+                    </div> 
+                    <div class="col-xl-12 col-md-12 col-sm-12 mt-3 text-center"
+                    *ngIf="followRequest?.length==0">
+                    <div class="row justify-content-center ">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-4 text-center ">
+                        <img src="assets/images/new-neighbors3.png" class=" " alt="New Neighbors Image"
+                            height="200px" width="auto">
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-4 text-left d-flex">
+                        <div class="align-self-center">
+                            <h6 class="text-secondary font-weight-semibold text-uppercase"> No Follow requests yet !</h6>
+                            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
+                                Neighbors who has sent you Follow requests. </h6>
                         </div>
-
-                        <div class="card card-small blog-comments mt-3" *ngFor="let fr of followRequest">
+                    </div>
+                </div>
+                </div>
+                <div class="col-xl-12 col-md-12 col-sm-12 mt-3"  *ngFor="let fr of followRequest">
+                        <div class="card card-small blog-comments mt-3">
 
                             <div class="card-body p-0">
                                 <div class="p-1">
@@ -330,10 +334,10 @@
                             </div>
 
                         </div>
-
+                        </div>
 
                     </div>
-                </div>
+                
 
 
 
