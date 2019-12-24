@@ -4,9 +4,14 @@
 
 export const environment = {
   production: false,
-  name:'dev',
- // APIBASEURL:'http://localhost:8000/api/'
- APIBASEURL:'http://localhost:3333'
+  name: 'dev',
+
+  //development
+  //APIBASEURL: 'http://45.35.4.250:4001'
+  //APIBASEURL: 'http://45.35.4.250:4002'
+  APIBASEURL: 'http://45.35.4.250:5001',
+  APIBASEIMGURL: 'http://45.35.4.250:3000'
+
 };
 
 /*

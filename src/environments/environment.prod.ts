@@ -1,5 +1,9 @@
 export const environment = {
   production: true,
-  name:'prod',
-  APIBASEURL:' http://45.35.4.250:8085/api/'
+  name: 'prod',
+  //development
+  //APIBASEURL: 'http://45.35.4.250:4001'
+  //integration
+  APIBASEURL: 'http://45.35.4.250:5001',
+  APIBASEIMGURL: 'http://45.35.4.250:3000'
 };
