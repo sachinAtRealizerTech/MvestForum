@@ -135,8 +135,8 @@ export class FollowingComponent implements OnInit {
   followMember(searchedMembers: SearchedMembers) {
     debugger;
     let body = {
-      _member_id: this.user.member_id,
-      _follower_id: searchedMembers.member_id
+      _member_id: searchedMembers.member_id,
+      _follower_id: this.user.member_id
     }
     this.followingService.followMember(body).subscribe(data => {
       debugger;
@@ -163,8 +163,8 @@ export class FollowingComponent implements OnInit {
   unfollowMember(id: number) {
     debugger;
     let body = {
-      _member_id: this.user.member_id,
-      _follower_id: id,
+      _member_id: id,
+      _follower_id: this.user.member_id,
       _action: 'unfollow'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
@@ -181,8 +181,8 @@ export class FollowingComponent implements OnInit {
 
   blockMember(id: string) {
     let body = {
-      _member_id: this.user.member_id,
-      _follower_id: id,
+      _member_id: id,
+      _follower_id: this.user.member_id,
       _action: 'blocked'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
