@@ -110,6 +110,7 @@ export class DiscussionslistComponent implements OnInit {
     this.loading = true;
     this.discussionlistService.getAllDiscussionsList(id, false, this.user.email_id).subscribe(data => {
       this.discussionList = data;
+      this.discussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       debugger;
       console.log('disclist', this.discussionList);
       this.loading = false;

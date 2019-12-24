@@ -156,8 +156,16 @@ export class PhotosComponent implements OnInit {
 
   addPhotoInLeaseOrAlbum() {
     if (this.toggleLease) {
-      this.leaseOrAlbumName = this.addNewPhotoForm.controls.lease.value
+      let fullLeaseAndAlbumName: string = this.addNewPhotoForm.controls.lease.value
+      let arrayLeaseAlbum = fullLeaseAndAlbumName.split('&');
+      this.leaseOrAlbumName = arrayLeaseAlbum[1]
     }
+    else if (!this.toggleLease) {
+      let fullLeaseAndAlbumName: string = this.addNewPhotoForm.controls.album.value
+      let arrayLeaseAlbum = fullLeaseAndAlbumName.split('&');
+      this.leaseOrAlbumName = arrayLeaseAlbum[1]
+    }
+    this.uploadImage();
   }
 
 }

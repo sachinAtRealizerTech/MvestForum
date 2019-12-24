@@ -366,7 +366,7 @@
           <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Lease : </label>
           <select class="form-control my-1 pr-5 border" [value]="null" formControlName="lease" id="leaseselection">
             <option [value]="null" hidden>Select Lease </option>
-            <option value="{{ml.leasenumber}}" *ngFor="let ml of myLeases">{{ml.leasename}}</option>
+            <option value="{{ml.leasenumber}}&{{ml.leasename}}" *ngFor="let ml of myLeases">{{ml.leasename}}</option>
           </select>
           <div class="valid-feedback">Valid.</div>
           <div class="invalid-feedback">Please fill out this field.</div>
@@ -376,7 +376,7 @@
           <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Albums : </label>
           <select class="form-control my-1 pr-5 border" [value]="null" formControlName="album" id="albumselection">
             <option [value]="null" hidden>Select Album </option>
-            <option value="al.guid" *ngFor="let al of albumList">{{al.album_name}}</option>
+            <option value="{{al.guid}}&{{al.album_name}}" *ngFor="let al of albumList">{{al.album_name}}</option>
           </select>
           <div class="valid-feedback">Valid.</div>
           <div class="invalid-feedback">Please fill out this field.</div>
