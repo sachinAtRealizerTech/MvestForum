@@ -31,6 +31,7 @@ import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component'; 
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 import { MvestUserComponent } from './mvest-user/mvest-user.component';
+import { BlockedComponent } from './blocked/blocked.component';
 
 const routes: Routes = [
 
@@ -183,6 +184,11 @@ const routes: Routes = [
       {
         path: 'mvest-user',
         component: MvestUserComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'blocked',
+        component: BlockedComponent,
         canActivate: [AuthGuard]
       },
 

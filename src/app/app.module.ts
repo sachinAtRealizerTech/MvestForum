@@ -38,6 +38,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 import { MvestUserComponent } from './mvest-user/mvest-user.component';
+import { BlockedComponent } from './blocked/blocked.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { MvestUserComponent } from './mvest-user/mvest-user.component';
     SearchresultsComponent,
     BookmarksComponent,
     MvestUserComponent,
+    BlockedComponent,
     // HighlightText
     //LoadingcircleComponent,
   ],

@@ -1,0 +1,153 @@
+<div class="main-content-container container-fluid px-4">
+
+    <flash-messages class="bg-accent text-center pb-0"></flash-messages>
+  
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="content-loading text-center" *ngIf="loading">
+          <app-loadingcircle></app-loadingcircle>
+        </div>
+      </div>
+    </div>
+    <div class="row pb-3 pt-4">
+        <div class="col-12">
+    
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item align-self-center">
+              <a routerLink="/myaccount">
+                <h5 class="text-dark mb-0 font-weight-bold mr-3">My Account</h5>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="#userdetails" class="nav-link text-muted font-weight-bold text-uppercase" data-toggle="tab"
+                aria-controls="profile" aria-selected="false">My Details</a>
+            </li>
+            <li class="nav-item ">
+              <a routerLink="/notification" class="nav-link text-muted font-weight-bold text-uppercase" data-toggle="tab"
+                role="tab" aria-controls="notifications" aria-selected="false">Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/settings" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                aria-controls="contact" aria-selected="false">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                aria-controls="contact" aria-selected="false">Manage Subscription</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/blocked" class=" active nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                aria-controls="contact" aria-selected="false">Blocked Users</a>
+            </li>
+    
+          </ul>
+        </div>
+      </div>
+
+<div class="row justify-content-between  pb-3 ">
+
+    <div class="col-xl-6 col-md-6 col-sm-6" >  
+        
+        <div class="card card-small blog-comments mt-3"> 
+            <div class="card-body p-0"> 
+                <div class="row d-flex p-3">
+                    <div class="col-8">
+                        <div class="media mb-0">
+
+                          <ngx-avatar class="mr-3 mr-2"
+                          name="name" [size]="40" src="">
+                      </ngx-avatar>
+
+                            <!-- <img class="mr-3 user-pic rounded-circle mr-2"
+                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image"> -->
+
+                            <div class="media-body mb-0">
+                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Shilpa Dhumal</h5>
+                                
+                                        <h5 class="text-dark h6 mb-0  text-muted"> 
+                                            lease name </h5>
+                                        
+                                <!-- <ul class="list-inline d-flex mb-0">
+                                    <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
+                                        2.3 miles away
+                                    </li>
+
+                                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-4 align-self-center  justify-content-end text-right">
+                            <h6 class="mb-0">
+                             
+                            <!-- <a><i class="material-icons md-18 icon-muted">
+                                        mail_outline
+                                        </i></a>     -->
+                            </h6> 
+                        <!-- <h6  class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
+                            </i><small class="text-muted font-weight-semibold text-uppercase">connected
+                            </small> </h6>  -->
+                            <h6  class="mb-0 align-self-center">
+                                <button type="button"
+                                    class=" btn btn-accent align-self-center text-uppercase">Unblock</button>
+                            </h6> 
+
+                    </div> 
+
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+
+    <div class="col-xl-6 col-md-6 col-sm-6" >  
+        
+        <div class="card card-small blog-comments mt-3"> 
+            <div class="card-body p-0"> 
+                <div class="row d-flex p-3">
+                    <div class="col-8">
+                        <div class="media mb-0">
+
+                          <ngx-avatar class="mr-3 mr-2"
+                          name="name" [size]="40" src="">
+                      </ngx-avatar>
+
+                            <!-- <img class="mr-3 user-pic rounded-circle mr-2"
+                                src="assets/images/avatars/0.jpg" alt="Generic placeholder image"> -->
+
+                            <div class="media-body mb-0">
+                                <h5 class="text-dark h6 mb-0 font-weight-semibold">Rutuja Gorawade</h5>
+                                  
+                                        <h5 class="text-dark h6 mb-0  text-muted"> 
+                                            lease name </h5>
+                                        
+                                <!-- <ul class="list-inline d-flex mb-0">
+                                    <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
+                                        2.3 miles away
+                                    </li>
+
+                                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-4 align-self-center justify-content-end text-right">
+                            <h6 class="mb-0">
+                             
+                            <!-- <a><i class="material-icons md-18 icon-muted">
+                                        mail_outline
+                                        </i></a>     -->
+                            </h6> 
+                        <!-- <h6  class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
+                            </i><small class="text-muted font-weight-semibold text-uppercase">connected
+                            </small> </h6>  -->
+                            <h6  class="mb-0 align-self-center">
+                                <button type="button"
+                                    class=" btn btn-accent align-self-center text-uppercase">Unblock</button>
+                            </h6> 
+
+                    </div> 
+
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+  </div>
