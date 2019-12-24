@@ -127,7 +127,9 @@ export class FollowingComponent implements OnInit {
     this.followNewUsersForm.reset();
     this.noSearchedMembers = false;
     this.searchedMembersPresent = false;
-    this.submitfollowNewUsersForm = false
+    this.submitfollowNewUsersForm = false;
+    this.getFollowerMembers();
+    this.getFollowingMembers();
   }
 
   followMember(searchedMembers: SearchedMembers) {
@@ -159,15 +161,18 @@ export class FollowingComponent implements OnInit {
 
 
   unfollowMember(id: number) {
+    debugger;
     let body = {
       _member_id: this.user.member_id,
       _follower_id: id,
       _action: 'unfollow'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data']['acceptignorefollowrequests'] == "Success") {
+      debugger;
+      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
         this.flashMessagesService.show(`You have successfully unfollowed the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       }
+      this.getFollowingMembers();
     },
       error => {
 
@@ -181,7 +186,7 @@ export class FollowingComponent implements OnInit {
       _action: 'blocked'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data']['acceptignorefollowrequests'] == "Success") {
+      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
         this.flashMessagesService.show(`You have successfully blocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       }
     },
