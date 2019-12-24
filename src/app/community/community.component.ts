@@ -4,7 +4,9 @@ import { CommunityService } from './community.service';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { PhotosService } from '../photos/services/photos.service';
 
 @Component({
   selector: 'app-community',
@@ -20,10 +22,15 @@ export class CommunityComponent implements OnInit {
 
   @ViewChild(ImageCropperComponent, { static: false }) imageCropper: ImageCropperComponent;
   croppedImageBlob: Blob;
+  images: any[];
+  message: string;
+  leaseOrAlbumName: string;
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private http: HttpClient,
+    private photosService: PhotosService) { }
 
   ngOnInit() {
     this.newDisplayPicForm = this.formBuilder.group({
@@ -105,12 +112,51 @@ export class CommunityComponent implements OnInit {
       type: 'image/jpeg'
     })
     const formData = new FormData();
-    formData.append('profile', file);
+    formData.append('profile', file, file.name);
+    formData.append("foldername", 'profile');
+    formData.append("emailid", this.user.email_id);
     console.log('formdata', formData)
-    this.communityService.onUploadFile(formData)
+    this.photosService.uploadImage(formData)
       .subscribe(data => {
         this.isImageCropped = false;
       });
+  }
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
+  selectFiles = (event) => { //image upload handler
+    this.images = [];
+    let files: FileList = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif)$/)) { //image validity check
+        this.images.push({ file: files.item(i), uploadProgress: "0" });
+      }
+    }
+    this.message = `${this.images.length} valid image(s) selected`;
+  }
+
+  uploadImage() { //image upload hander
+    this.images.map((image, index) => {
+      const formData = new FormData();
+      formData.append("image", image.file, image.file.name);
+      formData.append("foldername", 'profile');
+      formData.append("emailid", this.user.email_id);
+      return this.http.post(`${environment.APIBASEIMGURL}/upload/post`, formData, {
+        reportProgress: true,
+        observe: "events"
+      })
+        .subscribe(event => {
+          debugger;
+          // if (event.type === HttpEventType.UploadProgress) {
+          //   image.uploadProgress = `${(event.loaded / event.total * 100)}%`;
+          // }
+          // if (event.type === HttpEventType.Response) {
+          //   this.imageUrls.push(event.body.imageUrl);
+          // }
+        });
+    });
   }
 
 

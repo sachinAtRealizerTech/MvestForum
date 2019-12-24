@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef, TemplateRef } from '@angular/core';
-import { Utils } from '../shared/Utils';
+import { Utils } from '../../shared/Utils';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SigninService } from '../authentication/sign-in/services/signin.service';
-import { TopNavService } from './top-nav.service';
+import { SigninService } from '../../authentication/sign-in/services/signin.service';
+import { TopNavService } from '../services/top-nav.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { searchData } from '../shared/models/search'
+import { searchData } from '../../shared/models/search'
 
 @Component({
   selector: 'app-top-nav',
@@ -34,6 +34,7 @@ export class TopNavComponent implements OnInit {
   searchFirstText: string;
   searchDataArray: string[] = [];
   newSearchTextArray: string[];
+  myNotifications: any;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -45,7 +46,8 @@ export class TopNavComponent implements OnInit {
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
       searchText: []
-    })
+    });
+    this.getMyNotifications(this.user.email_id)
   }
 
   public user = Utils.GetCurrentUser();
@@ -66,7 +68,9 @@ export class TopNavComponent implements OnInit {
 
   getMyNotifications(email: string) {
     this.topNavService.getMyNotifications(email).subscribe(data => {
-      console.log('mynotifications', data)
+      console.log('mynotifications', data);
+      this.myNotifications = data;
+      this.myNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
     })
   }
 
@@ -218,5 +222,6 @@ export class TopNavComponent implements OnInit {
     this.searchedDataSession = "";
     this.searchForm.controls.searchText.patchValue("");
   }
+
 
 }
