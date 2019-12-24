@@ -44,7 +44,7 @@
             <li class="list-inline-item h6 text-secondary align-self-center mb-1 pr-3">Notifications</li>
 
             <li class="list-inline-item  mb-1 align-self-center pr-3">
-              <select class="font-weight-semibold  text-accent" (change)="selectFeature($event)">
+              <select class="font-weight-semibold border-0 text-accent" (change)="selectFeature($event)">
                 <option value="All">Feature : All</option>
                 <option *ngFor="let mef of masterEntriesFeature" [value]="mef.Entities.Value">
                   {{mef.Entities.Value}}
@@ -52,14 +52,14 @@
               </select>
             </li>
             <li class="list-inline-item  mb-1 align-self-center pr-3">
-              <select class="font-weight-semibold text-accent " (change)="selectType($event)">
+              <select class="font-weight-semibold border-0 text-accent " (change)="selectType($event)">
                 <option value="All">Type : All</option>
                 <option *ngFor="let met of masterEntriesType" [value]="met.Entities.Value">{{met.Entities.Value}}
                 </option>
               </select>
             </li>
             <li class="list-inline-item  mb-1 align-self-center pr-3">
-              <select class="font-weight-semibold text-accent " (change)="selectStatus($event)">
+              <select class="font-weight-semibold border-0 text-accent " (change)="selectStatus($event)">
                 <option value="All">Status : All</option>
                 <option *ngFor="let mes of masterEntriesStatus" [value]="mes.Entities.Value">
                   {{mes.Entities.Value}}
