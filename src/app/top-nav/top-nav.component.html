@@ -27,7 +27,7 @@
           <a class="dropdown-item  text-secondary" href="components-blog-posts.html">
             <!-- <i class="material-icons">vertical_split</i> -->
             This Page</a>
-        <!--    <a class="dropdown-item  text-secondary" href="add-new-post.html">
+          <!--    <a class="dropdown-item  text-secondary" href="add-new-post.html">
            <i class="material-icons">note_add</i> 
             Add New Post</a>-->
           <!-- <div class="dropdown-divider  text-secondary"></div> -->
@@ -188,7 +188,7 @@
         </div>
       </li>
 
-       <!-- <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
       
         <a class="nav-link dropdown-toggle text-nowrap px-3 text-secondary" data-toggle="dropdown" href="#"
           role="button" aria-haspopup="true" aria-expanded="false">
@@ -210,29 +210,28 @@
         </div>
       </li>   -->
       <li class="nav-item dropdown">
-      
+
         <a class="nav-link dropdown-toggle text-nowrap px-3 text-secondary" data-toggle="dropdown" href="#"
           role="button" aria-haspopup="true" aria-expanded="false">
-          <div class="d-flex d-inline-flex"> 
-          <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="30"
-          class="rounded-50 mr-1 img-thumbnail cursor-pointer" src=""
-          (click)="openNewDisplayPicForm(newDisplayPicModal)"></ngx-avatar> 
-         
-           <span class="align-self-center d-md-inline-block   text-secondary">{{user?.f_name | titlecase}}
-            {{user?.l_name | titlecase}}</span>  
-          </div>
-        </a> 
-          <div class="dropdown-menu dropdown-menu-small text-secondary"> 
-            <a routerLink="/myaccount" class="dropdown-item  text-secondary">
-              <i class="material-icons">&#xE879;</i> My Account </a>
-            <a routerLink="/settings" class="dropdown-item  text-secondary">
-              <i class="material-icons">&#xE879;</i> Settings </a>
-            <a routerLink="#" class="dropdown-item  text-secondary" (click)="logout()">
-              <i class="material-icons">&#xE879;</i> Logout </a>
-          </div>
+          <div class="d-flex d-inline-flex">
+            <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="30"
+              class="rounded-50 mr-1 img-thumbnail cursor-pointer" src=""></ngx-avatar>
 
-        
-      </li>   
+            <span class="align-self-center d-md-inline-block   text-secondary">{{user?.f_name | titlecase}}
+              {{user?.l_name | titlecase}}</span>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-small text-secondary">
+          <a routerLink="/myaccount" class="dropdown-item  text-secondary">
+            <i class="material-icons">&#xE879;</i> My Account </a>
+          <a routerLink="/settings" class="dropdown-item  text-secondary">
+            <i class="material-icons">&#xE879;</i> Settings </a>
+          <a routerLink="#" class="dropdown-item  text-secondary" (click)="logout()">
+            <i class="material-icons">&#xE879;</i> Logout </a>
+        </div>
+
+
+      </li>
     </ul>
 
     <nav class="nav">
@@ -282,8 +281,9 @@
 
                 <h6 class="text-muted font-weight-semibold mb-0" *ngIf="communitySearchedData.length==0">
                   Oops ! No Search Results Found</h6>
-                  <h6 class="text-muted font-weight-normal small mb-0 px-3" *ngIf="communitySearchedData.length==0">
-                  We searched far and wide but couldn't find any records matching your search. Please try another Search</h6>
+                <h6 class="text-muted font-weight-normal small mb-0 px-3" *ngIf="communitySearchedData.length==0">
+                  We searched far and wide but couldn't find any records matching your search. Please try another Search
+                </h6>
               </div>
             </div>
 
