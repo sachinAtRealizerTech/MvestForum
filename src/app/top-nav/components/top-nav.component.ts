@@ -35,6 +35,8 @@ export class TopNavComponent implements OnInit {
   searchDataArray: string[] = [];
   newSearchTextArray: string[];
   myNotifications: any;
+  myCommunityNotifications: any[];
+  myNeighborsNotifications: any[];
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -70,7 +72,18 @@ export class TopNavComponent implements OnInit {
     this.topNavService.getMyNotifications(email).subscribe(data => {
       console.log('mynotifications', data);
       this.myNotifications = data;
-      this.myNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
+      this.myNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime());
+      this.myCommunityNotifications = [];
+      this.myNeighborsNotifications = [];
+      for (let i = 0; i < this.myNotifications.length; i++) {
+        if (this.myNotifications[i]['Notifications']['Feature'] == "Community") {
+          this.myCommunityNotifications.push(this.myNotifications[i]);
+          console.log('myCommunityNotifications', this.myCommunityNotifications)
+        }
+        else if (this.myNotifications[i]['Notifications']['Feature'] == "Neighbors") {
+          this.myNeighborsNotifications.push(this.myNotifications[i])
+        }
+      }
     })
   }
 

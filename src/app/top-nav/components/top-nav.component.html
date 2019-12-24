@@ -47,7 +47,7 @@
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="nav-link-icon__wrapper">
             <i class="material-icons">&#xE7F4;</i>
-            <span class="badge badge-pill badge-danger">2</span>
+            <span class="badge badge-pill badge-danger">{{myNotifications?.length}}</span>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
@@ -111,7 +111,7 @@
                   </div> 
                 </a> -->
 
-          <a class="dropdown-item" routerLink="/notification">
+          <a class="dropdown-item" routerLink="/notification" *ngIf="myCommunityNotifications?.length>0">
             <div class="row">
               <div class="col-2 d-flex d-inline-flex">
 
@@ -122,19 +122,24 @@
                 </div>
               </div>
 
-              <div class=" col-8 px-1">
+              <!-- <div class=" col-8 px-1">
                 <h5 class="notification__category mb-0 ">Community</h5>
                 <p class="mb-0 text-dark "><strong>Rutuja Gorawade</strong> has replied on your post</p>
+              </div> -->
 
-
+              <div class=" col-8 px-1" *ngIf="myCommunityNotifications?.length>0">
+                <h5 class="notification__category mb-0 ">Community</h5>
+                <p class="mb-0 text-dark ">{{myCommunityNotifications[0].Notifications.Text | slice:0:100}}</p>
               </div>
-              <div class="col-2 d-flex d-inline-flex text-right notification-list">
-                <h5 class="badge ml-auto badge-pill badge-danger "> 5 </h5>
+
+              <div class="col-2 d-flex d-inline-flex text-right notification-list"
+                *ngIf="myCommunityNotifications?.length>0">
+                <h5 class="badge ml-auto badge-pill badge-danger "> {{myCommunityNotifications?.length}} </h5>
               </div>
 
             </div>
           </a>
-          <div class="dropdown-item">
+          <div class="dropdown-item" *ngIf="myNeighborsNotifications?.length>0">
             <div class="row">
               <div class="col-2 d-flex d-inline-flex">
 
@@ -148,17 +153,19 @@
                 </div>
 
               </div>
-              <div class=" col-8 px-1">
+
+              <div class=" col-8 px-1" *ngIf="myNeighborsNotifications?.length>0">
                 <h5 class="notification__category mb-0 ">Neighbors</h5>
-                <p class="mb-0 text-dark "><strong>Rutuja Gorawade</strong> sent you a Request </p>
+                <p class="mb-0 text-dark ">{{myNeighborsNotifications[0].Notifications.Text | slice:0:100}} </p>
 
               </div>
-              <div class="col-2 d-flex d-inline-flex text-right notification-list">
-                <h5 class="badge ml-auto badge-pill badge-danger "> 3 </h5>
+              <div class="col-2 d-flex d-inline-flex text-right notification-list"
+                *ngIf="myNeighborsNotifications?.length>0">
+                <h5 class="badge ml-auto badge-pill badge-danger "> {{myNeighborsNotifications?.length}} </h5>
               </div>
 
 
-              <div class="col-12">
+              <div class="col-12" *ngIf="myNeighborsNotifications?.length>0">
                 <div class="row justify-content-center text-center">
 
                   <div class="col-8 pt-2 px-0 text-left ">
@@ -179,12 +186,13 @@
                   </div>
                 </div>
               </div>
+
             </div>
 
           </div>
 
           <a class="dropdown-item notification__all text-center  text-secondary" routerLink="/notification"> View all
-            Notifications </a>
+            Notifications({{myNotifications?.length}}) </a>
         </div>
       </li>
 
