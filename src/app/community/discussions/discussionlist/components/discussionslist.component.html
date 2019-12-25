@@ -91,7 +91,7 @@
                         <form id="search-form" class="form-inline">
                             <div class="input-group search">
                                 <input type="text" class="form-control search-form" [(ngModel)]="searchText"
-                                    [ngModelOptions]="{standalone: true}" placeholder="Search">
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search Question">
                                 <span class="input-group-btn">
                                     <button type="submit" class="search-btn">
                                         <i class="fa fa-search"></i>
@@ -275,7 +275,8 @@
                                                         <h6 class="mb-0 font-weight-semibold"
                                                             *ngIf="!isBookmarkedByMe(dl?.bookmark)">
                                                             <i class="material-icons icon-muted md-22 cursor-pointer"
-                                                                (click)="bookmarkDiscussion(dl?.doc_id)">
+                                                                (click)="bookmarkDiscussion(dl?.doc_id)"
+                                                                data-toggle="tooltip" title="Bookmark">
                                                                 turned_in_not
                                                             </i>
                                                         </h6>
@@ -283,7 +284,8 @@
                                                         <h6 class="mb-0 font-weight-semibold"
                                                             *ngIf="isBookmarkedByMe(dl?.bookmark)">
                                                             <i class="material-icons icon-muted md-22 cursor-pointer"
-                                                                (click)="removeBookmark(dl?.doc_id)">
+                                                                (click)="removeBookmark(dl?.doc_id)"
+                                                                data-toggle="tooltip" title="UnBookmark">
                                                                 turned_in
                                                             </i>
                                                         </h6>

@@ -26,6 +26,7 @@ export class BookmarksComponent implements OnInit {
     this.loading = true;
     this.bookmarksService.getBookmarks(this.user.email_id).subscribe(data => {
       this.bookmarksList = data['Bookmarks'];
+      this.bookmarksList.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       this.loading = false
       console.log('bookmarkslist', this.bookmarksList);
     },
@@ -34,11 +35,12 @@ export class BookmarksComponent implements OnInit {
       })
   }
 
-  removeBookmark(docId: string) {
-
+  removeBookmark(docId: string, subcat_id: string) {
+    debugger;
     let body = {
       email_id: this.user.email_id,
-      disc_doc_Id: docId
+      disc_doc_id: docId,
+      subcat_id: subcat_id
     }
     this.bookmarksService.removeBookmark(body).subscribe(data => {
       console.log('removebookmark', data);

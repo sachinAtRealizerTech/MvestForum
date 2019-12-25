@@ -68,13 +68,13 @@
 
             <div class="row justify-content-center text-center gutters-1" *ngIf="bookmarksList?.length==0">
               <div class="col-md-3 text-center col-3 col-xl-3 ">
-                <img src="assets/images/no-bookmark.png" class="" alt="New Neighbors Image" height="200px"
-                  width="auto">
+                <img src="assets/images/no-bookmark.png" class="" alt="New Neighbors Image" height="200px" width="auto">
               </div>
               <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
                 <div class="align-self-center">
                   <h6 class="text-muted font-weight-semibold ">No Bookmarks yet !!</h6>
-                  <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Discusions that you have 
+                  <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Discusions that you
+                    have
                     bookamrked</h6>
                   <h6 class="text-muted font-weight-semibold ">You can add new Bookmarks by
                     clicking on "Bookamrk Icon" in Discussion Tab.</h6>
@@ -115,7 +115,7 @@
                         <li class="list-inline-item mb-1 h6 text-muted align-self-center">
                           <a routerLink="#" data-toggle="tooltip" title="UnBookmark Discussion">
                             <h6 class="mb-0 font-weight-semibold">
-                              <i class="material-icons md-22" (click)="removeBookmark(bl?.doc_id)">
+                              <i class="material-icons md-22" (click)="removeBookmark(bl?.doc_id,bl?.subcat_id)">
                                 turned_in
                               </i>
                               <!-- <i class="material-icons md-22">
