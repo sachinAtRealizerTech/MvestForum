@@ -68,25 +68,11 @@ export class NearbyleasesComponent implements OnInit {
     if (this.neighborFilterFlag == "Lease") {
       this.leaseNumber = sessionStorage.getItem("nearbyleaseNumber");
       this.districtNumber = sessionStorage.getItem("nearbydistrictNumber");
-      this.leaseInput = {
-        _filterBy: "lease",
-        _leasenumber: this.leaseNumber,
-        _distCode: this.districtNumber,
-        _countycode: "",
-        _op_number: ""
-      }
     }
     else if (this.neighborFilterFlag == "CountyNOperator") {
       debugger;
       this.countyNumber = sessionStorage.getItem("nearbyCountyNumber");
       this.operatorNumber = sessionStorage.getItem("nearbyOperatorNumber")
-      this.leaseInput = {
-        _filterBy: "",
-        _leasenumber: 0,
-        _distCode: "",
-        _countycode: this.countyNumber,
-        _op_number: this.operatorNumber
-      }
     }
 
     // this.distanceWithin = sessionStorage.getItem("nearbydistanceWithin");
@@ -132,18 +118,25 @@ export class NearbyleasesComponent implements OnInit {
 
   searchFilterData() {
     //this.showFilter = false;
+    debugger;
     if (this.filterGroup == true) {
       this.submitSearchFilterLeaseForm = true
       if (this.searchFilterLeaseForm.invalid) {
         return
       }
+      this.submitSearchFilterLeaseForm = false;
+      this.neighborFilterFlag = "Lease"
+      let leaseDataInput = this.searchFilterLeaseForm.controls.leaseName.value;
+      let leaseDataInputArray = leaseDataInput.split("&");
+      this.leaseNumber = leaseDataInputArray[0];
+      this.districtNumber = leaseDataInputArray[1];
       this.leaseFilter = true;
       this.distanceFilter = true;
       this.countyFilter = false;
       this.operatorFilter = false;
       this.playTypeFilter = false;
       this.closeSearchFilterModal();
-      this.neighborFilterFlag == "Lease"
+
       this.getNeighboringLeases();
 
     }
@@ -152,13 +145,20 @@ export class NearbyleasesComponent implements OnInit {
       if (this.searchFilterCountyNOperatorForm.invalid) {
         return
       }
+      let countyDataInput = this.searchFilterCountyNOperatorForm.controls.county.value;
+      let countyDataInputArray = countyDataInput.split("&");
+      this.countyNumber = countyDataInputArray[0];
+      let operatorDataInput = this.searchFilterCountyNOperatorForm.controls.operator.value;
+      let operatorDataInputArray = operatorDataInput.split("&");
+      this.operatorNumber = operatorDataInputArray[0];
+      this.neighborFilterFlag = "CountyNOperator";
+      this.submitSearchFilterCountyOperatorForm = false
       this.leaseFilter = false;
       this.distanceFilter = false;
       this.countyFilter = true;
       this.operatorFilter = true;
       this.playTypeFilter = true;
       this.closeSearchFilterModal();
-      this.neighborFilterFlag == "CountyNOperator"
       this.getNeighboringLeases();
     }
   }
@@ -184,6 +184,13 @@ export class NearbyleasesComponent implements OnInit {
     debugger;
     this.loading = true;
     if (this.neighborFilterFlag == "Lease") {
+      this.leaseInput = {
+        _filterBy: "lease",
+        _leasenumber: this.leaseNumber,
+        _distCode: this.districtNumber,
+        _countycode: "",
+        _op_number: ""
+      }
       this.neighborsService.getLeaseNeighbors(this.leaseInput).subscribe(data => {
         debugger;
         this.nearByLeases = [];
@@ -200,6 +207,13 @@ export class NearbyleasesComponent implements OnInit {
         })
     }
     else if (this.neighborFilterFlag == "CountyNOperator") {
+      this.leaseInput = {
+        _filterBy: "",
+        _leasenumber: 0,
+        _distCode: "",
+        _countycode: this.countyNumber,
+        _op_number: this.operatorNumber
+      }
       this.neighborsService.getLeaseNeighbors(this.leaseInput).subscribe(data => {
         debugger;
         this.nearByLeases = [];

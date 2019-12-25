@@ -42,7 +42,7 @@
     <div class="col-md-12 col-xl-12">
 
       <div class="row justify-content-start " *ngIf="!discussionListPage">
-        <div class="col-md-5 col-xl-3" *ngFor="let md of myDiscussionGroups.DiscussionGroups">
+        <div class="col-md-5 col-xl-3 mb-3" *ngFor="let md of myDiscussionGroups.DiscussionGroups">
           <div class="card cursor-pointer" (click)="getMyDiscussionsList(md.subcatid)">
             <img class="img-fluid " src="{{md.imageurl}}" alt="">
             <div class="card-body py-2 px-3">
