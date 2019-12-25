@@ -370,10 +370,11 @@
                             <div class="form-group">
                                 <label for="city" class="text-muted">City</label>
                                 <input class="form-control rounded" formControlName="city" id="city" type="text"
-                                    (keypress)="omitSpecialChar($event)" placeholder=""
+                                    (keypress)="omitSpecialChar($event)" placeholder="" pattern="^[a-zA-Z\s-]+$"
                                     [ngClass]="{ 'is-invalid': submitUserInfoForm && f.city.errors }">
                                 <div *ngIf="submitUserInfoForm && f.city.errors" class="invalid-feedback">
                                     <div *ngIf="f.city.errors.required">City is required</div>
+                                    <div *ngIf="f.city.errors.pattern">City name is not valid</div>
                                 </div>
                             </div>
                         </div>
