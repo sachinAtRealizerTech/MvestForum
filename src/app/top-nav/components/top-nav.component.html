@@ -16,8 +16,8 @@
 
 
     <ul class="navbar-nav border-left flex-row">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-nowrap px-3 active d-none d-lg-block" data-toggle="dropdown" href="#"
+      <li class="nav-item dropdown pt-2">
+        <!-- <a class="nav-link dropdown-toggle text-nowrap px-3 active d-none d-lg-block" data-toggle="dropdown" href="#"
           role="button" aria-haspopup="true" aria-expanded="false">
           <span class="d-none d-md-inline-block align-self-center pt-2">Everywhere</span>
         </a>
@@ -25,13 +25,20 @@
           <a class="dropdown-item  text-secondary" href="">
             Anywhere</a>
           <a class="dropdown-item  text-secondary" href="components-blog-posts.html">
-            <!-- <i class="material-icons">vertical_split</i> -->
+             <i class="material-icons">vertical_split</i>  
             This Page</a>
-          <!--    <a class="dropdown-item  text-secondary" href="add-new-post.html">
+           <a class="dropdown-item  text-secondary" href="add-new-post.html">
            <i class="material-icons">note_add</i> 
-            Add New Post</a>-->
-          <!-- <div class="dropdown-divider  text-secondary"></div> -->
-        </div>
+            Add New Post</a> 
+          <div class="dropdown-divider  text-secondary"></div>  
+        </div> -->
+        <select class="border-0 nav-link text-accent dropdown-toggle text-nowrap px-3 active d-none d-lg-block" data-toggle="dropdown" href="#"
+        role="button" aria-haspopup="true" aria-expanded="false"> 
+        <option>Everywhere</option>
+        <option>Anywhere</option>
+        <option>Community</option>
+      </select> 
+        
       </li>
 
       <li class="nav-item border-right border-left dropdown notifications">
@@ -230,10 +237,12 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-small text-secondary">
+          <a routerLink="/profile" class="dropdown-item  text-secondary">
+            <i class="material-icons">person</i> My Profile </a>
           <a routerLink="/myaccount" class="dropdown-item  text-secondary">
-            <i class="material-icons">&#xE879;</i> My Account </a>
+            <i class="material-icons">account_box</i> My Account </a>
           <a routerLink="/settings" class="dropdown-item  text-secondary">
-            <i class="material-icons">&#xE879;</i> Settings </a>
+            <i class="material-icons">settings_applications</i> Settings </a>
           <a routerLink="#" class="dropdown-item  text-secondary" (click)="logout()">
             <i class="material-icons">&#xE879;</i> Logout </a>
         </div>
