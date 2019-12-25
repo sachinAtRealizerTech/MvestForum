@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MydiscussionsService } from './mydiscussions.service';
 import { DiscussionslistService } from '../community/discussions/discussionlist/Services/discussionslist.service';
 import { Utils } from '../shared/Utils';
+import { BookmarksService } from '../bookmarks/services/bookmarks.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-mydiscussions',
@@ -14,9 +16,12 @@ export class MydiscussionsComponent implements OnInit {
   discussionListPage = false;
   loading = false;
   pageNotFound = false;
+  subCategoryId: string;
 
   constructor(private mydiscussionsService: MydiscussionsService,
-    private discussionslistService: DiscussionslistService) { }
+    private discussionslistService: DiscussionslistService,
+    private bookmarksService: BookmarksService,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
     this.getMyDiscussionGroups(this.user.email_id)
@@ -39,6 +44,7 @@ export class MydiscussionsComponent implements OnInit {
   getMyDiscussionsList(subCatId: string) {
     debugger;
     this.loading = true;
+    this.subCategoryId = subCatId;
     this.discussionslistService.getAllDiscussionsList(subCatId, true, this.user.email_id).subscribe(data => {
       this.discussionListPage = true;
       this.loading = false;
@@ -62,6 +68,41 @@ export class MydiscussionsComponent implements OnInit {
     else {
       return false
     }
+  }
+
+  bookmarkDiscussion(docId: string) {
+    debugger;
+    let body = {
+      email_id: this.user.email_id,
+      subcat_id: this.subCategoryId,
+      disc_doc_id: docId,
+      name: this.user.f_name + " " + this.user.l_name
+    }
+    this.bookmarksService.bookmarkDiscussion(body).subscribe(data => {
+      console.log('bookmark', data);
+      this.flashMessagesService.show('You have successfully added this post to bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getMyDiscussionsList(this.subCategoryId);
+    },
+      error => {
+        console.log(error);
+      })
+  }
+
+
+  removeBookmark(docId: string) {
+    let body = {
+      email_id: this.user.email_id,
+      disc_doc_id: docId,
+      subcat_id: this.subCategoryId
+    }
+    this.bookmarksService.removeBookmark(body).subscribe(data => {
+      console.log('removebookmark', data);
+      this.flashMessagesService.show('You have successfully removed this post from bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getMyDiscussionsList(this.subCategoryId);
+    },
+      error => {
+        console.log(error);
+      })
   }
 
 

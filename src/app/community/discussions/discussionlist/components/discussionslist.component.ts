@@ -184,8 +184,9 @@ export class DiscussionslistComponent implements OnInit {
     debugger;
     let body = {
       email_id: this.user.email_id,
-      subcatId: this.subCategoryId,
-      disc_doc_Id: docId
+      subcat_id: this.subCategoryId,
+      disc_doc_id: docId,
+      name: this.user.f_name + " " + this.user.l_name
     }
     this.bookmarksService.bookmarkDiscussion(body).subscribe(data => {
       console.log('bookmark', data);
@@ -197,10 +198,22 @@ export class DiscussionslistComponent implements OnInit {
       })
   }
 
+  isBookmarkedByMe(bookmarkData: any) {
+    debugger;
+    if (bookmarkData) {
+      let bookmarkPosts = bookmarkData.map(l => l.bookmark_by_emailId);
+      return (bookmarkPosts.includes(this.user.email_id));
+    }
+    else {
+      return false
+    }
+  }
+
   removeBookmark(docId: string) {
     let body = {
       email_id: this.user.email_id,
-      disc_doc_Id: docId
+      disc_doc_id: docId,
+      subcat_id: this.subCategoryId
     }
     this.bookmarksService.removeBookmark(body).subscribe(data => {
       console.log('removebookmark', data);
@@ -211,5 +224,7 @@ export class DiscussionslistComponent implements OnInit {
         console.log(error);
       })
   }
+
+
 
 }
