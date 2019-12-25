@@ -28,6 +28,7 @@ export class MyaccountComponent implements OnInit {
   mismatchOldPassword = false;
   userDetailsArray: any;
   loading = false;
+  showUserDetails = false;
 
   constructor(private myaccountService: MyaccountService,
     private formBuilder: FormBuilder,
@@ -96,12 +97,13 @@ export class MyaccountComponent implements OnInit {
   getUserProfileDetails() {
     debugger;
     this.loading = true;
+    this.showUserDetails = false;
     this.myaccountService.getUserProfileDetails(this.user.email_id).subscribe(data => {
-      this.loading = false;
       console.log('userdetails', data);
-      this.userDetailsArray = data
+      this.userDetailsArray = data;
       this.userDetails = data[0];
       this.signupService.getStates().subscribe(data => {
+        this.loading = false;
         this.stateList = data['data'];
         for (let i = 0; i < this.stateList.length; i++) {
           if (this.userDetails.state_master_id == this.stateList[i].masterdata_id) {
@@ -109,19 +111,29 @@ export class MyaccountComponent implements OnInit {
             break
           }
         }
+        let body = {
+          FirstName: this.userDetails.f_name,
+          LastName: this.userDetails.l_name,
+          PhoneNo: this.userDetails.phone_number,
+          Email: this.user.email_id,
+          Address: this.userDetails.mailing_st_address,
+          State: this.userDetails.state_master_id,
+          City: this.userDetails.city,
+          PinCode: this.userDetails.zip_code
+        }
+        this.userProfileForm.patchValue(body);
+        this.showUserDetails = true;
+      },
+        error => {
+          this.loading = false;
+          this.showUserDetails = true;
+        })
+
+    },
+      error => {
+        this.loading = false;
+        this.showUserDetails = true;
       })
-      let body = {
-        FirstName: this.userDetails.f_name,
-        LastName: this.userDetails.l_name,
-        PhoneNo: this.userDetails.phone_number,
-        Email: this.user.email_id,
-        Address: this.userDetails.mailing_st_address,
-        State: this.userDetails.state_master_id,
-        City: this.userDetails.city,
-        PinCode: this.userDetails.zip_code
-      }
-      this.userProfileForm.patchValue(body);
-    })
   }
 
 
