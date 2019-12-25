@@ -99,7 +99,7 @@ export class PhotosComponent implements OnInit {
     this.message = `${this.images.length} valid image(s) selected`;
   }
 
-  uploadImage() { //image upload hander
+  uploadImage() { //image upload handler
     this.images.map((image, index) => {
       const formData = new FormData();
       formData.append("image", image.file, image.file.name);
@@ -125,6 +125,7 @@ export class PhotosComponent implements OnInit {
     if (this.newAlbumForm.invalid) {
       return
     }
+    this.leaseOrAlbumName = this.newAlbumForm.controls.albumName.value
     let body = {
       email_id: this.user.email_id,
       album_name: this.newAlbumForm.controls.albumName.value,

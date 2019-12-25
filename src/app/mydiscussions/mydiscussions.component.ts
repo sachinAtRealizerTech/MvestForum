@@ -43,6 +43,7 @@ export class MydiscussionsComponent implements OnInit {
       this.discussionListPage = true;
       this.loading = false;
       this.myDiscussionList = data;
+      this.myDiscussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       console.log('mydisclist', this.myDiscussionList)
     },
       error => {

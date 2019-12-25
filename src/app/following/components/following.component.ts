@@ -134,6 +134,10 @@ export class FollowingComponent implements OnInit {
 
   followMember(searchedMembers: SearchedMembers) {
     debugger;
+    if (searchedMembers.email_id == this.user.email_id) {
+      this.flashMessagesService.show('You cannot follow yourself...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      return
+    }
     let body = {
       _member_id: searchedMembers.member_id,
       _follower_id: this.user.member_id
