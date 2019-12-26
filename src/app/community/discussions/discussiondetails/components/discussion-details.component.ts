@@ -21,6 +21,7 @@ export class DiscussionDetailsComponent implements OnInit {
   editCommentId: any;
   deleteModal: TemplateRef<any>;
   deletePostId: any;
+  activeId: string;
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
@@ -181,11 +182,16 @@ export class DiscussionDetailsComponent implements OnInit {
 
       setTimeout(() => {
         debugger;
-        const element = document.querySelector('#' + this.p_Id);
+        const element = document.querySelector('#' + 'p' + this.p_Id);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+          this.activeId = this.p_Id;
         }
-      }, 2000)
+      }, 700),
+        setTimeout(() => {
+          this.activeId = ""
+        }, 5000)
+
     })
   }
 
