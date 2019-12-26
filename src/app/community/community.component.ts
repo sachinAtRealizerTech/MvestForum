@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PhotosService } from '../photos/services/photos.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-community',
@@ -25,24 +27,49 @@ export class CommunityComponent implements OnInit {
   images: any[];
   message: string;
   leaseOrAlbumName: string;
+  coverImage: string = "assets/images/bg-pattern33.png";
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private http: HttpClient,
-    private photosService: PhotosService) { }
+    private photosService: PhotosService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.coverImage = "assets/images/bg-pattern33.png";
+
     this.newDisplayPicForm = this.formBuilder.group({
       // croppedImage: ['', Validators.required],
       newDisplayPic: ['', Validators.required]
-    })
+    });
+
   }
 
   public user = Utils.GetCurrentUser();
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
+
+  getBackground(image) {
+    debugger;
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
+  }
+
+  public returnCoverPhoto(): any {
+    debugger;
+    let styles = {
+      'backgroundImage': 'url(' + this.coverImage + ')',
+      'backgroundRepeat': 'no-repeat',
+      'backgroundSize': 'cover',
+      'height': '200px'
+    }
+    return styles
+  }
+
+  changeCoverPhoto(imagePath: string) {
+    this.coverImage = imagePath
+  }
 
   openNewDisplayPicForm(newDisplayPicModal: TemplateRef<any>) {
     this.newDisplayPicModal = newDisplayPicModal;
