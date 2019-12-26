@@ -396,7 +396,7 @@ background:#f1f1f1;
     color: #FFF !important;
     padding: .9375rem 1.5625rem;
 }
-.main-sidebar .nav .nav-item .nav-link.active, .main-sidebar .nav .nav-item .nav-link:hover, .main-sidebar .nav .nav-item.active, .main-sidebar .nav .nav-item:hover {
+.main-sidebar .nav .nav-item .nav-link.active,.main-sidebar .nav .nav-item .nav-link:focus, .main-sidebar .nav .nav-item .nav-link:hover, .main-sidebar .nav .nav-item.active, .main-sidebar .nav .nav-item:hover {
       box-shadow:inset  -0.355rem 0 #00CD95 !important;  
      /* box-shadow:  0.1875rem 0  #00CD95 !important;   */
     background-color: rgb(39, 38, 38);
