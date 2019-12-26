@@ -445,6 +445,16 @@
                                             :</label>
                                         <div class="w-100">
                                         </div>
+
+                                        <!-- <ckeditor [editor]="Editor" formControlName="problemDescription"
+                                            [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }">
+                                            <div *ngIf="submitQuestion && g.problemDescription.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="g.problemDescription.errors.required">Problem
+                                                    description is required</div>
+                                            </div>
+                                        </ckeditor> -->
+
                                         <angular-editor formControlName="problemDescription" [config]="editorConfig"
                                             [ngClass]="{ 'is-invalid': submitQuestion && g.problemDescription.errors }">
                                             <div *ngIf="submitQuestion && g.problemDescription.errors"
@@ -453,6 +463,7 @@
                                                     description is required</div>
                                             </div>
                                         </angular-editor>
+
                                     </div>
                                 </div>
                             </form>

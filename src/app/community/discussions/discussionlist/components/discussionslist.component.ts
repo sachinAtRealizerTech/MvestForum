@@ -10,6 +10,7 @@ import { DiscussionsList, discussions } from '../../../models/discussionlist';
 import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+
 @Component({
   selector: 'app-discussionslist',
   templateUrl: './discussionslist.component.html',
@@ -24,6 +25,7 @@ export class DiscussionslistComponent implements OnInit {
     private modalService: NgbModal,
     private bookmarksService: BookmarksService,
     private flashMessagesService: FlashMessagesService) { }
+
 
   discussionListQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
