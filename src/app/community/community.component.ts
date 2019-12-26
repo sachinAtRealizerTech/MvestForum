@@ -8,7 +8,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PhotosService } from '../photos/services/photos.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-
+import { DiscussionsService } from './discussions/categories/services/discussions.service';
+import { SubcategoryService } from './discussions/subcategories/Services/subcategory.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { CategoryList } from './models/category';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-community',
@@ -28,15 +32,76 @@ export class CommunityComponent implements OnInit {
   message: string;
   leaseOrAlbumName: string;
   coverImage: string = "assets/images/bg-pattern33.png";
+  postQuestionModal: TemplateRef<any>;
+  categoryId: any;
+  categoryName: any;
+  subCategoryId: any;
+  subCategoryName: any;
+  subCategoryListDD: any;
+  submitQuestion = false;
+  postQuestionForm: FormGroup;
+  editorConfig: AngularEditorConfig;
+  categoryList: CategoryList[];
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private http: HttpClient,
     private photosService: PhotosService,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private discussionsService: DiscussionsService,
+    private subcategoryService: SubcategoryService,
+    private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
+
+    this.editorConfig = {
+      editable: true,
+      spellcheck: true,
+      height: '10rem',
+      minHeight: '4rem',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        { class: 'arial', name: 'Arial' },
+        { class: 'times-new-roman', name: 'Times New Roman' },
+        { class: 'calibri', name: 'Calibri' },
+        { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+      ],
+      customClasses: [
+        {
+          name: 'quote',
+          class: 'quote',
+        },
+        {
+          name: 'redText',
+          class: 'redText'
+        },
+        {
+          name: 'titleText',
+          class: 'titleText',
+          tag: 'h1',
+        },
+      ],
+      sanitize: true,
+      toolbarPosition: 'top',
+    };
+
+    this.postQuestionForm = this.formBuilder.group({
+      CategoryName: ['', Validators.required],
+      subCategoryName: ['', Validators.required],
+      discussionTitle: ['', Validators.required],
+      problemDescription: ['', Validators.required]
+    });
+
     this.coverImage = "assets/images/bg-pattern33.png";
 
     this.newDisplayPicForm = this.formBuilder.group({
@@ -44,12 +109,80 @@ export class CommunityComponent implements OnInit {
       newDisplayPic: ['', Validators.required]
     });
 
+    this.getAllCategories();
+
   }
 
   public user = Utils.GetCurrentUser();
 
+  get g() { return this.postQuestionForm.controls; }
+
   imageChangedEvent: any = '';
   croppedImage: any = '';
+
+
+  getAllCategories() {
+    this.discussionsService.getAllCategories().subscribe(data => {
+      this.categoryList = data;
+      console.log('catlist', this.categoryList)
+    },
+      err => {
+      })
+  }
+
+  openAskQuestionModal(content) {
+    this.postQuestionModal = content;
+    this.modalService.open(this.postQuestionModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closePostQuestionModal() {
+    this.modalService.dismissAll(this.postQuestionModal);
+    this.postQuestionForm.reset();
+    this.submitQuestion = false;
+  }
+
+  selectedCategory(event) {
+    this.categoryId = event.target.value
+    this.categoryName = event.target[event.target.selectedIndex].innerText
+  }
+
+  selectedSubCategory(event) {
+    this.subCategoryId = event.target.value
+    this.subCategoryName = event.target[event.target.selectedIndex].innerText
+  }
+
+  getSubcategoriesList() {
+    this.subcategoryService.getSubcategory(this.categoryId).subscribe(data => {
+      this.subCategoryListDD = data;
+    })
+  }
+
+  postQuestion() {
+    debugger;
+    this.submitQuestion = true
+    if (this.postQuestionForm.invalid) {
+      return
+    }
+    this.submitQuestion = false
+    let body = {
+      category: this.categoryName,
+      category_id: this.categoryId,
+      subcategory_id: this.subCategoryId,
+      subcategory: this.subCategoryName,
+      post_title: this.postQuestionForm.controls.discussionTitle.value,
+      Desc: this.postQuestionForm.controls.problemDescription.value,
+      emailId: this.user.email_id,
+      name: `${this.user.f_name} ${this.user.l_name}`
+    }
+    this.discussionsService.postQuestion(body).subscribe(data => {
+      this.flashMessagesService.show('Your question posted successfully.', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.postQuestionForm.reset();
+      this.closePostQuestionModal();
+    })
+  }
 
   getBackground(image) {
     debugger;
@@ -57,7 +190,6 @@ export class CommunityComponent implements OnInit {
   }
 
   public returnCoverPhoto(): any {
-    debugger;
     let styles = {
       'backgroundImage': 'url(' + this.coverImage + ')',
       'backgroundRepeat': 'no-repeat',

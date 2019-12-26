@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
 import { Utils } from 'src/app/shared/Utils';
-import { CommunityStats } from '../../models/communitystats'
+import { CommunityStats } from '../../models/communitystats';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +15,13 @@ export class ProfileComponent implements OnInit {
   communityStats: CommunityStats;
   loading = false;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal,
+  ) { }
 
   ngOnInit() {
+
     this.getCommunityStats()
   }
 

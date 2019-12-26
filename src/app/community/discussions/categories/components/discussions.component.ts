@@ -96,6 +96,10 @@ export class DiscussionsComponent implements OnInit {
     this.getAllCategories();
   }
 
+  ngOnDestroy() {
+    this.closePostQuestionModal();
+  }
+
   //---------------------------------setting browser tab title----------------------------------------------------------
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
@@ -133,6 +137,8 @@ export class DiscussionsComponent implements OnInit {
 
   closePostQuestionModal() {
     this.modalService.dismissAll(this.postQuestionModal);
+    this.postQuestionForm.reset();
+    this.submitQuestion = false
   }
 
   selectedCategory(event) {
