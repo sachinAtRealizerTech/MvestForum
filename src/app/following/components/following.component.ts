@@ -25,6 +25,10 @@ export class FollowingComponent implements OnInit {
   searchText: string;
   allFollowingMembersList: FollowingMembers[];
   allFollowerMembersList: FollowerMembers[];
+  unfollowMemberModal: TemplateRef<any>;
+  unfollowMemberId: number;
+  blockMemberModal: TemplateRef<any>;
+  blockMemberId: number;
 
   constructor(private followingService: FollowingService,
     private modalService: NgbModal,
@@ -164,10 +168,24 @@ export class FollowingComponent implements OnInit {
   }
 
 
-  unfollowMember(id: number) {
+  openUnfollowMemberModal(unfollwMemberModal: TemplateRef<any>, id: number) {
+    this.unfollowMemberId = id;
+    this.unfollowMemberModal = unfollwMemberModal
+    this.modalService.open(this.unfollowMemberModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop',
+    })
+  }
+
+  closeUnfollowMemberModal() {
+    this.modalService.dismissAll(this.unfollowMemberModal)
+  }
+
+
+  unfollowMember() {
     debugger;
     let body = {
-      _member_id: id,
+      _member_id: this.unfollowMemberId,
       _follower_id: this.user.member_id,
       _action: 'unfollow'
     }
@@ -176,22 +194,39 @@ export class FollowingComponent implements OnInit {
       if (data['data'][0]['acceptignorefollowrequests'] == "success") {
         this.flashMessagesService.show(`You have successfully unfollowed the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       }
+      this.closeUnfollowMemberModal();
       this.getFollowingMembers();
     },
       error => {
-
+        this.closeUnfollowMemberModal();
       })
   }
 
-  blockMember(id: string) {
+  openBlockMemberModal(blockMemberModal: TemplateRef<any>, id: number) {
+    this.blockMemberModal = blockMemberModal;
+    this.blockMemberId = id;
+    this.modalService.open(this.blockMemberModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closeBlockMemberModal() {
+    this.modalService.dismissAll(this.blockMemberModal)
+  }
+
+
+  blockMember() {
     let body = {
-      _member_id: id,
+      _member_id: this.blockMemberId,
       _follower_id: this.user.member_id,
       _action: 'blocked'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
       if (data['data'][0]['acceptignorefollowrequests'] == "success") {
         this.flashMessagesService.show(`You have successfully blocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+        this.getFollowerMembers();
+        this.closeBlockMemberModal();
       }
     },
       error => {
