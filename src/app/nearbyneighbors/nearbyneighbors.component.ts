@@ -24,10 +24,10 @@ export class NearbyneighborsComponent implements OnInit {
   conAllNebMaild: string;
   nearByLeases: any = [];
   loading = false;
-  nextLeaseCounter = 1;
+  nextLeaseCounter = 0;
   conAllNebName: string;
   nextLeaseName: any;
-  nextLeaseFlag = false;
+  nextLeaseFlag = true;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
@@ -39,6 +39,7 @@ export class NearbyneighborsComponent implements OnInit {
     this.allNeighboursCount = sessionStorage.getItem("allNeighboursCount");
     this.nearByLeases = JSON.parse(sessionStorage.getItem("multiLeasesArray"));
     this.nebDistance = sessionStorage.getItem("nearByNbrDistance");
+    this.nextLeaseName = this.leaseName
     this.getLeaseOwner();
   }
 
@@ -74,7 +75,7 @@ export class NearbyneighborsComponent implements OnInit {
   getNextLeaseOwners() {
     debugger;
     this.loading = true;
-    for (let j = 1; j < this.nearByLeases.length; j++) {
+    for (let j = 0; j < this.nearByLeases.length; j++) {
       this.nextLeaseFlag = true;
       this.nextLeaseName = this.nearByLeases[j]['leasename']
       if (this.nextLeaseCounter == j) {
