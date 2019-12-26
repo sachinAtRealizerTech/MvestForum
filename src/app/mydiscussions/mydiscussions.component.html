@@ -112,15 +112,15 @@
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4  text-right">
                     <div class="media p-3 ">
                       <div class="media-body mb-0">
-                        <h6 class="mb-0 font-weight-semibold" *ngIf="!dl?.bookmark">
-                          <i class="material-icons icon-muted md-22" (click)="bookmarkDiscussion(dl?.doc_id)"
+                        <h6 class="mb-0 font-weight-semibold cursor-pointer" *ngIf="!dl?.bookmark">
+                          <i class="material-icons icon-muted md-22 " (click)="bookmarkDiscussion(dl?.doc_id)"
                             data-toggle="tooltip" title="Bookmark">
                             turned_in_not
                           </i>
                         </h6>
 
-                        <h6 class="mb-0 font-weight-semibold" *ngIf="dl?.bookmark">
-                          <i class="material-icons icon-muted md-22" (click)="removeBookmark(dl?.doc_id)"
+                        <h6 class="mb-0 font-weight-semibold cursor-pointer" *ngIf="dl?.bookmark">
+                          <i class="material-icons icon-muted md-22 " (click)="removeBookmark(dl?.doc_id)"
                             data-toggle="tooltip" title="UnBookmark">
                             turned_in
                           </i>
