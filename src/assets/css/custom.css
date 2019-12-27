@@ -1370,8 +1370,8 @@ top:128px;
 
         .angular-editor-toolbar-set [title="Insert Video"],
         /* .angular-editor-toolbar-set  [title="Insert Image"], */
-        .angular-editor-toolbar-set  [title="Unlink"],
-        .angular-editor-toolbar-set  [title="Insert Link"],
+        /* .angular-editor-toolbar-set  [title="Unlink"],
+        .angular-editor-toolbar-set  [title="Insert Link"], */
         .angular-editor-toolbar-set  .angular-editor-button[title="Horizontal Line"],
         .angular-editor-toolbar-set  .angular-editor-button[title="Text Color"],
         .angular-editor-toolbar-set  .angular-editor-button[title="Background Color"],
