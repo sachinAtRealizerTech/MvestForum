@@ -2,16 +2,6 @@
 
   <flash-messages class="bg-accent text-center"></flash-messages>
 
-  <!-- <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="content-loading text-center" *ngIf="loading">
-        <div class="spinner-border text-accent" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="content-loading text-center" *ngIf="loading">
@@ -44,14 +34,6 @@
           <a routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
             aria-selected="false">MESSAGES</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/requests" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
-            aria-selected="false">REQUESTS</a>
-        </li>
-        <!-- <li class="nav-item">
-          <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
-            aria-selected="false">SETTINGS</a>
-        </li> -->
         <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
           <a class="btn btn-accent btn-sm btn-block text-uppercase" (click)="openAskQuestionModal(postQuestionModal)">
             Ask a Question

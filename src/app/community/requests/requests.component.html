@@ -14,37 +14,31 @@
         <div class="col-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item align-self-center">
-                    <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/profile" class=" nav-link text-muted font-weight-bold" aria-controls="profile"
-                        aria-selected="false">MY PROFILE</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab"
-                        aria-controls="contact" aria-selected="false">NEWS FEED</a>
-                </li> -->
-                <li class="nav-item">
-                    <a routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab"
-                        aria-controls="contact" aria-selected="false">DISCUSSIONS</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab"
-                        aria-controls="contact" aria-selected="false">MESSAGES</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/requests" class="active nav-link text-muted font-weight-bold" role="tab"
-                        aria-controls="contact" aria-selected="false">REQUESTS</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a routerLink="/index" class="nav-link text-muted font-weight-bold" role="tab"
-                        aria-controls="contact" aria-selected="false">SETTINGS</a>
-                </li> -->
-                <li class="nav-item pull-right ml-auto align-self-center">
-                    <a class="btn btn-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl"
-                        data-toggle="modal" href="#">
-                        Ask a Question
+                    <a routerLink="/myaccount">
+                        <h5 class="text-dark mb-0 font-weight-bold mr-3">My Account</h5>
                     </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="#userdetails" class="active nav-link text-muted font-weight-bold text-uppercase"
+                        data-toggle="tab" aria-controls="profile" aria-selected="false">My Details</a>
+                </li>
+                <li class="nav-item ">
+                    <a routerLink="/notification" class="nav-link text-muted font-weight-bold text-uppercase"
+                        data-toggle="tab" role="tab" aria-controls="notifications"
+                        aria-selected="false">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/settings" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                        aria-controls="contact" aria-selected="false">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                        aria-controls="contact" aria-selected="false">Manage Subscription</a>
+                </li>
+
+                <li class="nav-item">
+                    <a routerLink="/requests" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                        aria-controls="contact" aria-selected="false">REQUESTS</a>
                 </li>
             </ul>
 
@@ -81,11 +75,11 @@
             <!-- <div class="container container-fluid px-4"> -->
             <div class="row justify-content-between no-gutters pb-3 pt-2">
                 <div class="col-md-12 col-xl-8 ">
-                  
-                    <div class="row justify-content-between no-gutters   "> 
-                        <div class="col-xl-12 text-left "> 
-                        <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Connect</h6>
-                        <!-- <div class="row justify-content-center text-center gutters-1"
+
+                    <div class="row justify-content-between no-gutters   ">
+                        <div class="col-xl-12 text-left ">
+                            <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Connect</h6>
+                            <!-- <div class="row justify-content-center text-center gutters-1"
                             *ngIf="myConnectRequests?.length==0">
                             <div class="col-md-3 text-center col-3 col-xl-3 ">
                                 <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
@@ -108,18 +102,19 @@
                         <div class="col-xl-12 col-md-12 col-sm-12 mt-3 text-center"
                             *ngIf="myConnectRequests?.length==0">
                             <div class="row justify-content-center ">
-                            <div class="col-xl-4 text-center ">
-                                <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
-                                    height="200px" width="auto">
-                            </div>
-                            <div class="col-xl-6 text-left d-flex">
-                                <div class="align-self-center">
-                                    <h6 class="text-secondary font-weight-semibold text-uppercase"> No connect requests yet !</h6>
-                                    <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
-                                        Neighbors who has sent you connect requests. </h6>
+                                <div class="col-xl-4 text-center ">
+                                    <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
+                                        height="200px" width="auto">
+                                </div>
+                                <div class="col-xl-6 text-left d-flex">
+                                    <div class="align-self-center">
+                                        <h6 class="text-secondary font-weight-semibold text-uppercase"> No connect
+                                            requests yet !</h6>
+                                        <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
+                                            Neighbors who has sent you connect requests. </h6>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
 
                         <div class="col-xl-12 col-md-12 col-sm-12 " *ngFor="let cr of myConnectRequests">
@@ -170,7 +165,7 @@
                                     </div>
                                 </div>
                             </div>
-                          
+
                         </div>
                         <div class="w-100"></div>
                     </div>
@@ -248,24 +243,24 @@
                     <div class="row justify-content-start no-gutters ">
 
                         <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Following</h6>
-                    </div> 
-                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 mt-3 text-center"
-                    *ngIf="followRequest?.length==0">
-                    <div class="row justify-content-center ">
-                    <div class="ccol-md-5 col-lg-4 text-center col-6 col-xl-4 ">
-                        <img src="assets/images/new-neighbors3.png" class=" " alt="New Neighbors Image"
-                            height="200px" width="auto">
                     </div>
-                    <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
-                        <div class="align-self-center">
-                            <h6 class="text-secondary font-weight-semibold text-uppercase"> No Follow requests yet !</h6>
-                            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
-                                Neighbors who has sent you Follow requests. </h6>
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 mt-3 text-center" *ngIf="followRequest?.length==0">
+                        <div class="row justify-content-center ">
+                            <div class="ccol-md-5 col-lg-4 text-center col-6 col-xl-4 ">
+                                <img src="assets/images/new-neighbors3.png" class=" " alt="New Neighbors Image"
+                                    height="200px" width="auto">
+                            </div>
+                            <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                                <div class="align-self-center">
+                                    <h6 class="text-secondary font-weight-semibold text-uppercase"> No Follow requests
+                                        yet !</h6>
+                                    <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all
+                                        Neighbors who has sent you Follow requests. </h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </div>
-                <div class="col-xl-12 col-md-12 col-sm-12 mt-3"  *ngFor="let fr of followRequest">
+                    <div class="col-xl-12 col-md-12 col-sm-12 mt-3" *ngFor="let fr of followRequest">
                         <div class="card card-small blog-comments mt-3">
 
                             <div class="card-body p-0">
@@ -334,10 +329,10 @@
                             </div>
 
                         </div>
-                        </div>
-
                     </div>
-                
+
+                </div>
+
 
 
 
