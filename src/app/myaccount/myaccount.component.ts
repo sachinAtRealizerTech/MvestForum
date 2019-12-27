@@ -44,7 +44,9 @@ export class MyaccountComponent implements OnInit {
       Address: ['', Validators.required],
       State: ['', Validators.required],
       City: ['', Validators.required],
-      PinCode: ['', Validators.required]
+      PinCode: ['', Validators.required],
+      UserName: [''],
+      TagLine: ['']
     })
 
     this.changePasswordForm = this.formBuilder.group({
@@ -119,7 +121,9 @@ export class MyaccountComponent implements OnInit {
           Address: this.userDetails.mailing_st_address,
           State: this.userDetails.state_master_id,
           City: this.userDetails.city,
-          PinCode: this.userDetails.zip_code
+          PinCode: this.userDetails.zip_code,
+          UserName: this.userDetails._username,
+          TagLine: this.userDetails._tagline
         }
         this.userProfileForm.patchValue(body);
         this.showUserDetails = true;
@@ -150,7 +154,9 @@ export class MyaccountComponent implements OnInit {
       _city: this.g.City.value,
       _stateId: this.g.State.value,
       _postalcode: this.g.PinCode.value,
-      _phonenumber: this.g.PhoneNo.value
+      _phonenumber: this.g.PhoneNo.value,
+      _username: "aishwarya",
+      _tagline: "hello Mvest"
     }
     this.myaccountService.updateUserProfile(body).subscribe(data => {
       this.flashMessagesService.show('Your profile updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });

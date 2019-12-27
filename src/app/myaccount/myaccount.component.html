@@ -110,23 +110,24 @@
                       <div class="form-row">
                         <div class="form-group col-4">
                           <label class="font-weight-semibold text-secondary">User Name : </label>
-                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary  mb-0">Rut_16 </label>
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary  mb-0">{{g.UserName.value}} </label>
                           </h6>
-                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="FirstName"
-                            [ngClass]="{ 'is-invalid': submitUserProfile && g.FirstName.errors }">
-                          <div *ngIf="submitUserProfile && g.FirstName.errors" class="invalid-feedback">
-                            <div *ngIf="g.FirstName.errors.required">User Name is required</div>
+                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="UserName"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.UserName.errors }">
+                          <div *ngIf="submitUserProfile && g.UserName.errors" class="invalid-feedback">
+                            <div *ngIf="g.UserName.errors.required">User Name is required</div>
                           </div>
                         </div>
                         <div class="form-group col-8">
                           <label class="font-weight-semibold text-secondary">Tag Line : </label>
-                          <h6 *ngIf="!editflag"><label class="font-weight-normal text-secondary mb-0">Verified Mineral
-                              Owner</label>
+                          <h6 *ngIf="!editflag"><label
+                              class="font-weight-normal text-secondary mb-0">{{g.TagLine.value}}</label>
                           </h6>
-                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="LastName"
-                            [ngClass]="{ 'is-invalid': submitUserProfile && g.LastName.errors }">
-                          <div *ngIf="submitUserProfile && g.LastName.errors" class="invalid-feedback">
-                            <div *ngIf="g.LastName.errors.required">Last Name is required</div>
+                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="TagLine"
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.TagLine.errors }">
+                          <div *ngIf="submitUserProfile && g.TagLine.errors" class="invalid-feedback">
+                            <div *ngIf="g.TagLine.errors.required">Tag Line is required</div>
                           </div>
                         </div>
                       </div>

@@ -384,29 +384,23 @@
             <div class="card card-small blog-comments">
 
               <div class="card-body shadow p-0">
-                <div class="media d-flex align-items-center p-3">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
-                    alt="Generic placeholder image">
-                  <div class="media-body mb-0">
-                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Texas Royalty Deed Wording</h5>
-                  </div>
+
+
+                <div class="media d-flex align-items-center p-3 " *ngFor="let rd of recentDiscussions">
+
+                  <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
+                    alt="Generic placeholder image"> -->
+
+                  <ngx-avatar class="mr-3 mr-2" name="{{user.f_name}} {{user.l_name}}" [size]="40" src="">
+                  </ngx-avatar>
+
+                  <a class="card-hover" (click)="navigateToDiscussion(rd.link)">
+                    <div class="media-body mb-0 ">
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold">{{rd.title | slice:0:60 | titlecase}}</h5>
+                    </div>
+                  </a>
                 </div>
 
-                <div class="media d-flex align-items-center p-3">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
-                    alt="Generic placeholder image">
-                  <div class="media-body mb-0">
-                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Horizontal Drilling Question</h5>
-                  </div>
-                </div>
-
-                <div class="media d-flex align-items-center p-3">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                    alt="Generic placeholder image">
-                  <div class="media-body mb-0">
-                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Caddo county mineral leasing</h5>
-                  </div>
-                </div>
               </div>
 
 
@@ -417,8 +411,10 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
+
           <div class="col-xl-12">
             <ul class="list-inline d-flex mb-0">
               <li class="list-inline-item h6 text-secondary">Photos</li>
