@@ -1602,7 +1602,9 @@ top:128px;
     z-index: 0;
   }
 
-
+b,strong  {
+  font-weight: 700 !important;
+}
 
 
 
