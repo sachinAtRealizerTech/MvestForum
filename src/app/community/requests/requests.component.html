@@ -265,21 +265,14 @@
 
                             <div class="card-body p-0">
                                 <div class="p-1">
-                                    <div class="media p-3">
-
-
+                                    <div class="media p-3"> 
                                         <ngx-avatar class="mr-3 mr-2"
                                             name="{{fr?.f_name | titlecase}} {{fr?.l_name | titlecase}}" [size]="40"
                                             src="">
-                                        </ngx-avatar>
-
+                                        </ngx-avatar> 
                                         <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
-                                            alt="Generic placeholder image"> -->
-
-
-                                        <div class="media-body mb-0">
-
-
+                                            alt="Generic placeholder image"> --> 
+                                        <div class="media-body mb-0"> 
                                             <ul class="list-inline d-flex mb-0">
                                                 <li class="list-inline-item mb-1 h6 font-weight-semibold text-dark">
                                                     {{fr.f_name | titlecase}} {{fr.l_name | titlecase}}
@@ -309,19 +302,14 @@
                                                 <div class="ml-auto d-inline-flex">
                                                     <li class="pull-right mr-3">
                                                         <a class="btn btn-accent btn-sm btn-block text-uppercase"
-                                                            (click)="acceptFollowRequest(fr. member_id)">Follow</a>
+                                                            (click)="acceptFollowRequest(fr. member_id)">Accept</a>
                                                     </li>
                                                     <li class="pull-right">
                                                         <a class="btn btn-outline-accent btn-sm btn-block text-uppercase"
                                                             (click)="ignoreFollowRequest(fr. member_id)">Ignore</a>
                                                     </li>
                                                 </div>
-                                            </ul>
-                                            <ul class="list-inline d-flex mb-0">
-
-
-
-                                            </ul>
+                                            </ul> 
                                         </div>
                                     </div>
                                 </div>
