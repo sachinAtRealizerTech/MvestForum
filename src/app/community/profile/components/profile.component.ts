@@ -47,6 +47,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getRecentDiscussions(this.user.email_id).subscribe(data => {
       debugger;
       this.recentDiscussions = data['recent_discussions'];
+      this.recentDiscussions.sort((a, b) => new Date(b.date_time).getTime() - new Date(a.date_time).getTime())
       this.loading = false;
       console.log('recentDiscussions', this.recentDiscussions)
     },

@@ -17,7 +17,7 @@ export class ProfileService {
   }
 
   getRecentDiscussions(emailId: string) {
-    return this.http.get<RecentDiscussions[]>(`${environment.APIBASEURL}/Community/GetRecentDiscussions/${emailId}`, Utils.getAuthHeader())
+    return this.http.get(`${environment.APIBASEURL}/Community/GetRecentDiscussions/${emailId}`, Utils.getAuthHeader())
   }
 
 }

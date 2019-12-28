@@ -87,6 +87,7 @@ export class SubcategoryComponent implements OnInit {
     })
 
     this.route.queryParams.subscribe(params => {
+      debugger;
       this.categoryId = params['categoryId'];
     });
     this.getSubcategory(this.categoryId);
@@ -172,9 +173,9 @@ export class SubcategoryComponent implements OnInit {
   //-----------------------------------passing parameters to create a new discussion----------------------------------
   sendData(subcatid: any, subCatName: string, categoryid: any, categoryname: any) {
     debugger;
-    sessionStorage.setItem("subcat_id", subcatid);
+    // sessionStorage.setItem("subcat_id", subcatid);
     sessionStorage.setItem("subCatName", subCatName);
-    sessionStorage.setItem("category_id", categoryid);
+    // sessionStorage.setItem("category_id", categoryid);
     sessionStorage.setItem("category_name", categoryname);
   }
 

@@ -37,7 +37,6 @@ export class DiscussionslistComponent implements OnInit {
   searchText: any;
   categoryName: any;
   categoryId: any;
-  subCategoryIdDD: any;
   subCategoryName: any;
   submitQuestion = false;
   loading: boolean;
@@ -91,6 +90,7 @@ export class DiscussionslistComponent implements OnInit {
     })
 
     this.route.queryParams.subscribe(params => {
+      debugger;
       this.categoryId = params['categoryId'];
       this.subCategoryId = params['subCategoryId']
     });
@@ -118,8 +118,8 @@ export class DiscussionslistComponent implements OnInit {
       this.loading = false;
       this.pageNotFound = false;
       this.categoryName = sessionStorage.getItem("category_name");
-      this.categoryId = sessionStorage.getItem("category_id");
-      this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+      //this.categoryId = sessionStorage.getItem("category_id");
+      //this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
       this.subCategoryName = sessionStorage.getItem("subCatName");
     },
       err => {
@@ -152,13 +152,13 @@ export class DiscussionslistComponent implements OnInit {
     }
     this.submitQuestion = false;
     this.categoryName = sessionStorage.getItem("category_name");
-    this.categoryId = sessionStorage.getItem("category_id");
-    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+    //this.categoryId = sessionStorage.getItem("category_id");
+    //this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
     this.subCategoryName = sessionStorage.getItem("subCatName");
     let body = {
       category: this.categoryName,
       category_id: this.categoryId,
-      subcategory_id: this.subCategoryIdDD,
+      subcategory_id: this.subCategoryId,
       subcategory: this.subCategoryName,
       post_title: this.discussionListQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionListQuestionForm.controls.problemDescription.value,

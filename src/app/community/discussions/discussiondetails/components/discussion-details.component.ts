@@ -140,6 +140,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
     this.route.queryParams.subscribe(params => {
+      debugger;
       this.subCategoryId = params['subCategoryId']
       this.categoryId = params['categoryId'];
       this.discussionDetailsId = params['discussionId'];
@@ -147,7 +148,7 @@ export class DiscussionDetailsComponent implements OnInit {
     });
 
     this.categoryName = sessionStorage.getItem("category_name");
-    this.categoryId = sessionStorage.getItem("category_id");
+    //this.categoryId = sessionStorage.getItem("category_id");
     this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
     this.subCategoryName = sessionStorage.getItem("subCatName");
 
