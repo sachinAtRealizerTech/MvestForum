@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NeighborsService } from 'src/app/neighbors/neighbors.service';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FollowingService } from 'src/app/following/services/following.service';
-import { FollowRequest } from '../models/followingMembers'
+import { FollowRequest, SearchedMembers } from '../models/followingMembers';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-requests',
@@ -14,10 +15,15 @@ export class RequestsComponent implements OnInit {
   myConnectRequests: any;
   followRequest: FollowRequest[];
   loading = false;
+  followReqstResponse: any;
+  followBack = false;
+  followMemberModal: TemplateRef<any>;
+  followBackMemberId: number;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService,
-    private followingService: FollowingService) { }
+    private followingService: FollowingService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getMyConnectRequests();
@@ -90,15 +96,15 @@ export class RequestsComponent implements OnInit {
       debugger;
       console.log('followingresponseaccept', data)
       if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully accepted the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
+        this.flashMessagesService.show(`You have successfully accepted the follow request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
         this.getMyFollowRequest();
       }
     },
       error => {
-
       })
 
   }
+
 
   ignoreFollowRequest(id: number) {
     let body = {
@@ -108,9 +114,38 @@ export class RequestsComponent implements OnInit {
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
       if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully declined the connect request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
+        this.flashMessagesService.show(`You have successfully declined the follow request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
         this.getMyFollowRequest();
       }
+    },
+      error => {
+
+      })
+  }
+
+  openFollowMemberModal(followMemberModal: TemplateRef<any>, memberId: number) {
+    this.followBackMemberId = memberId
+    this.followMemberModal = followMemberModal
+    this.modalService.open(this.followMemberModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop',
+    })
+  }
+
+  closefollowMemberModal() {
+    this.modalService.dismissAll(this.followMemberModal);
+    this.acceptFollowRequest(this.followBackMemberId);
+  }
+
+
+  followMember() {
+    this.acceptFollowRequest(this.followBackMemberId);
+    let body = {
+      _member_id: this.followBackMemberId,
+      _follower_id: this.user.member_id
+    }
+    this.followingService.followMember(body).subscribe(data => {
+      this.getMyFollowRequest();
     },
       error => {
 
