@@ -146,6 +146,7 @@ export class RequestsComponent implements OnInit {
     }
     this.followingService.followMember(body).subscribe(data => {
       this.getMyFollowRequest();
+      this.modalService.dismissAll(this.followMemberModal);
     },
       error => {
 
