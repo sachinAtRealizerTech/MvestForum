@@ -222,6 +222,7 @@ export class FollowingComponent implements OnInit {
 
 
   blockMember() {
+    debugger;
     let body = {
       _member_id: this.blockMemberId,
       _follower_id: this.user.member_id,

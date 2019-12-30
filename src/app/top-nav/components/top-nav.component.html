@@ -32,13 +32,13 @@
             Add New Post</a> 
           <div class="dropdown-divider  text-secondary"></div>  
         </div> -->
-        <select class="border-0 nav-link text-accent dropdown-toggle text-nowrap px-3 active d-none d-lg-block" data-toggle="dropdown" href="#"
-        role="button" aria-haspopup="true" aria-expanded="false"> 
-        <option>Everywhere</option>
-        <option>Anywhere</option>
-        <option>Community</option>
-      </select> 
-        
+        <select class="border-0 nav-link text-accent dropdown-toggle text-nowrap px-3 active d-none d-lg-block"
+          data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <option>Everywhere</option>
+          <option>Anywhere</option>
+          <option>Community</option>
+        </select>
+
       </li>
 
       <li class="nav-item border-right border-left dropdown notifications">
@@ -136,7 +136,8 @@
 
               <div class=" col-8 px-1" *ngIf="myCommunityNotifications?.length>0">
                 <h5 class="notification__category mb-0 ">Community</h5>
-                <p class="mb-0 text-dark ">{{myCommunityNotifications[0].Notifications.Text | slice:0:100}}</p>
+                <p class="mb-0 text-dark " [innerHtml]="myCommunityNotifications[0].Notifications.Text | slice:0:100">
+                </p>
               </div>
 
               <div class="col-2 d-flex d-inline-flex text-right notification-list"

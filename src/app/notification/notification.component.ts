@@ -15,13 +15,14 @@ export class NotificationComponent implements OnInit {
   masterEntriesFeature: any = [];
   masterEntriesType: any = [];
   masterEntriesStatus: any = [];
-  myNotifications: any = [];
+  myNotifications: any;
   p: any;
   q: any;
 
   showNotificationsPage = true;
   showArchivesPage = false;
   archivedNotifications: any = [];
+  loading = false;
   constructor(private notificationService: NotificationService,
     private flashMessagesService: FlashMessagesService) { }
 
@@ -41,6 +42,7 @@ export class NotificationComponent implements OnInit {
   showNotifications() {
     this.showNotificationsPage = true;
     this.showArchivesPage = false;
+    this.getMyArchNotification(this.user.email_id);
   }
   showArchives() {
     this.showNotificationsPage = false;
@@ -71,14 +73,17 @@ export class NotificationComponent implements OnInit {
   }
 
   getMyNotifications() {
+    this.loading = true
     this.notificationService.getMyNotifications(this.user.email_id, this.currentFeature, this.currentStatus, this.currentType).subscribe(data => {
       debugger;
       this.myNotifications = data;
       this.myNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
-      console.log('mynotifications', data)
+      console.log('mynotifications', data);
+      this.loading = false
     })
     err => {
-      console.log('getMyNotifications', err)
+      console.log('getMyNotifications', err);
+      this.loading = false
     }
   }
 
@@ -111,11 +116,16 @@ export class NotificationComponent implements OnInit {
   }
 
   getMyArchNotification(email: string) {
+    this.loading = true;
     this.notificationService.getMyArchNotification(this.user.email_id).subscribe(data => {
       console.log('Archive', data);
       this.archivedNotifications = data;
       this.archivedNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
-    })
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
 }
