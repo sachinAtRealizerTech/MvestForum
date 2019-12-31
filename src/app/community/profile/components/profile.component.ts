@@ -36,25 +36,27 @@ export class ProfileComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   getCommunityStats() {
-    this.loading = true;
+
     this.profileService.getCommunityStats(this.user.email_id).subscribe(data => {
       this.communityStats = data;
-      this.loading = false;
+
       console.log('communityStats', this.communityStats)
     },
       error => {
-        this.loading = false;
+
       })
   }
 
   getMyNews() {
+    this.loading = true;
     this.profileService.getMyNews(this.user.member_id).subscribe(data => {
       console.log('mynews', data)
       this.MyNews = data;
-      this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+      this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
+      this.loading = false;
     },
       error => {
-
+        this.loading = false;
       })
   }
 
