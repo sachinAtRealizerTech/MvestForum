@@ -669,8 +669,14 @@ textarea:focus {
 
 .username{ 
 	 position: absolute;
- top:128px;
+ top:110px;
 	 left:11%;
+ }
+
+ .user-tagline{
+  position: absolute;
+  top:145px;
+    left:11%;
  }
  
 .profile-btn{ 
@@ -1298,9 +1304,16 @@ aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li:after {
 @media (min-width:480px) and (max-width:610px) {
 .username{ 
   position: absolute;
-top:128px;
-  left:25%;
+top:110px;
+  left:26%;
   font-size: 20px !important;
+}
+ 
+
+.user-tagline{
+ position: absolute;
+ top:145px;
+   left:26%;
 }
 
 .category-text{
@@ -1315,20 +1328,31 @@ top:128px;
 @media (min-width:610.99px) and (max-width:962px) {
   .username{ 
     position: absolute;
-  top:128px;
+  top:110px;
     left:20%;
     /* font-size: 20px !important; */
+  }
+ 
+ 
+  .user-tagline{
+   position: absolute;
+   top:145px;
+     left:20%;
   }
   }
 
   @media (min-width:962.99px) and (max-width:1130px) {
     .username{ 
       position: absolute;
-    top:128px;
+    top:110px;
       left:16%;
       /* font-size: 20px !important; */
+    } 
+    .user-tagline{
+     position: absolute;
+     top:145px;
+       left:16%;
     }
-
     .category-text{
       position: absolute;
      top: 300%;
@@ -1342,9 +1366,14 @@ top:128px;
     @media (min-width:1130.99px) and (max-width:1240px) {
       .username{ 
         position: absolute;
-      top:128px;
+      top:110px;
         left:13%;
         /* font-size: 20px !important; */
+      } 
+      .user-tagline{
+       position: absolute;
+       top:145px;
+         left:13%;
       }
 
       .category-text{
