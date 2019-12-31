@@ -146,6 +146,7 @@ export class DiscussionslistComponent implements OnInit {
 
   postQuestion() {
     debugger;
+    this.loading = true;
     this.submitQuestion = true;
     if (this.discussionListQuestionForm.invalid) {
       return
@@ -163,6 +164,7 @@ export class DiscussionslistComponent implements OnInit {
       post_title: this.discussionListQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionListQuestionForm.controls.problemDescription.value,
       emailId: this.user.email_id,
+      _member_id: this.user.member_id,
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussionlistService.postQuestion(body).subscribe(data => {
@@ -170,7 +172,11 @@ export class DiscussionslistComponent implements OnInit {
       this.discussionListQuestionForm.reset();
       this.getDiscussionList(this.subCategoryId);
       this.closePostQuestionModal();
-    })
+      this.loading = false
+    },
+      error => {
+        this.loading = false
+      })
   }
 
   markAsAnswer(dl: boolean) {

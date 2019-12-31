@@ -161,6 +161,7 @@ export class SubcategoryComponent implements OnInit {
       post_title: this.g.discussionTitle.value,
       Desc: this.g.problemDescription.value,
       emailId: this.user.email_id,
+      _member_id: this.user.member_id,
       name: `${this.user.f_name} ${this.user.l_name}`
     }
     this.subcategoryService.postQuestion(body).subscribe(data => {

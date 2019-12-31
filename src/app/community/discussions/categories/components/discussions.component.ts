@@ -172,6 +172,7 @@ export class DiscussionsComponent implements OnInit {
       post_title: this.postQuestionForm.controls.discussionTitle.value,
       Desc: this.postQuestionForm.controls.problemDescription.value,
       emailId: this.user.email_id,
+      _member_id: this.user.member_id,
       name: `${this.user.f_name} ${this.user.l_name}`
     }
     this.discussionsService.postQuestion(body).subscribe(data => {

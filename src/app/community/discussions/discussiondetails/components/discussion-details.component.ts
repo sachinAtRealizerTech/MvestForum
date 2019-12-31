@@ -232,7 +232,8 @@ export class DiscussionDetailsComponent implements OnInit {
       emailId: this.user.email_id,
       name: this.user.f_name + " " + this.user.l_name,
       Desc: this.replyForm.controls.Description.value,
-      discussiondoc_Id: this.discussiondocId
+      discussiondoc_Id: this.discussiondocId,
+      _member_id: this.user.member_id
     }
     this.discussiondetailsService.sendReply(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussionDetailsId);
@@ -259,6 +260,7 @@ export class DiscussionDetailsComponent implements OnInit {
       post_title: this.discussionDetailsQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionDetailsQuestionForm.controls.problemDescription.value,
       emailId: this.user.email_id,
+      _member_id: this.user.member_id,
       name: this.user.f_name + " " + this.user.l_name
     }
     this.discussiondetailsService.postQuestion(body).subscribe(data => {

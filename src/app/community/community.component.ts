@@ -175,12 +175,14 @@ export class CommunityComponent implements OnInit {
       post_title: this.postQuestionForm.controls.discussionTitle.value,
       Desc: this.postQuestionForm.controls.problemDescription.value,
       emailId: this.user.email_id,
+      _member_id: this.user.member_id,
       name: `${this.user.f_name} ${this.user.l_name}`
     }
     this.discussionsService.postQuestion(body).subscribe(data => {
       this.flashMessagesService.show('Your question posted successfully.', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
+
     })
   }
 

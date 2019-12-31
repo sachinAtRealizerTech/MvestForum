@@ -82,26 +82,25 @@
 
           <div class="row justify-content-between no-gutters pb-3">
             <div class="col-xl-12">
-              <div class="card card-small shadow blog-comments">
+
+              <div class="card card-small shadow blog-comments mb-3" *ngFor="let mn of MyNews">
 
                 <div class="card-header p-0">
                   <div class="media d-flex align-items-center pt-3 px-3">
-                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/Fav-icon.png"
                       alt="Generic placeholder image">
                     <div class="media-body mb-0">
-                      <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
-                      <h5 class="text-muted h6 mb-0 font-weight-semibold small">May 3 at 8:30pm</h5>
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold">Mvest News</h5>
+                      <h5 class="text-muted h6 mb-0 font-weight-semibold small">{{mn.time | date:'medium'}}</h5>
                     </div>
                   </div>
                 </div>
                 <div class="card-body pb-1">
-                  <h5 class="text-dark h6 mb-0 font-weight-semibold">Lorem Ispum is a Dummy text</h5>
-                  <p class="text-secondary pt-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, laboris commodo consequat.
+                  <h5 class="text-dark h6 mb-0 font-weight-semibold">{{mn.title | titlecase}}</h5>
+                  <p class="text-secondary pt-2 capitalize" [innerHtml]="mn.body">
                   </p>
-                  <img class="img-fluid" src="assets/images/content-management/6.jpeg" alt="Generic placeholder image">
-                  <ul class="list-inline d-flex">
+
+                  <!-- <ul class="list-inline d-flex">
                     <a routerLink="">
                       <li class="list-inline-item pt-2 mb-0"> <i class="material-icons icon-muted">
                           mode_comment
@@ -116,9 +115,9 @@
                         keyboard_arrow_up
                       </i>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
-                <div class="card-footer pt-0">
+                <!-- <div class="card-footer pt-0">
                   <h5 class="text-dark h6 mb-0 font-weight-semibold"></h5>
                   <div class="media d-flex align-items-center px-3">
 
@@ -142,7 +141,7 @@
                     </div>
                   </div>
 
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -393,9 +392,10 @@
                   <ngx-avatar class="mr-3 mr-2" name="{{user.f_name}} {{user.l_name}}" [size]="40" src="">
                   </ngx-avatar>
 
-                  <a class="card-hover" (click)="navigateToDiscussion(rd?.link)">
+                  <a class="card-hover cursor-pointer" (click)="navigateToDiscussion(rd?.link)">
                     <div class="media-body mb-0 ">
-                      <h5 class="text-dark h6 mb-0 font-weight-semibold">{{rd?.title | titlecase | slice:0:60}}</h5>
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                        {{rd?.title | titlecase | slice:0:60}}</h5>
                     </div>
                   </a>
                 </div>

@@ -6,27 +6,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecentDiscussions } from '../models/recentDiscussions';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MyNews } from '../models/myNews';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
 export class ProfileComponent implements OnInit {
   communityStats: CommunityStats;
   loading = false;
   recentDiscussions: RecentDiscussions[];
+  MyNews: MyNews[];
 
   constructor(private profileService: ProfileService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+
   ) { }
 
   ngOnInit() {
-
     this.getCommunityStats();
     this.getRecentDiscussions();
+    this.getMyNews();
   }
 
   public user = Utils.GetCurrentUser();
@@ -40,6 +44,17 @@ export class ProfileComponent implements OnInit {
     },
       error => {
         this.loading = false;
+      })
+  }
+
+  getMyNews() {
+    this.profileService.getMyNews(this.user.member_id).subscribe(data => {
+      console.log('mynews', data)
+      this.MyNews = data;
+      this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+    },
+      error => {
+
       })
   }
 
