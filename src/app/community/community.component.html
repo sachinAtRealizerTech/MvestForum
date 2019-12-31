@@ -57,13 +57,27 @@
 
         <!-- <div class="px-4 pb-4 py-4 "
         style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;"> -->
-        <div class="media align-items-end profile-header ">
+        <div class="media align-items-end profile-header">
           <div class="justify-content-start mr-3">
-
-            <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
+           
+            <!-- <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
               class="rounded-50 profile img-thumbnail cursor-pointer" src=""
-              (click)="openNewDisplayPicForm(newDisplayPicModal)"></ngx-avatar>
-
+              (click)="openNewDisplayPicForm(newDisplayPicModal)"></ngx-avatar> -->
+              
+              <div class="small-12 medium-2 large-2 columns">
+                <!-- <div class=""> -->
+                  <!-- User Profile Image -->
+                  <!-- <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg"> -->
+                  <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
+                  class="rounded-50 profile img-thumbnail cursor-pointer" src=""></ngx-avatar>
+                  <!-- Default Image -->
+                  <!-- <i class="fa fa-user fa-5x"></i> -->
+                <!-- </div> -->
+                <div class="p-image cursor-pointer">
+                  <i class="fa fa-camera upload-button"(click)="openNewDisplayPicForm(newDisplayPicModal)"></i>
+                   <!-- <input class="file-upload" type="file"/> -->
+                </div>
+             </div>
             <!-- <img href="#" (click)="openNewDisplayPicForm(newDisplayPicModal)" src="assets/images/MProfile.png" alt="..."
               width="100" class="rounded-50 mt-2 profile img-thumbnail cursor-pointer"> -->
 
@@ -220,13 +234,25 @@
         </div>
       </div>
       <div class="form-row">
-
+ 
         <div class="form-group col-4" *ngIf="isImageCropped">
           <img class="js--image-preview--profile mt-2" [src]="croppedImage" width="70" height="70">
-        </div>
+        </div> 
+        <!-- <div class="form-group col-4">
+        <div class="small-12 medium-2 large-2 columns">
+          <div class="circle"> 
+            <img class="profile bg-accent js--image-preview--profile mt-2" [src]="croppedImage"> 
+          </div>
+          <div class="p-image">
+            <i class="fa fa-camera upload-button" >
+             <input class=" image-upload rounded-5 text-dark" type="file" formControlName="newDisplayPic" 
+             (change)="fileChangeEvent($event)" accept="image/*"/>
+            </i>
+          </div>
+       </div>
+        </div> -->
 
-        <div class="form-group col-4">
-
+   <div class="form-group col-4"> 
           <div class="js--image-preview--profile mt-2">
             <div class="upload-options-profile  align-self-end">
               <label>
@@ -234,13 +260,13 @@
                   (change)="fileChangeEvent($event)" accept="image/*" />
               </label>
             </div>
-          </div>
-        </div>
+          </div> 
+        </div> 
 
       </div>
 
       <div class="form-row">
-        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
           [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()">
         </image-cropper>
       </div>
