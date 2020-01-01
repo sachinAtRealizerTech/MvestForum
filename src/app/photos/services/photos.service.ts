@@ -24,11 +24,11 @@ export class PhotosService {
   }
 
   addNewAlbum(body) {
-    return this.http.post(`${environment.APIBASEIMGURL}/ImageUpload/AddAlbum`, body, httpOptions)
+    return this.http.post(`${environment.APIBASEURL}/ImageUpload/AddAlbum`, body, Utils.getAuthHeader())
   }
 
   getAlbumList(email_id: string) {
-    return this.http.get(`${environment.APIBASEIMGURL}/ImageUpload/GetAlbumList/${email_id}`, Utils.getAuthHeader())
+    return this.http.get(`${environment.APIBASEURL}/upload/getFiles/${email_id}`, Utils.getAuthHeader())
   }
 
   uploadPhoto(formdata) {

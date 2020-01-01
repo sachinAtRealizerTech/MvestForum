@@ -35,6 +35,9 @@ export class PhotosComponent implements OnInit {
   leaseOrAlbumName: string;
   addNewPhotoForm: FormGroup;
   newAlbumTemplate: TemplateRef<any>;
+  imageUrl: string;
+  loading = false;
+  fullImageUrl: string;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -44,7 +47,7 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit() {
     this.newAlbumForm = this.formBuilder.group({
-      photo: [''],
+      photo: ['', Validators.required],
       albumName: ['', Validators.required]
     });
 
@@ -110,26 +113,32 @@ export class PhotosComponent implements OnInit {
 
   uploadImage() { //image upload handler
     debugger;
-    if (this.n.albumName.value == "") {
-      this.submitNewAlbumForm = true
-      return
-    }
+    this.loading = true
     this.submitNewAlbumForm = false
     this.images.map((image) => {
       debugger;
       const formData = new FormData();
       formData.append("image", image.file, image.file.name);
-      formData.append("emailid", this.user.email_id);
-      formData.append("folder", "albumphoto");
-      formData.append("saveoriginal", "true");
-      formData.append("albumName", this.newAlbumForm.controls.albumName.value);
+      // formData.append("emailid", this.user.email_id);
+      // formData.append("folder", "albumphoto");
+      // formData.append("saveoriginal", "true");
+      // formData.append("albumName", this.newAlbumForm.controls.albumName.value);
       return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
         reportProgress: true,
         observe: "events"
       })
         .subscribe(data => {
           debugger;
-          console.log('image upload response', data);
+          console.log('image upload response', data['body']);
+          if (data['body']) {
+            this.imageUrl = data['body']['fileName'];
+            this.fullImageUrl = environment.IMAGEPREPENDURL + this.imageUrl
+            this.loading = false
+          }
+
+          console.log(this.imageUrl);
+          // this.imageUrl = this.imageUrl
+
           // if (event.type === HttpEventType.UploadProgress) {
           //   image.uploadProgress = `${(event.loaded / event.total * 100)}%`;
           // }
@@ -155,20 +164,26 @@ export class PhotosComponent implements OnInit {
   }
 
   addNewAlbum() {
+    debugger;
+    this.loading = true
     if (this.newAlbumForm.invalid) {
+      this.submitNewAlbumForm = true;
       return
     }
+    this.submitNewAlbumForm = false;
     this.leaseOrAlbumName = this.newAlbumForm.controls.albumName.value
     let body = {
-      email_id: this.user.email_id,
-      album_name: this.newAlbumForm.controls.albumName.value,
-      no_of_photos: 1,
-      photo_url: "image1.jpg"
+      member_id: this.user.member_id,
+      album_name: this.n.albumName.value,
+      file_name: this.imageUrl
     }
     this.photosService.addNewAlbum(body).subscribe(data => {
+      console.log('add new album response', data);
+      this.loading = false;
+      this.closeAddNewAlbumModal();
     },
       error => {
-
+        this.loading = false
       })
   }
 

@@ -1,6 +1,15 @@
 <div class="main-content-container container-fluid px-4">
   <app-community></app-community>
 
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-xl-12 pb-1 pt-3">
       <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
@@ -459,7 +468,7 @@
         <input type="text" id="albumName" formControlName="albumName" class="form-control"
           placeholder="Enter Album Name" [ngClass]="{ 'is-invalid': submitNewAlbumForm && n.albumName.errors }">
         <div *ngIf="submitNewAlbumForm && n.albumName.errors" class="invalid-feedback">
-          <div *ngIf="n.albumName.errors.required">List Name is required</div>
+          <div *ngIf="n.albumName.errors.required">Album Name is required</div>
         </div>
       </div>
       <div class="row">
@@ -468,7 +477,7 @@
         </div>
 
         <div class="px-3 py-2">
-          <img src="assets/images/avatars/Fav-icon.png">
+          <img [src]="fullImageUrl" height="100" width="100">
         </div>
 
         <div class=" px-3 py-2">
@@ -476,8 +485,11 @@
             <h6 class=" rounded-0 albumphoto border">
               <div class="albumphoto">
                 <label class="mb-0">
-                  <input type="file" id="photo" formControlName="photo" class="rounded-5"
-                    (change)="selectFiles($event)">
+                  <input type="file" id="photo" formControlName="photo" class="rounded-5" (change)="selectFiles($event)"
+                    [ngClass]="{ 'is-invalid': submitNewAlbumForm && n.photo.errors }">
+                  <div *ngIf="submitNewAlbumForm && n.photo.errors" class="invalid-feedback">
+                    <div *ngIf="n.photo.errors.required">Please upload a photo</div>
+                  </div>
                   <!-- <input type="hidden" name="fileHidden" formControlName="photo" /> -->
                 </label>
               </div>
@@ -489,7 +501,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-accent" (click)="uploadImage()">Submit</button>
+      <button type="button" class="btn btn-accent" (click)="addNewAlbum()">Submit</button>
     </div>
   </div>
 
