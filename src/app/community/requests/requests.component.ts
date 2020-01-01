@@ -90,6 +90,7 @@ export class RequestsComponent implements OnInit {
     let body = {
       _member_id: this.user.member_id,
       _follower_id: id,
+      _emailid: this.user.email_id,
       _action: 'accepted'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
@@ -110,6 +111,7 @@ export class RequestsComponent implements OnInit {
     let body = {
       _member_id: this.user.member_id,
       _follower_id: id,
+      _emailid: this.user.email_id,
       _action: 'ignored'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {

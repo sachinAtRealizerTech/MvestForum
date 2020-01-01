@@ -25,8 +25,8 @@
               data-target=".photo-modal-lg">Add Photo</a>
           </li>
           <li class="nav-item pull-right">
-            <a href="#" class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-toggle="modal"
-              data-target=".album-modal-lg">Add Album</a>
+            <a class="btn btn-outline-accent btn-sm btn-block text-uppercase"
+              (click)="openAddNewAlbumModal(newAlbumTemplate)">Add Album</a>
           </li>
         </div>
       </ul>
@@ -110,7 +110,7 @@
             <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
             <div class="card-body py-2 px-3">
 
-              <h6 class="card-text text-dark font-weight-semibold mb-1"> Julie</h6>
+              <h6 class="card-text text-dark font-weight-semibold mb-1">Julie</h6>
               <p><small class="text-secondary mb-1">23 Photos</small> </p>
             </div>
           </div>
@@ -397,6 +397,26 @@
             <label class="font-weight-semibold">Browse to Add Photos to this Lease : </label>
           </div>
 
+          <div class=" px-3 mb-3">
+            <img src="assets/images/avatars/Fav-icon.png">
+          </div>
+
+          <div class=" px-3 mb-3">
+            <img src="assets/images/avatars/Fav-icon.png">
+          </div>
+
+          <div class=" px-3 mb-3">
+            <img src="assets/images/avatars/Fav-icon.png">
+          </div>
+
+          <div class=" px-3 mb-3">
+            <img src="assets/images/avatars/Fav-icon.png">
+          </div>
+
+          <div class=" px-3 mb-3">
+            <img src="assets/images/avatars/Fav-icon.png">
+          </div>
+
           <div class=" px-3 ">
             <a href="#" class="d-block ">
               <h6 class=" rounded-0 albumphoto border">
@@ -409,6 +429,9 @@
               </h6>
             </a>
           </div>
+
+
+
         </div>
       </div>
       <div class="modal-footer">
@@ -421,69 +444,53 @@
 </div>
 <!-- end -->
 
-<div class="modal fade album-modal-lg" tabindex="-1" role="dialog" aria-labelledby="photo-modal" aria-hidden="true">
-  <div class="modal-dialog modal-md bg-white shadow">
-    <form>
-      <div class="modal-content" [formGroup]="newAlbumForm">
-        <div class=" justify-content-end">
-          <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+<ng-template #newAlbumTemplate>
 
-        <!-- <div class="modal-header">
-            <h5 class="modal-title">Add Album</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="photo" class="align-self-center h6 text-dark font-weight-semibold">Create Album : </label>
-            <input type="text" id="albumName" formcontrolName="albumName" class="form-control"
-              placeholder="Enter Album Name">
-          </div>
-          <!-- <div class="form-group align-items-start">
-              <label for="descriptions" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Descriptions : </label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              <div class="valid-feedback">Valid.</div>
-              <div class="invalid-feedback">Please fill out this field.</div>
-            </div> -->
-          <!-- <div class="form-group">
-              <label for="leasetype mb-4" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Add Album Photo : </label>
-              <div class="js--image-preview shadow">
-              </div>
-              <div class="upload-options">
-                <label>
-                  <input type="file" class="image-upload" accept="image/*" />
-                </label>
-              </div>
-            </div> -->
-          <div class="row">
-            <div class="col-12">
-              <label for="mb-4" class="font-weight-semibold">Browse to Add Photos to this Album : </label>
-            </div>
-
-            <div class=" px-3 py-2">
-              <a href="#" class="d-block ">
-                <h6 class=" rounded-0 albumphoto border">
-                  <div class="albumphoto">
-                    <label class="mb-0">
-                      <input type="file" id="photo" class="rounded-5" (change)="selectFiles($event)">
-                      <input type="hidden" name="fileHidden" formControlName="photo" />
-                    </label>
-                  </div>
-                </h6>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-accent" (click)="uploadImage()">Submit</button>
-          <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button> -->
+  <div class="modal-content" [formGroup]="newAlbumForm">
+    <div class=" justify-content-end">
+      <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+        (click)="closeAddNewAlbumModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="photo" class="align-self-center h6 text-dark font-weight-semibold">Create Album : </label>
+        <input type="text" id="albumName" formControlName="albumName" class="form-control"
+          placeholder="Enter Album Name" [ngClass]="{ 'is-invalid': submitNewAlbumForm && n.albumName.errors }">
+        <div *ngIf="submitNewAlbumForm && n.albumName.errors" class="invalid-feedback">
+          <div *ngIf="n.albumName.errors.required">List Name is required</div>
         </div>
       </div>
-    </form>
+      <div class="row">
+        <div class="col-12">
+          <label for="mb-4" class="font-weight-semibold">Browse to Add Photos to this Album : </label>
+        </div>
+
+        <div class="px-3 py-2">
+          <img src="assets/images/avatars/Fav-icon.png">
+        </div>
+
+        <div class=" px-3 py-2">
+          <a href="#" class="d-block ">
+            <h6 class=" rounded-0 albumphoto border">
+              <div class="albumphoto">
+                <label class="mb-0">
+                  <input type="file" id="photo" formControlName="photo" class="rounded-5"
+                    (change)="selectFiles($event)">
+                  <!-- <input type="hidden" name="fileHidden" formControlName="photo" /> -->
+                </label>
+              </div>
+            </h6>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-accent" (click)="uploadImage()">Submit</button>
+    </div>
   </div>
-</div>
+
+</ng-template>

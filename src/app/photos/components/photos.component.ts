@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Utils } from 'src/app/shared/Utils';
 import { PhotosService } from '../services/photos.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { albumList, myLeasesList } from '../models/album';
 import { NeighborsService } from 'src/app/neighbors/neighbors.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 class ImageFile {
   file: File;
@@ -20,7 +21,9 @@ class ImageFile {
 export class PhotosComponent implements OnInit {
   selectedFile: any;
   imagePreview: any;
-  newAlbumForm: FormGroup
+  newAlbumForm: FormGroup;
+  submitNewAlbumForm = false;
+
 
   images: ImageFile[] = []; //an array of valid images
   imageUrls: string[] = []; //an array of uploaded image urls
@@ -31,15 +34,17 @@ export class PhotosComponent implements OnInit {
   toggleLease = true;
   leaseOrAlbumName: string;
   addNewPhotoForm: FormGroup;
+  newAlbumTemplate: TemplateRef<any>;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private neighborsService: NeighborsService) { }
+    private neighborsService: NeighborsService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.newAlbumForm = this.formBuilder.group({
-      photo: ['', Validators.required],
+      photo: [''],
       albumName: ['', Validators.required]
     });
 
@@ -54,6 +59,8 @@ export class PhotosComponent implements OnInit {
   }
 
   public user = Utils.GetCurrentUser();
+
+  get n() { return this.newAlbumForm.controls }
 
   toggleLeaseAndAlbum(event) {
     this.toggleLease = !this.toggleLease
@@ -89,6 +96,7 @@ export class PhotosComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////////////
 
   selectFiles = (event) => { //image upload handler
+    debugger;
     this.images = [];
     let files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
@@ -97,28 +105,53 @@ export class PhotosComponent implements OnInit {
       }
     }
     this.message = `${this.images.length} valid image(s) selected`;
+    this.uploadImage();
   }
 
   uploadImage() { //image upload handler
-    this.images.map((image, index) => {
+    debugger;
+    if (this.n.albumName.value == "") {
+      this.submitNewAlbumForm = true
+      return
+    }
+    this.submitNewAlbumForm = false
+    this.images.map((image) => {
+      debugger;
       const formData = new FormData();
       formData.append("image", image.file, image.file.name);
-      formData.append("foldername", this.leaseOrAlbumName);
       formData.append("emailid", this.user.email_id);
-      return this.http.post(`${environment.APIBASEIMGURL}/upload/post`, formData, {
+      formData.append("folder", "albumphoto");
+      formData.append("saveoriginal", "true");
+      formData.append("albumName", this.newAlbumForm.controls.albumName.value);
+      return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
         reportProgress: true,
         observe: "events"
       })
-        .subscribe(event => {
+        .subscribe(data => {
           debugger;
-          if (event.type === HttpEventType.UploadProgress) {
-            image.uploadProgress = `${(event.loaded / event.total * 100)}%`;
-          }
+          console.log('image upload response', data);
+          // if (event.type === HttpEventType.UploadProgress) {
+          //   image.uploadProgress = `${(event.loaded / event.total * 100)}%`;
+          // }
           // if (event.type === HttpEventType.Response) {
           //   this.imageUrls.push(event.body.imageUrl);
           // }
         });
     });
+  }
+
+  openAddNewAlbumModal(newAlbumTemplate: TemplateRef<any>) {
+    this.newAlbumTemplate = newAlbumTemplate;
+    this.modalService.open(this.newAlbumTemplate, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closeAddNewAlbumModal() {
+    this.modalService.dismissAll(this.newAlbumTemplate);
+    this.submitNewAlbumForm = false;
+    this.newAlbumForm.reset();
   }
 
   addNewAlbum() {

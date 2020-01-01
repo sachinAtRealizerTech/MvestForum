@@ -31,5 +31,9 @@ export class PhotosService {
     return this.http.get(`${environment.APIBASEIMGURL}/ImageUpload/GetAlbumList/${email_id}`, Utils.getAuthHeader())
   }
 
+  uploadPhoto(formdata) {
+    return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formdata, Utils.getAuthHeader())
+  }
+
 
 }

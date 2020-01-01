@@ -122,8 +122,8 @@ export class MyaccountComponent implements OnInit {
           State: this.userDetails.state_master_id,
           City: this.userDetails.city,
           PinCode: this.userDetails.zip_code,
-          UserName: this.userDetails._username,
-          TagLine: this.userDetails._tagline
+          UserName: this.userDetails.user_name,
+          TagLine: this.userDetails.tag_line
         }
         this.userProfileForm.patchValue(body);
         this.showUserDetails = true;
@@ -142,6 +142,7 @@ export class MyaccountComponent implements OnInit {
 
 
   updateUserProfile() {
+    debugger;
     this.submitUserProfile = true
     if (this.userProfileForm.invalid) {
       return
@@ -155,8 +156,8 @@ export class MyaccountComponent implements OnInit {
       _stateId: this.g.State.value,
       _postalcode: this.g.PinCode.value,
       _phonenumber: this.g.PhoneNo.value,
-      _username: "aishwarya",
-      _tagline: "hello Mvest"
+      _username: this.g.UserName.value,
+      _tagline: this.g.TagLine.value
     }
     this.myaccountService.updateUserProfile(body).subscribe(data => {
       this.flashMessagesService.show('Your profile updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });

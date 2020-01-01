@@ -108,7 +108,7 @@ export class DiscussionDetailsComponent implements OnInit {
           tag: 'h1',
         },
       ],
-      uploadUrl: 'v1/image',
+      uploadUrl: 'http://45.35.4.250:5001/discussion',
       sanitize: true,
       toolbarPosition: 'top',
     };
