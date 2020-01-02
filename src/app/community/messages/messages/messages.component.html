@@ -42,8 +42,6 @@
     </div>
   </div>
 
-
-
   <div class="row justify-content-between no-gutters  pb-3 pt-4">
     <div class="col-md-12 col-xl-12">
       <div class="row justify-content-between no-gutters">
@@ -57,150 +55,154 @@
             <li class="list-inline-item h6 ml-auto text-muted"></li>
             <li class="pull-right mr-3">
               <a class="btn btn-accent btn-sm btn-block text-uppercase" data-toggle="modal"
-                data-target=".newmessage-modal-lg">
+                data-target=".newmessage-modal-lg" (click)=getAllMemberNeighbors()>
                 New Message</a>
             </li>
           </ul>
+
+          <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="threads?.length==0">
+            <div class="col-md-3 text-center col-3 col-xl-3 py-5 ">
+              <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image" height="250px"
+                width="auto">
+            </div>
+            <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+              <div class="align-self-center">
+                <h6 class="text-secondary font-weight-semibold text-uppercase">No Threads found!</h6>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thread containser starts -->
           <div class="card card-small blog-comments">
 
             <div class="card-body p-0">
-              <div class=" border-bottom p-1">
-                <div class="media p-3">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                    alt="Generic placeholder image">
-                  <div class="media-body mb-0">
-                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Sierra Brooks</h5>
+              <div *ngFor="let thread of threads">
+                <div class=" border-bottom p-1">
+                  <div class="media p-3" [id]="thread.threadDocId">
+                    <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                      alt="Generic placeholder image">
+                    <div class="media-body mb-0" (click)="loadThreadInChatCenter(thread)">
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold">{{thread.threadName || thread.threadDocId}}
+                      </h5>
 
-                    <ul class="list-inline d-flex mb-0">
+                      <ul class="list-inline d-flex mb-0">
 
-                      <li class="list-inline-item mb-1 h6  text-muted">
-                        dolor sit, amet consectetur adipisicing..
-                      </li>
+                        <li class="list-inline-item mb-1 h6  text-muted">
+                          {{
+                            
+                            thread.lastMessage
+                        }}
+                        </li>
 
-                    </ul>
-
+                      </ul>
+                    </div>
+                    <span *ngIf="thread.unreadCount>0"
+                      class="badge badge-pill btn-accent btn-sm">{{thread.unreadCount}}</span>
                   </div>
-
                 </div>
               </div>
-              <div class="border-bottom  p-1">
-                <div class="media p-3">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"
-                    alt="Generic placeholder image">
-                  <div class="media-body mb-0">
-                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Simon William</h5>
-
-                    <ul class="list-inline d-flex mb-0">
-
-                      <li class="list-inline-item mb-1 h6  text-muted">
-                        consectetur adipisicing elit ipsum dolor sit, ..
-                      </li>
-
-                    </ul>
-
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="border-bottom  p-1">
-                <div class="media p-3">
-                  <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                    alt="Generic placeholder image">
-                  <div class="media-body mb-0">
-                    <h5 class="text-dark h6 mb-0 font-weight-semibold">Tony Stark, Naya Hale, Shon Tei..</h5>
-
-                    <ul class="list-inline d-flex mb-0">
-
-                      <li class="list-inline-item mb-1 h6  text-muted">
-                        amet consectetur adipisicing elit..
-                      </li>
-
-                    </ul>
-
-                  </div>
-
-                </div>
-              </div>
-
-
-
-
-
-
             </div>
-
           </div>
-
         </div>
-
-
-
         <div class="col-xl-7">
-
           <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
             <ul class="list-inline d-flex mb-1">
-              <li class="list-inline-item h6  text-muted">Sierra Brooks</li>
+              <li class="list-inline-item h6  text-muted">{{threadName}}</li>
               <div class="ml-auto d-inline-flex">
-                <a routerLink="">
+                <a routerLink="#">
                   <li class="list-inline-item h6 mr-3 text-muted ">
                     <small class="font-weight-semibold">Block User</small>
                   </li>
                 </a>
-                <a routerLink="">
+                <a routerLink="#">
                   <li class="list-inline-item h6  text-muted "><small class="font-weight-semibold">Delete
                       Conversion</small></li>
                 </a>
               </div>
             </ul>
+            <div>
 
-            <div class="card card-small blog-comments">
-              <form>
-                <div class="card-body shadow">
-                  <div class="media d-flex  px-3 pb-5">
+              <!-- MessageCenter starts -->
+              <div class="card card-small blog-comments">
+                <form>
+                  <div class="card-body shadow">
 
-                    <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                      alt="Generic placeholder image">
-                    <div class="media-body mb-0">
-                      <div class=" align-self-center px-3">
-                        <small class="mb-0 text-dark font-weight-semibold">Sierra Brooks</small>
+
+                    <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="!selectedThread">
+                      <div class="col-md-5 text-center col-3 col-xl-5 py-5 ">
+                        <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image" height="250px"
+                          width="auto">
                       </div>
-                      <div class="bg-light align-self-center rounded-5 px-3">
-                        <p class="text-dark mb-0">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing eiu..
-                        </p>
-                      </div>
-                      <div class="align-self-center  px-3">
-
-                        <h5 class="text-muted h6 mb-0  small">May 3 at 8:30pm</h5>
+                      <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                        <div class="align-self-center">
+                          <h6 class="text-secondary font-weight-semibold text-uppercase">No message history found!</h6>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="mb-0 d-flex pt-3 justify-content-end">
-                    <div class="bg-accent w-25 py-2 align-self-end text-left rounded-5 px-3">
-                      <p class=" mb-0 ">
-                        Yes, Thanks
-                      </p>
-                    </div>
-                  </div>
-                  <div class="mb-0 d-flex  justify-content-end border-bottom pb-5">
-                    <div class="align-self-center px-3 d-block">
-                      <h5 class="text-muted h6 mb-0  small">May 3 at 8:30pm</h5>
-                    </div>
-                  </div>
 
-                  <div class="media d-flex align-items-center px-3 mt-4">
+                    <div id="chat-window" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="selectedThread">
+                      <div *ngFor="let message of selectedThread.messages">
 
-                    <div class="media-body mb-0">
-                      <div class="bg-light align-self-center rounded-5 px-3">
-                        <input class="form-control border-0 rounded-5 bg-light form-control-lg"
-                          placeholder="Write a Comment" type="text">
+                        <!-- Participant Message start-->
+                        <div class="media d-flex  px-3 pb-1" *ngIf="message.from.userEmailId != loggedInUser.email_id">
+
+                          <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                            alt="Generic placeholder image">
+                          <div class="media-body mb-0">
+                            <div class=" align-self-center px-3">
+                              <small class="mb-0 text-dark font-weight-semibold">{{message.from.userName}}</small>
+                            </div>
+                            <div class="bg-light align-self-center rounded-5 px-3">
+                              <p class="text-dark mb-0">
+                                {{message.message}}
+                              </p>
+                            </div>
+                            <div class="align-self-center  px-3">
+
+                              <h5 class="text-muted h6 mb-0  small"> {{message.timeStamp | date:'short':'UTC'}}</h5>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Participant Message End-->
+
+                        <!-- Self message start-->
+                        <div *ngIf="message.from.userEmailId == loggedInUser.email_id">
+                          <div class="mb-0 d-flex pt-3 justify-content-end">
+                            <div class="bg-accent  py-2 align-self-end text-left rounded-5 px-3">
+                              <p class=" mb-0 ">
+                                {{message.message}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="mb-0 d-flex  justify-content-end border-bottom pb-5">
+                            <div class="align-self-center px-3 d-block">
+                              <h5 class="text-muted h6 mb-0  small">{{message.timeStamp | date:'short':'UTC'}} </h5>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Self message End-->
                       </div>
                     </div>
+                    <!-- Message text box Start-->
+                    <div class="media d-flex align-items-center px-3 mt-4" *ngIf="threadName!=null">
+                      <span><i *ngIf="typingData?.length!=null" class="isTyping">{{typingData.userName}}
+                          typing...</i></span>
+                      <div class="media-body mb-0">
+                        <div class="bg-light align-self-center rounded-5 px-3">
+                          <input class="form-control border-0 rounded-5 bg-light form-control-lg"
+                            (ng-keypress)="typing()" placeholder="Write a Comment" type="text"
+                            (keyup.enter)="sendMessage($event)">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Message text box End-->
                   </div>
+                </form>
+              </div>
 
-                </div>
-              </form>
+
+
+
             </div>
           </div>
         </div>
@@ -237,101 +239,33 @@
               </div>
             </form>
             <form>
-              <div class="card-body pt-3 ">
+              <div class="card-body pt-3 " *ngFor="let member of members">
                 <div class="border-bottom p-1">
                   <div class="media d-flex align-items-center py-2">
                     <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
                       src="assets/images/avatars/2.jpg">
                     <div class="media-body d-flex mb-0">
                       <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                        Shon Tei
+                        {{member.name}}
                       </h5>
                       <!-- <div class="ml-auto">
                             <button type="button" class="btn btn-accent btn-sm text-uppercase">Message</button>
                           </div> -->
                     </div>
                     <div class="checkbox">
-                      <input type="checkbox" id="a">
-                      <label for="a"></label>
-                    </div>
-                  </div>
-                </div>
-                <div class="border-bottom p-1">
-                  <div class="media d-flex align-items-center py-2">
-                    <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
-                      src="assets/images/avatars/3.jpg">
-                    <div class="media-body d-flex mb-0">
-                      <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                        Tony Stark
-                      </h5>
-                    </div>
-                    <div class="checkbox">
-                      <input type="checkbox" id="b">
-                      <label for="b"></label>
+                      <input type="checkbox" id="{{member.neighbor_id}}" (change)="selectMembersToChat($event,member)">
+                      <label for="{{member.neighbor_id}}"></label>
                     </div>
                   </div>
                 </div>
 
-                <div class="border-bottom p-1">
-                  <div class="media d-flex align-items-center py-2">
-                    <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
-                      src="assets/images/avatars/1.jpg">
-                    <div class="media-body d-flex mb-0">
-                      <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                        Mr. Taylor
-                      </h5>
-                    </div>
-                    <!-- <div class="round mr-3">
-                            <input type="checkbox" id="checkbox3" />
-                            <label for="checkbox"></label>
-                          </div> -->
-                    <div class="checkbox">
-                      <input type="checkbox" id="c">
-                      <label for="c"></label>
-                    </div>
-                  </div>
-                </div>
-                <div class="border-bottom p-1">
-                  <div class="media d-flex align-items-center py-2">
-                    <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
-                      src="assets/images/avatars/2.jpg">
-                    <div class="media-body d-flex mb-0">
-                      <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                        Simon Williams
-                      </h5>
-                    </div>
-                    <!-- <div class="round mr-3">
-                              <input type="checkbox" id="checkbox" />
-                              <label for="checkbox"></label>
-                            </div> -->
-                    <div class="checkbox">
-                      <input type="checkbox" id="d">
-                      <label for="d"></label>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-1">
-                  <div class="media d-flex align-items-center py-2">
-
-                    <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
-                      src="assets/images/avatars/0.jpg">
-                    <div class="media-body d-flex mb-0">
-                      <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                        Naya Hale
-                      </h5>
-                    </div>
-                    <div class="checkbox">
-                      <input type="checkbox" id="e">
-                      <label for="e"></label>
-                    </div>
-                  </div>
-                </div>
               </div>
             </form>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal">Message</button>
+          <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal"
+            (click)="initiateNewThread()">Message</button>
           <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
             data-dismiss="modal">Cancel</button>
         </div>

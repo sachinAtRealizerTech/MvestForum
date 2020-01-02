@@ -6,7 +6,7 @@ import { SignInComponent } from './authentication/sign-in/components/sign-in.com
 import { PhotosComponent } from './photos/components/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
-import { MessagesComponent } from './community/messages/messages.component';
+import { MessagesComponent } from './community/messages/messages/messages.component';
 import { FollowingComponent } from './following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { DiscussionsComponent } from './community/discussions/categories/components/discussions.component';
@@ -28,7 +28,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
-import { SearchresultsComponent } from './searchresults/searchresults.component'; 
+import { SearchresultsComponent } from './searchresults/searchresults.component';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 import { MvestUserComponent } from './mvest-user/mvest-user.component';
 import { BlockedComponent } from './blocked/blocked.component';
@@ -176,7 +176,7 @@ const routes: Routes = [
         component: SearchresultsComponent,
         canActivate: [AuthGuard]
       },
-       {
+      {
         path: 'bookmarks',
         component: BookmarksComponent,
         canActivate: [AuthGuard]

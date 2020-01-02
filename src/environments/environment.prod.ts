@@ -6,5 +6,6 @@ export const environment = {
   //integration
   APIBASEURL: 'http://45.35.4.250:5001',
   APIBASEIMGURL: 'http://45.35.4.250:3000',
-  IMAGEPREPENDURL: 'http://45.35.4.250/MvestUploadContainer/'
+  IMAGEPREPENDURL: 'http://45.35.4.250/MvestUploadContainer/',
+  BaseUrlChatServer: 'http://45.35.4.250:3021'
 };

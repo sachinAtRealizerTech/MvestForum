@@ -9,7 +9,8 @@ import { ProfileComponent } from './community/profile/components/profile.compone
 import { PhotosComponent } from './photos/components/photos.component';
 import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
-import { MessagesComponent } from './community/messages/messages.component';
+import { MessagesComponent } from './community/messages/messages/messages.component';
+import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
 import { FollowingComponent } from './following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
@@ -52,6 +53,7 @@ import { BlockedComponent } from './blocked/blocked.component';
     RequestsComponent,
     NewsfeedComponent,
     MessagesComponent,
+    ScrollToBottomDirective,
     FollowingComponent,
     MydiscussionsComponent,
     NeighborsComponent,

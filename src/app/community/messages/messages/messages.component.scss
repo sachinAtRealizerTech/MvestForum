@@ -102,3 +102,49 @@ body {
 		}
 	}
 }
+
+.userMessage {
+    width: fit-content;
+    background-color: #5B9B5B;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 1px;
+    color: white;
+    text-align: left;
+    text-align: left;
+}
+
+.secUserMessage {
+    width: fit-content;
+    max-width: 70%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 1px;
+    color: black;
+    text-align: right;
+}
+
+#mario-chat{
+    max-width: 600px;
+    min-width: 200px;
+    margin: 8px auto;
+    border: 1px solid #ddd;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
+    border-radius: 2px;
+	border-radius: 10px;
+	margin-bottom: 6px;
+}
+#chat-window{
+    height: 320px;
+    overflow: auto;
+    background: white;
+}
+.isTyping {
+    color: #888787;
+    padding-left: 5px;
+
+}
+.badge-pill{
+	color: white;
+}
