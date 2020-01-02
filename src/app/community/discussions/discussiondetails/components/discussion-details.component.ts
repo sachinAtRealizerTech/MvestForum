@@ -325,7 +325,8 @@ export class DiscussionDetailsComponent implements OnInit {
       post_id: this.commentId,
       comment_text: this.commentForm.controls.comment.value,
       name: this.user.f_name + " " + this.user.l_name,
-      emailId: this.user.email_id
+      emailId: this.user.email_id,
+      subcat_id: this.subCategoryId
     }
     this.discussiondetailsService.commentToPost(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussionDetailsId);

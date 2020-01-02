@@ -44,6 +44,8 @@ export class CommunityComponent implements OnInit {
   editorConfig: AngularEditorConfig;
   categoryList: CategoryList[];
   userDetails: any;
+  originalImageUrl: any;
+  loading = false;
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
@@ -309,21 +311,48 @@ export class CommunityComponent implements OnInit {
       }
     }
     this.message = `${this.images.length} valid image(s) selected`;
+    this.uploadImage();
   }
 
+  // uploadImage() {
+  //   this.images.map((image) => {
+  //     debugger;
+  //     const formData = new FormData();
+  //     formData.append("image", image.file, image.file.name);
+  //     formData.append("email", this.user.email_id);
+  //     return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
+  //       reportProgress: true,
+  //       observe: "events"
+  //     })
+  //       .subscribe(data => {
+  //         debugger;
+  //         console.log(data)
+  //       });
+  //   });
+  // }
+
   uploadImage() {
+    debugger;
+    this.loading = true
     this.images.map((image) => {
       debugger;
       const formData = new FormData();
       formData.append("image", image.file, image.file.name);
       formData.append("email", this.user.email_id);
+      formData.append("uploadType", "1")
       return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
         reportProgress: true,
         observe: "events"
       })
         .subscribe(data => {
           debugger;
-          console.log(data)
+          if (data['body']) {
+            console.log('image upload response', data);
+            this.originalImageUrl = ""
+            this.originalImageUrl = data['body']['originalFileName'];
+            this.originalImageUrl = environment.IMAGEPREPENDURL + this.originalImageUrl
+            this.loading = false;
+          }
         });
     });
   }

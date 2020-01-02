@@ -1,6 +1,15 @@
 <!-- <div class="main-content-container container-fluid px-4"> -->
 
 <flash-messages class="bg-accent text-center"></flash-messages>
+
+<div class="row justify-content-center">
+  <div class="col-12">
+    <div class="content-loading text-center" *ngIf="loading">
+      <app-loadingcircle></app-loadingcircle>
+    </div>
+  </div>
+</div>
+
 <div class="row  pt-4">
   <div class="col-12">
 
@@ -234,9 +243,10 @@
       </div>
       <div class="form-row">
 
-        <div class="form-group col-4" *ngIf="isImageCropped">
+        <!-- <div class="form-group col-4" *ngIf="isImageCropped">
           <img class="js--image-preview--profile mt-2" [src]="croppedImage" width="70" height="70">
-        </div>
+        </div> -->
+
         <!-- <div class="form-group col-4">
         <div class="small-12 medium-2 large-2 columns">
           <div class="circle"> 
@@ -251,12 +261,18 @@
        </div>
         </div> -->
 
+        <div class="form-group col-4" *ngIf="originalImageUrl">
+          <div class="js--image-preview--profile mt-2">
+            <img [src]="originalImageUrl" height="200" width="200">
+          </div>
+        </div>
+
         <div class="form-group col-4">
           <div class="js--image-preview--profile mt-2">
             <div class="upload-options-profile  align-self-end">
               <label>
                 <input type="file" class="image-upload rounded-5 text-dark" formControlName="newDisplayPic"
-                  (change)="fileChangeEvent($event)" accept="image/*" />
+                  (change)="selectFiles($event)" accept="image/*" />
               </label>
             </div>
           </div>
@@ -273,7 +289,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-accent text-uppercase" (click)="onUploadFile()">Submit</button>
+      <button type="button" class="btn btn-accent text-uppercase">Submit</button>
     </div>
   </div>
 
