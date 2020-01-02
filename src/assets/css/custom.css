@@ -1689,3 +1689,12 @@ font-size: 1.2em;
 transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 color: #999;
 }
+
+.img-thumbnailalbum {
+  height: 200px;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+  border-radius: .375rem;
+  box-shadow: none;
+}

@@ -109,7 +109,7 @@
 
         <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
           <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
-            <img class="img-fluid " src="{{als.thumbnail_file_name}}" alt="">
+            <img class="img-fluid img-thumbnailalbum" src="{{als.thumbnail_file_name}}" alt="">
             <div class="card-body py-2 px-3">
 
               <h6 class="card-text text-dark font-weight-semibold mb-1">{{als.album_name}}</h6>
@@ -200,8 +200,8 @@
       <div class="row text-center text-lg-left mt-2">
         <div class="col-lg-3 col-md-4 col-6" *ngFor="let ail of albumImageList">
           <a class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" [src]="ail.thumbnail_file_name" height="350" width="350"
-              alt="">
+            <img class="img-fluid  img-thumbnailalbum rounded-0" [src]="ail.thumbnail_file_name" height="350"
+              width="350" alt="">
           </a>
         </div>
       </div>
