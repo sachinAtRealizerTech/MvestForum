@@ -13,6 +13,7 @@ import { SubcategoryService } from './discussions/subcategories/Services/subcate
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CategoryList } from './models/category';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { MyaccountService } from '../myaccount/myaccount.service';
 
 @Component({
   selector: 'app-community',
@@ -42,6 +43,7 @@ export class CommunityComponent implements OnInit {
   postQuestionForm: FormGroup;
   editorConfig: AngularEditorConfig;
   categoryList: CategoryList[];
+  userDetails: any;
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
@@ -51,7 +53,8 @@ export class CommunityComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private discussionsService: DiscussionsService,
     private subcategoryService: SubcategoryService,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService,
+    private myaccountService: MyaccountService) { }
 
   ngOnInit() {
 
@@ -110,7 +113,7 @@ export class CommunityComponent implements OnInit {
     });
 
     this.getAllCategories();
-
+    this.getUserProfileDetails();
   }
 
   public user = Utils.GetCurrentUser();
@@ -158,6 +161,17 @@ export class CommunityComponent implements OnInit {
     this.subcategoryService.getSubcategory(this.categoryId).subscribe(data => {
       this.subCategoryListDD = data;
     })
+  }
+
+  getUserProfileDetails() {
+    debugger;
+    this.myaccountService.getUserProfileDetails(this.user.email_id).subscribe(data => {
+      console.log('userdetails', data);
+      this.userDetails = data[0];
+    },
+      error => {
+
+      })
   }
 
   postQuestion() {

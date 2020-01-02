@@ -47,6 +47,7 @@ export class PhotosComponent implements OnInit {
   thumbImageUrl: any;
   imageToPush: any[] = [];
   imageCounter = 0;
+  subAddNewPhoto = false;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -62,8 +63,9 @@ export class PhotosComponent implements OnInit {
 
     this.addNewPhotoForm = this.formBuilder.group({
       lease: [''],
-      album: [''],
-      photo: ['']
+      album: ['', Validators.required],
+      photo: ['', Validators.required],
+      uploadedImageUrl: ['']
     })
 
     this.getMyLeases();
@@ -74,6 +76,7 @@ export class PhotosComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   get n() { return this.newAlbumForm.controls }
+  get m() { return this.addNewPhotoForm.controls }
 
   toggleLeaseAndAlbum(event) {
     this.toggleLease = !this.toggleLease
@@ -184,6 +187,17 @@ export class PhotosComponent implements OnInit {
     this.submitNewAlbumForm = false;
     this.newAlbumForm.reset();
     this.fullImageUrl = [];
+  }
+
+  submitAddNewAlbumModal() {
+    if (this.newAlbumForm.invalid) {
+      this.submitNewAlbumForm = true
+      return
+    }
+    this.submitNewAlbumForm = false
+    this.modalService.dismissAll(this.newAlbumTemplate);
+    this.newAlbumForm.reset();
+    this.fullImageUrl = [];
     this.getAlbumList();
   }
 
@@ -217,7 +231,9 @@ export class PhotosComponent implements OnInit {
     this.photosService.getAlbumList(this.user.member_id).subscribe(data => {
       this.albumList = data['album'];
       console.log('albumlist', this.albumList);
+      this.albumList.forEach((el => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name }))
       this.loading = false;
+      this.getAlbumPhotos(this.albumList[0]['album_docId'], this.albumList[0]['album_name'])
     },
       error => {
         this.loading = false;
@@ -260,6 +276,19 @@ export class PhotosComponent implements OnInit {
     this.addNewPhotoForm.reset();
     this.toggleLease = true;
     this.fullImageUrl = [];
+  }
+
+  submitAddNewPhoto() {
+
+    if (this.addNewPhotoForm.invalid) {
+      this.subAddNewPhoto = true
+      return
+    }
+    this.subAddNewPhoto = false
+    this.modalService.dismissAll(this.addNewPhotoTemplate);
+    this.addNewPhotoForm.reset();
+    this.toggleLease = true;
+    this.fullImageUrl = [];
     this.getAlbumList()
   }
 
@@ -268,7 +297,8 @@ export class PhotosComponent implements OnInit {
     debugger;
     this.loading = true
     let body = {
-      docId: this.albumOrLeaseDocId,
+      album_docId: this.albumOrLeaseDocId,
+      member_id: this.user.member_id,
       original_file_name: this.originalImageUrl,
       thumbnail_file_name: this.thumbImageUrl
     }
@@ -284,6 +314,7 @@ export class PhotosComponent implements OnInit {
 
   getAlbumPhotos(docId: string, albumName: string) {
     debugger;
+    this.loading = true
     this.albumName = albumName
     this.photosService.getAlbumPhotos(docId).subscribe(data => {
       console.log('album photos', data['Imagelist']);
@@ -291,7 +322,11 @@ export class PhotosComponent implements OnInit {
       for (let i = 0; i < this.albumImageList.length; i++) {
         this.albumImageList[i]['thumbnail_file_name'] = environment.IMAGEPREPENDURL + this.albumImageList[i]['thumbnail_file_name']
       }
-    })
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
 }

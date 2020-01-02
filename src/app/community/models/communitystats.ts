@@ -1,8 +1,8 @@
 export interface CommunityStats {
     likes: number,
-    Notifications: number,
-    Posts: number,
-    Messages: number,
-    Followers: number,
+    notifications: number,
+    posts: number,
+    messages: number,
+    followers: number,
     comments: number
 }

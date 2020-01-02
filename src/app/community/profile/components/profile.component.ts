@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
 
   getMyNews() {
     this.loading = true;
-    this.profileService.getMyNews(this.user.member_id).subscribe(data => {
+    this.profileService.getMyNews(this.user.member_id = 214).subscribe(data => {
       console.log('mynews', data)
       this.MyNews = data;
       this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());

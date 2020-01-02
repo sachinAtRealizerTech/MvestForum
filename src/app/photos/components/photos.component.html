@@ -109,7 +109,7 @@
 
         <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
           <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
-            <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+            <img class="img-fluid " src="{{als.thumbnail_file_name}}" alt="">
             <div class="card-body py-2 px-3">
 
               <h6 class="card-text text-dark font-weight-semibold mb-1">{{als.album_name}}</h6>
@@ -345,10 +345,13 @@
       <div class="form-group" *ngIf="!toggleLease">
         <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Albums : </label>
         <select class="form-control my-1 pr-5 border" [value]="null" formControlName="album" id="albumselection"
-          (change)="selectLeaseOrAlbum($event)">
+          (change)="selectLeaseOrAlbum($event)" [ngClass]="{ 'is-invalid': subAddNewPhoto && m.album.errors }">
           <option [value]="null" hidden>Select Album </option>
           <option value="{{al.album_docId}}&{{al.album_name}}" *ngFor="let al of albumList">{{al.album_name}}</option>
         </select>
+        <div *ngIf="subAddNewPhoto && m.album.errors" class="invalid-feedback">
+          <div *ngIf="m.album.errors.required">Album Name is required</div>
+        </div>
       </div>
       <!-- <div class="form-group">
               <label for="leasetype mb-4" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Upload Photo : </label>
@@ -363,11 +366,11 @@
 
       <div class="form-row">
         <div class="form-group col-12">
-          <label class="font-weight-semibold">Browse to Add Photos to this Lease : </label>
+          <label class="font-weight-semibold">Browse to Add Photos to this : </label>
         </div>
 
         <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
-          <img [src]="fiu?.img" height="100" width="100">
+          <img [src]="fiu?.img" height="100" width="100" formControlName="uploadedImageUrl">
         </div>
 
         <div class=" px-3 ">
@@ -376,9 +379,14 @@
               <div class="albumphoto">
                 <label class="mb-0">
                   <input type="file" class="rounded-5" id="photo" formControlName="photo"
-                    (change)="selectFilesToAddPhoto($event)">
+                    (change)="selectFilesToAddPhoto($event)"
+                    [ngClass]="{ 'is-invalid': subAddNewPhoto && m.photo.errors }">
                 </label>
+                <div *ngIf="subAddNewPhoto && m.photo.errors" class="invalid-feedback">
+                  <div *ngIf="m.photo.errors.required">Photo is required</div>
+                </div>
               </div>
+
             </h6>
           </a>
         </div>
@@ -388,7 +396,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-accent" (click)="closeAddNewPhotoTemplate()">Submit</button>
+      <button type="button" class="btn btn-accent" (click)="submitAddNewPhoto()">Submit</button>
     </div>
   </div>
 </ng-template>
@@ -430,11 +438,10 @@
                   <input type="file" id="photo" formControlName="photo" class="rounded-5"
                     (change)="selectFilesToAddAlbum($event)"
                     [ngClass]="{ 'is-invalid': submitNewAlbumForm && n.photo.errors }">
-                  <div *ngIf="submitNewAlbumForm && n.photo.errors" class="invalid-feedback">
-                    <div *ngIf="n.photo.errors.required">Please upload a photo</div>
-                  </div>
-                  <!-- <input type="hidden" name="fileHidden" formControlName="photo" /> -->
                 </label>
+                <div *ngIf="submitNewAlbumForm && n.photo.errors" class="invalid-feedback">
+                  <div *ngIf="n.photo.errors.required">Please upload a photo</div>
+                </div>
               </div>
             </h6>
           </a>
@@ -444,7 +451,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-accent" (click)="closeAddNewAlbumModal()">Submit</button>
+      <button type="button" class="btn btn-accent" (click)="submitAddNewAlbumModal()">Submit</button>
     </div>
   </div>
 
