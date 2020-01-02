@@ -17,3 +17,7 @@ export interface AlbumImageList {
     upload_ts: Date,
     isDeleted: boolean
 }
+
+export interface FullImageUrl {
+    img: string
+}

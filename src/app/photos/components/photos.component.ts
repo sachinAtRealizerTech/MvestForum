@@ -4,7 +4,7 @@ import { PhotosService } from '../services/photos.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
-import { albumList, myLeasesList, AlbumImageList } from '../models/album';
+import { albumList, myLeasesList, AlbumImageList, FullImageUrl } from '../models/album';
 import { NeighborsService } from 'src/app/neighbors/neighbors.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -38,15 +38,15 @@ export class PhotosComponent implements OnInit {
   newAlbumTemplate: TemplateRef<any>;
   imageUrl: string;
   loading = false;
-  fullImageUrl: string[] = [];
+  fullImageUrl: FullImageUrl[] = [];
   albumOrLeaseDocId: string;
   addNewPhotoTemplate: TemplateRef<any>;
   albumImageList: AlbumImageList[];
   albumName: string;
   originalImageUrl: any;
   thumbImageUrl: any;
-  imageToPush: string;
-  imageCounter: any;
+  imageToPush: any[] = [];
+  imageCounter = 0;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -108,19 +108,15 @@ export class PhotosComponent implements OnInit {
         observe: "events"
       })
         .subscribe(data => {
-          debugger;
+
           console.log('image upload response', data);
           if (data['body']) {
+            debugger;
             this.originalImageUrl = data['body']['originalFileName'];
             this.thumbImageUrl = data['body']['thumbnailFileName'];
-            this.imageToPush = environment.IMAGEPREPENDURL + this.thumbImageUrl;
-            if (this.imageToPush) {
-              debugger;
-              for (let i = this.imageCounter; ;) {
-                //this.fullImageUrl[i].push(this.imageToPush);
-                this.imageToPush = ""
-              }
-
+            let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
+            for (let i = 0; i < 1; i++) {
+              this.fullImageUrl.push({ img: environment.IMAGEPREPENDURL + this.thumbImageUrl });
             }
             this.loading = false;
             this.addPhotoInLeaseOrAlbum();
@@ -150,7 +146,7 @@ export class PhotosComponent implements OnInit {
       debugger;
       const formData = new FormData();
       formData.append("image", image.file, image.file.name);
-      formData.append("uploadType ", "2")
+      formData.append("uploadType", "2")
       return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
         reportProgress: true,
         observe: "events"
@@ -162,6 +158,10 @@ export class PhotosComponent implements OnInit {
             this.originalImageUrl = data['body']['originalFileName'];
             this.thumbImageUrl = data['body']['thumbnailFileName'];
             //this.fullImageUrl = environment.IMAGEPREPENDURL + this.thumbImageUrl;
+            let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
+            for (let i = 0; i < 1; i++) {
+              this.fullImageUrl.push({ img: environment.IMAGEPREPENDURL + this.thumbImageUrl });
+            }
             this.loading = false;
             this.addNewAlbum();
           }
@@ -183,6 +183,8 @@ export class PhotosComponent implements OnInit {
     this.modalService.dismissAll(this.newAlbumTemplate);
     this.submitNewAlbumForm = false;
     this.newAlbumForm.reset();
+    this.fullImageUrl = [];
+    this.getAlbumList();
   }
 
   addNewAlbum() {
@@ -203,7 +205,6 @@ export class PhotosComponent implements OnInit {
     this.photosService.addNewAlbum(body).subscribe(data => {
       console.log('add new album response', data);
       this.loading = false;
-      this.closeAddNewAlbumModal();
     },
       error => {
         this.loading = false;
@@ -212,10 +213,15 @@ export class PhotosComponent implements OnInit {
 
 
   getAlbumList() {
+    this.loading = true
     this.photosService.getAlbumList(this.user.member_id).subscribe(data => {
       this.albumList = data['album'];
-      console.log('albumlist', this.albumList)
-    })
+      console.log('albumlist', this.albumList);
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
   getMyLeases() {
@@ -252,7 +258,9 @@ export class PhotosComponent implements OnInit {
   closeAddNewPhotoTemplate() {
     this.modalService.dismissAll(this.addNewPhotoTemplate);
     this.addNewPhotoForm.reset();
-    this.toggleLease = true
+    this.toggleLease = true;
+    this.fullImageUrl = [];
+    this.getAlbumList()
   }
 
 
