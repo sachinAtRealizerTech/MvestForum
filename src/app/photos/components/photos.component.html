@@ -30,8 +30,8 @@
         </li>
         <div class="ml-auto d-inline-flex">
           <li class="nav-item pull-right mr-3">
-            <a href="#" class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-toggle="modal"
-              data-target=".photo-modal-lg">Add Photo</a>
+            <a class="btn btn-outline-accent btn-sm btn-block text-uppercase"
+              (click)="openaddNewPhotoModal(addNewPhotoTemplate)">Add Photo</a>
           </li>
           <li class="nav-item pull-right">
             <a class="btn btn-outline-accent btn-sm btn-block text-uppercase"
@@ -39,9 +39,7 @@
           </li>
         </div>
       </ul>
-
     </div>
-
   </div>
 
   <div class="tab-content pb-3" id="myTabContent">
@@ -171,17 +169,33 @@
 
 
     </div>
+
+    <div class="tab-pane fade show active" id="albumphotos" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row justify-content-start">
+
+        <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
+          <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
+            <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+            <div class="card-body py-2 px-3">
+
+              <h6 class="card-text text-dark font-weight-semibold mb-1">{{als.album_name}}</h6>
+              <p><small class="text-secondary mb-1">23 Photos</small> </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
   <hr>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-xl-12 pb-1 pt-3">
       <h6 class="font-weight-semibold text-secondary">23 Julie Photos</h6>
-
-
       <div class="row text-center text-lg-left mt-2">
-
         <div class="col-lg-3 col-md-4 col-6">
           <a href="#" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
@@ -244,6 +258,20 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-xl-12 pb-1 pt-3">
+      <h6 class="font-weight-semibold text-secondary">{{albumImageList?.length}} {{albumName}} Photos</h6>
+      <div class="row text-center text-lg-left mt-2">
+        <div class="col-lg-3 col-md-4 col-6" *ngFor="let ail of albumImageList">
+          <a class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail rounded-0" [src]="ail.thumbnail_file_name" height="350" width="350"
+              alt="">
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -292,105 +320,103 @@
       </div>
     </div> -->
 <!-- <div class="tab-pane fade" id="albumphotos" role="tabpanel" aria-labelledby="contact-tab">
-      <div class="row text-center text-lg-left">
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
-          </a>
-        </div>
-      </div>
-    </div> -->
+  <div class="row text-center text-lg-left">
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail rounded-0" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+      </a>
+    </div>
+  </div>
+</div> -->
 
 
 
 <!-- modals -->
-<div class="modal fade photo-modal-lg" tabindex="-1" role="dialog" aria-labelledby="photo-modal" aria-hidden="true">
-  <div class="modal-dialog modal-md bg-white shadow">
 
-    <div class="modal-content" [formGroup]="addNewPhotoForm">
-      <div class=" justify-content-end">
-        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <!-- <div class="modal-header">
+<ng-template #addNewPhotoTemplate>
+  <div class="modal-content" [formGroup]="addNewPhotoForm">
+    <div class=" justify-content-end">
+      <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+        (click)="closeAddNewPhotoTemplate()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- <div class="modal-header">
              <h5 class="modal-title">Add Photo</h5> 
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button> 
           </div> -->
-      <div class="modal-body">
+    <div class="modal-body">
 
-        <div class="form-group">
-          <!-- <label for="title" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Add Photo :</label> -->
-          <label for="photo" class="align-self-center mb-1 h6 text-dark font-weight-semibold">Add Photo to : </label>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadiolease" name="leasealbum" class="custom-control-input"
-              (change)="toggleLeaseAndAlbum($event)" [checked]="toggleLease">
-            <label class="custom-control-label" for="customRadiolease">Lease</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioalbum" name="leasealbum" class="custom-control-input"
-              (change)="toggleLeaseAndAlbum($event)" [checked]="!toggleLease">
-            <label class="custom-control-label" for="customRadioalbum">Album</label>
-          </div>
+      <div class="form-group">
+        <!-- <label for="title" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Add Photo :</label> -->
+        <label for="photo" class="align-self-center mb-1 h6 text-dark font-weight-semibold">Add Photo to : </label>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadiolease" name="leasealbum" class="custom-control-input"
+            (change)="toggleLeaseAndAlbum($event)" [checked]="toggleLease">
+          <label class="custom-control-label" for="customRadiolease">Lease</label>
         </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioalbum" name="leasealbum" class="custom-control-input"
+            (change)="toggleLeaseAndAlbum($event)" [checked]="!toggleLease">
+          <label class="custom-control-label" for="customRadioalbum">Album</label>
+        </div>
+      </div>
 
-        <div class="form-group" *ngIf="toggleLease">
-          <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Lease : </label>
-          <select class="form-control my-1 pr-5 border" [value]="null" formControlName="lease" id="leaseselection">
-            <option [value]="null" hidden>Select Lease </option>
-            <option value="{{ml.leasenumber}}&{{ml.leasename}}" *ngFor="let ml of myLeases">{{ml.leasename}}</option>
-          </select>
-          <div class="valid-feedback">Valid.</div>
-          <div class="invalid-feedback">Please fill out this field.</div>
-        </div>
+      <div class="form-group" *ngIf="toggleLease">
+        <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Lease : </label>
+        <select class="form-control my-1 pr-5 border" [value]="null" formControlName="lease" id="leaseselection"
+          (change)="selectLeaseOrAlbum($event)">
+          <option [value]="null" hidden>Select Lease </option>
+          <option value="{{ml.leasenumber}}&{{ml.leasename}}" *ngFor="let ml of myLeases">{{ml.leasename}}</option>
+        </select>
+      </div>
 
-        <div class="form-group" *ngIf="!toggleLease">
-          <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Albums : </label>
-          <select class="form-control my-1 pr-5 border" [value]="null" formControlName="album" id="albumselection">
-            <option [value]="null" hidden>Select Album </option>
-            <option value="{{al.guid}}&{{al.album_name}}" *ngFor="let al of albumList">{{al.album_name}}</option>
-          </select>
-          <div class="valid-feedback">Valid.</div>
-          <div class="invalid-feedback">Please fill out this field.</div>
-        </div>
-        <!-- <div class="form-group">
+      <div class="form-group" *ngIf="!toggleLease">
+        <label for="leasetype" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Albums : </label>
+        <select class="form-control my-1 pr-5 border" [value]="null" formControlName="album" id="albumselection"
+          (change)="selectLeaseOrAlbum($event)">
+          <option [value]="null" hidden>Select Album </option>
+          <option value="{{al.album_docId}}&{{al.album_name}}" *ngFor="let al of albumList">{{al.album_name}}</option>
+        </select>
+      </div>
+      <!-- <div class="form-group">
               <label for="leasetype mb-4" class="align-self-center mb-3 h6 text-dark font-weight-semibold">Upload Photo : </label>
               <div class="js--image-preview  shadow  ">
               </div>
@@ -401,56 +427,38 @@
               </div>
             </div> -->
 
-        <div class="form-row">
-          <div class="form-group col-12">
-            <label class="font-weight-semibold">Browse to Add Photos to this Lease : </label>
-          </div>
-
-          <div class=" px-3 mb-3">
-            <img src="assets/images/avatars/Fav-icon.png">
-          </div>
-
-          <div class=" px-3 mb-3">
-            <img src="assets/images/avatars/Fav-icon.png">
-          </div>
-
-          <div class=" px-3 mb-3">
-            <img src="assets/images/avatars/Fav-icon.png">
-          </div>
-
-          <div class=" px-3 mb-3">
-            <img src="assets/images/avatars/Fav-icon.png">
-          </div>
-
-          <div class=" px-3 mb-3">
-            <img src="assets/images/avatars/Fav-icon.png">
-          </div>
-
-          <div class=" px-3 ">
-            <a href="#" class="d-block ">
-              <h6 class=" rounded-0 albumphoto border">
-                <div class="albumphoto">
-                  <label class="mb-0">
-                    <input type="file" class="rounded-5" id="photo" formControlName="photo"
-                      (change)="selectFiles($event)">
-                  </label>
-                </div>
-              </h6>
-            </a>
-          </div>
-
-
-
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label class="font-weight-semibold">Browse to Add Photos to this Lease : </label>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-accent" (click)="uploadImage()">Submit</button>
-        <!-- <button type="button" class="btn btn-outline-accent" data-dismiss="modal">Cancel</button> -->
+
+        <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
+          <img [src]="fiu" height="100" width="100">
+        </div>
+
+        <div class=" px-3 ">
+          <a href="#" class="d-block ">
+            <h6 class=" rounded-0 albumphoto border">
+              <div class="albumphoto">
+                <label class="mb-0">
+                  <input type="file" class="rounded-5" id="photo" formControlName="photo"
+                    (change)="selectFilesToAddPhoto($event)">
+                </label>
+              </div>
+            </h6>
+          </a>
+        </div>
+
+
+
       </div>
     </div>
-
+    <div class="modal-footer">
+      <button type="button" class="btn btn-accent" (click)="closeAddNewPhotoTemplate()">Submit</button>
+    </div>
   </div>
-</div>
+</ng-template>
+
 <!-- end -->
 
 <ng-template #newAlbumTemplate>
@@ -485,7 +493,8 @@
             <h6 class=" rounded-0 albumphoto border">
               <div class="albumphoto">
                 <label class="mb-0">
-                  <input type="file" id="photo" formControlName="photo" class="rounded-5" (change)="selectFiles($event)"
+                  <input type="file" id="photo" formControlName="photo" class="rounded-5"
+                    (change)="selectFilesToAddAlbum($event)"
                     [ngClass]="{ 'is-invalid': submitNewAlbumForm && n.photo.errors }">
                   <div *ngIf="submitNewAlbumForm && n.photo.errors" class="invalid-feedback">
                     <div *ngIf="n.photo.errors.required">Please upload a photo</div>

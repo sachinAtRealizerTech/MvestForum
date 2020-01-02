@@ -182,7 +182,6 @@ export class CommunityComponent implements OnInit {
       this.flashMessagesService.show('Your question posted successfully.', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.postQuestionForm.reset();
       this.closePostQuestionModal();
-
     })
   }
 
@@ -298,24 +297,19 @@ export class CommunityComponent implements OnInit {
     this.message = `${this.images.length} valid image(s) selected`;
   }
 
-  uploadImage() { //image upload hander
-    this.images.map((image, index) => {
+  uploadImage() {
+    this.images.map((image) => {
+      debugger;
       const formData = new FormData();
       formData.append("image", image.file, image.file.name);
-      formData.append("foldername", 'profile');
-      formData.append("emailid", this.user.email_id);
-      return this.http.post(`${environment.APIBASEIMGURL}/upload/post`, formData, {
+      formData.append("email", this.user.email_id);
+      return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
         reportProgress: true,
         observe: "events"
       })
-        .subscribe(event => {
+        .subscribe(data => {
           debugger;
-          // if (event.type === HttpEventType.UploadProgress) {
-          //   image.uploadProgress = `${(event.loaded / event.total * 100)}%`;
-          // }
-          // if (event.type === HttpEventType.Response) {
-          //   this.imageUrls.push(event.body.imageUrl);
-          // }
+          console.log(data)
         });
     });
   }
