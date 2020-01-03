@@ -196,9 +196,7 @@ export class FollowingComponent implements OnInit {
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
       debugger;
-      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully unfollowed the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-      }
+      this.flashMessagesService.show(`You have successfully unfollowed the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
       this.closeUnfollowMemberModal();
       this.getFollowingMembers();
     },
@@ -224,16 +222,16 @@ export class FollowingComponent implements OnInit {
   blockMember() {
     debugger;
     let body = {
-      _member_id: this.blockMemberId,
-      _follower_id: this.user.member_id,
+      _member_id: this.user.member_id,
+      _follower_id: this.blockMemberId,
       _action: 'blocked'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully blocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-        this.getFollowerMembers();
-        this.closeBlockMemberModal();
-      }
+      console.log(data)
+      this.flashMessagesService.show(`You have successfully blocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      this.getFollowerMembers();
+      this.getBlockedMembers();
+      this.closeBlockMemberModal();
     },
       error => {
 
@@ -244,10 +242,12 @@ export class FollowingComponent implements OnInit {
   getBlockedMembers() {
     this.loading = true
     this.followingService.getFollowerMembers(this.user.member_id).subscribe(data => {
-      this.AllFollowerMembers = data;
+      debugger;
+      this.AllFollowerMembers = data['data'];
       this.blockedMembers = [];
       for (let i = 0; i < this.AllFollowerMembers.length; i++) {
         if (this.AllFollowerMembers[i].status == "blocked") {
+          debugger;
           this.blockedMembers.push(this.AllFollowerMembers[i]);
         }
       }
@@ -275,16 +275,17 @@ export class FollowingComponent implements OnInit {
 
   unblockMember() {
     let body = {
-      _member_id: this.unblockMemberId,
-      _follower_id: this.user.member_id,
-      _action: 'unblocked'
+      _member_id: this.user.member_id,
+      _follower_id: this.unblockMemberId,
+      _action: 'accepted'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully unblocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
-        this.getBlockedMembers();
-        this.closeUnblockMemberModal();
-      }
+      console.log(data)
+      this.flashMessagesService.show(`You have successfully unblocked the Member...`, { cssClass: 'bg-accent flash-message', timeout: 2000 })
+      this.getFollowerMembers();
+      this.getBlockedMembers();
+      this.closeUnblockMemberModal();
+
     },
       error => {
 
