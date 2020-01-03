@@ -1713,3 +1713,12 @@ color: #999;
   border-radius: .375rem;
   box-shadow: none;
 }
+
+.img-thumbnailalbumProfile {
+  height: 60px;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+  border-radius: .375rem;
+  box-shadow: none;
+}

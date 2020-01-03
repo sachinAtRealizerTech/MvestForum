@@ -223,7 +223,7 @@ export class PhotosComponent implements OnInit {
     this.submitNewAlbumForm = false;
     this.leaseOrAlbumName = this.newAlbumForm.controls.albumName.value
     let body = {
-      member_id: this.user.member_id,
+      emailid: this.user.email_id,
       album_name: this.n.albumName.value,
       original_file_name: this.originalImageUrl,
       thumbnail_file_name: this.thumbImageUrl
@@ -240,7 +240,7 @@ export class PhotosComponent implements OnInit {
 
   getAlbumList() {
     this.loading = true
-    this.photosService.getAlbumList(this.user.member_id).subscribe(data => {
+    this.photosService.getAlbumList(this.user.email_id).subscribe(data => {
       this.albumList = data['album'];
       console.log('albumlist', this.albumList);
       this.albumList.forEach((el => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name }))
@@ -310,7 +310,7 @@ export class PhotosComponent implements OnInit {
     this.loading = true
     let body = {
       album_docId: this.albumOrLeaseDocId,
-      member_id: this.user.member_id,
+      emailid: this.user.email_id,
       original_file_name: this.originalImageUrl,
       thumbnail_file_name: this.thumbImageUrl
     }

@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecentDiscussions } from '../models/recentDiscussions';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyNews } from '../models/myNews';
+import { RecentPhotos } from '../models/recentPhotos';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +21,7 @@ export class ProfileComponent implements OnInit {
   loading = false;
   recentDiscussions: RecentDiscussions[];
   MyNews: MyNews[];
+  recentPhotos: RecentPhotos[];
 
   constructor(private profileService: ProfileService,
     private formBuilder: FormBuilder,
@@ -29,7 +32,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getCommunityStats();
-    this.getRecentDiscussions();
+    this.getRecentDiscussionsAndPhotos();
     this.getMyNews();
   }
 
@@ -49,7 +52,7 @@ export class ProfileComponent implements OnInit {
 
   getMyNews() {
     this.loading = true;
-    this.profileService.getMyNews(this.user.member_id = 214).subscribe(data => {
+    this.profileService.getMyNews(this.user.member_id).subscribe(data => {
       console.log('mynews', data)
       this.MyNews = data;
       this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
@@ -60,11 +63,15 @@ export class ProfileComponent implements OnInit {
       })
   }
 
-  getRecentDiscussions() {
-    this.profileService.getRecentDiscussions(this.user.email_id).subscribe(data => {
+  getRecentDiscussionsAndPhotos() {
+    this.profileService.getRecentDiscussionsAndPhotos(this.user.email_id).subscribe(data => {
       debugger;
-      this.recentDiscussions = data['recent_discussions'];
+      console.log('recent disc and photos', data)
+      this.recentDiscussions = data['RD']['recent_discussions'];
       this.recentDiscussions.sort((a, b) => new Date(b.date_time).getTime() - new Date(a.date_time).getTime())
+      this.recentPhotos = data['RP']['recent_photos'];
+      this.recentPhotos.forEach((el) => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name });
+      this.recentPhotos.sort((a, b) => new Date(b.create_ts).getTime() - new Date(a.create_ts).getTime())
       this.loading = false;
       console.log('recentDiscussions', this.recentDiscussions)
     },

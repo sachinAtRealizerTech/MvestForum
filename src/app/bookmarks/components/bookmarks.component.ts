@@ -26,7 +26,7 @@ export class BookmarksComponent implements OnInit {
     this.loading = true;
     this.bookmarksService.getBookmarks(this.user.email_id).subscribe(data => {
       this.bookmarksList = data['Bookmarks'];
-      this.bookmarksList.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
+      this.bookmarksList.sort((a, b) => new Date(b.bookmarkdate).getTime() - new Date(a.bookmarkdate).getTime())
       this.loading = false
       console.log('bookmarkslist', this.bookmarksList);
     },

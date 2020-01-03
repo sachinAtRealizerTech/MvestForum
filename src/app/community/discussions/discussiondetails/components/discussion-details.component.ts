@@ -532,8 +532,14 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   isDislikedByMe(object) {
-    let likedEmails = object.likes.map(l => l.like_by_emailId);
-    return (likedEmails.includes(this.user.email_id));
+    debugger;
+    if (object.dislikes != null) {
+      let likedEmails = object.dislikes.map(l => l.dislike_by_emailId);
+      return (likedEmails.includes(this.user.email_id));
+    }
+    else {
+      return false
+    }
   }
 
   dislikePost(discDetails: any) {
@@ -575,7 +581,7 @@ export class DiscussionDetailsComponent implements OnInit {
       post_id: this.post_Id,
       dislike_by_emailId: this.user.email_id
     }
-    this.discussiondetailsService.postLike(body).subscribe(data => {
+    this.discussiondetailsService.postDislike(body).subscribe(data => {
       this.getDiscussionDeatils(this.discussiondocId);
     })
   }

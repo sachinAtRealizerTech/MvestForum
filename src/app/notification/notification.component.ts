@@ -120,7 +120,7 @@ export class NotificationComponent implements OnInit {
     this.notificationService.getMyArchNotification(this.user.email_id).subscribe(data => {
       console.log('Archive', data);
       this.archivedNotifications = data;
-      this.archivedNotifications.sort((a, b) => new Date(b.Notifications.Date).getTime() - new Date(a.Notifications.Date).getTime())
+      this.archivedNotifications.sort((a, b) => new Date(b.Notifications.ArchieveDate).getTime() - new Date(a.Notifications.ArchieveDate).getTime())
       this.loading = false;
     },
       error => {

@@ -6,4 +6,5 @@ export interface Bookmarks {
     post_by_name: string;
     post_date: Date;
     isAnswer: boolean;
+    bookmarkdate: Date
 }

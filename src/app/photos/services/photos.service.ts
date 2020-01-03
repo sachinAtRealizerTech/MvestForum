@@ -28,7 +28,7 @@ export class PhotosService {
     return this.http.post(`${environment.APIBASEURL}/ImageUpload/AddAlbum`, body, Utils.getAuthHeader())
   }
 
-  getAlbumList(memberId: number) {
+  getAlbumList(memberId: string) {
     return this.http.get<albumList[]>(`${environment.APIBASEURL}/ImageUpload/GetAlbumList/${memberId}`, Utils.getAuthHeader())
   }
 

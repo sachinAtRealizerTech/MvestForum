@@ -17,8 +17,8 @@ export class ProfileService {
     return this.http.get<CommunityStats>(`${environment.APIBASEURL}/Community/GetCommStats/${emailId}`, Utils.getAuthHeader())
   }
 
-  getRecentDiscussions(emailId: string) {
-    return this.http.get(`${environment.APIBASEURL}/Community/GetRecentDiscussions/${emailId}`, Utils.getAuthHeader())
+  getRecentDiscussionsAndPhotos(emailId: string) {
+    return this.http.get(`${environment.APIBASEURL}/Community/Get_recent_disc_and_photos/${emailId}`, Utils.getAuthHeader())
   }
 
   getMyNews(memberId: number) {
