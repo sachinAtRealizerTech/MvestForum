@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item">
           <a href="#leasephotos" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
-            aria-selected="false">Photos of Your Lease</a>
+            aria-selected="false" (click)="selectLease()">Photos of Your Lease</a>
         </li>
         <!-- <li class="nav-item">
           <a href="#yourphotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
@@ -26,7 +26,7 @@
         </li>  -->
         <li class="nav-item">
           <a href="#albumphotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-            aria-controls="contact" aria-selected="false">Albums</a>
+            aria-controls="contact" aria-selected="false" (click)="selectAlbum()">Albums</a>
         </li>
         <div class="ml-auto d-inline-flex">
           <li class="nav-item pull-right mr-3">
@@ -46,7 +46,18 @@
 
     <div class="tab-pane fade show active" id="leasephotos" role="tabpanel" aria-labelledby="home-tab">
       <div class="row justify-content-start">
-        <div class="col-md-5 col-xl-3  pt-2">
+
+        <div class="col-md-3 text-center col-3 col-xl-3 ">
+          <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
+        </div>
+        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+          <div class="align-self-center">
+            <h6 class="text-muted font-weight-semibold ">No Lease Photo's yet !!</h6>
+            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Lease Photo's.</h6>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-5 col-xl-3  pt-2">
           <div class="card cursor-pointer">
             <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
             <div class="card-body py-2 px-3">
@@ -88,7 +99,7 @@
               <p><small class="text-secondary mb-1">10 Photos</small> </p>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -105,8 +116,21 @@
     </div>
 
     <div class="tab-pane fade show" id="albumphotos" role="tabpanel" aria-labelledby="home-tab">
-      <div class="row justify-content-start">
 
+      <div class="row justify-content-start" *ngIf="albumList?.length==0">
+        <div class="col-md-3 text-center col-3 col-xl-3 ">
+          <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
+        </div>
+        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+          <div class="align-self-center">
+            <h6 class="text-muted font-weight-semibold ">You have not created any Album yet !!</h6>
+            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Album and it's Photo's.</h6>
+            <h6 class="text-muted font-weight-semibold ">You can create an Album by clicking on 'Add Album' tab.</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-start">
         <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
           <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
             <img class="img-fluid img-thumbnailalbum" src="{{als.thumbnail_file_name}}" alt="">
@@ -194,7 +218,7 @@
     </div>
   </div> -->
 
-  <div class="row">
+  <div class="row" *ngIf="albumPhotos">
     <div class="col-xl-12 pb-1 pt-3">
       <h6 class="font-weight-semibold text-secondary">{{albumImageList?.length}} {{albumName}} Photos</h6>
       <div class="row text-center text-lg-left mt-2">

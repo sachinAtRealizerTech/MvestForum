@@ -48,6 +48,8 @@ export class PhotosComponent implements OnInit {
   imageToPush: any[] = [];
   imageCounter = 0;
   subAddNewPhoto = false;
+  albumPhotos = false;
+  leasePhotos = true;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -80,6 +82,16 @@ export class PhotosComponent implements OnInit {
 
   toggleLeaseAndAlbum(event) {
     this.toggleLease = !this.toggleLease
+  }
+
+  selectLease() {
+    this.albumPhotos = false;
+    this.leasePhotos = true;
+  }
+
+  selectAlbum() {
+    this.albumPhotos = true;
+    this.leasePhotos = false;
   }
 
   ///////////////////////////////////////////////////////////////////////////////
