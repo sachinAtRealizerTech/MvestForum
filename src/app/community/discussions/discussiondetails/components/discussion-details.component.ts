@@ -22,6 +22,7 @@ export class DiscussionDetailsComponent implements OnInit {
   deleteModal: TemplateRef<any>;
   deletePostId: any;
   activeId: string;
+  isDislikePressed = false;
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
@@ -180,7 +181,7 @@ export class DiscussionDetailsComponent implements OnInit {
       this.loading = false;
       this.discussiondocId = data['_id'];
       this.isLikePressed = false;
-
+      this.isDislikePressed = false;
       setTimeout(() => {
         debugger;
         const element = document.querySelector('#' + 'p' + this.p_Id);
@@ -529,6 +530,168 @@ export class DiscussionDetailsComponent implements OnInit {
     let likedEmails = comments.likes.map(l => l.like_by_emailId);
     return (likedEmails.includes(this.user.email_id));
   }
+
+  isDislikedByMe(object) {
+    let likedEmails = object.likes.map(l => l.like_by_emailId);
+    return (likedEmails.includes(this.user.email_id));
+  }
+
+  dislikePost(discDetails: any) {
+    if (this.isDislikePressed == false) {
+      if (!discDetails.posts) {
+        this.isDislikePressed = true;
+        this.post_Id = discDetails.post_id;
+      }
+      else {
+        this.isDislikePressed = true;
+        this.post_Id = discDetails.posts[0].post_id;
+      }
+      let body = {
+        discussion_doc_id: this.discussiondocId,
+        post_id: this.post_Id,
+        email_id: this.user.email_id,
+        name: this.user.f_name + " " + this.user.l_name
+      }
+      this.discussiondetailsService.postDislike(body).subscribe(data => {
+        this.getDiscussionDeatils(this.discussiondocId);
+      })
+    }
+    else {
+      return
+    }
+  }
+
+  unDislikePost(discDetails: any) {
+    debugger;
+    this.isDislikePressed = false;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+    }
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      dislike_by_emailId: this.user.email_id
+    }
+    this.discussiondetailsService.postLike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussiondocId);
+    })
+  }
+
+
+  dislikeToComment(discDetails: any, qc: any) {
+    if (this.isDislikePressed == false) {
+      if (!discDetails.posts) {
+        this.post_Id = discDetails.post_id;
+        this.comment_Id = qc.comment_id;
+        this.isDislikePressed = true;
+      }
+      else {
+        this.post_Id = discDetails.posts[0].post_id;
+        this.comment_Id = qc.comment_id;
+        this.isDislikePressed = true;
+      }
+
+      let body = {
+        discussion_doc_id: this.discussiondocId,
+        post_id: this.post_Id,
+        comment_id: this.comment_Id,
+        email_id: this.user.email_id,
+        name: this.user.f_name + " " + this.user.l_name
+      }
+      this.discussiondetailsService.postDislike(body).subscribe(data => {
+        this.getDiscussionDeatils(this.discussiondocId);
+      })
+    }
+    else {
+      return
+    }
+  }
+
+
+  unDislikeToComment(discDetails: any, qc: any) {
+    this.isDislikePressed = false;
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+      this.comment_Id = qc.comment_id
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      this.comment_Id = qc.comment_id;
+    }
+
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      comment_id: this.comment_Id,
+      dislike_by_emailId: this.user.email_id
+    }
+    this.discussiondetailsService.postDislike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussiondocId);
+    })
+  }
+
+
+  dislikeCommentToComment(discDetails: any, pc: any, cc: any) {
+    if (this.isDislikePressed == false) {
+      if (!discDetails.posts) {
+        this.post_Id = discDetails.post_id;
+        this.comment_Id = pc.comment_id
+        this.comment_to_id = cc.comment_id;
+        this.isDislikePressed = true
+      }
+      else {
+        this.post_Id = discDetails.posts[0].post_id;
+        this.comment_Id = pc.comment_id;
+        this.comment_to_id = cc.comment_id
+        this.isDislikePressed = true
+      }
+      let body = {
+        discussion_doc_id: this.discussiondocId,
+        post_id: this.post_Id,
+        comment_id: this.comment_Id,
+        comment_to_id: this.comment_to_id,
+        email_id: this.user.email_id,
+        name: this.user.f_name + " " + this.user.l_name
+      }
+      this.discussiondetailsService.postDislike(body).subscribe(data => {
+        this.getDiscussionDeatils(this.discussiondocId);
+      })
+    }
+    else {
+      return
+    }
+
+  }
+
+  unDislikeCommentToComment(discDetails: any, pc: any, cc: any) {
+    this.isDislikePressed = false
+    if (!discDetails.posts) {
+      this.post_Id = discDetails.post_id;
+      this.comment_Id = pc.comment_id;
+      this.comment_to_id = cc.comment_id;
+    }
+    else {
+      this.post_Id = discDetails.posts[0].post_id;
+      this.comment_Id = pc.comment_id;
+      this.comment_to_id = cc.comment_id;
+    }
+    let body = {
+      discussion_doc_id: this.discussiondocId,
+      post_id: this.post_Id,
+      comment_id: this.comment_Id,
+      comment_to_id: this.comment_to_id,
+      dislike_by_emailId: this.user.email_id
+    }
+    this.discussiondetailsService.postDislike(body).subscribe(data => {
+      this.getDiscussionDeatils(this.discussiondocId);
+    })
+  }
+
+
+
 
   markAsAnswer(postId: string, flag: boolean) {
     debugger;

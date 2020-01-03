@@ -411,10 +411,16 @@
               </li>
 
               <li class="list-inline-item mb-0 h6 text-muted align-self-center">
-                <a routerLink="#">
-                  <i class="material-icons icon-muted md-24 ml-3 mt-1" data-toggle="tooltip"
-                    title="Dislike Post">thumb_down_alt</i>
+
+                <a *ngIf="!isDislikedByMe(p)" routerLink="#" (click)="dislikePost(p)" data-toggle="tooltip"
+                  title="Dislike Post"> <i class="material-icons icon-muted md-24 ml-3">thumb_down_alt</i>
                 </a>
+                <a *ngIf="isDislikedByMe(p)" routerLink="#" (click)="unDislikePost(p)" data-toggle="tooltip"
+                  title="Undo dislike"> <i class="material-icons icon-accent md-24 ml-3 animated tada"
+                    animation-duration="80s">thumb_down_alt</i>
+                </a>
+
+                <span class="ml-1 align-self-center">{{p.dislikes?.length}}</span>
               </li>
 
 
@@ -475,10 +481,18 @@
                   </li>
 
                   <li class="list-inline-item mb-0 h6 text-muted align-self-center">
-                    <a routerLink="#">
-                      <i class="material-icons icon-muted md-24 ml-3 mt-1" data-toggle="tooltip"
-                        title="Dislike Post">thumb_down_alt</i>
+
+                    <a *ngIf="!isDislikedByMe(cm)" routerLink="#" (click)="dislikeToComment(discussionDetails,cm)"> <i
+                        class="material-icons icon-muted md-24 ml-3">
+                        thumb_down_alt
+                      </i>
                     </a>
+                    <a *ngIf="isDislikedByMe(cm)" routerLink="#" (click)="unDislikeToComment(discussionDetails,cm)"> <i
+                        class="material-icons icon-accent md-24 ml-3">
+                        thumb_down_alt
+                      </i> </a>
+                    <span class="ml-1 align-self-center">{{cm.dislikes?.length}}</span>
+
                   </li>
 
 
@@ -541,6 +555,20 @@
                           </i> </a>
 
                         <span class="ml-1 align-self-center">{{cc.likes.length}}</span>
+                      </li>
+
+                      <li>
+                        <a *ngIf="!isDislikedByMe(cc)" routerLink="#"
+                          (click)="dislikeCommentToComment(discussionDetails,cm,cc)">
+                          <i class="material-icons icon-muted md-24 ml-3">
+                            thumb_down_alt
+                          </i> </a>
+
+                        <a *ngIf="isDislikedByMe(cc)" routerLink="#"
+                          (click)="unDislikeCommentToComment(discussionDetails,cm,cc)">
+                          <i class="material-icons icon-accent md-24 ml-3">
+                            thumb_down_alt
+                          </i> </a>
                       </li>
                       <!-- 
                       <li *ngIf="isTimeOver(cc.create_ts) && (cc.comment_by_emailId==user.email_id)"

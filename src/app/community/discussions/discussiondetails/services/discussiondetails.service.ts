@@ -34,6 +34,10 @@ export class DiscussiondetailsService {
     return this.httpClient.put(`${environment.APIBASEURL}/Discussion/AddLikes`, body, Utils.getAuthHeader())
   }
 
+  postDislike(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/DisLikes`, body, Utils.getAuthHeader())
+  }
+
   markAsAnswer(body) {
     return this.httpClient.put(`${environment.APIBASEURL}/Discussion/MarkAsAnswer`, body, Utils.getAuthHeader())
   }
