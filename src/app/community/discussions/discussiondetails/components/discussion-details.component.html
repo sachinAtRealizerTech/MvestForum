@@ -142,16 +142,11 @@
 
           <div class="row justify-content-center text-left text-break">
             <div class="col-xl-10 col-lg-9 col-md-8 col-sm-8 col-9">
-              <div class="media px-3 py-1">
-
-
+              <div class="media px-3 py-1"> 
                 <ngx-avatar class="mr-3" name="{{discussionDetails?.posts[0]?.post_by_name}}" [size]="40" src="">
-                </ngx-avatar>
-
+                </ngx-avatar> 
                 <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
-                  alt="Generic placeholder image"> -->
-
-
+                  alt="Generic placeholder image"> --> 
                 <div class="media-body mb-0 align-self-center">
                   <h6 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h6>
                   <h5 class="text-secondary h6 mb-0" id="p{{discussionDetails?.posts[0]?.post_id}}"
@@ -161,6 +156,37 @@
             </div>
 
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-3 px-4 text-right">
+              <h6 class="mb-0"> 
+                 <!-- <a class="nav-link dropdown-toggle text-nowrap px-3 text-secondary" data-toggle="dropdown" href="#"
+                  role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons md-24">
+                    more_horiz
+                    </i>
+                </a>   -->
+                <a class=" text-right  text-secondary" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class=" ">
+                  <i class="material-icons md-24">
+                    more_horiz
+                    </i>
+                </div>
+                <div class="dropdown-menu px-1 py-2 shadow" aria-labelledby="dropdownMenuLink">
+                  <div class="d-flex d-inline-flex">
+                  <h6 class="mb-0 font-weight-semibold text-muted">
+                    <i class="material-icons icon-muted small md-18 pr-1">
+                      report
+                      </i> </h6>
+                  <h6 class="mb-0 font-weight-semibold text-muted"> 
+                    Report Abuse</h6>
+                  </div>
+                </div>
+              </a>
+            
+              </h6>
+                <!-- <div class="dropdown-menu dropdown-menu-small text-secondary">
+                  <a routerLink="/profile" class="dropdown-item  text-secondary">
+                    <i class="material-icons">person</i>Report User</a> 
+                </div> -->
               <small class="font-weight-semibold text-muted pr-2">{{discussionDetails?.posts[0]?.post_date | timeAgo}}
               </small>
               <br>
