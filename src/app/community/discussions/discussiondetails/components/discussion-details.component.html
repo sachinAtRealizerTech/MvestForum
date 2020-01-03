@@ -173,14 +173,15 @@
         <div class="card-body pt-0 mx-3 border-bottom">
           <ul class="list-inline d-flex  border-0 mb-0">
             <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-              <a routerLink="#" (click)="openReplyTemplate(replyTemplate)" data-toggle="tooltip" title="Answer to Post">
+              <a class="cursor-pointer" (click)="openReplyTemplate(replyTemplate)" data-toggle="tooltip"
+                title="Answer to Post">
                 <i class="material-icons icon-muted md-30 ml-3">reply</i> </a>
 
-              <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
+              <a *ngIf="!isPostLikedByMe(discussionDetails?.posts[0])" class="cursor-pointer"
                 (click)="postLike(discussionDetails?.posts[0])" data-toggle="tooltip" title="Like Post">
                 <i class="material-icons icon-muted md-24 ml-3">thumb_up</i> </a>
 
-              <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" routerLink="#"
+              <a *ngIf="isPostLikedByMe(discussionDetails?.posts[0])" class="cursor-pointer"
                 (click)="unlikePost(discussionDetails?.posts[0])"> <i
                   class="material-icons icon-accent md-24 ml-3 animated tada" data-toggle="tooltip" title="Unlike Post"
                   animation-duration="80s">thumb_up</i>
@@ -196,7 +197,7 @@
             </li> -->
 
             <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-              <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+              <a class="cursor-pointer" data-toggle="tooltip" title="Coming Soon"> <i
                   class="material-icons icon-muted md-24 ml-3"
                   (click)="openCommentModal(postCommentModal,discussionDetails)" data-toggle="tooltip"
                   title="Comment on Post">
@@ -221,12 +222,12 @@
               <ul class="list-inline d-flex  border-0 mb-0">
 
                 <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                  <a *ngIf="!isCommentLikedByMe(qc)" data-toggle="tooltip" title="Like Post" routerLink="#"
+                  <a *ngIf="!isCommentLikedByMe(qc)" data-toggle="tooltip" title="Like Post" class="cursor-pointer"
                     (click)="likeToComment(discussionDetails,qc)"> <i class="material-icons icon-muted md-24 ml-3">
                       thumb_up
                     </i> </a>
 
-                  <a *ngIf="isCommentLikedByMe(qc)" data-toggle="tooltip" title="Unlike Post" routerLink="#"
+                  <a *ngIf="isCommentLikedByMe(qc)" data-toggle="tooltip" title="Unlike Post" class="cursor-pointer"
                     (click)="unLikeToComment(discussionDetails,qc)"> <i
                       class="material-icons icon-accent md-24 ml-3 animated tada" animation-duration="80s">
                       thumb_up
@@ -236,7 +237,7 @@
                 </li>
 
                 <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-                  <a routerLink="#" data-toggle="tooltip" title="Comment on Post"> <i
+                  <a class="cursor-pointer" data-toggle="tooltip" title="Comment on Post"> <i
                       class="material-icons icon-muted md-24 ml-3"
                       (click)="openCommentToCommentModal(postCommentToCommentModal,discussionDetails,qc)">
                       mode_comment
@@ -285,13 +286,13 @@
 
 
                     <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                      <a *ngIf="!isCommentToCommentLikedByMe(cc)" routerLink="#"
+                      <a *ngIf="!isCommentToCommentLikedByMe(cc)" class="cursor-pointer"
                         (click)="likeCommentToComment(discussionDetails,qc,cc)" data-toggle="tooltip" title="Like Post">
                         <i class="material-icons icon-muted md-24 ml-3">
                           thumb_up
                         </i> </a>
 
-                      <a *ngIf="isCommentToCommentLikedByMe(cc)" routerLink="#"
+                      <a *ngIf="isCommentToCommentLikedByMe(cc)" class="cursor-pointer"
                         (click)="unLikeCommentToComment(discussionDetails,qc,cc)" data-toggle="tooltip"
                         title="Unlike Post">
                         <i class="material-icons icon-accent md-24 ml-3 animated tada" animation-duration="80s">
@@ -381,7 +382,7 @@
 
               <li *ngIf="!p.isAnswer && (discussionDetails?.posts[0]?.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 h6 text-muted align-self-center">
-                <a routerLink="#" (click)="markAsAnswer(p.post_id,true)">
+                <a class="cursor-pointer" (click)="markAsAnswer(p.post_id,true)">
                   <i class="material-icons md-24 ml-3 icon-muted" data-toggle="tooltip" title="Mark as Answer">
                     check_circle
                   </i>
@@ -390,7 +391,7 @@
 
               <li *ngIf="p.isAnswer && (discussionDetails?.posts[0]?.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 h6 text-muted align-self-center">
-                <a routerLink="#">
+                <a class="cursor-pointer">
                   <i class="material-icons md-24 ml-3 icon-muted text-accent animated tada" animation-duration="80s">
                     check_circle
                   </i>
@@ -399,10 +400,10 @@
 
               <li class="list-inline-item mb-1 h6 text-muted align-self-center">
 
-                <a *ngIf="!isPostLikedByMe(p)" routerLink="#" (click)="postLike(p)" data-toggle="tooltip"
+                <a *ngIf="!isPostLikedByMe(p)" class="cursor-pointer" (click)="postLike(p)" data-toggle="tooltip"
                   title="Like Post"> <i class="material-icons icon-muted md-24 ml-3">thumb_up</i>
                 </a>
-                <a *ngIf="isPostLikedByMe(p)" routerLink="#" (click)="unlikePost(p)" data-toggle="tooltip"
+                <a *ngIf="isPostLikedByMe(p)" class="cursor-pointer" (click)="unlikePost(p)" data-toggle="tooltip"
                   title="Unlike Post"> <i class="material-icons icon-accent md-24 ml-3 animated tada"
                     animation-duration="80s">thumb_up</i>
                 </a>
@@ -412,10 +413,10 @@
 
               <li class="list-inline-item mb-0 h6 text-muted align-self-center">
 
-                <a *ngIf="!isDislikedByMe(p)" routerLink="#" (click)="dislikePost(p)" data-toggle="tooltip"
+                <a *ngIf="!isDislikedByMe(p)" class="cursor-pointer" (click)="dislikePost(p)" data-toggle="tooltip"
                   title="Dislike Post"> <i class="material-icons icon-muted md-24 ml-3">thumb_down_alt</i>
                 </a>
-                <a *ngIf="isDislikedByMe(p)" routerLink="#" (click)="unDislikePost(p)" data-toggle="tooltip"
+                <a *ngIf="isDislikedByMe(p)" class="cursor-pointer" (click)="unDislikePost(p)" data-toggle="tooltip"
                   title="Undo dislike"> <i class="material-icons icon-accent md-24 ml-3 animated tada"
                     animation-duration="80s">thumb_down_alt</i>
                 </a>
@@ -425,7 +426,7 @@
 
 
               <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-                <a routerLink="#" data-toggle="tooltip" title="Comment on Post"> <i
+                <a class="cursor-pointer" data-toggle="tooltip" title="Comment on Post"> <i
                     class="material-icons icon-muted md-24 ml-3" (click)="openCommentModal(postCommentModal,p)">
                     mode_comment
                   </i>
@@ -434,7 +435,7 @@
 
               <li *ngIf="isTimeOver(p.post_date) && (p.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 h6 text-muted align-self-center">
-                <a routerLink="#" (click)="openEditPostModal(editPostTemplate,p)" data-toggle="tooltip"
+                <a class="cursor-pointer" (click)="openEditPostModal(editPostTemplate,p)" data-toggle="tooltip"
                   title="Edit Your Post"> <i class="material-icons icon-muted md-24 ml-3">
                     edit
                   </i></a>
@@ -442,7 +443,7 @@
 
               <li *ngIf="isTimeOver(p.post_date) && (p.post_by_emailId==user.email_id)"
                 class="list-inline-item mb-1 pt-1 h6 text-muted align-self-center">
-                <a routerLink="#" data-toggle="tooltip" title="Delete Your Post"> <i
+                <a class="cursor-pointer" data-toggle="tooltip" title="Delete Your Post"> <i
                     class="material-icons icon-muted-negative  md-25 ml-3" (click)="openDeletePostModal(deleteModal,p)">
                     delete
                   </i></a>
@@ -465,14 +466,14 @@
                 <ul class="list-inline d-flex  border-0 mb-0">
                   <li class="list-inline-item mb-1 h6 pt-1 text-muted align-self-center">
 
-                    <a *ngIf="!isCommentLikedByMe(cm)" routerLink="#" (click)="likeToComment(discussionDetails,cm)"> <i
-                        class="material-icons icon-muted md-24 ml-3">
+                    <a *ngIf="!isCommentLikedByMe(cm)" class="cursor-pointer"
+                      (click)="likeToComment(discussionDetails,cm)"> <i class="material-icons icon-muted md-24 ml-3">
                         thumb_up
                       </i>
                     </a>
 
-                    <a *ngIf="isCommentLikedByMe(cm)" routerLink="#" (click)="unLikeToComment(discussionDetails,cm)"> <i
-                        class="material-icons icon-accent md-24 ml-3">
+                    <a *ngIf="isCommentLikedByMe(cm)" class="cursor-pointer"
+                      (click)="unLikeToComment(discussionDetails,cm)"> <i class="material-icons icon-accent md-24 ml-3">
                         thumb_up
                       </i> </a>
 
@@ -482,12 +483,13 @@
 
                   <li class="list-inline-item mb-0 h6 text-muted align-self-center">
 
-                    <a *ngIf="!isDislikedByMe(cm)" routerLink="#" (click)="dislikeToComment(discussionDetails,cm)"> <i
-                        class="material-icons icon-muted md-24 ml-3">
+                    <a *ngIf="!isDislikedByMe(cm)" class="cursor-pointer"
+                      (click)="dislikeToComment(discussionDetails,cm)"> <i class="material-icons icon-muted md-24 ml-3">
                         thumb_down_alt
                       </i>
                     </a>
-                    <a *ngIf="isDislikedByMe(cm)" routerLink="#" (click)="unDislikeToComment(discussionDetails,cm)"> <i
+                    <a *ngIf="isDislikedByMe(cm)" class="cursor-pointer"
+                      (click)="unDislikeToComment(discussionDetails,cm)"> <i
                         class="material-icons icon-accent md-24 ml-3">
                         thumb_down_alt
                       </i> </a>
@@ -497,7 +499,7 @@
 
 
                   <li class="list-inline-item mb-1 h6 pt-2 text-muted align-self-center" id="#comment-box">
-                    <a routerLink="#" data-toggle="tooltip" title="Coming Soon"> <i
+                    <a class="cursor-pointer" data-toggle="tooltip" title="Coming Soon"> <i
                         class="material-icons icon-muted md-24 ml-3"
                         (click)="openCommentToCommentModal(postCommentToCommentModal,discussionDetails,cm)">
                         mode_comment
@@ -542,13 +544,13 @@
 
                     <ul class="list-inline d-flex  border-0 mb-0">
                       <li class="list-inline-item mb-1 h6  text-muted align-self-center">
-                        <a *ngIf="!isCommentToCommentLikedByMe(cc)" routerLink="#"
+                        <a *ngIf="!isCommentToCommentLikedByMe(cc)" class="cursor-pointer"
                           (click)="likeCommentToComment(discussionDetails,cm,cc)">
                           <i class="material-icons icon-muted md-24 ml-3">
                             thumb_up
                           </i> </a>
 
-                        <a *ngIf="isCommentToCommentLikedByMe(cc)" routerLink="#"
+                        <a *ngIf="isCommentToCommentLikedByMe(cc)" class="cursor-pointer"
                           (click)="unLikeCommentToComment(discussionDetails,cm,cc)">
                           <i class="material-icons icon-accent md-24 ml-3">
                             thumb_up
@@ -558,13 +560,13 @@
                       </li>
 
                       <li>
-                        <a *ngIf="!isDislikedByMe(cc)" routerLink="#"
+                        <a *ngIf="!isDislikedByMe(cc)" class="cursor-pointer"
                           (click)="dislikeCommentToComment(discussionDetails,cm,cc)">
                           <i class="material-icons icon-muted md-24 ml-3">
                             thumb_down_alt
                           </i> </a>
 
-                        <a *ngIf="isDislikedByMe(cc)" routerLink="#"
+                        <a *ngIf="isDislikedByMe(cc)" class="cursor-pointer"
                           (click)="unDislikeCommentToComment(discussionDetails,cm,cc)">
                           <i class="material-icons icon-accent md-24 ml-3">
                             thumb_down_alt

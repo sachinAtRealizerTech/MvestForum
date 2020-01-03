@@ -372,7 +372,7 @@
             </div>
 
             <ul class="list-inline d-flex pt-4 mb-1">
-              <li class="list-inline-item h6 text-secondary mb-1">Discussions</li>
+              <li class="list-inline-item h6 text-secondary mb-1">Recent Discussions</li>
               <li class="list-inline-item ml-auto mb-1">
                 <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <small class="font-weight-semibold text-secondary mb-0"> Edit</small>
@@ -395,7 +395,7 @@
 
                     <div class="media-body mb-0 ">
                       <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                        {{rd?.title | titlecase | slice:0:60}}</h5>
+                        <u>{{rd?.title | titlecase | slice:0:60}}</u></h5>
                     </div>
 
                   </div>
@@ -418,7 +418,8 @@
             <ul class="list-inline d-flex mb-0">
               <li class="list-inline-item h6 text-secondary">Photos</li>
               <li class="list-inline-item ml-auto">
-                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="cursor-pointer" routerLink="/photos" role="button" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
                   <small class="font-weight-semibold text-secondary ">Add Photo</small>
                 </a>
               </li>
@@ -504,7 +505,7 @@
               <div class="card-footer border-top">
                 <div class="row">
                   <div class="col text-center view-report">
-                    <a href="" class="text-secondary font-weight-bold ">See All Photos</a>
+                    <a class="text-secondary font-weight-bold cursor-pointer" routerLink="/photos">See All Photos</a>
                   </div>
                 </div>
               </div>
