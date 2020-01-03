@@ -67,13 +67,16 @@ export class ProfileComponent implements OnInit {
     this.profileService.getRecentDiscussionsAndPhotos(this.user.email_id).subscribe(data => {
       debugger;
       console.log('recent disc and photos', data)
-      this.recentDiscussions = data['RD']['recent_discussions'];
-      this.recentDiscussions.sort((a, b) => new Date(b.date_time).getTime() - new Date(a.date_time).getTime())
-      this.recentPhotos = data['RP']['recent_photos'];
-      this.recentPhotos.forEach((el) => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name });
-      this.recentPhotos.sort((a, b) => new Date(b.create_ts).getTime() - new Date(a.create_ts).getTime())
+      if (data['RD']) {
+        this.recentDiscussions = data['RD']['recent_discussions'];
+        this.recentDiscussions.sort((a, b) => new Date(b.date_time).getTime() - new Date(a.date_time).getTime())
+      }
+      if (data['RP']) {
+        this.recentPhotos = data['RP']['recent_photos'];
+        this.recentPhotos.forEach((el) => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name });
+        this.recentPhotos.sort((a, b) => new Date(b.create_ts).getTime() - new Date(a.create_ts).getTime())
+      }
       this.loading = false;
-      console.log('recentDiscussions', this.recentDiscussions)
     },
       error => {
       })
