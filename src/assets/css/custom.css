@@ -1479,6 +1479,18 @@ top:110px;
 .bg-black-overlay{
   background: rgba(0, 0, 0, 0.075) !important;
 }
+
+.card-hover-accent:hover , .card-hover-accent:focus , .card-hover-accent:active{
+  background-color: #fff;
+  border: none;
+  border-radius: .625rem;
+  cursor: pointer !important;
+  /* box-shadow: 0 0.46875rem 2.1875rem #00CD95 ; */
+  box-shadow: 0 0.46875rem 0.1rem rgba(0,205,149), 0 0.9375rem 1.40625rem rgba(0, 205, 149, 0.1), 0 0.25rem 0.53125rem rgba(0,205,149,.1), 0 0.125rem 0.1875rem rgba(0,205,149,.1);
+
+
+  /* box-shadow: 0 0.46875rem 2.1875rem #00CD95, 0 0.9375rem 1.40625rem #00CD95, 0 0.25rem 0.53125rem #00CD95, 0 0.125rem 0.1875rem #00CD95; */
+}
   /* Animation Styles Start*/
   @keyframes fadeInDown {
     from {

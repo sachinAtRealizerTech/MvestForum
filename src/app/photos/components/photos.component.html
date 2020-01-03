@@ -45,15 +45,14 @@
   <div class="tab-content pb-3" id="myTabContent">
 
     <div class="tab-pane fade show active" id="leasephotos" role="tabpanel" aria-labelledby="home-tab">
-      <div class="row justify-content-start">
-
+      <div class="row justify-content-center pt-4"> 
         <div class="col-md-3 text-center col-3 col-xl-3 ">
           <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
         </div>
         <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
           <div class="align-self-center">
-            <h6 class="text-muted font-weight-semibold ">No Lease Photo's yet !!</h6>
-            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Lease Photo's.</h6>
+            <h6 class="text-muted font-weight-semibold text-uppercase">No Lease Photo's yet !!</h6>
+            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Photos that you have added to your Lease.</h6>
           </div>
         </div>
 
@@ -132,7 +131,7 @@
 
       <div class="row justify-content-start">
         <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
-          <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
+          <div class="card card-hover-accent cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
             <img class="img-fluid img-thumbnailalbum" src="{{als.thumbnail_file_name}}" alt="">
             <div class="card-body py-2 px-3">
 
