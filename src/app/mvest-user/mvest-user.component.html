@@ -20,8 +20,8 @@
           <div class="media align-items-end profile-header ">
             <div class="justify-content-start mr-3">
 
-              <ngx-avatar name="{{user.f_name}} {{user.l_name}}" width="200"
-                class="rounded-50 profile img-thumbnail cursor-pointer" src=""></ngx-avatar>
+              <ngx-avatar name="AP" [size]="100"
+                class="rounded-50 profile img-thumbnail" src=""></ngx-avatar>
 
               <!-- <img href="#" (click)="openNewDisplayPicForm(newDisplayPicModal)" src="assets/images/MProfile.png" alt="..."
                 width="100" class="rounded-50 mt-2 profile img-thumbnail cursor-pointer"> -->
@@ -31,21 +31,20 @@
             <div class="media-body justify-content-center text-left text-white ">
               <h4 class="text-white font-weight-medium username">Atul Pawase
               </h4>
-
+              <h6 class="text-white font-weight-medium user-tagline">Verified Mineral Owner
+              </h6>
             </div>
+            <!-- <div class="mr-3 profile-btn justify-content-end align-self-end">
+              <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                class="btn btn-outline-white btn-sm btn-block text-uppercase">Connect</a>
+            </div>
+            <div class="mr-3 profile-btn justify-content-end align-self-end">
+              <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                class="btn btn-outline-white btn-sm btn-block text-uppercase">Unfollow</a>
+            </div> -->
 
             <div class="profile-btn justify-content-end align-self-end">
-              <ul class="list-inline d-inline-flex mb-0">
-
-                <!-- <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a routerLink="#" 
-                                        class="  text-uppercase">
-                                        <select class="btn btn-outline-white text-uppercase py-0 border-0">
-                                            <option>Connected</option>
-                                            <option>Connected</option>
-                                            <option>Connected</option>
-                                        </select></a>
-                                </li> -->
+              <!-- <ul class="list-inline d-inline-flex mb-0"> 
                 <li class="list-inline-item mb-0 h6 text-muted">
                   <a routerLink="#" class=" text-uppercase">
                     <select class="dropdown-rounded text-uppercase py-0 ">
@@ -60,25 +59,29 @@
                       <option class="text-secondary">UnFollow</option>
                       <option class="text-secondary">Connected</option>
                     </select></a>
-                </li>
-                <!-- <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a routerLink="#" 
-                                        class=" dropdown-rounded text-uppercase">
-                                        <select class=" text-uppercase py-0 border-0">
-                                            <option>Following</option>
-                                            <option>Connected</option>
-                                            <option>Connected</option>
-                                        </select></a>
-                                </li> -->
-                <!-- <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a href="#"
-                                        class="btn btn-outline-white btn-sm btn-block text-uppercase">Following</a>
-                                </li> -->
+                </li> 
                 <li class="list-inline-item mb-0 font-weight-semibold rounded-border ">
                   <a href="#" class=" text-white text-uppercase align-self-center d-flex d-inline-flex">
                     <i class="material-icons md-18 px-2 pt-2 pb-2">mail</i></a>
                 </li>
-              </ul>
+              </ul> -->
+
+                <ul class="list-inline d-inline-flex mb-0"> 
+                <li class="list-inline-item mb-0 h6 text-muted">
+                     <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                class="btn btn-outline-white btn-sm btn-block text-uppercase">Connect</a>
+                </li>
+                <li class="list-inline-item mb-0 h6 text-muted">
+                    <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                class="btn btn-outline-white btn-sm btn-block text-uppercase">Unfollow</a>
+                </li> 
+                <li class="list-inline-item mb-0 font-weight-semibold rounded-border ">
+                  <a href="#" class=" text-white text-uppercase align-self-center d-flex d-inline-flex">
+                    <i class="material-icons md-18 px-2 pt-2 pb-2">mail</i></a>
+                </li>
+              </ul>  
+
+
               <!-- <div class="mr-3 profile-btn">
                 <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
                   class="btn btn-outline-white btn-sm btn-block text-uppercase">Connected</a>
@@ -95,18 +98,22 @@
           </div>
         </div>
         <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
-          <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
+          <ul class="nav nav-tabs sub-tab border-0 ml-5" >
             <li class="nav-item bg-dark ml-5">
-              <a routerLink="/photos" class="nav-link text-white active font-weight-normal" role="tab" aria-controls=""
+              <a routerLink="/mvest-user" class="nav-link text-white active font-weight-normal cursor-pointer" role="tab" aria-controls=""
                 aria-selected="false" routerLinkActive='active'>Timeline</a>
             </li>
             <li class="nav-item">
-              <a routerLink="/following" class="nav-link text-white font-weight-normal" role="tab"
+              <a routerLink="/mvest-user-following" class="nav-link text-white font-weight-normal" role="tab"
                 aria-controls="contact" aria-selected="false" routerLinkActive='active'>Following</a>
             </li>
             <li class="nav-item">
-              <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" role="tab"
+              <a routerLink="/mvest-user-neighbors" class="nav-link text-white font-weight-normal" role="tab"
                 aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/mvest-user-photos" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Photos</a>
             </li>
             <!--  <li class="nav-item">
                             <a routerLink="/mydiscussions" class="nav-link text-white font-weight-normal" role="tab"
@@ -130,7 +137,7 @@
       <div class="row justify-content-between no-gutters py-2">
         <div class="col-xl-8">
           <ul class="list-inline d-flex mb-1">
-            <li class="list-inline-item h6 text-secondary">Atul's Posts</li>
+            <li class="list-inline-item h6 text-secondary">Atul's News</li>
 
           </ul>
 
@@ -207,15 +214,71 @@
 
           <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
 
+            <ul class="list-inline d-flex">
+              <li class="list-inline-item h6 text-secondary mb-0">Stats</li>
+            </ul>
+
+            <div class="card justify-content-center shadow p-2 mt-3">
+              <div class="card-body text-center p-2 ">
+                <ul class="list-inline d-flex">
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                   
+                  <span class="text-dark font-weight-semibold">{{communityStats?.likes}} 2</span>
+                  <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Likes </small>
+                  </li>
+                  <li class="list-inline-item flex-1 h6 mb-0">
+             
+                 <span class="text-dark font-weight-semibold">{{communityStats?.Notifications}} 6</span>
+                 <br>
+                   <small class="font-weight-semibold text-secondary text-uppercase">
+                      Notification</small>
+                  </li>
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                    
+                   <span class="text-dark font-weight-semibold">{{communityStats?.Posts}} 8</span>
+                   <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Posts </small>
+                  </li>
+                </ul>
+                <ul class="list-inline d-flex">
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                   
+                  <span class="text-dark font-weight-semibold">{{communityStats?.Messages}} 1</span>
+                  <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Messages </small>
+                  </li>
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                  
+                 <span class="text-dark font-weight-semibold">{{communityStats?.Followers}} 5</span>
+                 <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Followers</small>
+                  </li>
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                   
+                  <span class="text-dark font-weight-semibold">{{communityStats?.comments}} 8</span>
+                  <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Comments </small>
+                  </li>
+                </ul>
+ 
+
+              </div>
+            </div>
 
 
-            <ul class="list-inline d-flex  mb-1">
-              <li class="list-inline-item h6 text-secondary mb-1">Discussions</li>
-              <li class="list-inline-item ml-auto mb-1">
+            <ul class="list-inline d-flex pt-3 mb-0">
+              <li class="list-inline-item h6 text-secondary">Discussions</li>
+              <!-- <li class="list-inline-item ml-auto mb-1">
                 <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <small class="font-weight-semibold text-secondary mb-0"> Edit</small>
                 </a>
-              </li>
+              </li> -->
             </ul>
             <div class="card card-small blog-comments">
 
@@ -254,15 +317,15 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-12">
-            <ul class="list-inline d-flex mb-0">
+
+            
+            <ul class="list-inline pt-3  d-flex mb-0">
               <li class="list-inline-item h6 text-secondary">Photos</li>
-              <li class="list-inline-item ml-auto">
+              <!-- <li class="list-inline-item ml-auto">
                 <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <small class="font-weight-semibold text-secondary ">Add Photo</small>
                 </a>
-              </li>
+              </li> -->
             </ul>
             <div class="card card-small shadow">
               <div class="card-body p-2">
@@ -350,7 +413,104 @@
                 </div>
               </div>
             </div>
+
           </div>
+           <!--  <div class="col-xl-12">  
+            <ul class="list-inline d-flex mb-0">
+              <li class="list-inline-item h6 text-secondary">Photos</li>
+             <li class="list-inline-item ml-auto">
+                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <small class="font-weight-semibold text-secondary ">Add Photo</small>
+                </a>
+              </li> 
+            </ul>
+            <div class="card card-small shadow">
+              <div class="card-body p-2">
+                <div class="row text-center text-lg-left">
+
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+                    </a>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                      <img class="img-fluid img-thumbnail rounded-0"
+                        src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer border-top">
+                <div class="row">
+                  <div class="col text-center view-report">
+                    <a href="" class="text-secondary font-weight-bold ">See All Photos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
 
         </div>
       </div>

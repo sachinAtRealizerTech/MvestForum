@@ -32,6 +32,9 @@ import { SearchresultsComponent } from './searchresults/searchresults.component'
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 import { MvestUserComponent } from './mvest-user/mvest-user.component';
 import { BlockedComponent } from './blocked/blocked.component';
+import { MvestUserFollowingComponent } from './mvest-user-following/mvest-user-following.component';
+import { MvestUserNeighborsComponent } from './mvest-user-neighbors/mvest-user-neighbors.component';
+import { MvestUserPhotosComponent } from './mvest-user-photos/mvest-user-photos.component';
 
 const routes: Routes = [
 
@@ -184,6 +187,21 @@ const routes: Routes = [
       {
         path: 'mvest-user',
         component: MvestUserComponent,
+        canActivate: [AuthGuard]
+      },
+        {
+        path: 'mvest-user-following',
+        component: MvestUserFollowingComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'mvest-user-neighbors',
+        component: MvestUserNeighborsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'mvest-user-photos',
+        component: MvestUserPhotosComponent,
         canActivate: [AuthGuard]
       },
       {

@@ -1,0 +1,368 @@
+ 
+<div class="main-content-container container-fluid px-4">
+    <div class="row pt-3">
+      <div class="col-xl-12 col-md-12 col-sm-12">
+        <a routerLink="/profile" class="cursor-pointer d-flex d-inline-flex">
+          <h6 class="font-weight-semibold text-muted align-self-center mb-0 pr-2">
+            <i class="material-icons md-20 icon-muted">
+              arrow_back
+            </i> </h6>
+          <h6 class="font-weight-semibold text-muted align-self-center mb-0">
+            Go to My Profile </h6>
+        </a>
+      </div>
+    </div>
+    <div class="row pb-4 py-2">
+      <div class="col-xl-12 col-md-12 col-sm-12">
+        <!-- Profile widget -->
+        <div class="bg-warning shadow overflow-hidden">
+          <div class="px-4 pb-4 py-4 "
+            style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;">
+            <div class="media align-items-end profile-header ">
+              <div class="justify-content-start mr-3">
+  
+                <ngx-avatar name="AP" [size]="100"
+                class="rounded-50 profile img-thumbnail" src=""></ngx-avatar>
+              </div>
+  
+              <div class="media-body justify-content-center text-left text-white ">
+                <h4 class="text-white font-weight-medium username">Atul Pawase
+                </h4>
+                <h6 class="text-white font-weight-medium user-tagline">Verified Mineral Owner
+                </h6>
+              </div> 
+              <div class="profile-btn justify-content-end align-self-end">
+                
+                  <ul class="list-inline d-inline-flex mb-0"> 
+                  <li class="list-inline-item mb-0 h6 text-muted">
+                       <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                  class="btn btn-outline-white btn-sm btn-block text-uppercase">Connect</a>
+                  </li>
+                  <li class="list-inline-item mb-0 h6 text-muted">
+                      <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                  class="btn btn-outline-white btn-sm btn-block text-uppercase">Unfollow</a>
+                  </li> 
+                  <li class="list-inline-item mb-0 font-weight-semibold rounded-border ">
+                    <a href="#" class=" text-white text-uppercase align-self-center d-flex d-inline-flex">
+                      <i class="material-icons md-18 px-2 pt-2 pb-2">mail</i></a>
+                  </li>
+                </ul>   
+              </div>
+            </div>
+          </div>
+          <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
+            <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
+              <li class="nav-item bg-dark ml-5">
+                <a routerLink="/mvest-user" class="nav-link text-white font-weight-normal " role="tab" aria-controls=""
+                aria-selected="false" routerLinkActive='active'>Timeline</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/mvest-user-following" class="nav-link text-white active font-weight-normal" 
+                  aria-controls="contact" aria-selected="false" routerLinkActive='active'>Following</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/mvest-user-neighbors" class="nav-link text-white font-weight-normal" 
+                  aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/mvest-user-photos" class="nav-link text-white font-weight-normal"  
+                  aria-controls="contact" aria-selected="false" routerLinkActive='active'>Photos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- End profile widget -->
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 pb-1 pt-3">
+            <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
+                <li class="nav-item align-self-center">
+                    <h5 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">Following</h5>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a href="#mvest-user-following" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
+                        aria-selected="false">Following(3)</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a href="#mvest-user-followers" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
+                        aria-controls="contact" aria-selected="false">Followers(5)</a>
+                </li> 
+                <div class="ml-auto d-inline-flex"> 
+                    
+                    <li class="nav-item pull-right mr-3 align-self-center">
+                     
+                        <div class="input-group search">
+                            <input type="text" class="form-control search-form" placeholder="Search"
+                                [(ngModel)]="searchText">
+                            <span class="input-group-btn">
+                                <button type="submit" class="search-btn" data-target="#search-form" name="q">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+
+                        </div> 
+                    </li>
+
+                </div>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active mt-3" id="mvest-user-following" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row justify-content-between no-gutters">
+                <div class="col-md-12 col-xl-12">
+
+                    <div class="row justify-content-center text-center gutters-1"
+                        *ngIf="followingMembersList?.length==0">
+                        <div class="col-md-3 text-center col-3 col-xl-3 ">
+                            <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px"
+                                width="auto">
+                        </div>
+                        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                            <div class="align-self-center">
+                                <h6 class="text-muted font-weight-semibold ">No Followings yet !!</h6>
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Members
+                                    whom you are Following.</h6>
+                                <h6 class="text-muted font-weight-semibold ">You can Follow New Users by
+                                    clicking on "Follow New Users" in the above tab.</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row justify-content-center text-center pt-3" *ngIf="followingMembersList?.length==0">
+                        <h6>Currently, You are not following anyone...</h6>
+                    </div> -->
+
+                    <div class="row justify-content-between pb-3 ">
+
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4"
+                          >
+
+                            <div class="card card-small blog-comments">
+
+                                <div class="row p-3">
+                                    <div class="col-8">
+                                        <div class="media mb-0">
+
+                                            <img   alt=" " class="mr-3 img-fluid rounded-5" height="30px" src="assets\images\avatars\3.jpg" width="30px">
+
+                                            <div class="media-body mb-0">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                   Shon PK</h5>
+
+                                                <h5 class="text-dark h6 mb-0  text-muted">
+                                                    Verified Mineral Owner </h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-4 d-flex justify-content-end text-right">
+                                        <!-- <h6 class="mb-0">
+                                            <a data-target="tooltip" title="Unfollow"
+                                                (click)="openUnfollowMemberModal(unfollowMemberModal,fml.member_id)"> <i
+                                                    class="material-icons icon-muted-negative md-21 cursor-pointer">
+                                                    remove_circle_outline
+                                                </i> </a>
+                                        </h6> -->
+                                        <h6 class="mb-0 align-self-center"> <i class="material-icons mr-1 text-muted">check_circle_outline
+                                            </i><small class="text-muted font-weight-semibold text-uppercase">Following
+                                            </small> </h6>
+                                    </div>
+
+                                    <!-- <div class=" col-4 d-flex justify-content-end text-right" >
+
+
+                                        <h6> <i class="material-icons mr-1 text-muted">check_circle_outline
+                                        </i><small
+                                            class="text-muted font-weight-semibold text-uppercase">Following
+                                        </small> </h6>
+                                </div>    -->
+
+                                </div> 
+                            </div> 
+
+                        </div>
+
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4"  > 
+                          <div class="card card-small blog-comments"> 
+                              <div class="row p-3">
+                                  <div class="col-8">
+                                      <div class="media mb-0"> 
+                                          <!-- <ngx-avatar class="mr-3" name="{{fml.f_name}} {{fml.l_name}}" [size]="40"
+                                              src="assets/images/avatars/0.jpg">
+                                          </ngx-avatar> --> 
+                                          <img   alt=" " class="mr-3 img-fluid rounded-5" height="30px" src="assets\images\avatars\6.jpg" width="30px">
+                                            <div class="media-body mb-0">
+                                              <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                 Rutuja Gorawade</h5>
+
+                                              <h5 class="text-dark h6 mb-0  text-muted">
+                                                  Verified Mineral Owner </h5> 
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class=" col-4 d-flex justify-content-end text-right"> 
+                                      <h6 class="mb-0 align-self-center">  
+                                        <button routerLink="#" type="button" class="btn btn-accent"
+                                        data-target="tooltip" title="Feature coming in Phase 2" disabled>Follow</button>
+                                    </h6>
+                                  </div> 
+                              </div>
+ 
+                          </div> 
+                      </div>
+
+                      <div class="col-xl-6 col-md-6 col-sm-6 mb-4"  > 
+                        <div class="card card-small blog-comments"> 
+                            <div class="row p-3">
+                                <div class="col-8">
+                                    <div class="media mb-0">  
+                                        <img   alt=" " class="mr-3 img-fluid rounded-5" height="30px" src="assets\images\avatars\0.jpg" width="30px">
+                                          <div class="media-body mb-0">
+                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                              Shreya Shah</h5>
+
+                                            <h5 class="text-dark h6 mb-0  text-muted">
+                                                Verified Mineral Owner </h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-4 d-flex justify-content-end text-right"> 
+                                    <h6 class="mb-0 align-self-center">  
+                                      <button routerLink="#" type="button" class="btn btn-accent"
+                                      data-target="tooltip" title="Feature coming in Phase 2" disabled>Follow</button>
+                                  </h6>
+                                </div> 
+                            </div>
+
+                        </div> 
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade show mt-3" id="mvest-user-followers" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row justify-content-between no-gutters">
+                <div class="col-md-12 col-xl-12">
+
+                    <div class="row justify-content-center text-center gutters-1"
+                        *ngIf="followerMembersList?.length==0">
+                        <div class="col-md-3 text-center col-3 col-xl-3 ">
+                            <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px"
+                                width="auto">
+                        </div>
+                        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                            <div class="align-self-center">
+                                <h6 class="text-muted font-weight-semibold ">No Followers yet !</h6>
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all members
+                                    wwho are following you.
+                                </h6>
+                                <!-- <h6 class="text-muted font-weight-semibold ">You can follow New Users by
+                                    clicking on "Follow New Users" in the above tab.</h6> -->
+                            </div>
+                        </div>
+                    </div>
+ 
+
+                    <div class="row justify-content-between pb-3 ">
+
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4"
+                          >
+
+                            <div class="card card-small blog-comments">
+
+                                <div class="row p-3">
+                                    <div class="col-8">
+                                        <div class="media mb-0">
+
+                                            <img   alt=" " class="mr-3 img-fluid rounded-5" height="30px" src="assets\images\avatars\6.jpg" width="30px">
+
+                                            <div class="media-body mb-0">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                   Naya Hale</h5>
+
+                                                <h5 class="text-dark h6 mb-0  text-muted">
+                                                    Verified Mineral Owner </h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-4 d-flex justify-content-end text-right"> 
+                                        <h6 class="mb-0 align-self-center"> <i class="material-icons mr-1 text-muted">check_circle_outline
+                                            </i><small class="text-muted font-weight-semibold text-uppercase">Following
+                                            </small> </h6>
+                                    </div> 
+                                </div> 
+                            </div> 
+
+                        </div>
+
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4"  > 
+                          <div class="card card-small blog-comments"> 
+                              <div class="row p-3">
+                                  <div class="col-8">
+                                      <div class="media mb-0"> 
+                                          <!-- <ngx-avatar class="mr-3" name="{{fml.f_name}} {{fml.l_name}}" [size]="40"
+                                              src="assets/images/avatars/0.jpg">
+                                          </ngx-avatar> --> 
+                                          <img   alt=" " class="mr-3 img-fluid rounded-5" height="30px" src="assets\images\avatars\6.jpg" width="30px">
+                                            <div class="media-body mb-0">
+                                              <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                                 Rutuja Gorawade</h5>
+
+                                              <h5 class="text-dark h6 mb-0  text-muted">
+                                                  Verified Mineral Owner </h5> 
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class=" col-4 d-flex justify-content-end text-right"> 
+                                      <h6 class="mb-0 align-self-center">  
+                                        <button routerLink="#" type="button"  data-target="tooltip" title="Feature coming in Phase 2" class="btn btn-accent" disabled>Follow</button>
+                                    </h6>
+                                  </div> 
+                              </div>
+ 
+                          </div> 
+                      </div>
+
+                      <div class="col-xl-6 col-md-6 col-sm-6 mb-4"  > 
+                        <div class="card card-small blog-comments"> 
+                            <div class="row p-3">
+                                <div class="col-8">
+                                    <div class="media mb-0">  
+                                        <img   alt=" " class="mr-3 img-fluid rounded-5" height="30px" src="assets\images\avatars\0.jpg" width="30px">
+                                          <div class="media-body mb-0">
+                                            <h5 class="text-dark h6 mb-0 font-weight-semibold">
+                                              Shreya Shah</h5>
+
+                                            <h5 class="text-dark h6 mb-0  text-muted">
+                                                Verified Mineral Owner </h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-4 d-flex justify-content-end text-right"> 
+                                    <h6 class="mb-0 align-self-center">  
+                                      <button routerLink="#" type="button" class="btn btn-accent"
+                                      data-target="tooltip" title="Feature coming in Phase 2" disabled>Follow</button>
+                                  </h6>
+                                </div> 
+                            </div>
+
+                        </div> 
+                    </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+
+  </div>

@@ -1472,6 +1472,9 @@ top:110px;
     color: #fefefe;
     cursor: default;
 }
+.bg-light{
+  background:#f5f5f5 !important;
+}
 
 .bg-black-overlay{
   background: rgba(0, 0, 0, 0.075) !important;
