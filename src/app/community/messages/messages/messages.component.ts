@@ -167,23 +167,28 @@ export class MessagesComponent implements OnInit {
 
   }
   getAllThreads() {
-    // let currentUserSortedData = {
-    //   memberId: this.user.member_id,
-    //   userName: this.user['f_name'] + " " + this.user['l_name'],
-    //   userEmailId: this.user.email_id
-    // }
-    this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(rooms => {
+    this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(threadResponse => {
       debugger;
-      console.log(JSON.stringify(rooms, null, 2));
-      this.threads = rooms;
-      let threads = {
-        threads: rooms
-      }
-      //console.log('roooms: ', rooms[0]);
-      if (threads != null) {
+      console.log(JSON.stringify(threadResponse, null, 2));
+      //this.threads: Thread[] = [];
+      threadResponse.forEach(thread => {
+        let threadName: string[] = [];
+        thread.threadName.toString().split(',').map(name => {
+          if (name != `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`) {
+            threadName.push(name);
+            return name;
+          }
+        });
+        thread.threadName = threadName.toString();
+        console.log(threadName);
+        this.threads.push(thread);
+      });
+
+
+      if (this.threads || this.threads.length > 0) {
         console.log('find threads in get users threads');
-        this.webSocketServiceService.joinToAllThread(threads);
-        console.log('msgs: ', threads);
+        this.webSocketServiceService.joinToAllThread({ threads: this.threads });
+        console.log('msgs: ', this.threads);
       }
     },
       error => {
@@ -199,6 +204,7 @@ export class MessagesComponent implements OnInit {
     console.log('selected thread >>>>>>>>>>>>>>>>>>', thread);
     console.log('thread doc id >>>>>>>>>>>>>>>>>>', thread.threadDocId);
     this.threadId = thread.threadDocId;
+    thread.unreadCount = null;
     this.messagesService.getUsersSelectedThreadChatHistory(thread.threadDocId).subscribe(messages => {
       debugger;
       //console.log(JSON.stringify(messages, null, 2));
