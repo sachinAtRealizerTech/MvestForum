@@ -44,8 +44,9 @@ export class CommunityComponent implements OnInit {
   editorConfig: AngularEditorConfig;
   categoryList: CategoryList[];
   userDetails: any;
-  originalImageUrl: any;
+  originalImageUrl: string = "";
   loading = false;
+  displayPicImageUrl: string;
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
@@ -116,6 +117,7 @@ export class CommunityComponent implements OnInit {
 
     this.getAllCategories();
     this.getUserProfileDetails();
+    this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
   }
 
   public user = Utils.GetCurrentUser();
@@ -346,14 +348,20 @@ export class CommunityComponent implements OnInit {
       })
         .subscribe(data => {
           debugger;
+          console.log('image upload response', data);
           if (data['body']) {
-            console.log('image upload response', data);
-            this.originalImageUrl = ""
-            this.originalImageUrl = data['body']['originalFileName'];
-            this.originalImageUrl = environment.IMAGEPREPENDURL + this.originalImageUrl
+            debugger;
+            if (data['body']['originalFileName']) {
+              let imageUrl = data['body']['originalFileName'];
+              this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl;
+              this.displayPicImageUrl = this.originalImageUrl
+            }
             this.loading = false;
           }
-        });
+        },
+          error => {
+            this.loading = false;
+          });
     });
   }
 

@@ -96,10 +96,8 @@ export class RequestsComponent implements OnInit {
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
       debugger;
       console.log('followingresponseaccept', data)
-      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully accepted the follow request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
-        this.getMyFollowRequest();
-      }
+      this.flashMessagesService.show(`You have successfully accepted the follow request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getMyFollowRequest();
     },
       error => {
       })
@@ -115,10 +113,8 @@ export class RequestsComponent implements OnInit {
       _action: 'ignored'
     }
     this.followingService.acceptOrIgnoreFollowRequest(body).subscribe(data => {
-      if (data['data'][0]['acceptignorefollowrequests'] == "success") {
-        this.flashMessagesService.show(`You have successfully declined the follow request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
-        this.getMyFollowRequest();
-      }
+      this.flashMessagesService.show(`You have successfully declined the follow request...`, { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.getMyFollowRequest();
     },
       error => {
 

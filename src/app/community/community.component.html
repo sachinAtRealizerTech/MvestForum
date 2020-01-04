@@ -78,7 +78,7 @@
               <!-- User Profile Image -->
               <!-- <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg"> -->
               <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
-                class="rounded-50 profile img-thumbnail cursor-pointer" src=""></ngx-avatar>
+                class="rounded-50 profile img-thumbnail cursor-pointer" src="{{displayPicImageUrl}}"></ngx-avatar>
               <!-- Default Image -->
               <!-- <i class="fa fa-user fa-5x"></i> -->
               <!-- </div> -->
@@ -262,8 +262,8 @@
         </div> -->
 
         <div class="form-group col-4" *ngIf="originalImageUrl">
-          <div class="js--image-preview--profile mt-2">
-            <img [src]="originalImageUrl" height="200" width="200">
+          <div class="mt-2">
+            <img class="rounded-circle border" src="{{originalImageUrl}}" height="120px" width="120px">
           </div>
         </div>
 
