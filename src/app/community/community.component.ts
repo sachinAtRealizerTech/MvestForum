@@ -14,6 +14,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CategoryList } from './models/category';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyaccountService } from '../myaccount/myaccount.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-community',
@@ -47,6 +49,8 @@ export class CommunityComponent implements OnInit {
   originalImageUrl: string = "";
   loading = false;
   displayPicImageUrl: string;
+  isDPChanged = false;
+
 
   constructor(private communityService: CommunityService,
     private formBuilder: FormBuilder,
@@ -57,7 +61,9 @@ export class CommunityComponent implements OnInit {
     private discussionsService: DiscussionsService,
     private subcategoryService: SubcategoryService,
     private flashMessagesService: FlashMessagesService,
-    private myaccountService: MyaccountService) { }
+    private myaccountService: MyaccountService,
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit() {
 
@@ -117,7 +123,13 @@ export class CommunityComponent implements OnInit {
 
     this.getAllCategories();
     this.getUserProfileDetails();
-    this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
+    if (this.isDPChanged == true) {
+      this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
+      this.isDPChanged = false
+    }
+    else {
+      this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
+    }
   }
 
   public user = Utils.GetCurrentUser();
@@ -312,6 +324,7 @@ export class CommunityComponent implements OnInit {
         this.images.push({ file: files.item(i), uploadProgress: "0" });
       }
     }
+    // this.imagePreview = this.images[0]
     this.message = `${this.images.length} valid image(s) selected`;
     this.uploadImage();
   }
@@ -352,9 +365,11 @@ export class CommunityComponent implements OnInit {
           if (data['body']) {
             debugger;
             if (data['body']['originalFileName']) {
+              this.originalImageUrl = ""
               let imageUrl = data['body']['originalFileName'];
-              this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl;
-              this.displayPicImageUrl = this.originalImageUrl
+              this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
+              this.displayPicImageUrl = environment.IMAGEPREPENDURL + imageUrl;
+              this.isDPChanged = true
             }
             this.loading = false;
           }
@@ -363,6 +378,13 @@ export class CommunityComponent implements OnInit {
             this.loading = false;
           });
     });
+  }
+
+  submitUpdateProfileImage() {
+    this.modalService.dismissAll(this.newDisplayPicModal);
+    this.originalImageUrl = "";
+    this.ngOnInit();
+    window.location.reload();
   }
 
 

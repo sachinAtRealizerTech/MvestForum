@@ -6,6 +6,7 @@ import { TopNavService } from '../services/top-nav.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { searchData } from '../../shared/models/search'
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-top-nav',
@@ -37,6 +38,7 @@ export class TopNavComponent implements OnInit {
   myNotifications: any;
   myCommunityNotifications: any[];
   myNeighborsNotifications: any[];
+  userImageUrl: string;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -49,7 +51,8 @@ export class TopNavComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       searchText: []
     });
-    this.getMyNotifications(this.user.email_id)
+    this.getMyNotifications(this.user.email_id);
+    this.userImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + ".png"
   }
 
   public user = Utils.GetCurrentUser();
