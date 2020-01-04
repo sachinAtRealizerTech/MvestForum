@@ -51,6 +51,7 @@ export class PhotosComponent implements OnInit {
   albumPhotos = false;
   leasePhotos = true;
   thumbAlbumFirstImage: string;
+  loading1 = false;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -159,12 +160,12 @@ export class PhotosComponent implements OnInit {
 
   uploadImageToAddAlbum() {
     debugger;
-    if (this.newAlbumForm.invalid && this.thumbAlbumFirstImage.length > 0) {
+    if (this.newAlbumForm.invalid && !this.thumbAlbumFirstImage) {
       this.submitNewAlbumForm = true;
       this.loading = false;
       return
     }
-    this.loading = true
+    this.loading1 = true
     this.submitNewAlbumForm = false
     this.images.map((image) => {
       debugger;
@@ -183,8 +184,8 @@ export class PhotosComponent implements OnInit {
             this.thumbImageUrl = data['body']['thumbnailFileName'];
             this.thumbAlbumFirstImage = environment.IMAGEPREPENDURL + data['body']['thumbnailFileName']
             let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
-            this.loading = false;
-            this.addNewAlbum();
+            this.loading1 = false;
+            //this.addNewAlbum();
           }
           console.log(this.imageUrl);
         });
@@ -196,7 +197,8 @@ export class PhotosComponent implements OnInit {
     this.newAlbumTemplate = newAlbumTemplate;
     this.modalService.open(this.newAlbumTemplate, {
       backdrop: 'static',
-      backdropClass: 'customBackdrop'
+      backdropClass: 'customBackdrop',
+      // windowClass: 'modal-dialog-centered'
     })
   }
 
@@ -214,11 +216,11 @@ export class PhotosComponent implements OnInit {
       return
     }
     this.submitNewAlbumForm = false;
-    this.thumbAlbumFirstImage = ""
+    this.thumbAlbumFirstImage = "";
+    this.addNewAlbum()
     this.modalService.dismissAll(this.newAlbumTemplate);
     this.newAlbumForm.reset();
     this.fullImageUrl = [];
-    this.getAlbumList();
   }
 
   addNewAlbum() {
@@ -235,8 +237,10 @@ export class PhotosComponent implements OnInit {
     this.photosService.addNewAlbum(body).subscribe(data => {
       console.log('add new album response', data);
       this.loading = false;
+      this.getAlbumList();
     },
       error => {
+        this.getAlbumList();
         this.loading = false;
       })
   }
