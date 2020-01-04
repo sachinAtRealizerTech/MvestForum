@@ -18,16 +18,16 @@ export class SettingsComponent implements OnInit {
   communityNotificationflag = false;
   neighborsNotificationflag = false;
   notificationMessagePrefForm: FormGroup
-  replyToDiscussion: boolean;
-  likedOnComment: boolean;
-  likedPost: boolean;
-  replyOnComment: boolean;
-  markAsRead: boolean;
+  // replyToDiscussion: boolean;
+  // likedOnComment: boolean;
+  // likedPost: boolean;
+  // replyOnComment: boolean;
+  // markAsRead: boolean;
   notificationCode: any;
   notificationPrefList: any;
   preferenceName: any;
   neighborsNotification = false;
-  unMarkAsAnswer: boolean;
+  // unMarkAsAnswer: boolean;
   myNotificationAllData: any;
   submitNotificationMessagePrefForm = false;
   prefCode: any;
@@ -122,44 +122,6 @@ export class SettingsComponent implements OnInit {
     this.notificationCode = noteCode;
     this.saveNotificationOptions(this.setTrueFalse, this.notificationCode);
   }
-
-  // selectReplyOnDiscussion(flag: boolean) {
-  //   debugger;
-  //   this.setTrueFalse = flag;
-  //   this.notificationCode = this.notificationOptions[0]['code'];
-  //   this.saveNotificationOptions(this.setTrueFalse, this.notificationCode);
-  // }
-
-  // selectLikedOnComment(flag: boolean) {
-  //   this.likedOnComment = flag;
-  //   this.notificationCode = this.notificationOptions[1]['code'];
-  //   this.saveNotificationOptions(this.likedOnComment, this.notificationCode);
-  // }
-
-  // selectLikedPost(flag: boolean) {
-  //   this.likedPost = flag;
-  //   this.notificationCode = this.notificationOptions[2]['code'];
-  //   this.saveNotificationOptions(this.likedPost, this.notificationCode);
-  // }
-
-  // selectReplyOnComment(flag: boolean) {
-  //   this.replyOnComment = flag;
-  //   this.notificationCode = this.notificationOptions[3]['code'];
-  //   this.saveNotificationOptions(this.replyOnComment, this.notificationCode);
-  // }
-
-  // selectMarkAsRead(flag: boolean) {
-  //   this.markAsRead = flag;
-  //   this.notificationCode = this.notificationOptions[4]['code'];
-  //   this.saveNotificationOptions(this.markAsRead, this.notificationCode);
-  // }
-
-  // selectUnMarkAsAnswer(flag: boolean) {
-  //   debugger;
-  //   this.unMarkAsAnswer = flag;
-  //   this.notificationCode = this.notificationOptions[5]['code'];
-  //   this.saveNotificationOptions(this.unMarkAsAnswer, this.notificationCode);
-  // }
 
   saveNotificationOptions(notificationFlag: boolean, blockNotificationCode: string) {
     debugger;
