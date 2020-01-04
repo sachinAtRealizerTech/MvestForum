@@ -50,6 +50,7 @@ export class PhotosComponent implements OnInit {
   subAddNewPhoto = false;
   albumPhotos = false;
   leasePhotos = true;
+  thumbAlbumFirstImage: string;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -101,7 +102,7 @@ export class PhotosComponent implements OnInit {
     this.images = [];
     let files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
-      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif)$/)) { //image validity check
+      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
         this.images.push({ file: files.item(i), uploadProgress: "0" });
       }
     }
@@ -111,8 +112,12 @@ export class PhotosComponent implements OnInit {
 
   uploadImageToAddPhoto() {
     debugger;
+    if (this.addNewPhotoForm.invalid) {
+      this.subAddNewPhoto = true
+      return
+    }
     this.loading = true
-    this.submitNewAlbumForm = false
+    this.subAddNewPhoto = false
     this.images.map((image) => {
       debugger;
       const formData = new FormData();
@@ -123,7 +128,6 @@ export class PhotosComponent implements OnInit {
         observe: "events"
       })
         .subscribe(data => {
-
           console.log('image upload response', data);
           if (data['body']) {
             debugger;
@@ -145,7 +149,7 @@ export class PhotosComponent implements OnInit {
     this.images = [];
     let files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
-      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif)$/)) { //image validity check
+      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
         this.images.push({ file: files.item(i), uploadProgress: "0" });
       }
     }
@@ -155,6 +159,11 @@ export class PhotosComponent implements OnInit {
 
   uploadImageToAddAlbum() {
     debugger;
+    if (this.newAlbumForm.invalid && this.thumbAlbumFirstImage.length > 0) {
+      this.submitNewAlbumForm = true;
+      this.loading = false;
+      return
+    }
     this.loading = true
     this.submitNewAlbumForm = false
     this.images.map((image) => {
@@ -172,11 +181,8 @@ export class PhotosComponent implements OnInit {
             console.log('image upload response', data);
             this.originalImageUrl = data['body']['originalFileName'];
             this.thumbImageUrl = data['body']['thumbnailFileName'];
-            //this.fullImageUrl = environment.IMAGEPREPENDURL + this.thumbImageUrl;
+            this.thumbAlbumFirstImage = environment.IMAGEPREPENDURL + data['body']['thumbnailFileName']
             let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
-            for (let i = 0; i < 1; i++) {
-              this.fullImageUrl.push({ img: environment.IMAGEPREPENDURL + this.thumbImageUrl });
-            }
             this.loading = false;
             this.addNewAlbum();
           }
@@ -199,6 +205,7 @@ export class PhotosComponent implements OnInit {
     this.submitNewAlbumForm = false;
     this.newAlbumForm.reset();
     this.fullImageUrl = [];
+    this.thumbAlbumFirstImage = ""
   }
 
   submitAddNewAlbumModal() {
@@ -206,7 +213,8 @@ export class PhotosComponent implements OnInit {
       this.submitNewAlbumForm = true
       return
     }
-    this.submitNewAlbumForm = false
+    this.submitNewAlbumForm = false;
+    this.thumbAlbumFirstImage = ""
     this.modalService.dismissAll(this.newAlbumTemplate);
     this.newAlbumForm.reset();
     this.fullImageUrl = [];
@@ -216,10 +224,6 @@ export class PhotosComponent implements OnInit {
   addNewAlbum() {
     debugger;
     this.loading = true
-    if (this.newAlbumForm.invalid) {
-      this.submitNewAlbumForm = true;
-      return
-    }
     this.submitNewAlbumForm = false;
     this.leaseOrAlbumName = this.newAlbumForm.controls.albumName.value
     let body = {
@@ -239,7 +243,8 @@ export class PhotosComponent implements OnInit {
 
 
   getAlbumList() {
-    this.loading = true
+    this.loading = true;
+    this.albumList = [];
     this.photosService.getAlbumList(this.user.email_id).subscribe(data => {
       this.albumList = data['album'];
       console.log('albumlist', this.albumList);
@@ -307,7 +312,11 @@ export class PhotosComponent implements OnInit {
 
   addPhotoInLeaseOrAlbum() {
     debugger;
-    this.loading = true
+    if (this.addNewPhotoForm.invalid) {
+      this.subAddNewPhoto = true
+      return
+    }
+    this.loading = true;
     let body = {
       album_docId: this.albumOrLeaseDocId,
       emailid: this.user.email_id,

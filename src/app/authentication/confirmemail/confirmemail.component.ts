@@ -85,4 +85,9 @@ export class ConfirmemailComponent implements OnInit {
     })
   }
 
+  goToSignIn() {
+    debugger;
+    this.router.navigate(['/signin'])
+  }
+
 }

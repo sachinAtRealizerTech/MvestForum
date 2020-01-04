@@ -14,7 +14,8 @@
                         <h4 class="text-secondary font-weight-semibold h5 "> Your eMail has been confirmed</h4>
                         <h5 class="text-muted h6 font-weight-semibold">Thank you , for registering with MVest !</h5>
                         <div class="w-100"></div>
-                        <button routerLink="/signin" type="button" class="btn btn-accent text-accent mt-3">Sign
+                        <button class="cursor-pointer" (click)="goToSignIn()" type="button"
+                                class="btn btn-accent text-accent mt-3">Sign
                                 In</button>
                 </div>
         </div>
@@ -35,8 +36,10 @@
                         <h4 class="text-danger font-weight-semibold h5 "> Your eMail has not been confirmed</h4>
                         <h5 class="text-muted h6 font-weight-semibold">Try Again , for registering with MVest !</h5>
                         <div class="w-100"></div>
-                        <button routerLink="/signin" type="button" class="btn btn-accent text-accent mt-3">Sign
-                                In</button>
+                        <a class="cursor-pointer">
+                                <button type="button" class="btn btn-accent text-accent mt-3"
+                                        (click)="goToSignIn()">Sign
+                                        In</button></a>
                 </div>
         </div>
 

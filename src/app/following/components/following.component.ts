@@ -158,7 +158,7 @@ export class FollowingComponent implements OnInit {
         this.flashMessagesService.show('Follow request is already sent to this member...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       }
       else if (this.followReqstResponse.followmembers == "requested") {
-        this.flashMessagesService.show('Request to follow has been sent successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
+        this.flashMessagesService.show('Follow request has been sent successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
       }
       else if (this.followReqstResponse.followmembers == "alreadyAccepted") {
         this.flashMessagesService.show('You are already following this member...', { cssClass: 'bg-accent flash-message', timeout: 2000 })
