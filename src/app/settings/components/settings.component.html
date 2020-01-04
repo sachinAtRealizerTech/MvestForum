@@ -33,7 +33,7 @@
                         role="tab" aria-controls="contact" aria-selected="false">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                    <a class="cursor-pointer" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
                         aria-controls="contact" aria-selected="false">Manage Subscription</a>
                 </li>
                 <li class="nav-item">
@@ -62,7 +62,7 @@
                                                 Notifications
                                             </label>
                                             <div class="ml-auto" *ngIf="!communityNotificationflag">
-                                                <a (click)="openCommunityNotification()" routerLink="#"
+                                                <a (click)="openCommunityNotification()" class="cursor-pointer"
                                                     data-toggle="tooltip" title="View Notification Options">
                                                     <i class="material-icons md-24 text-secondary">
                                                         keyboard_arrow_down
@@ -70,7 +70,7 @@
                                                 </a>
                                             </div>
                                             <div class="ml-auto" *ngIf="communityNotificationflag">
-                                                <a (click)="closeCommunityNotification()" routerLink="#"
+                                                <a (click)="closeCommunityNotification()" class="cursor-pointer"
                                                     data-toggle="tooltip" title="Hide Notification Options">
                                                     <i class="material-icons md-24 text-secondary">
                                                         keyboard_arrow_up
@@ -111,7 +111,7 @@
                                                 Notifications
                                             </label>
                                             <div class="ml-auto" *ngIf="!neighborsNotificationflag">
-                                                <a (click)="openNeighborsNotification()" routerLink="#"
+                                                <a (click)="openNeighborsNotification()" class="cursor-pointer"
                                                     data-toggle="tooltip" title="View Notification Options">
                                                     <i class="material-icons md-24 text-secondary">
                                                         keyboard_arrow_down
@@ -119,7 +119,7 @@
                                                 </a>
                                             </div>
                                             <div class="ml-auto" *ngIf="neighborsNotificationflag">
-                                                <a (click)="closeNeighborsNotification()" routerLink="#"
+                                                <a (click)="closeNeighborsNotification()" class="cursor-pointer"
                                                     data-toggle="tooltip" title="Hide Notification Options">
                                                     <i class="material-icons md-24 text-secondary">
                                                         keyboard_arrow_up
