@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from './settings.service';
+import { SettingsService } from '../services/settings.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utils } from '../shared/Utils';
-import { SignupService } from '../authentication/signup/services/signup.service';
+import { Utils } from '../../shared/Utils';
+import { SignupService } from '../../authentication/signup/services/signup.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { UserNotificationOptions } from '../models/notificationOptions';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -16,7 +18,6 @@ export class SettingsComponent implements OnInit {
   communityNotificationflag = false;
   neighborsNotificationflag = false;
   notificationMessagePrefForm: FormGroup
-  notificationOptions: any;
   replyToDiscussion: boolean;
   likedOnComment: boolean;
   likedPost: boolean;
@@ -32,6 +33,10 @@ export class SettingsComponent implements OnInit {
   prefCode: any;
   notePhoneValidate = false;
   loading = false;
+  notificationOptions: UserNotificationOptions[];
+  communityNoteOptions: UserNotificationOptions[];
+  neighborsNoteOptions: UserNotificationOptions[];
+  setTrueFalse: boolean;
 
   constructor(public settingsService: SettingsService,
     private formBuilder: FormBuilder,
@@ -78,69 +83,99 @@ export class SettingsComponent implements OnInit {
   }
 
   getNotificationOptions() {
+    this.loading = true;
     let body = {
       emailId: this.user.email_id
     }
     this.settingsService.getNotificationOptions(body).subscribe(data => {
       this.notificationOptions = data
       console.log('notOptions', this.notificationOptions);
-      this.replyToDiscussion = this.notificationOptions[0]['Blocked'];
-      this.likedOnComment = this.notificationOptions[1]['Blocked'];
-      this.likedPost = this.notificationOptions[2]['Blocked'];
-      this.replyOnComment = this.notificationOptions[3]['Blocked'];
-      this.markAsRead = this.notificationOptions[4]['Blocked'];
-      this.unMarkAsAnswer = this.notificationOptions[5]['Blocked'];
-    })
+      debugger;
+      this.communityNoteOptions = [];
+      this.neighborsNoteOptions = [];
+      for (let i = 0; i < this.notificationOptions.length; i++) {
+        debugger;
+        if (this.notificationOptions[i].feature == "Community") {
+          this.communityNoteOptions.push(this.notificationOptions[i])
+          console.log('communitynotOptions', this.communityNoteOptions);
+        }
+        if (this.notificationOptions[i].feature == "Neighbors") {
+          this.neighborsNoteOptions.push(this.notificationOptions[i])
+          console.log('nebnotOptions', this.neighborsNoteOptions);
+        }
+      }
+      this.loading = false;
+      // this.replyToDiscussion = this.notificationOptions[0]['Blocked'];
+      // this.likedOnComment = this.notificationOptions[1]['Blocked'];
+      // this.likedPost = this.notificationOptions[2]['Blocked'];
+      // this.replyOnComment = this.notificationOptions[3]['Blocked'];
+      // this.markAsRead = this.notificationOptions[4]['Blocked'];
+      // this.unMarkAsAnswer = this.notificationOptions[5]['Blocked'];
+    },
+      error => {
+        this.loading = false;
+      })
   }
 
-  selectReplyOnDiscussion(flag: boolean) {
-    debugger;
-    this.replyToDiscussion = flag;
-    this.notificationCode = this.notificationOptions[0]['code'];
-    this.saveNotificationOptions(this.replyToDiscussion, this.notificationCode);
+  selectOnOffOption(flag: boolean, noteCode: string) {
+    this.setTrueFalse = flag;
+    this.notificationCode = noteCode;
+    this.saveNotificationOptions(this.setTrueFalse, this.notificationCode);
   }
 
-  selectLikedOnComment(flag: boolean) {
-    this.likedOnComment = flag;
-    this.notificationCode = this.notificationOptions[1]['code'];
-    this.saveNotificationOptions(this.likedOnComment, this.notificationCode);
-  }
+  // selectReplyOnDiscussion(flag: boolean) {
+  //   debugger;
+  //   this.setTrueFalse = flag;
+  //   this.notificationCode = this.notificationOptions[0]['code'];
+  //   this.saveNotificationOptions(this.setTrueFalse, this.notificationCode);
+  // }
 
-  selectLikedPost(flag: boolean) {
-    this.likedPost = flag;
-    this.notificationCode = this.notificationOptions[2]['code'];
-    this.saveNotificationOptions(this.likedPost, this.notificationCode);
-  }
+  // selectLikedOnComment(flag: boolean) {
+  //   this.likedOnComment = flag;
+  //   this.notificationCode = this.notificationOptions[1]['code'];
+  //   this.saveNotificationOptions(this.likedOnComment, this.notificationCode);
+  // }
 
-  selectReplyOnComment(flag: boolean) {
-    this.replyOnComment = flag;
-    this.notificationCode = this.notificationOptions[3]['code'];
-    this.saveNotificationOptions(this.replyOnComment, this.notificationCode);
-  }
+  // selectLikedPost(flag: boolean) {
+  //   this.likedPost = flag;
+  //   this.notificationCode = this.notificationOptions[2]['code'];
+  //   this.saveNotificationOptions(this.likedPost, this.notificationCode);
+  // }
 
-  selectMarkAsRead(flag: boolean) {
-    this.markAsRead = flag;
-    this.notificationCode = this.notificationOptions[4]['code'];
-    this.saveNotificationOptions(this.markAsRead, this.notificationCode);
-  }
+  // selectReplyOnComment(flag: boolean) {
+  //   this.replyOnComment = flag;
+  //   this.notificationCode = this.notificationOptions[3]['code'];
+  //   this.saveNotificationOptions(this.replyOnComment, this.notificationCode);
+  // }
 
-  selectUnMarkAsAnswer(flag: boolean) {
-    debugger;
-    this.unMarkAsAnswer = flag;
-    this.notificationCode = this.notificationOptions[5]['code'];
-    this.saveNotificationOptions(this.unMarkAsAnswer, this.notificationCode);
-  }
+  // selectMarkAsRead(flag: boolean) {
+  //   this.markAsRead = flag;
+  //   this.notificationCode = this.notificationOptions[4]['code'];
+  //   this.saveNotificationOptions(this.markAsRead, this.notificationCode);
+  // }
+
+  // selectUnMarkAsAnswer(flag: boolean) {
+  //   debugger;
+  //   this.unMarkAsAnswer = flag;
+  //   this.notificationCode = this.notificationOptions[5]['code'];
+  //   this.saveNotificationOptions(this.unMarkAsAnswer, this.notificationCode);
+  // }
 
   saveNotificationOptions(notificationFlag: boolean, blockNotificationCode: string) {
     debugger;
+    this.loading = true
     let body = {
       emailId: this.user.email_id,
       blockNotificationsFlag: notificationFlag,
       blockNotification: blockNotificationCode
     }
     this.settingsService.saveNotificationOptions(body).subscribe(data => {
+      this.loading = false
       this.getNotificationOptions();
-    })
+    },
+      error => {
+        this.loading = false
+      })
   }
 
   postNotificationPrefernece() {

@@ -26,7 +26,7 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent } from './settings/components/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';

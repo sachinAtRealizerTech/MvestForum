@@ -31,7 +31,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 //import { LoadingcircleComponent } from './shared/loadingcircle/loadingcircle.component';
 import { CanActivate } from '@angular/router'
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent } from './settings/components/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component';
 import { ClickOutsideModule } from 'ng-click-outside';
