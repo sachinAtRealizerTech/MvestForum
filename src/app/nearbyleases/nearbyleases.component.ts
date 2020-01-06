@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NeighborsService } from '../neighbors/neighbors.service';
+import { NeighborsService } from '../neighbors/services/neighbors.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from '../shared/Utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NeighborsService } from 'src/app/neighbors/neighbors.service';
+import { NeighborsService } from '../../neighbors/services/neighbors.service';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FollowingService } from 'src/app/following/services/following.service';

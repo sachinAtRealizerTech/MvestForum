@@ -13,7 +13,7 @@ import { DiscussionsComponent } from './community/discussions/categories/compone
 import { SubcategoryComponent } from './community/discussions/subcategories/components/subcategory.component';
 import { DiscussionslistComponent } from './community/discussions/discussionlist/components/discussionslist.component';
 import { DiscussionDetailsComponent } from './community/discussions/discussiondetails/components/discussion-details.component';
-import { NeighborsComponent } from './neighbors/neighbors.component';
+import { NeighborsComponent } from './neighbors/components/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';

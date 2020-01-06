@@ -13,7 +13,7 @@ import { MessagesComponent } from './community/messages/messages/messages.compon
 import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
 import { FollowingComponent } from './following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
-import { NeighborsComponent } from './neighbors/neighbors.component';
+import { NeighborsComponent } from './neighbors/components/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';

@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { albumList, myLeasesList, AlbumImageList, FullImageUrl } from '../models/album';
-import { NeighborsService } from 'src/app/neighbors/neighbors.service';
+import { NeighborsService } from '../../neighbors/services/neighbors.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 class ImageFile {
