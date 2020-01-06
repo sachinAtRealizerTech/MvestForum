@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NeighborsService } from '../neighbors/services/neighbors.service';
 import { Utils } from '../shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nearbyneighbors',
@@ -10,7 +11,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class NearbyneighborsComponent implements OnInit {
   leaseNumber: string;
-  leaseOwnersList: any;
+  leaseOwnersList: any[];
   leaseName: string;
   districtNumber: string;
   memLeaseNumber: string;
@@ -19,7 +20,7 @@ export class NearbyneighborsComponent implements OnInit {
   allNeighboursCount: string;
   searchText: string;
   p: any;
-  allLeaseOwnersList: any;
+  allLeaseOwnersList: any[];
   conAllNebId: string;
   conAllNebMaild: string;
   nearByLeases: any = [];
@@ -63,6 +64,7 @@ export class NearbyneighborsComponent implements OnInit {
           this.leaseOwnersList.push(this.allLeaseOwnersList[i])
         }
       }
+      this.leaseOwnersList.forEach((el) => { el.memaild = environment.IMAGEPREPENDURL + el.memaild + '.png' })
       //this.leaseName = this.leaseOwnersList.lease_name
       console.log('leaseOwnersList', this.leaseOwnersList);
       this.loading = false;

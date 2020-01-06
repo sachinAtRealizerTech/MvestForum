@@ -138,8 +138,16 @@
                             <div class="row p-3">
                                 <div class="col-8">
                                     <div class="media mb-0">
-                                        <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
-                                            alt="Generic placeholder image">
+
+
+                                        <ngx-avatar class="mr-3 mr-2" name="{{lw?.mname}}" [size]="40"
+                                            src="{{lw?.memaild}}">
+                                        </ngx-avatar>
+
+                                        <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/3.jpg"
+                                            alt="Generic placeholder image"> -->
+
+
                                         <div class="media-body mb-0">
                                             <ul class="list-inline  mb-0">
                                                 <a href="#">

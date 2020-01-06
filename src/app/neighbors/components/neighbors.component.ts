@@ -5,6 +5,7 @@ import { Utils } from '../../shared/Utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-neighbors',
@@ -423,6 +424,7 @@ export class NeighborsComponent implements OnInit {
       this.allNeighboursCount = this.myConnectedNeighbors.length;
       sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
       this.acceptedRequests = this.myConnectedNeighbors;
+      this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       console.log('newFilteredData', data['data']);
       this.loading = false;
     },
@@ -440,6 +442,7 @@ export class NeighborsComponent implements OnInit {
     this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
       console.log('newFilteredData', data['data'])
       this.acceptedRequests = data['data'];
+      this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       this.loading = false;
       this.closeSearchFilter();
     },
