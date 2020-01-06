@@ -9,6 +9,7 @@ import { Utils } from 'src/app/shared/Utils';
 import { DiscussionsList, discussions } from '../../../models/discussionlist';
 import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -112,6 +113,7 @@ export class DiscussionslistComponent implements OnInit {
     this.loading = true;
     this.discussionlistService.getAllDiscussionsList(id, false, this.user.email_id).subscribe(data => {
       this.discussionList = data;
+      this.discussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.discussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       debugger;
       console.log('disclist', this.discussionList);

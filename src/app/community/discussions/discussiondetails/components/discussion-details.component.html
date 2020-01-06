@@ -142,11 +142,12 @@
 
           <div class="row justify-content-center text-left text-break">
             <div class="col-xl-10 col-lg-9 col-md-8 col-sm-8 col-9">
-              <div class="media px-3 py-1"> 
-                <ngx-avatar class="mr-3" name="{{discussionDetails?.posts[0]?.post_by_name}}" [size]="40" src="">
-                </ngx-avatar> 
+              <div class="media px-3 py-1">
+                <ngx-avatar class="mr-3" name="{{discussionDetails?.posts[0]?.post_by_name}}" [size]="40"
+                  src="{{discussionDetails?.posts[0]?.post_by_emailId}}">
+                </ngx-avatar>
                 <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
-                  alt="Generic placeholder image"> --> 
+                  alt="Generic placeholder image"> -->
                 <div class="media-body mb-0 align-self-center">
                   <h6 class="text-dark mb-0 font-weight-semibold">{{discussionDetails?.title}} </h6>
                   <h5 class="text-secondary h6 mb-0" id="p{{discussionDetails?.posts[0]?.post_id}}"
@@ -156,34 +157,36 @@
             </div>
 
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-3 px-4 text-right">
-              <h6 class="mb-0"> 
-                 <!-- <a class="nav-link dropdown-toggle text-nowrap px-3 text-secondary" data-toggle="dropdown" href="#"
+              <h6 class="mb-0">
+                <!-- <a class="nav-link dropdown-toggle text-nowrap px-3 text-secondary" data-toggle="dropdown" href="#"
                   role="button" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons md-24">
                     more_horiz
                     </i>
                 </a>   -->
                 <a class=" text-right cursor-pointer text-secondary" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class=" ">
-                  <i class="material-icons icon-muted md-24 cursor-pointer">
-                    more_horiz
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class=" ">
+                    <i class="material-icons icon-muted md-24 cursor-pointer">
+                      more_horiz
                     </i>
-                </div>
-                <div class="dropdown-menu text-center cursor-pointer px-1 py-2 shadow" aria-labelledby="dropdownMenuLink">
-                  <div class="d-flex d-inline-flex">
-                  <h6 class="mb-0 font-weight-semibold text-muted">
-                    <i class="material-icons icon-muted small md-18 pr-1">
-                      report
-                      </i> </h6>
-                  <h6 class="mb-0 font-weight-semibold cursor-pointer text-muted"  (click)="openReportAbuseTemplate(ReportAbuseTemplate)"> 
-                    Report Abuse</h6>
                   </div>
-                </div>
-              </a>
-            
+                  <div class="dropdown-menu text-center cursor-pointer px-1 py-2 shadow"
+                    aria-labelledby="dropdownMenuLink">
+                    <div class="d-flex d-inline-flex">
+                      <h6 class="mb-0 font-weight-semibold text-muted">
+                        <i class="material-icons icon-muted small md-18 pr-1">
+                          report
+                        </i> </h6>
+                      <h6 class="mb-0 font-weight-semibold cursor-pointer text-muted"
+                        (click)="openReportAbuseTemplate(ReportAbuseTemplate)">
+                        Report Abuse</h6>
+                    </div>
+                  </div>
+                </a>
+
               </h6>
-                <!-- <div class="dropdown-menu dropdown-menu-small text-secondary">
+              <!-- <div class="dropdown-menu dropdown-menu-small text-secondary">
                   <a routerLink="/profile" class="dropdown-item  text-secondary">
                     <i class="material-icons">person</i>Report User</a> 
                 </div> -->
@@ -382,7 +385,7 @@
                 <div class="media px-3 ">
 
 
-                  <ngx-avatar class="mr-3" name="{{p?.post_by_name}}" [size]="40" src="">
+                  <ngx-avatar class="mr-3" name="{{p?.post_by_name}}" [size]="40" src="{{p?.post_by_emailId}}">
                   </ngx-avatar>
 
                   <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
@@ -398,27 +401,28 @@
               </div>
 
               <div class="col-2 px-4 text-right">
-                <h6 class="mb-0 cursor-pointer">  
-                 <div class=" text-right cursor-pointer text-secondary" role="button" id="dropdownMenuLink"
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <div class="cursor-pointer">
-                   <i class="material-icons icon-muted md-24">
-                     more_horiz
-                     </i>
-                 </div>
-                 <div class="dropdown-menu text-center px-1 py-2 shadow" aria-labelledby="dropdownMenuLink">
-                   <div class="d-flex d-inline-flex">
-                   <h6 class="mb-0 font-weight-semibold text-muted">
-                     <i class="material-icons icon-muted  small md-18 pr-1">
-                       report
-                       </i> </h6>
-                   <h6 class="mb-0 font-weight-semibold text-muted"  (click)="openReportAbuseTemplate(ReportAbuseTemplate)"> 
-                     Report Abuse</h6>
-                   </div>
-                 </div>
-                </div>
-             
-               </h6>
+                <h6 class="mb-0 cursor-pointer">
+                  <div class=" text-right cursor-pointer text-secondary" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="cursor-pointer">
+                      <i class="material-icons icon-muted md-24">
+                        more_horiz
+                      </i>
+                    </div>
+                    <div class="dropdown-menu text-center px-1 py-2 shadow" aria-labelledby="dropdownMenuLink">
+                      <div class="d-flex d-inline-flex">
+                        <h6 class="mb-0 font-weight-semibold text-muted">
+                          <i class="material-icons icon-muted  small md-18 pr-1">
+                            report
+                          </i> </h6>
+                        <h6 class="mb-0 font-weight-semibold text-muted"
+                          (click)="openReportAbuseTemplate(ReportAbuseTemplate)">
+                          Report Abuse</h6>
+                      </div>
+                    </div>
+                  </div>
+
+                </h6>
                 <small class="font-weight-semibold text-muted pr-2">{{p.post_date | timeAgo}}</small>
               </div>
 
@@ -661,7 +665,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 
 </div>
 
@@ -965,7 +969,8 @@
 
 <!-----------------------------------------End Delete Modal------------------------------------------------------------------->
 
-<div class="modal fade" id="reportAbuseReason" tabindex="-1" role="dialog" aria-labelledby="reportAbuseReason" aria-hidden="true">
+<div class="modal fade" id="reportAbuseReason" tabindex="-1" role="dialog" aria-labelledby="reportAbuseReason"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="justify-content-end">
@@ -978,39 +983,47 @@
         <div class="form-row">
           <div class="form-group ">
             <div class=" col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason1" name="reportAbuseReason" class="custom-control-input" value="radio1" checked>
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason1">Inappropriate</label>
+              <input type="radio" id="reportAbuseReason1" name="reportAbuseReason" class="custom-control-input"
+                value="radio1" checked>
+              <label class="custom-control-label h6 text-secondary font-weight-semibold"
+                for="reportAbuseReason1">Inappropriate</label>
             </div>
             <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason2" name="reportAbuseReason" class="custom-control-input" value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason2">Promoting hatred, violence or illegal/offensive activities.</label>
+              <input type="radio" id="reportAbuseReason2" name="reportAbuseReason" class="custom-control-input"
+                value="radio1">
+              <label class="custom-control-label h6 text-secondary font-weight-semibold"
+                for="reportAbuseReason2">Promoting hatred, violence or illegal/offensive activities.</label>
             </div>
             <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason3" name="reportAbuseReason" class="custom-control-input" value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason3"> Spam, malware or 'phishing'</label>
+              <input type="radio" id="reportAbuseReason3" name="reportAbuseReason" class="custom-control-input"
+                value="radio1">
+              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason3"> Spam,
+                malware or 'phishing'</label>
             </div>
             <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason4" name="reportAbuseReason" class="custom-control-input" value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason4">Private and confidential information.</label>
+              <input type="radio" id="reportAbuseReason4" name="reportAbuseReason" class="custom-control-input"
+                value="radio1">
+              <label class="custom-control-label h6 text-secondary font-weight-semibold"
+                for="reportAbuseReason4">Private and confidential information.</label>
             </div>
             <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason5" name="reportAbuseReason" class="custom-control-input" value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason5">Copyright infringement</label>
+              <input type="radio" id="reportAbuseReason5" name="reportAbuseReason" class="custom-control-input"
+                value="radio1">
+              <label class="custom-control-label h6 text-secondary font-weight-semibold"
+                for="reportAbuseReason5">Copyright infringement</label>
             </div>
             <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason6" name="reportAbuseReason" class="custom-control-input" value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason6">Other</label>
+              <input type="radio" id="reportAbuseReason6" name="reportAbuseReason" class="custom-control-input"
+                value="radio1">
+              <label class="custom-control-label h6 text-secondary font-weight-semibold"
+                for="reportAbuseReason6">Other</label>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
-      <div class="modal-footer"> 
+      <div class="modal-footer">
         <button type="button" class="btn btn-accent btn-sm text-uppercase">Report Abuse</button>
       </div>
     </div>
   </div>
 </div>
-
-
-
- 

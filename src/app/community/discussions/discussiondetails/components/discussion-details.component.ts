@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { DiscussionDetails } from '../../../models/discussiondetails';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -177,6 +178,7 @@ export class DiscussionDetailsComponent implements OnInit {
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
       debugger;
       this.discussionDetails = data;
+      this.discussionDetails.posts.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id'];
