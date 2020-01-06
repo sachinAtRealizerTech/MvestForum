@@ -144,8 +144,8 @@
                                     <div class="col-8">
                                         <div class="media mb-0">
 
-                                            <ngx-avatar class="mr-3" name="{{fml.f_name}} {{fml.l_name}}" [size]="40"
-                                                src="">
+                                            <ngx-avatar class="mr-3" name="{{fml?.f_name}} {{fml?.l_name}}" [size]="40"
+                                                src="{{fml?.email_id}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0">
@@ -319,7 +319,7 @@
                                         <div class="media mb-0">
 
                                             <ngx-avatar class="mr-3" name="{{flr.f_name}} {{flr.l_name}}" [size]="40"
-                                                src="">
+                                                src="{{flr?.email_id}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0">
@@ -456,8 +456,8 @@
                                     <div class="col-8">
                                         <div class="media mb-0">
 
-                                            <ngx-avatar class="mr-3" name="{{bl.f_name}} {{bl.l_name}}" [size]="40"
-                                                src="">
+                                            <ngx-avatar class="mr-3" name="{{bl?.f_name}} {{bl?.l_name}}" [size]="40"
+                                                src="{{bl?.email_id}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0">
@@ -574,8 +574,11 @@
                                 <div class="row p-3">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="media mb-0">
-                                            <img class="mr-3 user-pic rounded-circle mr-2"
-                                                src="assets/images/avatars/3.jpg" alt="Generic placeholder image">
+
+                                            <ngx-avatar class="mr-3" name="{{sm?.f_name}} {{sm?.l_name}}" [size]="40"
+                                                src="{{sm?.email_id}}">
+                                            </ngx-avatar>
+
                                             <div class="media-body mb-0">
                                                 <ul class="list-inline  mb-0">
                                                     <a href="#">

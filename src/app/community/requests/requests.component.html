@@ -125,7 +125,8 @@
                                         <div class="col-8">
                                             <div class="media mb-0">
 
-                                                <ngx-avatar class="mr-3 mr-2" name="{{cr?.name}}" [size]="40" src="">
+                                                <ngx-avatar class="mr-3 mr-2" name="{{cr?.name}}" [size]="40"
+                                                    src="{{cr?.neighbor_email_id}}">
                                                 </ngx-avatar>
 
                                                 <!-- <img class="mr-3 user-pic rounded-circle mr-2"
@@ -268,7 +269,7 @@
                                     <div class="media p-3">
                                         <ngx-avatar class="mr-3 mr-2"
                                             name="{{fr?.f_name | titlecase}} {{fr?.l_name | titlecase}}" [size]="40"
-                                            src="">
+                                            src="{{fr?.email_id}}">
                                         </ngx-avatar>
                                         <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
                                             alt="Generic placeholder image"> -->

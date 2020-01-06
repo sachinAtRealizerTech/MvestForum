@@ -3,6 +3,7 @@ import { BookmarksService } from '../services/bookmarks.service';
 import { Utils } from '../../shared/Utils';
 import { Bookmarks } from '../../bookmarks/models/bookmarks'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-bookmarks',
@@ -26,6 +27,7 @@ export class BookmarksComponent implements OnInit {
     this.loading = true;
     this.bookmarksService.getBookmarks(this.user.email_id).subscribe(data => {
       this.bookmarksList = data['Bookmarks'];
+      this.bookmarksList.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.bookmarksList.sort((a, b) => new Date(b.bookmarkdate).getTime() - new Date(a.bookmarkdate).getTime())
       this.loading = false
       console.log('bookmarkslist', this.bookmarksList);

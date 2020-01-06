@@ -5,6 +5,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { FollowingService } from 'src/app/following/services/following.service';
 import { FollowRequest, SearchedMembers } from '../models/followingMembers';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-requests',
@@ -12,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./requests.component.scss']
 })
 export class RequestsComponent implements OnInit {
-  myConnectRequests: any;
+  myConnectRequests: any[];
   followRequest: FollowRequest[];
   loading = false;
   followReqstResponse: any;
@@ -37,6 +38,7 @@ export class RequestsComponent implements OnInit {
     this.loading = true;
     this.neighborsService.getMyConnectRequests(this.user.member_id).subscribe(data => {
       this.myConnectRequests = data['data'];
+      this.myConnectRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       this.loading = false;
       console.log('myconnectrequests', this.myConnectRequests)
     },
@@ -77,6 +79,7 @@ export class RequestsComponent implements OnInit {
     this.loading = true;
     this.followingService.getMyFollowRequest(this.user.member_id).subscribe(data => {
       this.followRequest = data['data'];
+      this.followRequest.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('followrequest', this.followRequest)
     },
