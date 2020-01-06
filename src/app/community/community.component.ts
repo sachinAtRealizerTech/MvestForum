@@ -123,6 +123,8 @@ export class CommunityComponent implements OnInit {
 
     this.getAllCategories();
     this.getUserProfileDetails();
+    debugger;
+
     if (this.isDPChanged == true) {
       this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
       this.isDPChanged = false
@@ -130,6 +132,8 @@ export class CommunityComponent implements OnInit {
     else {
       this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
     }
+
+    //  this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
   }
 
   public user = Utils.GetCurrentUser();
@@ -320,7 +324,7 @@ export class CommunityComponent implements OnInit {
     this.images = [];
     let files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
-      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif)$/)) { //image validity check
+      if (files.item(i)) { //image validity check
         this.images.push({ file: files.item(i), uploadProgress: "0" });
       }
     }
@@ -368,8 +372,8 @@ export class CommunityComponent implements OnInit {
               this.originalImageUrl = ""
               let imageUrl = data['body']['originalFileName'];
               this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
-              this.displayPicImageUrl = environment.IMAGEPREPENDURL + imageUrl;
-              this.isDPChanged = true
+              this.isDPChanged = true;
+              // this.ngOnInit();
             }
             this.loading = false;
           }
@@ -381,9 +385,9 @@ export class CommunityComponent implements OnInit {
   }
 
   submitUpdateProfileImage() {
+    this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
     this.modalService.dismissAll(this.newDisplayPicModal);
     this.originalImageUrl = "";
-    this.ngOnInit();
     window.location.reload();
   }
 
