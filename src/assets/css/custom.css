@@ -1579,6 +1579,13 @@ top:110px;
     width: 197px !important;
    }
 
+   .coverphoto:hover,.coverphoto:focus{
+    height: 52px !important;
+    width: 197px !important; 
+    padding:2px;
+    border:2px solid #00CD95 !important;
+   }
+
    .albumphoto{
      position: relative;
     height:100px !important ;
