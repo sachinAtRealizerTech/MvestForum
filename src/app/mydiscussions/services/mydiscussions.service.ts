@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Utils } from '../shared/Utils';
+import { Utils } from '../../shared/Utils';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

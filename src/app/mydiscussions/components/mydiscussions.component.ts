@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MydiscussionsService } from './mydiscussions.service';
-import { DiscussionslistService } from '../community/discussions/discussionlist/Services/discussionslist.service';
-import { Utils } from '../shared/Utils';
-import { BookmarksService } from '../bookmarks/services/bookmarks.service';
+import { MydiscussionsService } from '../services/mydiscussions.service';
+import { DiscussionslistService } from '../../community/discussions/discussionlist/Services/discussionslist.service';
+import { Utils } from '../../shared/Utils';
+import { BookmarksService } from '../../bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 

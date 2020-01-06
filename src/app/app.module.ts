@@ -12,7 +12,7 @@ import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
 import { FollowingComponent } from './following/components/following.component';
-import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
+import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { CommunityComponent } from './community/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';

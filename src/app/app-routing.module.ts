@@ -8,7 +8,7 @@ import { RequestsComponent } from './community/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { FollowingComponent } from './following/components/following.component';
-import { MydiscussionsComponent } from './mydiscussions/mydiscussions.component';
+import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
 import { DiscussionsComponent } from './community/discussions/categories/components/discussions.component';
 import { SubcategoryComponent } from './community/discussions/subcategories/components/subcategory.component';
 import { DiscussionslistComponent } from './community/discussions/discussionlist/components/discussionslist.component';
