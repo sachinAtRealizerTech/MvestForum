@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
-import { DiscussionsList, discussions } from '../../../models/discussionlist';
+import { DiscussionsList } from '../../../models/discussionlist';
 import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
@@ -155,8 +155,6 @@ export class DiscussionslistComponent implements OnInit {
     }
     this.submitQuestion = false;
     this.categoryName = sessionStorage.getItem("category_name");
-    //this.categoryId = sessionStorage.getItem("category_id");
-    //this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
     this.subCategoryName = sessionStorage.getItem("subCatName");
     let body = {
       category: this.categoryName,

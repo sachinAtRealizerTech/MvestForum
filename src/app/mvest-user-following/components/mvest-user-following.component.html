@@ -1,4 +1,13 @@
 <div class="main-content-container container-fluid px-4">
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="content-loading text-center" *ngIf="loading">
+                <app-loadingcircle></app-loadingcircle>
+            </div>
+        </div>
+    </div>
+
     <div class="row pt-3">
         <div class="col-xl-12 col-md-12 col-sm-12">
             <a routerLink="/profile" class="cursor-pointer d-flex d-inline-flex">
@@ -82,11 +91,12 @@
                 </li>
                 <li class="nav-item align-self-center">
                     <a href="#mvest-user-following" class="nav-link text-muted font-weight-bold active"
-                        data-toggle="tab" aria-selected="false">Following(3)</a>
+                        data-toggle="tab" aria-selected="false">Following({{followingMembersList?.length}})</a>
                 </li>
                 <li class="nav-item align-self-center">
                     <a href="#mvest-user-followers" class="nav-link text-muted font-weight-bold" data-toggle="tab"
-                        role="tab" aria-controls="contact" aria-selected="false">Followers(5)</a>
+                        role="tab" aria-controls="contact"
+                        aria-selected="false">Followers({{followerMembersList?.length}})</a>
                 </li>
                 <div class="ml-auto d-inline-flex">
 
@@ -117,7 +127,8 @@
             <div class="row justify-content-between no-gutters">
                 <div class="col-md-12 col-xl-12">
 
-                    <div class="row justify-content-center text-center gutters-1">
+                    <div class="row justify-content-center text-center gutters-1"
+                        *ngIf="followingMembersList?.length==0">
                         <div class="col-md-3 text-center col-3 col-xl-3 ">
                             <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px"
                                 width="auto">
@@ -139,7 +150,7 @@
 
                     <div class="row justify-content-between pb-3 ">
 
-                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4">
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4" *ngFor="let fml of followingMembersList">
 
                             <div class="card card-small blog-comments">
 
@@ -147,16 +158,16 @@
                                     <div class="col-8">
                                         <div class="media mb-0">
 
-                                            <img alt=" " class="mr-3 img-fluid rounded-5" height="30px"
-                                                src="assets\images\avatars\3.jpg" width="30px">
+                                            <ngx-avatar class="mr-3" name="{{fml?.f_name}} {{fml?.l_name}}" [size]="40"
+                                                src="{{fml?.email_id}}">
+                                            </ngx-avatar>
 
                                             <div class="media-body mb-0">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                    Shon PK</h5>
+                                                    {{fml?.f_name | titlecase}} {{fml?.l_name | titlecase}}</h5>
 
                                                 <h5 class="text-dark h6 mb-0  text-muted">
-                                                    Verified Mineral Owner </h5>
-
+                                                    Verified {{fml?.member_type}} Owner </h5>
                                             </div>
                                         </div>
                                     </div>
@@ -188,64 +199,6 @@
 
                         </div>
 
-                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4">
-                            <div class="card card-small blog-comments">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <!-- <ngx-avatar class="mr-3" name="{{fml.f_name}} {{fml.l_name}}" [size]="40"
-                                              src="assets/images/avatars/0.jpg">
-                                          </ngx-avatar> -->
-                                            <img alt=" " class="mr-3 img-fluid rounded-5" height="30px"
-                                                src="assets\images\avatars\6.jpg" width="30px">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                    Rutuja Gorawade</h5>
-
-                                                <h5 class="text-dark h6 mb-0  text-muted">
-                                                    Verified Mineral Owner </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="#" type="button" class="btn btn-accent"
-                                                data-target="tooltip" title="Feature coming in Phase 2"
-                                                disabled>Follow</button>
-                                        </h6>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4">
-                            <div class="card card-small blog-comments">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <img alt=" " class="mr-3 img-fluid rounded-5" height="30px"
-                                                src="assets\images\avatars\0.jpg" width="30px">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                    Shreya Shah</h5>
-
-                                                <h5 class="text-dark h6 mb-0  text-muted">
-                                                    Verified Mineral Owner </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="#" type="button" class="btn btn-accent"
-                                                data-target="tooltip" title="Feature coming in Phase 2"
-                                                disabled>Follow</button>
-                                        </h6>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -256,7 +209,8 @@
             <div class="row justify-content-between no-gutters">
                 <div class="col-md-12 col-xl-12">
 
-                    <div class="row justify-content-center text-center gutters-1">
+                    <div class="row justify-content-center text-center gutters-1"
+                        *ngIf="followerMembersList?.length==0">
                         <div class="col-md-3 text-center col-3 col-xl-3 ">
                             <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px"
                                 width="auto">
@@ -265,10 +219,8 @@
                             <div class="align-self-center">
                                 <h6 class="text-muted font-weight-semibold ">No Followers yet !</h6>
                                 <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all members
-                                    wwho are following you.
+                                    who are following you.
                                 </h6>
-                                <!-- <h6 class="text-muted font-weight-semibold ">You can follow New Users by
-                                    clicking on "Follow New Users" in the above tab.</h6> -->
                             </div>
                         </div>
                     </div>
@@ -276,7 +228,7 @@
 
                     <div class="row justify-content-between pb-3 ">
 
-                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4">
+                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4" *ngFor="let flr of followerMembersList">
 
                             <div class="card card-small blog-comments">
 
@@ -284,15 +236,16 @@
                                     <div class="col-8">
                                         <div class="media mb-0">
 
-                                            <img alt=" " class="mr-3 img-fluid rounded-5" height="30px"
-                                                src="assets\images\avatars\6.jpg" width="30px">
+                                            <ngx-avatar class="mr-3" name="{{fml?.f_name}} {{fml?.l_name}}" [size]="40"
+                                                src="{{fml?.email_id}}">
+                                            </ngx-avatar>
 
                                             <div class="media-body mb-0">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                    Naya Hale</h5>
+                                                    {{flr?.f_name | titlecase}} {{flr?.l_name | titlecase}}</h5>
 
                                                 <h5 class="text-dark h6 mb-0  text-muted">
-                                                    Verified Mineral Owner </h5>
+                                                    Verified {{flr?.status}} Owner </h5>
 
                                             </div>
                                         </div>
@@ -308,64 +261,6 @@
 
                         </div>
 
-                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4">
-                            <div class="card card-small blog-comments">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <!-- <ngx-avatar class="mr-3" name="{{fml.f_name}} {{fml.l_name}}" [size]="40"
-                                              src="assets/images/avatars/0.jpg">
-                                          </ngx-avatar> -->
-                                            <img alt=" " class="mr-3 img-fluid rounded-5" height="30px"
-                                                src="assets\images\avatars\6.jpg" width="30px">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                    Rutuja Gorawade</h5>
-
-                                                <h5 class="text-dark h6 mb-0  text-muted">
-                                                    Verified Mineral Owner </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="#" type="button" data-target="tooltip"
-                                                title="Feature coming in Phase 2" class="btn btn-accent"
-                                                disabled>Follow</button>
-                                        </h6>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-md-6 col-sm-6 mb-4">
-                            <div class="card card-small blog-comments">
-                                <div class="row p-3">
-                                    <div class="col-8">
-                                        <div class="media mb-0">
-                                            <img alt=" " class="mr-3 img-fluid rounded-5" height="30px"
-                                                src="assets\images\avatars\0.jpg" width="30px">
-                                            <div class="media-body mb-0">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                                                    Shreya Shah</h5>
-
-                                                <h5 class="text-dark h6 mb-0  text-muted">
-                                                    Verified Mineral Owner </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" col-4 d-flex justify-content-end text-right">
-                                        <h6 class="mb-0 align-self-center">
-                                            <button routerLink="#" type="button" class="btn btn-accent"
-                                                data-target="tooltip" title="Feature coming in Phase 2"
-                                                disabled>Follow</button>
-                                        </h6>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
 
                 </div>

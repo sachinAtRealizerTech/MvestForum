@@ -40,7 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 import { MvestUserComponent } from './mvest-user/components/mvest-user.component'; 
 import { BlockedComponent } from './blocked/blocked.component';
-import { MvestUserFollowingComponent } from './mvest-user-following/mvest-user-following.component';
+import { MvestUserFollowingComponent } from './mvest-user-following/components/mvest-user-following.component';
 import { MvestUserNeighborsComponent } from './mvest-user-neighbors/mvest-user-neighbors.component';
 import { MvestUserPhotosComponent } from './mvest-user-photos/mvest-user-photos.component';
 
