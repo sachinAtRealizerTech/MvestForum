@@ -730,7 +730,13 @@ export class NeighborsComponent implements OnInit {
       }
       console.log('removedArray', this.nebIdCsvArray)
     }
+  }
 
+  goToMvestUserPage(inputEmailId: string, memberId: number) {
+    debugger;
+    let trueEmailId = inputEmailId.replace(environment.IMAGEPREPENDURL, "");
+    trueEmailId = trueEmailId.replace('.png', "");
+    this.router.navigate(['/mvest-user'], { state: { emailId: trueEmailId, memberId: memberId } })
   }
 
 }
