@@ -4,6 +4,8 @@ import { Utils } from '../../shared/Utils';
 import { Bookmarks } from '../../bookmarks/models/bookmarks'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router'
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-bookmarks',
@@ -15,7 +17,8 @@ export class BookmarksComponent implements OnInit {
   loading = false;
 
   constructor(private bookmarksService: BookmarksService,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getBookmarks();
@@ -52,6 +55,11 @@ export class BookmarksComponent implements OnInit {
       error => {
         console.log(error);
       })
+  }
+
+  goToBookmarkedLink(Url: string) {
+    Url = Url.slice(31);
+    this.router.navigateByUrl(Url);
   }
 
 }

@@ -89,7 +89,7 @@
                         <!-- <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
                           width="30px"> -->
 
-                        <div class="media-body">
+                        <div class="media-body cursor-pointer" (click)="goToBookmarkedLink(bl?.bookmark_url)">
                           <h6 class="mt-0 mb-0 text-dark font-weight-semibold">
                             {{bl?.title | titlecase}}
                           </h6>
