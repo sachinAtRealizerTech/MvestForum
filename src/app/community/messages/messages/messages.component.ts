@@ -9,6 +9,8 @@ import { Message, Messages } from '../model/message';
 import { v4 as uuid } from 'uuid';
 import { Auth } from 'src/app/models/Auth';
 import { ScrollToBottomDirective } from './../ScrollToBottomDirective';
+import { IfStmt } from '@angular/compiler';
+import { MessageUtils } from './MessageUtils';
 //\messages\directive\ScrollToBottomDirective.ts
 
 @Component({
@@ -44,6 +46,8 @@ export class MessagesComponent implements OnInit {
   //public messagesArray: Array<Message> = [];
   public participantUsers: Array<any> = [];
   selectedMemberToChat = [];
+  threadToPushInArray: Array<Thread> = [];
+  threadPushInArray: Thread;
   message: Message;
   //public threadToPushInArray: Array<any> = [];
 
@@ -103,6 +107,7 @@ export class MessagesComponent implements OnInit {
         this.threads[index].lastMessage = (data['message'].message);
 
         if (this.selectedThread && this.selectedThread.threadDocId == data['threadId']) {
+          this.selectedThread.participants.push(data['participants']);
           this.selectedThread.messages.push(data['message']);
         } else {
           this.threads[index].unreadCount = Number(this.threads[index].unreadCount) ? Number(this.threads[index].unreadCount) + 1 : 1;
@@ -114,7 +119,7 @@ export class MessagesComponent implements OnInit {
         let newThread = {
           theradId: data['threadId'],
           threadName: data['threadName'],
-          participants: data['createdWith'],
+          participants: data['participants'],
           threadDocId: data['threadId'],
           createTs: new Date(),
           lastMessage: "",
@@ -270,6 +275,7 @@ export class MessagesComponent implements OnInit {
 
 
   }
+
   selectMembersToChat(event, member: any) {
     //this.selectedMemberToChat = [];
     //this.selectedUser = [];
@@ -287,140 +293,164 @@ export class MessagesComponent implements OnInit {
     }
     else {
       this.selectedMemberToChat = this.selectedMemberToChat.filter(
-        m => m.neighbor_id != id
+        m => m.memberId != id
       );
       this.selectedUser = this.selectedUser.filter(
-        su => su.neighbor_id != id
+        su => su.memberId != id
       );
     }
+    console.log(this.selectedMemberToChat);
+
   }
 
   initiateNewThread() {// rename to initiateNewThread
     //let activeThreadIndex = this.threads.findIndex(thread => thread.threadDocId == this.threadId);
     // if (this.threads.length != 0)
-    console.log('selected members to chat-', this.selectedMemberToChat);
-    console.log('selected users to chat-', this.selectedUser.length);
-    if (this.selectedUser.length <= 1) {
-      this.IsOnetoOne = true;
-      console.log('in if block');
+    if (this.selectedMemberToChat.length > 0) {
+      console.log('selected members to chat-', this.selectedMemberToChat);
+      console.log('selected users to chat-', this.selectedUser.length);
+      if (this.selectedUser.length <= 1) {
+        this.IsOnetoOne = true;
+        console.log('in if block');
 
-    } else if (this.selectedUser.length > 1) {
-      this.IsOnetoOne = false;
-    }
-    console.log('is on to one - ', this.IsOnetoOne);
-
-    this.selectedMemberToChat.push({
-      memberId: this.loggedInUser.member_id,
-      userName: `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`,
-      userEmailId: this.loggedInUser.email_id
-    });
-    let existTread = false;
-    let existThread;
-    this.threads.forEach(thread => {
-      let participantEmailsArr = thread.participants.map(p => p.userEmailId);
-      let selectedMemberEmailArr = this.selectedMemberToChat.map(s => s.userEmailId);
-      console.log(participantEmailsArr, selectedMemberEmailArr);
-
-      if (JSON.stringify(participantEmailsArr.sort()) == JSON.stringify(selectedMemberEmailArr.sort())) {
-        existTread = true;
-        existThread = thread;
-        console.log('thread in true - ', thread);
-        return false;
-      } else {
-        if (existTread) { return false; }
-        existTread == false;
+      } else if (this.selectedUser.length > 1) {
+        this.IsOnetoOne = false;
       }
-      // if (participantEmailsArr.length == selectedMemberEmailArr.length) {
-      //   participantEmailsArr.forEach(email => {
-      //     if (selectedMemberEmailArr.includes(email)) {
-      //       existTread = true;
-      //       existThread = thread;
-      //       console.log('thread in true - ', thread);
-      //       return false;
-      //     } else {
+      console.log('is on to one - ', this.IsOnetoOne);
+      console.log('selected user to chat length --', this.selectedMemberToChat.length);
 
-      //       if (existTread) {
-
-      //         return false;
-      //       }
-
-      //       existTread = false;
-      //     }
-
-      //   });
-      // } else {
-      //   existTread = false;
-      // }
-
-    });
-    console.log('Thread exist checking:', existTread);
-
-    // let cnt = this.threads.find(thread => {
-    //   return thread.participants.forEach((item) => {
-    //     console.log('item email', item.userEmailId);
-    //     this.selectedUser.forEach((selected)=>{
-    //       item.userEmailId
-    //     }) 
-    //     //['userEmailId'].contains();
-    //   });
-    //});
-    //this.selectedUser['userEmailId'].contains(item.userEmailId);
-    //thread.threadWithUserEmailId == this.selectedUser['userEmailId']);
-    if (existTread) {
-      console.log('thread already exists!!', existTread);
-      console.log('thread which is exist -', existThread);
-      this.loadThreadInChatCenter(existThread);
-
-    }
-    else {
-      //this.threads = [];
-      //this.selectedThread = null;
-      console.log('thread not found - ');
-      this.threadId = uuid();
-      let loggedUser = {
+      console.log('in else block for push self user')
+      this.selectedMemberToChat.push({
         memberId: this.loggedInUser.member_id,
-        userName: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
+        userName: `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`,
         userEmailId: this.loggedInUser.email_id
-      }
-      let threadToPushInArray = {
-        theradId: this.threadId,
-        threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
-        participants: this.selectedMemberToChat,
-        threadDocId: this.threadId,
-        createTs: new Date(),
-        lastMessage: "",
-        lastMessageTime: "",
-        messages: [],
-        unreadCount: 0
-      }
-      this.threads.push(threadToPushInArray);
-      this.selectedThread = threadToPushInArray;
-      let newRoomJoinData = {
-        threadId: this.threadId,
-        threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
-        createdAt: new Date(),
-        createdBy: loggedUser,
-        createdWith: this.selectedMemberToChat,
-        lastMessage: "This is testing message...",
-        lastMessageTime: new Date(),
-        IsOnetoOne: true,
-        isInvite: true,
-        inviteTo: this.selectedUser
+      });
+
+
+      let existTread = false;
+      let existThread;
+      this.threads.forEach(thread => {
+        let participantEmailsArr = thread.participants.map(p => p.userEmailId);
+        let selectedMemberEmailArr = this.selectedMemberToChat.map(s => s.userEmailId);
+        console.log(participantEmailsArr, selectedMemberEmailArr);
+
+        if (JSON.stringify(participantEmailsArr.sort()) == JSON.stringify(selectedMemberEmailArr.sort())) {
+          existTread = true;
+          existThread = thread;
+          console.log('thread in true - ', thread);
+          return false;
+        } else {
+          if (existTread) { return false; }
+          existTread == false;
+        }
+        // if (participantEmailsArr.length == selectedMemberEmailArr.length) {
+        //   participantEmailsArr.forEach(email => {
+        //     if (selectedMemberEmailArr.includes(email)) {
+        //       existTread = true;
+        //       existThread = thread;
+        //       console.log('thread in true - ', thread);
+        //       return false;
+        //     } else {
+
+        //       if (existTread) {
+
+        //         return false;
+        //       }
+
+        //       existTread = false;
+        //     }
+
+        //   });
+        // } else {
+        //   existTread = false;
+        // }
+
+      });
+      console.log('Thread exist checking:', existTread);
+
+      // let cnt = this.threads.find(thread => {
+      //   return thread.participants.forEach((item) => {
+      //     console.log('item email', item.userEmailId);
+      //     this.selectedUser.forEach((selected)=>{
+      //       item.userEmailId
+      //     }) 
+      //     //['userEmailId'].contains();
+      //   });
+      //});
+      //this.selectedUser['userEmailId'].contains(item.userEmailId);
+      //thread.threadWithUserEmailId == this.selectedUser['userEmailId']);
+      if (existTread) {
+        console.log('thread already exists!!', existTread);
+        console.log('thread which is exist -', existThread);
+        this.loadThreadInChatCenter(existThread);
 
       }
-      this.threadName = newRoomJoinData.threadName;
+      else {
+        //this.threads = [];
+        //this.selectedThread = null;
+        console.log('thread not found - ');
+        this.threadId = uuid();
+        let loggedUser = {
+          memberId: this.loggedInUser.member_id,
+          userName: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
+          userEmailId: this.loggedInUser.email_id
+        }
+        this.threadPushInArray = {
+          theradId: this.threadId,
+          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
+          participants: this.selectedMemberToChat,
+          threadDocId: this.threadId,
+          createTs: new Date(),
+          lastMessage: "",
+          lastMessageTime: "",
+          messages: [],
+          unreadCount: 0
+        }
+        this.threadToPushInArray.push(this.threadPushInArray)
+        //new code to eliminate name of the thread
+        this.threadToPushInArray.forEach(thread => {
+          let threadName: string[] = [];
+          thread.threadName.toString().split(',').map(name => {
+            if (name != `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`) {
+              threadName.push(name);
+              return name;
+            }
+          });
+          thread.threadName = threadName.toString();
+          console.log(threadName);
+          this.threads.push(thread);
+          this.selectedThread = thread;
+        });
+        //this.threads.push(this.threadPushInArray);
+        // this.selectedThread = {
+        //   threadName: this.threadToPushInArray[0].threadName,
+        //   participants: this.threadToPushInArray[0].participants,
+        //   theradId: this.threadToPushInArray[0].theradId,
+        //   threadDocId: this.threadToPushInArray[0].threadDocId,
+        //   createTs: this.threadToPushInArray[0].createTs,
+        //   lastMessage: this.threadToPushInArray[0].lastMessage,
+        //   lastMessageTime: this.threadToPushInArray[0].lastMessageTime,
+        //   messages: this.threadToPushInArray[0].messages,
+        //   unreadCount: this.threadToPushInArray[0].unreadCount
+        // }
+        let newRoomJoinData = {
+          threadId: this.threadId,
+          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
+          createdAt: new Date(),
+          createdBy: loggedUser,
+          createdWith: this.selectedMemberToChat,
+          lastMessage: "This is testing message...",
+          lastMessageTime: new Date(),
+          IsOnetoOne: true,
+          isInvite: true,
+          inviteTo: this.selectedUser
 
-      this.webSocketServiceService.joinRoom(newRoomJoinData);
-      // this.threadName = this.selectedUser[0]['userName'];
-      // if (this.selectedMemberToChat.length != 0) {
-      //   this.selectedMemberToChat.forEach((user) => {
-      //     this.threadName = user.userName;
-      //     this.webSocketServiceService.joinRoom(newRoomJoinData);
-      //     console.log('in chat selection boxxxxxxxx=>', newRoomJoinData);
-      //   })
-      // }
-      //this.selectedMemberToChat = [];
-      ///this.selectedUser = [];
+        }
+        this.threadName = newRoomJoinData.threadName;
+
+        this.webSocketServiceService.joinRoom(newRoomJoinData);
+
+      }
     }
   }
 
@@ -514,5 +544,9 @@ export class MessagesComponent implements OnInit {
       isTyping: true
     }
     this.webSocketServiceService.typing({ data });
+  }
+
+  isThreadOneToOne(thread: Thread) {
+    return MessageUtils.isThreadOneToOne(thread);
   }
 }

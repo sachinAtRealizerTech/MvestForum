@@ -113,7 +113,7 @@
                 </a>
                 <a routerLink="#">
                   <li class="list-inline-item h6  text-muted "><small class="font-weight-semibold">Delete
-                      Conversion</small></li>
+                      Conversation</small></li>
                 </a>
               </div>
             </ul>
@@ -157,9 +157,9 @@
                           <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
                             alt="Generic placeholder image">
                           <div class="media-body bg-light mb-0">
-                            <!-- <div class=" align-self-center px-3">
+                            <div class=" align-self-center px-3" *ngIf="!isThreadOneToOne(selectedThread)">
                               <small class="mb-0 text-dark font-weight-semibold">{{message.from.userName}}</small>
-                            </div> -->
+                            </div>
                             <div class="bg-light align-self-center rounded-5 px-3">
                               <p class="text-dark mb-0">
                                 {{message.message}}
