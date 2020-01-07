@@ -5,7 +5,6 @@ import { Bookmarks } from '../../bookmarks/models/bookmarks'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router'
-import { url } from 'inspector';
 
 @Component({
   selector: 'app-bookmarks',

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { FollowingService } from 'src/app/following/services/following.service';
 import { FollowingMembers } from 'src/app/community/models/followingMembers';
 import { NeighborsService } from 'src/app/neighbors/services/neighbors.service';
+import { MvestUserProfileService } from 'src/app/mvest-user-profile/services/mvest-user-profile.service';
+import { UserDetails } from 'src/app/mvest-user-profile/models/userdetails';
 
 @Component({
   selector: 'app-mvest-user',
@@ -28,12 +30,16 @@ export class MvestUserComponent implements OnInit {
   followingMembersList: FollowingMembers[];
   myConnectedNeighbors: any;
   acceptedRequests: any;
+  userDetails: UserDetails;
+  userName: string;
+  userImageUrl: string;
 
 
   constructor(private profileService: ProfileService,
     private router: Router,
     private followingService: FollowingService,
-    private neighborsService: NeighborsService) { }
+    private neighborsService: NeighborsService,
+    private mvestUserProfileService: MvestUserProfileService) { }
 
   ngOnInit() {
     debugger;
@@ -48,6 +54,8 @@ export class MvestUserComponent implements OnInit {
       this.memberId = Number(localStorage.getItem('userMemberId'));
     }
     console.log(this.userEmailId, this.memberId);
+    this.userName = localStorage.getItem('otherUserName');
+    this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png'
     this.getMyFollowingMembers();
     this.getMyConnectedNeighbors();
     this.getCommunityStats();
@@ -56,6 +64,18 @@ export class MvestUserComponent implements OnInit {
   }
 
   public user = Utils.GetCurrentUser();
+
+  // getMvestUserProfile() {
+  //   this.mvestUserProfileService.getMvestUserDetails(this.memberId).subscribe(data => {
+  //     this.userDetails = data['data'][0];
+  //     localStorage.setItem('otherUserName', this.userDetails.name)
+  //     this.name = localStorage.getItem('otherUserName');
+  //     localStorage.setItem('otherUserTagLine', this.userDetails.tag_line)
+  //     this.tagLine = localStorage.getItem('otherUserTagLine');
+  //     console.log('user prof details', this.userDetails);
+  //     this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
+  //   })
+  // }
 
   getCommunityStats() {
     this.profileService.getCommunityStats(this.userEmailId).subscribe(data => {

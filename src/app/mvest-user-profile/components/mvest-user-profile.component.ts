@@ -39,13 +39,11 @@ export class MvestUserProfileComponent implements OnInit {
       this.userEmailId = localStorage.getItem('userEmailId');
       this.memberId = Number(localStorage.getItem('userMemberId'));
     }
-    this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
     this.name = localStorage.getItem('otherUserName');
     this.tagLine = localStorage.getItem('otherUserTagLine');
     this.getMvestUserProfile();
     this.getMyFollowingMembers();
     this.getMyConnectedNeighbors();
-
   }
 
   public user = Utils.GetCurrentUser();
@@ -57,7 +55,8 @@ export class MvestUserProfileComponent implements OnInit {
       this.name = localStorage.getItem('otherUserName');
       localStorage.setItem('otherUserTagLine', this.userDetails.tag_line)
       this.tagLine = localStorage.getItem('otherUserTagLine');
-      console.log('user prof details', this.userDetails)
+      console.log('user prof details', this.userDetails);
+      this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
     })
   }
 

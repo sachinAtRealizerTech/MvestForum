@@ -185,6 +185,7 @@ const routes: Routes = [
         component: BookmarksComponent,
         canActivate: [AuthGuard]
       },
+
       {
         path: 'mvest-user',
         component: MvestUserComponent,
@@ -215,6 +216,36 @@ const routes: Routes = [
         component: BlockedComponent,
         canActivate: [AuthGuard]
       },
+
+      // {
+      //   path: 'mvest-user-profile',
+      //   component: MvestUserProfileComponent,
+      //   canActivate: [AuthGuard],
+      //   children: [
+      //     {
+      //       path: 'mvest-user',
+      //       component: MvestUserComponent,
+      //       canActivate: [AuthGuard]
+      //     },
+      //     {
+      //       path: 'mvest-user-following',
+      //       component: MvestUserFollowingComponent,
+      //       canActivate: [AuthGuard]
+      //     },
+      //     {
+      //       path: 'mvest-user-neighbors',
+      //       component: MvestUserNeighborsComponent,
+      //       canActivate: [AuthGuard]
+      //     },
+      //     {
+      //       path: 'mvest-user-photos',
+      //       component: MvestUserPhotosComponent,
+      //       canActivate: [AuthGuard]
+      //     },
+      //   ]
+      // },
+
+
 
 
     ]
