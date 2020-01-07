@@ -6,7 +6,10 @@ import { environment } from 'src/environments/environment';
 import { RecentDiscussions } from 'src/app/community/profile/models/recentDiscussions';
 import { RecentPhotos } from 'src/app/community/profile/models/recentPhotos';
 import { MyNews } from 'src/app/community/profile/models/myNews';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { FollowingService } from 'src/app/following/services/following.service';
+import { FollowingMembers } from 'src/app/community/models/followingMembers';
+import { NeighborsService } from 'src/app/neighbors/services/neighbors.service';
 
 @Component({
   selector: 'app-mvest-user',
@@ -21,10 +24,16 @@ export class MvestUserComponent implements OnInit {
   recentPhotos: RecentPhotos[];
   loading = false;
   MyNews: MyNews[];
+  allFollowingMembersList: FollowingMembers[];
+  followingMembersList: FollowingMembers[];
+  myConnectedNeighbors: any;
+  acceptedRequests: any;
 
 
   constructor(private profileService: ProfileService,
-    private router: Router) { }
+    private router: Router,
+    private followingService: FollowingService,
+    private neighborsService: NeighborsService) { }
 
   ngOnInit() {
     debugger;
@@ -39,6 +48,8 @@ export class MvestUserComponent implements OnInit {
       this.memberId = Number(localStorage.getItem('userMemberId'));
     }
     console.log(this.userEmailId, this.memberId);
+    this.getMyFollowingMembers();
+    this.getMyConnectedNeighbors();
     this.getCommunityStats();
     this.getRecentDiscussionsAndPhotos();
     this.getUserNews();
@@ -88,6 +99,57 @@ export class MvestUserComponent implements OnInit {
   goToDiscussionLink(url: string) {
     url = url.slice(31)
     this.router.navigateByUrl(url)
+  }
+
+  getMyFollowingMembers() {
+    this.followingService.getFollowingMembers(this.user.member_id).subscribe(data => {
+      this.allFollowingMembersList = data['data'];
+      this.followingMembersList = [];
+      for (let i = 0; i < this.allFollowingMembersList.length; i++) {
+        if (this.allFollowingMembersList[i].status == "accepted") {
+          this.followingMembersList.push(this.allFollowingMembersList[i])
+        }
+      }
+      // this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
+      this.loading = false;
+      console.log('allfollowingmembers', this.allFollowingMembersList);
+      console.log('followingmembers', this.followingMembersList);
+    },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    )
+  }
+
+  isFollowingUser() {
+    let followingEmailIds = this.followingMembersList.map(el => el.email_id);
+    return followingEmailIds.includes(this.userEmailId);
+  }
+
+  getMyConnectedNeighbors() {
+    let body = {
+      _member_id: this.user.member_id,
+      _filter_by: "none",
+      _lease_number: 0,
+      _district_code: "",
+      _county_no: "",
+      _operator_number: ""
+    };
+    this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
+      debugger;
+      this.myConnectedNeighbors = data['data']
+      console.log('connected neb', data['data']);
+      this.loading = false;
+    },
+      error => {
+        console.log('getallmemberneighbor error', error)
+      })
+  }
+
+  isConnectedToUser() {
+    let connectedEmailIds = this.myConnectedNeighbors.map(l => l.neighbor_email_id);
+    return connectedEmailIds.includes(this.userEmailId);
   }
 
 

@@ -43,6 +43,7 @@ import { BlockedComponent } from './blocked/blocked.component';
 import { MvestUserFollowingComponent } from './mvest-user-following/components/mvest-user-following.component';
 import { MvestUserNeighborsComponent } from './mvest-user-neighbors/components/mvest-user-neighbors.component';
 import { MvestUserPhotosComponent } from './mvest-user-photos/components/mvest-user-photos.component';
+import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MvestUserPhotosComponent } from './mvest-user-photos/components/mvest-u
     BlockedComponent,
     MvestUserNeighborsComponent,
     MvestUserPhotosComponent,
+    MvestUserProfileComponent,
     // HighlightText
     //LoadingcircleComponent,
   ],

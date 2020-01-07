@@ -8,81 +8,8 @@
         </div>
     </div>
 
-    <div class="row pt-3">
-        <div class="col-xl-12 col-md-12 col-sm-12">
-            <a routerLink="/profile" class="cursor-pointer d-flex d-inline-flex">
-                <h6 class="font-weight-semibold text-muted align-self-center mb-0 pr-2">
-                    <i class="material-icons md-20 icon-muted">
-                        arrow_back
-                    </i> </h6>
-                <h6 class="font-weight-semibold text-muted align-self-center mb-0">
-                    Go to My Profile </h6>
-            </a>
-        </div>
-    </div>
-    <div class="row pb-4 py-2">
-        <div class="col-xl-12 col-md-12 col-sm-12">
-            <!-- Profile widget -->
-            <div class="bg-warning shadow overflow-hidden">
-                <div class="px-4 pb-4 py-4 "
-                    style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;">
-                    <div class="media align-items-end profile-header ">
-                        <div class="justify-content-start mr-3">
+    <app-mvest-user-profile></app-mvest-user-profile>
 
-                            <ngx-avatar name="AP" [size]="100" class="rounded-50 profile img-thumbnail" src="">
-                            </ngx-avatar>
-                        </div>
-
-                        <div class="media-body justify-content-center text-left text-white ">
-                            <h4 class="text-white font-weight-medium username">Atul Pawase
-                            </h4>
-                            <h6 class="text-white font-weight-medium user-tagline">Verified Mineral Owner
-                            </h6>
-                        </div>
-                        <div class="profile-btn justify-content-end align-self-end">
-
-                            <ul class="list-inline d-inline-flex mb-0">
-                                <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
-                                        class="btn btn-outline-white btn-sm btn-block text-uppercase">Connect</a>
-                                </li>
-                                <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
-                                        class="btn btn-outline-white btn-sm btn-block text-uppercase">Unfollow</a>
-                                </li>
-                                <li class="list-inline-item mb-0 font-weight-semibold rounded-border ">
-                                    <a href="#"
-                                        class=" text-white text-uppercase align-self-center d-flex d-inline-flex">
-                                        <i class="material-icons md-18 px-2 pt-2 pb-2">mail</i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
-                    <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
-                        <li class="nav-item bg-dark ml-5">
-                            <a routerLink="/mvest-user" class="nav-link text-white font-weight-normal " role="tab"
-                                aria-controls="" aria-selected="false" routerLinkActive='active'>Timeline</a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink="/mvest-user-following" class="nav-link text-white active font-weight-normal"
-                                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Following</a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink="/mvest-user-neighbors" class="nav-link text-white font-weight-normal"
-                                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink="/mvest-user-photos" class="nav-link text-white font-weight-normal"
-                                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Photos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- End profile widget -->
-        </div>
-    </div>
     <div class="row">
         <div class="col-xl-12 pb-1 pt-3">
             <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">

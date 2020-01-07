@@ -35,6 +35,7 @@ import { BlockedComponent } from './blocked/blocked.component';
 import { MvestUserFollowingComponent } from './mvest-user-following/components/mvest-user-following.component';
 import { MvestUserNeighborsComponent } from './mvest-user-neighbors/components/mvest-user-neighbors.component';
 import { MvestUserPhotosComponent } from './mvest-user-photos/components/mvest-user-photos.component';
+import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
 
 const routes: Routes = [
 
@@ -189,7 +190,7 @@ const routes: Routes = [
         component: MvestUserComponent,
         canActivate: [AuthGuard]
       },
-        {
+      {
         path: 'mvest-user-following',
         component: MvestUserFollowingComponent,
         canActivate: [AuthGuard]
@@ -202,6 +203,11 @@ const routes: Routes = [
       {
         path: 'mvest-user-photos',
         component: MvestUserPhotosComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'mvest-user-profile',
+        component: MvestUserProfileComponent,
         canActivate: [AuthGuard]
       },
       {
