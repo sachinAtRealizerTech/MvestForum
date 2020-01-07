@@ -12,6 +12,7 @@ export class MvestUserFollowingComponent implements OnInit {
   emailId: string;
   memberId: number;
   loading: boolean;
+  searchText: any;
   allFollowingMembersList: FollowingMembers[];
   followingMembersList: FollowingMembers[];
   allFollowerMembersList: FollowerMembers[];

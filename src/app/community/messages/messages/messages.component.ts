@@ -263,19 +263,6 @@ export class MessagesComponent implements OnInit {
       })
   }
 
-  handleUserSelectionEvent($event, selectedUser: any[]) {
-
-    // if ($event.target.checked === true) {
-    //   // Handle your code
-    //   console.log('loadedUser', selectedUser);
-    //   console.log('Logged In User: ', this.loggedInUser);
-    //   this.selectedUser = selectedUser;
-    // }
-
-
-
-  }
-
   selectMembersToChat(event, member: any) {
     //this.selectedMemberToChat = [];
     //this.selectedUser = [];
@@ -309,14 +296,14 @@ export class MessagesComponent implements OnInit {
     if (this.selectedMemberToChat.length > 0) {
       console.log('selected members to chat-', this.selectedMemberToChat);
       console.log('selected users to chat-', this.selectedUser.length);
-      if (this.selectedUser.length <= 1) {
-        this.IsOnetoOne = true;
-        console.log('in if block');
+      // if (this.selectedUser.length <= 1) {
+      //   this.IsOnetoOne = true;
+      //   console.log('in if block');
 
-      } else if (this.selectedUser.length > 1) {
-        this.IsOnetoOne = false;
-      }
-      console.log('is on to one - ', this.IsOnetoOne);
+      // } else if (this.selectedUser.length > 1) {
+      //   this.IsOnetoOne = false;
+      // }
+      // console.log('is on to one - ', this.IsOnetoOne);
       console.log('selected user to chat length --', this.selectedMemberToChat.length);
 
       console.log('in else block for push self user')
@@ -406,7 +393,17 @@ export class MessagesComponent implements OnInit {
           messages: [],
           unreadCount: 0
         }
-        this.threadToPushInArray.push(this.threadPushInArray)
+        this.threadToPushInArray.push({
+          theradId: this.threadId,
+          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
+          participants: this.selectedMemberToChat,
+          threadDocId: this.threadId,
+          createTs: new Date(),
+          lastMessage: "",
+          lastMessageTime: "",
+          messages: [],
+          unreadCount: 0
+        });
         //new code to eliminate name of the thread
         this.threadToPushInArray.forEach(thread => {
           let threadName: string[] = [];
@@ -419,20 +416,22 @@ export class MessagesComponent implements OnInit {
           thread.threadName = threadName.toString();
           console.log(threadName);
           this.threads.push(thread);
-          this.selectedThread = thread;
+          //this.selectedThread = thread;
         });
+        //this.threads.push(threadToPushInArray);
+        //this.selectedThread =this.threadToPushInArray;
         //this.threads.push(this.threadPushInArray);
-        // this.selectedThread = {
-        //   threadName: this.threadToPushInArray[0].threadName,
-        //   participants: this.threadToPushInArray[0].participants,
-        //   theradId: this.threadToPushInArray[0].theradId,
-        //   threadDocId: this.threadToPushInArray[0].threadDocId,
-        //   createTs: this.threadToPushInArray[0].createTs,
-        //   lastMessage: this.threadToPushInArray[0].lastMessage,
-        //   lastMessageTime: this.threadToPushInArray[0].lastMessageTime,
-        //   messages: this.threadToPushInArray[0].messages,
-        //   unreadCount: this.threadToPushInArray[0].unreadCount
-        // }
+        this.selectedThread = {
+          theradId: this.threadId,
+          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
+          participants: this.selectedMemberToChat,
+          threadDocId: this.threadId,
+          createTs: new Date(),
+          lastMessage: "",
+          lastMessageTime: "",
+          messages: [],
+          unreadCount: 0
+        }
         let newRoomJoinData = {
           threadId: this.threadId,
           threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),

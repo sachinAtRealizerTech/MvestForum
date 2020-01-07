@@ -15,6 +15,7 @@ export class MvestUserNeighborsComponent implements OnInit {
   neighboursListDetails: any[];
   myConnectedNeighbors: any;
   acceptedRequests: any;
+  searchText: string
 
   constructor(private neighborsService: NeighborsService) { }
 
