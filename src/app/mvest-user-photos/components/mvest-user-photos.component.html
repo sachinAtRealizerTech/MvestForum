@@ -1,4 +1,5 @@
 <div class="main-content-container container-fluid px-4">
+
   <div class="row pt-3">
     <div class="col-xl-12 col-md-12 col-sm-12">
       <a routerLink="/profile" class="cursor-pointer d-flex d-inline-flex">
@@ -11,6 +12,15 @@
       </a>
     </div>
   </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
+
   <div class="row pb-4 py-2">
     <div class="col-xl-12 col-md-12 col-sm-12">
       <!-- Profile widget -->
@@ -81,15 +91,11 @@
         </li>
         <li class="nav-item">
           <a href="#userleasephotos" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
-            aria-selected="false">Lease Photos</a>
+            aria-selected="false" (click)="selectLease()">Lease Photos</a>
         </li>
-        <!-- <li class="nav-item">
-              <a href="#yourphotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-                aria-controls="contact" aria-selected="false">Your Photos</a>
-            </li>  -->
         <li class="nav-item">
           <a href="#useralbumphotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-            aria-controls="contact" aria-selected="false">Albums</a>
+            aria-controls="contact" aria-selected="false" (click)="selectAlbum()">Albums</a>
         </li>
 
       </ul>
@@ -99,19 +105,20 @@
   <div class="tab-content pb-3" id="myTabContent">
 
     <div class="tab-pane fade show active" id="userleasephotos" role="tabpanel" aria-labelledby="home-tab">
-      <!-- <div class="row justify-content-start">
-    
-            <div class="col-md-3 text-center col-3 col-xl-3 ">
-              <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
-            </div>
-            <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
-              <div class="align-self-center">
-                <h6 class="text-muted font-weight-semibold ">No Lease Photo's yet !!</h6>
-                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Lease Photo's.</h6>
-              </div>
-            </div> 
-          </div> -->
+
       <div class="row justify-content-start">
+        <div class="col-md-3 text-center col-3 col-xl-3 ">
+          <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
+        </div>
+        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+          <div class="align-self-center">
+            <h6 class="text-muted font-weight-semibold ">No Lease Photo's yet !!</h6>
+            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Lease Photo's.</h6>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row justify-content-start">
         <div class="col-md-5 col-xl-3  pt-2">
           <div class="card cursor-pointer">
             <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
@@ -155,88 +162,58 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
     </div>
 
     <div class="tab-pane fade show" id="useralbumphotos" role="tabpanel" aria-labelledby="home-tab">
 
-      <!-- <div class="row justify-content-start" *ngIf="albumList?.length==0">
-            <div class="col-md-3 text-center col-3 col-xl-3 ">
-              <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
-            </div>
-            <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
-              <div class="align-self-center">
-                <h6 class="text-muted font-weight-semibold ">You have not created any Album yet !!</h6>
-                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Album and it's Photo's.</h6>
-                <h6 class="text-muted font-weight-semibold ">You can create an Album by clicking on 'Add Album' tab.</h6>
-              </div>
-            </div>
+      <div class="row justify-content-start" *ngIf="albumList?.length==0">
+        <div class="col-md-3 text-center col-3 col-xl-3 ">
+          <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
+        </div>
+        <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+          <div class="align-self-center">
+            <h6 class="text-muted font-weight-semibold ">You have not created any Album yet !!</h6>
+            <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Album and it's Photo's.</h6>
+            <h6 class="text-muted font-weight-semibold ">You can create an Album by clicking on 'Add Album' tab.</h6>
           </div>
-    
-          <div class="row justify-content-start">
-            <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
-              <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
-                <img class="img-fluid img-thumbnailalbum" src="{{als.thumbnail_file_name}}" alt="">
-                <div class="card-body py-2 px-3">
-    
-                  <h6 class="card-text text-dark font-weight-semibold mb-1">{{als.album_name}}</h6>
-                  <p><small class="text-secondary mb-1">23 Photos</small> </p>
-                </div>
-              </div>
-            </div>
-    
-          </div> -->
+        </div>
+      </div>
 
       <div class="row justify-content-start">
-
-        <div class="col-md-5 col-xl-3  pt-2">
-          <div class="card cursor-pointer">
-            <img class="img-fluid " src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+        <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
+          <div class="card cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
+            <img class="img-fluid img-thumbnailalbum" src="{{als.thumbnail_file_name}}" alt="">
             <div class="card-body py-2 px-3">
 
-              <h6 class="card-text text-dark font-weight-semibold mb-1"> Opiela</h6>
-              <p><small class="text-secondary mb-1">16 Photos</small> </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-5 col-xl-3  pt-2">
-          <div class="card cursor-pointer">
-            <img class="img-fluid " src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
-            <div class="card-body py-2 px-3">
-
-              <h6 class="card-text text-dark font-weight-semibold mb-1"> Earp Unit</h6>
-              <p><small class="text-secondary mb-1">10 Photos</small> </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-xl-3  pt-2">
-          <div class="card cursor-pointer">
-            <img class="img-fluid " src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
-            <div class="card-body py-2 px-3">
-
-              <h6 class="card-text text-dark font-weight-semibold mb-1">Julie</h6>
-              <p><small class="text-secondary mb-1">23 Photos</small> </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-5 col-xl-3  pt-2">
-          <div class="card cursor-pointer">
-            <img class="img-fluid " src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
-            <div class="card-body py-2 px-3">
-
-              <h6 class="card-text text-dark font-weight-semibold mb-1"> Foster Unit</h6>
+              <h6 class="card-text text-dark font-weight-semibold mb-1">{{als.album_name}}</h6>
               <p><small class="text-secondary mb-1">23 Photos</small> </p>
             </div>
           </div>
         </div>
 
       </div>
+
     </div>
 
+  </div>
+
+  <hr>
+
+  <div class="row" *ngIf="albumPhotos && albumImageList?.length>0">
+    <div class="col-xl-12 pb-1 pt-3">
+      <h6 class="font-weight-semibold text-secondary">{{albumName}} ({{albumImageList?.length}} Photos)</h6>
+      <div class="row text-center text-lg-left mt-2">
+        <div class="col-lg-3 col-md-4 col-6" *ngFor="let ail of albumImageList">
+          <a class="d-block mb-4 h-100">
+            <img class="img-fluid  img-thumbnailalbum rounded-0" [src]="ail.thumbnail_file_name" height="350"
+              width="350" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
