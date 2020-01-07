@@ -60,6 +60,7 @@ export class DiscussionslistComponent implements OnInit {
       defaultParagraphSeparator: '',
       defaultFontName: '',
       defaultFontSize: '',
+      uploadUrl: "http://45.35.4.250:3000/upload/uploadnewsimage",
       fonts: [
         { class: 'arial', name: 'Arial' },
         { class: 'times-new-roman', name: 'Times New Roman' },
@@ -91,7 +92,7 @@ export class DiscussionslistComponent implements OnInit {
     })
 
     this.route.queryParams.subscribe(params => {
-      debugger;
+      
       this.categoryId = params['categoryId'];
       this.subCategoryId = params['subCategoryId']
     });
@@ -115,7 +116,7 @@ export class DiscussionslistComponent implements OnInit {
       this.discussionList = data;
       this.discussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.discussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
-      debugger;
+      
       console.log('disclist', this.discussionList);
       this.loading = false;
       this.pageNotFound = false;
@@ -147,7 +148,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   postQuestion() {
-    debugger;
+    
     this.loading = true;
     this.submitQuestion = true;
     if (this.discussionListQuestionForm.invalid) {
@@ -189,7 +190,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   bookmarkDiscussion(docId: string) {
-    debugger;
+    
     let body = {
       email_id: this.user.email_id,
       subcat_id: this.subCategoryId,
@@ -207,7 +208,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   isBookmarkedByMe(bookmarkData: any) {
-    debugger;
+    console.log('isBookmarkedByMe');
     if (bookmarkData) {
       let bookmarkPosts = bookmarkData.map(l => l.bookmark_by_emailId);
       return (bookmarkPosts.includes(this.user.email_id));
