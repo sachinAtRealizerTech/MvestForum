@@ -78,7 +78,7 @@
               <!-- User Profile Image -->
               <!-- <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg"> -->
               <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
-                class="rounded-50 profile img-thumbnail cursor-pointer" src="{{displayPicImageUrl}}"></ngx-avatar>
+                class="rounded-50 profile img-thumbnail cursor-pointer" src="{{displayPicImage}}"></ngx-avatar>
               <!-- Default Image -->
               <!-- <i class="fa fa-user fa-5x"></i> -->
               <!-- </div> -->
@@ -138,7 +138,7 @@
     <!-- End profile widget -->
   </div>
 
-  
+
 </div>
 
 
@@ -167,164 +167,187 @@
             <label for="mb-4" class="font-weight-semibold">Browse to Add Cover Photo: </label>
             <div class="row">
               <div class="col-xl-12 pb-1 pt-3">
-                  <ul class="nav nav-tabs border-0" id="photos-tab" role="tablist"> 
-                      <li class="nav-item align-self-center">
-                          <a href="#mountains" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
-                              aria-selected="false">Mountains</a>
-                      </li>
-                   
-                      <li class="nav-item align-self-center">
-                        <a href="#beach" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-                            aria-controls="contact" aria-selected="false">Beach</a>
-                    </li>
-                       <li class="nav-item align-self-center">
-                          <a href="#leaves" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-                              aria-controls="contact" aria-selected="false">Leaves</a>
-                      </li>  
-                      <!-- <li class="nav-item align-self-center">
+                <ul class="nav nav-tabs border-0" id="photos-tab" role="tablist">
+                  <li class="nav-item align-self-center">
+                    <a href="#mountains" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
+                      aria-selected="false">Mountains</a>
+                  </li>
+
+                  <li class="nav-item align-self-center">
+                    <a href="#beach" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
+                      aria-controls="contact" aria-selected="false">Beach</a>
+                  </li>
+                  <li class="nav-item align-self-center">
+                    <a href="#leaves" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
+                      aria-controls="contact" aria-selected="false">Leaves</a>
+                  </li>
+                  <!-- <li class="nav-item align-self-center">
                         <a href="#road" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
                             aria-controls="contact" aria-selected="false">Road</a>
                     </li>   -->
-                  </ul> 
-              </div> 
-          </div>
-          
-          <div class="tab-content" id="myTabContent">
+                </ul>
+              </div>
+            </div>
+
+            <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active mt-3" id="mountains" role="tabpanel" aria-labelledby="home-tab">
-          
-                <div class="row"> 
+
+                <div class="row">
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-1.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-1.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-1.png" alt="">
                     </a>
-                  </div> 
+                  </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-2.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-2.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-2.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-3.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-3.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-3.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-4.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-4.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-4.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-5.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-5.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-5.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-6.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-6.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-6.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/m-7.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/m-7.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/m-7.png" alt="">
                     </a>
                   </div>
                 </div>
               </div>
-          
+
               <div class="tab-pane fade show mt-3" id="beach" role="tabpanel" aria-labelledby="home-tab">
-                  
-                <div class="row"> 
+
+                <div class="row">
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-1.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-1.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-1.png" alt="">
                     </a>
-                  </div> 
+                  </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-2.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-2.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-2.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-3.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-3.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-3.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-4.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-4.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-4.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-5.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-5.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-5.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-6.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-6.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-6.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-7.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-7.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-7.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/s-8.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/s-8.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/s-8.png" alt="">
                     </a>
                   </div>
                 </div>
               </div>
 
               <div class="tab-pane fade show mt-3" id="leaves" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row"> 
+                <div class="row">
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/bg-pattern33.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/bg-pattern33.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/bg-pattern33.png" alt="">
                     </a>
-                  </div> 
+                  </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l1.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l1.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l1.png" alt="">
                     </a>
-                  </div> 
+                  </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l2.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l2.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l2.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l3.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l3.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l3.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l4.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l4.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l4.png" alt="">
                     </a>
-                  </div> 
+                  </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l5.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l5.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l5.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l6.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l6.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l6.png" alt="">
                     </a>
                   </div>
                   <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/l7.png')">
                     <a class="d-block ">
-                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer" src="assets/images/l7.png" alt="">
+                      <img class="img-fluid img-thumbnail rounded-0 coverphoto cursor-pointer"
+                        src="assets/images/l7.png" alt="">
                     </a>
                   </div>
                 </div>
+              </div>
+
+
+
             </div>
-          
-              
-          
-          </div>
             <!-- <div class="row">
               <div class="col-4 py-2" (click)="changeCoverPhoto('assets/images/bg-pattern33.png')">
                 <a class="d-block ">
@@ -343,7 +366,7 @@
                 </a>
               </div>
             </div> -->
-           
+
             <!-- <div class="js--image-preview--cover  shadow mt-3 ">
             </div>
             <div class="upload-options">

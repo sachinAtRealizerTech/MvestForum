@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Utils } from '../shared/Utils';
 import { CommunityService } from './community.service';
-import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CategoryList } from './models/category';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyaccountService } from '../myaccount/myaccount.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common'
 
 @Component({
@@ -50,6 +50,7 @@ export class CommunityComponent implements OnInit {
   loading = false;
   displayPicImageUrl: string;
   isDPChanged = false;
+  displayPicImage: string;
 
 
   constructor(private communityService: CommunityService,
@@ -124,16 +125,13 @@ export class CommunityComponent implements OnInit {
     this.getAllCategories();
     this.getUserProfileDetails();
     debugger;
-
+    localStorage.setItem('displayPicUrl', (environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime()))
     if (this.isDPChanged == true) {
       this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
-      this.isDPChanged = false
+      localStorage.setItem('displayPicUrl', this.displayPicImageUrl)
     }
-    else {
-      this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
-    }
+    this.displayPicImage = localStorage.getItem('displayPicUrl')
 
-    //  this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
   }
 
   public user = Utils.GetCurrentUser();
@@ -253,70 +251,6 @@ export class CommunityComponent implements OnInit {
     this.isImageCropped = false;
   }
 
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-
-  // imageCropped(event: ImageCroppedEvent) {
-  //   this.croppedImage = event.base64;
-  // }
-
-  imageCropped(event: ImageCroppedEvent) {
-    debugger;
-    this.isImageCropped = true;
-    this.croppedImage = event.base64;
-    this.croppedImageBlob = this.dataURItoBlob(this.croppedImage)
-  }
-
-  cropperReady() {
-    // cropper ready
-  }
-
-  cropIt(evnt) {
-    console.log(this.croppedImage);
-  }
-
-
-  dataURItoBlob(dataURI) {
-    var binary = atob(dataURI.split(',')[1]);
-    var array = [];
-    for (var i = 0; i < binary.length; i++) {
-      array.push(binary.charCodeAt(i));
-    }
-    return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
-  }
-
-
-
-  // onFileUpload(event) {
-  //   debugger;
-  //   this.selectedFile = event.target.files[0];
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.imagePreview = reader.result;
-  //   };
-  //   reader.readAsDataURL(this.selectedFile);
-  // }
-
-
-  onUploadFile() {
-    debugger;
-    //Upload file here send a binary data
-    let file = new File([this.croppedImageBlob], "profilepic.jpeg", {
-      type: 'image/jpeg'
-    })
-    const formData = new FormData();
-    formData.append('profile', file, file.name);
-    formData.append("foldername", 'profile');
-    formData.append("emailid", this.user.email_id);
-    console.log('formdata', formData)
-    this.photosService.uploadImage(formData)
-      .subscribe(data => {
-        this.isImageCropped = false;
-      });
-  }
-
-
 
   ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -332,23 +266,6 @@ export class CommunityComponent implements OnInit {
     this.message = `${this.images.length} valid image(s) selected`;
     this.uploadImage();
   }
-
-  // uploadImage() {
-  //   this.images.map((image) => {
-  //     debugger;
-  //     const formData = new FormData();
-  //     formData.append("image", image.file, image.file.name);
-  //     formData.append("email", this.user.email_id);
-  //     return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
-  //       reportProgress: true,
-  //       observe: "events"
-  //     })
-  //       .subscribe(data => {
-  //         debugger;
-  //         console.log(data)
-  //       });
-  //   });
-  // }
 
   uploadImage() {
     debugger;
@@ -372,8 +289,9 @@ export class CommunityComponent implements OnInit {
               this.originalImageUrl = ""
               let imageUrl = data['body']['originalFileName'];
               this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
+              // this.displayPicImage = this.originalImageUrl
               this.isDPChanged = true;
-              // this.ngOnInit();
+              //this.ngOnInit();
             }
             this.loading = false;
           }
@@ -388,6 +306,7 @@ export class CommunityComponent implements OnInit {
     this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
     this.modalService.dismissAll(this.newDisplayPicModal);
     this.originalImageUrl = "";
+    this.displayPicImage = this.originalImageUrl
     window.location.reload();
   }
 

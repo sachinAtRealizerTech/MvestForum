@@ -92,7 +92,7 @@ export class DiscussionslistComponent implements OnInit {
     })
 
     this.route.queryParams.subscribe(params => {
-      
+
       this.categoryId = params['categoryId'];
       this.subCategoryId = params['subCategoryId']
     });
@@ -116,7 +116,7 @@ export class DiscussionslistComponent implements OnInit {
       this.discussionList = data;
       this.discussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.discussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
-      
+
       console.log('disclist', this.discussionList);
       this.loading = false;
       this.pageNotFound = false;
@@ -138,7 +138,8 @@ export class DiscussionslistComponent implements OnInit {
     this.postQuestionModal = content;
     this.modalService.open(this.postQuestionModal, {
       backdrop: 'static',
-      backdropClass: 'customBackdrop'
+      backdropClass: 'customBackdrop',
+      size: 'xl'
     })
   }
 
@@ -148,7 +149,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   postQuestion() {
-    
+    debugger;
     this.loading = true;
     this.submitQuestion = true;
     if (this.discussionListQuestionForm.invalid) {
@@ -190,7 +191,7 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   bookmarkDiscussion(docId: string) {
-    
+    debugger;
     let body = {
       email_id: this.user.email_id,
       subcat_id: this.subCategoryId,
@@ -208,7 +209,6 @@ export class DiscussionslistComponent implements OnInit {
   }
 
   isBookmarkedByMe(bookmarkData: any) {
-    console.log('isBookmarkedByMe');
     if (bookmarkData) {
       let bookmarkPosts = bookmarkData.map(l => l.bookmark_by_emailId);
       return (bookmarkPosts.includes(this.user.email_id));

@@ -52,7 +52,7 @@ export class TopNavComponent implements OnInit {
       searchText: []
     });
     this.getMyNotifications(this.user.email_id);
-    this.userImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + ".png";
+    this.userImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + '?' + new Date().getTime();
   }
 
   public user = Utils.GetCurrentUser();
