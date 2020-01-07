@@ -26,7 +26,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent } from './notification/components/notification.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 //import { LoadingcircleComponent } from './shared/loadingcircle/loadingcircle.component';
 import { CanActivate } from '@angular/router'

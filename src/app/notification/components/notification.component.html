@@ -101,7 +101,7 @@
       <div class="row">
         <div class="col-md-6 col-xl-8 pt-2">
 
-          <div class="row justify-content-between no-gutters pb-3" *ngIf="myNotifications?.length==0">
+          <div class="row justify-content-between no-gutters pb-3" *ngIf="myNotifications.length==0">
             <div class="col-md-3 text-center col-3 col-xl-3 ">
               <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
             </div>
@@ -120,25 +120,23 @@
                 <div class="card-body py-0  px-3">
                   <div class="row  py-2 border-bottom">
                     <div class="col-8 ">
-                      <div class="media" (click)="readNotification(mn?.Notifications.notId)">
+                      <div class="media">
                         <img class="mr-3 img-fluid rounded-5" src="assets\images\avatars\6.jpg" alt=" " height="30px"
                           width="30px">
-
-                        <div class="media-body cursor-pointer">
+                        <div class="media-body cursor-pointer" (click)="readNotification(mn.Notifications.notId)">
                           <h6 class="mt-0 mb-0 text-secondary font-weight-normal"
-                            [innerHtml]="mn?.Notifications.Text | slice:0:400 | highlight:searchText">
+                            [innerHtml]="mn.Notifications.Text | slice:0:400 | highlight:searchText">
                           </h6>
                           <h6 class="mt-0 mb-0 text-muted small font-weight-semibold">
-                            {{mn?.Notifications.Date | date:'medium' }}
+                            {{mn.Notifications.Date | date:'medium' }}
                           </h6>
                         </div>
-
                       </div>
                     </div>
                     <div class="col-4 text-right justify-content-end pull-right">
                       <ul class="list-inline d-inline-flex mb-0 text-right pull-right d-flex">
                         <li class="list-inline-item mb-1 h6 text-muted align-self-center">
-                          <a class="cursor-pointer" data-toggle="tooltip" title="Archive Notification"
+                          <a routerLink="#" data-toggle="tooltip" title="Archive Notification"
                             (click)="archievingNotification(mn.Notifications.notId)">
                             <h6 class="mb-0 font-weight-semibold">
                               <i class="material-icons md-22">

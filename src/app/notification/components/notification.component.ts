@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from './notification.service';
-import { Utils } from '../shared/Utils';
+import { NotificationService } from '../services/notification.service';
+import { Utils } from '../../shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { HighlightText } from '../shared/pipes/highlightText.pipe';
+import { HighlightText } from '../../shared/pipes/highlightText.pipe';
 import { error } from 'util';
 
 @Component({
@@ -49,6 +49,8 @@ export class NotificationComponent implements OnInit {
     this.showArchivesPage = true;
     this.getMyArchNotification(this.user.email_id);
   }
+
+
   getNotificationMasterEntries() {
     this.notificationService.getNotificationMasterEntries().subscribe(data => {
       console.log('notificationmaster', data);
@@ -126,6 +128,18 @@ export class NotificationComponent implements OnInit {
       error => {
         this.loading = false;
       })
+  }
+
+  readNotification(notId: string) {
+    debugger;
+    let body = {
+      emailid: this.user.email_id,
+      NotificationId: notId
+    }
+    this.notificationService.readNotification(body).subscribe(data => {
+      console.log('read status', data);
+      this.getMyNotifications();
+    })
   }
 
 }

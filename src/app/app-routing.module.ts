@@ -24,7 +24,7 @@ import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
-import { NotificationComponent } from './notification/notification.component';
+import { NotificationComponent } from './notification/components/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './settings/components/settings.component';
 import { ArchivesComponent } from './archives/archives.component';

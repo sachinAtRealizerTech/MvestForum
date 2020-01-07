@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
-import { Utils } from '../shared/Utils';
+import { Utils } from '../../shared/Utils';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,10 @@ export class NotificationService {
 
   getMyArchNotification(email: string) {
     return this.httpClient.get(`${environment.APIBASEURL}/Notifications/GetMyArchNotifications/${email}`, Utils.getAuthHeader())
+  }
+
+  readNotification(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/notifications/ReadNotification`, body, Utils.getAuthHeader())
   }
 
 }
