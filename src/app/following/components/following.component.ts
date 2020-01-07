@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-following',
@@ -38,7 +39,8 @@ export class FollowingComponent implements OnInit {
   constructor(private followingService: FollowingService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService,
+    private router: Router) { }
 
   ngOnInit() {
     this.followNewUsersForm = this.formBuilder.group({
@@ -295,7 +297,13 @@ export class FollowingComponent implements OnInit {
       error => {
 
       })
+  }
 
+  goToMvestUserPage(inputEmailId: string, memberId: number) {
+    debugger;
+    let trueEmailId = inputEmailId.replace(environment.IMAGEPREPENDURL, "");
+    trueEmailId = trueEmailId.replace('.png', "");
+    this.router.navigate(['/mvest-user'], { state: { emailId: trueEmailId, memberId: memberId } })
   }
 
 }

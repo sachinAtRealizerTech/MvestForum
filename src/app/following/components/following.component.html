@@ -148,7 +148,8 @@
                                                 src="{{fml?.email_id}}">
                                             </ngx-avatar>
 
-                                            <div class="media-body mb-0">
+                                            <div class="media-body mb-0 cursor-pointer"
+                                                (click)="goToMvestUserPage(fml?.email_id,fml?.member_id)">
                                                 <h5 class="text-dark h6 mb-1 font-weight-semibold">
                                                     {{fml.f_name | titlecase}}
                                                     {{fml.l_name | titlecase}}</h5>
@@ -322,7 +323,8 @@
                                                 src="{{flr?.email_id}}">
                                             </ngx-avatar>
 
-                                            <div class="media-body mb-0">
+                                            <div class="media-body mb-0 cursor-pointer"
+                                                (click)="goToMvestUserPage(flr?.email_id,flr?.member_id)">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">
                                                     {{flr.f_name | titlecase}}
                                                     {{flr.l_name | titlecase}}</h5>
@@ -460,7 +462,8 @@
                                                 src="{{bl?.email_id}}">
                                             </ngx-avatar>
 
-                                            <div class="media-body mb-0">
+                                            <div class="media-body mb-0 cursor-pointer"
+                                                (click)="goToMvestUserPage(bl?.email_id,bl?.member_id)">
                                                 <h5 class="text-dark h6 mb-0 font-weight-semibold">
                                                     {{bl.f_name | titlecase}}
                                                     {{bl.l_name | titlecase}}</h5>

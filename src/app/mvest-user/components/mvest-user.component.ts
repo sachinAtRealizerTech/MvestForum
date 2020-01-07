@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { RecentDiscussions } from 'src/app/community/profile/models/recentDiscussions';
 import { RecentPhotos } from 'src/app/community/profile/models/recentPhotos';
 import { MyNews } from 'src/app/community/profile/models/myNews';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-mvest-user',
@@ -22,7 +23,8 @@ export class MvestUserComponent implements OnInit {
   MyNews: MyNews[];
 
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,
+    private router: Router) { }
 
   ngOnInit() {
     debugger;
@@ -81,6 +83,11 @@ export class MvestUserComponent implements OnInit {
       error => {
         this.loading = false;
       })
+  }
+
+  goToDiscussionLink(url: string) {
+    url = url.slice(31)
+    this.router.navigateByUrl(url)
   }
 
 
