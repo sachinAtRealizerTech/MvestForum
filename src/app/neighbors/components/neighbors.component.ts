@@ -736,7 +736,7 @@ export class NeighborsComponent implements OnInit {
     debugger;
     let trueEmailId = inputEmailId.replace(environment.IMAGEPREPENDURL, "");
     trueEmailId = trueEmailId.replace('.png', "");
-    this.router.navigate(['/mvest-user'], { state: { emailId: trueEmailId, memberId: memberId } })
+    this.router.navigate(['/mvest-user-profile/mvest-user'], { state: { emailId: trueEmailId, memberId: memberId } })
   }
 
 }

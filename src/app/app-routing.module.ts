@@ -186,67 +186,60 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
 
-      {
-        path: 'mvest-user',
-        component: MvestUserComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'mvest-user-following',
-        component: MvestUserFollowingComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'mvest-user-neighbors',
-        component: MvestUserNeighborsComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'mvest-user-photos',
-        component: MvestUserPhotosComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'mvest-user-profile',
-        component: MvestUserProfileComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'blocked',
-        component: BlockedComponent,
-        canActivate: [AuthGuard]
-      },
-
+      // {
+      //   path: 'mvest-user',
+      //   component: MvestUserComponent,
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'mvest-user-following',
+      //   component: MvestUserFollowingComponent,
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'mvest-user-neighbors',
+      //   component: MvestUserNeighborsComponent,
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'mvest-user-photos',
+      //   component: MvestUserPhotosComponent,
+      //   canActivate: [AuthGuard]
+      // },
       // {
       //   path: 'mvest-user-profile',
       //   component: MvestUserProfileComponent,
-      //   canActivate: [AuthGuard],
-      //   children: [
-      //     {
-      //       path: 'mvest-user',
-      //       component: MvestUserComponent,
-      //       canActivate: [AuthGuard]
-      //     },
-      //     {
-      //       path: 'mvest-user-following',
-      //       component: MvestUserFollowingComponent,
-      //       canActivate: [AuthGuard]
-      //     },
-      //     {
-      //       path: 'mvest-user-neighbors',
-      //       component: MvestUserNeighborsComponent,
-      //       canActivate: [AuthGuard]
-      //     },
-      //     {
-      //       path: 'mvest-user-photos',
-      //       component: MvestUserPhotosComponent,
-      //       canActivate: [AuthGuard]
-      //     },
-      //   ]
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'blocked',
+      //   component: BlockedComponent,
+      //   canActivate: [AuthGuard]
       // },
 
-
-
+      {
+        path: 'mvest-user-profile',
+        component: MvestUserProfileComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'mvest-user',
+            component: MvestUserComponent,
+          },
+          {
+            path: 'mvest-user-following',
+            component: MvestUserFollowingComponent,
+          },
+          {
+            path: 'mvest-user-neighbors',
+            component: MvestUserNeighborsComponent,
+          },
+          {
+            path: 'mvest-user-photos',
+            component: MvestUserPhotosComponent,
+          },
+        ]
+      },
 
     ]
   }
