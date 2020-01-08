@@ -83,6 +83,7 @@ export class CommunityComponent implements OnInit {
       defaultParagraphSeparator: '',
       defaultFontName: '',
       defaultFontSize: '',
+      uploadUrl: "http://45.35.4.250:3000/upload/uploadnewsimage",
       fonts: [
         { class: 'arial', name: 'Arial' },
         { class: 'times-new-roman', name: 'Times New Roman' },

@@ -39,8 +39,6 @@ export class MvestUserProfileComponent implements OnInit {
       this.userEmailId = localStorage.getItem('userEmailId');
       this.memberId = Number(localStorage.getItem('userMemberId'));
     }
-    this.name = localStorage.getItem('otherUserName');
-    this.tagLine = localStorage.getItem('otherUserTagLine');
     this.getMvestUserProfile();
     this.getMyFollowingMembers();
     this.getMyConnectedNeighbors();
@@ -50,13 +48,12 @@ export class MvestUserProfileComponent implements OnInit {
 
   getMvestUserProfile() {
     this.mvestUserProfileService.getMvestUserDetails(this.memberId).subscribe(data => {
+      debugger;
       this.userDetails = data['data'][0];
-      localStorage.setItem('otherUserName', this.userDetails.name)
-      this.name = localStorage.getItem('otherUserName');
-      localStorage.setItem('otherUserTagLine', this.userDetails.tag_line)
-      this.tagLine = localStorage.getItem('otherUserTagLine');
+      this.name = this.userDetails.name;
+      this.tagLine = this.userDetails.tag_line;
       console.log('user prof details', this.userDetails);
-      this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
+      this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png?';
     })
   }
 
