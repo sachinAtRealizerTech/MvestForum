@@ -29,11 +29,16 @@ export class NearbyneighborsComponent implements OnInit {
   conAllNebName: string;
   nextLeaseName: any;
   nextLeaseFlag = true;
+  imagePrepend: string;
+  png: string;
 
   constructor(private neighborsService: NeighborsService,
     private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png'
+
     this.leaseNumber = sessionStorage.getItem("nearByNbrleaseNo");
     this.districtNumber = sessionStorage.getItem("nearByNbrDistNo");
     this.leaseName = sessionStorage.getItem("nearbyleaseName");
@@ -64,7 +69,7 @@ export class NearbyneighborsComponent implements OnInit {
           this.leaseOwnersList.push(this.allLeaseOwnersList[i])
         }
       }
-      this.leaseOwnersList.forEach((el) => { el.memaild = environment.IMAGEPREPENDURL + el.memaild + '.png' })
+      // this.leaseOwnersList.forEach((el) => { el.memaild = environment.IMAGEPREPENDURL + el.memaild + '.png' })
       //this.leaseName = this.leaseOwnersList.lease_name
       console.log('leaseOwnersList', this.leaseOwnersList);
       this.loading = false;

@@ -75,7 +75,8 @@
                       [queryParams]="{discussionId:dl.doc_id,subCategoryId:myDiscussionList.sub_category_id,categoryId:myDiscussionList.category_id}">
                       <div class="media p-3">
 
-                        <ngx-avatar class="mr-3" name="{{dl?.post_by_name}}" [size]="40" src="{{dl?.post_by_emailId}}">
+                        <ngx-avatar class="mr-3" name="{{dl?.post_by_name}}" [size]="40"
+                          src="{{imagePrepend}}{{dl?.post_by_emailId}}{{png}}">
                         </ngx-avatar>
 
                         <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/2.jpg"

@@ -81,6 +81,8 @@ export class NeighborsComponent implements OnInit {
   listOperatorNumber: any;
   newNeighborCounty: any;
   newNeighborOperator: any;
+  imagePrepend: string;
+  png: string;
 
 
   constructor(private modalService: NgbModal,
@@ -114,7 +116,10 @@ export class NeighborsComponent implements OnInit {
     this.newListForm = this.formBuilder.group({
       listName: ['', Validators.required],
       addedNeighbors: []
-    })
+    });
+
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png'
 
     this.getMyLeases(this.user.member_id);
     this.getMemberList();
@@ -424,7 +429,7 @@ export class NeighborsComponent implements OnInit {
       this.allNeighboursCount = this.myConnectedNeighbors.length;
       sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
       this.acceptedRequests = this.myConnectedNeighbors;
-      this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
+      // this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       console.log('newFilteredData', data['data']);
       this.loading = false;
     },
@@ -442,7 +447,7 @@ export class NeighborsComponent implements OnInit {
     this.neighborsService.getMemberNeighborsWithFilter(body).subscribe(data => {
       console.log('newFilteredData', data['data'])
       this.acceptedRequests = data['data'];
-      this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
+      //this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       this.loading = false;
       this.closeSearchFilter();
     },

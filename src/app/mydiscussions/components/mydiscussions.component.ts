@@ -18,6 +18,8 @@ export class MydiscussionsComponent implements OnInit {
   loading = false;
   pageNotFound = false;
   subCategoryId: string;
+  imagePrepend: string;
+  png: string;
 
   constructor(private mydiscussionsService: MydiscussionsService,
     private discussionslistService: DiscussionslistService,
@@ -25,6 +27,8 @@ export class MydiscussionsComponent implements OnInit {
     private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.getMyDiscussionGroups(this.user.email_id)
   }
 
@@ -50,7 +54,7 @@ export class MydiscussionsComponent implements OnInit {
       this.discussionListPage = true;
       this.loading = false;
       this.myDiscussionList = data;
-      this.myDiscussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
+      // this.myDiscussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.myDiscussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       console.log('mydisclist', this.myDiscussionList)
     },

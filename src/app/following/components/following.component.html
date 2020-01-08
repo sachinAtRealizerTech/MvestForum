@@ -112,15 +112,14 @@
             <div class="row justify-content-between">
                 <div class="col-md-12 col-xl-12">
 
-                    <div class="row justify-content-center text-center py-4"
-                        *ngIf="followingMembersList?.length==0">
+                    <div class="row justify-content-center text-center py-4" *ngIf="followingMembersList?.length==0">
                         <div class="col-md-5 text-center col-12 col-xl-4">
-                            <img src="assets/images/follow.png" class="" alt="Follow Image" height="235px"
-                                width="auto">
+                            <img src="assets/images/follow.png" class="" alt="Follow Image" height="235px" width="auto">
                         </div>
                         <div class="col-md-6 col-12 col-xl-6 px-4 text-left d-flex">
                             <div class="align-self-center">
-                                <h6 class="text-secondary font-weight-semibold text-uppercase">No Following Member's yet !!</h6>
+                                <h6 class="text-secondary font-weight-semibold text-uppercase">No Following Member's yet
+                                    !!</h6>
                                 <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Members
                                     you are Following.</h6>
                                 <h6 class="text-muted font-weight-semibold ">You can Follow New Users by
@@ -145,7 +144,7 @@
                                         <div class="media mb-0">
 
                                             <ngx-avatar class="mr-3" name="{{fml?.f_name}} {{fml?.l_name}}" [size]="40"
-                                                src="{{fml?.email_id}}">
+                                                src="{{imagePrepend}}{{fml?.email_id}}{{png}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0 cursor-pointer"
@@ -222,7 +221,7 @@
                                         </div>
                                     </div>
                                 </div> -->
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -234,11 +233,9 @@
             <div class="row justify-content-between">
                 <div class="col-md-12 col-xl-12">
 
-                    <div class="row justify-content-center text-center py-4"
-                        *ngIf="followerMembersList?.length==0">
+                    <div class="row justify-content-center text-center py-4" *ngIf="followerMembersList?.length==0">
                         <div class="col-md-5 text-center col-12 col-xl-4">
-                            <img src="assets/images/follow.png" class="" alt="Follow Image" height="235px"
-                                width="auto">
+                            <img src="assets/images/follow.png" class="" alt="Follow Image" height="235px" width="auto">
                         </div>
                         <div class="col-md-6 col-12 col-xl-6 px-4 text-left d-flex">
                             <div class="align-self-center">
@@ -266,7 +263,7 @@
                                         <div class="media mb-0">
 
                                             <ngx-avatar class="mr-3" name="{{flr.f_name}} {{flr.l_name}}" [size]="40"
-                                                src="{{flr?.email_id}}">
+                                                src="{{imagePrepend}}{{flr?.email_id}}{{png}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0 cursor-pointer"
@@ -376,7 +373,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade show mt-3" id="blockedUsers" role="tabpanel" aria-labelledby="home-tab"> 
+        <div class="tab-pane fade show mt-3" id="blockedUsers" role="tabpanel" aria-labelledby="home-tab">
             <div class="row justify-content-between ">
                 <div class="col-md-12 col-xl-12">
 
@@ -387,7 +384,8 @@
                         </div>
                         <div class="col-md-6 col-12 col-xl-6 px-4 text-left d-flex">
                             <div class="align-self-center">
-                                <h6 class="text-secondary font-weight-semibold text-uppercase">No blocked Member's yet !</h6>
+                                <h6 class="text-secondary font-weight-semibold text-uppercase">No blocked Member's yet !
+                                </h6>
                                 <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Members
                                     whom you have blocked.
                                 </h6>
@@ -405,7 +403,7 @@
                                         <div class="media mb-0">
 
                                             <ngx-avatar class="mr-3" name="{{bl?.f_name}} {{bl?.l_name}}" [size]="40"
-                                                src="{{bl?.email_id}}">
+                                                src="{{imagePrepend}}{{bl?.email_id}}{{png}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0 cursor-pointer"
@@ -525,7 +523,7 @@
                                         <div class="media mb-0">
 
                                             <ngx-avatar class="mr-3" name="{{sm?.f_name}} {{sm?.l_name}}" [size]="40"
-                                                src="{{sm?.email_id}}">
+                                                src="{{imagePrepend}}{{sm?.email_id}}{{png}}">
                                             </ngx-avatar>
 
                                             <div class="media-body mb-0">
