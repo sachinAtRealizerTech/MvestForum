@@ -1575,13 +1575,13 @@ top:110px;
   /* Animation Styles End*/ 
   
   .coverphoto{
-    height: 52px !important;
-    width: 197px !important;
+    height: 56px !important;
+    width: 221px !important;
    }
 
    .coverphoto:hover,.coverphoto:focus{
-    height: 52px !important;
-    width: 197px !important; 
+    height: 56px !important;
+    width: 221px !important;
     padding:2px;
     border:2px solid #00CD95 !important;
    }
