@@ -90,10 +90,12 @@ export class MvestUserComponent implements OnInit {
   getRecentDiscussionsAndPhotos() {
     this.profileService.getRecentDiscussionsAndPhotos(this.userEmailId).subscribe(data => {
       if (data['RD']) {
+        this.recentDiscussions = [];
         this.recentDiscussions = data['RD']['recent_discussions'];
         this.recentDiscussions.sort((a, b) => new Date(b.date_time).getTime() - new Date(a.date_time).getTime())
       }
       if (data['RP']) {
+        this.recentPhotos = [];
         this.recentPhotos = data['RP']['recent_photos'];
         this.recentPhotos.forEach((el) => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name });
         this.recentPhotos.sort((a, b) => new Date(b.create_ts).getTime() - new Date(a.create_ts).getTime())
@@ -131,13 +133,11 @@ export class MvestUserComponent implements OnInit {
         }
       }
       // this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
-      this.loading = false;
       console.log('allfollowingmembers', this.allFollowingMembersList);
       console.log('followingmembers', this.followingMembersList);
     },
       error => {
         console.log(error);
-        this.loading = false;
       }
     )
   }
@@ -160,7 +160,6 @@ export class MvestUserComponent implements OnInit {
       debugger;
       this.myConnectedNeighbors = data['data']
       console.log('connected neb', data['data']);
-      this.loading = false;
     },
       error => {
         console.log('getallmemberneighbor error', error)

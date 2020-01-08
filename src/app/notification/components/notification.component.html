@@ -101,7 +101,7 @@
       <div class="row">
         <div class="col-md-6 col-xl-8 pt-2">
 
-          <div class="row justify-content-between no-gutters pb-3" *ngIf="myNotifications.length==0">
+          <div class="row justify-content-between no-gutters pb-3" *ngIf="myNotifications?.length==0">
             <div class="col-md-3 text-center col-3 col-xl-3 ">
               <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="250px" width="auto">
             </div>
@@ -115,7 +115,8 @@
 
           <div class="row justify-content-between no-gutters pb-3"
             *ngFor="let mn of myNotifications | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p }">
-            <div class="col-xl-12">
+
+            <div class="col-xl-12" [ngClass]="mn.Notifications.Status=='Unread'?'bg-dark':'bg-light'">
               <div class="card shadow">
                 <div class="card-body py-0  px-3">
                   <div class="row  py-2 border-bottom">
@@ -151,6 +152,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <!-- 

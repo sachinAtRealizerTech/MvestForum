@@ -116,7 +116,22 @@
                 </a>
               </li> -->
             </ul>
+
+            <!-- <div class="card card-small blog-comments">
+
+           
+
+            </div> -->
+
             <div class="card card-small blog-comments">
+
+              <div class="card-body p-2" *ngIf="recentDiscussions?.length==0">
+                <div class="row text-center text-lg-left">
+                  <div class="col-12">
+                    No discussions available...
+                  </div>
+                </div>
+              </div>
 
               <div class="card-body shadow p-0" *ngFor="let rd of recentDiscussions | slice:0:3">
                 <a class="cursor-pointer" (click)="goToDiscussionLink(rd?.link)">
@@ -140,14 +155,27 @@
 
             <ul class="list-inline pt-3  d-flex mb-0">
               <li class="list-inline-item h6 text-secondary">Photos</li>
-              <!-- <li class="list-inline-item ml-auto">
-                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <small class="font-weight-semibold text-secondary ">Add Photo</small>
-                </a>
-              </li> -->
             </ul>
+
+
+            <!-- <div class="row text-center text-lg-left">
+              <div class="col-12">
+                No photos available...
+              </div>
+            </div> -->
+
+
             <div class="card card-small shadow">
-              <div class="card-body p-2">
+
+              <div class="card-body p-2" *ngIf="recentPhotos?.length==0">
+                <div class="row text-center text-lg-left">
+                  <div class="col-12">
+                    No photos available...
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body p-2" *ngIf="recentPhotos?.length>0">
                 <div class="row text-center text-lg-left">
 
                   <div class="col-lg-4 col-md-4 col-6" *ngFor="let rp of recentPhotos">
@@ -159,10 +187,11 @@
 
                 </div>
               </div>
-              <div class="card-footer border-top">
+              <div class="card-footer border-top" *ngIf="recentPhotos?.length>0">
                 <div class="row">
                   <div class="col text-center view-report">
-                    <a class="text-secondary font-weight-bold cursor-pointer" routerLink="/mvest-user-photos">See All
+                    <a class="text-secondary font-weight-bold cursor-pointer"
+                      routerLink="/mvest-user-profile/mvest-user-photos">See All
                       Photos</a>
                   </div>
                 </div>
@@ -170,103 +199,6 @@
             </div>
 
           </div>
-          <!--  <div class="col-xl-12">  
-            <ul class="list-inline d-flex mb-0">
-              <li class="list-inline-item h6 text-secondary">Photos</li>
-             <li class="list-inline-item ml-auto">
-                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <small class="font-weight-semibold text-secondary ">Add Photo</small>
-                </a>
-              </li> 
-            </ul>
-            <div class="card card-small shadow">
-              <div class="card-body p-2">
-                <div class="row text-center text-lg-left">
-
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
-                    </a>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
-                      <img class="img-fluid img-thumbnail rounded-0"
-                        src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer border-top">
-                <div class="row">
-                  <div class="col text-center view-report">
-                    <a href="" class="text-secondary font-weight-bold ">See All Photos</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
         </div>
 
       </div>
