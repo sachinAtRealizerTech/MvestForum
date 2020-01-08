@@ -18,6 +18,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./discussionslist.component.scss']
 })
 export class DiscussionslistComponent implements OnInit {
+  imagePrepend: string;
+  png: string;
 
   constructor(private discussionlistService: DiscussionslistService,
     private route: ActivatedRoute,
@@ -45,6 +47,8 @@ export class DiscussionslistComponent implements OnInit {
   pageNotFound = false;
 
   ngOnInit() {
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png';
     this.editorConfig = {
       editable: true,
       spellcheck: true,
@@ -114,9 +118,7 @@ export class DiscussionslistComponent implements OnInit {
     this.loading = true;
     this.discussionlistService.getAllDiscussionsList(id, false, this.user.email_id).subscribe(data => {
       this.discussionList = data;
-      this.discussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.discussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
-
       console.log('disclist', this.discussionList);
       this.loading = false;
       this.pageNotFound = false;

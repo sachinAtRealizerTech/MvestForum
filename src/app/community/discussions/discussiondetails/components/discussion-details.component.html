@@ -144,7 +144,7 @@
             <div class="col-xl-10 col-lg-9 col-md-8 col-sm-8 col-9">
               <div class="media px-3 py-1">
                 <ngx-avatar class="mr-3" name="{{discussionDetails?.posts[0]?.post_by_name}}" [size]="40"
-                  src="{{discussionDetails?.posts[0]?.post_by_emailId}}">
+                  src="{{imagePrepend}}{{discussionDetails?.posts[0]?.post_by_emailId}}{{png}}">
                 </ngx-avatar>
                 <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"
                   alt="Generic placeholder image"> -->
@@ -384,7 +384,8 @@
                 <div class="media px-3 ">
 
 
-                  <ngx-avatar class="mr-3" name="{{p?.post_by_name}}" [size]="40" src="{{p?.post_by_emailId}}">
+                  <ngx-avatar class="mr-3" name="{{p?.post_by_name}}" [size]="40"
+                    src="{{imagePrepend}}{{p?.post_by_emailId}}{{png}}">
                   </ngx-avatar>
 
                   <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/MProfile.png"

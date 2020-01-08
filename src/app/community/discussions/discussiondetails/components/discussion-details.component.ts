@@ -24,6 +24,8 @@ export class DiscussionDetailsComponent implements OnInit {
   deletePostId: any;
   activeId: string;
   isDislikePressed = false;
+  imagePrepend: string;
+  png: string;
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
@@ -73,7 +75,8 @@ export class DiscussionDetailsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.editorConfig = {
       editable: true,
       spellcheck: true,
@@ -178,7 +181,7 @@ export class DiscussionDetailsComponent implements OnInit {
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
       debugger;
       this.discussionDetails = data;
-      this.discussionDetails.posts.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
+      // this.discussionDetails.posts.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id'];
