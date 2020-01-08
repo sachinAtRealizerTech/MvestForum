@@ -39,6 +39,7 @@ export class TopNavComponent implements OnInit {
   myCommunityNotifications: any[];
   myNeighborsNotifications: any[];
   userImageUrl: string;
+  unreadDiscussionCount: number;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -79,13 +80,19 @@ export class TopNavComponent implements OnInit {
       this.myCommunityNotifications = [];
       this.myNeighborsNotifications = [];
       for (let i = 0; i < this.myNotifications.length; i++) {
-        if (this.myNotifications[i]['Notifications']['Feature'] == "Community") {
+        if (this.myNotifications[i]['Notifications']['Feature'] == "Community" && this.myNotifications[i]['Notifications']['Status'] == "Unread") {
           this.myCommunityNotifications.push(this.myNotifications[i]);
           console.log('myCommunityNotifications', this.myCommunityNotifications)
         }
-        else if (this.myNotifications[i]['Notifications']['Feature'] == "Neighbors") {
+        else if (this.myNotifications[i]['Notifications']['Feature'] == "Neighbors" && this.myNotifications[i]['Notifications']['Status'] == "Unread") {
           this.myNeighborsNotifications.push(this.myNotifications[i])
         }
+      }
+      if (this.myCommunityNotifications || this.myNeighborsNotifications) {
+        this.unreadDiscussionCount = this.myCommunityNotifications.length + this.myNeighborsNotifications.length
+      }
+      else {
+        this.unreadDiscussionCount = 0
       }
     })
   }
