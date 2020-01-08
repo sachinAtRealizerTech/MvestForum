@@ -116,9 +116,10 @@
           <div class="row justify-content-between no-gutters pb-3"
             *ngFor="let mn of myNotifications | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p }">
 
-            <div class="col-xl-12" [ngClass]="mn.Notifications.Status=='Unread'?'bg-dark':'bg-light'">
-              <div class="card shadow">
-                <div class="card-body py-0  px-3">
+            <div class="col-xl-12">
+              <div class="card shadow-none">
+                <div class="card-body rounded py-0  px-3"
+                  [ngClass]="mn.Notifications.Status=='Unread'?'bg-white shadow':'bg-light shadow-sm'">
                   <div class="row  py-2 border-bottom">
                     <div class="col-8 ">
                       <div class="media">
