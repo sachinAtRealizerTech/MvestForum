@@ -10,7 +10,7 @@ export class MvestUserProfileService {
 
   constructor(private http: HttpClient) { }
 
-  getMvestUserDetails(id: number) {
-    return this.http.get(`${environment.APIBASEURL}/MVestUser/neighbor_profile/${id}`, Utils.getAuthHeader())
+  getMvestUserDetails(body) {
+    return this.http.post(`${environment.APIBASEURL}/MVestUser/neighbor_profile`, body, Utils.getAuthHeader())
   }
 }

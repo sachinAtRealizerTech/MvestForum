@@ -23,6 +23,8 @@ export class MvestUserProfileComponent implements OnInit {
   name: string;
   tagLine: string;
   isConnectedToMe: boolean;
+  isConnect: boolean;
+  isFollow: string;
 
   constructor(private followingService: FollowingService,
     private neighborsService: NeighborsService,
@@ -47,13 +49,19 @@ export class MvestUserProfileComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   getMvestUserProfile() {
-    this.mvestUserProfileService.getMvestUserDetails(this.memberId).subscribe(data => {
+    let body = {
+      _member_id: this.user.member_id,
+      _other_member_id: this.memberId
+    }
+    this.mvestUserProfileService.getMvestUserDetails(body).subscribe(data => {
       debugger;
       this.userDetails = data['data'][0];
-      this.name = this.userDetails.name;
+      this.name = this.userDetails.user_name;
       this.tagLine = this.userDetails.tag_line;
-      console.log('user prof details', this.userDetails);
-      this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png?';
+      this.isConnect = this.userDetails.is_neighbor;
+      this.isFollow = this.userDetails.follow_status
+      console.log('user prof details', data);
+      this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
     })
   }
 

@@ -20,10 +20,14 @@ export class MvestUserFollowingComponent implements OnInit {
   followerMembersList: FollowerMembers[];
   allMyFollowingMembersList: FollowingMembers[];
   myFollowingMembersList: FollowingMembers[];
+  imagePrepend: string;
+  png: string;
 
   constructor(private followingService: FollowingService) { }
 
   ngOnInit() {
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.emailId = localStorage.getItem('userEmailId');
     this.memberId = Number(localStorage.getItem('userMemberId'));
     this.getUserFollowingList();
@@ -43,7 +47,7 @@ export class MvestUserFollowingComponent implements OnInit {
           this.followingMembersList.push(this.allFollowingMembersList[i])
         }
       }
-      this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
+      //  this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('allfollowingmembers', this.allFollowingMembersList);
       console.log('followingmembers', this.followingMembersList);
@@ -63,7 +67,7 @@ export class MvestUserFollowingComponent implements OnInit {
           this.followerMembersList.push(this.allFollowerMembersList[i]);
         }
       }
-      this.followerMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
+      // this.followerMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('followermembers', this.followerMembersList)
     },

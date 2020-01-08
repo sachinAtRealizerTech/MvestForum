@@ -32,7 +32,9 @@ export class MvestUserComponent implements OnInit {
   acceptedRequests: any;
   userDetails: UserDetails;
   userName: string;
-  userImageUrl: string;
+  imageUrl: string;
+  imagePrependUrl: string;
+  png: string;
 
 
   constructor(private profileService: ProfileService,
@@ -55,7 +57,8 @@ export class MvestUserComponent implements OnInit {
     }
     console.log(this.userEmailId, this.memberId);
     this.userName = localStorage.getItem('otherUserName');
-    this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png'
+    this.imagePrependUrl = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.getMyFollowingMembers();
     this.getMyConnectedNeighbors();
     this.getCommunityStats();
@@ -132,7 +135,6 @@ export class MvestUserComponent implements OnInit {
           this.followingMembersList.push(this.allFollowingMembersList[i])
         }
       }
-      // this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       console.log('allfollowingmembers', this.allFollowingMembersList);
       console.log('followingmembers', this.followingMembersList);
     },

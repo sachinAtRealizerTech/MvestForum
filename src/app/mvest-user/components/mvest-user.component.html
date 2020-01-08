@@ -137,7 +137,8 @@
                 <a class="cursor-pointer" (click)="goToDiscussionLink(rd?.link)">
                   <div class="media d-flex align-items-center p-3">
 
-                    <ngx-avatar class="mr-3 mr-2" name="{{userName}}" [size]="40" src="{{userImageUrl}}">
+                    <ngx-avatar class="mr-3 mr-2" name="{{userName}}" [size]="40"
+                      src="{{imagePrependUrl}}{{userEmailId}}{{png}}">
                     </ngx-avatar>
 
                     <div class="media-body mb-0">

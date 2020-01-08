@@ -18,10 +18,14 @@ export class MvestUserNeighborsComponent implements OnInit {
   acceptedRequests: any[];
   searchText: string
   myNeighbors: any[];
+  imagePrepend: string;
+  png: string;
 
   constructor(private neighborsService: NeighborsService) { }
 
   ngOnInit() {
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png';
     this.memberId = Number(localStorage.getItem('userMemberId'));
     this.emailId = localStorage.getItem('userEmailId');
     this.getAllMemberNeighbors();
@@ -49,7 +53,7 @@ export class MvestUserNeighborsComponent implements OnInit {
       this.allNeighboursCount = this.myConnectedNeighbors.length;
       sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
       this.acceptedRequests = this.myConnectedNeighbors;
-      this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
+      // this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       console.log('newFilteredData', data['data']);
       this.loading = false;
     },
