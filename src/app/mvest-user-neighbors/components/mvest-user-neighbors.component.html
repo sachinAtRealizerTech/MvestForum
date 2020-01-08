@@ -78,7 +78,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" col-4  justify-content-end text-right">
+
+                                <div *ngIf="isMemberConnectedToMe(ar?.neighbor_email_id)"
+                                    class=" col-4  justify-content-end text-right">
                                     <h6 class="mb-0">
 
                                         <a><i class="material-icons md-18 icon-muted">
@@ -88,6 +90,15 @@
                                     <h6 class="mb-0"> <i class="material-icons mr-1 text-muted">check_circle_outline
                                         </i><small class="text-muted font-weight-semibold text-uppercase">connected
                                         </small> </h6>
+                                </div>
+
+                                <div *ngIf="!isMemberConnectedToMe(ar?.neighbor_email_id)"
+                                    class=" col-4 align-items-center d-flex justify-content-end text-right">
+                                    <h6 class="mb-0">
+                                        <button type="button"
+                                            class="mt-2 btn btn-accent align-self-center text-uppercase"
+                                            data-target="tooltip" title="Coming Soon" disabled>Connect</button>
+                                    </h6>
                                 </div>
 
                             </div>
