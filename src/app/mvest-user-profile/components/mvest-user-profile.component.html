@@ -22,12 +22,13 @@
                     style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;">
                     <div class="media align-items-end profile-header ">
                         <div class="justify-content-start mr-3">
-                            <ngx-avatar name="{{name}}" [size]="100" class="rounded-50 profile img-thumbnail"
-                                src="{{userImageUrl}}"></ngx-avatar>
+                            <ngx-avatar name=" {{userDetails?.f_name}} {{userDetails?.l_name}}" [size]="100"
+                                class="rounded-50 profile img-thumbnail" src="{{userImageUrl}}"></ngx-avatar>
                         </div>
 
                         <div class="media-body justify-content-center text-left text-white ">
-                            <h4 class="text-white font-weight-medium username">{{userDetails?.user_name | titlecase}}
+                            <h4 class="text-white font-weight-medium username">
+                                {{userDetails?.f_name | titlecase}} {{userDetails?.l_name | titlecase}}
                             </h4>
                             <h6 class="text-white font-weight-medium user-tagline">{{userDetails?.tag_line}}
                             </h6>
