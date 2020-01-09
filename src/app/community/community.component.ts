@@ -34,7 +34,7 @@ export class CommunityComponent implements OnInit {
   images: any[];
   message: string;
   leaseOrAlbumName: string;
-  coverImage: string = "assets/images/bg-pattern33.png";
+  coverImage: string;
   postQuestionModal: TemplateRef<any>;
   categoryId: any;
   categoryName: any;
@@ -51,6 +51,8 @@ export class CommunityComponent implements OnInit {
   displayPicImageUrl: string;
   isDPChanged = false;
   displayPicImage: string;
+  coverImagePrependUrl: string;
+  coverImageTochange: string = "";
 
 
   constructor(private communityService: CommunityService,
@@ -67,6 +69,8 @@ export class CommunityComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
+
+    this.coverImagePrependUrl = 'assets/images/'
 
     this.editorConfig = {
       editable: true,
@@ -116,7 +120,7 @@ export class CommunityComponent implements OnInit {
       problemDescription: ['', Validators.required]
     });
 
-    this.coverImage = "assets/images/bg-pattern33.png";
+    // this.coverImage = "assets/images/bg-pattern33.png";
 
     this.newDisplayPicForm = this.formBuilder.group({
       // croppedImage: ['', Validators.required],
@@ -187,6 +191,7 @@ export class CommunityComponent implements OnInit {
     this.myaccountService.getUserProfileDetails(this.user.email_id).subscribe(data => {
       console.log('userdetails', data);
       this.userDetails = data[0];
+      this.coverImage = this.userDetails.background_image
     },
       error => {
 
@@ -225,7 +230,7 @@ export class CommunityComponent implements OnInit {
 
   public returnCoverPhoto(): any {
     let styles = {
-      'backgroundImage': 'url(' + this.coverImage + ')',
+      'backgroundImage': 'url(' + this.coverImagePrependUrl + this.coverImage + ')',
       'backgroundRepeat': 'no-repeat',
       'backgroundSize': 'cover',
       'height': '200px'
@@ -310,27 +315,29 @@ export class CommunityComponent implements OnInit {
   }
 
   changeCoverPhoto(imagePath: string) {
-    this.coverImage = 'assets/images/' + imagePath
+    this.coverImageTochange = imagePath
   }
 
   updateCoverPhoto() {
     debugger;
-    if (this.coverImage == "") {
+    this.loading = true
+    if (this.coverImageTochange == "") {
       return
     }
     let body = {
       _member_id: this.user.member_id,
-      _background_image: this.coverImage
+      _background_image: this.coverImageTochange
 
     }
     this.communityService.updateCoverPhoto(body).subscribe(data => {
       console.log(data);
+      this.loading = false
       if (data['data'][0]['update_member_background_image'] == "success") {
-
+        this.getUserProfileDetails();
       }
     },
       error => {
-
+        this.loading = false
       })
   }
 
