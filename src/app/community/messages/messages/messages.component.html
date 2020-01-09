@@ -7,7 +7,7 @@
           <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
         </li>
         <li class="nav-item">
-          <a routerLink="/profile" class="nav-link text-muted font-weight-bold " aria-controls="profile"
+          <a routerLink="/community/profile" class="nav-link text-muted font-weight-bold " aria-controls="profile"
             aria-selected="false">MY PROFILE</a>
         </li>
         <!-- <li class="nav-item">
@@ -154,13 +154,15 @@
                   </div> -->
                   <div class="card-body pb-2 text-break">
                     <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="!selectedThread">
-                      <div class="col-md-5 text-center col-3 col-xl-5 py-5 ">
-                        <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image" height="250px"
+                      <!-- <div class="col-md-5 text-center col-3 col-xl-5 py-5 ">
+                        <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image" height="180px"
                           width="auto">
-                      </div>
-                      <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
+                      </div> -->
+                      <div class="col-md-8 text-center col-8 col-xl-8 px-4 py-5">
                         <div class="align-self-center">
-                          <h6 class="text-secondary font-weight-semibold text-uppercase">No message history found!</h6>
+                          <h6 class="text-secondary font-weight-semibold text-uppercase">Hey , this is your Chat Box !</h6>
+                          <h6 class="text-muted font-weight-semibold small">All messages regarding particular Member will be displayed here.</h6>
+                          <h6 class="text-muted font-weight-semibold small">Create a New Message to Start Chatting</h6>
                         </div>
                       </div>
                     </div>
@@ -215,13 +217,26 @@
                       <span><i *ngIf="typingData?.length!=null" class="isTyping">{{typingData.userName}}
                           typing...</i></span>
                       <div class="media-body mb-0">
-                        <div class="align-self-center rounded-5 px-3">
-                          <input class="form-control border-0  rounded-5 bg-light w-100 form-control-lg"
-                            (ng-keypress)="typing()" placeholder="Write a Comment" type="text"
-                            (keyup.enter)="sendMessage($event)">
+                        <div class="row d-flex">
+                          <div class="col-10 pl-3 pr-0">
+                            <div class="align-self-center">
+                              <input class="form-control border-0  rounded-5 bg-light w-100 form-control-lg"
+                                (ng-keypress)="typing()" placeholder="Write a Comment" type="text"
+                                (keyup.enter)="sendMessage($event)">
+                              </div>
                           </div>
+                          <div class="col-2 text-right px-2 d-flex"> 
+                            <button type="button" class="rounded-5 align-self-center btn-sm btn-accent text-uppercase">
+                              <i class="material-icons md-18">
+                                send
+                                </i>
+                            </button>
+                            
+                          </div>
+                        </div>
+                     
                             <!-- <div class="ml-auto ">
-                            <a href="#" class="btn btn-outline-accent  btn-sm btn-block text-uppercase">View </a>
+                          
                             </div> -->
                        
                         <!-- <div class="ml-auto">
