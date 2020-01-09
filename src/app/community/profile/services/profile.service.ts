@@ -22,6 +22,7 @@ export class ProfileService {
   }
 
   getMyNews(memberId: number) {
+    debugger;
     return this.http.get<MyNews[]>(`${environment.APIBASEURL}/NewsFramework/GetMyNews/${memberId}`, Utils.getAuthHeader())
   }
 

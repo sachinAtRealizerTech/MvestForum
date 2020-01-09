@@ -56,6 +56,7 @@ export class ProfileComponent implements OnInit {
   getMyNews() {
     this.loading = true;
     this.profileService.getMyNews(this.user.member_id).subscribe(data => {
+      debugger;
       console.log('mynews', data)
       this.MyNews = data;
       this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());

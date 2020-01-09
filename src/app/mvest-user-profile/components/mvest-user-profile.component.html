@@ -18,8 +18,11 @@
         <div class="col-xl-12 col-md-12 col-sm-12">
             <!-- Profile widget -->
             <div class="bg-warning shadow overflow-hidden">
-                <div class="px-4 pb-4 py-4 "
-                    style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;">
+                <!-- <div class="px-4 pb-4 py-4 "
+                    style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;"> -->
+
+                <div class="px-4 pb-4 py-4 " [ngStyle]="returnCoverPhoto()">
+
                     <div class="media align-items-end profile-header ">
                         <div class="justify-content-start mr-3">
                             <ngx-avatar name=" {{userDetails?.f_name}} {{userDetails?.l_name}}" [size]="100"

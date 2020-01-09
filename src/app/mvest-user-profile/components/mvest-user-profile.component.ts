@@ -25,12 +25,15 @@ export class MvestUserProfileComponent implements OnInit {
   isConnectedToMe: boolean;
   isConnect: boolean;
   isFollow: string;
+  coverImagePrependUrl: string;
+  coverImage: string;
 
   constructor(private followingService: FollowingService,
     private neighborsService: NeighborsService,
     private mvestUserProfileService: MvestUserProfileService) { }
 
   ngOnInit() {
+    this.coverImagePrependUrl = 'assets/images/'
     if (history.state.emailId && history.state.memberId) {
       localStorage.setItem('userEmailId', history.state.emailId);
       this.userEmailId = localStorage.getItem('userEmailId');
@@ -59,10 +62,21 @@ export class MvestUserProfileComponent implements OnInit {
       this.name = this.userDetails.user_name;
       this.tagLine = this.userDetails.tag_line;
       this.isConnect = this.userDetails.is_neighbor;
-      this.isFollow = this.userDetails.follow_status
+      this.isFollow = this.userDetails.follow_status;
+      this.coverImage = this.userDetails.background_image;
       console.log('user prof details', data);
       this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
     })
+  }
+
+  public returnCoverPhoto(): any {
+    let styles = {
+      'backgroundImage': 'url(' + this.coverImagePrependUrl + this.coverImage + ')',
+      'backgroundRepeat': 'no-repeat',
+      'backgroundSize': 'cover',
+      'height': '200px'
+    }
+    return styles
   }
 
   getMyFollowingMembers() {

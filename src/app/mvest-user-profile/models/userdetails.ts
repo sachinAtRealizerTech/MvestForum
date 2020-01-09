@@ -5,4 +5,5 @@ export interface UserDetails {
     tag_line: string
     follow_status: string
     is_neighbor: boolean
+    background_image: string
 }
