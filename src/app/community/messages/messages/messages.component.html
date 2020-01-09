@@ -237,17 +237,21 @@
   <div class="modal-dialog modal-md bg-white shadow">
     <form action="/action_page.php" class="needs-validation" novalidate>
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">New Message List</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class=" justify-content-end">
+          <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+            (click)="closeReplyModal()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
-        <div class="modal-body px-1">
+        <div class="modal-body py-3 px-1">
           <div class="card shadow-none">
+            <div class="row px-3">
+              <div class="col-12">
+                <h6 class="text-dark font-weight-semibold">Search Members to Chat</h6>
+              </div>
+            </div>
             <form class="form-inline" id="search-form">
-              <div class="input-group col-12">
+              <div class="input-group col-12 pb-4">
                 <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4=""
                   class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
                     <i class="fa fa-search"></i>
@@ -256,8 +260,14 @@
               </div>
             </form>
             <form>
-              <div class="card-body pt-3 " *ngFor="let member of members">
-                <div class="border-bottom p-1">
+              <!-- <div class="row px-4">
+                <div class="col-12">
+                  <h6 class="text-accent font-weight-semibold">24 Members in your Chat List</h6>
+                </div>
+              </div> -->
+              <div class="card-body py-0" *ngFor="let member of members">
+              
+                <div class="border-top p-1">
                   <div class="media d-flex align-items-center py-2">
                     <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
                       src="assets/images/avatars/2.jpg">
