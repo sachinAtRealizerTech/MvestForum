@@ -69,9 +69,10 @@
           </div>
 
           <!-- Thread containser starts -->
-          <div class="card ">
-
-            <div class="card-body card-selected p-0 cursor-pointer" (click)="loadThreadInChatCenter(thread)"
+        
+          <div class="card shadow p-2">
+            <div  id="chat-window" #scrollMe [scrollTop]="scrollMe.scrollHeight" >
+            <div class="card-body card-selected p-1 cursor-pointer" (click)="loadThreadInChatCenter(thread)"
               *ngFor="let thread of threads">
               <div>
                 <div class=" border-bottom p-1">
@@ -98,6 +99,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -239,7 +241,7 @@
       <div class="modal-content">
         <div class=" justify-content-end">
           <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
-            (click)="closeReplyModal()">
+           data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -252,8 +254,8 @@
             </div>
             <form class="form-inline" id="search-form">
               <div class="input-group col-12 pb-4">
-                <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4=""
-                  class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
+                <input class="form-control search-form" placeholder="Search" type="text"><span 
+                  class="input-group-btn"><button class="search-btn" type="submit">
                     <i class="fa fa-search"></i>
                   </button>
                 </span>
