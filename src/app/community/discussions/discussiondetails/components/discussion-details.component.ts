@@ -26,6 +26,10 @@ export class DiscussionDetailsComponent implements OnInit {
   isDislikePressed = false;
   imagePrepend: string;
   png: string;
+  reportAbuseModal: TemplateRef<any>;
+  reportAbusePostId: string;
+  abuseType: string;
+  abuseTypeFilter = false;
 
 
   constructor(private discussiondetailsService: DiscussiondetailsService,
@@ -839,6 +843,50 @@ export class DiscussionDetailsComponent implements OnInit {
       this.flashMessagesService.show('Comment has been deleted successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.closeDeletePostModal();
     })
+  }
+
+  openReportAbuseReasonModal(reportAbuseModal: TemplateRef<any>, postId: string) {
+    this.reportAbuseModal = reportAbuseModal;
+    this.reportAbusePostId = postId
+    this.modalService.open(this.reportAbuseModal, {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    })
+  }
+
+  closeReportAbuseModal() {
+    this.modalService.dismissAll(this.reportAbuseModal);
+    this.abuseTypeFilter = false;
+  }
+
+  sendAbuseReason(abuseType: string) {
+    debugger;
+    this.abuseType = abuseType
+  }
+
+  reportAbuse() {
+    debugger;
+    if (!this.abuseType) {
+      this.abuseTypeFilter = true;
+      return
+    }
+    let body = {
+      subcat_id: this.subCategoryId,
+      disc_id: this.discussiondocId,
+      post_id: this.reportAbusePostId,
+      abuse_type: this.abuseType,
+      reported_by: this.user.member_id,
+      status: "inprogress"
+    }
+    this.discussiondetailsService.reportAbuse(body).subscribe(data => {
+      this.flashMessagesService.show('You have sent this post for abuse report...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+      this.closeReportAbuseModal();
+      this.abuseType = "";
+    },
+      error => {
+        this.abuseType = "";
+        this.closeReportAbuseModal();
+      })
   }
 
 }

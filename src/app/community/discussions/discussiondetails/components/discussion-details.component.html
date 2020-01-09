@@ -178,7 +178,8 @@
                         <i class="material-icons icon-muted small md-18 pr-1">
                           report
                         </i> </h6>
-                      <h6 class="mb-0 font-weight-semibold cursor-pointer text-muted">
+                      <h6 class="mb-0 font-weight-semibold cursor-pointer text-muted"
+                        (click)="openReportAbuseReasonModal(reportAbuseReason,discussionDetails?.posts[0]?.post_id)">
                         Report Abuse</h6>
                     </div>
                   </div>
@@ -968,61 +969,77 @@
 
 <!-----------------------------------------End Delete Modal------------------------------------------------------------------->
 
-<div class="modal fade" id="reportAbuseReason" tabindex="-1" role="dialog" aria-labelledby="reportAbuseReason"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="justify-content-end">
-        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
-          (click)="closeEditPostModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group ">
-            <div class=" col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason1" name="reportAbuseReason" class="custom-control-input"
-                value="radio1" checked>
-              <label class="custom-control-label h6 text-secondary font-weight-semibold"
-                for="reportAbuseReason1">Inappropriate</label>
-            </div>
-            <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason2" name="reportAbuseReason" class="custom-control-input"
-                value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold"
-                for="reportAbuseReason2">Promoting hatred, violence or illegal/offensive activities.</label>
-            </div>
-            <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason3" name="reportAbuseReason" class="custom-control-input"
-                value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason3"> Spam,
-                malware or 'phishing'</label>
-            </div>
-            <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason4" name="reportAbuseReason" class="custom-control-input"
-                value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold"
-                for="reportAbuseReason4">Private and confidential information.</label>
-            </div>
-            <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason5" name="reportAbuseReason" class="custom-control-input"
-                value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold"
-                for="reportAbuseReason5">Copyright infringement</label>
-            </div>
-            <div class="col-12 custom-control custom-radio custom-control-inline">
-              <input type="radio" id="reportAbuseReason6" name="reportAbuseReason" class="custom-control-input"
-                value="radio1">
-              <label class="custom-control-label h6 text-secondary font-weight-semibold"
-                for="reportAbuseReason6">Other</label>
-            </div>
+
+<!-----------------------------------------Report Abuse Modal----------------------------------------------------------------->
+
+<ng-template #reportAbuseReason>
+
+  <div class="modal-content">
+    <div class="justify-content-end">
+      <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+        (click)="closeReportAbuseModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+
+        <div class="form-group ">
+          <div class=" col-12 custom-control custom-radio custom-control-inline">
+            <h6 class="font-weight-semibold text-secondary">Select abuse report reason</h6>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-accent btn-sm text-uppercase">Report Abuse</button>
+
+        <div class="form-group ">
+          <div class=" col-12 custom-control custom-radio custom-control-inline">
+            <input type="radio" id="reportAbuseReason1" name="reportAbuseReason" class="custom-control-input"
+              value="radio1" (click)="sendAbuseReason('Inappropriate')">
+            <label class="custom-control-label h6 text-secondary font-weight-semibold"
+              for="reportAbuseReason1">Inappropriate</label>
+          </div>
+          <div class="col-12 custom-control custom-radio custom-control-inline">
+            <input type="radio" id="reportAbuseReason2" name="reportAbuseReason" class="custom-control-input"
+              value="radio1" (click)="sendAbuseReason('Promoting hatred violence or illegal/offensive activities')">
+            <label class="custom-control-label h6 text-secondary font-weight-semibold"
+              for="reportAbuseReason2">Promoting hatred, violence or illegal/offensive activities.</label>
+          </div>
+          <div class="col-12 custom-control custom-radio custom-control-inline">
+            <input type="radio" id="reportAbuseReason3" name="reportAbuseReason" class="custom-control-input"
+              value="radio1" (click)="sendAbuseReason('Spam malware or phishing')">
+            <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason3">
+              Spam,
+              malware or 'phishing'</label>
+          </div>
+          <div class="col-12 custom-control custom-radio custom-control-inline">
+            <input type="radio" id="reportAbuseReason4" name="reportAbuseReason" class="custom-control-input"
+              value="radio1" (click)="sendAbuseReason('Private and confidential information')">
+            <label class="custom-control-label h6 text-secondary font-weight-semibold" for="reportAbuseReason4">Private
+              and confidential information.</label>
+          </div>
+          <div class="col-12 custom-control custom-radio custom-control-inline">
+            <input type="radio" id="reportAbuseReason5" name="reportAbuseReason" class="custom-control-input"
+              value="radio1" (click)="sendAbuseReason('Copyright infringement')">
+            <label class="custom-control-label h6 text-secondary font-weight-semibold"
+              for="reportAbuseReason5">Copyright infringement</label>
+          </div>
+          <div class="col-12 custom-control custom-radio custom-control-inline">
+            <input type="radio" id="reportAbuseReason6" name="reportAbuseReason" class="custom-control-input"
+              value="radio1" (click)="sendAbuseReason('Other')">
+            <label class="custom-control-label h6 text-secondary font-weight-semibold"
+              for="reportAbuseReason6">Other</label>
+          </div>
+
+          <div *ngIf="abuseTypeFilter">
+            <h6 class="text-danger">Please select an option from above list.</h6>
+          </div>
+
+        </div>
       </div>
     </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-accent btn-sm text-uppercase" (click)="reportAbuse()">Report Abuse</button>
+    </div>
   </div>
-</div>
+
+</ng-template>
+<!-----------------------------------------End Report Abuse Modal----------------------------------------------------------------->

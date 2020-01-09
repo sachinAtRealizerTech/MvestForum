@@ -50,4 +50,8 @@ export class DiscussiondetailsService {
     return this.httpClient.put(`${environment.APIBASEURL}/Discussion/DeletePost`, body, Utils.getAuthHeader())
   }
 
+  reportAbuse(body) {
+    return this.httpClient.post(`${environment.APIBASEURL}/ReportAbuse/report_abusedpost`, body, Utils.getAuthHeader())
+  }
+
 }
