@@ -29,7 +29,7 @@ export class NotificationComponent implements OnInit {
   searchText: any;
   emailId: string;
   currentFeature: string = "All";
-  currentStatus: string = "Unread";
+  currentStatus: string = "All";
   currentType: string = "Info";
 
   ngOnInit() {
