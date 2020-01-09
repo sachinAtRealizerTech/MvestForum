@@ -83,6 +83,20 @@
           <div class="row justify-content-between no-gutters pb-3">
             <div class="col-xl-12">
 
+              <div class="row justify-content-center text-center py-4" *ngIf="MyNews?.length==0">
+                <div class="col-md-5 text-center col-12 col-xl-4">
+                  <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="235px" width="auto">
+                </div>
+                <div class="col-md-6 col-12 col-xl-6 px-4 text-left d-flex">
+                  <div class="align-self-center">
+                    <h6 class="text-secondary font-weight-semibold text-uppercase">No news listed under you yet... !!
+                    </h6>
+                    <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all official/user news.
+                    </h6>
+                  </div>
+                </div>
+              </div>
+
               <div class="card card-small shadow blog-comments mb-3" *ngFor="let mn of MyNews">
 
                 <div class="card-header p-0">
@@ -160,40 +174,40 @@
               <div class="card-body text-center p-2 ">
                 <ul class="list-inline d-flex">
                   <li class="list-inline-item flex-1 h6 mb-0">
-                 <span class="text-dark font-weight-semibold">{{communityStats?.likes}}</span>
-                 <br>
-                 <small class="font-weight-semibold text-secondary text-uppercase">
-                   Likes </small>
-                  </li>
-                  <li class="list-inline-item flex-1 h6 mb-0"> 
-                   <span class="text-dark font-weight-semibold">{{communityStats?.notifications}}</span>
-                   <br>
-                   <small class="font-weight-semibold text-secondary text-uppercase">
-                    Notification</small>
+                    <span class="text-dark font-weight-semibold">{{communityStats?.likes}}</span>
+                    <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Likes </small>
                   </li>
                   <li class="list-inline-item flex-1 h6 mb-0">
-                   <span class="text-dark font-weight-semibold">{{communityStats?.posts}}</span>
-                   <br>
-                   <small class="font-weight-semibold text-secondary text-uppercase">
+                    <span class="text-dark font-weight-semibold">{{communityStats?.notifications}}</span>
+                    <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
+                      Notification</small>
+                  </li>
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                    <span class="text-dark font-weight-semibold">{{communityStats?.posts}}</span>
+                    <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
                       Posts </small>
                   </li>
                 </ul>
                 <ul class="list-inline d-flex">
                   <li class="list-inline-item flex-1 h6 mb-0">
-                  <span class="text-dark font-weight-semibold">{{communityStats?.messages}}</span>
-                  <br>
-                  <small class="font-weight-semibold text-secondary text-uppercase">
+                    <span class="text-dark font-weight-semibold">{{communityStats?.messages}}</span>
+                    <br>
+                    <small class="font-weight-semibold text-secondary text-uppercase">
                       Messages </small>
                   </li>
                   <li class="list-inline-item flex-1 h6 mb-0">
-                  <span class="text-dark font-weight-semibold">{{communityStats?.followers}}</span>
-                  <br>
+                    <span class="text-dark font-weight-semibold">{{communityStats?.followers}}</span>
+                    <br>
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Followers</small>
                   </li>
-                  <li class="list-inline-item flex-1 h6 mb-0"> 
-                   <span class="text-dark font-weight-semibold">{{communityStats?.comments}}</span>
-                   <br>
+                  <li class="list-inline-item flex-1 h6 mb-0">
+                    <span class="text-dark font-weight-semibold">{{communityStats?.comments}}</span>
+                    <br>
                     <small class="font-weight-semibold text-secondary text-uppercase">
                       Comments </small>
                   </li>
@@ -465,11 +479,11 @@
     </div>
   </div>
 
-  
-  
- 
 
-   
+
+
+
+
 
 </div>
 

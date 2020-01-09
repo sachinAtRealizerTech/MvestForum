@@ -713,62 +713,60 @@
 <!-----------------------------------------Ask a question------------------------------------------------------------>
 
 <ng-template #postQuestionModal>
-  <form>
-    <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h5 class="modal-title">Ask a Question</h5>
-      </div> -->
-      <div class=" justify-content-end">
-        <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
-          (click)="closePostQuestionModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
 
-      <div class="modal-body">
-        <div class="card shadow-none">
-          <div class="row">
-            <div class="col-12">
-              <h5 class="h6 font-weight-semibold"><u>Ask a Question</u></h5>
-              <form [formGroup]="discussionDetailsQuestionForm">
-                <div class="form">
-                  <div class="form-group">
-                    <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Discussion Title
-                      :</label>
-                    <input type="text" class="form-control" id="title" formControlName="discussionTitle" placeholder=""
-                      [ngClass]="{ 'is-invalid': submitQuestion && f.discussionTitle.errors }">
-                    <div *ngIf="submitQuestion && f.discussionTitle.errors" class="invalid-feedback">
-                      <div *ngIf="f.discussionTitle.errors.required">Discussion title is required</div>
-                    </div>
-                  </div>
+  <div class="modal-content">
+    <div class=" justify-content-end">
+      <button aria-label="Close" type="button" class="close bg-accent " aria-hidden="true"
+        (click)="closePostQuestionModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
-                  <div class="form-group">
-                    <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Description
-                      :</label>
-                    <div class="w-100">
-                    </div>
-
-                    <angular-editor formControlName="problemDescription" [config]="editorConfig"
-                      [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }">
-                      <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
-                        <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
-                      </div>
-                    </angular-editor>
-
+    <div class="modal-body">
+      <div class="card shadow-none">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="h6 font-weight-semibold"><u>Ask a Question</u></h5>
+            <form [formGroup]="discussionDetailsQuestionForm">
+              <div class="form">
+                <div class="form-group">
+                  <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Discussion Title
+                    :</label>
+                  <input type="text" class="form-control" id="title" formControlName="discussionTitle" placeholder=""
+                    [ngClass]="{ 'is-invalid': submitQuestion && f.discussionTitle.errors }">
+                  <div *ngIf="submitQuestion && f.discussionTitle.errors" class="invalid-feedback">
+                    <div *ngIf="f.discussionTitle.errors.required">Discussion title is required</div>
                   </div>
                 </div>
-              </form>
-            </div>
+
+                <div class="form-group">
+                  <label for="title" class="align-self-center mb-0 h6 text-dark font-weight-semibold">Description
+                    :</label>
+                  <div class="w-100">
+                  </div>
+
+                  <angular-editor formControlName="problemDescription" [config]="editorConfig"
+                    [ngClass]="{ 'is-invalid': submitQuestion && f.problemDescription.errors }">
+                    <div *ngIf="submitQuestion && f.problemDescription.errors" class="invalid-feedback">
+                      <div *ngIf="f.problemDescription.errors.required">Problem description is required</div>
+                    </div>
+                  </angular-editor>
+
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()">Post</button>
-        <!-- <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
-          (click)="closePostQuestionModal()">Cancel</button> -->
-      </div>
     </div>
-  </form>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-accent btn-sm text-uppercase" (click)="postQuestion()">Post</button>
+    </div>
+  </div>
+
+
+
+
 </ng-template>
 
 <!-----------------------------------------End Ask a question------------------------------------------------------------>

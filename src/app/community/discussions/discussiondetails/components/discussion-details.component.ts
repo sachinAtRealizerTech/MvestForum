@@ -210,7 +210,8 @@ export class DiscussionDetailsComponent implements OnInit {
     this.postQuestionModal = content;
     this.modalService.open(this.postQuestionModal, {
       backdrop: 'static',
-      backdropClass: 'customBackdrop'
+      backdropClass: 'customBackdrop',
+      size: 'xl'
     })
   }
 

@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit {
   getCommunityStats() {
 
     this.profileService.getCommunityStats(this.user.email_id).subscribe(data => {
+      debugger;
       this.communityStats = data;
 
       console.log('communityStats', this.communityStats)

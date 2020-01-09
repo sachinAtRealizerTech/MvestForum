@@ -40,7 +40,6 @@ export class BookmarksComponent implements OnInit {
   }
 
   removeBookmark(docId: string, subcat_id: string) {
-    debugger;
     let body = {
       email_id: this.user.email_id,
       disc_doc_id: docId,

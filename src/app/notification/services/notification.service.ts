@@ -15,6 +15,7 @@ export class NotificationService {
   }
 
   getMyNotifications(email: string, feature: string, status: string, type: string) {
+    debugger;
     return this.httpClient.get(`${environment.APIBASEURL}/Notifications/GetMyNotifications/${email}/${feature}/${status}/${type}`, Utils.getAuthHeader())
   }
 
