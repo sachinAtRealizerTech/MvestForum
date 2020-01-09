@@ -11,6 +11,7 @@ import { Auth } from 'src/app/models/Auth';
 import { ScrollToBottomDirective } from './../ScrollToBottomDirective';
 import { IfStmt } from '@angular/compiler';
 import { MessageUtils } from './MessageUtils';
+import { environment } from 'src/environments/environment';
 //\messages\directive\ScrollToBottomDirective.ts
 
 @Component({
@@ -49,6 +50,7 @@ export class MessagesComponent implements OnInit {
   threadToPushInArray: Array<Thread> = [];
   threadPushInArray: Thread;
   message: Message;
+  searchText: any;
   //public threadToPushInArray: Array<any> = [];
 
   public selectedThread: Thread;
@@ -248,12 +250,123 @@ export class MessagesComponent implements OnInit {
     };
     this.messagesService.getMemberNeighborsWithFilter(body).subscribe(data => {
       debugger;
-      this.allNeighboursCount = 0;
-      this.neighboursListDetails = [];
+      //this.allNeighboursCount = 0;
+      //this.neighboursListDetails = [];
       this.myConnectedNeighbors = data['data']
-      this.allNeighboursCount = this.myConnectedNeighbors.length;
-      sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
+      //this.allNeighboursCount = this.myConnectedNeighbors.length;
+      //sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
       this.members = this.myConnectedNeighbors;
+      if (environment.ShowAllMembersToChat) {
+        this.members = [{
+          "neighbor_id": 222,
+          "name": "Aishwarya Belapurkar",
+          "neighbor_email_id": "aishwarya@gmail.com"
+        },
+        {
+          "neighbor_id": 223,
+          "name": "sachin shinde",
+          "neighbor_email_id": "newsachins@gmail.com"
+        }, {
+          "neighbor_id": 224,
+          "name": "Manisha	Manekar",
+          "neighbor_email_id": "manisha@gmail.com"
+        }, {
+          "neighbor_id": 225,
+          "name": "shilpa Dhumal",
+          "neighbor_email_id": "dhumalshilpa22@gmail.com"
+        }, {
+          "neighbor_id": 226,
+          "name": "Atul Pawase",
+          "neighbor_email_id": "atul@gmail.com"
+        },
+        {
+          "neighbor_id": 227,
+          "name": "Manjusha Karpe",
+          "neighbor_email_id": "Manjushkarpe@gmail.com"
+        },
+        {
+          "neighbor_id": 228,
+          "name": "Rutuja Gorawade",
+          "neighbor_email_id": "gorawaderutuja@gmail.com"
+        },
+        {
+          "neighbor_id": 229,
+          "name": "Madhuri Sonawane",
+          "neighbor_email_id": "madhuri1@gmail.com"
+        },
+        {
+          "neighbor_id": 230,
+          "name": "Payal Surpam",
+          "neighbor_email_id": "payal@gmail.com"
+        },
+        {
+          "neighbor_id": 231,
+          "name": "Gaurav Pawar",
+          "neighbor_email_id": "gaurav@gmail.com"
+        },
+        {
+          "neighbor_id": 232,
+          "name": "pravin jadhav",
+          "neighbor_email_id": "pravin@gmail.com"
+        },
+        {
+          "neighbor_id": 233,
+          "name": "Ramdas Waghmare",
+          "neighbor_email_id": "ramdas@gmail.com"
+        },
+        {
+          "neighbor_id": 234,
+          "name": "Dhanashri Bhondave",
+          "neighbor_email_id": "dhanashri@gmail.com"
+        },
+        {
+          "neighbor_id": 235,
+          "name": "Satish Sawant",
+          "neighbor_email_id": "satish@gmail.com"
+        },
+        {
+          "neighbor_id": 236,
+          "name": "Bhagyashri Wakade",
+          "neighbor_email_id": "bhagyashri@gmail.com"
+        },
+
+        {
+          "neighbor_id": 237,
+          "name": "Bhagyashri Salgare",
+          "neighbor_email_id": "bhagyashris@gmail.com"
+        },
+        {
+          "neighbor_id": 238,
+          "name": "Shital More",
+          "neighbor_email_id": "shital@gmail.com"
+        },
+        {
+          "neighbor_id": 239,
+          "name": "Pravin Jadhav",
+          "neighbor_email_id": "pravin@gmail.com"
+        },
+        {
+          "neighbor_id": 240,
+          "name": "Pooja Waghmare",
+          "neighbor_email_id": "pooja@gmail.com"
+        },
+        {
+          "neighbor_id": 241,
+          "name": "Namrata Kapde",
+          "neighbor_email_id": "namrata@gmail.com"
+        },
+        {
+          "neighbor_id": 242,
+          "name": "Adwait",
+          "neighbor_email_id": "adwait@gmail.com"
+        },
+        {
+          "neighbor_id": 243,
+          "name": "Vidhyadhar Mote",
+          "neighbor_email_id": "vidhyadhar@gmail.com"
+        }
+        ]
+      }
       console.log('newFilteredData', data['data']);
       this.loading = false;
     },
@@ -262,10 +375,14 @@ export class MessagesComponent implements OnInit {
         this.loading = false;
       })
   }
-
+  filterMembers(event) {
+    let filtter = event.target.value;
+    this.members = this.myConnectedNeighbors.filter(n => n.name == filtter);
+  }
   selectMembersToChat(event, member: any) {
     //this.selectedMemberToChat = [];
     //this.selectedUser = [];
+    console.log('selected member - ', member);
     let id: number = event.target.id;
     if (event.target.checked) {
       let participantUser = {
@@ -548,4 +665,6 @@ export class MessagesComponent implements OnInit {
   isThreadOneToOne(thread: Thread) {
     return MessageUtils.isThreadOneToOne(thread);
   }
+
+
 }
