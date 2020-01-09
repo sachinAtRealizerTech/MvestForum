@@ -1729,3 +1729,18 @@ color: #999;
   border-radius: .375rem;
   box-shadow: none;
 }
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rounded-message {
+  border-radius: 20px!important;
+}
+
+.card-selected:hover, .card-selected:focus{
+  background-color: #f5f5f5 !important;
+}

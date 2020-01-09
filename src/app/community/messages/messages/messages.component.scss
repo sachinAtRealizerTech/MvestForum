@@ -136,7 +136,8 @@ body {
 	margin-bottom: 6px;
 }
 #chat-window{
-    height: 320px;
+	// height: 320px;
+	height: calc(60vh - 3.75rem - 1px) !important;
     overflow: auto;
     background: white;
 }
