@@ -233,9 +233,7 @@ export class CommunityComponent implements OnInit {
     return styles
   }
 
-  changeCoverPhoto(imagePath: string) {
-    this.coverImage = imagePath
-  }
+
 
   openNewDisplayPicForm(newDisplayPicModal: TemplateRef<any>) {
     this.newDisplayPicModal = newDisplayPicModal;
@@ -311,6 +309,29 @@ export class CommunityComponent implements OnInit {
     window.location.reload();
   }
 
+  changeCoverPhoto(imagePath: string) {
+    this.coverImage = 'assets/images/' + imagePath
+  }
 
+  updateCoverPhoto() {
+    debugger;
+    if (this.coverImage == "") {
+      return
+    }
+    let body = {
+      _member_id: this.user.member_id,
+      _background_image: this.coverImage
+
+    }
+    this.communityService.updateCoverPhoto(body).subscribe(data => {
+      console.log(data);
+      if (data['data'][0]['update_member_background_image'] == "success") {
+
+      }
+    },
+      error => {
+
+      })
+  }
 
 }
