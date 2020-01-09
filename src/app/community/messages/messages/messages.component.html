@@ -285,7 +285,8 @@
                   <h6 class="text-accent font-weight-semibold">24 Members in your Chat List</h6>
                 </div>
               </div> -->
-              <div class="card-body py-0" *ngFor="let member of members">
+              <div id="chat-window">
+              <div class="card-body py-0" *ngFor="let member of members | filter:searchText">
               
                 <div class="border-top p-1">
                   <div class="media d-flex align-items-center py-2">
@@ -307,6 +308,7 @@
                 </div>
 
               </div>
+            </div>
             </form>
           </div>
         </div>
