@@ -14,12 +14,16 @@ import { Router } from '@angular/router'
 export class BookmarksComponent implements OnInit {
   bookmarksList: Bookmarks[];
   loading = false;
+  imagePrepend: string;
+  png: string;
 
   constructor(private bookmarksService: BookmarksService,
     private flashMessagesService: FlashMessagesService,
     private router: Router) { }
 
   ngOnInit() {
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.getBookmarks();
   }
 
@@ -29,7 +33,6 @@ export class BookmarksComponent implements OnInit {
     this.loading = true;
     this.bookmarksService.getBookmarks(this.user.email_id).subscribe(data => {
       this.bookmarksList = data['Bookmarks'];
-      this.bookmarksList.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.bookmarksList.sort((a, b) => new Date(b.bookmarkdate).getTime() - new Date(a.bookmarkdate).getTime())
       this.loading = false
       console.log('bookmarkslist', this.bookmarksList);
