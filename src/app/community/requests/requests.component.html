@@ -74,7 +74,7 @@
         <div class="tab-pane fade show active" id="connect" role="tabpanel" aria-labelledby="home-tab">
             <!-- <div class="container container-fluid px-4"> -->
             <div class="row justify-content-between no-gutters pb-3 pt-2">
-                <div class="col-md-12 col-xl-8 ">
+                <div class="col-md-12 col-xl-12">
 
                     <div class="row justify-content-between no-gutters   ">
                         <div class="col-xl-12 text-left ">
@@ -103,8 +103,8 @@
                             *ngIf="myConnectRequests?.length==0">
                             <div class="row justify-content-center ">
                                 <div class="col-xl-4 text-center ">
-                                    <img src="assets/images/new-neighbors3.png" class="" alt="New Neighbors Image"
-                                        height="200px" width="auto">
+                                    <img src="assets/images/new-neighbors3.png" class="" alt="Request Image"
+                                        height="235px" width="auto">
                                 </div>
                                 <div class="col-xl-6 text-left d-flex">
                                     <div class="align-self-center">
@@ -117,7 +117,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-12 col-md-12 col-sm-12 " *ngFor="let cr of myConnectRequests">
+                        <div class="col-xl-8 col-md-12 col-sm-12 " *ngFor="let cr of myConnectRequests">
 
                             <div class="card mb-3">
                                 <div class="card-body p-0">
@@ -240,16 +240,17 @@
         <div class="tab-pane fade show" id="following" role="tabpanel" aria-labelledby="home-tab">
             <!-- <div class="container container-fluid px-4"> -->
             <div class="row justify-content-between no-gutters pb-3 pt-2">
-                <div class="col-md-12 col-xl-8">
-                    <div class="row justify-content-start no-gutters ">
+                <div class="col-md-12 col-xl-12">
+                   <div class="row justify-content-start no-gutters ">
 
                         <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Following</h6>
-                    </div>
-                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 mt-3 text-center" *ngIf="followRequest?.length==0">
+                    </div> 
+
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 py-4 text-center" *ngIf="followRequest?.length==0">
                         <div class="row justify-content-center ">
                             <div class="ccol-md-5 col-lg-4 text-center col-6 col-xl-4 ">
-                                <img src="assets/images/new-neighbors3.png" class=" " alt="New Neighbors Image"
-                                    height="200px" width="auto">
+                                <img src="assets/images/follow.png" class=" " alt="Follow Image"
+                                    height="235px" width="auto">
                             </div>
                             <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
                                 <div class="align-self-center">
@@ -261,7 +262,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-12 col-md-12 col-sm-12 mt-3" *ngFor="let fr of followRequest">
+                    <div class="col-xl-8 col-md-12 col-sm-12 mt-3" *ngFor="let fr of followRequest">
                         <div class="card card-small blog-comments mt-3">
 
                             <div class="card-body p-0">
