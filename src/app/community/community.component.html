@@ -1,147 +1,150 @@
 <!-- <div class="main-content-container container-fluid px-4"> -->
+<div class="main-content-container container-fluid px-4">
 
-<flash-messages class="bg-accent text-center"></flash-messages>
+  <flash-messages class="bg-accent text-center"></flash-messages>
 
-<div class="row justify-content-center">
-  <div class="col-12">
-    <div class="content-loading text-center" *ngIf="loading">
-      <app-loadingcircle></app-loadingcircle>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row  pt-4">
-  <div class="col-12">
+  <div class="row  pt-4">
+    <div class="col-12">
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item align-self-center">
-        <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
-      </li>
-      <li class="nav-item ">
-        <a routerLink="/profile" class="active nav-link text-muted font-weight-bold" aria-controls="profile"
-          aria-selected="false">MY PROFILE</a>
-      </li>
-      <!-- <li class="nav-item ">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item align-self-center">
+          <h5 class="text-dark mb-0 font-weight-bold mr-3">Community</h5>
+        </li>
+        <li class="nav-item ">
+          <a routerLink="/community/profile" class="active nav-link text-muted font-weight-bold" aria-controls="profile"
+            aria-selected="false">MY PROFILE</a>
+        </li>
+        <!-- <li class="nav-item ">
         <a routerLink="/newsfeed" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
           aria-selected="false">NEWS FEED</a>
       </li> -->
-      <li class="nav-item">
-        <a routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
-          aria-selected="false">DISCUSSIONS</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
-          aria-selected="false">MESSAGES</a>
-      </li>
-      <!-- <li class="nav-item">
+        <li class="nav-item">
+          <a routerLink="/discussions" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
+            aria-selected="false">DISCUSSIONS</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/messages" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
+            aria-selected="false">MESSAGES</a>
+        </li>
+        <!-- <li class="nav-item">
         <a routerLink="/requests" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact"
           aria-selected="false">REQUESTS</a>
       </li> -->
 
-      <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
-        <a class="btn btn-accent btn-sm btn-block text-uppercase" (click)=openAskQuestionModal(postQuestionModal)>
-          Ask a Question
-        </a>
-      </li>
+        <li class="nav-item pull-right ml-xl-auto align-self-center py-1">
+          <a class="btn btn-accent btn-sm btn-block text-uppercase" (click)=openAskQuestionModal(postQuestionModal)>
+            Ask a Question
+          </a>
+        </li>
 
-    </ul>
+      </ul>
 
 
+    </div>
   </div>
-</div>
 
 
-<div class="row py-4">
-  <div class="col-xl-12 col-md-12 col-sm-12">
-    <!-- Profile widget -->
-    <div class="bg-warning shadow overflow-hidden">
+  <div class="row py-4">
+    <div class="col-xl-12 col-md-12 col-sm-12">
+      <!-- Profile widget -->
+      <div class="bg-warning shadow overflow-hidden">
 
-      <div class="px-4 pb-4 py-4" [ngStyle]="returnCoverPhoto()">
+        <div class="px-4 pb-4 py-4" [ngStyle]="returnCoverPhoto()">
 
-        <!-- <div class="px-4 pb-4 py-4"
+          <!-- <div class="px-4 pb-4 py-4"
         [ngStyle]="{ 'backgroundImage': 'url(' + coverImage + ')','backgroundRepeat': 'no-repeat', 'backgroundSize':'cover', 'height':'200px'}"> -->
 
-        <!-- <div class="px-4 pb-4 py-4 " [style.background-image]="coverImage" [style.background]="no-repeat"
+          <!-- <div class="px-4 pb-4 py-4 " [style.background-image]="coverImage" [style.background]="no-repeat"
         [style.background-size]="cover" [style.height]="200"> -->
 
-        <!-- <div class="px-4 pb-4 py-4 "
+          <!-- <div class="px-4 pb-4 py-4 "
         style="height:200px; background: url(assets/images/bg-pattern33.png) no-repeat;background-size:cover;"> -->
-        <div class="media align-items-end profile-header">
-          <div class="justify-content-start mr-3">
+          <div class="media align-items-end profile-header">
+            <div class="justify-content-start mr-3">
 
-            <!-- <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
+              <!-- <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
               class="rounded-50 profile img-thumbnail cursor-pointer" src=""
               (click)="openNewDisplayPicForm(newDisplayPicModal)"></ngx-avatar> -->
 
-            <div class="small-12 medium-2 large-2 columns">
-              <!-- <div class=""> -->
-              <!-- User Profile Image -->
-              <!-- <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg"> -->
-              <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
-                class="rounded-50 profile img-thumbnail cursor-pointer" src="{{displayPicImage}}"></ngx-avatar>
-              <!-- Default Image -->
-              <!-- <i class="fa fa-user fa-5x"></i> -->
-              <!-- </div> -->
-              <div class="p-image cursor-pointer">
-                <i class="fa fa-camera upload-button" (click)="openNewDisplayPicForm(newDisplayPicModal)"></i>
-                <!-- <input class="file-upload" type="file"/> -->
+              <div class="small-12 medium-2 large-2 columns">
+                <!-- <div class=""> -->
+                <!-- User Profile Image -->
+                <!-- <img class="profile-pic" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg"> -->
+                <ngx-avatar name="{{user.f_name}} {{user.l_name}}" [size]="100"
+                  class="rounded-50 profile img-thumbnail cursor-pointer" src="{{displayPicImage}}"></ngx-avatar>
+                <!-- Default Image -->
+                <!-- <i class="fa fa-user fa-5x"></i> -->
+                <!-- </div> -->
+                <div class="p-image cursor-pointer">
+                  <i class="fa fa-camera upload-button" (click)="openNewDisplayPicForm(newDisplayPicModal)"></i>
+                  <!-- <input class="file-upload" type="file"/> -->
+                </div>
               </div>
-            </div>
-            <!-- <img href="#" (click)="openNewDisplayPicForm(newDisplayPicModal)" src="assets/images/MProfile.png" alt="..."
+              <!-- <img href="#" (click)="openNewDisplayPicForm(newDisplayPicModal)" src="assets/images/MProfile.png" alt="..."
               width="100" class="rounded-50 mt-2 profile img-thumbnail cursor-pointer"> -->
 
-          </div>
+            </div>
 
-          <div class="media-body justify-content-center text-left text-white ">
-            <h4 class="text-white font-weight-medium username">{{user.f_name | titlecase}} {{user.l_name | titlecase}}
-            </h4>
-            <h6 class="text-white font-weight-medium user-tagline">{{userDetails?.tag_line | titlecase}}
-            </h6>
+            <div class="media-body justify-content-center text-left text-white ">
+              <h4 class="text-white font-weight-medium username">{{user.f_name | titlecase}} {{user.l_name | titlecase}}
+              </h4>
+              <h6 class="text-white font-weight-medium user-tagline">{{userDetails?.tag_line | titlecase}}
+              </h6>
 
-          </div>
-          <div class="mr-3 profile-btn justify-content-end align-self-end">
-            <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
-              class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
+            </div>
+            <div class="mr-3 profile-btn justify-content-end align-self-end">
+              <a href="#" data-toggle="modal" data-target=".cover-modal-lg"
+                class="btn btn-outline-white btn-sm btn-block text-uppercase">Change Cover Photo</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
-        <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
-          <li class="nav-item bg-dark ml-5">
-            <a routerLink="/profile" class="nav-link text-white font-weight-normal" role="tab" aria-controls=""
-              aria-selected="false" routerLinkActive='active'>My Wall</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/mydiscussions" class="nav-link text-white font-weight-normal" role="tab"
-              aria-controls="contact" aria-selected="false" routerLinkActive='active'>My Discusssion Groups</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/neighbors" class="nav-link text-white font-weight-normal" role="tab" aria-controls="contact"
-              aria-selected="false" routerLinkActive='active'>Neighbors</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/following" class="nav-link text-white font-weight-normal" role="tab" aria-controls="contact"
-              aria-selected="false" routerLinkActive='active'>Following</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/bookmarks" class="nav-link text-white font-weight-normal" role="tab" aria-controls="contact"
-              aria-selected="false" routerLinkActive='active'>Bookmarks</a>
-          </li>
+        <div class="bg-dark text-white px-4 py-2 d-flex justify-content-start text-center">
+          <ul class="nav nav-tabs sub-tab border-0 ml-5" id="myTab" role="tablist">
+            <li class="nav-item bg-dark ml-5">
+              <a routerLink="/community/profile" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="" aria-selected="false" routerLinkActive='active'>My Wall</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/community/mydiscussions" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="contact" aria-selected="false" routerLinkActive='active'>My Discusssion Groups</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/community/neighbors" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Neighbors</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/community/following" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Following</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/community/bookmarks" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="contact" aria-selected="false" routerLinkActive='active'>Bookmarks</a>
+            </li>
 
-          <li class="nav-item bg-dark ">
-            <a routerLink="/photos" class="nav-link text-white font-weight-normal" role="tab" aria-controls=""
-              aria-selected="false" routerLinkActive='active'>Photos</a>
-          </li>
-        </ul>
+            <li class="nav-item bg-dark ">
+              <a routerLink="/community/photos" class="nav-link text-white font-weight-normal" role="tab"
+                aria-controls="" aria-selected="false" routerLinkActive='active'>Photos</a>
+            </li>
+          </ul>
+        </div>
       </div>
+      <!-- End profile widget -->
     </div>
-    <!-- End profile widget -->
-  </div>
 
+
+  </div>
 
 </div>
 
-
+<router-outlet></router-outlet>
 <!-- </div> -->
 
 <div class="modal fade cover-modal-lg" tabindex="-1" role="dialog" aria-labelledby="cover-modal" aria-hidden="true">
@@ -457,6 +460,8 @@
     </form>
   </div>
 </div>
+
+
 
 
 <ng-template #newDisplayPicModal>

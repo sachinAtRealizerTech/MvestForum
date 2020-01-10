@@ -333,7 +333,7 @@ export class NeighborsComponent implements OnInit {
       sessionStorage.setItem("newNeighborFilterFlag", "Lease")
       this.loading = false;
       this.closeNewNeighborModal();
-      this.router.navigate(['/nearbyleases']);
+      this.router.navigate(['/community/nearbyleases']);
 
       // let body = {
       //   _filterBy: "lease",
@@ -365,7 +365,7 @@ export class NeighborsComponent implements OnInit {
       this.loading = false;
       sessionStorage.setItem("newNeighborFilterFlag", "CountyNOperator");
       this.closeNewNeighborModal();
-      this.router.navigate(['/nearbyleases']);
+      this.router.navigate(['/community/nearbyleases']);
 
       // let body = {
       //   _filterBy: "",

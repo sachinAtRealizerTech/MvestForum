@@ -65,17 +65,17 @@ const routes: Routes = [
     path: '',
     component: HomeLayoutComponent,
     children: [
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuard]
-      },
+      // {
+      //   path: 'profile',
+      //   component: ProfileComponent,
+      //   canActivate: [AuthGuard]
+      // },
 
-      {
-        path: 'photos',
-        component: PhotosComponent,
-        canActivate: [AuthGuard]
-      },
+      // {
+      //   path: 'photos',
+      //   component: PhotosComponent,
+      //   canActivate: [AuthGuard]
+      // },
       {
         path: 'requests',
         component: RequestsComponent,
@@ -91,16 +91,16 @@ const routes: Routes = [
         component: MessagesComponent,
         canActivate: [AuthGuard]
       },
-      {
-        path: 'following',
-        component: FollowingComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'mydiscussions',
-        component: MydiscussionsComponent,
-        canActivate: [AuthGuard]
-      },
+      // {
+      //   path: 'following',
+      //   component: FollowingComponent,
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'mydiscussions',
+      //   component: MydiscussionsComponent,
+      //   canActivate: [AuthGuard]
+      // },
       {
         path: 'discussions',
         component: DiscussionsComponent,
@@ -123,18 +123,18 @@ const routes: Routes = [
         canActivate: [AuthGuard]
 
       },
-      {
-        path: 'neighbors',
-        component: NeighborsComponent,
-        canActivate: [AuthGuard]
+      // {
+      //   path: 'neighbors',
+      //   component: NeighborsComponent,
+      //   canActivate: [AuthGuard]
 
-      },
-      {
-        path: 'community',
-        component: CommunityComponent,
-        canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'community',
+      //   component: CommunityComponent,
+      //   canActivate: [AuthGuard]
 
-      },
+      // },
       {
         path: 'signup',
         component: SignupComponent,
@@ -145,16 +145,16 @@ const routes: Routes = [
         component: DashboardComponent,
         canActivate: [AuthGuard]
       },
-      {
-        path: 'nearbyleases',
-        component: NearbyleasesComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'nearbyneighbors',
-        component: NearbyneighborsComponent,
-        canActivate: [AuthGuard]
-      },
+      // {
+      //   path: 'nearbyleases',
+      //   component: NearbyleasesComponent,
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+      //   path: 'nearbyneighbors',
+      //   component: NearbyneighborsComponent,
+      //   canActivate: [AuthGuard]
+      // },
       {
         path: 'myaccount',
         component: MyaccountComponent,
@@ -180,42 +180,62 @@ const routes: Routes = [
         component: SearchresultsComponent,
         canActivate: [AuthGuard]
       },
+      // {
+      //   path: 'bookmarks',
+      //   component: BookmarksComponent,
+      //   canActivate: [AuthGuard]
+      // },
+
+
       {
-        path: 'bookmarks',
-        component: BookmarksComponent,
-        canActivate: [AuthGuard]
+        path: 'community',
+        component: CommunityComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'profile',
+            component: ProfileComponent,
+
+          },
+          {
+            path: 'bookmarks',
+            component: BookmarksComponent,
+
+          },
+          {
+            path: 'nearbyleases',
+            component: NearbyleasesComponent,
+
+          },
+          {
+            path: 'nearbyneighbors',
+            component: NearbyneighborsComponent,
+
+          },
+          {
+            path: 'neighbors',
+            component: NeighborsComponent,
+
+          },
+          {
+            path: 'following',
+            component: FollowingComponent,
+
+          },
+          {
+            path: 'mydiscussions',
+            component: MydiscussionsComponent,
+
+          },
+          {
+            path: 'photos',
+            component: PhotosComponent,
+
+          }
+        ]
       },
 
-      // {
-      //   path: 'mvest-user',
-      //   component: MvestUserComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'mvest-user-following',
-      //   component: MvestUserFollowingComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'mvest-user-neighbors',
-      //   component: MvestUserNeighborsComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'mvest-user-photos',
-      //   component: MvestUserPhotosComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'mvest-user-profile',
-      //   component: MvestUserProfileComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'blocked',
-      //   component: BlockedComponent,
-      //   canActivate: [AuthGuard]
-      // },
+
 
       {
         path: 'mvest-user-profile',

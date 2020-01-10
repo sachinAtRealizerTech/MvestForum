@@ -45,6 +45,8 @@ export class MvestUserComponent implements OnInit {
 
   ngOnInit() {
     debugger;
+    this.imagePrependUrl = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     if (history.state.emailId && history.state.memberId) {
       localStorage.setItem('userEmailId', history.state.emailId);
       this.userEmailId = localStorage.getItem('userEmailId');
@@ -56,9 +58,8 @@ export class MvestUserComponent implements OnInit {
       this.memberId = Number(localStorage.getItem('userMemberId'));
     }
     console.log(this.userEmailId, this.memberId);
-    this.userName = localStorage.getItem('otherUserName');
-    this.imagePrependUrl = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    //this.userName = localStorage.getItem('otherUserName');
+    this.getMvestUserDetails();
     this.getMyFollowingMembers();
     this.getMyConnectedNeighbors();
     this.getCommunityStats();
@@ -79,6 +80,17 @@ export class MvestUserComponent implements OnInit {
   //     this.userImageUrl = environment.IMAGEPREPENDURL + this.userEmailId + '.png';
   //   })
   // }
+
+  getMvestUserDetails() {
+    let body = {
+      _member_id: this.user.member_id,
+      _other_member_id: this.memberId
+    }
+    this.mvestUserProfileService.getMvestUserDetails(body).subscribe(data => {
+      debugger;
+      this.userDetails = data['data'][0];
+    })
+  }
 
   getCommunityStats() {
     this.profileService.getCommunityStats(this.userEmailId).subscribe(data => {

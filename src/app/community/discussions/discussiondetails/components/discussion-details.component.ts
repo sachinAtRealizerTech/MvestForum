@@ -880,6 +880,7 @@ export class DiscussionDetailsComponent implements OnInit {
       status: "inprogress"
     }
     this.discussiondetailsService.reportAbuse(body).subscribe(data => {
+      console.log('report abuse', data)
       this.flashMessagesService.show('You have sent this post for abuse report...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
       this.closeReportAbuseModal();
       this.abuseType = "";
