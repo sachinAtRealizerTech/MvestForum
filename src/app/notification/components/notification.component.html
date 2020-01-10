@@ -60,8 +60,8 @@
               </select>
             </li>
             <li class="list-inline-item  mb-1 align-self-center pr-3">
-              <select class="font-weight-semibold border-0 text-accent" [value]="info" (change)="selectType($event)">
-                <!-- <option value="All">Type : All</option> -->
+              <select class="font-weight-semibold border-0 text-accent" (change)="selectType($event)">
+                <option value="Info">Type : All</option>
                 <option *ngFor="let met of masterEntriesType" [value]="met.Entities.Value">{{met.Entities.Value}}
                 </option>
               </select>

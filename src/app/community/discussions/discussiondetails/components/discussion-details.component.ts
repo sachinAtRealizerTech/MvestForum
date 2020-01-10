@@ -542,7 +542,6 @@ export class DiscussionDetailsComponent implements OnInit {
   }
 
   isDislikedByMe(object) {
-    debugger;
     if (object.dislikes != null) {
       let likedEmails = object.dislikes.map(l => l.dislike_by_emailId);
       return (likedEmails.includes(this.user.email_id));
@@ -877,7 +876,8 @@ export class DiscussionDetailsComponent implements OnInit {
       post_id: this.reportAbusePostId,
       abuse_type: this.abuseType,
       reported_by: this.user.member_id,
-      status: "inprogress"
+      status: "inprogress",
+      abuse_comment: 'Reporting for abuse'
     }
     this.discussiondetailsService.reportAbuse(body).subscribe(data => {
       console.log('report abuse', data)
