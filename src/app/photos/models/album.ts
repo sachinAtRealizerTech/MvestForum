@@ -2,6 +2,7 @@ export interface albumList {
     album_docId: string
     album_name: string
     thumbnail_file_name: string
+    no_of_photos: number
     create_ts: Date
     isActive: boolean
 }

@@ -137,11 +137,11 @@
       <div class="row justify-content-start">
         <div class="col-md-5 col-xl-3  pt-2" *ngFor="let als of albumList">
           <div class="card card-hover-accent cursor-pointer" (click)="getAlbumPhotos(als.album_docId, als.album_name)">
-            <img class="img-fluid img-thumbnailalbum" src="{{als.thumbnail_file_name}}" alt="">
+            <img class="img-fluid img-thumbnailalbum" src="{{als?.thumbnail_file_name}}" alt="">
             <div class="card-body py-2 px-3">
 
               <h6 class="card-text text-dark font-weight-semibold mb-1">{{als.album_name}}</h6>
-              <p><small class="text-secondary mb-1">23 Photos</small> </p>
+              <p><small class="text-secondary mb-1">{{als?.no_of_photos}} Photos</small> </p>
             </div>
           </div>
         </div>
