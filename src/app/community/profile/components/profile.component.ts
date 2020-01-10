@@ -63,7 +63,10 @@ export class ProfileComponent implements OnInit {
       debugger;
       console.log('mynews', data)
       this.MyNews = data;
-      this.MyNews.reverse();
+      if (this.MyNews) {
+        this.MyNews.reverse();
+      }
+
       //this.MyNews.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
       this.loading = false;
     },
