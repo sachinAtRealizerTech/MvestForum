@@ -42,17 +42,17 @@
                             <ul class="list-inline d-inline-flex mb-0">
 
                                 <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a *ngIf="isConnect" data-toggle="modal" data-target=".cover-modal-lg"
+                                    <a *ngIf="isConnect" data-target="tooltip" title="coming Soon"
                                         class="btn btn-outline-white btn-sm btn-block text-uppercase">Dis-connect</a>
-                                    <a *ngIf="!isConnect" data-toggle="modal" data-target=".cover-modal-lg"
+                                    <a *ngIf="!isConnect" data-target="tooltip" title="coming Soon"
                                         class="btn btn-outline-white btn-sm btn-block text-uppercase">Connect</a>
                                 </li>
 
 
                                 <li class="list-inline-item mb-0 h6 text-muted">
-                                    <a *ngIf="isFollowingUser()" data-toggle="modal" data-target=".cover-modal-lg"
+                                    <a *ngIf="isFollowingUser()" data-target="tooltip" title="coming Soon"
                                         class="btn btn-outline-white btn-sm btn-block text-uppercase">Unfollow</a>
-                                    <a *ngIf="!isFollowingUser()" data-toggle="modal" data-target=".cover-modal-lg"
+                                    <a *ngIf="!isFollowingUser()" data-target="tooltip" title="coming Soon"
                                         class="btn btn-outline-white btn-sm btn-block text-uppercase">Follow</a>
                                 </li>
                                 <li class="list-inline-item mb-0 font-weight-semibold rounded-border ">
