@@ -99,7 +99,7 @@
 
               <div class="card card-small shadow blog-comments mb-3" *ngFor="let mn of MyNews">
 
-                <div class="card-header p-0">
+                <div class="card-header p-0" *ngIf="mn?.articleType">
                   <div class="media d-flex align-items-center pt-3 px-3">
                     <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/Fav-icon.png"
                       alt="Generic placeholder image">
@@ -109,9 +109,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-body pb-1">
+                <div class="card-body pb-1" *ngIf="mn?.articleType">
                   <h5 class="text-dark h6 mb-0 font-weight-semibold">{{mn.title | titlecase}}</h5>
-                  <p class="text-secondary pt-2 capitalize" [innerHtml]="mn.body">
+                  <p class="text-secondary pt-2 capitalize news-image" [innerHtml]="mn.body">
                   </p>
 
                   <!-- <ul class="list-inline d-flex">
@@ -131,6 +131,31 @@
                     </li>
                   </ul> -->
                 </div>
+
+
+                <div class="card-header p-0" *ngIf="mn?.post_id">
+                  <div class="media d-flex align-items-center pt-3 px-3">
+
+                    <ngx-avatar class="mr-3 mr-2" name="{{mn?.post_by_name}}" [size]="40"
+                      src="{{imagePrependUrl}}{{mn?.post_by_emailId}}{{png}}">
+                    </ngx-avatar>
+
+                    <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/Fav-icon.png"
+                      alt="Generic placeholder image"> -->
+
+                    <div class="media-body mb-0">
+                      <h5 class="text-dark h6 mb-0 font-weight-semibold">{{mn.post_by_name | titlecase}}</h5>
+                      <h5 class="text-muted h6 mb-0 font-weight-semibold small">{{mn.post_date | date:'medium'}}</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body pb-1" *ngIf="mn?.post_id">
+                  <!-- <h5 class="text-dark h6 mb-0 font-weight-semibold" [innerHtml]="mn.post_msg"></h5> -->
+                  <p class="text-secondary pt-2 capitalize news-image" [innerHtml]="mn?.post_msg">
+                  </p>
+                </div>
+
+
                 <!-- <div class="card-footer pt-0">
                   <h5 class="text-dark h6 mb-0 font-weight-semibold"></h5>
                   <div class="media d-flex align-items-center px-3">
@@ -157,6 +182,7 @@
 
                 </div> -->
               </div>
+
             </div>
           </div>
 

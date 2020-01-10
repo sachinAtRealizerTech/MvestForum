@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   MyNews: MyNews[];
   recentPhotos: RecentPhotos[];
   userImageUrl: string;
+  imagePrependUrl: string;
+  png: string;
 
   constructor(private profileService: ProfileService,
     private formBuilder: FormBuilder,
@@ -32,6 +34,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.imagePrependUrl = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.userImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
     this.getCommunityStats();
     this.getRecentDiscussionsAndPhotos();
