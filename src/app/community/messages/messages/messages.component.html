@@ -322,6 +322,9 @@
                     <div class="media d-flex align-items-center py-2">
                       <!-- <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
                         src="assets/images/avatars/2.jpg"> -->
+                      <ngx-avatar class="mr-3 mr-2" name="{{member.name}}" [size]="40"
+                        src="{{imagePrependUrl}}{{member.neighbor_email_id}}{{png}}">
+                      </ngx-avatar>
                       <div class="media-body d-flex mb-0">
                         <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
                           {{member.name}}
