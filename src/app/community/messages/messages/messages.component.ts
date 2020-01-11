@@ -1,246 +1,157 @@
-import { Component, OnInit, ViewChildren, ElementRef, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Utils } from 'src/app/shared/Utils';
-import { MessagesService } from '../services/messages.service';
+import { MessageService } from '../services/messages.service';
 import { WebSocketServiceService } from '../services/web-socket-service.service';
-import { from } from 'rxjs';
-import { DatePipe } from '@angular/common';
 import { Thread } from '../model/threads';
-import { Message, Messages } from '../model/message';
+import { Message } from '../model/message';
 import { v4 as uuid } from 'uuid';
 import { Auth } from 'src/app/models/Auth';
 import { ScrollToBottomDirective } from './../ScrollToBottomDirective';
-import { IfStmt } from '@angular/compiler';
 import { MessageUtils } from './MessageUtils';
+import { Member } from '../model/member';
 import { environment } from 'src/environments/environment';
-//\messages\directive\ScrollToBottomDirective.ts
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
+
 export class MessagesComponent implements OnInit {
-  //@ViewChildren("messageContainer") messageContainers;
-  //@ViewChildren('scrollBottom') private scrollBottom: ElementRef;
-  // @Input('conversation') conversation;
-  //@ViewChildren('messageContainers') window;
   @ViewChildren(ScrollToBottomDirective)
   scroll: ScrollToBottomDirective;
 
-  public loggedInUser: Auth
-  allNeighboursCount: number;
-  neighboursListDetails: any;
-  myConnectedNeighbors: any;
-  members: any[] = [];
   loading = false;
-  selectedUser: any[] = [];
-  usermessage: String;
-  threadName: string;
-  public chatroom;
-  public messageArray: Array<Message> = [];
-  public threads: Array<Thread> = [];
-  public tempThread: Array<any> = [];
-
-  public threadId: string;
-  public messageText: string;
-  public userSelection: string = null;
-  //public messagesArray: Array<Message> = [];
-  public participantUsers: Array<any> = [];
-  selectedMemberToChat = [];
-  threadToPushInArray: Array<Thread> = [];
-  threadPushInArray: Thread;
-  message: Message;
   searchText: any;
-  //public threadToPushInArray: Array<any> = [];
+  public threadName: any;
+  loggedInUser: Auth
+  members: any;
+  selectedMemberToChat: Member[] = [];
 
+  public myThreads: Array<Thread> = [];
   public selectedThread: Thread;
-  private isTyping = false;
-  public existingThread: boolean;
-  public IsOnetoOne: boolean;
-  public typingData;
-  public container;
 
+  public typingData;
+  imagePrependUrl: string;
+  png: string;
 
   constructor(
-    private messagesService: MessagesService,
-    private webSocketServiceService: WebSocketServiceService) {
+    private messagesService: MessageService,
+    private socketService: WebSocketServiceService) { }
 
-
-
-  }
   ngOnInit() {
+    //#region Load Initial Data
+    this.imagePrependUrl = environment.IMAGEPREPENDURL;
+    this.png = '.png'
     this.loggedInUser = Utils.GetCurrentUser();
     this.getAllThreads();
+    //#endregion Load Initial Data
 
-    this.webSocketServiceService.invitationRequest().subscribe(data => {
-      console.log('invitation data  ..... : ', data);
-      //roomId, roomName, createdAt, createdBy, createdWith, members, IsOnetoOne, isInvite,inviteTo
-      let newRoomJoinData = {
-        threadId: data["threadId"],
-        threadName: data["threadName"],
-        inviteTo: data['inviteTo'],
-        //createdBy: data['createdWith'].userEmailId,
-        isInvite: false
-      }
-      console.log('new invitation join data - ', data["inviteTo"]);
-      console.log('logged in email - ', this.loggedInUser.email_id);
+    //#region InvitaionReceived
+    //Event occured when someone send invitaions
+    this.socketService.invitationRequest().subscribe(invitaion => {
 
       //join the room if its for me
-      if (data["inviteTo"].some(i => i.userEmailId == this.loggedInUser.email_id)) {
-        console.log('room data - ', newRoomJoinData);
-        this.webSocketServiceService.joinRoom(newRoomJoinData);
-        console.log(`Invitation accepted going to join the room:${newRoomJoinData.threadId}`)
+      if (invitaion.inviteTo.some(i => i.userEmailId.toLowerCase() == this.loggedInUser.email_id.toLowerCase())) {
+        this.socketService.joinRoom({
+          threadId: invitaion.threadId,
+          threadName: invitaion.threadName,
+          inviteTo: invitaion.inviteTo,
+          isInvite: false
+        });
+        console.log(`Invitation accepted going to join the room:`, invitaion);
       } else {
         console.log('ingnored..');
       }
     });
-    this.webSocketServiceService.newMessageReceived().subscribe(data => {
-      debugger;
-      console.log('new message recieved: ', data);
-      console.log('new message recieved thread id: ', data['threadId']);
-      console.log('selecte thread data: ', this.selectedThread);
+    //#endregion InvitaionReceived
 
-      let threadExist = this.threads.find(t => t.threadDocId == data['threadId']);
-      console.log("thread exist", threadExist);
+    //#region NewMessageRecieved
+    this.socketService.newMessageReceived().subscribe(messageReceived => {
+      console.log('New message recieved: ', messageReceived);
+
+      let threadExist = this.myThreads.find(t => t.threadDocId == messageReceived.threadId);
+
+      console.log("Thread exist", threadExist);
+
       if (threadExist) {
-        let index = this.threads.findIndex(t => t.threadDocId == data['threadId']);
-        console.log("thread found and index of that thread is:", index);
+        let index = this.myThreads.findIndex(t => t.threadDocId == messageReceived.threadId);
         //last message update
-        this.threads[index].lastMessage = (data['message'].message);
+        this.myThreads[index].lastMessage = messageReceived.message.message;
 
-        if (this.selectedThread && this.selectedThread.threadDocId == data['threadId']) {
-          this.selectedThread.participants.push(data['participants']);
-          this.selectedThread.messages.push(data['message']);
+        //if incoming message for selected thread
+        if (this.selectedThread && this.selectedThread.threadDocId == messageReceived.threadId) {
+          this.selectedThread.participants = messageReceived.participants;
+          this.selectedThread.messages.push(messageReceived.message);
         } else {
-          this.threads[index].unreadCount = Number(this.threads[index].unreadCount) ? Number(this.threads[index].unreadCount) + 1 : 1;
+          this.myThreads[index].unreadCount = Number(this.myThreads[index].unreadCount) ? Number(this.myThreads[index].unreadCount) + 1 : 1;
         }
 
         // if thread not selected increase iunread count
       } else {
-        // create thread with recived message and push to threadlist
-        let newThread = {
-          theradId: data['threadId'],
-          threadName: data['threadName'],
-          participants: data['participants'],
-          threadDocId: data['threadId'],
-          createTs: new Date(),
-          lastMessage: "",
-          lastMessageTime: "",
-          messages: [data['message']],
-          unreadCount: 1
-        }
-        this.threads.push(newThread);
-        //this.selectedThread = threadToPushInArray;
+        // create thread with incoming message and push to threadlist
+
+        this.myThreads.push({
+          theradId: messageReceived.threadId,
+          threadName: messageReceived.threadName,
+          participants: messageReceived.participants,
+          threadDocId: messageReceived.threadId,
+          createTs: messageReceived.lastMessageTime,
+          lastMessage: messageReceived.lastMessage,
+          lastMessageTime: messageReceived.lastMessageTime,
+          messages: [messageReceived.message],
+          unreadCount: messageReceived.unreadCount
+        });
       }
-      // if (this.selectedThread != null) {
-      //   //working code
-      //   if (data['threadId'] == this.selectedThread.threadDocId) {
-
-      //     console.log('message inserted in thread id: ', this.selectedThread);
-      //     this.selectedThread.messages.push(data['message']);
-      //     this.isTyping = false;
-      //   }
-      // } else {
-      //   //   let threadToPushInArray = {
-      //   //   theradId: data['threadId'],
-      //   //   threadName: this.selectedUser[0]['userName'],
-      //   //   threadWithUserEmailId: this.selectedUser[0]['userEmailId'],
-      //   //   threadDocId: this.threadId,
-      //   //   createTs: new Date(),
-      //   //   lastMessage: "",
-      //   //   lastMessageTime: "",
-      //   //   messages: []
-      //   // }
-      //   // this.threads.push(threadToPushInArray);
-      //   // this.selectedThread = threadToPushInArray;
-      // }
 
     });
-    this.webSocketServiceService.allThreadsReceived().subscribe(data => {
-      debugger;
-      //roomId, roomName, createdBy, createdWith, members, IsOnetoOne, message
-      this.threads = (data['threads']);
-      console.log('All Threads Received', this.threads);
-      //this.isTyping = false;
-    });
-    this.webSocketServiceService.receivedTyping().subscribe(data => {
+    //#endregion NewMessageRecieved
+
+    //#region TypingStatus
+    this.socketService.receivedTyping().subscribe(data => {
       this.typingData = {
         isTyping: data['isTyping'],
         userName: data['typingUser'],
         roomId: data['threadId']
       }
-      console.log(this.isTyping = data['isTyping']);
     });
+    //#endregion TypingStatus
 
   }
+
   getAllThreads() {
+    this.myThreads = [];
     this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(threadResponse => {
-      debugger;
-      console.log(JSON.stringify(threadResponse, null, 2));
-      //this.threads: Thread[] = [];
+      console.log('all threads - ', threadResponse);
       threadResponse.forEach(thread => {
-        let threadName: string[] = [];
-        thread.threadName.toString().split(',').map(name => {
-          if (name != `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`) {
-            threadName.push(name);
-            return name;
-          }
-        });
-        thread.threadName = threadName.toString();
-        console.log(threadName);
-        this.threads.push(thread);
+        thread.threadName = MessageUtils.getThreadNameForLoggedInUser(thread.threadName, this.loggedInUser);
+        this.myThreads.push(thread);
       });
 
-
-      if (this.threads || this.threads.length > 0) {
-        console.log('find threads in get users threads');
-        this.webSocketServiceService.joinToAllThread({ threads: this.threads });
-        console.log('msgs: ', this.threads);
+      if (this.myThreads && this.myThreads.length > 0) {
+        this.socketService.joinToAllThread({ threads: this.myThreads });
       }
     },
       error => {
-        debugger;
         console.log(error);
       }
     );
   }
 
   loadThreadInChatCenter(thread: Thread) {
-    this.existingThread = true;
-    this.threadName = thread.threadName;
-    console.log('selected thread >>>>>>>>>>>>>>>>>>', thread);
-    console.log('thread doc id >>>>>>>>>>>>>>>>>>', thread.threadDocId);
-    this.threadId = thread.threadDocId;
-    thread.unreadCount = null;
-    this.messagesService.getUsersSelectedThreadChatHistory(thread.threadDocId).subscribe(messages => {
-      debugger;
-      //console.log(JSON.stringify(messages, null, 2));
-      console.log('get......', messages);
-      //let activeThreadIndex = this.threads.findIndex(thread => thread.threadDocId == this.threadId);
-      // console.log('index..', activeThreadIndex);
-      this.selectedThread = thread;
 
-      //this.messagesArray = messages;
-      this.selectedThread.messages = messages;
-      console.log('index..', this.selectedThread);
-      //this.messagesArray = messages;
-    },
+    this.selectedThread = thread;
+    this.messagesService.getThreadMessages(thread.threadDocId).subscribe(messages => this.selectedThread.messages = messages,
       error => {
-        debugger;
         console.log(error);
       }
     );
-    //this.messagesArray = thread.messages;
-    //console.log('messagesArray::::', this.messagesArray);
-
   }
 
-  getAllMemberNeighbors() {
+  getMembers() {
     this.selectedMemberToChat = [];
-    this.selectedUser = [];
-    debugger;
     this.loading = true;
-    let body = {
+    let request = {
       _member_id: this.loggedInUser.member_id,
       _filter_by: "none",
       _lease_number: 0,
@@ -248,422 +159,133 @@ export class MessagesComponent implements OnInit {
       _county_no: "",
       _operator_number: ""
     };
-    this.messagesService.getMemberNeighborsWithFilter(body).subscribe(data => {
-      debugger;
-      //this.allNeighboursCount = 0;
-      //this.neighboursListDetails = [];
-      this.myConnectedNeighbors = data['data']
-      //this.allNeighboursCount = this.myConnectedNeighbors.length;
-      //sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
-      this.members = this.myConnectedNeighbors;
-      if (environment.ShowAllMembersToChat) {
-        this.members = [{
-          "neighbor_id": 222,
-          "name": "Aishwarya Belapurkar",
-          "neighbor_email_id": "aishwarya@gmail.com"
-        },
-        {
-          "neighbor_id": 223,
-          "name": "sachin shinde",
-          "neighbor_email_id": "newsachins@gmail.com"
-        }, {
-          "neighbor_id": 224,
-          "name": "Manisha	Manekar",
-          "neighbor_email_id": "manisha@gmail.com"
-        }, {
-          "neighbor_id": 225,
-          "name": "shilpa Dhumal",
-          "neighbor_email_id": "dhumalshilpa22@gmail.com"
-        }, {
-          "neighbor_id": 226,
-          "name": "Atul Pawase",
-          "neighbor_email_id": "atul@gmail.com"
-        },
-        {
-          "neighbor_id": 227,
-          "name": "Manjusha Karpe",
-          "neighbor_email_id": "Manjushkarpe@gmail.com"
-        },
-        {
-          "neighbor_id": 228,
-          "name": "Rutuja Gorawade",
-          "neighbor_email_id": "gorawaderutuja@gmail.com"
-        },
-        {
-          "neighbor_id": 229,
-          "name": "Madhuri Sonawane",
-          "neighbor_email_id": "madhuri1@gmail.com"
-        },
-        {
-          "neighbor_id": 230,
-          "name": "Payal Surpam",
-          "neighbor_email_id": "payal@gmail.com"
-        },
-        {
-          "neighbor_id": 231,
-          "name": "Gaurav Pawar",
-          "neighbor_email_id": "gaurav@gmail.com"
-        },
-        {
-          "neighbor_id": 232,
-          "name": "pravin jadhav",
-          "neighbor_email_id": "pravin@gmail.com"
-        },
-        {
-          "neighbor_id": 233,
-          "name": "Ramdas Waghmare",
-          "neighbor_email_id": "ramdas@gmail.com"
-        },
-        {
-          "neighbor_id": 234,
-          "name": "Dhanashri Bhondave",
-          "neighbor_email_id": "dhanashri@gmail.com"
-        },
-        {
-          "neighbor_id": 235,
-          "name": "Satish Sawant",
-          "neighbor_email_id": "satish@gmail.com"
-        },
-        {
-          "neighbor_id": 236,
-          "name": "Bhagyashri Wakade",
-          "neighbor_email_id": "bhagyashri@gmail.com"
-        },
-
-        {
-          "neighbor_id": 237,
-          "name": "Bhagyashri Salgare",
-          "neighbor_email_id": "bhagyashris@gmail.com"
-        },
-        {
-          "neighbor_id": 238,
-          "name": "Shital More",
-          "neighbor_email_id": "shital@gmail.com"
-        },
-        {
-          "neighbor_id": 239,
-          "name": "Pravin Jadhav",
-          "neighbor_email_id": "pravin@gmail.com"
-        },
-        {
-          "neighbor_id": 240,
-          "name": "Pooja Waghmare",
-          "neighbor_email_id": "pooja@gmail.com"
-        },
-        {
-          "neighbor_id": 241,
-          "name": "Namrata Kapde",
-          "neighbor_email_id": "namrata@gmail.com"
-        },
-        {
-          "neighbor_id": 242,
-          "name": "Adwait",
-          "neighbor_email_id": "adwait@gmail.com"
-        },
-        {
-          "neighbor_id": 243,
-          "name": "Vidhyadhar Mote",
-          "neighbor_email_id": "vidhyadhar@gmail.com"
-        }
-        ]
-      }
-      console.log('newFilteredData', data['data']);
+    this.messagesService.getMembers(request).subscribe(members => {
+      this.members = members['data']
       this.loading = false;
     },
       error => {
-        console.log('getallmemberneighbor error', error)
+        console.log(error)
         this.loading = false;
       })
   }
-  filterMembers(event) {
-    let filtter = event.target.value;
-    this.members = this.myConnectedNeighbors.filter(n => n.name == filtter);
-  }
+
   selectMembersToChat(event, member: any) {
-    //this.selectedMemberToChat = [];
-    //this.selectedUser = [];
-    console.log('selected member - ', member);
     let id: number = event.target.id;
     if (event.target.checked) {
-      let participantUser = {
+      let participantUser: Member = {
         memberId: member['neighbor_id'],
         userName: member['name'],
         userEmailId: member['neighbor_email_id']
       }
-      this.selectedUser.push(participantUser);
       this.selectedMemberToChat.push(participantUser);
-
-
     }
     else {
       this.selectedMemberToChat = this.selectedMemberToChat.filter(
         m => m.memberId != id
       );
-      this.selectedUser = this.selectedUser.filter(
-        su => su.memberId != id
-      );
     }
-    console.log(this.selectedMemberToChat);
-
   }
 
-  initiateNewThread() {// rename to initiateNewThread
-    //let activeThreadIndex = this.threads.findIndex(thread => thread.threadDocId == this.threadId);
-    // if (this.threads.length != 0)
+  initiateNewThread() {
     if (this.selectedMemberToChat.length > 0) {
-      console.log('selected members to chat-', this.selectedMemberToChat);
-      console.log('selected users to chat-', this.selectedUser.length);
-      // if (this.selectedUser.length <= 1) {
-      //   this.IsOnetoOne = true;
-      //   console.log('in if block');
-
-      // } else if (this.selectedUser.length > 1) {
-      //   this.IsOnetoOne = false;
-      // }
-      // console.log('is on to one - ', this.IsOnetoOne);
-      console.log('selected user to chat length --', this.selectedMemberToChat.length);
-
-      console.log('in else block for push self user')
       this.selectedMemberToChat.push({
         memberId: this.loggedInUser.member_id,
         userName: `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`,
         userEmailId: this.loggedInUser.email_id
       });
+      debugger;
+      let existThread = MessageUtils.isThreadExist(this.myThreads, this.selectedMemberToChat);
 
-
-      let existTread = false;
-      let existThread;
-      this.threads.forEach(thread => {
-        let participantEmailsArr = thread.participants.map(p => p.userEmailId);
-        let selectedMemberEmailArr = this.selectedMemberToChat.map(s => s.userEmailId);
-        console.log(participantEmailsArr, selectedMemberEmailArr);
-
-        if (JSON.stringify(participantEmailsArr.sort()) == JSON.stringify(selectedMemberEmailArr.sort())) {
-          existTread = true;
-          existThread = thread;
-          console.log('thread in true - ', thread);
-          return false;
-        } else {
-          if (existTread) { return false; }
-          existTread == false;
-        }
-        // if (participantEmailsArr.length == selectedMemberEmailArr.length) {
-        //   participantEmailsArr.forEach(email => {
-        //     if (selectedMemberEmailArr.includes(email)) {
-        //       existTread = true;
-        //       existThread = thread;
-        //       console.log('thread in true - ', thread);
-        //       return false;
-        //     } else {
-
-        //       if (existTread) {
-
-        //         return false;
-        //       }
-
-        //       existTread = false;
-        //     }
-
-        //   });
-        // } else {
-        //   existTread = false;
-        // }
-
-      });
-      console.log('Thread exist checking:', existTread);
-
-      // let cnt = this.threads.find(thread => {
-      //   return thread.participants.forEach((item) => {
-      //     console.log('item email', item.userEmailId);
-      //     this.selectedUser.forEach((selected)=>{
-      //       item.userEmailId
-      //     }) 
-      //     //['userEmailId'].contains();
-      //   });
-      //});
-      //this.selectedUser['userEmailId'].contains(item.userEmailId);
-      //thread.threadWithUserEmailId == this.selectedUser['userEmailId']);
-      if (existTread) {
-        console.log('thread already exists!!', existTread);
-        console.log('thread which is exist -', existThread);
+      if (existThread) {
         this.loadThreadInChatCenter(existThread);
-
       }
       else {
-        //this.threads = [];
-        //this.selectedThread = null;
-        console.log('thread not found - ');
-        this.threadId = uuid();
-        let loggedUser = {
-          memberId: this.loggedInUser.member_id,
-          userName: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
-          userEmailId: this.loggedInUser.email_id
-        }
-        this.threadPushInArray = {
-          theradId: this.threadId,
-          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
-          participants: this.selectedMemberToChat,
-          threadDocId: this.threadId,
-          createTs: new Date(),
-          lastMessage: "",
-          lastMessageTime: "",
-          messages: [],
-          unreadCount: 0
-        }
-        this.threadToPushInArray.push({
-          theradId: this.threadId,
-          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
-          participants: this.selectedMemberToChat,
-          threadDocId: this.threadId,
-          createTs: new Date(),
-          lastMessage: "",
-          lastMessageTime: "",
-          messages: [],
-          unreadCount: 0
-        });
-        //new code to eliminate name of the thread
-        this.threadToPushInArray.forEach(thread => {
-          let threadName: string[] = [];
-          thread.threadName.toString().split(',').map(name => {
-            if (name != `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`) {
-              threadName.push(name);
-              return name;
-            }
-          });
-          thread.threadName = threadName.toString();
-          console.log(threadName);
-          this.threads.push(thread);
-          //this.selectedThread = thread;
-        });
-        //this.threads.push(threadToPushInArray);
-        //this.selectedThread =this.threadToPushInArray;
-        //this.threads.push(this.threadPushInArray);
-        this.selectedThread = {
-          theradId: this.threadId,
-          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
-          participants: this.selectedMemberToChat,
-          threadDocId: this.threadId,
-          createTs: new Date(),
-          lastMessage: "",
-          lastMessageTime: "",
-          messages: [],
-          unreadCount: 0
-        }
-        let newRoomJoinData = {
-          threadId: this.threadId,
-          threadName: this.selectedMemberToChat.map(u => { return u['userName'] }).toString(),
-          createdAt: new Date(),
-          createdBy: loggedUser,
-          createdWith: this.selectedMemberToChat,
-          lastMessage: "This is testing message...",
-          lastMessageTime: new Date(),
-          IsOnetoOne: true,
-          isInvite: true,
-          inviteTo: this.selectedUser
-
-        }
-        this.threadName = newRoomJoinData.threadName;
-
-        this.webSocketServiceService.joinRoom(newRoomJoinData);
-
+        this.generateAndJoinThread();
       }
     }
   }
 
   sendMessage(event) {
-
-    this.messageText = event.target.value;
-    //this.message = messageText;
+    let messageText = event.target.value;
     event.target.value = "";
-    //this.participantUsers.push(participantUser1);
-    //this.participantUsers.push(participantUser2);
-    let chatroom;
-    let loggedUser = {
-      memberId: this.loggedInUser.member_id,
-      userName: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
-      userEmailId: this.loggedInUser.email_id
-    }
-    // if (this.threadId == null) {
-    //   this.threadId = uuid();
-    // } else {
-    //   console.log('threadId exists!');
-    // }
-    this.message = {
+
+    let message = {
       messageId: uuid(),
-      threadId: this.threadId,
-      message: this.messageText,
-      from: {
-        memberId: this.loggedInUser.member_id,
-        userName: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
-        userEmailId: this.loggedInUser.email_id
-      },
+      threadId: this.selectedThread.theradId,
+      message: messageText,
+      from: MessageUtils.getLoggedInUser(this.loggedInUser),
       timeStamp: new Date(),
-      isRead: false
+      isRead: true
     }
-    this.selectedThread.messages.push(this.message);
-
-    //if (this.existingThread == true) {
-    chatroom = {
-      threadId: this.selectedThread.threadDocId,//Room id should be check before set new uuid
+    let newMessage = {
+      threadId: this.selectedThread.threadDocId,
       threadName: this.selectedThread.threadName,
-      createTs: this.selectedThread.createTs,//this should change at future
-      createdBy: loggedUser,
+      createTs: this.selectedThread.createTs,
+      createdBy: MessageUtils.getLoggedInUser(this.loggedInUser),
       participants: this.selectedThread.participants,
-      message: {
-        messageId: uuid(),
-        message: this.messageText,
-        from: loggedUser,
-        timeStamp: new Date(),
-        isRead: false
-      },
-      lastMessage: this.selectedThread.lastMessage,
-      lastMessageTime: this.selectedThread.lastMessageTime
+      message: message,
+      lastMessage: message.message,
+      lastMessageTime: message.timeStamp
     }
-    console.log('chatroom of extisting thread send message-', chatroom);
-    // } else {
 
-    //   chatroom = {
-    //     threadId: this.threadId,//Room id should be check before set new uuid
-    //     threadName: this.threadName,
-    //     createdAt: new Date(),//this should change at future
-    //     createdBy: loggedUser,
-    //     createdWith: this.selectedMemberToChat,
-    //     message: {
-    //       messageId: uuid(),
-    //       message: this.messageText,
-    //       from: loggedUser,
-    //       timeStamp: new Date(),
-    //       isRead: false
-    //     },
-    //     lastMessage: "This is testing message......",
-    //     lastMessageTime: new Date(),
-    //     IsOnetoOne: this.IsOnetoOne
-    //   }
-
-    //   console.log('user Message:', this.messageText);
-    //   console.log('threadId :', this.threadId);
-    //   console.log('chatroom of send message-', chatroom);
-    //   this.selectedThread.messages.push(this.message);
-    // }
-
-    //this.threads.find(thread => thread.threadWithUserEmailId == )
-
-    //this.threads.push(this.selectedThread);
-    this.webSocketServiceService.sendMessage(chatroom);
+    this.selectedThread.messages.push(message);
+    this.socketService.sendMessage(newMessage);
   }
+
   typing() {
-    debugger;
     console.log('typing user..', this.loggedInUser.f_name + " " + this.loggedInUser.l_name);
     let data = {
-      roomId: this.threadId,
+      roomId: this.selectedThread.theradId,
       typingUser: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
       isTyping: true
     }
-    this.webSocketServiceService.typing({ data });
+    this.socketService.typing({ data });
   }
 
   isThreadOneToOne(thread: Thread) {
     return MessageUtils.isThreadOneToOne(thread);
+  }
+
+  private generateAndJoinThread() {
+    let threadId = uuid();
+
+    this.selectedThread = {
+      theradId: threadId,
+      threadName: this.selectedMemberToChat.map(u => { return u.userName }).toString(),
+      participants: this.selectedMemberToChat,
+      threadDocId: threadId,
+      createTs: new Date(),
+      lastMessage: "",
+      lastMessageTime: new Date(),
+      messages: [],
+      unreadCount: 0
+    }
+    //this.threadName = MessageUtils.getThreadNameForLoggedInUser(this.selectedThread.threadName, this.loggedInUser);
+    this.myThreads.push(this.selectedThread);
+
+    this.socketService.joinRoom({
+      threadId: threadId,
+      threadName: this.selectedMemberToChat.map(selectedMember => { return selectedMember.userName }).toString(),
+      createdAt: new Date(),
+      createdBy: MessageUtils.getLoggedInUser(this.loggedInUser),
+      createdWith: this.selectedMemberToChat,
+      lastMessage: "This is testing message...",
+      lastMessageTime: new Date(),
+      IsOnetoOne: this.selectMembersToChat.length == 2,
+      isInvite: true,
+      inviteTo: this.selectedMemberToChat
+    });
+  }
+
+  getThreadNameForLoggedInUser(originalThreadName: string, loggedInUser: Auth): string {
+    let newThreadName: string[] = [];
+    originalThreadName.split(",").map(name => {
+      if (name != `${loggedInUser.f_name} ${loggedInUser.l_name}`) {
+        newThreadName.push(name);
+        return name;
+      }
+    });
+    return newThreadName.toString();
   }
 
 

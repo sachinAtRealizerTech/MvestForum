@@ -6,30 +6,19 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesService {
-  //baseUrl = 'http://localhost:4001';
-  //baseUrlServer = 'https://mvestapp.herokuapp.com';
+export class MessageService {
+
   constructor(private httpclient: HttpClient) { }
 
-  getMemberNeighborsWithFilter(body) {
+  getMembers(body) {
     return this.httpclient.post<any[]>(`${environment.APIBASEURL}/Neighbor/get_member_neighbors_withfilters`, body, Utils.getAuthHeader())
   }
-  getAllChatThreadsOfUser(chatRoom) {
-    debugger;
-    return this.httpclient.post<any[]>(`${environment.BaseUrlChatServer}/chatroom/`, chatRoom);
+
+  getUsersChatThreads(emailId) {
+    return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/myThreads/` + emailId);
   }
-  getChatRoomsChat(chatRoom) {
-    debugger;
-    return this.httpclient.post<any[]>(`${environment.BaseUrlChatServer}/chatroom/`, chatRoom);
-  }
-  createJoinRequest(chatRoom) {
-    debugger;
-    return this.httpclient.post<any[]>(`${environment.BaseUrlChatServer}/chatroom/`, chatRoom);
-  }
-  getUsersChatThreads(currentUserSortedData) {
-    return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/myThreads/` + currentUserSortedData);
-  }
-  getUsersSelectedThreadChatHistory(threadDocId) {
-    return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/getThreadMessages/` + threadDocId);
+
+  getThreadMessages(threadId) {
+    return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/getThreadMessages/` + threadId);
   }
 }

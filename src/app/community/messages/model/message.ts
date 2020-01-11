@@ -1,16 +1,22 @@
-import { ChatUser } from './threads';
+import { Member } from './member';
 
-export interface Messages {
-    messageId: string,
-    message: string,
-    from: ChatUser,
-    to: ChatUser,
-}
 export interface Message {
     messageId: string,
     threadId: string,
     message: string,
-    from: ChatUser,
+    from: Member,
     timeStamp: Date,
     isRead: boolean
+}
+
+export interface MessageReceived {
+    threadId: string,
+    threadName: string,
+    participants: Member[],
+    threadDocId: string
+    createTs: Date,
+    lastMessage: string,
+    lastMessageTime: Date,
+    message: Message,
+    unreadCount: number
 }

@@ -3,6 +3,8 @@ import * as io from 'socket.io-client';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Invitation } from '../model/invitation';
+import { MessageReceived } from '../model/message';
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +44,9 @@ export class WebSocketServiceService {
     return observable;
   }
 
-  newMessageReceived() {
+  newMessageReceived(): Observable<MessageReceived> {
     debugger;
-    const observable = new Observable<{ message: any }>(observer => {
+    const observable = new Observable<MessageReceived>(observer => {
       this.socket.on('new message', (data) => {
         observer.next(data);
       });
@@ -54,7 +56,7 @@ export class WebSocketServiceService {
     });
     return observable;
   }
-  invitationRequest() {
+  invitationRequest(): Observable<Invitation> {
     const observable = new Observable<any>(observer => {
       this.socket.on('invitation', (data) => {
         observer.next(data);
@@ -69,17 +71,6 @@ export class WebSocketServiceService {
     debugger;
     this.socket.emit('allThreads', data);
   }
-  allThreadsReceived() {
-    debugger;
-    const observable = new Observable<{ message: any }>(observer => {
-      this.socket.on('allThreads', (data) => {
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    });
-    return observable;
-  }
+
 
 }

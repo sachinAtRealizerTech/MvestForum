@@ -1,31 +1,17 @@
-import { userProfile } from 'src/app/models/Auth'
 import { Message } from './message'
+import { Member } from './member'
 
-// export interface Threads {
-//     _id: string,
-//     roomId: string,
-//     name: string,
-//     createdAt: string,
-//     createdBy: ChatUser,
-//     createdWith: ChatUser,
-//     isOnetoOne: boolean,
-//     messages: [Message]
-// }
 export interface Thread {
     threadName: string,
-    participants: ChatUser[],
+    participants: Member[],
     theradId: string,
     threadDocId: string,
     createTs: Date,
     lastMessage: string,
-    lastMessageTime: string,
+    lastMessageTime: Date,
     messages: Message[],
     unreadCount: number,
 
 }
 
-export interface ChatUser {
-    memberId: number,
-    userName: string,
-    userEmailId: string
-}
+

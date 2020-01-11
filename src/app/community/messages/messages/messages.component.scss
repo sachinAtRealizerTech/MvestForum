@@ -141,6 +141,12 @@ body {
     overflow: auto;
     background: white;
 }
+#chat-windowThread{
+	// height: 320px;
+	height: calc(61vh - 1px) !important;
+    overflow: auto;
+    background: white;
+}
 .isTyping {
     color: #888787;
     padding-left: 5px;

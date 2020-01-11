@@ -90,8 +90,14 @@
                 <div>
                   <div class=" border-bottom p-1">
                     <div class="media p-3" [id]="thread.threadDocId">
-                      <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                        alt="Generic placeholder image">
+
+                      <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                        alt="Generic placeholder image"> -->
+
+                      <ngx-avatar class="mr-3 mr-2" name="{{thread.participants.userName}}" [size]="40"
+                        src="{{imagePrependUrl}}{{thread.participants[0].userEmailId}}{{png}}">
+                      </ngx-avatar>
+
                       <div class="media-body mb-0">
                         <h5 class="text-dark h6 mb-0 font-weight-semibold truncate">
                           {{getThreadNameForLoggedInUser(thread.threadName,loggedInUser) || thread.threadDocId}}
@@ -123,7 +129,7 @@
           <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
             <ul class="list-inline d-flex mb-1">
               <li class="list-inline-item h6  text-muted truncate">
-                {{getThreadNameForLoggedInUser(selectedThread.threadName,loggedInUser)}}</li>
+                {{getThreadNameForLoggedInUser(selectedThread?.threadName,loggedInUser)}}</li>
               <div class="ml-auto d-inline-flex">
                 <a routerLink="#">
                   <li class="list-inline-item h6 mr-3 text-muted ">
@@ -177,8 +183,13 @@
                         <!-- Participant Message start-->
                         <div class="media d-flex px-3 pb-1" *ngIf="message.from.userEmailId != loggedInUser.email_id">
 
-                          <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
+                          <!-- <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
                             alt="Generic placeholder image">
+                             -->
+                          <ngx-avatar class="mr-3 mr-2" name="{{message.from.userName}}" [size]="40"
+                            src="{{imagePrependUrl}}{{message.from.userEmailId}}{{png}}">
+                          </ngx-avatar>
+
                           <div class="media-body   mb-0">
                             <div class=" align-self-center px-3" *ngIf="!isThreadOneToOne(selectedThread)">
                               <small class="mb-0 text-dark font-weight-semibold">{{message.from.userName}}</small>
@@ -209,7 +220,7 @@
                           <div class="mb-0 d-flex  justify-content-end  pb-2">
                             <div class="align-self-center px-3 d-block">
                               <h5 class="text-muted mb-0 font-weight-normal small">
-                                {{message.timeStamp | date:'short'}} </h5>
+                                {{message.timeStamp | timeAgo}} </h5>
                             </div>
                           </div>
                         </div>
@@ -217,8 +228,7 @@
                       </div>
                     </div>
                     <!-- Message text box Start-->
-                    <div class="media border-top d-flex align-items-center px-3 mt-4 pt-2"
-                     *ngIf="selectedThread">
+                    <div class="media border-top d-flex align-items-center px-3 mt-4 pt-2" *ngIf="selectedThread">
                       <span><i *ngIf="typingData?.length!=null" class="isTyping">{{typingData.userName}}
                           typing...</i></span>
                       <div class="media-body mb-0">
@@ -292,9 +302,8 @@
             </div>
             <form class="form-inline" id="search-form">
               <div class="input-group col-12 pb-4">
-                <input class="form-control search-form"[(ngModel)]="searchText" name="searchText" placeholder="Search"
-                type="text"><span
-                  class="input-group-btn"><button class="search-btn" type="submit">
+                <input class="form-control search-form" [(ngModel)]="searchText" name="searchText" placeholder="Search"
+                  type="text"><span class="input-group-btn"><button class="search-btn" type="submit">
                     <i class="fa fa-search"></i>
                   </button>
                 </span>
@@ -311,8 +320,8 @@
 
                   <div class="border-top p-1">
                     <div class="media d-flex align-items-center py-2">
-                      <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
-                        src="assets/images/avatars/2.jpg">
+                      <!-- <img alt="Generic placeholder image" class="mr-3 user-pic rounded-circle mr-2"
+                        src="assets/images/avatars/2.jpg"> -->
                       <div class="media-body d-flex mb-0">
                         <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
                           {{member.name}}
