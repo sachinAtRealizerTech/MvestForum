@@ -96,7 +96,7 @@
             <div class="media-body justify-content-center text-left text-white ">
               <h4 class="text-white font-weight-medium username">{{user.f_name | titlecase}} {{user.l_name | titlecase}}
               </h4>
-              <h6 class="text-white font-weight-medium user-tagline">{{userDetails?.tag_line | titlecase}}
+              <h6 class="text-white font-weight-medium user-tagline">{{userDetails?.tag_line}}
               </h6>
 
             </div>
@@ -535,9 +535,9 @@
        </div>
         </div> -->
 
-        <div class="form-group col-4" *ngIf="originalImageUrl">
+        <div class="form-group col-4" *ngIf="imagePreview">
           <div class="mt-2">
-            <img class="rounded-circle border" src="{{originalImageUrl}}" height="120px" width="120px">
+            <img class="rounded-circle border" [src]="imagePreview" height="120px" width="120px">
           </div>
         </div>
 

@@ -266,9 +266,14 @@ export class CommunityComponent implements OnInit {
         this.images.push({ file: files.item(i), uploadProgress: "0" });
       }
     }
+    var reader = new FileReader();
+    reader.readAsDataURL(files[files.length - 1]);
+    reader.onload = (_event) => {
+      this.imagePreview = reader.result;
+    }
     // this.imagePreview = this.images[0]
     this.message = `${this.images.length} valid image(s) selected`;
-    this.uploadImage();
+    //this.uploadImage();
   }
 
   uploadImage() {
@@ -292,10 +297,15 @@ export class CommunityComponent implements OnInit {
             if (data['body']['originalFileName']) {
               this.originalImageUrl = ""
               let imageUrl = data['body']['originalFileName'];
-              this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
-              // this.displayPicImage = this.originalImageUrl
+              // this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
+
+              this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
+              this.modalService.dismissAll(this.newDisplayPicModal);
+              this.originalImageUrl = "";
+              this.displayPicImage = this.originalImageUrl
+              window.location.reload();
+
               this.isDPChanged = true;
-              //this.ngOnInit();
             }
             this.loading = false;
           }
@@ -307,11 +317,10 @@ export class CommunityComponent implements OnInit {
   }
 
   submitUpdateProfileImage() {
-    this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
-    this.modalService.dismissAll(this.newDisplayPicModal);
-    this.originalImageUrl = "";
-    this.displayPicImage = this.originalImageUrl
-    window.location.reload();
+    if (this.newDisplayPicForm.invalid) {
+      return
+    }
+    this.uploadImage()
   }
 
   changeCoverPhoto(imagePath: string) {
