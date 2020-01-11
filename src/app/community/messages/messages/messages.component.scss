@@ -155,7 +155,24 @@ body {
 .badge-pill{
 	color: white;
 }
-
+/* For Showing List on hover*/
+.show:hover ul.list-categories{
+	max-height: inherit;
+	opacity: 1;
+  }
+  .primary-tooltip {
+    background-color: #3F51B5;
+}
+  
+  .list-categories{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	max-height: 0px;
+	opacity: 0;
+	overflow: hidden;
+	transition: opacity 300ms ease;
+  }
 
 /* width */
 ::-webkit-scrollbar {

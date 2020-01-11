@@ -102,8 +102,9 @@
                         *ngIf="thread.participants.length>2" src="assets/images/images/groups-icon.png">
                       </ngx-avatar> -->
 
-                      <div class="media-body mb-0">
-                        <h5 class="text-dark h6 mb-0 font-weight-semibold truncate">
+                      <div class="media-body mb-0 show">
+                        <h5 class="text-dark h6 mb-0 font-weight-semibold truncate" data-target="tool-tip"
+                          title="{{thread.threadName}}">
                           {{getThreadNameForLoggedInUser(thread.threadName,loggedInUser) || thread.threadDocId}}
                         </h5>
 
@@ -130,10 +131,17 @@
 
         </div>
         <div class="col-xl-7">
-          <div class="col-xl-12 col-md-12 col-sm-12 mb-4 ">
+          <div class="col-xl-12 col-md-12 col-sm-12 mb-4 show">
             <ul class="list-inline d-flex mb-1">
-              <li class="list-inline-item h6  text-muted truncate">
+              <li class="list-inline-item h6  text-muted truncate" data-target="tool-tip"
+                title="{{selectedThread?.threadName}}">
                 {{getThreadNameForLoggedInUser(selectedThread?.threadName,loggedInUser)}}</li>
+              <!-- <div>
+                <ul class="list-inline d-flex mb-1 list-categories">
+                  <li class="list-inline-item h6  text-muted ">
+                    {{selectedThread?.threadName}}</li>
+                </ul>
+              </div> -->
               <div class="ml-auto d-inline-flex">
                 <a routerLink="#">
                   <li class="list-inline-item h6 mr-3 text-muted ">
