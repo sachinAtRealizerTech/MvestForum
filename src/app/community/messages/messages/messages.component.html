@@ -91,12 +91,16 @@
                   <div class=" border-bottom p-1">
                     <div class="media p-3" [id]="thread.threadDocId">
 
-                      <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
-                        alt="Generic placeholder image"> -->
+                      <img *ngIf="thread.participants.length>2" class="mr-3 user-pic rounded-circle mr-2"
+                        src="assets\images\avatars\groups-icon.png" alt="Generic placeholder image">
 
                       <ngx-avatar class="mr-3 mr-2" name="{{thread.participants.userName}}" [size]="40"
-                        src="{{imagePrependUrl}}{{thread.participants[0].userEmailId}}{{png}}">
+                        *ngIf="thread.participants.length==2"
+                        src="{{imagePrependUrl}}{{getThreadEmailforLoggedInUser(thread.participants,loggedInUser)}}{{png}}">
                       </ngx-avatar>
+                      <!-- <ngx-avatar class="mr-3 mr-2" name="{{thread.participants.userName}}" [size]="40"
+                        *ngIf="thread.participants.length>2" src="assets/images/images/groups-icon.png">
+                      </ngx-avatar> -->
 
                       <div class="media-body mb-0">
                         <h5 class="text-dark h6 mb-0 font-weight-semibold truncate">

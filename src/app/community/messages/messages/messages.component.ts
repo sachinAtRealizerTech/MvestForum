@@ -287,6 +287,10 @@ export class MessagesComponent implements OnInit {
     });
     return newThreadName.toString();
   }
+  getThreadEmailforLoggedInUser(participants: Member[], loggedInUser: Auth): string {
+    console.log('participant and logged in user : ', participants);
+    return MessageUtils.getThreadEmailforLoggedInUser(participants, loggedInUser);
+  }
 
 
 }
