@@ -69,7 +69,6 @@ export class NearbyneighborsComponent implements OnInit {
           this.leaseOwnersList.push(this.allLeaseOwnersList[i])
         }
       }
-      // this.leaseOwnersList.forEach((el) => { el.memaild = environment.IMAGEPREPENDURL + el.memaild + '.png' })
       //this.leaseName = this.leaseOwnersList.lease_name
       console.log('leaseOwnersList', this.leaseOwnersList);
       this.loading = false;

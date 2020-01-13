@@ -47,7 +47,6 @@ export class MvestUserFollowingComponent implements OnInit {
           this.followingMembersList.push(this.allFollowingMembersList[i])
         }
       }
-      //  this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('allfollowingmembers', this.allFollowingMembersList);
       console.log('followingmembers', this.followingMembersList);
@@ -67,7 +66,6 @@ export class MvestUserFollowingComponent implements OnInit {
           this.followerMembersList.push(this.allFollowerMembersList[i]);
         }
       }
-      // this.followerMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('followermembers', this.followerMembersList)
     },

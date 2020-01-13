@@ -54,7 +54,6 @@ export class MydiscussionsComponent implements OnInit {
       this.discussionListPage = true;
       this.loading = false;
       this.myDiscussionList = data;
-      // this.myDiscussionList.discussions.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       this.myDiscussionList.discussions.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       console.log('mydisclist', this.myDiscussionList)
     },

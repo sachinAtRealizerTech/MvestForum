@@ -73,7 +73,6 @@ export class FollowingComponent implements OnInit {
           this.followingMembersList.push(this.allFollowingMembersList[i])
         }
       }
-      // this.followingMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('allfollowingmembers', this.allFollowingMembersList);
       console.log('followingmembers', this.followingMembersList);
@@ -93,7 +92,6 @@ export class FollowingComponent implements OnInit {
           this.followerMembersList.push(this.allFollowerMembersList[i]);
         }
       }
-      // this.followerMembersList.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('followermembers', this.followerMembersList)
     },
@@ -122,7 +120,6 @@ export class FollowingComponent implements OnInit {
         this.noSearchedMembers = true
       }
       else if (this.searchedMembers.length > 0) {
-        //   this.searchedMembers.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
         this.searchedMembersPresent = true;
       }
       this.loading = false;
@@ -263,7 +260,6 @@ export class FollowingComponent implements OnInit {
           this.blockedMembers.push(this.AllFollowerMembers[i]);
         }
       }
-      //  this.blockedMembers.forEach((el) => { el.email_id = environment.IMAGEPREPENDURL + el.email_id + '.png' })
       this.loading = false;
       console.log('blockedmembers', this.blockedMembers)
     },

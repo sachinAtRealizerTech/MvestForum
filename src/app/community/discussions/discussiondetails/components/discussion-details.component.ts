@@ -185,7 +185,6 @@ export class DiscussionDetailsComponent implements OnInit {
     this.discussiondetailsService.getAllDiscussionsDetails(id).subscribe(data => {
       debugger;
       this.discussionDetails = data;
-      // this.discussionDetails.posts.forEach((el) => { el.post_by_emailId = environment.IMAGEPREPENDURL + el.post_by_emailId + '.png' })
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id'];

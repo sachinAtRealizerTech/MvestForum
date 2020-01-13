@@ -53,7 +53,6 @@ export class MvestUserNeighborsComponent implements OnInit {
       this.allNeighboursCount = this.myConnectedNeighbors.length;
       sessionStorage.setItem("allNeighboursCount", this.allNeighboursCount.toString())
       this.acceptedRequests = this.myConnectedNeighbors;
-      // this.acceptedRequests.forEach((el) => { el.neighbor_email_id = environment.IMAGEPREPENDURL + el.neighbor_email_id + '.png' })
       console.log('newFilteredData', data['data']);
       this.loading = false;
     },
