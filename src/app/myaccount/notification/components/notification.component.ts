@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../services/notification.service';
-import { Utils } from '../../shared/Utils';
+import { Utils } from '../../../shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { HighlightText } from '../../shared/pipes/highlightText.pipe';
+import { HighlightText } from '../../../shared/pipes/highlightText.pipe';
 import { error } from 'util';
 
 @Component({

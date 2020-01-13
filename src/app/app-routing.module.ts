@@ -24,9 +24,9 @@ import { NearbyleasesComponent } from './neighbors/nearbyleases/components/nearb
 import { NearbyneighborsComponent } from './neighbors/nearbyneighbors/components/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/components/myaccount.component';
 import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
-import { NotificationComponent } from './notification/components/notification.component';
+import { NotificationComponent } from './myaccount/notification/components/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
-import { SettingsComponent } from './settings/components/settings.component';
+import { SettingsComponent } from './myaccount/settings/components/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/searchresults.component';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
