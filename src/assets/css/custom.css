@@ -1704,7 +1704,7 @@ transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
 .upload-button {
-font-size: 1.2em;
+font-size: 1em;
 }
 
 .upload-button:hover {
