@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
     }
     this.submitSignIn = false;
     let body = {
-      email_id: this.signInForm.controls.email.value,
+      email_id: (this.signInForm.controls.email.value),
       password: this.signInForm.controls.password.value
     }
 

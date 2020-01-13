@@ -287,7 +287,7 @@ export class SignupComponent implements OnInit {
       member_type: this.userTypeName,
       f_name: this.userInfoForm.controls.firstName.value,
       l_name: this.userInfoForm.controls.lastName.value,
-      email_id: this.userInfoForm.controls.eMail.value,
+      email_id: (this.userInfoForm.controls.eMail.value).toLowerCase(),
       mailing_st_address: this.userInfoForm.controls.address.value,
       city: this.userInfoForm.controls.city.value,
       state_master_id: this.userInfoForm.controls.state.value,
@@ -354,7 +354,7 @@ export class SignupComponent implements OnInit {
     this.alertPhoneValidation = false;
     let body = {
       phone_number: this.alertInfoForm.controls.alertPhone.value,
-      email_id: this.alertInfoForm.controls.alertEmail.value,
+      email_id: (this.alertInfoForm.controls.alertEmail.value).toLowerCase(),
       user_id: this.userId,
       preferenceOption_Code: this.alertInfoForm.controls.alerts.value
     }
@@ -540,7 +540,7 @@ export class SignupComponent implements OnInit {
   sendConfirmationEmail() {
     debugger;
     let body = {
-      _EmailId: this.userInfoForm.controls.eMail.value,
+      _EmailId: (this.userInfoForm.controls.eMail.value).toLowerCase(),
     }
     this.signupService.sendConfirmationEmail(body).subscribe(data => {
       console.log('emaildata', data);
