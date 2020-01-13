@@ -197,4 +197,11 @@ export class MyaccountComponent implements OnInit {
     })
   }
 
+  omitSpecialChar(event) {
+    debugger;
+    var k;
+    k = event.keyCode;
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57) || (k >= 96 && k <= 105));
+  }
+
 }

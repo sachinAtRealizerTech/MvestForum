@@ -90,9 +90,11 @@
                               class="font-weight-normal text-secondary  mb-0">{{g.FirstName.value | titlecase}} </label>
                           </h6>
                           <input *ngIf="editflag" type="text" class="form-control h6" formControlName="FirstName"
-                            [ngClass]="{ 'is-invalid': submitUserProfile && g.FirstName.errors }">
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.FirstName.errors }"
+                            pattern="^[a-zA-Z\s-]+$" (keypress)="omitSpecialChar($event)">
                           <div *ngIf="submitUserProfile && g.FirstName.errors" class="invalid-feedback">
                             <div *ngIf="g.FirstName.errors.required">First Name is required</div>
+                            <div *ngIf="g.FirstName.errors.pattern">First Name is not valid</div>
                           </div>
                         </div>
                         <div class="form-group col-6">
@@ -101,9 +103,11 @@
                               class="font-weight-normal text-secondary mb-0">{{g.LastName.value | titlecase}} </label>
                           </h6>
                           <input *ngIf="editflag" type="text" class="form-control h6" formControlName="LastName"
-                            [ngClass]="{ 'is-invalid': submitUserProfile && g.LastName.errors }">
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.LastName.errors }"
+                            pattern="^[a-zA-Z\s-]+$" (keypress)="omitSpecialChar($event)">
                           <div *ngIf="submitUserProfile && g.LastName.errors" class="invalid-feedback">
                             <div *ngIf="g.LastName.errors.required">Last Name is required</div>
+                            <div *ngIf="g.LastName.errors.pattern">Last Name is not valid</div>
                           </div>
                         </div>
                       </div>
@@ -188,9 +192,11 @@
                               class="font-weight-normal text-secondary mb-0">{{g.City.value | titlecase}}
                             </label></h6>
                           <input *ngIf="editflag" type="text" class=" form-control h6" formControlName="City"
-                            [ngClass]="{ 'is-invalid': submitUserProfile && g.City.errors }">
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.City.errors }"
+                            (keypress)="omitSpecialChar($event)" pattern="^[a-zA-Z\s-]+$">
                           <div *ngIf="submitUserProfile && g.City.errors" class="invalid-feedback">
                             <div *ngIf="g.City.errors.required">City is required</div>
+                            <div *ngIf="g.City.errors.pattern">City name is not valid</div>
                           </div>
                         </div>
                         <div class="form-group col-4">
@@ -200,9 +206,11 @@
                           </h6>
                           <input *ngIf="editflag" type="text" value=" 411060 " class="form-control h6"
                             formControlName="PinCode"
-                            [ngClass]="{ 'is-invalid': submitUserProfile && g.PinCode.errors }">
+                            [ngClass]="{ 'is-invalid': submitUserProfile && g.PinCode.errors }"
+                            pattern="^[0-9]*[1-9][0-9]*$">
                           <div *ngIf="submitUserProfile && g.PinCode.errors" class="invalid-feedback">
                             <div *ngIf="g.PinCode.errors.required">Pin code is required</div>
+                            <div *ngIf="g.PinCode.errors.pattern">Invalid Zip Code.</div>
                           </div>
                         </div>
                       </div>
