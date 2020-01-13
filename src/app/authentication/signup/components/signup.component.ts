@@ -296,16 +296,20 @@ export class SignupComponent implements OnInit {
       password: this.userInfoForm.controls.password.value
     }
     this.signupService.userRegistration(body).subscribe(data => {
+      debugger;
       this.submitUserInfoForm = false;
       console.log('status code', data)
       if (data['error'] == "duplicate key value violates unique constraint \"unique_emailid\"") {
         this.duplicateEmail = true;
         return;
       };
-      this.userId = data['data'];
-      this.sendConfirmationEmail();
       console.log('userinfodata', data)
-      this.goToSecondPage();
+      if (data['status_code'] == 200 && data['data']) {
+        this.userId = data['data'];
+        this.sendConfirmationEmail();
+        this.goToSecondPage();
+      }
+
     },
       error => {
         console.log(error);

@@ -49,12 +49,13 @@
           </div>
         </a>
       </li>
+
       <li class="nav-item border-right border-left dropdown notifications">
         <a class="nav-link nav-link-icon text-center  text-secondary" href="#" role="button" id="dropdownMenuLink"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="nav-link-icon__wrapper">
             <i class="material-icons">&#xE7F4;</i>
-            <span class="badge badge-pill badge-danger">{{unreadDiscussionCount}}</span>
+            <span *ngIf="unreadDiscussionCount>0" class="badge badge-pill badge-danger">{{unreadDiscussionCount}}</span>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
