@@ -25,7 +25,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
-import { MyaccountComponent } from './myaccount/myaccount.component';
+import { MyaccountComponent } from './myaccount/components/myaccount.component';
 import { NotificationComponent } from './notification/components/notification.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 //import { LoadingcircleComponent } from './shared/loadingcircle/loadingcircle.component';

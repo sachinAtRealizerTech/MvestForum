@@ -22,7 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
-import { MyaccountComponent } from './myaccount/myaccount.component';
+import { MyaccountComponent } from './myaccount/components/myaccount.component';
 import { ConfirmemailComponent } from './authentication/confirmemail/confirmemail.component';
 import { NotificationComponent } from './notification/components/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';

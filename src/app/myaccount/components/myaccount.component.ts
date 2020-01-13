@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MyaccountService } from './myaccount.service';
-import { Utils } from '../shared/Utils';
+import { MyaccountService } from '../services/myaccount.service';
+import { Utils } from '../../shared/Utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SignupService } from '../authentication/signup/services/signup.service';
+import { SignupService } from '../../authentication/signup/services/signup.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({

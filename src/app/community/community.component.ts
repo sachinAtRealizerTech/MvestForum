@@ -13,7 +13,7 @@ import { SubcategoryService } from './discussions/subcategories/Services/subcate
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CategoryList } from './models/category';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { MyaccountService } from '../myaccount/myaccount.service';
+import { MyaccountService } from '../myaccount/services/myaccount.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common'
 
