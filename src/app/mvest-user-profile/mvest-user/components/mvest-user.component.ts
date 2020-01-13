@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Utils } from '../../shared/Utils';
+import { Utils } from '../../../shared/Utils';
 import { ProfileService } from 'src/app/community/profile/services/profile.service';
 import { CommunityStats } from 'src/app/community/models/communitystats';
 import { environment } from 'src/environments/environment';
