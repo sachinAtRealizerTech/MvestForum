@@ -37,13 +37,13 @@ import { SearchresultsComponent } from './searchresults/searchresults.component'
 import { ClickOutsideModule } from 'ng-click-outside';
 //import { HighlightText } from './shared/pipes/highlightText.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 import { MvestUserComponent } from './mvest-user-profile/mvest-user/components/mvest-user.component';
 import { BlockedComponent } from './blocked/blocked.component';
 import { MvestUserFollowingComponent } from './mvest-user-profile/mvest-user-following/components/mvest-user-following.component';
 import { MvestUserNeighborsComponent } from './mvest-user-profile/mvest-user-neighbors/components/mvest-user-neighbors.component';
 import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
+import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 
 @NgModule({
   declarations: [

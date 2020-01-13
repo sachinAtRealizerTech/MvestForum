@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MydiscussionsService } from '../services/mydiscussions.service';
 import { DiscussionslistService } from '../../community/discussions/discussionlist/Services/discussionslist.service';
 import { Utils } from '../../shared/Utils';
-import { BookmarksService } from '../../bookmarks/services/bookmarks.service';
+// import { BookmarksService } from '../../community/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
+import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
 
 @Component({
   selector: 'app-mydiscussions',

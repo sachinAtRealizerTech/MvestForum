@@ -515,29 +515,31 @@
           <label for="leasetype mb-4" class="font-weight-semibold">Browse to Add Profile Photo : </label>
         </div>
       </div>
+
       <div class="form-row">
-
-        <!-- <div class="form-group col-4" *ngIf="isImageCropped">
+        <!-- 
+        <div class="form-group col-4">
           <img class="js--image-preview--profile mt-2" [src]="croppedImage" width="70" height="70">
+        </div>
+
+        <div class="form-group col-4">
+          <div class="small-12 medium-2 large-2 columns">
+             <div class="circle">
+              <img class="profile bg-accent js--image-preview--profile mt-2" [src]="croppedImage">
+            </div> 
+            <div class="p-image">
+              <i class="fa fa-camera upload-button">
+                <input class=" image-upload rounded-5 text-dark" type="file" formControlName="newDisplayPic"
+                  (change)="fileChangeEvent($event)" accept="image/*" />
+              </i>
+            </div>
+          </div>
         </div> -->
 
-        <!-- <div class="form-group col-4">
-        <div class="small-12 medium-2 large-2 columns">
-          <div class="circle"> 
-            <img class="profile bg-accent js--image-preview--profile mt-2" [src]="croppedImage"> 
-          </div>
-          <div class="p-image">
-            <i class="fa fa-camera upload-button" >
-             <input class=" image-upload rounded-5 text-dark" type="file" formControlName="newDisplayPic" 
-             (change)="fileChangeEvent($event)" accept="image/*"/>
-            </i>
-          </div>
-       </div>
-        </div> -->
 
-        <div class="form-group col-4" *ngIf="imagePreview">
+        <div class="form-group col-4">
           <div class="mt-2">
-            <img class="rounded-circle border" [src]="imagePreview" height="120px" width="120px">
+            <img class="rounded-circle border" [src]="croppedImage" height="120px" width="120px">
           </div>
         </div>
 
@@ -546,17 +548,35 @@
             <div class="upload-options-profile  align-self-end">
               <label>
                 <input type="file" class="image-upload rounded-5 text-dark" formControlName="newDisplayPic"
-                  (change)="selectFiles($event)" accept="image/*" />
+                  (change)="fileChangeEvent($event)" accept="image/*" />
               </label>
             </div>
           </div>
         </div>
 
+        <!-- <div class="form-group col-4">
+          <div class="mt-2">
+            <img class="rounded-circle border" [src]="imagePreview" height="120px" width="120px">
+          </div>
+        </div> -->
+
+        <!-- <div class="form-group col-4">
+          <div class="js--image-preview--profile mt-2">
+            <div class="upload-options-profile  align-self-end">
+              <label>
+                <input type="file" class="image-upload rounded-5 text-dark" formControlName="newDisplayPic"
+                  (change)="selectFiles($event)" accept="image/*" />
+              </label>
+            </div>
+          </div>
+        </div> -->
+
       </div>
 
       <div class="form-row">
         <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
-          [resizeToWidth]="128" format="png">
+          [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="90">
         </image-cropper>
       </div>
 

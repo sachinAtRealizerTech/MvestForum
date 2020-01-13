@@ -15,7 +15,8 @@ import { CategoryList } from './models/category';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyaccountService } from '../myaccount/services/myaccount.service';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-community',
@@ -276,44 +277,85 @@ export class CommunityComponent implements OnInit {
     //this.uploadImage();
   }
 
+  // uploadImage() {
+  //   debugger;
+  //   this.loading = true
+  //   this.images.map((image) => {
+  //     debugger;
+  //     const formData = new FormData();
+  //     formData.append("image", image.file, image.file.name);
+  //     formData.append("email", this.user.email_id);
+  //     formData.append("uploadType", "1")
+  //     return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
+  //       reportProgress: true,
+  //       observe: "events"
+  //     })
+  //       .subscribe(data => {
+  //         debugger;
+  //         console.log('image upload response', data);
+  //         if (data['body']) {
+  //           debugger;
+  //           if (data['body']['originalFileName']) {
+  //             this.originalImageUrl = ""
+  //             let imageUrl = data['body']['originalFileName'];
+  //             // this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
+
+  //             this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
+  //             this.modalService.dismissAll(this.newDisplayPicModal);
+  //             this.originalImageUrl = "";
+  //             this.displayPicImage = this.originalImageUrl
+  //             window.location.reload();
+
+  //             this.isDPChanged = true;
+  //           }
+  //           this.loading = false;
+  //         }
+  //       },
+  //         error => {
+  //           this.loading = false;
+  //         });
+  //   });
+  // }
+
+
   uploadImage() {
     debugger;
-    this.loading = true
-    this.images.map((image) => {
-      debugger;
-      const formData = new FormData();
-      formData.append("image", image.file, image.file.name);
-      formData.append("email", this.user.email_id);
-      formData.append("uploadType", "1")
-      return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
-        reportProgress: true,
-        observe: "events"
-      })
-        .subscribe(data => {
+    this.loading = true;
+    let imagesBlob = this.dataURLtoBlob(this.croppedImage);
+    debugger;
+    const formData = new FormData();
+    formData.append("image", imagesBlob, 'thumb.jpg');
+    formData.append("email", this.user.email_id);
+    formData.append("uploadType", "1")
+    return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
+      reportProgress: true,
+      observe: "events"
+    })
+      .subscribe(data => {
+        debugger;
+        console.log('image upload response', data);
+        if (data['body']) {
           debugger;
-          console.log('image upload response', data);
-          if (data['body']) {
-            debugger;
-            if (data['body']['originalFileName']) {
-              this.originalImageUrl = ""
-              let imageUrl = data['body']['originalFileName'];
-              // this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
+          if (data['body']['originalFileName']) {
+            this.originalImageUrl = ""
+            let imageUrl = data['body']['originalFileName'];
+            // this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
 
-              this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
-              this.modalService.dismissAll(this.newDisplayPicModal);
-              this.originalImageUrl = "";
-              this.displayPicImage = this.originalImageUrl
-              window.location.reload();
+            this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
+            this.modalService.dismissAll(this.newDisplayPicModal);
+            this.originalImageUrl = "";
+            this.displayPicImage = this.originalImageUrl
+            window.location.reload();
 
-              this.isDPChanged = true;
-            }
-            this.loading = false;
+            this.isDPChanged = true;
           }
-        },
-          error => {
-            this.loading = false;
-          });
-    });
+          this.loading = false;
+        }
+      },
+        error => {
+          this.loading = false;
+        });
+
   }
 
   submitUpdateProfileImage() {
@@ -349,5 +391,36 @@ export class CommunityComponent implements OnInit {
         this.loading = false
       })
   }
+
+
+  //////////////////////////////////////////Image Cropper//////////////////////////////////////////
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.isImageCropped = true;
+    this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    // show cropper
+  }
+  cropperReady() {
+    // cropper ready
+  }
+  loadImageFailed() {
+    // show message
+  }
+
+  dataURLtoBlob(dataurl) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  }
+
+
 
 }
