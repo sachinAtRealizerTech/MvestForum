@@ -19,7 +19,7 @@ import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.com
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SignupComponent } from './authentication/signup/components/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordComponent } from './reset-password/components/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/components/myaccount.component';

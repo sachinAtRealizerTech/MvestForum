@@ -107,12 +107,13 @@
             <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
               <div class="align-self-center">
                 <h6 class="text-secondary text-uppercase font-weight-semibold ">No Notifications Yet !!</h6>
-                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all notifications related to discusssions</h6>
+                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all notifications related to
+                  discusssions</h6>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-8 pt-2"> 
+        <div class="col-md-6 col-xl-8 pt-2">
           <div class="row justify-content-between no-gutters pb-3"
             *ngFor="let mn of myNotifications | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p }">
 

@@ -22,7 +22,7 @@ import { PathLocationStrategy, LocationStrategy, HashLocationStrategy } from '@a
 import { CommunityModule } from './community/community.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordComponent } from './reset-password/components/reset-password.component';
 import { NearbyleasesComponent } from './nearbyleases/nearbyleases.component';
 import { NearbyneighborsComponent } from './nearbyneighbors/nearbyneighbors.component';
 import { MyaccountComponent } from './myaccount/components/myaccount.component';
