@@ -339,8 +339,6 @@ export class CommunityComponent implements OnInit {
           if (data['body']['originalFileName']) {
             this.originalImageUrl = ""
             let imageUrl = data['body']['originalFileName'];
-            // this.originalImageUrl = environment.IMAGEPREPENDURL + imageUrl + "?" + new Date().getTime();
-
             this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
             this.modalService.dismissAll(this.newDisplayPicModal);
             this.originalImageUrl = "";
@@ -348,6 +346,7 @@ export class CommunityComponent implements OnInit {
             window.location.reload();
 
             this.isDPChanged = true;
+            this.isImageCropped = false;
           }
           this.loading = false;
         }
