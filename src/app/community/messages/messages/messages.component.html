@@ -30,13 +30,48 @@
     </div>
   </div>
 
-  <div class="row justify-content-between pb-3 pt-4">
+
+  <div class="row justify-content-between " *ngIf="myThreads?.length==0">
+    <div class="col-md-12 col-xl-12">
+      <ul class="list-inline d-flex mb-1">
+        <li class="list-inline-item h6   text-muted">Messages</li>
+
+        <li class="list-inline-item h6 ml-auto text-muted"></li>
+        <li class="pull-right mr-3">
+          <a class="btn btn-accent btn-sm btn-block text-uppercase" data-toggle="modal"
+            data-target=".newmessage-modal-lg" (click)=getMembers()>
+            New Message</a>
+        </li>
+      </ul>
+
+      <div class="card shadow-none p-2">
+        <div class="row justify-content-center text-center   py-3">
+          <div class="col-md-5 text-center col-12 col-xl-4">
+            <img src="assets/images/follow.png" class="" alt="New Neighbors Image" height="235px" width="auto">
+          </div>
+          <div class="col-md-6 col-12 col-xl-6 px-4 text-left d-flex">
+            <div class=" align-self-center py-5">
+              <h6 class="text-secondary font-weight-semibold text-uppercase">No conversations yet !</h6>
+              <h6 class="text-muted font-weight-semibold small mb-1">All conversations will be Listed
+                here.
+              </h6>
+              <h6 class="text-muted font-weight-semibold small">You can chat with members by clicking on "New
+                Message" button.
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row justify-content-between pb-3 pt-4" *ngIf="myThreads?.length>0">
     <div class="col-md-12 col-xl-12">
       <div class="row justify-content-between no-gutters">
         <div class="col-md-12 col-xl-5">
           <ul class="list-inline d-flex mb-1">
             <li class="list-inline-item h6   text-muted">Messages</li>
-           
+
             <li class="list-inline-item h6 ml-auto text-muted"></li>
             <li class="pull-right mr-3">
               <a class="btn btn-accent btn-sm btn-block text-uppercase" data-toggle="modal"
@@ -49,7 +84,7 @@
           <!-- Thread containser starts -->
 
           <div class="card shadow p-2">
-            <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="myThreads?.length==0">
+            <!-- <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="myThreads?.length==0">
               <div class="col-md-12 text-center col-12 col-xl-12 px-4">
                 <div class=" text-center align-self-center py-5">
                   <h6 class="text-secondary font-weight-semibold text-uppercase">No conversations yet !</h6>
@@ -57,11 +92,11 @@
                     here.
                   </h6>
                   <h6 class="text-muted font-weight-semibold small">You can chat with members by clicking on "New
-                    Message" button
+                    Message" button.
                   </h6>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div id="chat-windowThread" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="myThreads.length>0">
               <div class="card-body card-selected p-1 cursor-pointer"
                 [class.bg-light]="selectedThread?.threadDocId==thread.threadDocId"
@@ -132,34 +167,30 @@
               <!-- MessageCenter starts -->
               <div class="card card-small shadow blog-comments">
                 <form>
-               
+
                   <div class="card-body pb-2 text-break">
                     <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="!selectedThread">
-          
                       <div class="col-md-8 text-center col-8 col-xl-8 px-4 py-5">
                         <div class="align-self-center">
                           <h6 class="text-secondary font-weight-semibold text-uppercase">Hey , this is your Chat Box !
                           </h6>
-                          <h6 class="text-muted font-weight-semibold small">All messages regarding particular Member
+                          <h6 class="text-muted font-weight-semibold small">All messages of a particular member
                             will be displayed here.</h6>
-                          <h6 class="text-muted font-weight-semibold small">Create a New Message to Start Chatting</h6>
+                          <h6 class="text-muted font-weight-semibold small">Select a message to start chatting.</h6>
                         </div>
                       </div>
                     </div>
 
                     <div id="chat-window" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="selectedThread">
                       <div *ngFor="let message of selectedThread.messages">
-
                         <!-- Participant Message start-->
                         <div class="media d-flex px-3 pb-1" *ngIf="message.from.userEmailId != loggedInUser.email_id">
 
                           <!-- <img class="mr-2 user-pic rounded-circle mr-2" src="assets/images/avatars/0.jpg"
                             alt="Generic placeholder image">
                              -->
-                          <ngx-avatar class="mr-3 mr-2" 
-                          [name]="message.from.userName" 
-                          [size]="40"
-                          [src]="getThumbnailUrl(message.from.userEmailId)">
+                          <ngx-avatar class="mr-3 mr-2" [name]="message.from.userName" [size]="40"
+                            [src]="getThumbnailUrl(message.from.userEmailId)">
                           </ngx-avatar>
 
                           <div class="media-body   mb-0">
@@ -259,12 +290,9 @@
               </div>
             </div>
             <form class="form-inline" id="search-form">
-              <div class="input-group col-12 pb-4">
-                <input class="form-control search-form" 
-                [(ngModel)]="searchText" 
-                name="searchText" 
-                placeholder="Search"
-                type="text">
+              <div class="input-group col-12 pb-2">
+                <input class="form-control search-form" [(ngModel)]="searchText" name="searchText" placeholder="Search"
+                  type="text">
                 <span class="input-group-btn"><button class="search-btn" type="submit">
                     <i class="fa fa-search"></i>
                   </button>
@@ -272,10 +300,142 @@
               </div>
             </form>
             <form>
-           
-              <div id="chat-window">
-                <div class="card-body py-0" *ngFor="let member of members | filter:searchText">
+              <div class="row px-4">
+                <div class="col-xl-12 pb-1 pt-2 px-0">
+                  <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
+                    <!-- <li class="nav-item align-self-center">
+                            <h6 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">Search List</h6>
+                        </li> -->
+                    <li class="nav-item align-self-center">
+                      <a href="#neighborList" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
+                        aria-selected="false">All Neighbors</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                      <a href="#yourList" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
+                        aria-controls="contact" aria-selected="false">Your List</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active " id="neighborList" role="tabpanel" aria-labelledby="home-tab">
+
+                  <div class="row justify-content-between px-4">
+                    <div class="w-100" id="chat-window">
+                      <div class="col-md-12 col-xl-12 " *ngFor="let member of members | filter:searchText">
+                        <div class="border-top p-1">
+                          <div class="media d-flex align-items-center py-2">
+
+                            <ngx-avatar class="mr-3 mr-2" name="{{member.name}}" [size]="40"
+                              [src]="getThumbnailUrl(member.neighbor_email_id)">
+                            </ngx-avatar>
+                            <div class="media-body d-flex mb-0">
+                              <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                                {{member.name}}
+                              </h5>
+
+                            </div>
+                            <div class="checkbox">
+                              <input type="checkbox" id="{{member.neighbor_id}}"
+                                (change)="selectMembersToChat($event,member)">
+                              <label for="{{member.neighbor_id}}"></label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade show " id="yourList" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="row justify-content-between px-4">
+                    <div class="w-100" id="chat-window">
+                      <div class="col-md-12 col-xl-12">
+
+                        <!-- <div class="border-top p-2">
+
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="newList1" name="newList" class="custom-control-input" value="radio1"
+                              (change)="toggleNewListGroup()" checked>
+                            <label class="custom-control-label text-dark font-weight-semibold" for="newList1"> Close
+                              Friends</label>
+                          </div>
+                          <hr>
+                          <div class="custom-control custom-radio custom-control-inline">
+                           <input type="radio" id="newList2" name="newList" class="custom-control-input" value="radio1" (change)="toggleNewListGroup()" >
+                           <label  class="custom-control-label text-dark font-weight-semibold" for="newList2"> Close Family</label>
+                         </div>  
+                        </div> -->
+                        <div class="border-top p-2">
+                        <div class="media d-flex align-items-center py-2">
+                          <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
+                          </ngx-avatar>
+                          <div class="media-body d-flex mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                              Close Friends
+                            </h5>
+                            <div class="ml-auto d-flex ">
+                              <div class="custom-control custom-radio custom-control-inline mt-2">
+                                <input type="radio" id="newList2" name="newList" class="custom-control-input"
+                                  value="radio1" (change)="toggleNewListGroup()" checked>
+                                <label class="custom-control-label text-dark font-weight-semibold"
+                                  for="newList2"></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="border-top p-2">
+                        <div class="media d-flex align-items-center py-2">
+                          <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
+                          </ngx-avatar>
+                          <div class="media-body d-flex mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                              Close Friends
+                            </h5>
+                            <div class="ml-auto d-flex ">
+                              <div class="custom-control custom-radio custom-control-inline mt-2">
+                                <input type="radio" id="newList3" name="newList" class="custom-control-input"
+                                  value="radio1" (change)="toggleNewListGroup()">
+                                <label class="custom-control-label text-dark font-weight-semibold"
+                                  for="newList3"></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="border-top p-2">
+                        <div class="media d-flex align-items-center py-2">
+                          <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
+                          </ngx-avatar>
+                          <div class="media-body d-flex mb-0">
+                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                              Close Friends
+                            </h5>
+                            <div class="ml-auto d-flex ">
+                              <div class="custom-control custom-radio custom-control-inline mt-2">
+                                <input type="radio" id="newList4" name="newList" class="custom-control-input"
+                                  value="radio1" (change)="toggleNewListGroup()">
+                                <label class="custom-control-label text-dark font-weight-semibold"
+                                  for="newList4"></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div id="chat-window">
+                <div class="card-body py-0">
+                  <div class="row">
+                    <div class="col-6" *ngFor="let member of members | filter:searchText">
                   <div class="border-top p-1">
                     <div class="media d-flex align-items-center py-2">
                     
@@ -295,13 +455,14 @@
                         <label for="{{member.neighbor_id}}"></label>
                       </div>
                     </div>
-                  </div>
-
-                </div>
+                  </div> 
+                </div> 
                 <div  *ngIf="members.length==0">
                   <h6 class="text-muted font-weight-semibold small mb-1 text-center">No neighbors found!</h6>
                 </div>
               </div>
+            </div>
+          </div> -->
             </form>
           </div>
         </div>
