@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NeighborsService } from '../neighbors/services/neighbors.service';
-import { Utils } from '../shared/Utils';
+import { NeighborsService } from '../../services/neighbors.service';
+import { Utils } from '../../../shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 

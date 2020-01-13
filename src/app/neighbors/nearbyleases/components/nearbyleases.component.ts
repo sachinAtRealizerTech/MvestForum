@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NeighborsService } from '../neighbors/services/neighbors.service';
+import { NeighborsService } from '../../services/neighbors.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Utils } from '../shared/Utils';
+import { Utils } from '../../../shared/Utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
