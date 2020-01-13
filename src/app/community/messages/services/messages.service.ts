@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Utils } from 'src/app/shared/Utils';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,15 @@ export class MessageService {
 
   constructor(private httpclient: HttpClient) { }
 
-  getMembers(body) {
-    return this.httpclient.post<any[]>(`${environment.APIBASEURL}/Neighbor/get_member_neighbors_withfilters`, body, Utils.getAuthHeader())
+  getMembers(memberId):Observable<any[]> {
+    return this.httpclient.post<any[]>(`${environment.APIBASEURL}/Neighbor/get_member_neighbors_withfilters`, {
+      _member_id: memberId,
+      _filter_by: "none",
+      _lease_number: 0,
+      _district_code: "",
+      _county_no: "",
+      _operator_number: ""
+    }, Utils.getAuthHeader()).pipe(map(data => data["data"]));
   }
 
   getUsersChatThreads(emailId) {

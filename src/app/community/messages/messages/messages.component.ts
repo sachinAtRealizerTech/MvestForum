@@ -3,7 +3,6 @@ import { Utils } from 'src/app/shared/Utils';
 import { MessageService } from '../services/messages.service';
 import { WebSocketServiceService } from '../services/web-socket-service.service';
 import { Thread } from '../model/threads';
-import { Message } from '../model/message';
 import { v4 as uuid } from 'uuid';
 import { Auth } from 'src/app/models/Auth';
 import { ScrollToBottomDirective } from './../ScrollToBottomDirective';
@@ -22,18 +21,16 @@ export class MessagesComponent implements OnInit {
   scroll: ScrollToBottomDirective;
 
   loading = false;
-  searchText: any;
-  public threadName: any;
+  searchText = "";
   loggedInUser: Auth
-  members: any;
+  members: any = [];
   selectedMemberToChat: Member[] = [];
 
-  public myThreads: Array<Thread> = [];
+  public myThreads: Thread[] = [];
   public selectedThread: Thread;
 
   public typingData;
-  imagePrependUrl: string;
-  png: string;
+  messgeText: any;
 
   constructor(
     private messagesService: MessageService,
@@ -41,8 +38,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     //#region Load Initial Data
-    this.imagePrependUrl = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+
     this.loggedInUser = Utils.GetCurrentUser();
     this.getAllThreads();
     //#endregion Load Initial Data
@@ -122,51 +118,30 @@ export class MessagesComponent implements OnInit {
   getAllThreads() {
     this.myThreads = [];
     this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(threadResponse => {
-      console.log('all threads - ', threadResponse);
-      threadResponse.forEach(thread => {
-        thread.threadName = MessageUtils.getThreadNameForLoggedInUser(thread.threadName, this.loggedInUser);
-        this.myThreads.push(thread);
-      });
+      this.myThreads = threadResponse;
+      this.joinAllThreads(this.myThreads);
+    });
+  }
 
-      if (this.myThreads && this.myThreads.length > 0) {
-        this.socketService.joinToAllThread({ threads: this.myThreads });
-      }
-    },
-      error => {
-        console.log(error);
-      }
-    );
+  private joinAllThreads(threads: Thread[]) {
+    if (this.myThreads && this.myThreads.length > 0) {
+      this.socketService.joinToAllThread({ threads: this.myThreads });
+    }
   }
 
   loadThreadInChatCenter(thread: Thread) {
-
     this.selectedThread = thread;
-    this.messagesService.getThreadMessages(thread.threadDocId).subscribe(messages => this.selectedThread.messages = messages,
-      error => {
-        console.log(error);
-      }
-    );
+    this.messagesService.getThreadMessages(thread.threadDocId).subscribe(messages => this.selectedThread.messages = messages );
   }
 
   getMembers() {
     this.selectedMemberToChat = [];
     this.loading = true;
-    let request = {
-      _member_id: this.loggedInUser.member_id,
-      _filter_by: "none",
-      _lease_number: 0,
-      _district_code: "",
-      _county_no: "",
-      _operator_number: ""
-    };
-    this.messagesService.getMembers(request).subscribe(members => {
-      this.members = members['data']
+
+    this.messagesService.getMembers(this.loggedInUser.member_id).subscribe(members => {
+      this.members = members
       this.loading = false;
-    },
-      error => {
-        console.log(error)
-        this.loading = false;
-      })
+    })
   }
 
   selectMembersToChat(event, member: any) {
@@ -193,7 +168,6 @@ export class MessagesComponent implements OnInit {
         userName: `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`,
         userEmailId: this.loggedInUser.email_id
       });
-      debugger;
       let existThread = MessageUtils.isThreadExist(this.myThreads, this.selectedMemberToChat);
 
       if (existThread) {
@@ -205,10 +179,12 @@ export class MessagesComponent implements OnInit {
     }
   }
 
-  sendMessage(event) {
-    let messageText = event.target.value;
-    event.target.value = "";
-
+  sendMessage() {
+    if (this.messgeText == "") {
+      return
+    }
+    let messageText = this.messgeText;
+    this.messgeText = "";
     let message = {
       messageId: uuid(),
       threadId: this.selectedThread.theradId,
@@ -240,6 +216,11 @@ export class MessagesComponent implements OnInit {
       isTyping: true
     }
     this.socketService.typing({ data });
+  }
+
+  getMessageText(event) {
+    this.messgeText = event.target.value;
+    event.target.value = "";
   }
 
   isThreadOneToOne(thread: Thread) {
@@ -277,20 +258,25 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  getThreadNameForLoggedInUser(originalThreadName: string, loggedInUser: Auth): string {
+  getThreadName(originalThreadName: string): string {
+    if (!originalThreadName) return;
     let newThreadName: string[] = [];
     originalThreadName.split(",").map(name => {
-      if (name != `${loggedInUser.f_name} ${loggedInUser.l_name}`) {
+      if (name != `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`) {
         newThreadName.push(name);
         return name;
       }
     });
     return newThreadName.toString();
   }
-  getThreadEmailforLoggedInUser(participants: Member[], loggedInUser: Auth): string {
-    console.log('participant and logged in user : ', participants);
-    return MessageUtils.getThreadEmailforLoggedInUser(participants, loggedInUser);
+
+  getParticipantThumbnailUrl(participants: Member[]): string {
+    let email= MessageUtils.getParticipantEmailId(participants, this.loggedInUser);
+    return this.getThumbnailUrl(email);
   }
 
+  getThumbnailUrl(email) {
+    return environment.IMAGEPREPENDURL + email + '.png';
+  }
 
 }

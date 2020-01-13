@@ -56,18 +56,7 @@ export class MessageUtils {
             userEmailId: loggedInUser.email_id
         }
     }
-    public static getThreadEmailforLoggedInUser(participants: Member[], loggedInUser: Auth): string {
-        let participantEmailId: string;
-        if (participants.length == 2) {
-            participants.forEach((participant => {
-
-                if (participant.userEmailId != loggedInUser.email_id) {
-                    participantEmailId = participant.userEmailId;
-                }
-            }))
-        } else {
-
-        }
-        return participantEmailId.toString();
+    public static getParticipantEmailId(participants: Member[], loggedInUser: Auth) {
+        return participants.find(p => p.userEmailId != loggedInUser.email_id).userEmailId;
     }
 }
