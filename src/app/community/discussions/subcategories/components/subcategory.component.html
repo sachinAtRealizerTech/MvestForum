@@ -133,23 +133,37 @@
 
       <div class="row justify-content-center pt-2">
         <div class="col-xl-12">
-          <div class="card align-self-center bg-white shadow-none">
+          <div class="align-self-center bg-white shadow-none">
             <div class="row justify-content-left text-center px-3">
               <div>
-                <div class="row gutter-10">
-                  <div class="card m-2" *ngFor="let sc of subCategoryList | filter:searchText"
-                    style="background: #000000;">
-                    <a routerLink="/discussionslist"
-                      [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
-                      (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
+                <div class="row  gutter-10">
+                  <div class="card bg-dark m-2" *ngFor="let sc of subCategoryList | filter:searchText">
+                  
+                    <div > 
                       <div class=" d-inline category-main" style="width:50rem">
-                        <img class="img-fluid img-thumbnail rounded-left" style="opacity: 0.7;"
+                        <img class=" img-fluid img-thumbnail rounded-left card-image" style="opacity: 0.667;"
                           src="{{sc.sub_categories.image}}" alt="" width="250px">
+                          <div class=" add-button d-flex d-inline-flex" >
+                           <a routerLink="/discussionslist"  
+                           [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
+                           (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
+                              <i class="add_circle icon-muted material-icons md-22" data-target="tooltip" title="View Discussions">
+                              remove_red_eye
+                            </i>
+                          </a>
+                            <i class="add_circle icon-muted material-icons md-22" data-target="tooltip" title="Add to My Discussions">
+                              add_circle 
+                              </i>
+                            </div>
                         <div class="category-text">
                           {{sc.sub_categories.name | titlecase}}
+                           <!-- <i class="add_circle material-icons md-22">
+                            add_circle
+                            </i> -->
                         </div>
                       </div>
-                    </a>
+                    </div> 
+                   
                   </div>
                 </div>
               </div>
