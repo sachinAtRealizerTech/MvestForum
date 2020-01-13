@@ -7,7 +7,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/components/top-nav.component';
 import { ProfileComponent } from './community/profile/components/profile.component';
 import { PhotosComponent } from './photos/components/photos.component';
-import { RequestsComponent } from './community/requests/requests.component';
+import { RequestsComponent } from './myaccount/requests/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';

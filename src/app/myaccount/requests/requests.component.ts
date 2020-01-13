@@ -3,7 +3,7 @@ import { NeighborsService } from '../../neighbors/services/neighbors.service';
 import { Utils } from 'src/app/shared/Utils';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FollowingService } from 'src/app/following/services/following.service';
-import { FollowRequest, SearchedMembers } from '../models/followingMembers';
+import { FollowRequest, SearchedMembers } from '../../community/models/followingMembers';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 
