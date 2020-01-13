@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TopNavService } from '../top-nav/services/top-nav.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-searchresults',
@@ -66,7 +67,7 @@ export class SearchresultsComponent implements OnInit {
 
   goToSearchLink(url: string) {
     debugger;
-    url = url.slice(31)
+    url = url.replace(environment.BaseLinkUrl, "");
     this.router.navigateByUrl(url)
   }
 

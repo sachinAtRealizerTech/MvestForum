@@ -233,7 +233,7 @@ export class TopNavComponent implements OnInit {
 
   goToSearchLink(url: string) {
     debugger;
-    url = url.slice(31)
+    url = url.replace(environment.BaseLinkUrl, "");
     this.router.navigateByUrl(url)
     this.showSearch = false;
   }

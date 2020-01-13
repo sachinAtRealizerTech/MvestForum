@@ -13,6 +13,7 @@ export const environment = {
   APIBASEIMGURL: 'http://45.35.4.250:3000',
   IMAGEPREPENDURL: 'http://45.35.4.250/MvestUploadContainer/',
   BaseUrlChatServer: 'http://45.35.4.250:3021',
+  BaseLinkUrl: 'http://45.35.4.250/MvestForum/#/',
   ShowAllMembersToChat: false
 };
 

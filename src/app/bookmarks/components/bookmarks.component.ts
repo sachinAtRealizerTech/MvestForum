@@ -59,7 +59,7 @@ export class BookmarksComponent implements OnInit {
   }
 
   goToBookmarkedLink(Url: string) {
-    Url = Url.slice(31);
+    Url = Url.replace(environment.BaseLinkUrl, "");
     this.router.navigateByUrl(Url);
   }
 

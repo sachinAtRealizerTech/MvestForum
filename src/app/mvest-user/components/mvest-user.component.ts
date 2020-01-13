@@ -137,7 +137,7 @@ export class MvestUserComponent implements OnInit {
   }
 
   goToDiscussionLink(url: string) {
-    url = url.slice(31)
+    url = url.replace(environment.BaseLinkUrl, "");
     this.router.navigateByUrl(url)
   }
 
