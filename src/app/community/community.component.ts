@@ -24,11 +24,6 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
   styleUrls: ['./community.component.scss']
 })
 export class CommunityComponent implements OnInit {
-  selectedFile: any;
-  imagePreview: string | ArrayBuffer;
-  newDisplayPicForm: FormGroup;
-  newDisplayPicModal: TemplateRef<any>;
-  isImageCropped = false;
 
   @ViewChild(ImageCropperComponent, { static: false }) imageCropper: ImageCropperComponent;
   croppedImageBlob: Blob;
@@ -54,6 +49,12 @@ export class CommunityComponent implements OnInit {
   displayPicImage: string;
   coverImagePrependUrl: string;
   coverImageTochange: string = "";
+  loading1 = false;
+  selectedFile: any;
+  imagePreview: string | ArrayBuffer;
+  newDisplayPicForm: FormGroup;
+  newDisplayPicModal: TemplateRef<any>;
+  isImageCropped = false;
 
 
   constructor(private communityService: CommunityService,
@@ -121,10 +122,7 @@ export class CommunityComponent implements OnInit {
       problemDescription: ['', Validators.required]
     });
 
-    // this.coverImage = "assets/images/bg-pattern33.png";
-
     this.newDisplayPicForm = this.formBuilder.group({
-      // croppedImage: ['', Validators.required],
       newDisplayPic: ['', Validators.required]
     });
 
@@ -254,6 +252,7 @@ export class CommunityComponent implements OnInit {
     this.modalService.dismissAll(this.newDisplayPicModal);
     this.newDisplayPicForm.reset();
     this.isImageCropped = false;
+    this.loading1 = false
   }
 
 
@@ -394,17 +393,20 @@ export class CommunityComponent implements OnInit {
   //////////////////////////////////////////Image Cropper//////////////////////////////////////////
 
   fileChangeEvent(event: any): void {
+    this.loading1 = true;
     this.imageChangedEvent = event;
+
   }
   imageCropped(event: ImageCroppedEvent) {
+    this.loading1 = false
     this.isImageCropped = true;
     this.croppedImage = event.base64;
   }
   imageLoaded() {
-    // show cropper
+    this.loading1 = false;
   }
   cropperReady() {
-    // cropper ready
+    this.loading1 = false;
   }
   loadImageFailed() {
     // show message
