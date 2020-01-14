@@ -96,7 +96,7 @@ export class MessagesComponent implements OnInit {
           lastMessage: messageReceived.lastMessage,
           lastMessageTime: messageReceived.lastMessageTime,
           messages: [messageReceived.message],
-          unreadCount: messageReceived.unreadCount
+          unreadCount: 1
         });
       }
 
@@ -130,8 +130,9 @@ export class MessagesComponent implements OnInit {
   }
 
   loadThreadInChatCenter(thread: Thread) {
+    thread.unreadCount = 0;
     this.selectedThread = thread;
-    this.messagesService.getThreadMessages(thread.threadDocId).subscribe(messages => this.selectedThread.messages = messages );
+    this.messagesService.getThreadMessages(thread.threadDocId).subscribe(messages => this.selectedThread.messages = messages);
   }
 
   getMembers() {
@@ -139,7 +140,7 @@ export class MessagesComponent implements OnInit {
     this.loading = true;
 
     this.messagesService.getMembers(this.loggedInUser.member_id).subscribe(members => {
-      this.members = members
+      this.members = members;
       this.loading = false;
     })
   }
@@ -180,10 +181,11 @@ export class MessagesComponent implements OnInit {
   }
 
   sendMessage() {
-    if (this.messgeText == "") {
-      return
-    }
+    debugger;
     let messageText = this.messgeText;
+    if (messageText.trim() == "") {
+      return;
+    }
     this.messgeText = "";
     let message = {
       messageId: uuid(),
@@ -216,11 +218,6 @@ export class MessagesComponent implements OnInit {
       isTyping: true
     }
     this.socketService.typing({ data });
-  }
-
-  getMessageText(event) {
-    this.messgeText = event.target.value;
-    event.target.value = "";
   }
 
   isThreadOneToOne(thread: Thread) {
@@ -271,7 +268,7 @@ export class MessagesComponent implements OnInit {
   }
 
   getParticipantThumbnailUrl(participants: Member[]): string {
-    let email= MessageUtils.getParticipantEmailId(participants, this.loggedInUser);
+    let email = MessageUtils.getParticipantEmailId(participants, this.loggedInUser);
     return this.getThumbnailUrl(email);
   }
 
