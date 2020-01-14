@@ -101,10 +101,13 @@ export class PhotosComponent implements OnInit {
     debugger;
     this.images = [];
     let files: FileList = event.target.files;
+
     for (let i = 0; i < files.length; i++) {
-      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
-        this.images.push({ file: files.item(i), uploadProgress: "0" });
-      }
+      // if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
+
+      this.images.push({ file: files.item(i), uploadProgress: "0" });
+
+      // }
     }
     this.message = `${this.images.length} valid image(s) selected`;
     this.uploadImageToAddPhoto();
@@ -116,7 +119,7 @@ export class PhotosComponent implements OnInit {
       this.subAddNewPhoto = true
       return
     }
-    this.loading = true
+    this.loading1 = true
     this.subAddNewPhoto = false
     this.images.map((image) => {
       debugger;
@@ -137,10 +140,13 @@ export class PhotosComponent implements OnInit {
             for (let i = 0; i < 1; i++) {
               this.fullImageUrl.push({ img: environment.IMAGEPREPENDURL + this.thumbImageUrl });
             }
-            this.loading = false;
+            this.loading1 = false;
             this.addPhotoInLeaseOrAlbum();
           }
-        });
+        },
+          error => {
+            this.loading1 = false;
+          });
     });
   }
 
@@ -154,9 +160,11 @@ export class PhotosComponent implements OnInit {
     }
     let files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
-      if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
-        this.images.push({ file: files.item(i), uploadProgress: "0" });
-      }
+      // if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
+
+      this.images.push({ file: files.item(i), uploadProgress: "0" });
+
+      // }
     }
     this.message = `${this.images.length} valid image(s) selected`;
     this.uploadImageToAddAlbum();
@@ -252,8 +260,8 @@ export class PhotosComponent implements OnInit {
 
   getAlbumList() {
     this.loading = true;
-    this.albumList = [];
     this.photosService.getAlbumList(this.user.email_id).subscribe(data => {
+      this.albumList = [];
       this.albumList = data['album'];
       console.log('albumlist', this.albumList);
       this.albumList.forEach((el => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name }))
@@ -301,6 +309,7 @@ export class PhotosComponent implements OnInit {
     this.addNewPhotoForm.reset();
     this.toggleLease = true;
     this.fullImageUrl = [];
+    this.loading1 = false;
   }
 
   submitAddNewPhoto() {
@@ -324,7 +333,6 @@ export class PhotosComponent implements OnInit {
       this.subAddNewPhoto = true
       return
     }
-    this.loading = true;
     let body = {
       album_docId: this.albumOrLeaseDocId,
       emailid: this.user.email_id,
@@ -333,10 +341,8 @@ export class PhotosComponent implements OnInit {
     }
     this.photosService.addPhotoInLeaseOrAlbum(body).subscribe(data => {
       console.log('add new photo response', data)
-      this.loading = false;
     },
       error => {
-        this.loading = false;
       })
   }
 
