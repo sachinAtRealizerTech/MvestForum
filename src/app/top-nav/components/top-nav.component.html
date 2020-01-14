@@ -179,11 +179,11 @@
 
                   <div class="col-8 pt-2 px-0 text-left ">
                     <h6 class="mb-0 font-weight-semibold">
-                      <a routerLink="#"><i class="material-icons text-accent md-24" data-toggle="tooltip"
+                      <a class="cursor-pointer"><i class="material-icons text-accent md-24" data-toggle="tooltip"
                           title="Accept Request">
                           check_circle
                         </i></a>
-                      <a routerLink="#"><i class="material-icons text-danger md-24" data-toggle="tooltip"
+                      <a class="cursor-pointer"><i class="material-icons text-danger md-24" data-toggle="tooltip"
                           title="Ignore Request">
                           cancel
                         </i></a>
@@ -245,7 +245,7 @@
             <i class="material-icons">account_box</i> My Account </a>
           <a routerLink="/settings" class="dropdown-item  text-secondary">
             <i class="material-icons">settings_applications</i> Settings </a>
-          <a routerLink="#" class="dropdown-item  text-secondary" (click)="logout()">
+          <a class="dropdown-item  text-secondary cursor-pointer" (click)="logout()">
             <i class="material-icons">&#xE879;</i> Logout </a>
         </div>
 
@@ -317,13 +317,13 @@
 
               <div class="py-2 px-3 grey-hover border-bottom " *ngFor="let cs of communitySearchedData | slice:0:2">
 
-                <a routerLink="#">
+                <a class="cursor-pointer">
                   <div class="media mb-0 d-flex">
                     <i class="material-icons align-self-center md-24 text-muted mr-3">
                       search
                     </i>
                     <div class="media-body mb-0">
-                      <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted" routerLink="#"
+                      <h6 class=" text-muted font-weight-semibold mb-0"><a class="text-muted cursor-pointer"
                           (click)="goToSearchLink(cs.url)"><u>{{cs.title | slice:0:50}}</u></a>
                       </h6>
                       <p class="h6 text-secondary small mb-0">{{cs.body | stripHtml | slice:0:100}}</p>
@@ -336,7 +336,7 @@
               </div>
 
               <div class="py-1 px-3 text-center border-bottom " *ngIf="communitySearchedData.length>0">
-                <a routerLink="#" (click)="goToSearchResultPage(communitySearchedData[0]?.sf)">
+                <a class="cursor-pointer" (click)="goToSearchResultPage(communitySearchedData[0]?.sf)">
                   <h6 class=" text-accent small font-weight-semibold mb-0 serach-view-title">View all
                     Results({{communitySearchedData.length}})
                   </h6>
