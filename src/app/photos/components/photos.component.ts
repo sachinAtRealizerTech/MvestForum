@@ -25,7 +25,6 @@ export class PhotosComponent implements OnInit {
   newAlbumForm: FormGroup;
   submitNewAlbumForm = false;
 
-
   images: ImageFile[] = []; //an array of valid images
   imageUrls: string[] = []; //an array of uploaded image urls
   favourites: string[] = []; //an array of favorite image urls
@@ -48,8 +47,8 @@ export class PhotosComponent implements OnInit {
   imageToPush: any[] = [];
   imageCounter = 0;
   subAddNewPhoto = false;
-  albumPhotos = false;
-  leasePhotos = true;
+  albumPhotos = true;
+  leasePhotos = false;
   thumbAlbumFirstImage: string;
   loading1 = false;
 
@@ -148,6 +147,11 @@ export class PhotosComponent implements OnInit {
   selectFilesToAddAlbum = (event) => { //image upload handler
     debugger;
     this.images = [];
+    if (this.newAlbumForm.invalid && !this.thumbAlbumFirstImage) {
+      this.submitNewAlbumForm = true;
+      event.target.value = '';
+      return
+    }
     let files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
       if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check

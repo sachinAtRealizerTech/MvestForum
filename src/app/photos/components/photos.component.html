@@ -17,17 +17,18 @@
           <h5 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">Photos</h5>
         </li>
         <li class="nav-item">
-          <a href="#leasephotos" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
-            aria-selected="false" (click)="selectLease()">Photos of Your Lease</a>
+          <a href="#albumphotos" class="nav-link text-muted font-weight-bold active" data-toggle="tab" role="tab"
+            aria-controls="contact" aria-selected="false" (click)="selectAlbum()">Albums</a>
+        </li>
+        <li class="nav-item">
+          <a href="#leasephotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" aria-selected="false"
+            (click)="selectLease()">Photos of Your Lease</a>
         </li>
         <!-- <li class="nav-item">
           <a href="#yourphotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
             aria-controls="contact" aria-selected="false">Your Photos</a>
         </li>  -->
-        <li class="nav-item">
-          <a href="#albumphotos" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-            aria-controls="contact" aria-selected="false" (click)="selectAlbum()">Albums</a>
-        </li>
+
         <div class="ml-auto d-inline-flex">
           <li class="nav-item pull-right mr-3">
             <a class="btn btn-outline-accent btn-sm btn-block text-uppercase"
@@ -44,7 +45,7 @@
 
   <div class="tab-content pb-3" id="myTabContent">
 
-    <div class="tab-pane fade show active" id="leasephotos" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade show" id="leasephotos" role="tabpanel" aria-labelledby="home-tab">
       <div class="row justify-content-center pt-4">
         <div class="col-md-5 text-center col-12 col-xl-4">
           <img src="assets/images/photos.png" alt="Photos Image" height="235px" width="auto">
@@ -118,7 +119,7 @@
 
     </div>
 
-    <div class="tab-pane fade show" id="albumphotos" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade show active" id="albumphotos" role="tabpanel" aria-labelledby="home-tab">
 
       <div class="row justify-content-center pt-4" *ngIf="albumList?.length==0">
         <div class="col-md-5 text-center col-12 col-xl-4">
