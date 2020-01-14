@@ -52,7 +52,7 @@ export class FollowingComponent implements OnInit {
     });
 
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
 
     this.getFollowingMembers();
     this.getFollowerMembers();

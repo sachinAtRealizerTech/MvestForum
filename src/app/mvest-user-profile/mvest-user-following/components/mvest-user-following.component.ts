@@ -27,7 +27,7 @@ export class MvestUserFollowingComponent implements OnInit {
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
     this.emailId = localStorage.getItem('userEmailId');
     this.memberId = Number(localStorage.getItem('userMemberId'));
     this.getUserFollowingList();

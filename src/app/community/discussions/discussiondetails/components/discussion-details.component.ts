@@ -80,7 +80,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
     this.editorConfig = {
       editable: true,
       spellcheck: true,

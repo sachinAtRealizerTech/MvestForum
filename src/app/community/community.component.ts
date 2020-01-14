@@ -338,10 +338,9 @@ export class CommunityComponent implements OnInit {
           debugger;
           if (data['body']['originalFileName']) {
             this.originalImageUrl = ""
-            let imageUrl = data['body']['originalFileName'];
+            //       let imageUrl = data['body']['originalFileName'];
             this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
             this.modalService.dismissAll(this.newDisplayPicModal);
-            this.originalImageUrl = "";
             this.displayPicImage = this.originalImageUrl
             window.location.reload();
 

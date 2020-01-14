@@ -37,7 +37,7 @@ export class NearbyneighborsComponent implements OnInit {
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
 
     this.leaseNumber = sessionStorage.getItem("nearByNbrleaseNo");
     this.districtNumber = sessionStorage.getItem("nearByNbrDistNo");

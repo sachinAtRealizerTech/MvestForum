@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.imagePrependUrl = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
     this.userImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png'
     this.getCommunityStats();
     this.getRecentDiscussionsAndPhotos();

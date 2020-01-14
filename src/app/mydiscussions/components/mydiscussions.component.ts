@@ -29,7 +29,7 @@ export class MydiscussionsComponent implements OnInit {
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
     this.getMyDiscussionGroups(this.user.email_id)
   }
 

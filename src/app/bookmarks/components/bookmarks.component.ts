@@ -23,7 +23,7 @@ export class BookmarksComponent implements OnInit {
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
     this.getBookmarks();
   }
 

@@ -46,7 +46,7 @@ export class MvestUserComponent implements OnInit {
   ngOnInit() {
     debugger;
     this.imagePrependUrl = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
     if (history.state.emailId && history.state.memberId) {
       localStorage.setItem('userEmailId', history.state.emailId);
       this.userEmailId = localStorage.getItem('userEmailId');

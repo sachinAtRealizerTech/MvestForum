@@ -119,7 +119,7 @@ export class NeighborsComponent implements OnInit {
     });
 
     this.imagePrepend = environment.IMAGEPREPENDURL;
-    this.png = '.png'
+    this.png = '.png?' + new Date().getTime();
 
     this.getMyLeases(this.user.member_id);
     this.getMemberList();
