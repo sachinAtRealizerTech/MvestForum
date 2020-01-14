@@ -410,10 +410,38 @@
           </a>
         </div>
 
+        <!-- <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
+          <img [src]="fiu?.img" height="100" width="100" formControlName="uploadedImageUrl">
+        </div>
 
+        <div class="row py-5 px-3 justify-content-center text-center align-self-center " *ngIf="loading1">
+          <div class="col-12  text-center">
+            <div class="spinner-border spinner-border-md text-accent" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class=" px-3 ">
+          <a href="#" class="d-block ">
+            <h6 class=" rounded-0 albumphoto border">
+              <div class="albumphoto">
+                <label class="mb-0">
+                  <input type="file" class="rounded-5" id="photo" formControlName="photo"
+                    (change)="fileChangeEvent($event)" [ngClass]="{ 'is-invalid': subAddNewPhoto && m.photo.errors }">
+                </label>
+                <div *ngIf="subAddNewPhoto && m.photo.errors" class="invalid-feedback">
+                  <div *ngIf="m.photo.errors.required">Photo is required</div>
+                </div>
+              </div>
+
+            </h6>
+          </a>
+        </div> -->
 
       </div>
     </div>
+
     <div class="modal-footer">
       <button type="button" class="btn btn-accent" (click)="submitAddNewPhoto()">Submit</button>
     </div>
@@ -447,7 +475,7 @@
 
 
 
-        <div class="px-3 py-2" *ngIf="thumbAlbumFirstImage">
+        <!-- <div class="px-3 py-2" *ngIf="thumbAlbumFirstImage">
           <img [src]="thumbAlbumFirstImage" height="100" width="100">
         </div>
 
@@ -475,12 +503,55 @@
             </h6>
           </a>
         </div>
+      
+        <div class="modal-footer">
+      <button type="button" class="btn btn-accent" (click)="submitAddNewAlbumModal()">Submit</button>
+    </div>-->
+
+        <div class="px-3 py-2" *ngIf="croppedImage">
+          <img [src]="croppedImage" height="100" width="100">
+        </div>
+
+        <div class="row py-5 px-3 justify-content-center text-center align-self-center " *ngIf="loading1">
+          <div class="col-12  text-center">
+            <div class="spinner-border spinner-border-md text-accent" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class=" px-3 py-2">
+          <a href="#" class="d-block ">
+            <h6 class=" rounded-0 albumphoto border">
+              <div class="albumphoto">
+                <label class="mb-0">
+                  <input type="file" id="photo" formControlName="photo" class="rounded-5"
+                    (change)="fileChangeEvent($event)"
+                    [ngClass]="{ 'is-invalid': submitNewAlbumForm && n.photo.errors }">
+                </label>
+                <div *ngIf="submitNewAlbumForm && n.photo.errors" class="invalid-feedback">
+                  <div *ngIf="n.photo.errors.required">Please upload a photo</div>
+                </div>
+              </div>
+            </h6>
+          </a>
+        </div>
 
       </div>
+
+      <div class="row">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [resizeToWidth]="128"
+          format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="90">
+        </image-cropper>
+      </div>
+
+
+
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-accent" (click)="submitAddNewAlbumModal()">Submit</button>
+      <button type="button" class="btn btn-accent" (click)="uploadImageToAddAlbum()">Submit</button>
     </div>
   </div>
 

@@ -126,9 +126,8 @@ export class CommunityComponent implements OnInit {
       newDisplayPic: ['', Validators.required]
     });
 
-    this.getAllCategories();
     this.getUserProfileDetails();
-    debugger;
+    this.getAllCategories();
     localStorage.setItem('displayPicUrl', (environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime()))
     if (this.isDPChanged == true) {
       this.displayPicImageUrl = environment.IMAGEPREPENDURL + this.user.email_id + '.png' + "?" + new Date().getTime();
