@@ -50,20 +50,20 @@
                 <div class=" justify-content-center align-text-left text-left h6 d-inline-flex mb-0">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a routerLink="#"
-                                class="nav-link align-self-center  font-weight-semibold active text-muted ">FEATURES</a>
+                            <a
+                                class="nav-link align-self-center  font-weight-semibold active text-muted cursor-pointer">FEATURES</a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="#"
-                                class="nav-link align-self-center  font-weight-semibold text-muted ">PLANS</a>
+                            <a
+                                class="nav-link align-self-center  font-weight-semibold text-muted cursor-pointer ">PLANS</a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="#" class="nav-link align-self-center  font-weight-semibold text-muted ">OUR
+                            <a class="nav-link align-self-center  font-weight-semibold text-muted cursor-pointer ">OUR
                                 STORY</a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="#"
-                                class="nav-link align-self-center  font-weight-semibold text-muted">NEWS</a>
+                            <a
+                                class="nav-link align-self-center  font-weight-semibold text-muted cursor-pointer">NEWS</a>
                         </li>
                     </ul>
                 </div>
@@ -71,7 +71,7 @@
                     class=" justify-content-end align-content-end text-right pull-right h6 align-self-center d-inline-flex mb-0">
                     <ul class="navbar-nav">
                         <li class="nav-item align-self-center">
-                            <a routerLink="#" class="nav-link font-weight-semibold text-muted align-self-center"
+                            <a class="nav-link font-weight-semibold text-muted align-self-center cursor-pointer"
                                 (click)="openSignIn()">SIGN IN</a>
                             <!-- <button class="btn btn-outline-accent text-white rounded-0 pull-right"
                                 (click)="openSignIn()">SIGN IN
@@ -162,15 +162,13 @@
                     <p class="text-dark font-weight-normal h4">Get the most out of MVest </p>
                     <p class="text-muted font-weight-semibold small mb-2">Which plan is right for you ?? </p>
 
-                    <a *ngIf="individualTab" routerLink="#"
-                        class="badge badge-accent p-3 border-0 cursor-pointer">Individual</a>
-                    <a *ngIf="!individualTab" routerLink="#" (click)="getMembersPlanSelectionData('mineral')"
+                    <a *ngIf="individualTab" class="badge badge-accent p-3 border-0 cursor-pointer">Individual</a>
+                    <a *ngIf="!individualTab" (click)="getMembersPlanSelectionData('mineral')"
                         class="badge badge-outline-accent p-3 border-0 cursor-pointer ">Individual</a>
 
-                    <a *ngIf="!professionalTab" routerLink="#" (click)="getMembersPlanSelectionData('professional')"
+                    <a *ngIf="!professionalTab" (click)="getMembersPlanSelectionData('professional')"
                         class="badge badge-outline-accent p-3 border-0 cursor-pointer">Professional</a>
-                    <a *ngIf="professionalTab" routerLink="#"
-                        class="badge badge-accent p-3 border-0 cursor-pointer">Professional</a>
+                    <a *ngIf="professionalTab" class="badge badge-accent p-3 border-0 cursor-pointer">Professional</a>
 
                 </div>
             </div>
