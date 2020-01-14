@@ -19,13 +19,13 @@
                
                 <div class="ml-auto d-inline-flex">
                         <li class="nav-item pull-right mr-3 align-self-center">
-                                <a routerLink="#" class="btn btn-outline-accent btn-sm btn-block text-uppercase " (click)="openNewListModal(newListModal)">New List</a>
+                                <a class="btn btn-outline-accent btn-sm btn-block text-uppercase cursor-pointer" (click)="openNewListModal(newListModal)">New List</a>
                             </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
                         <a routerLink="" class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-toggle="modal" data-target="#newNeighbor-modal-lg" (click)="openNewNeighborModal(newNeighborModal)"> New Neighbors</a>
                     </li> 
                     <li class="nav-item pull-right mr-3 align-self-center">
-                          <a routerLink="#" data-toggle="tooltip" title="Search by Filter" class="badge badge-accent rounded-5 text-white text-uppercase " (click)="openSearchFilterModal(searchFilterModal)" >
+                          <a data-toggle="tooltip" title="Search by Filter" class="badge badge-accent rounded-5 text-white text-uppercase cursor-pointer" (click)="openSearchFilterModal(searchFilterModal)" >
                             <i class="material-icons md-18">
                                     filter_list
                                     </i>
@@ -78,17 +78,17 @@
                                 <div class="col-12">
                                     <ul class="nav nav-tabs sub-tab border-0">
                                             <li *ngIf="leaseFilter" class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">                                          
-                                                    <h6 class="text-accent font-weight-semibold mb-0">Lease : {{leaseName}}<a routerLink="#" (click)="closeLeaseFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                                    <h6 class="text-accent font-weight-semibold mb-0">Lease : {{leaseName}}<a class="cursor-pointer" (click)="closeLeaseFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                                 </li>
                                                 <!-- <li *ngIf="distanceFilter" class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">                                          
                                                         <h6  class="text-accent font-weight-semibold mb-0">Distance : {{f.distanceWithin.value}} miles away<a routerLink="#" (click)="closeDistanceFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                                     </li> -->
                                        
                                         <li *ngIf="countyFilter" class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2">                                          
-                                            <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a routerLink="#" (click)="closeCountyFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
+                                            <h6 class="text-accent font-weight-semibold mb-0">County : Karnes<a class="cursor-pointer" (click)="closeCountyFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>
                                         </li>
                                         <li *ngIf="operatorFilter" class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2 ">     
-                                                <h6 class="text-accent font-weight-semibold mb-0 ">  Operator : Joe Shon <a routerLink="#" (click)="closeOperatorFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a> </h6>                                          
+                                                <h6 class="text-accent font-weight-semibold mb-0 ">  Operator : Joe Shon <a class="cursor-pointer" (click)="closeOperatorFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a> </h6>                                          
                                             </li> 
                                             <!-- <li *ngIf="playTypeFilter" class="nav-item align-self-center mb-0 text-accent p-2 shadow-sm mr-2 ">
                                                     <h6 class="text-accent font-weight-semibold mb-0">  Play Type : 1 <a routerLink="#" (click)="closePlayTypeFilter()"><span class="pl-3 text-muted font-weight-semibold">&times;</span></a></h6>                                              
@@ -312,7 +312,7 @@
                       </div> 
                 </div>
             </div> 
-          <a *ngIf="!additionalfilterflag" routerLink="#"(click)="openAdditionalFilter()">
+          <a *ngIf="!additionalfilterflag" class="cursor-pointer" (click)="openAdditionalFilter()">
                <div class="form-row pt-2 d-flex icon-muted">
                     <div class="form-group col-12 border d-flex bg-light ">
                     <h6 class="font-weight-semibold pr-3 align-self-center mb-0 p-2">Additional Filters :</h6> 
@@ -322,7 +322,7 @@
                 </div>
         </div> 
     </a>
-    <a *ngIf="additionalfilterflag" routerLink="#"(click)="closeAdditionalFilter()">
+    <a *ngIf="additionalfilterflag" class="cursor-pointer" (click)="closeAdditionalFilter()">
             <div class="form-row pt-2 d-flex  icon-muted">
                  <div class="form-group col-12 border d-flex bg-light">
                  <h6 class="font-weight-semibold pr-3 align-self-center mb-0 p-2">Additional Filters :</h6> 
@@ -560,7 +560,7 @@
                             </div>
                     </div>
             <div class="modal-footer">
-              <button routerLink="#" type="button" class="btn btn-accent" (click)="searchFilterData()">Search</button>             
+              <button type="button" class="btn btn-accent cursor-pointer" (click)="searchFilterData()">Search</button>             
             </div>
           </div> 
   
@@ -667,7 +667,7 @@
                                 </div>
                         </div>
                 <div class="modal-footer">
-                  <button routerLink="#" type="button" class="btn btn-accent" data-dismiss="modal" (click)="getLeaseNeighbors()">Search</button>                
+                  <button type="button" class="btn btn-accent cursor-pointer" data-dismiss="modal" (click)="getLeaseNeighbors()">Search</button>                
                 </div>
               </div>
 

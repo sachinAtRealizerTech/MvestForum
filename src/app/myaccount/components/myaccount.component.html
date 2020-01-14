@@ -32,7 +32,7 @@
             aria-controls="contact" aria-selected="false">Settings</a>
         </li>
         <li class="nav-item">
-          <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+          <a class="nav-link text-muted font-weight-bold text-uppercase cursor-pointer" role="tab"
             aria-controls="contact" aria-selected="false">Manage Subscription</a>
         </li>
 
@@ -237,7 +237,7 @@
                 <div class="card justify-content-between shadow d-flex card-small ">
                   <div class="card-body text-center py-3">
                     <div class="form-group text-left mb-0">
-                      <a routerLink="#" (click)="openChangePassword()">Change Password</a>
+                      <a class="cursor-pointer" (click)="openChangePassword()">Change Password</a>
 
                       <div *ngIf="Openpassword" [formGroup]="changePasswordForm">
                         <div class="pt-2">

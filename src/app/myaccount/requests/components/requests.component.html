@@ -32,7 +32,7 @@
                         aria-controls="contact" aria-selected="false">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="#" class="nav-link text-muted font-weight-bold text-uppercase" role="tab"
+                    <a class="nav-link text-muted font-weight-bold text-uppercase cursor-pointer" role="tab"
                         aria-controls="contact" aria-selected="false">Manage Subscription</a>
                 </li>
 
@@ -241,16 +241,16 @@
             <!-- <div class="container container-fluid px-4"> -->
             <div class="row justify-content-between no-gutters pb-3 pt-2">
                 <div class="col-md-12 col-xl-12">
-                   <div class="row justify-content-start no-gutters ">
+                    <div class="row justify-content-start no-gutters ">
 
                         <h6 class="list-inline-item h6 font-weight-semibold text-muted">Requests for Following</h6>
-                    </div> 
+                    </div>
 
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 py-4 text-center" *ngIf="followRequest?.length==0">
                         <div class="row justify-content-center ">
                             <div class="ccol-md-5 col-lg-4 text-center col-6 col-xl-4 ">
-                                <img src="assets/images/follow.png" class=" " alt="Follow Image"
-                                    height="235px" width="auto">
+                                <img src="assets/images/follow.png" class=" " alt="Follow Image" height="235px"
+                                    width="auto">
                             </div>
                             <div class="col-md-6 text-left col-6 col-xl-6  px-4 d-flex">
                                 <div class="align-self-center">
@@ -280,7 +280,7 @@
                                                     {{fr.f_name | titlecase}} {{fr.l_name | titlecase}}
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a routerLink="#"><svg class="icon-muted-svg"
+                                                    <a class="cursor-pointer"><svg class="icon-muted-svg"
                                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                             viewBox="0 0 24 24">
                                                             <path
