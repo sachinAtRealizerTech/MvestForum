@@ -109,7 +109,7 @@
                             <div class="align-self-center">
                             <h6 class="text-secondary font-weight-semibold text-uppercase">No Neighbors yet !</h6> 
                             <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Requested and Connected Neighbors. </h6> 
-                            <h6 class="text-muted font-weight-semibold ">You can connect to Nearby  Neighbors by clicking on "New Neighbors" in the above tab.</h6>           
+                            <h6 class="text-muted font-weight-semibold ">You can connect to Nearby  Neighbors by clicking on "NEW NEIGHBORS" button in the above tab.</h6>           
                   </div> 
                 </div>      
               </div>
@@ -122,7 +122,7 @@
                             <div class="align-self-center">
                             <h6 class="text-secondary font-weight-semibold text-uppercase">No Neighbors found for your search criteria !</h6> 
                             <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Requested and Connected Neighbors. </h6> 
-                            <h6 class="text-muted font-weight-semibold ">You can connect to Nearby  Neighbors by clicking on "New Neighbors" in the above tab.</h6>           
+                            <h6 class="text-muted font-weight-semibold ">You can connect to Nearby  Neighbors by clicking on "NEW NEIGHBORS" button in the above tab.</h6>           
                   </div> 
                 </div>      
               </div>
@@ -336,7 +336,7 @@
                     <div  class="p-3" [ngClass]="newListGroup?'shadow-sm':'shadow-none'">
                             <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="newList1" name="newList" class="custom-control-input" value="radio1" (change)="toggleNewListGroup()" checked >
-                                    <label [ngClass]="newListGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="newList1"> Filters For Lease Name And Distance</label>
+                                    <label [ngClass]="newListGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="newList1"> Choose Lease Name </label>
                                   </div>
                            
                             <div  class="form-row pt-2" >
@@ -369,7 +369,7 @@
                                 
                                 <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="newList2" name="newList" value="radio2"  class="custom-control-input"  (change)="toggleNewListGroup()"  >
-                                        <label [ngClass]="!newListGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="newList2"> Filters For County, Operator And PlayType </label>
+                                        <label [ngClass]="!newListGroup?'text-secondary':'text-muted'"  class="custom-control-label font-weight-semibold" for="newList2"> Choose For County, Operator And PlayType </label>
                                       </div>
     
                                 <div class="form-row pt-2 " >
@@ -485,7 +485,7 @@
                         <div  class="p-3" [ngClass]="filterGroup?'shadow-sm':'shadow-none'">
                         <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline1" name="filter" class="custom-control-input" value="radio1" (change)="toggleFilterGroup()" [checked]="filterGroup" >
-                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Choose Lease Name And Distance</label>
+                                <label [ngClass]="filterGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="customRadioInline1"> Choose Lease Name  </label>
                               </div>
                        
                         <div  class="form-row pt-2" [formGroup]="searchFilterLeaseForm">
@@ -587,7 +587,7 @@
                             <div  class="p-3" [ngClass]="newNeighborGroup?'shadow-sm':'shadow-none'">
                             <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="neighborradio1" name="neighborfilter" class="custom-control-input" value="radio1" (change)="toggleNewNeighborGroup()" [checked]="newNeighborGroup" >
-                                    <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="neighborradio1"> Choose Lease Name And Distance</label>
+                                    <label [ngClass]="newNeighborGroup?'text-secondary':'text-muted'" class="custom-control-label font-weight-semibold" for="neighborradio1"> Choose Lease Name </label>
                                   </div>
                            
                             <div  class="form-row pt-2" [formGroup]="newNeighborLeaseForm">

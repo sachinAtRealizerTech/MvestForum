@@ -55,8 +55,8 @@
               <h6 class="text-muted font-weight-semibold small mb-1">All conversations will be Listed
                 here.
               </h6>
-              <h6 class="text-muted font-weight-semibold small">You can chat with members by clicking on "New
-                Message" button.
+              <h6 class="text-muted font-weight-semibold small">You can chat with members by clicking on "NEW
+                MESSAGE" button.
               </h6>
             </div>
           </div>
@@ -286,12 +286,12 @@
           <div class="card shadow-none">
             <div class="row px-3">
               <div class="col-12">
-                <h6 class="text-dark font-weight-semibold">Search Members to Chat</h6>
+                <h6 class="text-dark font-weight-semibold">Start a conversation</h6>
               </div>
             </div>
             <form class="form-inline" id="search-form">
               <div class="input-group col-12 pb-2">
-                <input class="form-control search-form" [(ngModel)]="searchText" name="searchText" placeholder="Search"
+                <input class="form-control search-form" [(ngModel)]="searchText" name="searchText" placeholder="Search Member"
                   type="text">
                 <span class="input-group-btn"><button class="search-btn" type="submit">
                     <i class="fa fa-search"></i>
@@ -300,7 +300,12 @@
               </div>
             </form>
             <form>
-              <div class="row px-4">
+              <div class="row justify-content-center px-4">
+                <div class="col-xl-10 text-center py-5 px-0">
+                  <h6 class="font-weight-semibold text-secondary text-uppercase mb-1">No Members to chat !!</h6>
+                  <h6 class="font-weight-semibold text-muted mb-0 small">Here, you can start a conversation with<br> your Neighbors</h6>
+                  <h6 class="font-weight-semibold text-muted small">Please connect to new Neighbors from Neighbors tab</h6>
+                </div>
                 <div class="col-xl-12 pb-1 pt-2 px-0">
                   <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
                     <!-- <li class="nav-item align-self-center">
