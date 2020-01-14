@@ -1226,7 +1226,7 @@ textarea {
 
   .sidebar {
     position: -webkit-sticky;
-    position: fixed !important;
+    position: absolute !important;
     top: 40%;
      left: 10%;  
      right:10%;
@@ -1704,7 +1704,7 @@ transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
 .upload-button {
-font-size: 1em;
+font-size: 0.9em;
 }
 
 .upload-button:hover {
