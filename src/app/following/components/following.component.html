@@ -79,7 +79,7 @@
                         <!-- <form   class="form-inline" role="form" 
                               > -->
                         <div class="input-group search">
-                            <input type="text" class="form-control search-form" placeholder="Search"
+                            <input type="text" class="form-control search-form" placeholder="Search Member"
                                 [(ngModel)]="searchText">
                             <span class="input-group-btn">
                                 <button type="submit" class="search-btn" data-target="#search-form" name="q">
@@ -120,10 +120,10 @@
                             <div class="align-self-center">
                                 <h6 class="text-secondary font-weight-semibold text-uppercase">No Following members yet
                                     !!</h6>
-                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all members
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all the members
                                     you are Following.</h6>
                                 <h6 class="text-muted font-weight-semibold ">You can follow new members by
-                                    clicking on "Follow New Users" in the above tab.</h6>
+                                    clicking on "FOLLOW NEW USERS" button in the above tab.</h6>
                             </div>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
                         <div class="col-md-6 col-12 col-xl-6 px-4 text-left d-flex">
                             <div class="align-self-center">
                                 <h6 class="text-secondary font-weight-semibold text-uppercase">No Followers yet !</h6>
-                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all members
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all the members
                                     who are following you.
                                 </h6>
                                 <!-- <h6 class="text-muted font-weight-semibold ">You can follow New Users by
@@ -386,7 +386,7 @@
                             <div class="align-self-center">
                                 <h6 class="text-secondary font-weight-semibold text-uppercase">No blocked members yet !
                                 </h6>
-                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all Members
+                                <h6 class="text-muted font-weight-semibold ">Here, you will be able to see all the members
                                     whom you have blocked.
                                 </h6>
                             </div>
@@ -507,7 +507,8 @@
                 <flash-messages class="bg-accent text-center"></flash-messages>
                 <div class="form-row " *ngIf="noSearchedMembers">
                     <div class="form-group col-12 text-center">
-                        <h6 class="mb-0">Currently, There are no members for your search criteria...
+                        <h6 class="mb-0 font-weight-semibold text-dark text-uppercase">
+                            No members for your search criteria !
                         </h6>
                     </div>
                 </div>
