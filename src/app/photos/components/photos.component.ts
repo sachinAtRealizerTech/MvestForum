@@ -55,6 +55,9 @@ export class PhotosComponent implements OnInit {
   imageChangedEvent: any;
   isImageCropped: boolean;
   croppedImage: string;
+  isUploadButton = false;
+  isSubmitButton = true;
+  croppedImagePhoto: string;
 
   constructor(private photosService: PhotosService,
     private formBuilder: FormBuilder,
@@ -99,114 +102,91 @@ export class PhotosComponent implements OnInit {
     this.leasePhotos = false;
   }
 
-  ///////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////Onload Listing Functions/////////////////////////////////////////////
 
-  selectFilesToAddPhoto = (event) => { //image upload handler
-    debugger;
-    this.images = [];
-    let files: FileList = event.target.files;
 
-    for (let i = 0; i < files.length; i++) {
-      // if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
 
-      this.images.push({ file: files.item(i), uploadProgress: "0" });
-
-      // }
-    }
-    this.message = `${this.images.length} valid image(s) selected`;
-    this.uploadImageToAddPhoto();
-  }
-
-  uploadImageToAddPhoto() {
-    debugger;
-    if (this.addNewPhotoForm.invalid) {
-      this.subAddNewPhoto = true
-      return
-    }
-    this.loading1 = true
-    this.subAddNewPhoto = false
-    this.images.map((image) => {
-      debugger;
-      const formData = new FormData();
-      formData.append("image", image.file, image.file.name);
-      formData.append("uploadType", "2")
-      return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
-        reportProgress: true,
-        observe: "events"
+  getAlbumList() {
+    this.loading = true;
+    this.photosService.getAlbumList(this.user.email_id).subscribe(data => {
+      this.albumList = [];
+      this.albumList = data['album'];
+      console.log('albumlist', this.albumList);
+      this.albumList.forEach((el => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name }))
+      this.loading = false;
+      this.getAlbumPhotos(this.albumList[0]['album_docId'], this.albumList[0]['album_name'])
+    },
+      error => {
+        this.loading = false;
       })
-        .subscribe(data => {
-          console.log('image upload response', data);
-          if (data['body']) {
-            debugger;
-            this.originalImageUrl = data['body']['originalFileName'];
-            this.thumbImageUrl = data['body']['thumbnailFileName'];
-            let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
-            for (let i = 0; i < 1; i++) {
-              this.fullImageUrl.push({ img: environment.IMAGEPREPENDURL + this.thumbImageUrl });
-            }
-            this.loading1 = false;
-            this.addPhotoInLeaseOrAlbum();
-          }
-        },
-          error => {
-            this.loading1 = false;
-          });
-    });
   }
 
-  selectFilesToAddAlbum = (event) => { //image upload handler
+  getMyLeases() {
     debugger;
-    this.images = [];
-    if (this.newAlbumForm.invalid && !this.thumbAlbumFirstImage) {
-      this.submitNewAlbumForm = true;
-      event.target.value = '';
-      return
-    }
-    let files: FileList = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-      // if (files.item(i).name.match(/\.(jpg|jpeg|png|gif|jfif)$/)) { //image validity check
-
-      this.images.push({ file: files.item(i), uploadProgress: "0" });
-
-      // }
-    }
-    this.message = `${this.images.length} valid image(s) selected`;
-    this.uploadImageToAddAlbum();
+    this.neighborsService.getMyLease(this.user.member_id).subscribe(data => {
+      this.myLeases = data['data']
+      console.log("MyLeases", data);
+    })
   }
 
-  // uploadImageToAddAlbum() {
-  //   debugger;
-  //   if (this.newAlbumForm.invalid && !this.thumbAlbumFirstImage) {
-  //     this.submitNewAlbumForm = true;
-  //     this.loading = false;
-  //     return
-  //   }
-  //   this.loading1 = true
-  //   this.submitNewAlbumForm = false
-  //   this.images.map((image) => {
-  //     debugger;
-  //     const formData = new FormData();
-  //     formData.append("image", image.file, image.file.name);
-  //     formData.append("uploadType", "2")
-  //     return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
-  //       reportProgress: true,
-  //       observe: "events"
-  //     })
-  //       .subscribe(data => {
-  //         debugger;
-  //         if (data['body']) {
-  //           console.log('image upload response', data);
-  //           this.originalImageUrl = data['body']['originalFileName'];
-  //           this.thumbImageUrl = data['body']['thumbnailFileName'];
-  //           this.thumbAlbumFirstImage = environment.IMAGEPREPENDURL + data['body']['thumbnailFileName']
-  //           let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
-  //           this.loading1 = false;
-  //           //this.addNewAlbum();
-  //         }
-  //         console.log(this.imageUrl);
-  //       });
-  //   });
-  // }
+
+  getAlbumPhotos(docId: string, albumName: string) {
+    debugger;
+    this.loading = true
+    this.albumName = albumName
+    this.photosService.getAlbumPhotos(docId).subscribe(data => {
+      console.log('album photos', data['Imagelist']);
+      this.albumImageList = data['Imagelist'];
+      for (let i = 0; i < this.albumImageList.length; i++) {
+        this.albumImageList[i]['thumbnail_file_name'] = environment.IMAGEPREPENDURL + this.albumImageList[i]['thumbnail_file_name']
+      }
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+      })
+  }
+
+
+  ////////////////////////////////////////////Image Cropping Functions For Creating album////////////////////////////////
+
+  fileChangeEvent(event: any): void {
+    this.loading1 = true;
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.loading1 = false
+    this.isImageCropped = true;
+    this.croppedImage = event.base64;
+  }
+
+  addNewAlbum() {
+    debugger;
+    this.loading = true
+    this.submitNewAlbumForm = false;
+    this.leaseOrAlbumName = this.newAlbumForm.controls.albumName.value
+    let body = {
+      emailid: this.user.email_id,
+      album_name: this.n.albumName.value,
+      original_file_name: this.originalImageUrl,
+      thumbnail_file_name: this.thumbImageUrl
+    }
+    this.photosService.addNewAlbum(body).subscribe(data => {
+      debugger;
+      console.log('add new album response', data);
+      this.loading = false;
+      this.submitNewAlbumForm = false;
+      this.thumbAlbumFirstImage = "";
+      this.modalService.dismissAll(this.newAlbumTemplate);
+      this.newAlbumForm.reset();
+      this.fullImageUrl = [];
+      this.getAlbumList();
+    },
+      error => {
+        this.getAlbumList();
+        this.loading = false;
+      })
+  }
 
   uploadImageToAddAlbum() {
     debugger;
@@ -260,70 +240,9 @@ export class PhotosComponent implements OnInit {
     this.thumbAlbumFirstImage = ""
   }
 
-  // submitAddNewAlbumModal() {
-  //   if (this.newAlbumForm.invalid) {
-  //     this.submitNewAlbumForm = true
-  //     return
-  //   }
-  //   this.submitNewAlbumForm = false;
-  //   this.thumbAlbumFirstImage = "";
-  //   this.addNewAlbum()
-  //   this.modalService.dismissAll(this.newAlbumTemplate);
-  //   this.newAlbumForm.reset();
-  //   this.fullImageUrl = [];
-  // }
 
-  addNewAlbum() {
-    debugger;
-    this.loading = true
-    this.submitNewAlbumForm = false;
-    this.leaseOrAlbumName = this.newAlbumForm.controls.albumName.value
-    let body = {
-      emailid: this.user.email_id,
-      album_name: this.n.albumName.value,
-      original_file_name: this.originalImageUrl,
-      thumbnail_file_name: this.thumbImageUrl
-    }
-    this.photosService.addNewAlbum(body).subscribe(data => {
-      debugger;
-      console.log('add new album response', data);
-      this.loading = false;
-      this.submitNewAlbumForm = false;
-      this.thumbAlbumFirstImage = "";
-      this.modalService.dismissAll(this.newAlbumTemplate);
-      this.newAlbumForm.reset();
-      this.fullImageUrl = [];
-      this.getAlbumList();
-    },
-      error => {
-        this.getAlbumList();
-        this.loading = false;
-      })
-  }
+  ////////////////////////////////////////////Image Cropping Functions for adding photo to existing album////////////////////////////////
 
-
-  getAlbumList() {
-    this.loading = true;
-    this.photosService.getAlbumList(this.user.email_id).subscribe(data => {
-      this.albumList = [];
-      this.albumList = data['album'];
-      console.log('albumlist', this.albumList);
-      this.albumList.forEach((el => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name }))
-      this.loading = false;
-      this.getAlbumPhotos(this.albumList[0]['album_docId'], this.albumList[0]['album_name'])
-    },
-      error => {
-        this.loading = false;
-      })
-  }
-
-  getMyLeases() {
-    debugger;
-    this.neighborsService.getMyLease(this.user.member_id).subscribe(data => {
-      this.myLeases = data['data']
-      console.log("MyLeases", data);
-    })
-  }
 
   selectLeaseOrAlbum(event) {
     if (this.toggleLease) {
@@ -354,20 +273,60 @@ export class PhotosComponent implements OnInit {
     this.toggleLease = true;
     this.fullImageUrl = [];
     this.loading1 = false;
+    this.isUploadButton = false;
+    this.isSubmitButton = true;
   }
 
-  submitAddNewPhoto() {
 
+  fileChangeEventForAddingPhoto(event: any): void {
+    this.loading1 = true;
+    this.isUploadButton = true;
+    this.isSubmitButton = false;
+    this.imageChangedEvent = event;
+    //event.target.value = '';
+  }
+  imageCroppedForPhoto(event: ImageCroppedEvent) {
+    this.loading1 = false
+    this.isImageCropped = true;
+    this.croppedImagePhoto = event.base64;
+  }
+
+  uploadImageToAddPhoto() {
+    debugger;
     if (this.addNewPhotoForm.invalid) {
       this.subAddNewPhoto = true
       return
     }
+    this.isUploadButton = false;
+    this.loading1 = true
     this.subAddNewPhoto = false
-    this.modalService.dismissAll(this.addNewPhotoTemplate);
-    this.addNewPhotoForm.reset();
-    this.toggleLease = true;
-    this.fullImageUrl = [];
-    this.getAlbumList()
+    let imageBlob = this.dataURLtoBlob(this.croppedImagePhoto)
+    debugger;
+    const formData = new FormData();
+    formData.append("image", imageBlob, 'thumb.jpg');
+    formData.append("uploadType", "2")
+    return this.http.post(`${environment.APIBASEIMGURL}/upload/postfile`, formData, {
+      reportProgress: true,
+      observe: "events"
+    })
+      .subscribe(data => {
+        console.log('image upload response', data);
+        if (data['body']) {
+          debugger;
+          this.originalImageUrl = data['body']['originalFileName'];
+          this.thumbImageUrl = data['body']['thumbnailFileName'];
+          let img: string = environment.IMAGEPREPENDURL + this.thumbImageUrl;
+          for (let i = 0; i < 1; i++) {
+            this.fullImageUrl.push({ img: environment.IMAGEPREPENDURL + this.thumbImageUrl });
+          }
+          this.loading1 = false;
+          this.isSubmitButton = true;
+          this.addPhotoInLeaseOrAlbum();
+        }
+      },
+        error => {
+          this.loading1 = false;
+        });
   }
 
 
@@ -390,46 +349,25 @@ export class PhotosComponent implements OnInit {
       })
   }
 
+  submitAddNewPhoto() {
 
-  getAlbumPhotos(docId: string, albumName: string) {
-    debugger;
-    this.loading = true
-    this.albumName = albumName
-    this.photosService.getAlbumPhotos(docId).subscribe(data => {
-      console.log('album photos', data['Imagelist']);
-      this.albumImageList = data['Imagelist'];
-      for (let i = 0; i < this.albumImageList.length; i++) {
-        this.albumImageList[i]['thumbnail_file_name'] = environment.IMAGEPREPENDURL + this.albumImageList[i]['thumbnail_file_name']
-      }
-      this.loading = false;
-    },
-      error => {
-        this.loading = false;
-      })
+    if (this.addNewPhotoForm.invalid) {
+      this.subAddNewPhoto = true
+      return
+    }
+    this.subAddNewPhoto = false
+    this.modalService.dismissAll(this.addNewPhotoTemplate);
+    this.isUploadButton = false;
+    this.isSubmitButton = true;
+    this.addNewPhotoForm.reset();
+    this.toggleLease = true;
+    this.fullImageUrl = [];
+    this.getAlbumList()
   }
 
 
-  ////////////////////////////////////////////Image Cropping Functions////////////////////////////////
+  /////////////////////////////////////////////Converting from base64 to Blob/////////////////////////////////////
 
-  fileChangeEvent(event: any): void {
-    this.loading1 = true;
-    this.imageChangedEvent = event;
-
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    this.loading1 = false
-    this.isImageCropped = true;
-    this.croppedImage = event.base64;
-  }
-  imageLoaded() {
-    this.loading1 = false;
-  }
-  cropperReady() {
-    this.loading1 = false;
-  }
-  loadImageFailed() {
-    // show message
-  }
 
   dataURLtoBlob(dataurl) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],

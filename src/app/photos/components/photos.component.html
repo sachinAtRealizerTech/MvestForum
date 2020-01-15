@@ -379,7 +379,7 @@
           <label class="font-weight-semibold">Browse to Add Photos : </label>
         </div>
 
-        <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
+        <!-- <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
           <img [src]="fiu?.img" height="100" width="100" formControlName="uploadedImageUrl">
         </div>
 
@@ -407,9 +407,9 @@
 
             </h6>
           </a>
-        </div>
+        </div> -->
 
-        <!-- <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
+        <div class=" px-3 mb-3" *ngFor="let fiu of fullImageUrl">
           <img [src]="fiu?.img" height="100" width="100" formControlName="uploadedImageUrl">
         </div>
 
@@ -427,7 +427,8 @@
               <div class="albumphoto">
                 <label class="mb-0">
                   <input type="file" class="rounded-5" id="photo" formControlName="photo"
-                    (change)="fileChangeEvent($event)" [ngClass]="{ 'is-invalid': subAddNewPhoto && m.photo.errors }">
+                    (change)="fileChangeEventForAddingPhoto($event)"
+                    [ngClass]="{ 'is-invalid': subAddNewPhoto && m.photo.errors }">
                 </label>
                 <div *ngIf="subAddNewPhoto && m.photo.errors" class="invalid-feedback">
                   <div *ngIf="m.photo.errors.required">Photo is required</div>
@@ -436,13 +437,23 @@
 
             </h6>
           </a>
-        </div> -->
+        </div>
 
       </div>
+
+      <div class="row" *ngIf="isUploadButton">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [resizeToWidth]="200"
+          format="png" (imageCropped)="imageCroppedForPhoto($event)" (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="100">
+        </image-cropper>
+      </div>
+
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-accent" (click)="submitAddNewPhoto()">Submit</button>
+      <button *ngIf="isUploadButton" type="button" class="btn btn-accent"
+        (click)="uploadImageToAddPhoto()">Upload</button>
+      <button *ngIf="isSubmitButton" type="button" class="btn btn-accent" (click)="submitAddNewPhoto()">Submit</button>
     </div>
   </div>
 </ng-template>
