@@ -181,6 +181,7 @@ export class PhotosComponent implements OnInit {
       this.newAlbumForm.reset();
       this.fullImageUrl = [];
       this.getAlbumList();
+      this.croppedImage = ''
     },
       error => {
         this.getAlbumList();
@@ -237,7 +238,8 @@ export class PhotosComponent implements OnInit {
     this.submitNewAlbumForm = false;
     this.newAlbumForm.reset();
     this.fullImageUrl = [];
-    this.thumbAlbumFirstImage = ""
+    this.thumbAlbumFirstImage = "";
+    this.croppedImage = ''
   }
 
 
