@@ -443,8 +443,7 @@
 
       <div class="row" *ngIf="isUploadButton">
         <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [resizeToWidth]="200"
-          format="png" (imageCropped)="imageCroppedForPhoto($event)" (imageLoaded)="imageLoaded()"
-          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="100">
+          format="png" (imageCropped)="imageCroppedForPhoto($event)" [imageQuality]="100">
         </image-cropper>
       </div>
 
@@ -551,8 +550,7 @@
 
       <div class="row">
         <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [resizeToWidth]="200"
-          format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
-          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="100">
+          format="png" (imageCropped)="imageCropped($event)" [imageQuality]="100">
         </image-cropper>
       </div>
 
