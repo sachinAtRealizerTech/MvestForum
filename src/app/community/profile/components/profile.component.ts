@@ -79,9 +79,12 @@ export class ProfileComponent implements OnInit {
     this.profileService.getRecentDiscussionsAndPhotos(this.user.email_id).subscribe(data => {
       debugger;
       console.log('recent disc and photos', data)
+      this.recentDiscussions = []
+      this.recentPhotos = []
       if (data['RD']) {
         this.recentDiscussions = data['RD']['recent_discussions'];
         this.recentDiscussions.sort((a, b) => new Date(b.date_time).getTime() - new Date(a.date_time).getTime())
+        console.log('recent disc', this.recentDiscussions)
       }
       if (data['RP']) {
         this.recentPhotos = data['RP']['recent_photos'];

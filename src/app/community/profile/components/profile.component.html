@@ -260,18 +260,19 @@
             <div class="card card-small blog-comments">
 
               <div class="card-body card-hover shadow-none p-0">
-                <!-- <div class="row justify-content-center text-center py-4 px-3" >
+
+                <div class="row justify-content-center text-center py-4 px-3" *ngIf="recentDiscussions?.length==0">
                   <div class="col-12">
-                  <h6 class="text-muted font-weight-semibold mb-0">Hey, you are not a part of any Discussion yet !</h6>
-                  <h6 class="text-muted font-weight-normal mb-0 pt-2">All Discussions of your recent cctivity will be displayed here.</h6>
+                    <h6 class="text-muted font-weight-semibold mb-0">Hey, you are not a part of any Discussion yet !
+                    </h6>
+                    <h6 class="text-muted font-weight-normal mb-0 pt-2">All Discussions of your recent activity will be
+                      displayed here.</h6>
                   </div>
-                  </div> -->
+                </div>
+
                 <div *ngFor="let rd of recentDiscussions | slice:0:3">
                   <a class="cursor-pointer" (click)="navigateToDiscussion(rd?.link)">
                     <div class="media d-flex align-items-center p-3 ">
-
-                      <!-- <img class="mr-3 user-pic rounded-circle mr-2" src="assets/images/avatars/1.jpg"
-                    alt="Generic placeholder image"> -->
 
                       <ngx-avatar class="mr-3 mr-2" name="{{user.f_name}} {{user.l_name}}" [size]="40"
                         src="{{userImageUrl}}">
@@ -312,15 +313,16 @@
             </ul>
             <div class="card card-small shadow">
               <div class="card-body p-2">
-                <!-- <div class="row justify-content-center text-center py-4 px-3"  *ngIf="recentPhotos?.length==0">
+                <div class="row justify-content-center text-center py-4 px-3" *ngIf="recentPhotos?.length==0">
                   <div class="col-12">
-                  <h6 class="text-muted font-weight-semibold mb-0">Hey, no Photos yet !</h6>
-                  <h6 class="text-muted font-weight-normal mb-0 pt-2">All recent Photos that you have added will be displayed here.</h6>
+                    <h6 class="text-muted font-weight-semibold mb-0">Hey, no Photos yet !</h6>
+                    <h6 class="text-muted font-weight-normal mb-0 pt-2">All recent Photos that you have added will be
+                      displayed here.</h6>
                   </div>
-                  </div> -->
-                <div *ngIf="recentPhotos?.length==0">
-                  <h6>You have not uploaded any photo yet...</h6>
                 </div>
+                <!-- <div *ngIf="recentPhotos?.length==0">
+                  <h6>You have not uploaded any photo yet...</h6>
+                </div> -->
 
                 <div class="row text-center text-lg-left">
                   <div class="col-lg-4 col-md-4 col-6" *ngFor="let rp of recentPhotos | slice:0:9">
