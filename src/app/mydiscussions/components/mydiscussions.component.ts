@@ -40,7 +40,14 @@ export class MydiscussionsComponent implements OnInit {
     this.mydiscussionsService.getMyDiscussionGroups(email).subscribe(data => {
       console.log('mydiscussions', data['data']);
       this.loading = false;
+      this.myDiscussionGroups = []
+      if( data['data']=="NO_DISCUSSION_GROUPS"){
+        this.myDiscussionGroups = []
+      }
+    else{
       this.myDiscussionGroups = data['data']
+    }
+  
     },
       error => {
         this.loading = false;

@@ -41,13 +41,29 @@
 
   <div class="row justify-content-start no-gutters  pb-3 pt-4">
     <div class="col-md-12 col-xl-12">
+     
+      <div class="row justify-content-center " *ngIf="myDiscussionGroups?.length==0" >
+        <div class="col-md-6 text-center col-12 col-xl-4 py-5 ">
+          <img src="assets/images/no-discussions1.png"  alt="Discussions Image"
+              height="235px" width="auto">
+      </div>
+      <div class="col-md-6 text-left col-12 col-xl-6  px-4 d-flex">
+          <div class="align-self-center">
+              <h6 class="text-secondary font-weight-bold text-uppercase">No Discussions yet !</h6>
+              <h6 class="text-muted font-weight-semibold ">All Discussions of your activity will be displayed here  </h6>
+          
+          </div>
+      </div>
+         
+
+      </div>
+
 
       <div class="row justify-content-start " *ngIf="!discussionListPage">
         <div class="col-md-5 col-xl-3 mb-4" *ngFor="let md of myDiscussionGroups?.DiscussionGroups">
           <div class="card cursor-pointer" (click)="getMyDiscussionsList(md.subcatid)">
             <img class="img-fluid " src="{{md.imageurl}}" alt="">
-            <div class="card-body py-2 px-3">
-
+            <div class="card-body py-2 px-3"> 
               <h6 class="card-text text-dark font-weight-semibold mb-1">{{md._name | titlecase}} </h6>
               <p><small class="card-secondary mb-1">1.5k Members</small> </p>
             </div>
