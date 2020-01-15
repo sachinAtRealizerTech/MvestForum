@@ -1762,7 +1762,7 @@ color: #999;
   text-overflow: ellipsis;
 }
 .rounded-message {
-  border-radius: 20px!important;
+  border-radius: 5px!important;
 }
 
 .card-selected:hover, .card-selected:focus{
