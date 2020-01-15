@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Utils } from '../../shared/Utils';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +58,24 @@ export class NeighborsService {
 
   getMemberNeighborsWithFilter(body) {
     return this.httpclient.post(`${environment.APIBASEURL}/Neighbor/get_member_neighbors_withfilters`, body, Utils.getAuthHeader())
+  }
+
+  getNeighborListByMemberId(id:number):Observable<any[]>{
+    return this.httpclient.get(`${environment.APIBASEURL}/Neighbor/getmemberneighborlistdtls/${id}`,Utils.getAuthHeader())
+    .pipe(map(list=>{
+      //we are doing grouping here because api not return grouped data
+      //we will change this when api return data in correct format
+      const obj = Utils.groupBy(list["data"],"list_name");
+      let array:{name:string,member:any}[]=[];
+      for (var prop in obj) 
+      {
+        if (Object.prototype.hasOwnProperty.call(obj, prop)) 
+        {
+          array.push({name:prop,member:obj[prop]})
+        }
+      }
+      return array;
+    }))
   }
 
 }

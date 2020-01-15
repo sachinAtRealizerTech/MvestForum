@@ -10,6 +10,8 @@ import { MessageUtils } from './MessageUtils';
 import { Member } from '../model/member';
 import { environment } from 'src/environments/environment';
 import { delay } from 'rxjs/operators';
+import { NeighborsService } from 'src/app/neighbors/services/neighbors.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -26,7 +28,7 @@ export class MessagesComponent implements OnInit {
   loggedInUser: Auth
   members: any = [];
   selectedMemberToChat: Member[] = [];
-
+  neighborLists$:Observable<any[]>;
   public myThreads: Thread[] = [];
   public selectedThread: Thread;
 
@@ -34,6 +36,7 @@ export class MessagesComponent implements OnInit {
   messgeText: any;
 
   constructor(
+    private neighborsService:NeighborsService,
     private messagesService: MessageService,
     private socketService: WebSocketServiceService) { }
 
@@ -42,6 +45,9 @@ export class MessagesComponent implements OnInit {
 
     this.loggedInUser = Utils.GetCurrentUser();
     this.getAllThreads();
+    //this.neighborLists$ =
+    this.neighborLists$ = this.neighborsService.getNeighborListByMemberId(this.loggedInUser.member_id)
+   
     //#endregion Load Initial Data
 
     //#region InvitaionReceived
@@ -85,7 +91,7 @@ export class MessagesComponent implements OnInit {
             userEmailId: this.loggedInUser.email_id
           }
           console.log('read message called ', data);
-          this.readmsg(data);
+          this.readRecievedMessage(data);
           debugger;
           //this.messagesService.readThreadMessages(messageReceived.threadId, this.loggedInUser.email_id);
 
@@ -123,23 +129,14 @@ export class MessagesComponent implements OnInit {
 
   }
 
-  readmsg(data) {
-    debugger;
-    // Do something before delay
-    console.log('before delay');
+  readRecievedMessage(data) {
     setTimeout(() => {
       console.log("Hello from setTimeout");
       this.socketService.readMessage(data);
     }, 1000);
-    //await delay(10000);
-    debugger;
-
-    // Do something after
-    console.log('after delay');
   };
 
   getAllThreads() {
-    debugger;
     this.myThreads = [];
     this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(threadResponse => {
       this.myThreads = threadResponse;
