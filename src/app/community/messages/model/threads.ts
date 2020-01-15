@@ -10,7 +10,7 @@ export interface Thread {
     lastMessage: string,
     lastMessageTime: Date,
     messages: Message[],
-    unreadCount: number,
+    unreadMessageCount: number,
 
 }
 

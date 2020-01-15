@@ -12,7 +12,7 @@ export class MessageService {
 
   constructor(private httpclient: HttpClient) { }
 
-  getMembers(memberId):Observable<any[]> {
+  getMembers(memberId): Observable<any[]> {
     return this.httpclient.post<any[]>(`${environment.APIBASEURL}/Neighbor/get_member_neighbors_withfilters`, {
       _member_id: memberId,
       _filter_by: "none",
@@ -27,7 +27,7 @@ export class MessageService {
     return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/myThreads/` + emailId);
   }
 
-  getThreadMessages(threadId) {
-    return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/getThreadMessages/` + threadId);
+  getThreadMessages(threadId, userEmailId) {
+    return this.httpclient.get<any[]>(`${environment.BaseUrlChatServer}/getThreadMessages/` + threadId + "/" + userEmailId);
   }
 }

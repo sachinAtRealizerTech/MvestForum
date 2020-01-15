@@ -44,6 +44,7 @@ import { MvestUserNeighborsComponent } from './mvest-user-profile/mvest-user-nei
 import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
+import { CustomDatePipe } from './community/messages/custom.datepipe';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
     MvestUserNeighborsComponent,
     MvestUserPhotosComponent,
     MvestUserProfileComponent,
+    CustomDatePipe
     // HighlightText
     //LoadingcircleComponent,
   ],

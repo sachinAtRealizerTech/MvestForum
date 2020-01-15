@@ -131,8 +131,8 @@
 
                         </ul>
                       </div>
-                      <span *ngIf="thread.unreadCount>0"
-                        class="badge badge-pill btn-accent btn-sm">{{thread.unreadCount}}</span>
+                      <span *ngIf="thread.unreadMessageCount>0"
+                        class="badge badge-pill btn-accent btn-sm">{{thread.unreadMessageCount}}</span>
                     </div>
                   </div>
                 </div>
@@ -205,7 +205,7 @@
                             <div class="align-self-center  px-3">
 
                               <h5 class="text-muted mb-0 font-weight-normal small">
-                                {{message.timeStamp | timeAgo}}</h5>
+                                {{message.timeStamp | customDate}}</h5>
                             </div>
                           </div>
                         </div>
@@ -223,7 +223,7 @@
                           <div class="mb-0 d-flex  justify-content-end  pb-2">
                             <div class="align-self-center px-3 d-block">
                               <h5 class="text-muted mb-0 font-weight-normal small">
-                                {{message.timeStamp | timeAgo}} </h5>
+                                {{message.timeStamp | customDate}} </h5>
                             </div>
                           </div>
                         </div>
@@ -239,9 +239,8 @@
                           <div class="col-10 pl-3 pr-0">
                             <div class="align-self-center">
                               <input class="form-control border-0  rounded-5 bg-light w-100 form-control-lg"
-                                (ng-keypress)="typing()" placeholder="Write a Comment" type="text"
-                                [(ngModel)]="messgeText" name="messgeText"
-                                (keyup.enter)="sendMessage()">
+                                (ng-keypress)="typing()" placeholder="Write a Comment" type="text" autocomplete="false"
+                                [(ngModel)]="messgeText" name="messgeText" (keyup.enter)="sendMessage()">
                             </div>
                           </div>
                           <div class="col-2 text-right px-2 d-flex">
@@ -291,8 +290,8 @@
             </div>
             <form class="form-inline" id="search-form">
               <div class="input-group col-12 pb-2">
-                <input class="form-control search-form" [(ngModel)]="searchText" name="searchText" placeholder="Search Member"
-                  type="text">
+                <input class="form-control search-form" [(ngModel)]="searchText" name="searchText"
+                  placeholder="Search Member" type="text">
                 <span class="input-group-btn"><button class="search-btn" type="submit">
                     <i class="fa fa-search"></i>
                   </button>
@@ -301,10 +300,12 @@
             </form>
             <form>
               <div class="row justify-content-center px-4">
-                <div class="col-xl-10 text-center py-5 px-0">
+                <div class="col-xl-10 text-center py-5 px-0" *ngIf="members.length==0">
                   <h6 class="font-weight-semibold text-secondary text-uppercase mb-1">No Members to chat !!</h6>
-                  <h6 class="font-weight-semibold text-muted mb-0 small">Here, you can start a conversation with<br> your Neighbors</h6>
-                  <h6 class="font-weight-semibold text-muted small">Please connect to new Neighbors from Neighbors tab</h6>
+                  <h6 class="font-weight-semibold text-muted mb-0 small">Here, you can start a conversation with<br>
+                    your Neighbors</h6>
+                  <h6 class="font-weight-semibold text-muted small">Please connect to new Neighbors from Neighbors tab
+                  </h6>
                 </div>
                 <div class="col-xl-12 pb-1 pt-2 px-0">
                   <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
@@ -372,64 +373,64 @@
                          </div>  
                         </div> -->
                         <div class="border-top p-2">
-                        <div class="media d-flex align-items-center py-2">
-                          <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
-                          </ngx-avatar>
-                          <div class="media-body d-flex mb-0">
-                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                              Close Friends
-                            </h5>
-                            <div class="ml-auto d-flex ">
-                              <div class="custom-control custom-radio custom-control-inline mt-2">
-                                <input type="radio" id="newList2" name="newList" class="custom-control-input"
-                                  value="radio1" (change)="toggleNewListGroup()" checked>
-                                <label class="custom-control-label text-dark font-weight-semibold"
-                                  for="newList2"></label>
+                          <div class="media d-flex align-items-center py-2">
+                            <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
+                            </ngx-avatar>
+                            <div class="media-body d-flex mb-0">
+                              <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                                Close Friends
+                              </h5>
+                              <div class="ml-auto d-flex ">
+                                <div class="custom-control custom-radio custom-control-inline mt-2">
+                                  <input type="radio" id="newList2" name="newList" class="custom-control-input"
+                                    value="radio1" (change)="toggleNewListGroup()" checked>
+                                  <label class="custom-control-label text-dark font-weight-semibold"
+                                    for="newList2"></label>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="border-top p-2">
-                        <div class="media d-flex align-items-center py-2">
-                          <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
-                          </ngx-avatar>
-                          <div class="media-body d-flex mb-0">
-                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                              Close Friends
-                            </h5>
-                            <div class="ml-auto d-flex ">
-                              <div class="custom-control custom-radio custom-control-inline mt-2">
-                                <input type="radio" id="newList3" name="newList" class="custom-control-input"
-                                  value="radio1" (change)="toggleNewListGroup()">
-                                <label class="custom-control-label text-dark font-weight-semibold"
-                                  for="newList3"></label>
+                        <div class="border-top p-2">
+                          <div class="media d-flex align-items-center py-2">
+                            <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
+                            </ngx-avatar>
+                            <div class="media-body d-flex mb-0">
+                              <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                                Close Friends
+                              </h5>
+                              <div class="ml-auto d-flex ">
+                                <div class="custom-control custom-radio custom-control-inline mt-2">
+                                  <input type="radio" id="newList3" name="newList" class="custom-control-input"
+                                    value="radio1" (change)="toggleNewListGroup()">
+                                  <label class="custom-control-label text-dark font-weight-semibold"
+                                    for="newList3"></label>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="border-top p-2">
-                        <div class="media d-flex align-items-center py-2">
-                          <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
-                          </ngx-avatar>
-                          <div class="media-body d-flex mb-0">
-                            <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                              Close Friends
-                            </h5>
-                            <div class="ml-auto d-flex ">
-                              <div class="custom-control custom-radio custom-control-inline mt-2">
-                                <input type="radio" id="newList4" name="newList" class="custom-control-input"
-                                  value="radio1" (change)="toggleNewListGroup()">
-                                <label class="custom-control-label text-dark font-weight-semibold"
-                                  for="newList4"></label>
+                        <div class="border-top p-2">
+                          <div class="media d-flex align-items-center py-2">
+                            <ngx-avatar class="mr-3 mr-2" name="RG" [size]="40">
+                            </ngx-avatar>
+                            <div class="media-body d-flex mb-0">
+                              <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
+                                Close Friends
+                              </h5>
+                              <div class="ml-auto d-flex ">
+                                <div class="custom-control custom-radio custom-control-inline mt-2">
+                                  <input type="radio" id="newList4" name="newList" class="custom-control-input"
+                                    value="radio1" (change)="toggleNewListGroup()">
+                                  <label class="custom-control-label text-dark font-weight-semibold"
+                                    for="newList4"></label>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
                       </div>
                     </div>

@@ -50,20 +50,24 @@ export class WebSocketServiceService {
       this.socket.on('new message', (data) => {
         observer.next(data);
       });
-      return () => {
-        this.socket.disconnect();
-      };
+      // return () => {
+      //   this.socket.disconnect();
+      // };
     });
     return observable;
+  }
+  async readMessage(data) {
+    console.log('read message data in web socket----------->', data);
+    await this.socket.emit('readmessage', data);
   }
   invitationRequest(): Observable<Invitation> {
     const observable = new Observable<any>(observer => {
       this.socket.on('invitation', (data) => {
         observer.next(data);
       });
-      return () => {
-        this.socket.disconnect();
-      };
+      // return () => {
+      //   this.socket.disconnect();
+      // };
     });
     return observable;
   }

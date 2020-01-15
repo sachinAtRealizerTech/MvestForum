@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Thread } from '../model/threads';
 import { Auth } from 'src/app/models/Auth';
 import { Member } from '../model/member';
+//import Moment from 'moment';
 
 
 @Injectable({
@@ -59,4 +60,8 @@ export class MessageUtils {
     public static getParticipantEmailId(participants: Member[], loggedInUser: Auth) {
         return participants.find(p => p.userEmailId != loggedInUser.email_id).userEmailId;
     }
+
+    // public static getDate(date){
+    //     moment(
+    // }
 }

@@ -9,6 +9,7 @@ import { ScrollToBottomDirective } from './../ScrollToBottomDirective';
 import { MessageUtils } from './MessageUtils';
 import { Member } from '../model/member';
 import { environment } from 'src/environments/environment';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-messages',
@@ -79,14 +80,21 @@ export class MessagesComponent implements OnInit {
         if (this.selectedThread && this.selectedThread.threadDocId == messageReceived.threadId) {
           this.selectedThread.participants = messageReceived.participants;
           this.selectedThread.messages.push(messageReceived.message);
-        } else {
-          this.myThreads[index].unreadCount = Number(this.myThreads[index].unreadCount) ? Number(this.myThreads[index].unreadCount) + 1 : 1;
-        }
+          let data = {
+            threadId: messageReceived.threadId,
+            userEmailId: this.loggedInUser.email_id
+          }
+          console.log('read message called ', data);
+          this.readmsg(data);
+          debugger;
+          //this.messagesService.readThreadMessages(messageReceived.threadId, this.loggedInUser.email_id);
 
+        } else {
+          this.myThreads[index].unreadMessageCount = Number(this.myThreads[index].unreadMessageCount) ? Number(this.myThreads[index].unreadMessageCount) + 1 : 1;
+        }
         // if thread not selected increase iunread count
       } else {
         // create thread with incoming message and push to threadlist
-
         this.myThreads.push({
           theradId: messageReceived.threadId,
           threadName: messageReceived.threadName,
@@ -96,7 +104,7 @@ export class MessagesComponent implements OnInit {
           lastMessage: messageReceived.lastMessage,
           lastMessageTime: messageReceived.lastMessageTime,
           messages: [messageReceived.message],
-          unreadCount: 1
+          unreadMessageCount: 1
         });
       }
 
@@ -115,7 +123,23 @@ export class MessagesComponent implements OnInit {
 
   }
 
+  readmsg(data) {
+    debugger;
+    // Do something before delay
+    console.log('before delay');
+    setTimeout(() => {
+      console.log("Hello from setTimeout");
+      this.socketService.readMessage(data);
+    }, 1000);
+    //await delay(10000);
+    debugger;
+
+    // Do something after
+    console.log('after delay');
+  };
+
   getAllThreads() {
+    debugger;
     this.myThreads = [];
     this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(threadResponse => {
       this.myThreads = threadResponse;
@@ -130,9 +154,9 @@ export class MessagesComponent implements OnInit {
   }
 
   loadThreadInChatCenter(thread: Thread) {
-    thread.unreadCount = 0;
+    thread.unreadMessageCount = 0;
     this.selectedThread = thread;
-    this.messagesService.getThreadMessages(thread.threadDocId).subscribe(messages => this.selectedThread.messages = messages);
+    this.messagesService.getThreadMessages(thread.threadDocId, this.loggedInUser.email_id).subscribe(messages => this.selectedThread.messages = messages);
   }
 
   getMembers() {
@@ -236,7 +260,7 @@ export class MessagesComponent implements OnInit {
       lastMessage: "",
       lastMessageTime: new Date(),
       messages: [],
-      unreadCount: 0
+      unreadMessageCount: 0
     }
     //this.threadName = MessageUtils.getThreadNameForLoggedInUser(this.selectedThread.threadName, this.loggedInUser);
     this.myThreads.push(this.selectedThread);
