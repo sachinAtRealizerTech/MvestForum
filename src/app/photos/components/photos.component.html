@@ -539,9 +539,9 @@
       </div>
 
       <div class="row">
-        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [resizeToWidth]="128"
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [resizeToWidth]="200"
           format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
-          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="90">
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [imageQuality]="100">
         </image-cropper>
       </div>
 

@@ -15,8 +15,8 @@ export class MvestUserPhotosComponent implements OnInit {
   albumList: albumList[];
   albumName: string;
   albumImageList: AlbumImageList[];
-  albumPhotos = false;
-  leasePhotos = true;
+  albumPhotos = true;
+  leasePhotos = false;
 
   constructor(private photosService: PhotosService) { }
 
@@ -39,8 +39,8 @@ export class MvestUserPhotosComponent implements OnInit {
 
   getAlbumList() {
     this.loading = true;
-    this.albumList = [];
     this.photosService.getAlbumList(this.emailId).subscribe(data => {
+      this.albumList = [];
       this.albumList = data['album'];
       console.log('albumlist', this.albumList);
       this.albumList.forEach((el => { el.thumbnail_file_name = environment.IMAGEPREPENDURL + el.thumbnail_file_name }))
