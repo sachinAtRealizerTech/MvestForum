@@ -156,10 +156,10 @@ export class DiscussionDetailsComponent implements OnInit {
       this.p_Id = params['postId'];
     });
 
-    this.categoryName = sessionStorage.getItem("category_name");
+    //this.categoryName = sessionStorage.getItem("category_name");
     //this.categoryId = sessionStorage.getItem("category_id");
-    this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
-    this.subCategoryName = sessionStorage.getItem("subCatName");
+    //this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
+    //this.subCategoryName = sessionStorage.getItem("subCatName");
 
     this.getDiscussionDeatils(this.discussionDetailsId);
   }
@@ -188,6 +188,10 @@ export class DiscussionDetailsComponent implements OnInit {
       console.log('discussiondetails', this.discussionDetails)
       this.loading = false;
       this.discussiondocId = data['_id'];
+      this.subCategoryName = this.discussionDetails.sub_category;
+      sessionStorage.setItem("subCatName", this.subCategoryName);
+      this.categoryName = this.discussionDetails.category;
+      sessionStorage.setItem("category_name", this.categoryName)
       this.isLikePressed = false;
       this.isDislikePressed = false;
       setTimeout(() => {
@@ -265,7 +269,7 @@ export class DiscussionDetailsComponent implements OnInit {
     let body = {
       category: this.categoryName,
       category_id: this.categoryId,
-      subcategory_id: this.subCategoryIdDD,
+      subcategory_id: this.subCategoryId,
       subcategory: this.subCategoryName,
       post_title: this.discussionDetailsQuestionForm.controls.discussionTitle.value,
       Desc: this.discussionDetailsQuestionForm.controls.problemDescription.value,

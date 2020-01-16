@@ -123,8 +123,6 @@ export class DiscussionslistComponent implements OnInit {
       this.loading = false;
       this.pageNotFound = false;
       this.categoryName = sessionStorage.getItem("category_name");
-      //this.categoryId = sessionStorage.getItem("category_id");
-      //this.subCategoryIdDD = sessionStorage.getItem("subcat_id");
       this.subCategoryName = sessionStorage.getItem("subCatName");
     },
       err => {
