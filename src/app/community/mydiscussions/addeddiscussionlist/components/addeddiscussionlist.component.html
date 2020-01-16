@@ -1,0 +1,130 @@
+<div class="main-content-container container-fluid px-4">
+
+    <flash-messages class="bg-accent text-center"></flash-messages>
+
+    <div class="row">
+        <div class="col-xl-12 pb-1 pt-1">
+            <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
+                <li class="nav-item align-self-center"><a class="cursor-pointer" (click)="goToMyDiscussionGroup()">
+                        <h5 class="text-muted mb-1 font-weight-bold mr-3 align-self-center">My Discusssions / </h5>
+                    </a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <h5 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">My Discusssions List</h5>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row justify-content-start no-gutters  pb-3 pt-4">
+        <div class="col-md-12 col-xl-12">
+
+            <!---------------------------------------------Discussions Listing----------------------------------------------->
+
+            <div class="row justify-content-between no-gutters">
+                <div class="col-md-12 col-xl-10 pb-3" *ngIf="myDiscussionList?.length==0">
+                    <div class="text-left">
+                        <h5>No Records Found.</h5>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-10 pb-3" *ngIf="myDiscussionList?.length>0">
+
+                    <div class="card card-small blog-comments mb-3" *ngFor="let dl of myDiscussionList">
+                        <div class="card-body p-0">
+
+
+                            <div class=" border-bottom p-1">
+                                <div class="row justify-content-center text-left text-break">
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8">
+                                        <a routerLink="/discussion-details"
+                                            [queryParams]="{discussionId:dl.doc_id,subCategoryId:myDiscussionList.sub_category_id,categoryId:myDiscussionList.category_id}">
+                                            <div class="media p-3">
+
+                                                <ngx-avatar class="mr-3" name="{{dl?.post_by_name}}" [size]="40"
+                                                    src="{{imagePrepend}}{{dl?.post_by_emailId}}{{png}}">
+                                                </ngx-avatar>
+
+                                                <div class="media-body mb-0">
+
+                                                    <ul class="list-inline d-flex mb-0">
+                                                        <li class="list-inline-item mb-1 h6 text-muted">
+                                                            <h5 class="text-dark h6 mb-0 font-weight-semibold"
+                                                                innerHTML="{{dl?.title | titlecase}}">
+
+                                                            </h5>
+                                                        </li>
+                                                    </ul>
+
+                                                    <ul class="list-inline mb-0 d-flex d-inline-flex">
+                                                        <li *ngIf="markAsAnswer(dl?.isAnswer)"
+                                                            class="list-inline-item mb-1 h6 text-accent">
+                                                            <i class="material-icons md-20 text-accent">
+                                                                check_circle
+                                                            </i>
+                                                        </li>
+                                                        <li *ngIf="!markAsAnswer(dl?.isAnswer)"
+                                                            class="list-inline-item mb-1 h6 text-accent">
+                                                            <i class="material-icons md-20 text-muted">
+                                                                check_circle
+                                                            </i>
+                                                        </li>
+                                                        <li class="list-inline-item mb-1 h6  text-muted"
+                                                            innerHTML="{{dl?.post_msg}}">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4  text-right">
+                                        <div class="media p-3 ">
+                                            <div class="media-body mb-0">
+                                                <h6 class="mb-0 font-weight-semibold cursor-pointer"
+                                                    *ngIf="!dl?.bookmark">
+                                                    <i class="material-icons icon-muted md-22 "
+                                                        (click)="bookmarkDiscussion(dl?.doc_id)" data-toggle="tooltip"
+                                                        title="Bookmark">
+                                                        turned_in_not
+                                                    </i>
+                                                </h6>
+
+                                                <h6 class="mb-0 font-weight-semibold cursor-pointer"
+                                                    *ngIf="dl?.bookmark">
+                                                    <i class="material-icons icon-muted md-22 "
+                                                        (click)="removeBookmark(dl?.doc_id)" data-toggle="tooltip"
+                                                        title="UnBookmark">
+                                                        turned_in
+                                                    </i>
+                                                </h6>
+
+                                                <span>
+                                                    <h6 class="font-weight-semibold small mb-1 text-muted">
+                                                        {{dl?.post_date | timeAgo}}</h6>
+                                                </span>
+
+
+                                                <span>
+                                                    <h6 class="font-weight-semibold small mb-1 text-muted">
+                                                        -by
+                                                        {{dl?.post_by_name}}</h6>
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!---------------------------------------------End Discussion Listing-------------------------------------------->
+        </div>
+    </div>
+
+</div>

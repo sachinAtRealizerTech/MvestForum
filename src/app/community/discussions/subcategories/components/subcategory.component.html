@@ -137,13 +137,14 @@
             <div class="row justify-content-left text-center px-3">
               <div>
                 <div class="row  gutter-10">
-                  <div class="card  rounded  card-category bg-dark m-2 action-icons" *ngFor="let sc of subCategoryList | filter:searchText">
-                  
-                    <div > 
+                  <div class="card  rounded  card-category bg-dark m-2 action-icons"
+                    *ngFor="let sc of subCategoryList | filter:searchText">
+
+                    <div>
                       <div class=" d-inline category-main" style="width:50rem">
                         <img class=" img-fluid img-thumbnail rounded-left card-image" style="opacity: 0.667;"
                           src="{{sc.sub_categories.image}}" alt="" width="250px">
-                          <!-- <div class=" add-button d-flex d-inline-flex" >
+                        <!-- <div class=" add-button d-flex d-inline-flex" >
                            <a routerLink="/discussionslist"  
                            [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
                            (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
@@ -156,24 +157,28 @@
                               </i>
                             </div> -->
                         <div class="category-text rounded-bottom text-left px-3 d-flex">
-                         <span class="truncate-text">{{sc.sub_categories.name | titlecase}}</span> 
+                          <span class="truncate-text">{{sc.sub_categories.name | titlecase}}</span>
                           <div class="ml-auto">
-                            <a routerLink="/discussionslist"  
-                            [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
-                            (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
-                               <i class=" icon-muted material-icons md-18 pr-3" data-target="tooltip" title="View Discussions">
-                               remove_red_eye
-                             </i>
-                           </a>
-                           <!-- <a href=""><i class=" material-icons  icon-muted md-18" data-target="tooltip" title="Add to My Discussions">
-                            add_circle
-                            </i>  
-                          </a>  -->
-                        </div>
+                            <a routerLink="/discussionslist"
+                              [queryParams]="{subCategoryId:sc.sub_categories.subcat_id,categoryId:categoryId}"
+                              (click)="setTitle( 'Mvest-Discussions');sendData(sc.sub_categories.subcat_id,sc.sub_categories.name,sc._id,sc.category_name)">
+                              <i class=" icon-muted material-icons md-18 pr-3" data-target="tooltip"
+                                title="View Discussions">
+                                remove_red_eye
+                              </i>
+                            </a>
+                            <a class="cursor-pointer"
+                              (click)="addSubcategoryToMyDiscussions(sc.sub_categories.subcat_id,sc.sub_categories.name,sc.sub_categories.image)"><i
+                                class=" material-icons  icon-muted md-18" data-target="tooltip"
+                                title="Add to My Discussions">
+                                add_circle
+                              </i>
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div> 
-                   
+                    </div>
+
                   </div>
                 </div>
               </div>

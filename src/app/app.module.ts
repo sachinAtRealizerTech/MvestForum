@@ -12,7 +12,6 @@ import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
 import { FollowingComponent } from './community/following/components/following.component';
-import { MydiscussionsComponent } from './community/mydiscussions/components/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/components/neighbors.component';
 import { CommunityComponent } from './community/components/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
@@ -58,7 +57,6 @@ import { CustomDatePipe } from './community/messages/custom.datepipe';
     MessagesComponent,
     ScrollToBottomDirective,
     FollowingComponent,
-    MydiscussionsComponent,
     NeighborsComponent,
     CommunityComponent,
     DashboardComponent,

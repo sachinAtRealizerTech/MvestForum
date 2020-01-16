@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DiscussionsModule } from '../community/discussions/discussions.module';
 //import { LoadingcircleComponent } from '../shared/loadingcircle/loadingcircle.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { AddeddiscussionlistComponent } from './mydiscussions/addeddiscussionlist/components/addeddiscussionlist.component';
+import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
 
 // import { LightboxModule } from '@ngx-gallery/lightbox';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,8 +17,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
   declarations: [
     //DiscussionsComponent,
     // LoadingcircleComponent
-
-  ],
+    MydiscussionsComponent,
+    AddeddiscussionlistComponent],
   imports: [
     CommonModule,
     DiscussionsModule,

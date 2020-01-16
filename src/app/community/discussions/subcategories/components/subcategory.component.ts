@@ -171,6 +171,25 @@ export class SubcategoryComponent implements OnInit {
     })
   }
 
+
+  addSubcategoryToMyDiscussions(subcatId: string, subCatName: string, subCatImage: string) {
+    this.loading = true
+    let body = {
+      emailid: this.user.email_id,
+      subcatid: subcatId,
+      name: subCatName,
+      imageurl: subCatImage
+    }
+    this.subcategoryService.addSubcategoryToMyDiscussions(body).subscribe(data => {
+      console.log('SubcatTomydiscGrp', data);
+      this.loading = false;
+      this.flashMessagesService.show('You have successfully added this category to my discussions group...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
+    },
+      error => {
+        this.loading = false;
+      })
+  }
+
   //-----------------------------------passing parameters to create a new discussion----------------------------------
   sendData(subcatid: any, subCatName: string, categoryid: any, categoryname: any) {
     debugger;

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MydiscussionsService } from '../services/mydiscussions.service';
 import { DiscussionslistService } from '../../discussions/discussionlist/Services/discussionslist.service';
-// import { Utils } from '../../shared/Utils';
-// import { BookmarksService } from '../../community/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 import { BookmarksService } from 'src/app/community/bookmarks/services/bookmarks.service';
 import { Utils } from 'src/app/shared/Utils';
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-mydiscussions',
@@ -14,7 +13,7 @@ import { Utils } from 'src/app/shared/Utils';
   styleUrls: ['./mydiscussions.component.scss']
 })
 export class MydiscussionsComponent implements OnInit {
-  myDiscussionGroups: any;
+  myDiscussionGroups: any[];
   myDiscussionList: any;
   discussionListPage = false;
   loading = false;
@@ -22,11 +21,14 @@ export class MydiscussionsComponent implements OnInit {
   subCategoryId: string;
   imagePrepend: string;
   png: string;
+  addedDiscussionGroups: any[];
 
   constructor(private mydiscussionsService: MydiscussionsService,
     private discussionslistService: DiscussionslistService,
     private bookmarksService: BookmarksService,
-    private flashMessagesService: FlashMessagesService) { }
+    private flashMessagesService: FlashMessagesService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
@@ -39,14 +41,21 @@ export class MydiscussionsComponent implements OnInit {
   getMyDiscussionGroups(email: string) {
     this.loading = true;
     this.mydiscussionsService.getMyDiscussionGroups(email).subscribe(data => {
-      console.log('mydiscussions', data['data']);
       this.loading = false;
-      this.myDiscussionGroups = []
+      this.myDiscussionGroups = [];
+      this.addedDiscussionGroups = []
       if (data['data'] == "NO_DISCUSSION_GROUPS") {
         this.myDiscussionGroups = []
       }
       else {
-        this.myDiscussionGroups = data['data']
+        debugger;
+        let allDiscussions: any[] = data['data']['DiscussionGroups'];
+        if (allDiscussions.length > 0) {
+          this.myDiscussionGroups = allDiscussions.filter(l => !(l.isManual));
+          this.addedDiscussionGroups = allDiscussions.filter(l => l['isManual'] == true)
+        }
+        console.log('mydiscussions', this.myDiscussionGroups);
+        console.log('addedDiscussionGroups', this.addedDiscussionGroups);
       }
 
     },
@@ -56,10 +65,10 @@ export class MydiscussionsComponent implements OnInit {
   }
 
   getMyDiscussionsList(subCatId: string) {
-    debugger;
     this.loading = true;
     this.subCategoryId = subCatId;
     this.discussionslistService.getAllDiscussionsList(subCatId, true, this.user.email_id).subscribe(data => {
+      debugger;
       this.discussionListPage = true;
       this.loading = false;
       this.myDiscussionList = data;
@@ -119,5 +128,9 @@ export class MydiscussionsComponent implements OnInit {
       })
   }
 
+  goToAddedDiscussionsList(subCatId: string, isMyDiscussions: boolean) {
+    debugger;
+    this.router.navigate(['/community/addedDiscussionsList'], { state: { subCatId: subCatId, isMyDiscussions: isMyDiscussions } })
+  }
 
 }

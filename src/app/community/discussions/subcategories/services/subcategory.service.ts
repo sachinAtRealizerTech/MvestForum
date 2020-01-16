@@ -22,4 +22,8 @@ export class SubcategoryService {
     return this.httpClient.post(`${environment.APIBASEURL}/Discussion`, body, Utils.getAuthHeader())
   }
 
+  addSubcategoryToMyDiscussions(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/MyDiscussionGroup`, body, Utils.getAuthHeader())
+  }
+
 }

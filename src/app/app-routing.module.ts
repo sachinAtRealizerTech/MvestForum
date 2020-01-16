@@ -34,6 +34,7 @@ import { MvestUserNeighborsComponent } from './mvest-user-profile/mvest-user-nei
 import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
 import { BookmarksComponent } from './community/bookmarks/components/bookmarks.component';
+import { AddeddiscussionlistComponent } from './community/mydiscussions/addeddiscussionlist/components/addeddiscussionlist.component';
 
 const routes: Routes = [
 
@@ -218,12 +219,14 @@ const routes: Routes = [
           {
             path: 'mydiscussions',
             component: MydiscussionsComponent,
-
+          },
+          {
+            path: 'addedDiscussionsList',
+            component: AddeddiscussionlistComponent,
           },
           {
             path: 'photos',
             component: PhotosComponent,
-
           }
         ]
       },
