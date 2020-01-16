@@ -14,7 +14,7 @@ import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDire
 import { FollowingComponent } from './following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/components/neighbors.component';
-import { CommunityComponent } from './community/community.component';
+import { CommunityComponent } from './community/components/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { SigninLayoutComponent } from './layouts/signin-layout/signin-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
