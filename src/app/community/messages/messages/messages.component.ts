@@ -28,7 +28,7 @@ export class MessagesComponent implements OnInit {
   loggedInUser: Auth
   members: any = [];
   selectedMemberToChat: Member[] = [];
-  neighborLists$:Observable<any[]>;
+  neighborLists$: Observable<any[]>;
   public myThreads: Thread[] = [];
   public selectedThread: Thread;
 
@@ -36,7 +36,7 @@ export class MessagesComponent implements OnInit {
   messgeText: any;
 
   constructor(
-    private neighborsService:NeighborsService,
+    private neighborsService: NeighborsService,
     private messagesService: MessageService,
     private socketService: WebSocketServiceService) { }
 
@@ -45,9 +45,7 @@ export class MessagesComponent implements OnInit {
 
     this.loggedInUser = Utils.GetCurrentUser();
     this.getAllThreads();
-    //this.neighborLists$ =
-    this.neighborLists$ = this.neighborsService.getNeighborListByMemberId(this.loggedInUser.member_id)
-   
+
     //#endregion Load Initial Data
 
     //#region InvitaionReceived
@@ -86,15 +84,11 @@ export class MessagesComponent implements OnInit {
         if (this.selectedThread && this.selectedThread.threadDocId == messageReceived.threadId) {
           this.selectedThread.participants = messageReceived.participants;
           this.selectedThread.messages.push(messageReceived.message);
-          let data = {
+          let readMessageParams = {
             threadId: messageReceived.threadId,
             userEmailId: this.loggedInUser.email_id
           }
-          console.log('read message called ', data);
-          this.readRecievedMessage(data);
-          debugger;
-          //this.messagesService.readThreadMessages(messageReceived.threadId, this.loggedInUser.email_id);
-
+          this.readRecievedMessage(readMessageParams);
         } else {
           this.myThreads[index].unreadMessageCount = Number(this.myThreads[index].unreadMessageCount) ? Number(this.myThreads[index].unreadMessageCount) + 1 : 1;
         }
@@ -129,13 +123,19 @@ export class MessagesComponent implements OnInit {
 
   }
 
-  readRecievedMessage(data) {
+  /**
+   * Read message which is recieved from socket 
+   * @param readMessageParams 
+   */
+  readRecievedMessage(readMessageParams) {
     setTimeout(() => {
-      console.log("Hello from setTimeout");
-      this.socketService.readMessage(data);
+      this.socketService.readMessage(readMessageParams);
     }, 1000);
   };
 
+  /**
+   * Api call to get all logged user threads
+   */
   getAllThreads() {
     this.myThreads = [];
     this.messagesService.getUsersChatThreads(this.loggedInUser.email_id).subscribe(threadResponse => {
@@ -144,12 +144,20 @@ export class MessagesComponent implements OnInit {
     });
   }
 
+  /**
+   * Logged user should join all the thread to recieve message from all threads
+   * @param threads 
+   */
   private joinAllThreads(threads: Thread[]) {
     if (this.myThreads && this.myThreads.length > 0) {
       this.socketService.joinToAllThread({ threads: this.myThreads });
     }
   }
 
+  /**
+   * Get messages for selected threads
+   * @param thread 
+   */
   loadThreadInChatCenter(thread: Thread) {
     thread.unreadMessageCount = 0;
     this.selectedThread = thread;
@@ -164,6 +172,8 @@ export class MessagesComponent implements OnInit {
       this.members = members;
       this.loading = false;
     })
+
+    this.neighborLists$ = this.neighborsService.getNeighborListByMemberId(this.loggedInUser.member_id);
   }
 
   selectMembersToChat(event, member: any) {
@@ -172,7 +182,8 @@ export class MessagesComponent implements OnInit {
       let participantUser: Member = {
         memberId: member['neighbor_id'],
         userName: member['name'],
-        userEmailId: member['neighbor_email_id']
+        userEmailId: member['neighbor_email_id'],
+        isGroup: false
       }
       this.selectedMemberToChat.push(participantUser);
     }
@@ -182,13 +193,32 @@ export class MessagesComponent implements OnInit {
       );
     }
   }
+  selectNeighborListToChat(members) {
+    this.selectedMemberToChat = [];
+    members.forEach(member => {
+      let participantUser: Member = {
+        memberId: member['mlist_id'],
+        userName: `${member['f_name']} ${member['l_name']}`,
+        userEmailId: member['email_id'],
+        groupName: member['list_name'],
+        isGroup: true
+      };
+      this.selectedMemberToChat.push(participantUser)
+    });
+  }
 
+  isMemberSelected(id) {
+    return this.selectedMemberToChat.some(m => m.memberId == id)
+  }
   initiateNewThread() {
+
     if (this.selectedMemberToChat.length > 0) {
       this.selectedMemberToChat.push({
         memberId: this.loggedInUser.member_id,
         userName: `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`,
-        userEmailId: this.loggedInUser.email_id
+        userEmailId: this.loggedInUser.email_id,
+        groupName: this.selectedMemberToChat[0].groupName,
+        isGroup: this.selectedMemberToChat[0].isGroup
       });
       let existThread = MessageUtils.isThreadExist(this.myThreads, this.selectedMemberToChat);
 
@@ -247,10 +277,13 @@ export class MessagesComponent implements OnInit {
 
   private generateAndJoinThread() {
     let threadId = uuid();
+    let threadName = this.selectedMemberToChat[0].isGroup
+      ? this.selectedMemberToChat[0].groupName
+      : this.selectedMemberToChat.map(u => { return u.userName }).toString();
 
     this.selectedThread = {
       theradId: threadId,
-      threadName: this.selectedMemberToChat.map(u => { return u.userName }).toString(),
+      threadName: threadName,
       participants: this.selectedMemberToChat,
       threadDocId: threadId,
       createTs: new Date(),
@@ -264,7 +297,7 @@ export class MessagesComponent implements OnInit {
 
     this.socketService.joinRoom({
       threadId: threadId,
-      threadName: this.selectedMemberToChat.map(selectedMember => { return selectedMember.userName }).toString(),
+      threadName: threadName,
       createdAt: new Date(),
       createdBy: MessageUtils.getLoggedInUser(this.loggedInUser),
       createdWith: this.selectedMemberToChat,
@@ -285,7 +318,7 @@ export class MessagesComponent implements OnInit {
         return name;
       }
     });
-    return newThreadName.toString();
+    return newThreadName.join(", ");
   }
 
   getParticipantThumbnailUrl(participants: Member[]): string {
@@ -297,4 +330,9 @@ export class MessagesComponent implements OnInit {
     return environment.IMAGEPREPENDURL + email + '.png';
   }
 
+  getParticipantNameCsv(thread: Thread) {
+    if (thread) {
+      return this.getThreadName(thread.participants.map(p => p.userName).toString());
+    }
+  }
 }

@@ -116,7 +116,7 @@
 
                       <div class="media-body mb-0 show">
                         <h5 class="text-dark h6 mb-0 font-weight-semibold truncate" data-target="tool-tip"
-                          title="{{thread.threadName}}">
+                          title="{{getParticipantNameCsv(thread)}}">
                           {{getThreadName(thread.threadName)}}
                         </h5>
 
@@ -146,7 +146,7 @@
           <div class="col-xl-12 col-md-12 col-sm-12 mb-4 show">
             <ul class="list-inline d-flex mb-1">
               <li class="list-inline-item h6  text-muted truncate" data-target="tool-tip"
-                title="{{selectedThread?.threadName}}">
+                title="{{getParticipantNameCsv(selectedThread)}}">
                 {{getThreadName(selectedThread?.threadName)}}</li>
 
               <div class="ml-auto d-inline-flex">
@@ -292,7 +292,7 @@
               <div class="input-group col-12 pb-2">
                 <input class="form-control search-form" [(ngModel)]="searchText" name="searchText"
                   placeholder="Search Member" type="text">
-                <span class="input-group-btn"><button class="search-btn" type="submit">
+                <span class="input-group-btn"><button class="search-btn" type="button">
                     <i class="fa fa-search"></i>
                   </button>
                 </span>
@@ -300,7 +300,7 @@
             </form>
             <form>
               <div class="row justify-content-center px-4">
-                <!-------------------------------------------------- No member div ------------------------------------>
+                <!--------------------------------------------------Start No member div ------------------------------------>
                 <div class="col-xl-10 text-center py-5 px-0" *ngIf="members.length==0">
                   <h6 class="font-weight-semibold text-secondary text-uppercase mb-1">No Members to chat !!</h6>
                   <h6 class="font-weight-semibold text-muted mb-0 small">Here, you can start a conversation with<br>
@@ -308,29 +308,35 @@
                   <h6 class="font-weight-semibold text-muted small">Please connect to new Neighbors from Neighbors tab
                   </h6>
                 </div>
-              <!-------------------------------------------------- No member div end ------------------------------------>
-                <div class="col-xl-12 pb-1 pt-2 px-0">
+              <!-------------------------------------------------- End No member div end ------------------------------------>
+
+              
+              <!-------------------------------------------------- start Member/Gropu Tabs ------------------------------------>
+              <div class="col-xl-12 pb-1 pt-2 px-0">
                   <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
-                    <!-- <li class="nav-item align-self-center">
-                            <h6 class="text-dark mb-1 font-weight-bold mr-3 align-self-center">Search List</h6>
-                        </li> -->
+                   
                     <li class="nav-item align-self-center" *ngIf="members.length>0">
                       <a href="#neighborList" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
                         aria-selected="false">All </a>
                     </li>
-                    <li class="nav-item align-self-center" >
+                    <li class="nav-item align-self-center" *ngIf="members.length>0">
                       <a href="#yourList" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
+                      (click)="selectedMemberToChat.length=0"
                         aria-controls="contact" aria-selected="false">Neighbor Groups</a>
                     </li>
                   </ul>
                 </div>
+              <!-------------------------------------------------- end Member/Gropu Tabs ------------------------------------>
+             
               </div>
-
+ <!-------------------------------------------------- start Member/Gropu contaier ------------------------------------>
+             
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active " id="neighborList" role="tabpanel" aria-labelledby="home-tab">
 
                   <div class="row justify-content-between px-4">
-                    <div class="w-100" id="chat-window">
+                    <div class="w-100">
+
                       <div class="col-md-12 col-xl-12 " *ngFor="let member of members | filter:searchText">
                         <div class="border-top p-1">
                           <div class="media d-flex align-items-center py-2">
@@ -346,37 +352,26 @@
                             </div>
                             <div class="checkbox">
                               <input type="checkbox" id="{{member.neighbor_id}}"
+                              [checked]="isMemberSelected(member.neighbor_id)"
                                 (change)="selectMembersToChat($event,member)">
                               <label for="{{member.neighbor_id}}"></label>
                             </div>
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
+
                 <div class="tab-pane fade show " id="yourList" role="tabpanel" aria-labelledby="home-tab">
                   <div class="row justify-content-between px-4">
-                    <div class="w-100" id="chat-window">
+                    <div class="w-100" >
                       <div class="col-md-12 col-xl-12">
 
-                        <!-- <div class="border-top p-2">
-
-                          <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="newList1" name="newList" class="custom-control-input" value="radio1"
-                              (change)="toggleNewListGroup()" checked>
-                            <label class="custom-control-label text-dark font-weight-semibold" for="newList1"> Close
-                              Friends</label>
-                          </div>
-                          <hr>
-                          <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" id="newList2" name="newList" class="custom-control-input" value="radio1" (change)="toggleNewListGroup()" >
-                           <label  class="custom-control-label text-dark font-weight-semibold" for="newList2"> Close Family</label>
-                         </div>  
-                        </div> -->
-                        <div class="border-top p-2" *ngFor="let list of neighborLists$ | async">
+                        <div class="border-top p-2" *ngFor="let list of neighborLists$ | async | filter:searchText">
                           <div class="media d-flex align-items-center py-2" >
-                            <ngx-avatar class="mr-3 mr-2" name="list.name" [size]="40">
+                            <ngx-avatar class="mr-3 mr-2" [name]="list.name" [size]="40">
                             </ngx-avatar>
 
                             <div class="media-body d-flex mb-0">
@@ -385,61 +380,34 @@
                               </h5>
                               <div class="ml-auto d-flex ">
                                 <div class="custom-control custom-radio custom-control-inline mt-2">
-                                  <input type="radio" id="newList2" name="newList" class="custom-control-input"
-                                    value="radio1" checked>
+                                  <input type="radio" name="neighborlist"
+                                  [id]="list.name"
+                                  [checked]="list.checked"
+                                  (click)="selectNeighborListToChat(list.member)"
+                                  class="custom-control-input">
                                   <label class="custom-control-label text-dark font-weight-semibold"
-                                    for="newList2"></label>
+                                    [for]="list.name"></label>
                                 </div>
                               </div>
                             </div>
-
                           </div>
                         </div>
-
 
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <!-- <div id="chat-window">
-                <div class="card-body py-0">
-                  <div class="row">
-                    <div class="col-6" *ngFor="let member of members | filter:searchText">
-                  <div class="border-top p-1">
-                    <div class="media d-flex align-items-center py-2">
-                    
-                      <ngx-avatar class="mr-3 mr-2" name="{{member.name}}" 
-                      [size]="40"
-                      [src]="getThumbnailUrl(member.neighbor_email_id)">
-                      </ngx-avatar>
-                      <div class="media-body d-flex mb-0">
-                        <h5 class="text-dark h6 mb-0 font-weight-semibold align-self-center">
-                          {{member.name}}
-                        </h5>
-
-                      </div>
-                      <div class="checkbox">
-                        <input type="checkbox" id="{{member.neighbor_id}}"
-                          (change)="selectMembersToChat($event,member)">
-                        <label for="{{member.neighbor_id}}"></label>
-                      </div>
-                    </div>
-                  </div> 
-                </div> 
-                <div  *ngIf="members.length==0">
-                  <h6 class="text-muted font-weight-semibold small mb-1 text-center">No neighbors found!</h6>
-                </div>
-              </div>
-            </div>
-          </div> -->
+ <!--------------------------------------------------End Member/Gropu contaier ------------------------------------>
+  
+              
             </form>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal"
-            (click)="initiateNewThread()">Message</button>
+          *ngIf="selectedMemberToChat.length>0"  
+          (click)="initiateNewThread()">Message</button>
           <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
             data-dismiss="modal">Cancel</button>
         </div>

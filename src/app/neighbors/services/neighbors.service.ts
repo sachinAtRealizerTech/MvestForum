@@ -71,7 +71,7 @@ export class NeighborsService {
       {
         if (Object.prototype.hasOwnProperty.call(obj, prop)) 
         {
-          array.push({name:prop,member:obj[prop]})
+          array.push({name:prop,member:obj[prop]});
         }
       }
       return array;
