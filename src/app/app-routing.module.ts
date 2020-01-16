@@ -27,7 +27,6 @@ import { ConfirmemailComponent } from './authentication/confirmemail/confirmemai
 import { NotificationComponent } from './myaccount/notification/components/notification.component';
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './myaccount/settings/components/settings.component';
-import { ArchivesComponent } from './archives/archives.component';
 import { SearchresultsComponent } from './searchresults/components/searchresults.component';
 import { MvestUserComponent } from './mvest-user-profile/mvest-user/components/mvest-user.component';
 import { BlockedComponent } from './blocked/blocked.component';
@@ -168,11 +167,6 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'archives',
-        component: ArchivesComponent,
         canActivate: [AuthGuard]
       },
       {
