@@ -29,8 +29,15 @@
       </ul>
     </div>
   </div>
-
-
+  <!-- Div Start for loading while api call response -->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="content-loading text-center" *ngIf="loading">
+        <app-loadingcircle></app-loadingcircle>
+      </div>
+    </div>
+  </div>
+  <!-- Div End for loading while api call response -->
   <div class="row justify-content-between " *ngIf="myThreads?.length==0">
     <div class="col-md-12 col-xl-12">
       <ul class="list-inline d-flex mb-1">
@@ -100,7 +107,7 @@
             <div id="chat-windowThread" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="myThreads.length>0">
               <div class="card-body card-selected p-1 cursor-pointer"
                 [class.bg-light]="selectedThread?.threadDocId==thread.threadDocId"
-                (click)="loadThreadInChatCenter(thread)" *ngFor="let thread of myThreads">
+                (click)="loadThreadInChatCenter(thread)" *ngFor="let thread of myThreads | sortByDateChronological">
                 <div>
                   <div class=" border-bottom p-1">
                     <div class="media p-2" [id]="thread.threadDocId">
@@ -308,29 +315,29 @@
                   <h6 class="font-weight-semibold text-muted small">Please connect to new Neighbors from Neighbors tab
                   </h6>
                 </div>
-              <!-------------------------------------------------- End No member div end ------------------------------------>
+                <!-------------------------------------------------- End No member div end ------------------------------------>
 
-              
-              <!-------------------------------------------------- start Member/Gropu Tabs ------------------------------------>
-              <div class="col-xl-12 pb-1 pt-2 px-0">
+
+                <!-------------------------------------------------- start Member/Gropu Tabs ------------------------------------>
+                <div class="col-xl-12 pb-1 pt-2 px-0">
                   <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
-                   
+
                     <li class="nav-item align-self-center" *ngIf="members.length>0">
                       <a href="#neighborList" class="nav-link text-muted font-weight-bold active" data-toggle="tab"
                         aria-selected="false">All </a>
                     </li>
                     <li class="nav-item align-self-center" *ngIf="members.length>0">
                       <a href="#yourList" class="nav-link text-muted font-weight-bold" data-toggle="tab" role="tab"
-                      (click)="selectedMemberToChat.length=0"
-                        aria-controls="contact" aria-selected="false">Neighbor Groups</a>
+                        (click)="selectedMemberToChat.length=0" aria-controls="contact" aria-selected="false">Neighbor
+                        Groups</a>
                     </li>
                   </ul>
                 </div>
-              <!-------------------------------------------------- end Member/Gropu Tabs ------------------------------------>
-             
+                <!-------------------------------------------------- end Member/Gropu Tabs ------------------------------------>
+
               </div>
- <!-------------------------------------------------- start Member/Gropu contaier ------------------------------------>
-             
+              <!-------------------------------------------------- start Member/Gropu contaier ------------------------------------>
+
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active " id="neighborList" role="tabpanel" aria-labelledby="home-tab">
 
@@ -352,7 +359,7 @@
                             </div>
                             <div class="checkbox">
                               <input type="checkbox" id="{{member.neighbor_id}}"
-                              [checked]="isMemberSelected(member.neighbor_id)"
+                                [checked]="isMemberSelected(member.neighbor_id)"
                                 (change)="selectMembersToChat($event,member)">
                               <label for="{{member.neighbor_id}}"></label>
                             </div>
@@ -366,11 +373,11 @@
 
                 <div class="tab-pane fade show " id="yourList" role="tabpanel" aria-labelledby="home-tab">
                   <div class="row justify-content-between px-4">
-                    <div class="w-100" >
+                    <div class="w-100">
                       <div class="col-md-12 col-xl-12">
 
                         <div class="border-top p-2" *ngFor="let list of neighborLists$ | async | filter:searchText">
-                          <div class="media d-flex align-items-center py-2" >
+                          <div class="media d-flex align-items-center py-2">
                             <ngx-avatar class="mr-3 mr-2" [name]="list.name" [size]="40">
                             </ngx-avatar>
 
@@ -380,11 +387,8 @@
                               </h5>
                               <div class="ml-auto d-flex ">
                                 <div class="custom-control custom-radio custom-control-inline mt-2">
-                                  <input type="radio" name="neighborlist"
-                                  [id]="list.name"
-                                  [checked]="list.checked"
-                                  (click)="selectNeighborListToChat(list.member)"
-                                  class="custom-control-input">
+                                  <input type="radio" name="neighborlist" [id]="list.name" [checked]="list.checked"
+                                    (click)="selectNeighborListToChat(list.member)" class="custom-control-input">
                                   <label class="custom-control-label text-dark font-weight-semibold"
                                     [for]="list.name"></label>
                                 </div>
@@ -398,16 +402,15 @@
                   </div>
                 </div>
               </div>
- <!--------------------------------------------------End Member/Gropu contaier ------------------------------------>
-  
-              
+              <!--------------------------------------------------End Member/Gropu contaier ------------------------------------>
+
+
             </form>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-accent btn-sm text-uppercase" data-dismiss="modal"
-          *ngIf="selectedMemberToChat.length>0"  
-          (click)="initiateNewThread()">Message</button>
+            *ngIf="selectedMemberToChat.length>0" (click)="initiateNewThread()">Message</button>
           <button type="button" class="btn btn-outline-accent btn-sm text-uppercase"
             data-dismiss="modal">Cancel</button>
         </div>

@@ -79,7 +79,7 @@ export class MessagesComponent implements OnInit {
         let index = this.myThreads.findIndex(t => t.threadDocId == messageReceived.threadId);
         //last message update
         this.myThreads[index].lastMessage = messageReceived.message.message;
-
+        this.myThreads[index].lastMessageTime = messageReceived.message.timeStamp;
         //if incoming message for selected thread
         if (this.selectedThread && this.selectedThread.threadDocId == messageReceived.threadId) {
           this.selectedThread.participants = messageReceived.participants;
@@ -107,6 +107,9 @@ export class MessagesComponent implements OnInit {
           unreadMessageCount: 1
         });
       }
+      this.myThreads = this.myThreads.sort((a, b) => new Date(b.lastMessageTime).getTime() -
+        new Date(a.lastMessageTime).getTime());
+
 
     });
     //#endregion NewMessageRecieved
