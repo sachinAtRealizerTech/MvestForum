@@ -103,13 +103,13 @@
         </div>
 
         <div class="row gutter-10 pt-2">
-          <div class="card m-2" *ngFor="let c of categoryList | filter:searchText" style="background: #000000;">
+          <div class="card  rounded m-2" *ngFor="let c of categoryList | filter:searchText" style="background: #000000;">
             <a routerLink="/subcategory" [queryParams]="{categoryId: c.Categories.doc_id}"
               (click)="setTitle( 'Mvest-Subcategories')">
               <div class=" d-inline category-main px-0" style="width:50rem">
                 <img class="img-fluid img-thumbnail rounded-left " style="opacity: 0.7;" src="{{c.Categories.image}}"
                   alt="" width="250px">
-                <div class="category-text">
+                <div class="category-text text-left px-3 rounded-bottom">
                   {{c.Categories.name | titlecase}}
                 </div>
               </div>
