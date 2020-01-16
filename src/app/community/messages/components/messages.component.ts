@@ -5,11 +5,10 @@ import { WebSocketServiceService } from '../services/web-socket-service.service'
 import { Thread } from '../model/threads';
 import { v4 as uuid } from 'uuid';
 import { Auth } from 'src/app/models/Auth';
-import { ScrollToBottomDirective } from './../ScrollToBottomDirective';
+import { ScrollToBottomDirective } from '../directives/ScrollToBottomDirective';
 import { MessageUtils } from './MessageUtils';
 import { Member } from '../model/member';
 import { environment } from 'src/environments/environment';
-import { delay } from 'rxjs/operators';
 import { NeighborsService } from 'src/app/neighbors/services/neighbors.service';
 import { Observable } from 'rxjs';
 
@@ -235,7 +234,6 @@ export class MessagesComponent implements OnInit {
   }
 
   sendMessage() {
-    debugger;
     let messageText = this.messgeText;
     if (messageText.trim() == "") {
       return;

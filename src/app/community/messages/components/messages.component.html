@@ -91,19 +91,7 @@
           <!-- Thread containser starts -->
 
           <div class="card shadow p-2">
-            <!-- <div class="row justify-content-center text-center gutters-1 py-3" *ngIf="myThreads?.length==0">
-              <div class="col-md-12 text-center col-12 col-xl-12 px-4">
-                <div class=" text-center align-self-center py-5">
-                  <h6 class="text-secondary font-weight-semibold text-uppercase">No conversations yet !</h6>
-                  <h6 class="text-muted font-weight-semibold small mb-1">All conversations will be Listed
-                    here.
-                  </h6>
-                  <h6 class="text-muted font-weight-semibold small">You can chat with members by clicking on "New
-                    Message" button.
-                  </h6>
-                </div>
-              </div>
-            </div> -->
+          
             <div id="chat-windowThread" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="myThreads.length>0">
               <div class="card-body card-selected p-1 cursor-pointer"
                 [class.bg-light]="selectedThread?.threadDocId==thread.threadDocId"

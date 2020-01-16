@@ -9,8 +9,8 @@ import { ProfileComponent } from './community/profile/components/profile.compone
 import { PhotosComponent } from './community/photos/components/photos.component';
 import { RequestsComponent } from './myaccount/requests/components/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
-import { MessagesComponent } from './community/messages/messages/messages.component';
-import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
+import { MessagesComponent } from './community/messages/components/messages.component';
+import { ScrollToBottomDirective } from './community/messages/directives/ScrollToBottomDirective';
 import { FollowingComponent } from './community/following/components/following.component';
 import { NeighborsComponent } from './neighbors/components/neighbors.component';
 import { CommunityComponent } from './community/components/community.component';
@@ -41,7 +41,8 @@ import { MvestUserNeighborsComponent } from './mvest-user-profile/mvest-user-nei
 import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
 import { BookmarksComponent } from './community/bookmarks/components/bookmarks.component';
-import { CustomDatePipe } from './community/messages/custom.datepipe';
+import { CustomDatePipe } from './community/messages/pipes/custom.datepipe';
+import { SortByDateChronological } from './community/messages/pipes/SortByDateChronological';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CustomDatePipe } from './community/messages/custom.datepipe';
     MvestUserNeighborsComponent,
     MvestUserPhotosComponent,
     MvestUserProfileComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    SortByDateChronological
     // HighlightText
     //LoadingcircleComponent,
   ],
