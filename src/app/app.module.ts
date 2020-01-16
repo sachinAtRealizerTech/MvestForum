@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SideNavComponent } from './side-nav/side-nav.component';
+import { SideNavComponent } from './side-nav/components/side-nav.component';
 import { TopNavComponent } from './top-nav/components/top-nav.component';
 import { ProfileComponent } from './community/profile/components/profile.component';
 import { PhotosComponent } from './photos/components/photos.component';
