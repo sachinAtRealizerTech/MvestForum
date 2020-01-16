@@ -281,7 +281,7 @@
 
                       <div class="media-body mb-0 ">
                         <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                          <u>{{rd?.title | titlecase | slice:0:60}}</u></h5>
+                          <u>{{rd?.title | titlecase | slice:0:50}}...</u></h5>
                       </div>
 
                     </div>
@@ -326,7 +326,7 @@
 
                 <div class="row text-center text-lg-left">
                   <div class="col-lg-4 col-md-4 col-6" *ngFor="let rp of recentPhotos | slice:0:9">
-                    <a class="d-block mb-4 h-100">
+                    <a class="d-block py-2">
                       <img class="img-fluid img-thumbnailalbumProfile rounded-0" src="{{rp?.thumbnail_file_name}}"
                         width="100px" height="100px" alt="">
                     </a>
