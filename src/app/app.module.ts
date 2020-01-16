@@ -33,7 +33,7 @@ import { CanActivate } from '@angular/router'
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './myaccount/settings/components/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
-import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { SearchresultsComponent } from './searchresults/components/searchresults.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 //import { HighlightText } from './shared/pipes/highlightText.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';

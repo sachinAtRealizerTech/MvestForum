@@ -28,7 +28,7 @@ import { NotificationComponent } from './myaccount/notification/components/notif
 import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './myaccount/settings/components/settings.component';
 import { ArchivesComponent } from './archives/archives.component';
-import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { SearchresultsComponent } from './searchresults/components/searchresults.component';
 import { MvestUserComponent } from './mvest-user-profile/mvest-user/components/mvest-user.component';
 import { BlockedComponent } from './blocked/blocked.component';
 import { MvestUserFollowingComponent } from './mvest-user-profile/mvest-user-following/components/mvest-user-following.component';
