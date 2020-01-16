@@ -1735,7 +1735,7 @@ color: #999;
   padding: 0;
   border: none;
   background-color: #fff;
-  border-radius: .375rem;
+  /* border-radius: .375rem; */
   box-shadow: none;
 }
 
