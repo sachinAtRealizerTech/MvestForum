@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FollowingService } from 'src/app/following/services/following.service';
+import { FollowingService } from 'src/app/community/following/services/following.service';
 import { environment } from 'src/environments/environment';
 import { FollowingMembers, FollowerMembers } from 'src/app/community/models/followingMembers';
 import { Utils } from 'src/app/shared/Utils';

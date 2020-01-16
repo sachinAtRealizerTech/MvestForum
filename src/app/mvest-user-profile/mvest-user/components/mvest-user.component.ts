@@ -7,7 +7,7 @@ import { RecentDiscussions } from 'src/app/community/profile/models/recentDiscus
 import { RecentPhotos } from 'src/app/community/profile/models/recentPhotos';
 import { MyNews } from 'src/app/community/profile/models/myNews';
 import { Router } from '@angular/router';
-import { FollowingService } from 'src/app/following/services/following.service';
+import { FollowingService } from 'src/app/community/following/services/following.service';
 import { FollowingMembers } from 'src/app/community/models/followingMembers';
 import { NeighborsService } from 'src/app/neighbors/services/neighbors.service';
 import { MvestUserProfileService } from 'src/app/mvest-user-profile/services/mvest-user-profile.service';

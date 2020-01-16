@@ -11,7 +11,7 @@ import { RequestsComponent } from './myaccount/requests/components/requests.comp
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
-import { FollowingComponent } from './following/components/following.component';
+import { FollowingComponent } from './community/following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/components/neighbors.component';
 import { CommunityComponent } from './community/components/community.component';

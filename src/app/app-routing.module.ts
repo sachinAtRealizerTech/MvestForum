@@ -7,7 +7,7 @@ import { PhotosComponent } from './photos/components/photos.component';
 import { RequestsComponent } from './myaccount/requests/components/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
-import { FollowingComponent } from './following/components/following.component';
+import { FollowingComponent } from './community/following/components/following.component';
 import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
 import { DiscussionsComponent } from './community/discussions/categories/components/discussions.component';
 import { SubcategoryComponent } from './community/discussions/subcategories/components/subcategory.component';

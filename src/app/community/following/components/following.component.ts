@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FollowingService } from '../services/following.service';
 import { Utils } from 'src/app/shared/Utils';
-import { FollowingMembers, FollowerMembers, SearchedMembers } from '../../community/models/followingMembers'
+import { FollowingMembers, FollowerMembers, SearchedMembers } from '../../models/followingMembers'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
