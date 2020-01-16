@@ -2,6 +2,14 @@
 
     <flash-messages class="bg-accent text-center"></flash-messages>
 
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="content-loading text-center" *ngIf="loading">
+                <app-loadingcircle></app-loadingcircle>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xl-12 pb-1 pt-1">
             <ul class="nav nav-tabs sub-tab border-0" id="photos-tab" role="tablist">
