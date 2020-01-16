@@ -3,12 +3,12 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { ProfileComponent } from './community/profile/components/profile.component';
 import { SignInComponent } from './authentication/sign-in/components/sign-in.component';
-import { PhotosComponent } from './photos/components/photos.component';
+import { PhotosComponent } from './community/photos/components/photos.component';
 import { RequestsComponent } from './myaccount/requests/components/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { FollowingComponent } from './community/following/components/following.component';
-import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
+import { MydiscussionsComponent } from './community/mydiscussions/components/mydiscussions.component';
 import { DiscussionsComponent } from './community/discussions/categories/components/discussions.component';
 import { SubcategoryComponent } from './community/discussions/subcategories/components/subcategory.component';
 import { DiscussionslistComponent } from './community/discussions/discussionlist/components/discussionslist.component';
@@ -33,7 +33,7 @@ import { MvestUserFollowingComponent } from './mvest-user-profile/mvest-user-fol
 import { MvestUserNeighborsComponent } from './mvest-user-profile/mvest-user-neighbors/components/mvest-user-neighbors.component';
 import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
-import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
+import { BookmarksComponent } from './community/bookmarks/components/bookmarks.component';
 
 const routes: Routes = [
 

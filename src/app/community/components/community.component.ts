@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { PhotosService } from '../../photos/services/photos.service';
+import { PhotosService } from '../../community/photos/services/photos.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { DiscussionsService } from '../discussions/categories/services/discussions.service';
 import { SubcategoryService } from '../discussions/subcategories/Services/subcategory.service';

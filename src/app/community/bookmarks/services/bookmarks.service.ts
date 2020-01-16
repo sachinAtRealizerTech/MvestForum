@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Utils } from '../../shared/Utils';
+import { Utils } from 'src/app/shared/Utils';
+
 
 @Injectable({
   providedIn: 'root'

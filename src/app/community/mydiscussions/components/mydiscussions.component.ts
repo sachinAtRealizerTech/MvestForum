@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MydiscussionsService } from '../services/mydiscussions.service';
-import { DiscussionslistService } from '../../community/discussions/discussionlist/Services/discussionslist.service';
-import { Utils } from '../../shared/Utils';
+import { DiscussionslistService } from '../../discussions/discussionlist/Services/discussionslist.service';
+// import { Utils } from '../../shared/Utils';
 // import { BookmarksService } from '../../community/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
-import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
+import { BookmarksService } from 'src/app/community/bookmarks/services/bookmarks.service';
+import { Utils } from 'src/app/shared/Utils';
 
 @Component({
   selector: 'app-mydiscussions',
@@ -41,13 +42,13 @@ export class MydiscussionsComponent implements OnInit {
       console.log('mydiscussions', data['data']);
       this.loading = false;
       this.myDiscussionGroups = []
-      if( data['data']=="NO_DISCUSSION_GROUPS"){
+      if (data['data'] == "NO_DISCUSSION_GROUPS") {
         this.myDiscussionGroups = []
       }
-    else{
-      this.myDiscussionGroups = data['data']
-    }
-  
+      else {
+        this.myDiscussionGroups = data['data']
+      }
+
     },
       error => {
         this.loading = false;

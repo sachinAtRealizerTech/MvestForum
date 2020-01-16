@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotosService } from 'src/app/photos/services/photos.service';
+import { PhotosService } from 'src/app/community/photos/services/photos.service';
 import { environment } from 'src/environments/environment';
-import { AlbumImageList, albumList } from 'src/app/photos/models/album';
+import { AlbumImageList, albumList } from 'src/app/community/photos/models/album';
 
 @Component({
   selector: 'app-mvest-user-photos',

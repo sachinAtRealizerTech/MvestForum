@@ -7,9 +7,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utils } from 'src/app/shared/Utils';
 import { DiscussionsList } from '../../../models/discussionlist';
-import { BookmarksService } from 'src/app/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
+import { BookmarksService } from 'src/app/community/bookmarks/services/bookmarks.service';
 
 
 @Component({

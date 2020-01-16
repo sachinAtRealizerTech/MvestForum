@@ -6,13 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './side-nav/components/side-nav.component';
 import { TopNavComponent } from './top-nav/components/top-nav.component';
 import { ProfileComponent } from './community/profile/components/profile.component';
-import { PhotosComponent } from './photos/components/photos.component';
+import { PhotosComponent } from './community/photos/components/photos.component';
 import { RequestsComponent } from './myaccount/requests/components/requests.component';
 import { NewsfeedComponent } from './community/newsfeed/newsfeed.component';
 import { MessagesComponent } from './community/messages/messages/messages.component';
 import { ScrollToBottomDirective } from './community/messages/ScrollToBottomDirective';
 import { FollowingComponent } from './community/following/components/following.component';
-import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
+import { MydiscussionsComponent } from './community/mydiscussions/components/mydiscussions.component';
 import { NeighborsComponent } from './neighbors/components/neighbors.component';
 import { CommunityComponent } from './community/components/community.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
@@ -41,7 +41,7 @@ import { MvestUserFollowingComponent } from './mvest-user-profile/mvest-user-fol
 import { MvestUserNeighborsComponent } from './mvest-user-profile/mvest-user-neighbors/components/mvest-user-neighbors.component';
 import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
-import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
+import { BookmarksComponent } from './community/bookmarks/components/bookmarks.component';
 import { CustomDatePipe } from './community/messages/custom.datepipe';
 
 @NgModule({

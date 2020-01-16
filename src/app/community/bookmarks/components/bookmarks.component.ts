@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BookmarksService } from '../services/bookmarks.service';
-import { Utils } from '../../shared/Utils';
 import { Bookmarks } from '../../bookmarks/models/bookmarks'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router'
+import { Utils } from 'src/app/shared/Utils';
 
 @Component({
   selector: 'app-bookmarks',
