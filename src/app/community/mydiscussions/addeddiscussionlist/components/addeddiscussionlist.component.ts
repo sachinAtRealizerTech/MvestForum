@@ -4,6 +4,7 @@ import { DiscussionslistService } from 'src/app/community/discussions/discussion
 import { BookmarksService } from 'src/app/community/bookmarks/services/bookmarks.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute } from '@angular/router'
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-addeddiscussionlist',
@@ -15,6 +16,8 @@ export class AddeddiscussionlistComponent implements OnInit {
   myDiscussionList: any[];
   subCatId: string;
   isMyDiscussions: boolean;
+  imagePrepend: any;
+  png: string;
 
   constructor(private discussionslistService: DiscussionslistService,
     private bookmarksService: BookmarksService,
@@ -22,23 +25,26 @@ export class AddeddiscussionlistComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    debugger;
+    this.imagePrepend = environment.IMAGEPREPENDURL;
+    this.png = '.png?' + new Date().getTime();
     if (history.state.subCatId) {
       localStorage.setItem("subCatId", history.state.subCatId);
       this.subCatId = localStorage.getItem('subCatId');
-      localStorage.setItem("isMyDiscussions", history.state.isMyDiscussions)
-      this.isMyDiscussions = Boolean(localStorage.getItem('isMyDiscussions'))
+      this.isMyDiscussions = history.state.isMyDiscussions
     }
     else {
       this.subCatId = localStorage.getItem('subCatId');
       this.isMyDiscussions = Boolean(localStorage.getItem('isMyDiscussions'))
     }
-
     this.getDiscussionsList(this.subCatId, this.isMyDiscussions)
-
   }
 
   public user = Utils.GetCurrentUser();
+
+  selectDiscussions(event) {
+    this.isMyDiscussions = event.target.value;
+    this.getDiscussionsList(this.subCatId, this.isMyDiscussions);
+  }
 
   getDiscussionsList(subCatId: string, isMyDiscussion: boolean) {
     this.loading = true;

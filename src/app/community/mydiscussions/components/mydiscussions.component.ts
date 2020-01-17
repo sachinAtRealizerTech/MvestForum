@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import { MydiscussionsService } from '../services/mydiscussions.service';
 import { DiscussionslistService } from '../../discussions/discussionlist/Services/discussionslist.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { BookmarksService } from 'src/app/community/bookmarks/services/bookmarks.service';
 import { Utils } from 'src/app/shared/Utils';
 import { Router, ActivatedRoute } from '@angular/router'
+
 
 @Component({
   selector: 'app-mydiscussions',
@@ -132,5 +133,6 @@ export class MydiscussionsComponent implements OnInit {
     debugger;
     this.router.navigate(['/community/addedDiscussionsList'], { state: { subCatId: subCatId, isMyDiscussions: isMyDiscussions } })
   }
+
 
 }
