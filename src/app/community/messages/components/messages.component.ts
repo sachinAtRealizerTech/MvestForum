@@ -311,10 +311,11 @@ export class MessagesComponent implements OnInit {
   }
 
   getThreadName(originalThreadName: string): string {
+    console.log('original thread name - ', originalThreadName);
     if (!originalThreadName) return;
     let newThreadName: string[] = [];
     originalThreadName.split(",").map(name => {
-      if (name != `${this.loggedInUser.f_name} ${this.loggedInUser.l_name}`) {
+      if (name.toLowerCase() != `${this.loggedInUser.f_name.toLowerCase()} ${this.loggedInUser.l_name.toLowerCase()}`) {
         newThreadName.push(name);
         return name;
       }
