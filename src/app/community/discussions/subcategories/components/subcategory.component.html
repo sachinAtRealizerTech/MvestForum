@@ -137,12 +137,12 @@
             <div class="row justify-content-left text-center px-3">
               <div>
                 <div class="row  gutter-10">
-                  <div class="card  rounded  card-category bg-dark m-2 action-icons"
+                  <div class="card  rounded  card-category  m-2 action-icons"
                     *ngFor="let sc of subCategoryList | filter:searchText">
 
                     <div>
                       <div class=" d-inline category-main" style="width:50rem">
-                        <img class=" img-fluid img-thumbnail rounded-left card-image" style="opacity: 0.667;"
+                        <img class=" img-fluid img-thumbnail rounded-left card-image" 
                           src="{{sc.sub_categories.image}}" alt="" width="250px">
                         <!-- <div class=" add-button d-flex d-inline-flex" >
                            <a routerLink="/discussionslist"  

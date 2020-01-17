@@ -978,12 +978,13 @@ textarea:focus {
   position: absolute;
   top: 320% !important;
   /* left: 10%; */
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   width: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
  
 }
+ 
 
 .action-icons a{
   visibility:hidden;
@@ -1783,8 +1784,9 @@ color: #999;
   backface-visibility: hidden;  
 }
 
- .card-image:hover  {
-  opacity: 0.3;
+ .card-image:hover  .category-text{
+  /* opacity: 0.3; */
+  background: rgba(0, 0, 0, 0.8);
 }
 .add-button { 
   transition: .5s ease;
