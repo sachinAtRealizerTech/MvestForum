@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { DiscussionsComponent } from './discussions/categories/components/discussions.component';
 import { DiscussionsModule } from '../community/discussions/discussions.module';
-//import { LoadingcircleComponent } from '../shared/loadingcircle/loadingcircle.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AddeddiscussionlistComponent } from './mydiscussions/addeddiscussionlist/components/addeddiscussionlist.component';
 import { MydiscussionsComponent } from './mydiscussions/components/mydiscussions.component';
@@ -29,8 +27,6 @@ import { MvestUserPhotosComponent } from '../mvest-user-profile/mvest-user-photo
 
 @NgModule({
   declarations: [
-    //DiscussionsComponent,
-    // LoadingcircleComponent
     MydiscussionsComponent,
     AddeddiscussionlistComponent,
     ProfileComponent,
