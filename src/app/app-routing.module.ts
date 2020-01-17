@@ -64,17 +64,6 @@ const routes: Routes = [
     path: '',
     component: HomeLayoutComponent,
     children: [
-      // {
-      //   path: 'profile',
-      //   component: ProfileComponent,
-      //   canActivate: [AuthGuard]
-      // },
-
-      // {
-      //   path: 'photos',
-      //   component: PhotosComponent,
-      //   canActivate: [AuthGuard]
-      // },
       {
         path: 'requests',
         component: RequestsComponent,
@@ -90,16 +79,6 @@ const routes: Routes = [
         component: MessagesComponent,
         canActivate: [AuthGuard]
       },
-      // {
-      //   path: 'following',
-      //   component: FollowingComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'mydiscussions',
-      //   component: MydiscussionsComponent,
-      //   canActivate: [AuthGuard]
-      // },
       {
         path: 'discussions',
         component: DiscussionsComponent,
@@ -122,18 +101,6 @@ const routes: Routes = [
         canActivate: [AuthGuard]
 
       },
-      // {
-      //   path: 'neighbors',
-      //   component: NeighborsComponent,
-      //   canActivate: [AuthGuard]
-
-      // },
-      // {
-      //   path: 'community',
-      //   component: CommunityComponent,
-      //   canActivate: [AuthGuard]
-
-      // },
       {
         path: 'signup',
         component: SignupComponent,
@@ -144,16 +111,6 @@ const routes: Routes = [
         component: DashboardComponent,
         canActivate: [AuthGuard]
       },
-      // {
-      //   path: 'nearbyleases',
-      //   component: NearbyleasesComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'nearbyneighbors',
-      //   component: NearbyneighborsComponent,
-      //   canActivate: [AuthGuard]
-      // },
       {
         path: 'myaccount',
         component: MyaccountComponent,
@@ -174,13 +131,6 @@ const routes: Routes = [
         component: SearchresultsComponent,
         canActivate: [AuthGuard]
       },
-      // {
-      //   path: 'bookmarks',
-      //   component: BookmarksComponent,
-      //   canActivate: [AuthGuard]
-      // },
-
-
       {
         path: 'community',
         component: CommunityComponent,
@@ -231,8 +181,6 @@ const routes: Routes = [
         ]
       },
 
-
-
       {
         path: 'mvest-user-profile',
         component: MvestUserProfileComponent,
@@ -259,189 +207,6 @@ const routes: Routes = [
 
     ]
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //////////////////////////////////////
-
-  // {
-  //   path: '',
-  //   component: SignupComponent,
-  //   pathMatch: 'full',
-  //   children: [
-  //     {
-  //       path: 'signup',
-  //       component: SignupComponent
-  //     }
-  //   ]
-  // },
-
-
-
-
-  // {
-  //   path: '',
-  //   component: HomeLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'profile',
-  //       component: ProfileComponent
-  //     },
-
-  //     {
-  //       path: 'photos',
-  //       component: PhotosComponent
-  //     },
-  //     {
-  //       path: 'requests',
-  //       component: RequestsComponent
-  //     },
-  //     {
-  //       path: 'newsfeed',
-  //       component: NewsfeedComponent
-  //     },
-  //     {
-  //       path: 'messages',
-  //       component: MessagesComponent
-  //     },
-  //     {
-  //       path: 'following',
-  //       component: FollowingComponent
-  //     },
-  //     {
-  //       path: 'mydiscussions',
-  //       component: MydiscussionsComponent
-  //     },
-  //     {
-  //       path: 'discussions',
-  //       component: DiscussionsComponent
-  //     },
-  //     {
-  //       path: 'subcategory',
-  //       component: SubcategoryComponent
-  //     },
-  //     {
-  //       path: 'discussionslist',
-  //       component: DiscussionslistComponent
-
-  //     },
-  //     {
-  //       path: 'discussion-details',
-  //       component: DiscussionDetailsComponent
-
-  //     },
-  //     {
-  //       path: 'neighbors',
-  //       component: NeighborsComponent
-
-  //     },
-  //     {
-  //       path: 'community',
-  //       component: CommunityComponent
-
-  //     },
-  //     {
-  //       path: 'signup',
-  //       component: SignupComponent
-  //     }
-
-  //   ]
-  // }
-
-
-  // {
-  //   path:'',
-  //   component: SigninLayoutComponent,
-  //   pathMatch: 'full',
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: SignInComponent
-  //     }
-  //   ]   
-  // },
-
-  // {
-  //   path: '',
-  //   component: HomeLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'profile',
-  //       component: ProfileComponent
-  //     },
-
-  //     {
-  //       path: 'photos',
-  //       component: PhotosComponent
-  //     },
-  //     {
-  //       path: 'requests',
-  //       component: RequestsComponent
-  //     },
-  //     {
-  //       path: 'newsfeed',
-  //       component: NewsfeedComponent
-  //     },
-  //     {
-  //       path: 'messages',
-  //       component: MessagesComponent
-  //     },
-  //     {
-  //       path: 'following',
-  //       component: FollowingComponent
-  //     },
-  //     {
-  //       path: 'mydiscussions',
-  //       component: MydiscussionsComponent
-  //     },
-  //     {
-  //       path: 'discussions',
-  //       component: DiscussionsComponent
-  //     },
-  //     {
-  //       path: 'subcategory',
-  //       component: SubcategoryComponent
-  //     },
-  //     {
-  //       path: 'discussionslist',
-  //       component: DiscussionslistComponent
-
-  //     },
-  //     {
-  //       path: 'discussion-details',
-  //       component: DiscussionDetailsComponent
-
-  //     },
-  //     {
-  //       path: 'neighbors',
-  //       component: NeighborsComponent
-
-  //     },
-  //     {
-  //       path: 'community',
-  //       component: CommunityComponent
-
-  //     },
-  //   ]
-  // }
-
-
 ];
 
 @NgModule({

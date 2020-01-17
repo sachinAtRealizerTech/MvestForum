@@ -23,6 +23,7 @@ export class MydiscussionsComponent implements OnInit {
   imagePrepend: string;
   png: string;
   addedDiscussionGroups: any[];
+  searchText: string
 
   constructor(private mydiscussionsService: MydiscussionsService,
     private discussionslistService: DiscussionslistService,
