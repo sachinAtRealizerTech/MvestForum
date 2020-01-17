@@ -225,8 +225,13 @@
                         <!-- Self message End-->
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <h6 class="text-muted small mb-1">Rutuja is typing ...</h6> 
+                    </div>
+                  </div>
                     <!-- Message text box Start-->
-                    <div class="media border-top d-flex align-items-center px-3 mt-4 pt-2" *ngIf="selectedThread">
+                    <div class="media border-top d-flex align-items-center px-3 pt-2" *ngIf="selectedThread">
                       <span><i *ngIf="typingData?.length!=null" class="isTyping">{{typingData.userName}}
                           typing...</i></span>
                       <div class="media-body mb-0">
