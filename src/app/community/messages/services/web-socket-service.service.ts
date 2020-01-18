@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Invitation } from '../model/invitation';
 import { MessageReceived } from '../model/message';
+import { TypingData } from '../model/typingdata';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,11 @@ export class WebSocketServiceService {
     this.socket.emit('message', data);
   }
   typing(data) {
+    console.log('typing data in web socket-', data);
     this.socket.emit('typing', data);
   }
-  receivedTyping() {
-    const observable = new Observable<any>(observer => {
+  receivedTyping(): Observable<TypingData> {
+    const observable = new Observable<TypingData>(observer => {
       this.socket.on('typing', (data) => {
         console.log('typing from web socket service...', data);
         observer.next(data);

@@ -11,6 +11,7 @@ import { Member } from '../model/member';
 import { environment } from 'src/environments/environment';
 import { NeighborsService } from 'src/app/neighbors/services/neighbors.service';
 import { Observable } from 'rxjs';
+import { TypingData } from '../model/typingdata';
 
 @Component({
   selector: 'app-messages',
@@ -31,7 +32,7 @@ export class MessagesComponent implements OnInit {
   public myThreads: Thread[] = [];
   public selectedThread: Thread;
 
-  public typingData;
+  public typingData: TypingData[] = [];
   messgeText: any;
 
   constructor(
@@ -108,23 +109,44 @@ export class MessagesComponent implements OnInit {
       }
       this.myThreads = this.myThreads.sort((a, b) => new Date(b.lastMessageTime).getTime() -
         new Date(a.lastMessageTime).getTime());
-
-
     });
     //#endregion NewMessageRecieved
 
     //#region TypingStatus
-    this.socketService.receivedTyping().subscribe(data => {
-      this.typingData = {
-        isTyping: data['isTyping'],
-        userName: data['typingUser'],
-        roomId: data['threadId']
+    this.socketService.receivedTyping().subscribe(typingData => {
+      debugger;
+      console.log('typing received', typingData);
+      console.log('selected thread id- ', this.selectedThread.threadDocId);
+      if (this.selectedThread.threadDocId == typingData.threadId) {
+        let exist = this.typingData.find(u => u.userEmailId == typingData.userEmailId)
+        if (!exist) {
+          this.typingData.push(typingData);
+          console.log('type data-', typingData);
+        }
+
       }
+
+
+      //console.log('index - ', TypedUser);
+      //this.typingData.splice(TypedUser, 1);
+      setTimeout(() => {
+        if (this.typingData.length > 0) {
+          let TypedUser = this.typingData.findIndex(t => t.userEmailId == typingData.userEmailId);
+          this.typingData.splice(TypedUser, 1);
+        }
+      }, 3000);
+
+
     });
     //#endregion TypingStatus
 
   }
-
+  showTypingMessage() {
+    debugger;
+    if (this.typingData.length > 0) {
+      return this.typingData.map(u => u.typingUser).join(", ") + " is typing..."
+    }
+  }
   /**
    * Read message which is recieved from socket 
    * @param readMessageParams 
@@ -261,15 +283,25 @@ export class MessagesComponent implements OnInit {
     this.selectedThread.messages.push(message);
     this.socketService.sendMessage(newMessage);
   }
-
-  typing() {
-    console.log('typing user..', this.loggedInUser.f_name + " " + this.loggedInUser.l_name);
+  typing = false;
+  timeout;
+  ontMessageTyping() {
     let data = {
-      roomId: this.selectedThread.theradId,
+      threadId: this.selectedThread.threadDocId,
       typingUser: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
-      isTyping: true
+      userEmailId: this.loggedInUser.email_id
     }
-    this.socketService.typing({ data });
+
+    if (this.typing == false) {
+      this.typing = true
+      console.log('started typing...msg comp')
+      //socket.emit("typingstarted",{username,threadId});
+      this.socketService.typing(data);
+      this.timeout = setTimeout(() => { this.typing = false; }, 2000);
+    } else {
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => { this.typing = false; }, 2000);
+    }
   }
 
   isThreadOneToOne(thread: Thread) {
@@ -311,7 +343,7 @@ export class MessagesComponent implements OnInit {
   }
 
   getThreadName(originalThreadName: string): string {
-    console.log('original thread name - ', originalThreadName);
+    //console.log('original thread name - ', originalThreadName);
     if (!originalThreadName) return;
     let newThreadName: string[] = [];
     originalThreadName.split(",").map(name => {

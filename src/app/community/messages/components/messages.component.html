@@ -91,7 +91,7 @@
           <!-- Thread containser starts -->
 
           <div class="card shadow p-2">
-          
+
             <div id="chat-windowThread" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="myThreads.length>0">
               <div class="card-body card-selected p-1 cursor-pointer"
                 [class.bg-light]="selectedThread?.threadDocId==thread.threadDocId"
@@ -227,20 +227,21 @@
                     </div>
                     <div class="row">
                       <div class="col-12">
-                        <h6 class="text-muted small mb-1">Rutuja is typing ...</h6> 
+                        <h6 class="text-muted small mb-1">{{showTypingMessage()}}</h6>
+                      </div>
                     </div>
-                  </div>
                     <!-- Message text box Start-->
                     <div class="media border-top d-flex align-items-center px-3 pt-2" *ngIf="selectedThread">
-                      <span><i *ngIf="typingData?.length!=null" class="isTyping">{{typingData.userName}}
-                          typing...</i></span>
+                      <!-- <span><i *ngIf="typingData?.length!=null" class="isTyping">{{typingData.userName}}
+                          typing...</i></span> -->
                       <div class="media-body mb-0">
                         <div class="row d-flex">
                           <div class="col-10 pl-3 pr-0">
                             <div class="align-self-center">
                               <input class="form-control border-0  rounded-5 bg-light w-100 form-control-lg"
-                                (ng-keypress)="typing()" placeholder="Write a Comment" type="text" autocomplete="false"
-                                [(ngModel)]="messgeText" name="messgeText" (keyup.enter)="sendMessage()">
+                                (keydown)="ontMessageTyping()" placeholder="Write a Comment" type="text"
+                                autocomplete="false" [(ngModel)]="messgeText" name="messgeText"
+                                (keyup.enter)="sendMessage()">
                             </div>
                           </div>
                           <div class="col-2 text-right px-2 d-flex">
