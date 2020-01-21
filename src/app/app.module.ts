@@ -22,7 +22,6 @@ import { AuthGuard } from './authentication/Components/guards/auth.guards';
 import { SettingsComponent } from './myaccount/settings/components/settings.component';
 import { SearchresultsComponent } from './searchresults/components/searchresults.component';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { BookmarksComponent } from './community/bookmarks/components/bookmarks.component';
 import { CustomDatePipe } from './community/messages/pipes/custom.datepipe';
 import { SortByDateChronological } from './community/messages/pipes/SortByDateChronological';
 
@@ -41,7 +40,6 @@ import { SortByDateChronological } from './community/messages/pipes/SortByDateCh
     NotificationComponent,
     SettingsComponent,
     SearchresultsComponent,
-    BookmarksComponent,
     CustomDatePipe,
     SortByDateChronological
   ],

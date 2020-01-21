@@ -18,6 +18,7 @@ import { MvestUserFollowingComponent } from '../mvest-user-profile/mvest-user-fo
 import { MvestUserNeighborsComponent } from '../mvest-user-profile/mvest-user-neighbors/components/mvest-user-neighbors.component';
 import { MvestUserProfileComponent } from '../mvest-user-profile/components/mvest-user-profile.component';
 import { MvestUserPhotosComponent } from '../mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
+import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
 
 // import { LightboxModule } from '@ngx-gallery/lightbox';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +43,7 @@ import { MvestUserPhotosComponent } from '../mvest-user-profile/mvest-user-photo
     MvestUserNeighborsComponent,
     MvestUserPhotosComponent,
     MvestUserProfileComponent,
+    BookmarksComponent
   ],
   imports: [
     CommonModule,

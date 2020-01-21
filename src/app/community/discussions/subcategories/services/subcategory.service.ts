@@ -23,7 +23,7 @@ export class SubcategoryService {
   }
 
   addSubcategoryToMyDiscussions(body) {
-    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/MyDiscussionGroup`, body, Utils.getAuthHeader())
+    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/AddSubcategoryToMyDiscussionGroup`, body, Utils.getAuthHeader())
   }
 
 }
