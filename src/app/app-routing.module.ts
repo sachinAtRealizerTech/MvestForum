@@ -35,6 +35,8 @@ import { MvestUserPhotosComponent } from './mvest-user-profile/mvest-user-photos
 import { MvestUserProfileComponent } from './mvest-user-profile/components/mvest-user-profile.component';
 import { BookmarksComponent } from './community/bookmarks/components/bookmarks.component';
 import { AddeddiscussionlistComponent } from './community/mydiscussions/addeddiscussionlist/components/addeddiscussionlist.component';
+import { FieldReportsComponent } from './field-reports/field-reports.component';
+import { LeaseReportComponent } from './lease-report/lease-report.component';
 
 const routes: Routes = [
 
@@ -129,6 +131,16 @@ const routes: Routes = [
       {
         path: 'searchresults',
         component: SearchresultsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'field-reports',
+        component: FieldReportsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'lease-report',
+        component: LeaseReportComponent,
         canActivate: [AuthGuard]
       },
       {

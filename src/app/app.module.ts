@@ -24,6 +24,8 @@ import { SearchresultsComponent } from './searchresults/components/searchresults
 import { ClickOutsideModule } from 'ng-click-outside';
 import { CustomDatePipe } from './community/messages/pipes/custom.datepipe';
 import { SortByDateChronological } from './community/messages/pipes/SortByDateChronological';
+import { FieldReportsComponent } from './field-reports/field-reports.component';
+import { LeaseReportComponent } from './lease-report/lease-report.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { SortByDateChronological } from './community/messages/pipes/SortByDateCh
     NotificationComponent,
     SettingsComponent,
     SearchresultsComponent,
+    FieldReportsComponent,
+    LeaseReportComponent,
     CustomDatePipe,
     SortByDateChronological
   ],

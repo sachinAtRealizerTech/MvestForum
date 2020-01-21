@@ -1,0 +1,302 @@
+<div class="main-content-container container-fluid px-4">  
+    <div class="row pb-3 pt-4">		  
+        <div class="col-12">		  
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item align-self-center">
+           <h5 class="text-dark mb-0 font-weight-bold mr-3">Field Reports</h5>
+          </li>
+          <li class="nav-item ">
+            <a routerLink="/field-reports"  class="active nav-link text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">My Leases</a>
+          </li>
+          <li class="nav-item ">
+            <a routerLink="/lease-report" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">Lease Report</a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/well-report" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">Well Report</a>
+          </li>
+       
+        
+        </ul>
+        
+      
+        </div>
+        </div>	
+
+
+        <div class="row py-4">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    
+         
+        <ul class="list-inline d-flex">
+                <li class="list-inline-item">
+                    <!-- <div class="dropdown mr-2">
+                        <button type="button" class="btn btn-outline-accent dropdown-toggle text-uppercase" data-toggle="dropdown">
+                          View : My Leases
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Link 1</a>
+                          <a class="dropdown-item" href="#">Link 2</a>
+                          <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                      </div> -->
+                      <select class="btn dropdown-outline-accent text-uppercase">
+                        <option >View : My Leases</option>
+                        <option >View : Grouped Leases</option>
+                        <option >View : Watch List</option>
+                        <option >View : Filter</option>
+                      </select>
+                    </li>
+                <li class="list-inline-item">
+                      <!-- <div class="dropdown"> -->
+                        <!-- <button type="button" class="btn btn-outline-accent dropdown-toggle text-uppercase" data-toggle="dropdown">
+                        
+                        </button> -->
+                        <!-- <div class="dropdown-menu"> -->
+                          <!-- <a class="dropdown-item" href="#">Link 1</a>
+                          <a class="dropdown-item" href="#">Link 2</a>
+                          <a class="dropdown-item" href="#">Link 3</a> -->
+                          <select class="btn dropdown-outline-accent text-uppercase">
+                            <option > Reports : Producing Wells</option>
+                            <option >Reports : Undrilled Acreage</option>
+                          </select>
+                        <!-- </div> -->
+                      <!-- </div> -->
+                    </li>
+                <li class="ml-auto list-inline-item pull-right">
+                    <form  class="form-inline search" id="search-form">
+                        <div  class="input-group col-12">
+                          <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+                </li>
+            </ul>  
+
+          
+            </div>
+            </div>
+<!--             <div class="row py-1 bg-light">
+                   
+                <div class="col-md-2 d-inline-flex">
+               <small class="font-weight-bold mb-0 text-uppercase align-self-center"> Positions</small>
+            </div>
+            <div class="col-md-1 d-inline-flex px-0">
+                <small class="font-weight-bold mb-0 text-uppercase align-self-center">Locations</small>
+            </div>
+            <div class="col-md-1 text-right justify-content-end d-inline-flex">
+                <small class="font-weight-bold mb-0 text-uppercase align-self-center">Acres</small>
+            </div>
+            <div class="col-md-1 d-inline-flex">
+                <small class="font-weight-bold mb-0 text-uppercase align-self-center">Active Wells</small>
+            </div>
+            <div class="col-md-1 d-inline-flex">
+                <small class="font-weight-bold mb-0 text-uppercase align-self-center">Interest</small>
+            </div>
+            <div class="col-md-2 d-inline-flex">
+                 
+                <select class="dropdown text-333 font-weight-bold mb-0 text-uppercase align-self-center">
+                    <option>Projected 12 Months</option>
+                    <option>Projected 6 Months</option>
+                    <option>Projected 1 Months</option>
+                </select>
+            </div>
+            <div class="col-xl-2 px-0 text-right justify-content-end d-inline-flex">
+                 
+                <select class="dropdown text-333 font-weight-bold mb-0 text-uppercase align-self-center">
+                    <option>2019 Tax Value</option>
+                    <option>2018 Tax Value</option>
+                    <option>2017 Tax Value</option>
+                </select>
+            </div>
+            <div class="col-xl-1 text-right  px-0 d-inline-flex">
+                 
+                    <select class="dropdown text-333 font-weight-bold mb-0 text-uppercase align-self-center">
+                        <option>2020 Tax Value</option>
+                        <option>2018 Tax Value</option>
+                        <option>2017 Tax Value</option>
+                    </select>
+                </div>
+            </div> -->
+
+            <!-- <div class="row py-1 border-bottom">
+                   
+                <div class="col-xl-2 col-md-2 col-sm-2 d-inline-flex">
+               <small class="font-weight-semibold mb-0 text-uppercase align-self-center">lease name #321987</small>
+            </div>
+            <div class="col-xl-1 col-md-2 col-sm-2 d-inline-flex px-0">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">Karnes County, TX</small>
+            </div>
+            <div class="col-xl-1 col-md-2 col-sm-2 text-right justify-content-end d-inline-flex">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">521</small>
+            </div>
+            <div class="col-xl-1 col-md-2 col-sm-2 text-center justify-content-center d-inline-flex">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">5</small>
+            </div>
+            <div class="col-xl-1 col-md-2 col-sm-2 d-inline-flex">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">0002000</small>
+            </div>
+            <div class="col-xl-2 col-md-2 col-sm-2 text-right justify-content-end d-inline-flex">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">$34,120</small>                                
+            </div>
+            <div class="col-xl-2 col-md-2 col-sm-2 text-right justify-content-end d-inline-flex">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">$5,430.00</small>                                                 
+            </div>
+            <div class="col-xl-2 col-md-2 col-sm-2 text-right justify-content-end d-inline-flex">
+                <small class="font-weight-semibold mb-0 text-uppercase align-self-center">$5,430.00</small>                                
+            </div>
+            </div> -->
+
+            <div class="row py-1">
+                   
+                    <div class="col-xl-12 col-lg-10 col-md-9 col-sm-8">
+            <table class="table shadow table-hover">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" class="small text-secondary font-weight-bold mb-0 text-uppercase"> </th>
+                        <th scope="col" class="small text-secondary font-weight-bold mb-0 text-uppercase">Positions</th>
+                        <th scope="col" class="small text-secondary font-weight-bold mb-0 text-uppercase"><i class=" d-inline-flex material-icons md-24">
+                          list
+                          </i> &nbsp; Locations </th>
+                        <th scope="col" class="small text-secondary font-weight-bold mb-0 text-uppercase">Acres</th>
+                        <th scope="col"class="small text-secondary font-weight-bold mb-0 text-uppercase">Active Wells</th>
+                        <th scope="col" class="small text-secondary font-weight-bold mb-0 text-uppercase">Interest</th>
+                        <th scope="col"><select class="dropdown small border-0 text-secondary font-weight-bold mb-0 text-uppercase">
+                                <option>Projected 12 Months</option>
+                                <option>Projected 6 Months</option>
+                                <option>Projected 1 Months</option>
+                            </select></th>
+                        <th scope="col"><select class="dropdown small border-0 text-secondary font-weight-bold mb-0 text-uppercase">
+                                <option>2019 Tax Value</option>
+                                <option>2018 Tax Value</option>
+                                <option>2017 Tax Value</option>
+                            </select></th>
+                            <th scope="col"> <select class="dropdown small border-0 text-secondary font-weight-bold mb-0 text-uppercase">
+                                    <option>2020 Tax Value</option>
+                                    <option>2018 Tax Value</option>
+                                    <option>2017 Tax Value</option>
+                                </select></th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1"></label>
+                              </div></th>
+                        <td class="font-weight-semibold mb-0 small align-self-center">Lease name #321987</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center">Karnes County, TX</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">521</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">5</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">0002000</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$34,120</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$5,430.00</td>
+                        <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$5,430.00</td>
+                         
+                      </tr>
+                      <tr>
+                            <th scope="row"><div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1"></label>
+                                  </div></th>
+                            <td class="font-weight-semibold mb-0 small align-self-center">Lease name #321987</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center">Karnes County, TX</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">521</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">5</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">0002000</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$34,120</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$5,430.00</td>
+                            <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$5,430.00</td>
+                             
+                          </tr>
+                          <tr>
+                                <th scope="row"><div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1"></label>
+                                      </div></th>
+                                <td class="font-weight-semibold mb-0 small align-self-center">Lease name #321987</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center">Karnes County, TX</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">521</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">5</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">0002000</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$34,120</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$5,430.00</td>
+                                <td class="font-weight-semibold text-muted mb-0 small align-self-center text-center">$5,430.00</td>
+                                 
+                              </tr>
+                    </tbody>
+                  </table>     
+                </div>
+                </div>
+
+  </div>  
+
+<!-- <div class="modal fade cover-modal-lg" tabindex="-1" role="dialog" aria-labelledby="cover-modal" aria-hidden="true">
+    <div class="modal-dialog modal-md bg-white shadow">
+     <form action="/action_page.php" class="needs-validation" novalidate>
+      <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title">Add Cover Photo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+      <div class="form-group">
+      <label for="mb-4">Browse to add Cover Photo: </label>
+      <div class="js--image-preview--cover  shadow  ">
+      </div>
+      <div class="upload-options">
+        <label>
+          <input type="file" class="image-upload  rounded-5" accept="image/*" />
+        </label>
+      </div>
+  </div>
+        </div>
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-accent text-uppercase">Submit</button>
+          <button type="button" class="btn btn-outline-accent text-uppercase" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+        </form>
+    </div>
+  </div> -->
+
+  <!-- <div class="modal fade profile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="profile-modal" aria-hidden="true">
+        <div class="modal-dialog modal-md bg-white shadow">
+         <form action="/action_page.php" class="needs-validation" novalidate>
+          <div class="modal-content">
+           <div class="modal-header">
+              <h5 class="modal-title">Add Profile Photo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+          <div class="form-group">
+          <label for="leasetype mb-4">Browse to add Profile Photo: </label>
+          <div class="js--image-preview--profile shadow mr-auto mt-2">
+            <div class="upload-options-profile  align-self-end">
+              <label>
+                <input type="file" class="image-upload rounded-5 text-dark" accept="image/*" />
+              </label>
+            </div>
+          </div>
+          
+      </div>
+            </div>
+          
+            <div class="modal-footer">
+              <button type="button" class="btn btn-accent text-uppercase">Submit</button>
+              <button type="button" class="btn btn-outline-accent text-uppercase" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+            </form>
+        </div>
+      </div>  -->
+
+
+ 
