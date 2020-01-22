@@ -81,6 +81,11 @@ export class MydiscussionsComponent implements OnInit {
     this.editMyDiscussionGroupOrder();
   }
 
+  onDropAddedDiscussion(event: any) {
+    this.addedDiscussionGroups = event;
+    this.editAddedDiscussionGroupOrder();
+  }
+
   editMyDiscussionGroupOrder() {
     debugger;
     this.loading = true;
@@ -88,6 +93,32 @@ export class MydiscussionsComponent implements OnInit {
     for (let i = 0; i < this.myDiscussionGroups.length; i++) {
       this.myDiscussionForSubcatId.push({
         'subcat_id': this.myDiscussionGroups[i]['subcatid'],
+        'new_position': i + 1
+      });
+    }
+    console.log('mynewdiscgroup', this.myDiscussionForSubcatId)
+    let body = {
+      emailid: this.user.email_id,
+      subcat_array: this.myDiscussionForSubcatId
+    }
+
+    this.mydiscussionsService.editMyDiscussionGroupOrder(body).subscribe(data => {
+      console.log('editorderresp', data);
+      this.getMyDiscussionGroups(this.user.email_id);
+      this.dragClicked = false;
+    },
+      error => {
+        this.dragClicked = false;
+      })
+  }
+
+  editAddedDiscussionGroupOrder() {
+    debugger;
+    this.loading = true;
+    this.myDiscussionForSubcatId = [];
+    for (let i = 0; i < this.addedDiscussionGroups.length; i++) {
+      this.myDiscussionForSubcatId.push({
+        'subcat_id': this.addedDiscussionGroups[i]['subcatid'],
         'new_position': i + 1
       });
     }
@@ -123,7 +154,8 @@ export class MydiscussionsComponent implements OnInit {
         if (allDiscussions.length > 0) {
           this.myDiscussionGroups = allDiscussions.filter(l => !(l.isManual));
           this.myDiscussionGroups = this.myDiscussionGroups.sort((a, b) => (a.srno) - (b.srno));
-          this.addedDiscussionGroups = allDiscussions.filter(l => l['isManual'] == true)
+          this.addedDiscussionGroups = allDiscussions.filter(l => l['isManual'] == true);
+          this.addedDiscussionGroups = this.addedDiscussionGroups.sort((a, b) => (a.srno) - (b.srno));
         }
         console.log('mydiscussions', this.myDiscussionGroups);
         console.log('addedDiscussionGroups', this.addedDiscussionGroups);
