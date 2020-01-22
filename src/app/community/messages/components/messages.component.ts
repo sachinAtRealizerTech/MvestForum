@@ -69,6 +69,7 @@ export class MessagesComponent implements OnInit {
 
     //#region NewMessageRecieved
     this.socketService.newMessageReceived().subscribe(messageReceived => {
+      debugger;
       console.log('New message recieved: ', messageReceived);
 
       let threadExist = this.myThreads.find(t => t.threadDocId == messageReceived.threadId);
@@ -280,6 +281,8 @@ export class MessagesComponent implements OnInit {
       lastMessageTime: message.timeStamp
     }
 
+    this.selectedThread.lastMessage = messageText;
+    this.selectedThread.lastMessageTime = new Date();
     this.selectedThread.messages.push(message);
     this.socketService.sendMessage(newMessage);
   }

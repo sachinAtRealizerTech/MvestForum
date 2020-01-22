@@ -239,9 +239,8 @@
                           <div class="col-10 pl-3 pr-0">
                             <div class="align-self-center">
                               <input class="form-control border-0  rounded-5 bg-light w-100 form-control-lg"
-                                (keydown)="onMessageTyping()" placeholder="Write a Comment" type="text"
-                                autocomplete="false" [(ngModel)]="messgeText" name="messgeText"
-                                (keyup.enter)="sendMessage()">
+                                (keydown)="onMessageTyping()" placeholder="Type here" type="text" autocomplete="false"
+                                [(ngModel)]="messgeText" name="messgeText" (keyup.enter)="sendMessage()">
                             </div>
                           </div>
                           <div class="col-2 text-right px-2 d-flex">
