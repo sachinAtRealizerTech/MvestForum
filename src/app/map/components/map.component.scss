@@ -1,0 +1,33 @@
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 80vh;
+    width: 100%;
+    position: relative;
+  }
+  #viewFilter{
+      width:300px;
+    position: absolute;
+    bottom:60px;
+    left:50px;
+    background-color: white
+  }
+  #viewFilter1{
+    padding: 5px
+  }
+  .ng-draggable {
+    cursor: grab;
+  }
+   
+  .ng-dragging {
+    cursor: grabbing;
+  }
+
+
+  #county-filter{
+      	// height: 320px; 
+	 height: calc(10vh - 1px) !important;
+     // min-height: calc(60vh - 1px) !important;
+     overflow: auto;
+     background: white;
+  }
