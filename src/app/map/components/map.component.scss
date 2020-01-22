@@ -1,9 +1,15 @@
+mgl-map {
+  height: calc(100vh - 3.75rem - 3rem);
+  width: 100%;
+  overflow: hidden;
+}
+#toggleButtonContainer{
+  position: absolute;
+}
 #viewDiv {
     padding: 0;
     margin: 0;
-    height: 80vh;
-    width: 100%;
-    position: relative;
+     position: relative;
   }
   #viewFilter{
       width:300px;
@@ -25,9 +31,7 @@
 
 
   #county-filter{
-      	// height: 320px; 
 	 height: calc(10vh - 1px) !important;
-     // min-height: calc(60vh - 1px) !important;
      overflow: auto;
      background: white;
   }

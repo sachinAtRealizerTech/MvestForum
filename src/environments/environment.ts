@@ -11,6 +11,8 @@ export const environment = {
   IMAGEPREPENDURL: 'http://45.35.4.250/DevImageUpload/',
   APIBASEIMGURL: 'http://45.35.4.250:3000',
   BaseUrlChatServer: 'http://45.35.4.250:3021',
+  
+  MAPBOXTOKEN:'pk.eyJ1IjoicHJhMndpbiIsImEiOiJjazVoc3pvOGswNnBjM29zYzl5bXBxYXdtIn0.0Ge2Yft8d6szdqE8hsiQeQ',
 
   // APIBASEURL: 'http://45.35.4.250:2001',
   // BaseLinkUrl: 'http://45.35.4.250/MvestForumNew/#/',
@@ -21,7 +23,6 @@ export const environment = {
   //APIBASEIMGURL: 'http://45.35.4.250:3000',
   //IMAGEPREPENDURL: 'http://45.35.4.250/MvestUploadContainer/',
 
-  ShowAllMembersToChat: false
 };
 
 /*
