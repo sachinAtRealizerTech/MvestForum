@@ -37,6 +37,7 @@ import { BookmarksComponent } from './community/bookmarks/components/bookmarks.c
 import { AddeddiscussionlistComponent } from './community/mydiscussions/addeddiscussionlist/components/addeddiscussionlist.component';
 import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
+import { MapComponent } from './map/components/map.component';
 
 const routes: Routes = [
 
@@ -141,6 +142,11 @@ const routes: Routes = [
       {
         path: 'lease-report',
         component: LeaseReportComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'map',
+        component: MapComponent,
         canActivate: [AuthGuard]
       },
       {

@@ -26,6 +26,7 @@ import { CustomDatePipe } from './community/messages/pipes/custom.datepipe';
 import { SortByDateChronological } from './community/messages/pipes/SortByDateChronological';
 import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
+import { MapModule } from './map/map.module';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { LeaseReportComponent } from './lease-report/lease-report.component';
     NgbModule,
     AuthenticationModule,
     ClickOutsideModule,
+    MapModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
