@@ -39,6 +39,9 @@ import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
 import { MapComponent } from './map/components/map.component';
 import { WellReportsComponent } from './well-reports/well-reports.component';
+import { PresentationsComponent } from './presentations/presentations.component';
+import { FinancialsComponent } from './financials/financials.component';
+import { ChartsComponent } from './charts/charts.component';
 
 const routes: Routes = [
 
@@ -154,6 +157,21 @@ const routes: Routes = [
    {
     path: 'well-reports',
     component: WellReportsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'presentations',
+    component: PresentationsComponent,
+    canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'financials',
+    component: FinancialsComponent,
+    canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'charts',
+    component: ChartsComponent,
     canActivate: [AuthGuard]
   },
       {

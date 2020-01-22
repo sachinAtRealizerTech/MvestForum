@@ -1,26 +1,40 @@
 <div class="main-content-container container-fluid px-4">  
-    <div class="row pb-3 pt-4">		  
-        <div class="col-12">		  
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item align-self-center">
-           <h5 class="text-dark mb-0 font-weight-bold mr-3">Field Reports</h5>
-          </li>
-          <li class="nav-item ">
-            <a routerLink="/field-reports"  class="active nav-link text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">My Leases</a>
-          </li>
-          <li class="nav-item ">
-            <a routerLink="/lease-report" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">Lease Report</a>
-          </li>
-          <li class="nav-item">
-            <a   routerLink="/well-reports" class="nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">Well Report</a>
-          </li>
-       
-        
-        </ul>
-        
-      
-        </div>
-        </div>	
+  <div class="row pb-3 pt-4">		  
+    <div class="col-12">		  
+    <ul class="nav nav-tabs">
+    <li class="nav-item align-self-center">
+       <h5 class="text-dark mb-0 font-weight-bold mr-3">My Portfolio</h5>
+      </li>
+      <li class="nav-item ">
+        <a routerLink="/field-reports"  class="active nav-link text-muted font-weight-bold text-uppercase"  aria-controls="profile" aria-selected="false">Leases</a>
+      </li>
+      <li class="nav-item ">
+        <a routerLink="/financials" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact" aria-selected="false">Financials</a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="/presentations" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact" aria-selected="false">Presentations</a>
+      </li>
+      <li class="nav-item">
+        <a  routerLink="/charts" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact" aria-selected="false">Charts</a>
+      </li>
+       <div class="ml-auto d-inline-flex">
+            <li class="list-inline-item"> 
+                    <a class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl" data-toggle="modal" href="#">
+                            Edit Watchlist
+                          </a>
+                </li>
+            <li class="list-inline-item">
+                    <a class="btn btn-outline-accent btn-sm btn-block text-uppercase" data-target=".askquestion-modal-xl" data-toggle="modal" href="#">
+                           Add lease
+                          </a>
+                  
+                </li>
+            </div>
+    </ul>
+    
+  
+    </div>
+    </div>	
 
 
         <div class="row py-4">

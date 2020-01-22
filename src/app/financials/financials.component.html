@@ -1,0 +1,111 @@
+<div class="main-content-container container-fluid px-4">  
+    <div class="row pb-3 pt-4">		  
+        <div class="col-8">		  
+        <ul class="nav nav-tabs">
+        <li class="nav-item align-self-center">
+           <h5 class="text-dark mb-0 font-weight-bold mr-3">My Portfolio</h5>
+          </li>
+          <li class="nav-item ">
+            <a routerLink="/field-reports"  class="nav-link text-muted font-weight-bold text-uppercase"  aria-controls="profile" aria-selected="false">Leases</a>
+          </li>
+          <li class="nav-item ">
+            <a routerLink="/financials" class="active nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact" aria-selected="false">Financials</a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/presentations" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact" aria-selected="false">Presentations</a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/charts" class="nav-link text-muted font-weight-bold text-uppercase" role="tab" aria-controls="contact" aria-selected="false">Charts</a>
+          </li>
+<!-- -->
+      
+        
+        </ul>
+        
+      
+        </div>
+        </div>	
+ 
+        <div class="row py-4">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                <ul class="list-inline d-flex">
+                        <li class="list-inline-item"> 
+                              <select class="btn dropdown-outline-accent text-uppercase">
+                                <option >Leases : All</option>
+                                <option >Sv : 245NVKS</option>
+                                <option >View : Watch List</option>
+                                <option >View : Filter</option>
+                              </select>
+                            </li>
+                        <li class="list-inline-item">
+                        <select class="btn dropdown-outline-accent text-uppercase">
+                                    <option > Reports : Producing Wells</option>
+                                    <option >Reports : Undrilled Acreage</option>
+                                  </select>
+                              
+                            </li>
+                        <!-- <li class="ml-auto list-inline-item pull-right">
+                            <form  class="form-inline search" id="search-form">
+                                <div  class="input-group col-12">
+                                  <input class="form-control search-form" placeholder="Search" type="text"><span _ngcontent-vxk-c4="" class="input-group-btn"><button _ngcontent-vxk-c4="" class="search-btn" type="submit">
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </form>
+                        </li> -->
+                    </ul>  
+        </div>
+    </div>
+
+    <div class="row px-3">
+            <div class="col-xl-12 col-md-12 col-sm-12 shadow px-0">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link text-uppercase text-muted font-weight-semibold active" id="Cash-Flow-tab" data-toggle="pill" href="#Cash-Flow" role="tab" aria-controls="Cash-Flow" aria-selected="true">Cash Flow</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link text-uppercase text-muted font-weight-semibold" id="Oil-Production-tab" data-toggle="pill" href="#Oil-Production" role="tab" aria-controls="Oil-Production" aria-selected="false">Oil Production</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link text-uppercase text-muted font-weight-semibold" id="Natural-Gas-Production-tab" data-toggle="pill" href="#Natural-Gas-Production" role="tab" aria-controls="pills-contact" aria-selected="false">Natural Gas Production</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content px-3" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="Cash-Flow" role="tabpanel" aria-labelledby="Cash-Flow-tab">1</div>
+                            <div class="tab-pane fade" id="Oil-Production" role="tabpanel" aria-labelledby="Oil-Production-tab">2</div>
+                            <div class="tab-pane fade" id="Natural-Gas-Production" role="tabpanel" aria-labelledby="Natural-Gas-Production-tab">3</div>
+                          </div>
+        </div>
+
+        <!-- <div class="col-xl-12 col-md-12 col-sm-12 shadow px-0">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                                <a class="nav-link text-uppercase text-muted font-weight-semibold active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">New Drill Probability</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-uppercase text-muted font-weight-semibold" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Well Spacing</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-uppercase text-muted font-weight-semibold" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Eur/acre</a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-link text-uppercase text-muted font-weight-semibold" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Reserves</a>
+                                  </li>
+                              <li class="nav-item">
+                                        <a class="nav-link text-uppercase text-muted font-weight-semibold" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Well Allocation</a>
+                               </li>
+                               <li class="nav-item">
+                                    <a class="nav-link text-uppercase text-muted font-weight-semibold" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Lease Development</a>
+                                  </li>
+                      </ul>
+                      <div class="tab-content px-3" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">1</div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">2</div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">3</div>
+                        <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">1</div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">2</div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">3</div>
+                      </div>
+    </div> -->
+    </div>

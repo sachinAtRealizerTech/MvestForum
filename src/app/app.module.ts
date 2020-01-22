@@ -28,6 +28,9 @@ import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
 import { MapModule } from './map/map.module';
 import { WellReportsComponent } from './well-reports/well-reports.component';
+import { PresentationsComponent } from './presentations/presentations.component';
+import { FinancialsComponent } from './financials/financials.component';
+import { ChartsComponent } from './charts/charts.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { WellReportsComponent } from './well-reports/well-reports.component';
     LeaseReportComponent,
     WellReportsComponent,
     CustomDatePipe,
-    SortByDateChronological
+    SortByDateChronological,
+    PresentationsComponent,
+    FinancialsComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
