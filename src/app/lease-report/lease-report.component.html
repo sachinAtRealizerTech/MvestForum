@@ -5,9 +5,9 @@
         <li class="nav-item align-self-center">
            <h5 class="text-dark mb-0 font-weight-bold mr-3">Field Reports</h5>
           </li>
-          <li class="nav-item ">
+          <!-- <li class="nav-item ">
             <a routerLink="/field-reports"  class="nav-link text-muted font-weight-bold"  aria-controls="profile" aria-selected="false">My Leases</a>
-          </li>
+          </li> -->
           <li class="nav-item ">
             <a routerLink="/lease-report" class="active nav-link text-muted font-weight-bold" role="tab" aria-controls="contact" aria-selected="false">Lease Report</a>
           </li>
@@ -39,7 +39,7 @@
 
 
         <div class="row pb-4">
-                <div class="col-xl-8 col-md-8 col-sm-8">
+                <div class="col-xl-8 col-md-8 col-sm-12">
                         <ul class="list-inline ">
                                 
                                 
@@ -56,7 +56,8 @@
                                   
                             </ul>  
                 </div>
-                <div class="col-xl-8 col-md-8 col-sm-8">
+                <div class="col-xl-8 col-md-12 col-sm-12
+                ">
                         <div class="card shadow border-0">
                                 <div class="card-body">
                                         <!-- <div class="px-3 pb-0"> -->
@@ -65,9 +66,14 @@
                                                         <div class="d-flex">
                                                                 <h6 class="mb-1 text-uppercase align-self-end font-weight-bold text-secondary small">Devon Energy Production</h6>
                                                         <div class="ml-auto d-inline-flex">
-                                                                <li class="pull-right text-muted mb-0 h6 text-uppercase">
+                                                                <li class="pull-right text-muted mb-0 h6 text-uppercase mr-3">
                                                                         <a class="btn btn-outline-accent btn-sm btn-block align-self-end text-uppercase pull-right" data-target=".myportfolio-modal-xl" data-toggle="modal" href="#">
                                                                                 Contact Operator
+                                                                              </a>  
+                                                                </li>
+                                                                <li class="pull-right text-muted mb-0 h6 text-uppercase">
+                                                                        <a class="btn btn-outline-accent btn-sm btn-block align-self-end text-uppercase pull-right" data-target=".myportfolio-modal-xl" data-toggle="modal" href="#">
+                                                                                Add Lease
                                                                               </a>  
                                                                 </li>
                                                             </div>
@@ -188,7 +194,7 @@
                               </div>
             </div>
 
-            <div class="col-xl-4 col-md-4 col-sm-8 "> 
+            <div class="col-xl-4 col-md-12 col-sm-8 "> 
                             <div class="card shadow border-0">
                                     <div class="card-body">
                                       <h5 class="card-title h6 font-weight-bold text-dark">MValuations</h5>

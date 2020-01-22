@@ -136,14 +136,23 @@ body {
 	margin-bottom: 6px;
 }
 #chat-window{
-	// height: 320px;
-	height: calc(50vh - 1px) !important;
+	// height: 320px; 
+	 height: calc(60vh - 1px) !important;
+	// min-height: calc(60vh - 1px) !important;
     overflow: auto;
     background: white;
 }
+
+#chat-box{
+	// height: 320px;
+	max-height: calc(71.5vh - 1px) !important;
+    overflow: auto;
+    background: white;
+}
+
 #chat-windowThread{
 	// height: 320px;
-	height: calc(63.5vh - 1px) !important;
+	max-height: calc(70vh - 1px) !important;
     overflow: auto;
     background: white;
 }
