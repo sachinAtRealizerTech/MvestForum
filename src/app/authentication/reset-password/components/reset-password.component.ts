@@ -120,4 +120,11 @@ export class ResetPasswordComponent implements OnInit {
   }
 
 
+  goToSignUp() {
+    this.submitConfirmEmail = false
+    this.confirmEmailForm.reset();
+    this.router.navigate(['/signup']);
+  }
+
+
 }
