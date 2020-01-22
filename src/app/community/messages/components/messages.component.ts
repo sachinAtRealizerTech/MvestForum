@@ -285,7 +285,7 @@ export class MessagesComponent implements OnInit {
   }
   typing = false;
   timeout;
-  ontMessageTyping() {
+  onMessageTyping() {
     let data = {
       threadId: this.selectedThread.threadDocId,
       typingUser: this.loggedInUser.f_name + " " + this.loggedInUser.l_name,
