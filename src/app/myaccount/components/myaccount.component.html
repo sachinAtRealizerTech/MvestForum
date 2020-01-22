@@ -128,7 +128,8 @@
                           <h6 *ngIf="!editflag"><label
                               class="font-weight-normal text-secondary mb-0">{{g.TagLine.value}}</label>
                           </h6>
-                          <input *ngIf="editflag" type="text" class="form-control h6" formControlName="TagLine"
+                          <input *ngIf="editflag" maxlength="25" type="text" class="form-control h6"
+                            formControlName="TagLine"
                             [ngClass]="{ 'is-invalid': submitUserProfile && g.TagLine.errors }">
                           <div *ngIf="submitUserProfile && g.TagLine.errors" class="invalid-feedback">
                             <div *ngIf="g.TagLine.errors.required">Tag Line is required</div>

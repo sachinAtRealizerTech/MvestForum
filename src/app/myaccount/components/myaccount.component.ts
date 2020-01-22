@@ -39,14 +39,14 @@ export class MyaccountComponent implements OnInit {
     this.userProfileForm = this.formBuilder.group({
       FirstName: ['', Validators.required],
       LastName: ['', Validators.required],
-      PhoneNo: ['', Validators.required],
+      PhoneNo: [''],
       Email: ['', Validators.required],
-      Address: ['', Validators.required],
-      State: ['', Validators.required],
-      City: ['', Validators.required],
-      PinCode: ['', Validators.required],
-      UserName: [''],
-      TagLine: ['']
+      Address: [''],
+      State: [null],
+      City: [''],
+      PinCode: [''],
+      UserName: ['', Validators.required],
+      TagLine: ['', Validators.required]
     })
 
     this.changePasswordForm = this.formBuilder.group({
