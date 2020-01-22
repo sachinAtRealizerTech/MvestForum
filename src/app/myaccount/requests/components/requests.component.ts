@@ -129,13 +129,15 @@ export class RequestsComponent implements OnInit {
   openFollowMemberModal(followMemberModal: TemplateRef<any>, memberId: number, status: string) {
     this.followBackMemberId = memberId
     this.followMemberModal = followMemberModal;
-    // if (status == "accepted") {
-
-    // }
-    this.modalService.open(this.followMemberModal, {
-      backdrop: 'static',
-      backdropClass: 'customBackdrop',
-    })
+    if (status == "accepted") {
+      this.acceptFollowRequest(this.followBackMemberId);
+    }
+    else if (status == "requested") {
+      this.modalService.open(this.followMemberModal, {
+        backdrop: 'static',
+        backdropClass: 'customBackdrop',
+      })
+    }
   }
 
   closefollowMemberModal() {
