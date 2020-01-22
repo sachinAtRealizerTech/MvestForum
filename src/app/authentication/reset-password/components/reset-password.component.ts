@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
   goToSignIn() {
     this.submitConfirmEmail = false
     this.confirmEmailForm.reset();
-    this.router.navigate(['/signin'])
+    this.router.navigate(['/signin']);
   }
 
   generatePasswordResetToken() {

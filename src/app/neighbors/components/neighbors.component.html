@@ -174,7 +174,7 @@
                                     </div>
                                     <div class=" col-4  justify-content-end text-right" *ngIf="cr.status=='accepted'">
                                             <h6 class="mb-0"> 
-                                            <a><i class="material-icons md-18 icon-muted">
+                                            <a><i class="material-icons md-18 icon-muted cursor-pointer" data-toggle="tooltip" title="Coming Soon">
                                                         mail_outline
                                                         </i></a>    
                                             </h6> 
@@ -217,12 +217,12 @@
                                                 src="assets/images/avatars/0.jpg" alt="Generic placeholder image"> -->
 
                                             <div class="media-body mb-0">
-                                              <a class="cursor-pointer" (click)="goToMvestUserPage(snr.neighbor_email_id,snr.neighbor_id)">
-                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{snr.name}}</h5>
+                                              <a class="cursor-pointer" (click)="goToMvestUserPage(snr.neighbor_emai_id,snr.neb_id)">
+                                                <h5 class="text-dark h6 mb-0 font-weight-semibold">{{snr.name | titlecase}}</h5>
                                               </a>
                                                 <a> 
                                                         <h5 class="text-dark h6 mb-0  text-muted"> 
-                                                            {{snr.lease_name}}  </h5>
+                                                            {{snr.lease_name | titlecase}}  </h5>
                                                         </a>
                                                 <ul class="list-inline d-flex mb-0">
                                                     <li class="list-inline-item mb-1 font-weight-semibold small text-muted">
@@ -236,7 +236,7 @@
                                     <div class=" col-4  justify-content-end text-right">
                                             <h6 class="mb-0">
                                              
-                                            <a><i class="material-icons md-18 icon-muted">
+                                            <a><i class="material-icons md-18 icon-muted cursor-pointer" data-toggle="tooltip" title="Coming Soon">
                                                         mail_outline
                                                         </i></a>    
                                             </h6> 

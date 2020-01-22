@@ -18,16 +18,10 @@ export class SettingsComponent implements OnInit {
   communityNotificationflag = false;
   neighborsNotificationflag = false;
   notificationMessagePrefForm: FormGroup
-  // replyToDiscussion: boolean;
-  // likedOnComment: boolean;
-  // likedPost: boolean;
-  // replyOnComment: boolean;
-  // markAsRead: boolean;
   notificationCode: any;
   notificationPrefList: any;
   preferenceName: any;
   neighborsNotification = false;
-  // unMarkAsAnswer: boolean;
   myNotificationAllData: any;
   submitNotificationMessagePrefForm = false;
   prefCode: any;
@@ -105,12 +99,6 @@ export class SettingsComponent implements OnInit {
         }
       }
       this.loading = false;
-      // this.replyToDiscussion = this.notificationOptions[0]['Blocked'];
-      // this.likedOnComment = this.notificationOptions[1]['Blocked'];
-      // this.likedPost = this.notificationOptions[2]['Blocked'];
-      // this.replyOnComment = this.notificationOptions[3]['Blocked'];
-      // this.markAsRead = this.notificationOptions[4]['Blocked'];
-      // this.unMarkAsAnswer = this.notificationOptions[5]['Blocked'];
     },
       error => {
         this.loading = false;
@@ -166,8 +154,15 @@ export class SettingsComponent implements OnInit {
     this.signupService.postNotificationPrefernece(body).subscribe(data => {
       this.getMyNotificationPreferences();
       this.flashMessagesService.show('Your Notification Preferences updated successfully...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
-      this.submitNotificationMessagePrefForm = false
-    })
+      this.submitNotificationMessagePrefForm = false;
+      this.editPreferencesPage = false;
+      this.editPreferenceflag = false;
+    },
+      error => {
+        this.submitNotificationMessagePrefForm = false;
+        this.editPreferencesPage = false;
+        this.editPreferenceflag = false;
+      })
   }
 
   openNeighborsNotification() {

@@ -199,7 +199,7 @@
               <li class="list-inline-item h6 text-secondary mb-0">Stats</li>
             </ul>
 
-            <div class="card justify-content-center shadow p-2">
+            <div class="card justify-content-center shadow p-2" *ngIf="communityStats">
               <div class="card-body text-center p-2 ">
                 <ul class="list-inline d-flex">
                   <li class="list-inline-item flex-1 h6 mb-0">
@@ -253,7 +253,8 @@
               <li class="list-inline-item h6 text-secondary mb-1">Recent Discussions</li>
               <li class="list-inline-item ml-auto mb-1">
                 <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <small class="font-weight-semibold text-secondary mb-0"> Edit</small>
+                  <small class="font-weight-semibold text-secondary mb-0 cursor-pointer" data-toggle="tootip"
+                    title="Coming Soon"> Edit</small>
                 </a>
               </li>
             </ul>
@@ -280,8 +281,8 @@
 
 
                       <div class="media-body mb-0 ">
-                        <h5 class="text-dark h6 mb-0 font-weight-semibold">
-                          <u>{{rd?.title | titlecase | slice:0:50}}...</u></h5>
+                        <h5 class="text-dark h6 mb-0 font-weight-semibold capitalize">
+                          <u>{{rd?.title | slice:0:50}}...</u></h5>
                       </div>
 
                     </div>
@@ -345,6 +346,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

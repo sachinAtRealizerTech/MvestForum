@@ -132,7 +132,8 @@ export class DiscussionsComponent implements OnInit {
     this.postQuestionModal = content;
     this.modalService.open(this.postQuestionModal, {
       backdrop: 'static',
-      backdropClass: 'customBackdrop'
+      backdropClass: 'customBackdrop',
+      size: 'lg'
     })
   }
 
