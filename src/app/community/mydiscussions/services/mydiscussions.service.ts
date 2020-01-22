@@ -13,4 +13,8 @@ export class MydiscussionsService {
   getMyDiscussionGroups(emailId: string) {
     return this.httpClient.get(`${environment.APIBASEURL}/discussion/GetMyDiscussionGroups/${emailId}`, Utils.getAuthHeader())
   }
+
+  editMyDiscussionGroupOrder(body) {
+    return this.httpClient.put(`${environment.APIBASEURL}/Discussion/OrderMyDiscussionGroups`, body, Utils.getAuthHeader())
+  }
 }

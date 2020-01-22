@@ -44,11 +44,44 @@
 
   </div>
 
+  <!-- <ul mdbSortableList class="list-group" (drop)="onDrop($event)">
+    <li *ngFor="let md of myDiscussionGroups" mdbSortable class="list-group-item">
+      {{md?._name | titlecase}}
+    </li>
+  </ul> -->
+
   <div class="tab-content" id="myTabContent">
 
     <div class="tab-pane fade show active mt-3" id="mydiscussions" role="tabpanel" aria-labelledby="home-tab">
-
+      <!-- 
       <div class="row justify-content-start " *ngIf="!discussionListPage">
+        <div class="col-md-5 col-xl-3 mb-4" *ngFor="let md of myDiscussionGroups | filter:searchText">
+          <div class="card cursor-pointer" (click)="getMyDiscussionsList(md?.subcatid)">
+            <img class="img-fluid " src="{{md?.imageurl}}" alt="">
+            <div class="card-body py-2 px-3">
+              <h6 class="card-text text-dark font-weight-semibold mb-1">{{md?._name | titlecase}} </h6>
+              <p><small class="card-secondary mb-1">1.5k Members</small> </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div cdkDropList #todoList="cdkDropList" cdkDropListOrientation="horizontal"
+        [cdkDropListData]="myDiscussionGroups" (cdkDropListDropped)="onDrop($event)" class="row justify-content-start "
+        *ngIf="!discussionListPage">
+        <div class="col-md-5 col-xl-3 mb-4" *ngFor="let md of myDiscussionGroups" cdkDrag>
+          <div class="card cursor-pointer" (click)="getMyDiscussionsList(md?.subcatid)">
+            <img class="img-fluid " src="{{md?.imageurl}}" alt="">
+            <div class="card-body py-2 px-3">
+              <h6 class="card-text text-dark font-weight-semibold mb-1">{{md?._name | titlecase}} </h6>
+              <p><small class="card-secondary mb-1">1.5k Members</small> </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div [dragula]='"myDiscussions-items"' [(dragulaModel)]='myDiscussionGroups' (dragulaModelChange)="onDrop($event)"
+        class="row justify-content-start " *ngIf="!discussionListPage">
         <div class="col-md-5 col-xl-3 mb-4" *ngFor="let md of myDiscussionGroups | filter:searchText">
           <div class="card cursor-pointer" (click)="getMyDiscussionsList(md?.subcatid)">
             <img class="img-fluid " src="{{md?.imageurl}}" alt="">

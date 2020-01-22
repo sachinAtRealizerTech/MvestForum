@@ -27,6 +27,7 @@ import { SortByDateChronological } from './community/messages/pipes/SortByDateCh
 import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,6 @@ import { LeaseReportComponent } from './lease-report/lease-report.component';
     NgbModule,
     AuthenticationModule,
     ClickOutsideModule,
-
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

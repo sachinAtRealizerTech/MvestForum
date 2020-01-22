@@ -299,7 +299,7 @@ export class SignupComponent implements OnInit {
       debugger;
       this.submitUserInfoForm = false;
       console.log('status code', data)
-      if (data['error'] == "duplicate key value violates unique constraint \"unique_emailid\"") {
+      if (data['error'] == "Cannot read property 'rows' of undefined") {
         this.duplicateEmail = true;
         return;
       };

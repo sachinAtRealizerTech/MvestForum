@@ -5,13 +5,15 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { environment } from 'src/environments/environment';
 import { BookmarksService } from 'src/app/community/bookmarks/services/bookmarks.service';
 import { Utils } from 'src/app/shared/Utils';
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router';
+import { DragulaService } from 'ng2-dragula';
 
 
 @Component({
   selector: 'app-mydiscussions',
   templateUrl: './mydiscussions.component.html',
-  styleUrls: ['./mydiscussions.component.scss']
+  styleUrls: ['./mydiscussions.component.scss'],
+  providers: [DragulaService]
 })
 export class MydiscussionsComponent implements OnInit {
   myDiscussionGroups: any[];
@@ -24,21 +26,87 @@ export class MydiscussionsComponent implements OnInit {
   png: string;
   addedDiscussionGroups: any[];
   searchText: string
+  myDiscussionForSubcatId: any;
+  dragClicked = false;
 
   constructor(private mydiscussionsService: MydiscussionsService,
     private discussionslistService: DiscussionslistService,
     private bookmarksService: BookmarksService,
     private flashMessagesService: FlashMessagesService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private dragula: DragulaService) { }
 
   ngOnInit() {
     this.imagePrepend = environment.IMAGEPREPENDURL;
     this.png = '.png?' + new Date().getTime();
-    this.getMyDiscussionGroups(this.user.email_id)
+    this.getMyDiscussionGroups(this.user.email_id);
+
   }
 
   public user = Utils.GetCurrentUser();
+
+  // onDrop(event: any) {
+  //   debugger;
+  //   moveItemInList(this.myDiscussionGroups, event.oldIndex, event.newIndex);
+  // }
+
+  // onDrop(event: CdkDragDrop<any[]>) {
+  //   debugger;
+  //   //this.dragClicked=true
+  //   if (this.dragClicked == false) {
+  //     if (event.previousContainer === event.container) {
+  //       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //       this.myDiscussionGroups = event.container.data;
+  //       this.dragClicked = true
+  //     }
+  //     else {
+  //       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+  //       this.myDiscussionGroups = event.container.data;
+  //       this.dragClicked = true
+  //     }
+  //     this.editMyDiscussionGroupOrder();
+  //   }
+  //   else {
+  //     return
+  //   }
+
+  // }
+
+
+  onDrop(event: any) {
+    debugger;
+    console.log('dragula', event);
+    this.myDiscussionGroups = event
+    this.editMyDiscussionGroupOrder();
+  }
+
+  editMyDiscussionGroupOrder() {
+    debugger;
+    this.loading = true;
+    this.myDiscussionForSubcatId = [];
+    for (let i = 0; i < this.myDiscussionGroups.length; i++) {
+      this.myDiscussionForSubcatId.push({
+        'subcat_id': this.myDiscussionGroups[i]['subcatid'],
+        'new_position': i + 1
+      });
+    }
+    console.log('mynewdiscgroup', this.myDiscussionForSubcatId)
+    let body = {
+      emailid: this.user.email_id,
+      subcat_array: this.myDiscussionForSubcatId
+    }
+
+    this.mydiscussionsService.editMyDiscussionGroupOrder(body).subscribe(data => {
+      console.log('editorderresp', data);
+      this.getMyDiscussionGroups(this.user.email_id);
+      this.dragClicked = false;
+    },
+      error => {
+        this.dragClicked = false;
+      })
+  }
+
 
   getMyDiscussionGroups(email: string) {
     this.loading = true;
@@ -54,6 +122,7 @@ export class MydiscussionsComponent implements OnInit {
         let allDiscussions: any[] = data['data']['DiscussionGroups'];
         if (allDiscussions.length > 0) {
           this.myDiscussionGroups = allDiscussions.filter(l => !(l.isManual));
+          this.myDiscussionGroups = this.myDiscussionGroups.sort((a, b) => (a.srno) - (b.srno));
           this.addedDiscussionGroups = allDiscussions.filter(l => l['isManual'] == true)
         }
         console.log('mydiscussions', this.myDiscussionGroups);

@@ -19,6 +19,7 @@ import { MvestUserNeighborsComponent } from '../mvest-user-profile/mvest-user-ne
 import { MvestUserProfileComponent } from '../mvest-user-profile/components/mvest-user-profile.component';
 import { MvestUserPhotosComponent } from '../mvest-user-profile/mvest-user-photos/components/mvest-user-photos.component';
 import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
+import { DragulaModule } from 'ng2-dragula';
 
 // import { LightboxModule } from '@ngx-gallery/lightbox';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,8 +51,7 @@ import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
     DiscussionsModule,
     ImageCropperModule,
     NgxPaginationModule,
-
-
+    DragulaModule
     // LightboxModule,
     // BrowserAnimationsModule,
     // GalleryModule,
@@ -62,7 +62,8 @@ import { BookmarksComponent } from './bookmarks/components/bookmarks.component';
   exports: [
     DiscussionsModule,
     ImageCropperModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DragulaModule
     // LightboxModule,
     // BrowserAnimationsModule,
     // GalleryModule,
