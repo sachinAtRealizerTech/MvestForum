@@ -38,6 +38,7 @@ import { AddeddiscussionlistComponent } from './community/mydiscussions/addeddis
 import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
 import { MapComponent } from './map/components/map.component';
+import { WellReportsComponent } from './well-reports/well-reports.component';
 
 const routes: Routes = [
 
@@ -149,6 +150,12 @@ const routes: Routes = [
         component: MapComponent,
         canActivate: [AuthGuard]
       },
+      
+   {
+    path: 'well-reports',
+    component: WellReportsComponent,
+    canActivate: [AuthGuard]
+  },
       {
         path: 'community',
         component: CommunityComponent,

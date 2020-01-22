@@ -27,6 +27,7 @@ import { SortByDateChronological } from './community/messages/pipes/SortByDateCh
 import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
 import { MapModule } from './map/map.module';
+import { WellReportsComponent } from './well-reports/well-reports.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MapModule } from './map/map.module';
     SearchresultsComponent,
     FieldReportsComponent,
     LeaseReportComponent,
+    WellReportsComponent,
     CustomDatePipe,
     SortByDateChronological
   ],
