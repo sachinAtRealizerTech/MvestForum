@@ -51,7 +51,8 @@
                             <div class=" border-bottom p-1">
                                 <div class="row justify-content-center text-left text-break">
                                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8">
-                                        <a routerLink="/discussion-details">
+                                        <a routerLink="/discussion-details"
+                                            [queryParams]="{discussionId:dl.doc_id,subCategoryId:subCatId,categoryId:categoryId}">
                                             <div class="media p-3">
 
                                                 <ngx-avatar class="mr-3" name="{{dl?.post_by_name}}" [size]="40"
@@ -94,7 +95,7 @@
                                         <div class="media p-3 ">
                                             <div class="media-body mb-0">
                                                 <h6 class="mb-0 font-weight-semibold cursor-pointer"
-                                                    *ngIf="!dl?.bookmark">
+                                                    *ngIf="!isBookmarkedByMe(dl?.bookmark)">
                                                     <i class="material-icons icon-muted md-22 "
                                                         (click)="bookmarkDiscussion(dl?.doc_id)" data-toggle="tooltip"
                                                         title="Bookmark">
@@ -103,7 +104,7 @@
                                                 </h6>
 
                                                 <h6 class="mb-0 font-weight-semibold cursor-pointer"
-                                                    *ngIf="dl?.bookmark">
+                                                    *ngIf="isBookmarkedByMe(dl?.bookmark)">
                                                     <i class="material-icons icon-muted md-22 "
                                                         (click)="removeBookmark(dl?.doc_id)" data-toggle="tooltip"
                                                         title="UnBookmark">

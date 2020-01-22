@@ -18,6 +18,7 @@ export class AddeddiscussionlistComponent implements OnInit {
   isMyDiscussions: boolean;
   imagePrepend: any;
   png: string;
+  categoryId: string;
 
   constructor(private discussionslistService: DiscussionslistService,
     private bookmarksService: BookmarksService,
@@ -52,6 +53,7 @@ export class AddeddiscussionlistComponent implements OnInit {
       debugger;
       this.loading = false;
       this.myDiscussionList = data['discussions'];
+      this.categoryId = data['category_id'];
       this.myDiscussionList.sort((a, b) => new Date(b.post_date).getTime() - new Date(a.post_date).getTime())
       console.log('subcatdisclist', this.myDiscussionList)
     },
@@ -69,6 +71,16 @@ export class AddeddiscussionlistComponent implements OnInit {
     }
   }
 
+  isBookmarkedByMe(bookmarkData: any) {
+    if (bookmarkData) {
+      let bookmarkPosts = bookmarkData.map(l => l.bookmark_by_emailId);
+      return (bookmarkPosts.includes(this.user.email_id));
+    }
+    else {
+      return false
+    }
+  }
+
   bookmarkDiscussion(docId: string) {
     debugger;
     let body = {
@@ -80,7 +92,7 @@ export class AddeddiscussionlistComponent implements OnInit {
     this.bookmarksService.bookmarkDiscussion(body).subscribe(data => {
       console.log('bookmark', data);
       this.flashMessagesService.show('You have successfully added this post to bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
-      // this.getMyDiscussionsList(this.subCategoryId);
+      this.getDiscussionsList(this.subCatId, this.isMyDiscussions);
     },
       error => {
         console.log(error);
@@ -97,7 +109,7 @@ export class AddeddiscussionlistComponent implements OnInit {
     this.bookmarksService.removeBookmark(body).subscribe(data => {
       console.log('removebookmark', data);
       this.flashMessagesService.show('You have successfully removed this post from bookmarks...', { cssClass: 'bg-accent flash-message', timeout: 2000 });
-      // this.getMyDiscussionsList(this.subCategoryId);
+      this.getDiscussionsList(this.subCatId, this.isMyDiscussions);
     },
       error => {
         console.log(error);
