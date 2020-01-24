@@ -2,19 +2,32 @@
     <div class="row justify-content-center">
         <div class="col-md-12 ">
             <div id="viewDiv" class="border bg-light">
-                <mgl-map
-                 [style]="'mapbox://styles/pra2win/ck5i02wuw0l401in6ttxhaw99'"
-                  (load)="onLoad($event)">
+                <mgl-map 
+                [cursorStyle]="cursorStyle" 
+                [style]="'mapbox://styles/pra2win/ck5s1jt110loy1it4nl7e9l80'"
+                (load)="onLoad($event)">
 
-                    <!-- <mgl-popup [lngLat]="infoLngLat" [closeOnClick]="false">
+                    <mgl-popup 
+                class="card"
+                    *ngIf="selectedPoint" 
+                    [lngLat]="selectedPoint.geometry.coordinates[0][0]"
+                    (close)="selectedPoint = null">
+                    <div class="">
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">API10 : {{selectedPoint.properties.API10}}</h5>
+                            <p class="card-text">Id : {{selectedPoint.properties.Id}}</p>
+                            <p class="card-text">NUMA : {{selectedPoint.properties.NUMA}}</p>
+                            <p class="card-text">NUMA : {{selectedPoint.properties.RASTERNAME}}</p> -->
+                       {{selectedPoint.properties|json}}
+                       
                         <div class="form-group">
                             <label for="intrestNumber">Decimal Interest </label>
                             <input type="number" name="intrestNumber" min="1" id="intrestNumber" class="form-control">
-                        </div>
-                        <button class="btn btn-default" type="button">Submit</button>
-                    </mgl-popup>-->
-                </mgl-map 
-                >
+                        </div> 
+                        <button class="btn btn-accent btn-sm" type="button" (click)="claimLease()">Claim</button>
+                     </div></div>
+                    </mgl-popup>
+                </mgl-map>
             </div>
             <div id="toggleButtonContainer"><button class="btn-dark" (click)="filterMenu=!filterMenu">></button></div>
             <div>
