@@ -2,51 +2,50 @@
     <div class="row justify-content-center">
         <div class="col-md-12 ">
             <div id="viewDiv" class="border bg-light">
-                <mgl-map 
-                [cursorStyle]="cursorStyle" 
-                [style]="'mapbox://styles/pra2win/ck5s1jt110loy1it4nl7e9l80'"
-                (load)="onLoad($event)">
+                <mgl-map [cursorStyle]="cursorStyle" [style]="'mapbox://styles/pra2win/ck5s1jt110loy1it4nl7e9l80'"
+                    (load)="onLoad($event)">
 
-                    <mgl-popup 
-                class="card"
-                    *ngIf="selectedPoint" 
-                    [lngLat]="selectedPoint.geometry.coordinates[0][0]"
-                    (close)="selectedPoint = null">
-                    <div class="">
-                        <div class="card-body">
-                            <!-- <h5 class="card-title">API10 : {{selectedPoint.properties.API10}}</h5>
-                            <p class="card-text">Id : {{selectedPoint.properties.Id}}</p>
-                            <p class="card-text">NUMA : {{selectedPoint.properties.NUMA}}</p>
-                            <p class="card-text">NUMA : {{selectedPoint.properties.RASTERNAME}}</p> -->
-                       {{selectedPoint.properties|json}}
-                       
-                        <div class="form-group">
-                            <label for="intrestNumber">Decimal Interest </label>
-                            <input type="number" name="intrestNumber" min="1" id="intrestNumber" class="form-control">
-                        </div> 
-                        <button class="btn btn-accent btn-sm" type="button" (click)="claimLease()">Claim</button>
-                     </div></div>
+                    <mgl-popup class="card" *ngIf="selectedPoint" [lngLat]="selectedPoint.geometry.coordinates[0][0]"
+                        (close)="selectedPoint = null">
+                        <div class="">
+                            <div class="card-body">
+                                <h5 class="card-title">{{selectedPoint.properties.LEASE_NAME}}</h5>
+                            <p class="card-text">Location : {{selectedPoint.properties.Centroid_X}}/{{selectedPoint.properties.Centroid_Y}}</p>
+                            <p class="card-text">State County/District : {{selectedPoint.properties.DISTRICT}}</p>
+                            <p class="card-text">Operator : {{selectedPoint.properties.OPER_NAME}}</p>
+                            <p class="card-text">Field Name : {{selectedPoint.properties.FIELD_NAME}}</p>
+                                <!-- {{selectedPoint.properties|json}} -->
+
+                                <div class="form-group">
+                                    <label for="intrestNumber">Decimal Interest </label>
+                                    <input type="number" name="intrestNumber" [(ngModel)]="intrestNumber" min="1" id="intrestNumber"
+                                        class="form-control">
+                                </div>
+                                <button class="btn btn-accent btn-sm" type="button"
+                                    (click)="claimLease()">Claim</button>
+                            </div>
+                        </div>
                     </mgl-popup>
                 </mgl-map>
             </div>
-            <div id="toggleButtonContainer"><button class="btn-dark" (click)="filterMenu=!filterMenu">></button></div>
+            <div id="toggleButtonContainer"><button class="btn-dark"
+                    (click)="filterMenuVisiblity=!filterMenuVisiblity">></button></div>
             <div>
-                <div *ngIf="filterMenu" ngDraggable id="viewFilter" class="form bg-white border p-3 shadow ">
+                <div *ngIf="filterMenuVisiblity" ngDraggable id="viewFilter" class="form bg-white border p-3 shadow ">
                     <div id="viewFilter1">
                         <div class="form-row border-bottom pb-3">
                             <h6 class="font-weight-normal w-100 mb-1">Sort A to Z</h6>
                             <h6 class="font-weight-normal w-100 mb-0">Sort Z to A</h6>
                         </div>
                         <div class="form-row pt-3 d-flex d-inline-flex">
-                            <label for="States" class="h6 font-weight-normal mb-0">Filter by State:</label>
-                            <h6 class="font-weight-normal mb-0 align-self-end text-right "><i
-                                    class="material-icons md-20">
-                                    arrow_drop_down
-                                </i>
-                            </h6>
+                            <label for="States" class="h6 font-weight-normal mb-0">Filter by State</label>
+                            <a data-toggle="collapse" href="#collapseStatesFilter" role="button" aria-expanded="false" aria-controls="collapseStatesFilter">
+                                <i class="material-icons md-20">arrow_drop_down</i>
+                            </a>
                         </div>
-                        <div class="form-row">
-                            <select class="form-control py-1" id="States" (change)="getStateCode($event)">
+                        <div class="form-row" id="collapseStatesFilter">
+                            <select class="form-control py-1" >
+                                 <!-- (change)="getStateCode($event)"> -->
                                 <option value="-98.887687@31.211969">Texas</option>
                                 <option value="-81.393426@28.523902">Florida</option>
                                 <option value="-118.271378@34.079959">California</option>
@@ -54,17 +53,16 @@
                             </select>
                         </div>
 
-                        <div class="form-row pt-3 d-flex d-inline-flex">
-                            <label for="County" class="h6 font-weight-normal mb-0">Filter by County:</label>
-                            <h6 class="font-weight-normal mb-0 align-self-end text-right "><i
-                                    class="material-icons md-20">
-                                    arrow_drop_down
-                                </i>
-                            </h6>
+                        <div class="form-row pt-3 d-flex">
+                            <label for="County" class="h6 font-weight-normal mb-0">Filter by County</label>
+                            <a data-toggle="collapse" href="#collapseCountyFilter" role="button" aria-expanded="false" aria-controls="collapseCountyFilter">
+                                <i class="material-icons md-20">arrow_drop_down</i>
+                            </a>
                         </div>
-                        <div class="form-row text-left">
+                        <div class="form-row text-left" id="collapseCountyFilter">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" [(ngModel)]="countySearchText"
+                                    name="countySearchText" placeholder="Search">
                                 <div class="input-group-append">
                                     <button class="badge badge-light  border rounded-0" type="submit">
                                         <i class="material-icons md-18">
@@ -75,26 +73,12 @@
                             <div class="w-100 border-bottom">
                                 <div class=" border p-2">
                                     <div id="county-filter">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Karnes</label>
+                                        <div class="custom-control custom-checkbox"
+                                            *ngFor="let county of allCounty| filter:countySearchText">
+                                            <input type="checkbox" class="custom-control-input" [id]="county">
+                                            <label class="custom-control-label" [for]="county">{{county}}</label>
                                         </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">Karnes</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label" for="customCheck3">Karnes</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                            <label class="custom-control-label" for="customCheck4">Karnes</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                            <label class="custom-control-label" for="customCheck5">Karnes</label>
-                                        </div>
+
                                     </div>
                                 </div>
 
@@ -107,12 +91,12 @@
                             </div>
                         </div>
                         <div class="form-row pt-2">
-                            <label for="Lease">Filter by Leases:</label>
+                            <label for="Lease">Filter by Leases</label>
                         </div>
                         <div class="form-row">
-                            <select class="form-control" id="Lease" (change)="getLeaseCode($event)">
-                                <option value="-98.025667@28.917455">Hanes Grover</option>
-                                <option value="-97.62@29.108">IIC Lease</option>
+                            <select class="form-control" id="Lease" (change)="FilterByLease($event.target.value)">
+                                <option [value]="0">All</option>
+                                <option *ngFor="let lease of allLeases" [value]="lease">{{lease}}</option>
                             </select>
                         </div>
                     </div>
