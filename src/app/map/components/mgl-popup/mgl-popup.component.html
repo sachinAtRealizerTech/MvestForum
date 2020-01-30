@@ -1,0 +1,28 @@
+<mgl-popup [className]="'card'" [maxWidth]="400" *ngIf="selectedPoint"
+    [lngLat]="selectedPoint.geometry.coordinates[0][0]" (close)="selectedPoint = null">
+    <div class="">
+        <div class="card-body">
+            <h5 class="card-title"> <strong> {{selectedPoint.properties.LEASE_NAME}}</strong></h5>
+            <p class="card-text">Location :
+                <strong>
+                    {{selectedPoint.properties.Centroid_X}}/{{selectedPoint.properties.Centroid_Y}}</strong>
+            </p>
+            <p class="card-text">State County/District :
+                <strong>{{selectedPoint.properties.DISTRICT}}</strong>
+            </p>
+            <p class="card-text">Operator :
+                <strong>{{selectedPoint.properties.OPER_NAME}}</strong>
+            </p>
+            <p class="card-text">Field Name :
+                <strong>{{selectedPoint.properties.FIELD_NAME}}</strong>
+            </p>
+
+            <div class="form-group">
+                <label for="intrestNumber">Decimal Interest </label>
+                <input type="number" name="intrestNumber" [(ngModel)]="intrestNumber" min="1" id="intrestNumber"
+                    class="form-control">
+            </div>
+            <button class="btn btn-accent btn-sm" type="button" (click)="claimLease()">Claim</button>
+        </div>
+    </div>
+</mgl-popup>

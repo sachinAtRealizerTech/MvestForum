@@ -3,21 +3,13 @@ mgl-map {
   width: 100%;
   overflow: hidden;
 }
-#toggleButtonContainer{
-  position: absolute;
-}
+
 #viewDiv {
     padding: 0;
     margin: 0;
      position: relative;
   }
-  #viewFilter{
-      width:300px;
-    position: absolute;
-    bottom:60px;
-    left:50px;
-    background-color: white
-  }
+  
   #viewFilter1{
     padding: 5px
   }

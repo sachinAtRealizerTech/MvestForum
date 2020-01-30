@@ -37,7 +37,7 @@ import { BookmarksComponent } from './community/bookmarks/components/bookmarks.c
 import { AddeddiscussionlistComponent } from './community/mydiscussions/addeddiscussionlist/components/addeddiscussionlist.component';
 import { FieldReportsComponent } from './field-reports/field-reports.component';
 import { LeaseReportComponent } from './lease-report/lease-report.component';
-import { MapComponent } from './map/components/map.component';
+import { MapComponent } from './map/components/mgl-map/map.component';
 import { WellReportsComponent } from './well-reports/well-reports.component';
 import { PresentationsComponent } from './presentations/presentations.component';
 import { FinancialsComponent } from './financials/financials.component';

@@ -1,0 +1,76 @@
+<div id="toggleButtonContainer">
+    <button class="btn-dark" (click)="filterMenuVisiblity=!filterMenuVisiblity">></button>
+</div>
+
+<div *ngIf="filterMenuVisiblity" id="viewFilter" class="form bg-white border p-3 shadow ">
+    <div id="viewFilter1">
+        <!-- <div class="form-row border-bottom pb-3">
+                <h6 class="font-weight-normal w-100 mb-1">Sort A to Z</h6>
+                <h6 class="font-weight-normal w-100 mb-0">Sort Z to A</h6>
+            </div> -->
+        <div class="form-row pt-3 d-flex d-inline-flex">
+            <label for="States" class="h6 font-weight-normal mb-0">Filter by State</label>
+            <a data-toggle="collapse" href="#collapseStatesFilter" role="button" aria-expanded="false"
+                aria-controls="collapseStatesFilter">
+                <i class="material-icons md-20">arrow_drop_down</i>
+            </a>
+        </div>
+        <div class="form-row" id="collapseStatesFilter">
+            <select class="form-control py-1">
+                <!-- (change)="getStateCode($event)"> -->
+                <option value="-98.887687@31.211969">Texas</option>
+                <option value="-81.393426@28.523902">Florida</option>
+                <option value="-118.271378@34.079959">California</option>
+                <option value="-79.586141@35.456676">North Carolina</option>
+            </select>
+        </div>
+
+        <div class="form-row pt-3 d-flex">
+            <label for="County" class="h6 font-weight-normal mb-0">Filter by County</label>
+            <a data-toggle="collapse" href="#collapseCountyFilter" role="button" aria-expanded="false"
+                aria-controls="collapseCountyFilter">
+                <i class="material-icons md-20">arrow_drop_down</i>
+            </a>
+        </div>
+        <div class="form-row text-left" id="collapseCountyFilter">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="countySearchText"
+                    name="countySearchText" placeholder="Search">
+                <div class="input-group-append">
+                    <button class="badge badge-light  border rounded-0" type="submit">
+                        <i class="material-icons md-18">
+                            search
+                        </i></button>
+                </div>
+            </div>
+            <div class="w-100 border-bottom">
+                <div class=" border p-2">
+                    <div id="county-filter">
+                        <div class="custom-control custom-checkbox"
+                            *ngFor="let county of allCounty| filter:countySearchText">
+                            <input type="checkbox" class="custom-control-input" [id]="county">
+                            <label class="custom-control-label" [for]="county">{{county}}</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-100 py-2 text-right">
+                    <button class="badge badge-light px-3 mr-3 border rounded-0" type="submit">
+                        Ok</button>
+                    <button class="badge badge-light px-3 border rounded-0" type="submit">
+                        Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-row pt-2">
+            <label for="Lease">Filter by Leases</label>
+        </div>
+        <div class="form-row">
+            <select class="form-control" id="Lease" (change)="FilterByLease($event.target.value)">
+                <option [value]="0">All</option>
+                <option *ngFor="let lease of allLeases" [value]="lease">{{lease}}</option>
+            </select>
+        </div>
+    </div>
+</div>
