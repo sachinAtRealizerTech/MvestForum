@@ -27,7 +27,7 @@
     "angular2-flash-messages": "^3.0.1",
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mapbox-gl": "^1.6.1",
     "mdb": "^0.1.0",
     "ng-click-outside": "^5.1.1",
